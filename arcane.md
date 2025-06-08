@@ -45,6 +45,7 @@ services:
 1. Navigate to http://{IP}:3000
 1. Default user name = `arcane`
 1. Default password = `arcane-admin`
+2. testing the edit feature
 
 # Video
 
