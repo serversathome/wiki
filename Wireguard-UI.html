@@ -1,0 +1,52 @@
+<!--
+title: Wireguard-UI
+description: A guide to install Wireguard-UI on Ubuntu Server LTS
+published: true
+date: 2025-06-08T18:39:25.077Z
+tags: 
+editor: ckeditor
+dateCreated: 2024-02-23T13:40:30.902Z
+-->
+
+<figure class="image"><img src="/screenshot_from_2024-02-23_11-06-52.png">
+  <figcaption>Wireguard-UI Dashboard</figcaption>
+</figure>
+<p>Wireguard-UI is a web user interface to manage your WireGuard setup. I usually recommend wg-easy for 99% of users, but this app has greatly increased functionality and control for users who need to change things in Wireguard but do not want to use the command line.</p>
+<h1>Docker Compose</h1>
+<p>First you need to install Wireguard on the host with:</p>
+<p><code>sudo apt install wireguard -y</code></p>
+<p>Then deploy this docker compose file:</p>
+<pre><code class="language-plaintext">services:
+ wireguard-ui:
+   image: ngoduykhanh/wireguard-ui:latest
+   container_name: wireguard-ui
+   cap_add:
+     - NET_ADMIN
+   network_mode: host
+   ports:
+     - 5000:5000
+   environment:
+     - BIND_ADDRESS=10.245.0.7:5000
+     - WGUI_USERNAME=admin
+     - WGUI_PASSWORD=admin
+     - WGUI_MANAGE_START=false
+     - WGUI_MANAGE_RESTART=false
+     - WGUI_DNS=9.9.9.9
+     - WGUI_SERVER_INTERFACE_ADDRESSES=10.8.0.0/24
+     - WGUI_SERVER_POST_UP_SCRIPT=iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o br0 -j MASQUERADE; iptables -A INPUT -p udp -m udp --dport 51820 -j ACCEPT; iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT;
+     - WGUI_SERVER_POST_DOWN_SCRIPT=iptables -t nat -F; iptables -F;
+     - WGUI_DEFAULT_CLIENT_ALLOWED_IPS=10.8.0.0/24,192.168.1.0/24
+     - WGUI_DEFAULT_CLIENT_USE_SERVER_DNS=false
+
+   logging:
+     driver: json-file
+     options:
+       max-size: 50m
+   volumes:
+     - ./db:/app/db
+     - /etc/wireguard:/etc/wireguard</code></pre>
+<p>In my docker compose file you will see a post-up and post-down environment variable. In the post-down, it simply flushes the existing iptables to keep it clean and remove duplicate entries from restarts.The post-up forwards traffic so that you can reach other devices besides the host running the container. <mark class="pen-red">You need to change the </mark><i><mark class="pen-red">br0</mark></i><mark class="pen-red"> from that line to match your ethernet adapter name.&nbsp;</mark></p>
+<p><mark class="pen-red">You also need to change the BIND_ADDRESS</mark> to the IP of the server you are on.&nbsp;</p>
+<p>The selection of port 5000 is arbitrary - change this to whatever you want.</p>
+<h1>Login</h1>
+<p>The dashboard is now deployed on http://{serverIP}:5000. The username is <i>admin </i>and the password is <i>admin</i>.&nbsp;</p>

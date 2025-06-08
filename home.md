@@ -2,7 +2,7 @@
 title: Home
 description: This is a wiki for configurations for common docker applications as well as setting up apps on TrueNAS Scale
 published: true
-date: 2025-06-08T19:21:29.203Z
+date: 2025-06-08T19:21:30.688Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:21:39.818Z

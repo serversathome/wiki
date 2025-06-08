@@ -1,0 +1,63 @@
+<!--
+title: FAQ
+description: A list of simple FAQ
+published: true
+date: 2025-06-08T18:39:59.314Z
+tags: 
+editor: ckeditor
+dateCreated: 2025-01-02T16:08:09.214Z
+-->
+
+<h1>Frequently Asked Questions</h1>
+<h2>1. General Setup</h2>
+<p><strong>Q1. What is the recommended folder structure for a media server using TrueNAS Scale?</strong></p>
+<p>Follow a logical setup like the <a href="https://trash-guides.info/">Trash Guides folder structure</a>, which includes separate folders for downloads, torrents, and media.</p>
+<p><strong>Q2. Should I use Dockge, Portainer, or TrueNAS apps?</strong></p>
+<p>Dockge is user-friendly for managing containers, while Portainer offers advanced networking features. Use TrueNAS apps if you prefer simplicity and native integration.</p>
+<p><strong>Q3. How do I configure ACLs and permissions on TrueNAS?</strong></p>
+<p>Set the dataset permissions to the <code>apps</code> user and group (UID/GID: 568) for compatibility with most Docker containers.</p>
+<h2>2. VPN and Networking</h2>
+<p><strong>Q4. Do I need a VPN for qBittorrent or other torrent apps?</strong></p>
+<p>Yes, especially for privacy. Avoid free VPNs and ensure your VPN provider supports port forwarding if using private trackers. I recommend <a href="/AirVPN">AirVPN</a>.</p>
+<p><strong>Q5. How do I verify my VPN is working in qBittorrent?</strong></p>
+<p>Use <code>curl ifconfig.me</code> in the container shell or add a magnet link to <a href="https://ipleak.net/">ipleak.net's torrent test</a> and verify the IP.</p>
+<p><strong>Q6. Can I set up my own VPN to connect remotely to services like Jellyfin or Nextcloud?</strong></p>
+<p>Yes, use tools like <a href="https://tailscale.com/">Tailscale</a> for an easy, secure VPN solution. Alternatively, try Nebula or Headscale for decentralized setups. You can also you <a href="/wg-easy">Wireguard</a>.</p>
+<p><strong>Q7. What should I do if downloads stall in qBittorrent or trackers fail?</strong></p>
+<p>Ensure your VPN is correctly configured. For private trackers, verify port forwarding settings. Use manual search in Radarr/Sonarr to find torrents with more seeders.</p>
+<h2>3. Radarr/Sonarr Integration</h2>
+<p><strong>Q8. Why aren’t downloaded files moving from </strong><code><strong>/media/downloads</strong></code><strong> to </strong><code><strong>/media/movies</strong></code><strong> or </strong><code><strong>/media/tv</strong></code><strong>?</strong></p>
+<p>Check the activity tab in Radarr/Sonarr for errors. If the file doesn’t match the movie/show, Radarr/Sonarr won’t move it. Adjust naming conventions or manual import. This also usually happens with permissions errors, so if your error says “Permission Denied” your permissions are incorrect.</p>
+<p><strong>Q9. How do I configure Radarr/Sonarr to use hardlinks instead of copying files?</strong></p>
+<p>Ensure downloads and final media directories are on the same dataset, and set Radarr/Sonarr to use hardlinks in the Media Management settings. See the <a href="/Folder-Structure">Folder Structure</a> page for more details.&nbsp;</p>
+<p><strong>Q10. How do I add indexers and trackers to Radarr/Sonarr?</strong></p>
+<p>Use <a href="/Prowlarr">Prowlarr</a> for centralized indexer management. Make sure indexers support your content and region.</p>
+<h2>4. qBittorrent Issues</h2>
+<p><strong>Q11. What does “host not found (non-authoritative)” mean in qBittorrent?</strong></p>
+<p>It’s a DNS resolution issue. Ensure the container is properly connected to the VPN interface and DNS is configured in the VPN settings.</p>
+<p><strong>Q12. How do I bind qBittorrent to the VPN interface?</strong></p>
+<p>In the qBittorrent settings, bind the Web UI to the VPN interface (e.g., wg0). Refer to the guide for <a href="/qBittorrent">advanced network settings</a>.</p>
+<p><strong>Q13. My downloads are very slow. What can I do?</strong></p>
+<p>Check the number of seeders on the torrent. Use manual search to select torrents with more seeders.</p>
+<h2>5. GPU and Hardware Acceleration</h2>
+<p><strong>Q14. How do I enable GPU passthrough for Jellyfin or other apps on TrueNAS?</strong></p>
+<p>Enable NVIDIA GPU drivers in TrueNAS Apps settings, restart the system, and configure the app to use the GPU. If issues persist, reinstall TrueNAS and enable GPU drivers before adding apps.</p>
+<p><strong>Q15. My GPU isn’t being used for transcoding in Jellyfin. What should I check?</strong></p>
+<p>Ensure hardware transcoding is enabled in Jellyfin. Verify that the GPU is detected using <code>nvidia-smi</code>.</p>
+<h2>6. Media Server Customizations</h2>
+<p><strong>Q16. Can I use Jellyseerr with Jellyfin?</strong></p>
+<p>Yes, Jellyseerr supports Jellyfin integration. Ensure the URL and port are correctly set in the Jellyseerr settings.</p>
+<p><strong>Q17. How do I allow friends to access my Jellyfin server?</strong></p>
+<p>Use Tailscale or another VPN solution to give friends secure access.</p>
+<h2>7. Common Errors and Solutions</h2>
+<p><strong>Q18. How do I fix “DNS resolution is currently unavailable” in Pi-hole?</strong></p>
+<p>Check the Pi-hole DNS configuration and logs for errors. Restart the container if necessary.</p>
+<p><strong>Q19. Why is my Docker container stuck in a restart loop?</strong></p>
+<p>Check logs for specific errors. Common issues include incorrect environment variables, ports already in use, or missing volume paths.</p>
+<p><strong>Q20. Why does Jellyfin or another app stop working outside my local network?</strong></p>
+<p>Ensure your Tailscale or VPN setup is correctly configured. If using Tailscale, verify subnet routing or exit node settings.</p>
+<h2>8. Advanced Topics</h2>
+<p><strong>Q21. How do I implement Trash Guides’ recommended setup on TrueNAS Scale?</strong></p>
+<p>Set up datasets and shares for apps, downloads, and media. Configure Dockge or Docker Compose with the Trash Guides folder structure.</p>
+<p><strong>Q22. How can I keep all my Docker containers updated?</strong></p>
+<p>Use <a href="/Watchtower">Watchtower</a> to automatically update Docker containers. Note that this does not work on apps from the TrueNAS Scale catalog.</p>

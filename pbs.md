@@ -1,0 +1,114 @@
+---
+title: Proxmox Backup Server
+description: A guide to deploying Proxmox Backup Server
+published: true
+date: 2025-06-08T18:40:13.406Z
+tags: 
+editor: markdown
+dateCreated: 2025-03-08T13:44:29.541Z
+---
+
+# What is Promox Backup Server?
+Proxmox Backup Server (PBS) is an enterprise backup solution, for backing up and restoring VMs, containers, and physical hosts. By supporting incremental, fully deduplicated backups, Proxmox Backup Server significantly reduces network load and saves valuable storage space. With strong encryption and methods of ensuring data integrity, you can feel safe when backing up data, even to targets which are not fully trusted.
+
+# Installation
+# {.tabset}
+## VM
+1. Go to the [official Proxmox Download Page](https://www.proxmox.com/en/downloads/proxmox-backup-server/iso) to grab the latest ISO of Proxmox Backup Server
+1. Install the ISO. PBS uses very little resources - on my machine I give it 1 CPU threads, 2 GB of memory and a 10 GB hard drive. 
+1. Boot into the webUI using `https://{IP}:8007`, **root** as the user name and the password you selected during install
+
+## Fangtooth LXC
+
+1. Create a new Instance from the **Debian bookworm (amd64, default)** image with all default settings
+1. Once its running, shell into the container and run these commands:
+```bash
+echo "deb http://download.proxmox.com/debian/pbs bookworm pbs-no-subscription" | sudo tee -a /etc/apt/sources.list
+sudo apt install wget -y
+wget https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
+sudo apt update && apt upgrade -y
+sudo apt install -y whiptail apt-utils coreutils bash proxmox-widget-toolkit nano nfs-common cron
+sudo apt update && apt install proxmox-backup -y
+echo "https://$(ip -4 addr show $(ip route | grep default | awk '{print $5}') | grep inet | awk '{print $2}' | cut -d/ -f1):8007"
+passwd root
+```
+3. When the mail configuration screen comes up, select **Local only**
+![screenshot_from_2025-03-14_20-33-38.png](/screenshot_from_2025-03-14_20-33-38.png)
+1. Select **OK** on the next screen to use the default host name
+1. Once the commands have completed, **enter a root password**
+1. Go to the printed IP address to access the webui. The commands will print the IP address just before asking you to create a root password.
+1. Login to the webui as **root** and the password you just created
+
+# Post Install Script
+It is recommended you run the [Proxmox Backup Server Post Install Script](https://community-scripts.github.io/ProxmoxVE/scripts?id=post-pbs-install) from [helper scripts](https://community-scripts.github.io/ProxmoxVE/) in the PBS shell using all default options:
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/post-pbs-install.sh)"
+```
+# Adding a TrueNAS Dataset to PBS
+1. Create a dataset on TrueNAS with generic permissions
+1. Change the permissions to user:group = `backup:backup 770` as shown below:
+![screenshot_from_2025-03-11_14-21-07.png](/screenshot_from_2025-03-11_14-21-07.png)
+
+# {.tabset}
+## VM
+3. Create an NFS share from the dataset
+a. Use the **Advanced Options** to set the **Maproot User** to `root`
+1. Run this command inside the PBS shell changing the IP, path, and mount point for your server:
+```bash
+echo "10.99.0.191:/mnt/tank/pbs /backup nfs vers=3,nouser,atime,auto,retrans=2,rw,dev,exec 0 0" >> /etc/fstab
+```
+5. Reboot PBS
+
+## LXC
+3. Mount the dataset inside the LXC by running the following command in the TrueNAS Shell:
+```bash
+sudo incus exec <container-name> -- mkdir -p /backup && sudo incus config device add <container-name> mydataset disk source=/mnt/tank/pbs path=/backup shift=true
+
+```
+|Field | Value|
+| ---| ----|
+| `container-name` | name of the LXC |
+| `mkdir` | the name of the mount point to create inside the container|
+| `source=` | path on the TrueNAS host|
+| `path=` | the mount point from the mkdir above |
+
+# Add the Datastore to PBS
+1. Navigate in the PBS panel on the left and click **Add Datastore** 
+1. Give the datastore a name and use the path you mounted from the previous steps as the **Backing Path**
+1. Click **Add**
+
+# Adjust User Permissions
+1. Navigate to **Configuration** → **Access Control** in the left pane
+1. Add a new user leaving all options as default
+1. Click **Add**
+1. Click the name of the Datastore you just added
+1. Click **Permissions** in the top bar
+1. Click **Add**
+1. Select the new user and **Datastore Admin** as **Role**
+
+# Add your PBS Server to Proxmox
+
+1. Navigate to your Proxmox VE machine 
+1. Click **Datacenter** then **Storage** in the left pane
+1. Click **Add** and select **Proxmox Backup Server**
+1. Use the values in the below table to fll in the fields:
+
+| Field | Value |
+| --- | --- |
+| ID | Any name you choose | 
+| Server | the IP of the PBS server | 
+| Username | the user you created |
+| Password | the password you chose | 
+| Datastore| the name of the Datastore you picked on PBS |
+| Fingerprint | to get this, go to PBS Dashboard and at the top look for the blue button that says **Show Fingerprint** |
+
+# Connecting With Cloudflare Tunnels
+A note for those using a CF tunnel to connect to your WebUI, make these changes to **Additional Application Settings** while editing your tunnel to ensure proper connection:
+1. Turn the **No TLS Verify** to `ON`
+1. Turn the **Disable Chucked Encoding** to `ON`
+
+> If you have **Botfight Mode** enabled you must create a rule to bypass for your IP
+{.is-info}
+
+# Video Walkthrough
+[](https://youtu.be/lUWB-Dash9M)
