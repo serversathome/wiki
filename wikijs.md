@@ -2,7 +2,7 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: 2025-06-08T18:39:43.326Z
+date: 2025-06-08T19:54:53.376Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-22T11:00:30.633Z
@@ -133,3 +133,51 @@ To show the video player when inserting YouTube links, you must make the followi
   })
 </script>
 ```
+
+# Syncing With GitHub
+
+[GitHub](https://www.github.com) is the most popular git source control provider.
+
+# Generate a new key
+
+1. Open Terminal.
+2. Enter the command:
+   ```bash
+   ssh-keygen -t rsa -b 4096
+	 ```
+3. When prompted to save the generated file, enter a path which can be accessed by Wiki.js *(e.g. `/etc/wiki/github.pem`)* and press **Enter**.
+4. Leave the passphrase empty and press **Enter** twice. Password-protected keys will NOT work.
+
+> On Windows, you can use [Git Bash](https://git-scm.com/download/win) or Windows Subsystem for Linux (WSL) distributions like [Ubuntu for Windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6) to run the commands above. You can also generate keys manually using the [puttygen](https://www.ssh.com/ssh/putty/download) utility.
+{.is-info}
+
+# Add the key to GitHub
+
+1. Create a new GitHub repository.
+2. Click on the **Settings** tab.
+3. Click on the **Deploy Keys** in the left navigation menu.
+4. Click the **Add deploy key** button.
+5. Enter a name of your choice for this key (e.g. wiki) and paste the contents of the public key generated earlier. *(file ending in `.pub`)*
+6. Make sure the **Allow write access** is checked.
+7. Click the **Add key** button.
+
+# Configure Wiki.js
+
+1. In the Administration Area, click on **Storage** in the left navigation menu.
+2. Make sure the **Git** storage target is checked.
+3. Click on the **Git** tab.
+4. Enter the following settings:
+   - Authentication Type: `ssh`
+   - Repository URI: *On your GitHub repository page, in the **Code** tab, click on the **Clone or download** green button and copy the URI shown below **Clone with SSH**.*
+   - Branch: `main`
+   - SSH Private Key Path: *The path to your private key generated earlier.*
+   - Username: *Empty*
+   - Password: *Empty*
+   - Default Author Email: *Should match your GitHub account email.*
+   - Default Author Name: *Should match your GitHub account name.*
+   - Local Repository Path: *Choose where the repo will be cloned locally or leave the default `./data/repo` value.*
+   - Verify SSL Certificate: **On**
+5. Set the **Sync Direction** to **Bi-directional**.
+6. Set the **Sync Schedule** to **5 minutes**.
+7. Click the **Apply Changes** button at the top of the page.
+8. Wait for the **Status** panel to update. A new entry for **Git** should appear in green. If the bar is red, it means you have an error in your configuration. Go back to the Git tab, fix the error and try again.
