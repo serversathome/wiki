@@ -2,7 +2,7 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: 2025-06-08T19:55:11.621Z
+date: 2025-06-08T20:31:31.439Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-22T11:00:30.633Z
@@ -245,6 +245,9 @@ Add the following code to the following sections:
   }
 </script>
 ```
+> In the `btn.href` line 14 you need to put in the correct GitHub Name and Repo for your wiki
+{.is-warning}
+
 
 ### Body HTML Injection
 ```html
