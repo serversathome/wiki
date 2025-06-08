@@ -2,7 +2,7 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: 2025-06-08T19:54:53.376Z
+date: 2025-06-08T19:55:05.832Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-22T11:00:30.633Z
@@ -151,7 +151,7 @@ To show the video player when inserting YouTube links, you must make the followi
 > On Windows, you can use [Git Bash](https://git-scm.com/download/win) or Windows Subsystem for Linux (WSL) distributions like [Ubuntu for Windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6) to run the commands above. You can also generate keys manually using the [puttygen](https://www.ssh.com/ssh/putty/download) utility.
 {.is-info}
 
-# Add the key to GitHub
+## Add the key to GitHub
 
 1. Create a new GitHub repository.
 2. Click on the **Settings** tab.
@@ -161,7 +161,7 @@ To show the video player when inserting YouTube links, you must make the followi
 6. Make sure the **Allow write access** is checked.
 7. Click the **Add key** button.
 
-# Configure Wiki.js
+## Configure Wiki.js
 
 1. In the Administration Area, click on **Storage** in the left navigation menu.
 2. Make sure the **Git** storage target is checked.
