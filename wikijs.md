@@ -2,7 +2,7 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: 2025-06-08T19:55:05.832Z
+date: 2025-06-08T19:55:11.621Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-22T11:00:30.633Z
@@ -138,7 +138,7 @@ To show the video player when inserting YouTube links, you must make the followi
 
 [GitHub](https://www.github.com) is the most popular git source control provider.
 
-# Generate a new key
+## Generate a new key
 
 1. Open Terminal.
 2. Enter the command:
