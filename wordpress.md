@@ -1,8 +1,8 @@
 ---
 title: Wordpress
-description: A guide to installing Wordpress in docker via compose
+description: A guide to installing Wordpress on TrueNAS and in docker via compose
 published: true
-date: 2025-06-08T18:39:37.217Z
+date: 2025-06-09T18:15:34.962Z
 tags: 
 editor: markdown
 dateCreated: 2024-06-30T21:34:00.616Z
@@ -13,7 +13,17 @@ dateCreated: 2024-06-30T21:34:00.616Z
 # What is Wordpress?
 WordPress is a web content management system. It was originally created as a tool to publish blogs but has evolved to support publishing other web content, including more traditional websites, mailing lists and Internet forum, media galleries, membership sites, learning management systems and online stores.
 
-# Docker Compose
+
+# Installation
+# {.tabset}
+## TrueNAS
+1. Set your **Database Password** to something secure
+1. Set your **Root Database Password** to something secure
+1. In **Network Configuration → WebUI Port** set the **Port Bind Mode** to `Publish port on the host for external access`
+1. Set the **Storage Configuration** to `Host Path` for **Wordpress Data Storage** and **Wordpress Maria DB Storage**
+
+
+## Docker Compose
 
 ```yaml
 services:
