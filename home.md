@@ -2,100 +2,97 @@
 title: Home
 description: This is a wiki for configurations for common docker applications as well as setting up apps on TrueNAS Scale
 published: true
-date: 2025-06-09T10:06:19.188Z
+date: 2025-06-09T10:28:52.828Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:21:39.818Z
 ---
 
-
-
 # 🖥️ Welcome to the Servers@Home Wiki
 
-Your guide to self-hosting, TrueNAS, Docker, networking, and all things homelab!
+**Your ultimate guide to self-hosting, homelabs, and taking control of your data!**  
 
 
 
-## 🚀 Quick Start
+## 🚀 Getting Started
+New to self-hosting? Start here:
 
-- [Getting Started with Self-Hosting](https://blog.serversatho.me/breaking-the-rules/)
-
-- [TrueNAS Scale Basics](/TrueNAS)
-
-- [Docker for Home Servers](/Docker)
-
+▶️ **[First-Time Homelab Guide](https://blog.serversatho.me/breaking-the-rules/)**  
+▶️ **[TrueNAS Scale Beginner's Walkthrough](/TrueNAS)**  
+▶️ **[Docker for Home Servers](/Docker)**  
 
 
-## 📂 Main Sections
 
-### TrueNAS
-- [Datasets, Shares, and Permissions](https://wiki.serversatho.me/en/TrueNAS#datsets)
+## 📚 Core Knowledge Areas
 
-- [Snapshots and Replication](https://wiki.serversatho.me/en/TrueNAS#data-protection)
+### 🐧 TrueNAS Ecosystem
+| Guide | Description | Difficulty |
+|-------|-------------|------------|
+| [📁 Datasets & Permissions](https://wiki.serversatho.me/en/TrueNAS#datsets) | Master storage organization | Beginner |
+| [🔄 Snapshots & Replication](https://wiki.serversatho.me/en/TrueNAS#data-protection) | Protect your data | Intermediate |
+| [📦 App Installation](https://wiki.serversatho.me/en/TrueNAS#apps) | Expand your TrueNAS capabilities | Beginner |
 
-- [Installing Apps on TrueNAS Scale](https://wiki.serversatho.me/en/TrueNAS#apps)
+### 🏠 Self-Hosting Essentials
+🎬 [Jellyfin Media Server Setup](/jellyfin)
+📸 [Immich Photo Management](/immich)
+☁️ [Nextcloud with Nginx Proxy](/nextcloud)
 
-### Self-Hosting
-- [Setting up Jellyfin](/jellyfin)
+### 🐳 Containerization
+🧩 [Dockge for Container Management](/Dockge)
+🔒 [WireGuard VPN Setup](/wg-easy)
 
-- [Photo management on Immich](/immich)
-
-- [Running Nextcloud with Nginx Proxy Manager](/nextcloud)
-
-### Docker & Containers
-- [Using Dockge](/Dockge)
-
-- [WireGuard VPN](/wg-easy)
-
-### Networking
-- [Access Your Network with Cloudflare Tunnels](/CloudflareTunnels)
-
-- [Setting up NetBird Mesh VPN](/netbird)
+### 🌐 Networking
+☁️ [Cloudflare Tunnels](/CloudflareTunnels)
+🕸️ [NetBird Mesh VPN](/netbird)
 
 
-## 🌟 Featured Guides
 
-🛠️ [Building Your First Homelab](https://blog.serversatho.me/sourcing-used-parts/)
+## 🌟 Community Favorites
 
-📦 [Docker Containers You Should Be Running](/ravencentric)
+🔥 **Most Viewed**  
+- [Building a Budget Homelab](https://blog.serversatho.me/sourcing-used-parts/)  
+- [10 Must-Have Docker Containers](/ravencentric)  
 
-🛡️ [Secure Your Self-Hosted Services](https://blog.serversatho.me/best-vpn-ever/)
+🛡️ **Security Essentials**  
+- [Securing Self-Hosted Services](https://blog.serversatho.me/best-vpn-ever/)  
+ 
 
+---
 
-## 🛠️ About Servers@Home
+## 🏆 About Our Community
 
-The **Servers@Home Wiki** is maintained by the Evan with the help of the Servers@Home community.  
-We focus on practical guides for building, maintaining, and securing your own servers and services at home.
+**Servers@Home** is a collective of self-hosting enthusiasts dedicated to:  
+✅ Practical, tested guides  
+✅ Open source solutions  
+✅ Privacy-focused infrastructure  
 
-If you love self-hosting, tinkering, and taking control of your data, you're in the right place!
+**Maintained by:** Evan + Awesome Contributors like You!  
 
+---
 
-## 📢 Connect with Us
+## 💬 Connect & Contribute
 
-🌐 [Website](https://serversatho.me)
+| Platform | Purpose |
+|----------|---------|
+| [Discord](/discord) | Get real-time help |
+| [YouTube](https://www.youtube.com/@ServersatHome) | Video tutorials |
+| [GitHub](https://github.com/serversathome/ServersatHome) | Report issues/suggest edits |
+| [Buy Me a Coffee](https://www.buymeacoffee.com/serversathome) | Support our work |
 
-📺 [YouTube Channel](https://www.youtube.com/@ServersatHome)
+---
 
-☕ [Support on Buy Me a Coffee](https://www.buymeacoffee.com/serversathome)
+## 📢 Important Notices
 
-🐙 [GitHub Repository](https://github.com/serversathome/ServersatHome)
+⚠️ **Wiki Comments**  
+This wiki runs on [Wiki.js](https://js.wiki/) which doesn't notify us of comments. For urgent matters, please use Discord.
 
+🚨 **Technical Questions**  
+For complex issues, our [Discord community](/discord) provides faster responses.
 
-Thanks for being part of the Servers@Home community! 🚀
+💡 **Feature Requests**  
+See something missing? Click the button on the bottom right to `Edit on GitHub`!
 
-
-> This wiki is [Wiki.js](https://js.wiki/), which, while easy to work with, does not include the ability to update me when comments are made on pages, so please be patient if your comment goes unanswered for some time.
-{.is-warning}
-
-
-> If you have very technical questions, please post them in the [Discord channel](/discord).
-{.is-danger}
-
-
-> Comment below to request new content
-{.is-success}
-
-
-> If you are on mobile, the blue hamburger icon in the lower left corner opens the menu
+> 📱 **Mobile Users**  
+> Tap the blue ☰ icon (bottom-left) to navigate.
 {.is-info}
 
