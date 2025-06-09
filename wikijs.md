@@ -2,7 +2,7 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: 2025-06-08T20:31:31.439Z
+date: 2025-06-09T19:52:18.506Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-22T11:00:30.633Z
@@ -181,81 +181,3 @@ To show the video player when inserting YouTube links, you must make the followi
 6. Set the **Sync Schedule** to **5 minutes**.
 7. Click the **Apply Changes** button at the top of the page.
 8. Wait for the **Status** panel to update. A new entry for **Git** should appear in green. If the bar is red, it means you have an error in your configuration. Go back to the Git tab, fix the error and try again.
-
-## Adding the Edit Button
-Add the following code to the following sections:
-
-### CSS Override
-
-```css
-.edit-on-github-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #24292e;
-  color: white !important;
-  padding: 8px 16px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 14px;
-  z-index: 9999;
-  border: 1px solid #444;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-}
-.edit-on-github-btn:hover {
-  background: #0366d6;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
-```
-
-### Head HTML Injection
-```html
-<script>
-  function addEditButton() {
-    // Clean the path - removes /en/ and fixes for GitHub
-    const fullPath = window.location.pathname;
-    const path = fullPath
-      .replace(/^\/en\//, '')      // Remove /en/ prefix
-      .replace(/^\//, '')          // Remove leading slash
-      .replace(/-/g, '/')          // Convert hyphens to slashes
-      .replace(/(\.md)?\/?$/, ''); // Remove .md and trailing slashes
-    
-    // Create button
-    const btn = document.createElement('a');
-    btn.className = 'edit-on-github-btn';
-    btn.href = `https://github.com/GitHubName/RepoName/edit/main/${path}.md`;
-    btn.target = '_blank';
-    btn.textContent = '✏️ Edit on GitHub';
-    
-    // Add to body (fixed position doesn't need specific container)
-    document.body.appendChild(btn);
-  }
-
-  // Run on initial load
-  document.addEventListener('DOMContentLoaded', addEditButton);
-  
-  // Run on Turbo Drive/AJAX navigation if used
-  if (typeof Turbo !== 'undefined') {
-    document.addEventListener('turbo:load', addEditButton);
-  }
-  if (typeof pjax !== 'undefined') {
-    document.addEventListener('pjax:complete', addEditButton);
-  }
-</script>
-```
-> In the `btn.href` line 14 you need to put in the correct GitHub Name and Repo for your wiki
-{.is-warning}
-
-
-### Body HTML Injection
-```html
-<noscript>
-  <a href="https://github.com/serversathome/wiki/" 
-     class="edit-on-github-btn"
-     target="_blank">
-    Edit on GitHub
-  </a>
-</noscript>
-```
