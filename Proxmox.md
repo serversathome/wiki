@@ -2,7 +2,7 @@
 title: Proxmox
 description: An overview of the Proxmox hypervisor
 published: true
-date: 2025-06-08T18:38:54.317Z
+date: 2025-06-09T10:16:16.360Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:26:36.274Z
@@ -41,40 +41,63 @@ For reference, my alpine-docker container is running Portainer + 20 docker conta
 # {.tabset}
 ## Housekeeping
 
-### Proxmox VE Post Install
+<details>
+<summary><strong>Proxmox VE Post Install</strong> (click to expand)</summary>
 
-This script provides options for managing Proxmox VE repositories, including disabling the Enterprise Repo, adding or correcting PVE sources, enabling the No-Subscription Repo, adding the test Repo, disabling the subscription nag, updating Proxmox VE, and rebooting the system.
+This script provides options for managing Proxmox VE repositories, including:
+- Disabling the Enterprise Repo
+- Adding/correcting PVE sources
+- Enabling the No-Subscription Repo
+- Adding the test Repo
+- Disabling the subscription nag
+- Updating Proxmox VE
+- Rebooting the system
 
-Run the command below in the **Proxmox VE Shell**.
+Run the command below in the **Proxmox VE Shell**:
 
 ```bash
 bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/post-pve-install.sh)"
 ```
+> It is recommended to answer "yes" (y) to all options presented during the process
+{.is-info}
 
-It is recommended to answer “yes” (y) to all options presented during the process.
+</details>
 
-### Proxmox VE Kernel Clean
+<details>
+<summary><strong>Proxmox VE Kernel Clean</strong> (click to expand)</summary>
 
-Cleaning unused kernel images is beneficial for reducing the length of the GRUB menu and freeing up disk space. By removing old, unused kernels, the system is able to conserve disk space and streamline the boot process.
+Cleaning unused kernel images is beneficial for:
+- Reducing the length of the GRUB menu
+- Freeing up disk space
+- Streamlining the boot process
 
-Run the command below in the **Proxmox VE Shell**.
+Run the command below in the **Proxmox VE Shell**:
+
 ```bash
 bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/kernel-clean.sh)"
 ```
+</details>
 
-### Proxmox VE Cron LXC Updater
+<details>
+<summary><strong>Proxmox VE Cron LXC Updater</strong> (click to expand)</summary>
 
 This script will add/remove a crontab schedule that updates all LXCs every Sunday at midnight.
 
-To exclude LXCs from updating, edit crontab (`crontab -e`) and add CTID as shown in the example (-s 103 111):
+**To exclude specific LXCs from updating:**
+1. Edit crontab (`crontab -e`)
+2. Add CTIDs as shown in this example (-s 103 111):
+
 ```bash
-0 0 * * 0 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin /bin/bash -c "$(wget -qLO - `[`https://github.com/tteck/Proxmox/raw/main/misc/update-lxcs-cron.sh`](https://github.com/tteck/Proxmox/raw/main/misc/update-lxcs-cron.sh)`)" -s 103 111 >>/var/log/update-lxcs-cron.log 2>/dev/null
+0 0 * * 0 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin /bin/bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/update-lxcs-cron.sh)" -s 103 111 >>/var/log/update-lxcs-cron.log 2>/dev/null
 ```
 
-Run the command below in the **Proxmox VE Shell**.
+Run the command below in the **Proxmox VE Shell** to set up:
+
 ```bash
 bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/cron-update-lxcs.sh)"
 ```
+</details>
+
 
 ## Docker LXC
 
