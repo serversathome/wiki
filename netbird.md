@@ -2,7 +2,7 @@
 title: Netbird
 description: A guide to installing and using Netbird
 published: true
-date: 2025-06-08T18:40:19.900Z
+date: 2025-06-09T09:50:55.613Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-09T14:00:43.710Z
@@ -54,8 +54,8 @@ a. Alternatively you can connect through the command line by executing `netbird 
 ## Mobile
 
 Get the app from your respective app store:
-- [Android](https://play.google.com/store/apps/details?id=io.netbird.client)
-- [iOS](https://apps.apple.com/us/app/netbird-p2p-vpn/id6469329339)
+- [Android *Google Play Store*](https://play.google.com/store/apps/details?id=io.netbird.client)
+- [iOS *Apple App Store*](https://apps.apple.com/us/app/netbird-p2p-vpn/id6469329339)
 {.links-list}
 
 # Updating
