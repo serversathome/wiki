@@ -2,7 +2,7 @@
 title: wg-easy
 description: Configuring the wg-easy container to manage wireguard
 published: true
-date: 2025-06-08T18:39:22.014Z
+date: 2025-06-09T18:06:03.514Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:39:17.982Z
@@ -117,4 +117,4 @@ Last step, traffic will go from wherever you are to the IP/domain you added duri
 
 # YouTube Walkthrough
 
-https://youtu.be/aPF_JhuwKmQ
+[](https://youtu.be/aPF_JhuwKmQ)
