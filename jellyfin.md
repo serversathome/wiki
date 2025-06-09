@@ -2,7 +2,7 @@
 title: Jellyfin
 description: A guide to deploying Jellyfin on TrueNAS as well as Docker
 published: true
-date: 2025-06-08T18:40:24.489Z
+date: 2025-06-09T13:08:27.499Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T10:43:38.039Z
@@ -204,3 +204,7 @@ As an example, here was the response:
 > Tone Mapping Mode: Auto (you can try RGB if you notice washed-out colors or blown highlights).
 > 
 > Tone Mapping Range: Auto (keeps the same color range as input; usually best unless you know you're targeting limited-range SDR).
+
+# Plug-ins
+
+[](https://youtu.be/6oUOi8-09E8)
