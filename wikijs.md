@@ -2,7 +2,7 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: 2025-06-09T19:52:18.506Z
+date: 2025-06-10T16:54:27.043Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-22T11:00:30.633Z
@@ -181,3 +181,6 @@ To show the video player when inserting YouTube links, you must make the followi
 6. Set the **Sync Schedule** to **5 minutes**.
 7. Click the **Apply Changes** button at the top of the page.
 8. Wait for the **Status** panel to update. A new entry for **Git** should appear in green. If the bar is red, it means you have an error in your configuration. Go back to the Git tab, fix the error and try again.
+
+# Video
+[](https://youtu.be/hfhP5WBAXmg)
