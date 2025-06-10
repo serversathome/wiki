@@ -10,7 +10,9 @@ dateCreated: 2024-02-23T13:21:39.818Z
 
 # 🖥️ Welcome to the Servers@Home Wiki
 
-**Your ultimate guide to self-hosting, homelabs, and taking control of your data!**  
+**Your ultimate guide to self-hosting, homelabs, and taking control of your data!** 
+
+This is my new edit. Thanks for watching!
 
 
 
