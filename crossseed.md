@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T14:26:35.350Z
+date: 2025-06-11T14:37:59.459Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -43,13 +43,20 @@ services:
     ```bash
     nano /mnt/tank/configs/crossseed/config.js
     ``` 
+<details>
+  <summary>Instead of editing the lines one by ones, you could simply copy and paste my preconfigured `config.js` file </summary>
+
+
+</details>
+   
+   
 1. Edit the `torznab` section and add your Prowlarr info. Get the number before the API key by clicking the indexer name in Prowlarr and looking at under the **Indexer Details** header.
     ```json
         torznab: [
             "http://prowlarr:9696/1/api?apikey=12345",
             "http://prowlarr:9696/2/api?apikey=12345",
         ],
-    ``` 
+    ```
 1. Edit the `torrentClients` section and add your qbittorrent info
     ```json
         torrentClients: [
