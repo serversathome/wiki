@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T12:20:19.179Z
+date: 2025-06-11T12:25:36.196Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -39,10 +39,18 @@ services:
 > This assumes Cross Seed and the other containers are within the same Docker network and can reach each other using the container name (eg http://radarr:8989)
 {.is-warning}
 
-1. Navigate to the `/mnt/tank/configs/crossseed` folder and open the `config.js` file
+1. Use the command below in the TrueNAS shell to open the `config.js` file for editing
+    ```bash
+    nano /mnt/tank/configs/crossseed/config.js
+    ``` 
 1. Edit the `torznab` section and add your Prowlarr info
 1. Edit the `torrentClients` section and add your qbittorrent info
 1. Edit the `linkDirs` section and use the path `/media/downloads`
+1. Edit the `dataDirs` section and make it look like this: 
+    ```json
+    dataDirs: ["/media/movies", "/media/tv"]
+    maxDataDepth: 4,
+    ```
 1. Restart the container
 
 # Adding qBit Scripts
@@ -52,14 +60,14 @@ services:
 
 Cross Seed has the ability upon completion of a download to automatically push the torrent to other indexers instead of waiting for the scan at a later time to take advantage of earlier, larger leeching. To activate this feature follow the steps below:
 1. Get the API key for cross seed by running the command below in the TrueNAS shell as `root`:
-```bash
-docker exec -it cross-seed cross-seed api-key
-```
+    ```bash
+    docker exec -it cross-seed cross-seed api-key
+    ```
 1. In qBit, naviagte to **Tools → Options → Downloads**
 1. Enable **Run external program on torrent completion**, replacing `<API_KEY>` with the correct values from above and use this command:
-```bash
-curl -XPOST http://cross-seed:2468/api/webhook?apikey=<API_KEY> -d "infoHash=%I"
-```
+    ```bash
+    curl -XPOST http://cross-seed:2468/api/webhook?apikey=<API_KEY> -d "infoHash=%I"
+    ```
 
 # Deleting Media
 Since Cross Seed will create hardlinks in your directories, to remove unwanted media you need to remove it both from Sonarr/Radarr **as well as** your download client or the media will remain on your hard drive.
