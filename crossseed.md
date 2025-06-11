@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T14:54:51.041Z
+date: 2025-06-11T18:28:21.372Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -71,7 +71,6 @@ services:
         delay: 30,
 
         dataDirs: ["/media/movies", "/media/tv"],
-        maxDataDepth: 4,
 
         linkCategory: "cross-seed-link",
 
@@ -89,7 +88,7 @@ services:
 
         ignoreNonRelevantFilesToResume: false,
 
-        maxDataDepth: 2,
+        maxDataDepth: 4,
 
         torrentDir: null,
 
