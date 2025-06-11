@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T18:30:08.167Z
+date: 2025-06-11T18:47:53.954Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -147,7 +147,6 @@ services:
 1. Edit the `dataDirs` section and make it look like this: 
     ```json
     dataDirs: ["/media/movies", "/media/tv"]
-    maxDataDepth: 4,
     ```
 1. Edit the Radarr/Sonarr section and add your info:
     ```json
