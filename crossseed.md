@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T11:13:42.953Z
+date: 2025-06-11T11:19:58.838Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -20,7 +20,7 @@ services:
   cross-seed:
     image: ghcr.io/cross-seed/cross-seed:6
     container_name: cross-seed
-    user: 568:568 # this must match your torrent client (cross-seed does not support using PGID and PUID)
+    user: 568:568
     ports:
       - "2468:2468"
     volumes:
