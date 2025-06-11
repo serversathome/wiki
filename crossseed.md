@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T12:17:54.203Z
+date: 2025-06-11T12:20:19.179Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -36,7 +36,7 @@ services:
 
 # Configuration
 
-> This assumes Cross Seed and the other containers are within the same Docker network and can reach eachother using the container name (eg http://radarr:8989)
+> This assumes Cross Seed and the other containers are within the same Docker network and can reach each other using the container name (eg http://radarr:8989)
 {.is-warning}
 
 1. Navigate to the `/mnt/tank/configs/crossseed` folder and open the `config.js` file
@@ -47,7 +47,7 @@ services:
 
 # Adding qBit Scripts
 
-> This assumes Cross Seed and qBit are within the same Docker network and can reach eachother using the container name (eg http://qbittorrent:8080)
+> This assumes Cross Seed and qBit are within the same Docker network and can reach each other using the container name (eg http://qbittorrent:8080)
 {.is-warning}
 
 Cross Seed has the ability upon completion of a download to automatically push the torrent to other indexers instead of waiting for the scan at a later time to take advantage of earlier, larger leeching. To activate this feature follow the steps below:
