@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T12:25:36.196Z
+date: 2025-06-11T12:26:47.782Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -51,6 +51,7 @@ services:
     dataDirs: ["/media/movies", "/media/tv"]
     maxDataDepth: 4,
     ```
+1. Edit the `module.exports` section and add your Radarr/Sonarr info
 1. Restart the container
 
 # Adding qBit Scripts
