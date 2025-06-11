@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T09:38:04.315Z
+date: 2025-06-11T09:42:56.971Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -24,14 +24,18 @@ services:
     ports:
       - "2468:2468"
     volumes:
-      - /mnt/tank/config/crossseed:/config
+      - /mnt/tank/configs/crossseed:/config
       - /mnt/tank/media:/media
     command: daemon
     restart: unless-stopped
 ```
 
 # Configuration
-
+1. Navigate to the `configs` folder and open the `config.js` file
+1. Start the daemon by running this command in the TrueNAS Shell as `root`:
+```bash
+docker exec -it cross-seed cross-seed daemon
+```
 
 
 # Video
