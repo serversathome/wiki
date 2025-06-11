@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T12:59:25.060Z
+date: 2025-06-11T14:26:35.350Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -66,6 +66,10 @@ services:
     maxDataDepth: 4,
     ```
 1. Edit the Radarr/Sonarr section and add your info:
+    ```json
+      sonarr: ["http://localhost:8989/?apikey=12345"],
+      radarr: ["http://localhost:7878/?apikey=67890"],
+    ```
 
 1. Restart the container
 
