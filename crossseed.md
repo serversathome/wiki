@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T19:18:36.575Z
+date: 2025-06-11T20:38:43.663Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -183,3 +183,7 @@ Since Cross Seed will create hardlinks in your directories, to remove unwanted m
 The Cross Seed docs are excellent. Follow their instructions [here](https://www.cross-seed.org/docs/basics/faq-troubleshooting).
 
 # Video
+
+![2025-06-11-how-to-set-up-cross-seed-power--promo-card.png](/2025-06-11-how-to-set-up-cross-seed-power--promo-card.png)
+
+[Watch it on Patreon!](https://www.patreon.com/posts/how-to-set-up-up-131256415?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
