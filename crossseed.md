@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T18:47:53.954Z
+date: 2025-06-11T19:18:36.575Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -160,6 +160,10 @@ services:
 
 > This assumes Cross Seed and qBit are within the same Docker network and can reach each other using the container name (eg http://qbittorrent:8080)
 {.is-warning}
+
+> I have not gotten this to work because qBit is behind a VPN and cannot reach other containers
+{.is-danger}
+
 
 Cross Seed has the ability upon completion of a download to automatically push the torrent to other indexers instead of waiting for the scan at a later time to take advantage of earlier, larger leeching. To activate this feature follow the steps below:
 1. Get the API key for cross seed by running the command below in the TrueNAS shell as `root`:
