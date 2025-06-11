@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T14:46:13.309Z
+date: 2025-06-11T14:54:51.041Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -43,89 +43,86 @@ services:
     ```bash
     nano /mnt/tank/configs/crossseed/config.js
     ``` 
-     <details>
-      <summary>Instead of editing the lines one by ones, you could simply copy and paste my preconfigured config.js file </summary>
+    <details><summary>Instead of editing the lines one by one, you could simply copy and paste my preconfigured config.js file</summary>
 
-  
+    ```js
     "use strict";
-module.exports = {
-    apiKey: undefined,
+    module.exports = {
+        apiKey: undefined,
 
-    torznab: [
-    "http://prowlarr:9696/1/api?apikey=12345",
-    "http://prowlarr:9696/2/api?apikey=12345",
-    ],
- 
-    sonarr: ["http://sonarr:8989/?apikey=12345"],
+        torznab: [
+            "http://prowlarr:9696/1/api?apikey=12345",
+            "http://prowlarr:9696/2/api?apikey=12345",
+        ],
 
-    radarr: ["http://radarr:7878/?apikey=12345"],
+        sonarr: ["http://sonarr:8989/?apikey=12345"],
 
-    host: "0.0.0.0",
+        radarr: ["http://radarr:7878/?apikey=12345"],
 
-    port: 2468,
+        host: "0.0.0.0",
+        port: 2468,
 
-    notificationWebhookUrls: [],
+        notificationWebhookUrls: [],
 
-    torrentClients: ["qbittorrent:http://user:pass@qbittorrent:8080"],
+        torrentClients: ["qbittorrent:http://user:pass@qbittorrent:8080"],
 
-    useClientTorrents: true,
+        useClientTorrents: true,
 
-    delay: 30,
+        delay: 30,
 
-    dataDirs: ["/media/movies", "/media/tv"],
-    maxDataDepth: 4,
+        dataDirs: ["/media/movies", "/media/tv"],
+        maxDataDepth: 4,
 
-    linkCategory: "cross-seed-link",
+        linkCategory: "cross-seed-link",
 
-    linkDirs: ["/media/downloads"],
+        linkDirs: ["/media/downloads"],
 
-    linkType: "hardlink",
+        linkType: "hardlink",
 
-    flatLinking: false,
-    
-    matchMode: "flexible",
-  
-    skipRecheck: true,
-    
-    autoResumeMaxDownload: 52428800,
-  
-    ignoreNonRelevantFilesToResume: false,
-  
-    maxDataDepth: 2,
-  
-    torrentDir: null,
+        flatLinking: false,
 
-    outputDir: null,
- 
-    includeSingleEpisodes: false,
+        matchMode: "flexible",
 
-    includeNonVideos: false,
+        skipRecheck: true,
 
-    seasonFromEpisodes: 1,
- 
-    fuzzySizeThreshold: 0.02,
+        autoResumeMaxDownload: 52428800,
 
-    excludeOlder: "2 weeks",
+        ignoreNonRelevantFilesToResume: false,
 
-    action: "inject",
+        maxDataDepth: 2,
 
-    duplicateCategories: false,
+        torrentDir: null,
 
-    rssCadence: "30 minutes",
- 
-    searchCadence: "1 day",
- 
-    snatchTimeout: "30 seconds",
-   
-    searchTimeout: "2 minutes",
+        outputDir: null,
 
-    searchLimit: 400,
+        includeSingleEpisodes: false,
 
-    blockList: [],
-};
-//# sourceMappingURL=config.template.cjs.map
+        includeNonVideos: false,
 
+        seasonFromEpisodes: 1,
 
+        fuzzySizeThreshold: 0.02,
+
+        excludeOlder: "2 weeks",
+
+        action: "inject",
+
+        duplicateCategories: false,
+
+        rssCadence: "30 minutes",
+
+        searchCadence: "1 day",
+
+        snatchTimeout: "30 seconds",
+
+        searchTimeout: "2 minutes",
+
+        searchLimit: 400,
+
+        blockList: [],
+    };
+   //# sourceMappingURL=config.template.cjs.map
+   ```
     </details>
    
    
