@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T09:42:56.971Z
+date: 2025-06-11T09:49:16.194Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -32,10 +32,14 @@ services:
 
 # Configuration
 1. Navigate to the `configs` folder and open the `config.js` file
+1. E
 1. Start the daemon by running this command in the TrueNAS Shell as `root`:
 ```bash
 docker exec -it cross-seed cross-seed daemon
 ```
 
+
+# Troubleshooting
+The Cross Seed docs are excellent. Follow their instructions [here](https://www.cross-seed.org/docs/basics/faq-troubleshooting).
 
 # Video
