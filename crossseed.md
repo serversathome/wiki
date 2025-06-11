@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T14:37:59.459Z
+date: 2025-06-11T14:46:13.309Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -43,11 +43,90 @@ services:
     ```bash
     nano /mnt/tank/configs/crossseed/config.js
     ``` 
-<details>
-  <summary>Instead of editing the lines one by ones, you could simply copy and paste my preconfigured `config.js` file </summary>
+     <details>
+      <summary>Instead of editing the lines one by ones, you could simply copy and paste my preconfigured config.js file </summary>
+
+  
+    "use strict";
+module.exports = {
+    apiKey: undefined,
+
+    torznab: [
+    "http://prowlarr:9696/1/api?apikey=12345",
+    "http://prowlarr:9696/2/api?apikey=12345",
+    ],
+ 
+    sonarr: ["http://sonarr:8989/?apikey=12345"],
+
+    radarr: ["http://radarr:7878/?apikey=12345"],
+
+    host: "0.0.0.0",
+
+    port: 2468,
+
+    notificationWebhookUrls: [],
+
+    torrentClients: ["qbittorrent:http://user:pass@qbittorrent:8080"],
+
+    useClientTorrents: true,
+
+    delay: 30,
+
+    dataDirs: ["/media/movies", "/media/tv"],
+    maxDataDepth: 4,
+
+    linkCategory: "cross-seed-link",
+
+    linkDirs: ["/media/downloads"],
+
+    linkType: "hardlink",
+
+    flatLinking: false,
+    
+    matchMode: "flexible",
+  
+    skipRecheck: true,
+    
+    autoResumeMaxDownload: 52428800,
+  
+    ignoreNonRelevantFilesToResume: false,
+  
+    maxDataDepth: 2,
+  
+    torrentDir: null,
+
+    outputDir: null,
+ 
+    includeSingleEpisodes: false,
+
+    includeNonVideos: false,
+
+    seasonFromEpisodes: 1,
+ 
+    fuzzySizeThreshold: 0.02,
+
+    excludeOlder: "2 weeks",
+
+    action: "inject",
+
+    duplicateCategories: false,
+
+    rssCadence: "30 minutes",
+ 
+    searchCadence: "1 day",
+ 
+    snatchTimeout: "30 seconds",
+   
+    searchTimeout: "2 minutes",
+
+    searchLimit: 400,
+
+    blockList: [],
+};
+//# sourceMappingURL=config.template.cjs.map
 
 
-</details>
+    </details>
    
    
 1. Edit the `torznab` section and add your Prowlarr info. Get the number before the API key by clicking the indexer name in Prowlarr and looking at under the **Indexer Details** header.
