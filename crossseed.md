@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T12:07:32.278Z
+date: 2025-06-11T12:17:54.203Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -39,8 +39,10 @@ services:
 > This assumes Cross Seed and the other containers are within the same Docker network and can reach eachother using the container name (eg http://radarr:8989)
 {.is-warning}
 
-1. Navigate to the `configs` folder and open the `config.js` file
-1. E
+1. Navigate to the `/mnt/tank/configs/crossseed` folder and open the `config.js` file
+1. Edit the `torznab` section and add your Prowlarr info
+1. Edit the `torrentClients` section and add your qbittorrent info
+1. Edit the `linkDirs` section and use the path `/media/downloads`
 1. Restart the container
 
 # Adding qBit Scripts
