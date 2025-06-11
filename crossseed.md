@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T12:26:47.782Z
+date: 2025-06-11T12:58:52.590Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -39,19 +39,37 @@ services:
 > This assumes Cross Seed and the other containers are within the same Docker network and can reach each other using the container name (eg http://radarr:8989)
 {.is-warning}
 
-1. Use the command below in the TrueNAS shell to open the `config.js` file for editing
+1. Use the command below in the TrueNAS shell to open the `config.js` file for editing:
     ```bash
     nano /mnt/tank/configs/crossseed/config.js
     ``` 
-1. Edit the `torznab` section and add your Prowlarr info
+1. Edit the `torznab` section and add your Prowlarr info. Get the number before the API key by clicking the indexer name in Prowlarr and looking at under the **Indexer Details** header.
+    ```json
+        torznab: [
+            "http://prowlarr:9696/1/api?apikey=12345",
+            "http://prowlarr:9696/2/api?apikey=12345",
+        ],
+    ``` 
 1. Edit the `torrentClients` section and add your qbittorrent info
+    ```json
+        torrentClients: [
+            "qbittorrent:http://user:pass@localhost:8080",
+            "deluge:http://:pass@localhost:8112/json",
+            "transmission:readonly:http://user:pass@localhost:9091/transmission/rpc",
+            "rtorrent:http://user:pass@localhost:8080/RPC2",
+        ],
+    ```
 1. Edit the `linkDirs` section and use the path `/media/downloads`
+    ```json
+        linkDirs: ["/media/downloads"],
+    ```
 1. Edit the `dataDirs` section and make it look like this: 
     ```json
     dataDirs: ["/media/movies", "/media/tv"]
     maxDataDepth: 4,
     ```
-1. Edit the `module.exports` section and add your Radarr/Sonarr info
+1. Edit the Radarr/Sonarr section and add your info:
+
 1. Restart the container
 
 # Adding qBit Scripts
