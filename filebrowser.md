@@ -2,7 +2,7 @@
 title: File Browser
 description: A guide to deploy the File Browser Quantum replacement in docker
 published: true
-date: 2025-06-11T23:55:27.142Z
+date: 2025-06-11T23:57:25.563Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T23:53:09.996Z
@@ -31,6 +31,8 @@ services:
     ports:
       - 7999:80
     image: gtstef/filebrowser:beta
+    restart: unless-stopped
+    container_name: filebrowser
 ```
 
 # Logging In
