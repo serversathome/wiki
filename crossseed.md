@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T12:58:52.590Z
+date: 2025-06-11T12:59:25.060Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -53,10 +53,7 @@ services:
 1. Edit the `torrentClients` section and add your qbittorrent info
     ```json
         torrentClients: [
-            "qbittorrent:http://user:pass@localhost:8080",
-            "deluge:http://:pass@localhost:8112/json",
-            "transmission:readonly:http://user:pass@localhost:9091/transmission/rpc",
-            "rtorrent:http://user:pass@localhost:8080/RPC2",
+            "qbittorrent:http://user:pass@qbittorrent:8080",
         ],
     ```
 1. Edit the `linkDirs` section and use the path `/media/downloads`
