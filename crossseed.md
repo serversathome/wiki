@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T11:19:58.838Z
+date: 2025-06-11T11:23:53.814Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -13,6 +13,10 @@ dateCreated: 2025-06-11T09:31:37.247Z
 
 # What is Cross Seed?
 cross-seed is an app designed to help you download torrents that you can cross seed based on your existing torrents. It is designed to match conservatively to minimize manual intervention. cross-seed can inject the torrents it finds directly into your torrent client. 
+
+> This container requires the ability to hardlink to your media files. If you have not read the [Folder Structure](/Folder-Structure) Guide, I recommend you have you folders set up as-described so Cross Seed can function properly.
+{.is-warning}
+
 
 # Docker Compose
 ```yaml
