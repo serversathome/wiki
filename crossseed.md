@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T18:28:21.372Z
+date: 2025-06-11T18:30:08.167Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -103,6 +103,8 @@ services:
         fuzzySizeThreshold: 0.02,
 
         excludeOlder: "2 weeks",
+  
+        excludeRecentSearch: "3 days",
 
         action: "inject",
 
