@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T09:49:16.194Z
+date: 2025-06-11T10:31:16.755Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -38,6 +38,7 @@ services:
 docker exec -it cross-seed cross-seed daemon
 ```
 
+# Deleting Media
 
 # Troubleshooting
 The Cross Seed docs are excellent. Follow their instructions [here](https://www.cross-seed.org/docs/basics/faq-troubleshooting).
