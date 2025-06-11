@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T10:31:16.755Z
+date: 2025-06-11T11:13:42.953Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
@@ -39,6 +39,7 @@ docker exec -it cross-seed cross-seed daemon
 ```
 
 # Deleting Media
+Since Cross Seed will create hardlinks in your directories, to remove unwanted media you need to remove it both from Sonarr/Radarr **as well as** your download client or the media will remain on your hard drive.
 
 # Troubleshooting
 The Cross Seed docs are excellent. Follow their instructions [here](https://www.cross-seed.org/docs/basics/faq-troubleshooting).
