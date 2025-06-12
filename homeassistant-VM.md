@@ -2,7 +2,7 @@
 title: Home Assistant
 description: A guide to deploying Home Assistant in a VM
 published: true
-date: 2025-06-12T15:02:14.907Z
+date: 2025-06-12T15:02:27.431Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-12T14:57:25.253Z
