@@ -1,17 +1,17 @@
 ---
 title: Home Assistant
 description: A guide to deploying Home Assistant in a VM
-published: false
-date: 2025-06-12 11:14:48
+published: true
+date: 2025-06-12T15:00:49.105Z
 tags: 
-editor: vscode
-dateCreated: 2025-06-12 11:14:48
+editor: markdown
+dateCreated: 2025-06-12T14:57:25.253Z
 ---
 
 ![homeassistant.png](/homeassistant.png)
 
 # What is Home Assistant?
-
+Home Assistant is free and open-source software used for home automation. It serves as an integration platform and smart home hub, allowing users to control smart home devices. 
 
 # Installation
 
