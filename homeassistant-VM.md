@@ -18,6 +18,7 @@ dateCreated: 2025-06-12 11:14:48
 ## VM
 1. Go to the [official Ubuntu Desktop download page](https://ubuntu.com/download/desktop) to grab the latest ISO of Ubuntu Desktop.
 2. Create a new Instance in TrueNAS, give it a name and select VM under the **"Virtualization Method"**. Under **"VM Image Options"** select the **"Upload ISO"** radio dial. Click the **"Select Volume"** button and upload the Ubuntu Desktop ISO you downloaded in step 1.
+
 ![Screenshot_2025-06-12-081310.png](/Screenshot_2025-06-12-081310.png)
 
 ![Screenshot_2025-06-12-082603.png](/Screenshot_2025-06-12-082603.png)
