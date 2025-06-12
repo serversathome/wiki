@@ -1,0 +1,48 @@
+---
+title: Home Assistant
+description: A guide to deploying Home Assistant in a VM
+published: false
+date: 2025-06-12 11:14:48
+tags: 
+editor: vscode
+dateCreated: 2025-06-12 11:14:48
+---
+
+![homeassistant.png](/homeassistant.png)
+
+# What is Home Assistant?
+
+
+# Installation
+
+## VM
+1. Go to the [official Ubuntu Desktop download page](https://ubuntu.com/download/desktop) to grab the latest ISO of Ubuntu Desktop.
+2. Create a new Instance in TrueNAS, give it a name and select VM under the **"Virtualization Method"**. Under **"VM Image Options"** select the **"Upload ISO"** radio dial. Click the **"Select Volume"** button and upload the Ubuntu Desktop ISO you downloaded in step 1.
+
+![Screenshot_2025-06-12-081310.png](/Screenshot_2025-06-12-081310.png)
+
+![Screenshot_2025-06-12-082603.png](/Screenshot_2025-06-12-082603.png)
+
+3. Give the VM an appropriate amount of resources for Home Assistant. This can vary depending on how many add-ons and devices you plan on running. Don't worry about resources for Ubuntu, we are only using the bootable .iso to download and install the HAOS (home assistant operating system). I would recommend 2 CPUs and 8 GiB of ram to start. You can always increase this later. For storage I recommend at least 32GiB to start. For the **"Root Disk I/O Bus"** you need to select which works best for your system.
+
+![Screenshot_2025-06-12-083558.png](/Screenshot_2025-06-12-083558.png)
+
+![Screenshot_2025-06-12-084240.png](/Screenshot_2025-06-12-084240.png)
+
+![Screenshot_2025-06-12-084257.png](/Screenshot_2025-06-12-084257.png)
+
+4. For network I chose my previously made bridge "br0".
+5. Enable VNC and give it a password of your choosing. If you already have a VM with VNC enabled you will need to change the default 5900 port. I chose 5901. 
+6. Create the VM. VNC into the VM and select "Try or Install Ubuntu". Follow the on screen prompts, skip the update. Once you see two options, install or try, select Try Ubuntu and click close.
+
+![Screenshot_2025-06-12-085240.png](/Screenshot_2025-06-12-085240.png)
+
+![Screenshot_2025-06-12-090034.png](/Screenshot_2025-06-12-090034.png)
+
+7. Open Firefox in your Ubuntu VM and proceed to the [official Home Assistant Installation guide](https://www.home-assistant.io/installation/generic-x86-64). Next, jump to the section titled: **Method 1: Installing HAOS via Ubuntu booting from a USB flash drive**. Skip to step 5 and click the "download the image" link. Once the download is complete, skip to step 7 and following the instructions. Select the disk you sized during the creation of the VM in TrueNAS.
+8. Once the restore process is done, power off the Ubuntu VM and remove the .iso from the Disks section in TrueNAS. Start the VM and VNC back into it. You should see HAOS booting and eventually you will see the splash screen.
+9. You will need to find the IP address of the VM via your router and use the port 8123. Home Assistant will default to giving you homeassistant.local:8123 address. Once you have the IP you may proceed to the [Onboarding Process](https://www.home-assistant.io/getting-started/onboarding/).
+
+
+
+
