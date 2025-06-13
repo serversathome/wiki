@@ -2,7 +2,7 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2025-06-13T03:26:58.848Z
+date: 2025-06-13T03:29:27.053Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-08T13:44:29.541Z
@@ -47,7 +47,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/Proxmo
 # Adding a TrueNAS Dataset to PBS
 1. Create a dataset on TrueNAS with generic permissions
 1. Change the permissions to user:group = `backup:backup 770` as shown below:
-![screenshot_from_2025-03-11_14-21-07.png](/screenshot_from_2025-03-11_14-21-07.png)
+![screenshot_from_2025-06-12_23-28-32.png](/screenshot_from_2025-06-12_23-28-32.png)
 
 # {.tabset}
 ## VM
