@@ -2,7 +2,7 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2025-06-08T18:40:13.406Z
+date: 2025-06-13T03:26:18.034Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-08T13:44:29.541Z
@@ -22,17 +22,17 @@ Proxmox Backup Server (PBS) is an enterprise backup solution, for backing up and
 
 1. Create a new Instance from the **Debian bookworm (amd64, default)** image with all default settings
 1. Once its running, shell into the container and run these commands:
-```bash
-echo "deb http://download.proxmox.com/debian/pbs bookworm pbs-no-subscription" | sudo tee -a /etc/apt/sources.list
-sudo apt install wget -y
-wget https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
-sudo apt update && apt upgrade -y
-sudo apt install -y whiptail apt-utils coreutils bash proxmox-widget-toolkit nano nfs-common cron
-sudo apt update && apt install proxmox-backup -y
-echo "https://$(ip -4 addr show $(ip route | grep default | awk '{print $5}') | grep inet | awk '{print $2}' | cut -d/ -f1):8007"
-passwd root
-```
-3. When the mail configuration screen comes up, select **Local only**
+    ```bash
+    echo "deb http://download.proxmox.com/debian/pbs bookworm pbs-no-subscription" | sudo tee -a /etc/apt/sources.list
+    sudo apt install wget -y
+    wget https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
+    sudo apt update && apt upgrade -y
+    sudo apt install -y whiptail apt-utils coreutils bash proxmox-widget-toolkit nano nfs-common cron
+    sudo apt update && apt install proxmox-backup -y
+    echo "https://$(ip -4 addr show $(ip route | grep default | awk '{print $5}') | grep inet | awk '{print $2}' | cut -d/ -f1):8007"
+    passwd root
+    ```
+1. When the mail configuration screen comes up, select **Local only**
 ![screenshot_from_2025-03-14_20-33-38.png](/screenshot_from_2025-03-14_20-33-38.png)
 1. Select **OK** on the next screen to use the default host name
 1. Once the commands have completed, **enter a root password**
