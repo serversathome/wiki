@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: false
-date: 2025-06-13T13:14:49.064Z
+date: 2025-06-13T13:20:31.872Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-13T13:04:34.352Z
@@ -38,3 +38,40 @@ The installer must be run as root. If you're not already root, switch to the roo
 sudo ./installer
 ```
 
+# Basic Configuration
+The installer will prompt you for the following basic information. For example:
+
+1. **Base Domain Name:** Enter your base fully qualified domain name (without any subdomains) Example: example.com
+1. **Dashboard Domain Name:** The domain where the application will be hosted. This is used for many things, including generating links. You can run Pangolin on a subdomain or root domain. Example: pangolin.example.com
+1. **Let's Encrypt Email:** Provide an email address for SSL certificate registration with Lets Encrypt. This should be an email you have access to.
+1. **Tunneling:** You can choose not to install Gerbil for tunneling support - in this config it will just be a normal reverse proxy. See how to [use without tunneling](https://docs.fossorial.io/Pangolin/without-tunneling).
+
+# Admin User Setup
+
+You'll need to configure the admin user. This is the first user in the system. You will log in initially with this user.
+
+1. **Admin Email:** Defaults to `admin@yourdomain.com` but can be customized
+1. **Admin Password:** Must meet these requirements:
+    - At least 8 characters
+    - At least one uppercase letter
+    - At least one lowercase letter
+    - At least one digit
+    - At least one special character
+
+# Security Settings
+
+It will ask you to configure some basic security options. For example:
+
+1. **Signup Without Invite:** Choose whether to disable user registration without invites (defaults to disabled). This removes the "Sign Up" button on the login form and is recommended for private deployments.
+1. **Organization Creation:** Decide if users can create their own organizations (defaults to enabled)
+
+# Email Configuration
+
+Decide whether to enable email functionality. This allows Pangolin to send transactional emails like OTP or email verification requests.
+
+If enabled, you'll need to provide:
+- SMTP host
+- SMTP port (defaults to 587)
+- SMTP username
+- SMTP password
+- No-reply email address. This is the sender email address that Pangolin will email from. Many times this should be the same as the username.
