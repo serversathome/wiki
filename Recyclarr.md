@@ -2,7 +2,7 @@
 title: Recyclarr
 description: A guide to installing Recyclarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-06-08T18:39:11.341Z
+date: 2025-06-13T03:08:33.315Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:34:38.606Z
@@ -58,7 +58,9 @@ This is the file within Recyclarr which tells it what to sync to Sonarr/Radarr. 
 > The assumption is your devices are not compatible with HDR or Dolby Vision. If they are, uncomment out the lines in the .yml file below where instructed
 {.is-info}
 
-Copy the text below into a text editor and edit the lines for your specific instance URL and API key. Note, leave a space between the colon and the API key or the sync will fail.
+Copy the code below into a text editor and edit the lines for your specific instance URL and API key. Note, leave a space between the colon and the API key or the sync will fail.
+
+<details><summary><strong>Show me the code!</strong></summary>
 
 ```yaml
 sonarr:
@@ -201,10 +203,13 @@ radarr:
          - name: HD Bluray + WEB
            # score: 0 # Uncomment this line to disable prioritised IMAX Enhanced releases
 ```
-To download this script use the command 
+</details>
+To download this script use the command:
+
 ```bash
 wget https://raw.githubusercontent.com/imjustleaving/ServersatHome/refs/heads/main/recyclarr.yml
 ```
+
 ## Syncing Recyclarr
 
 1. Start by entering the shell by clicking the button below:
