@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: false
-date: 2025-06-13T17:24:50.439Z
+date: 2025-06-13T17:28:29.606Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-13T13:04:34.352Z
@@ -31,7 +31,7 @@ Pangolin is installed on bare metal using this command:
 wget -O installer "https://github.com/fosrl/pangolin/releases/download/1.5.1/installer_linux_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')" && chmod +x ./installer
 ```
 
-The downloaded files will be named installer in the current directory.
+The downloaded files will be named `installer` in the current directory.
 
 The installer must be run as root. If you're not already root, switch to the root user or use sudo:
 ```bash
