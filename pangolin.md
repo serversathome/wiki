@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: false
-date: 2025-06-13T13:39:05.582Z
+date: 2025-06-13T13:39:15.773Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-13T13:04:34.352Z
@@ -140,6 +140,6 @@ For example on a Linux client, you can write your copied config to a wg0.conf fi
 1. Press **Save Changes**
 1. Try to access your resource by clicking the url at the top
 
-tip
 
-After you create your resource if you are using https certificates with Let's Encrypt (default) then you must wait some time after a target is created for your certificate to be granted and loaded by Traefik. This should take no more than a few minutes. For instant access, consider setting up wildcard certificates.
+> After you create your resource if you are using https certificates with Let's Encrypt (default) then you must wait some time after a target is created for your certificate to be granted and loaded by Traefik. This should take no more than a few minutes. For instant access, consider setting up wildcard certificates.
+{.is-info}
