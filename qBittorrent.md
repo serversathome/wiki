@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-06-08T18:39:15.959Z
+date: 2025-06-13T02:56:51.632Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -54,6 +54,8 @@ services:
 
 This qBittorrent container is from hotio and uses a Wireguard VPN to protect traffic. 
 
+<details><summary>Environment Variables Explanations</summary>
+
 |  Variable   | Value    |
 | --- | --- |
 | `VPN_CONF` | With VPN\_CONF you can set the name used for your WireGuard config. There needs to be a file `wg0.conf` located in `/config/wireguard` for the VPN to start. |
@@ -68,7 +70,8 @@ This qBittorrent container is from hotio and uses a Wireguard VPN to protect tra
 > For more info on these values, look [here](https://hotio.dev/containers/qbittorrent/#__tabbed_5_2) 
 {.is-info}
 
-
+</details>
+  
 > When you start this container it will fail until you add the VPN config file. See the [Example Wireguard](https://wiki.serversatho.me/en/qBittorrent#example-wireguard-wg0conf-file) section below
 {.is-warning}
 
