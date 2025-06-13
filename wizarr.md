@@ -2,7 +2,7 @@
 title: Wizarr
 description: A guide to deploying Wizarr
 published: true
-date: 2025-06-08T18:40:22.915Z
+date: 2025-06-13T03:14:22.611Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-11T10:21:57.578Z
@@ -37,7 +37,8 @@ services:
 
 
 # Wizarr Configuration
-Follow the setup guide [here](https://github.com/Wizarrrr/wizarr/blob/master/docs/setup/README.md#initial-setup). 
+
+Wizarr has moved their docs. 🙁
 
 > You will first need to create an API Key for Jellyfin by navigating to the **Administration Dashboard** → **API Keys** and clicking the `+` in the top left
 {.is-info}
