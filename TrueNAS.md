@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-06-08T18:38:52.731Z
+date: 2025-06-13T03:23:37.142Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -43,22 +43,22 @@ See the playlist here: https://youtube.com/playlist?list=PL6zQmF2gDqDT7SHyBe7ni1
 1. Navigate to **Storage → Pool**
 1. Click on the **Export/Disconnect** button to export the pool *without destroying any of the data*:
 
-![](/screenshot_from_2024-12-16_10-18-04.png)
+	![](/screenshot_from_2024-12-16_10-18-04.png)
 
-3. Next, in the shell, run these commands **as root** replacing the original name of the pool with the new name you have chosen.:
+1. Next, in the shell, run these commands **as root** replacing the original name of the pool with the new name you have chosen.:
 
-```bash
-zpool import original_name new_name
-``` 
-4. to confirm the new name is working:
-```bash
-zpool status new_name
-``` 
-5. so we can import it in the GUI again:
-```bash
-zpool export new_name
-```
-6. Lastly, navigate to the **Storage → Pool** tab and click the button for **Import Pool** in the top right corner. Select the new pool you have just renamed.
+    ```bash
+    zpool import original_name new_name
+    ``` 
+1. to confirm the new name is working:
+    ```bash
+    zpool status new_name
+    ``` 
+1. so we can import it in the GUI again:
+    ```bash
+    zpool export new_name
+    ```
+1. Lastly, navigate to the **Storage → Pool** tab and click the button for **Import Pool** in the top right corner. Select the new pool you have just renamed.
 > 
 > If you had any apps using hostpath for the old pool they will have to be edited/recreated. Same goes for rsync tasks, shares, snapshots, etc.  
 {.is-warning}
