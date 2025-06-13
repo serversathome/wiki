@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-06-13T02:56:51.632Z
+date: 2025-06-13T02:58:08.432Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -54,7 +54,7 @@ services:
 
 This qBittorrent container is from hotio and uses a Wireguard VPN to protect traffic. 
 
-<details><summary>Environment Variables Explanations</summary>
+<details><summary><strong>Environment Variables Explanations</strong></summary>
 
 |  Variable   | Value    |
 | --- | --- |
