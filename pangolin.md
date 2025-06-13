@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: false
-date: 2025-06-13T13:20:31.872Z
+date: 2025-06-13T13:21:37.595Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-13T13:04:34.352Z
@@ -38,7 +38,7 @@ The installer must be run as root. If you're not already root, switch to the roo
 sudo ./installer
 ```
 
-# Basic Configuration
+# Installer Configuration
 The installer will prompt you for the following basic information. For example:
 
 1. **Base Domain Name:** Enter your base fully qualified domain name (without any subdomains) Example: example.com
@@ -46,7 +46,7 @@ The installer will prompt you for the following basic information. For example:
 1. **Let's Encrypt Email:** Provide an email address for SSL certificate registration with Lets Encrypt. This should be an email you have access to.
 1. **Tunneling:** You can choose not to install Gerbil for tunneling support - in this config it will just be a normal reverse proxy. See how to [use without tunneling](https://docs.fossorial.io/Pangolin/without-tunneling).
 
-# Admin User Setup
+## Admin User Setup
 
 You'll need to configure the admin user. This is the first user in the system. You will log in initially with this user.
 
@@ -58,14 +58,14 @@ You'll need to configure the admin user. This is the first user in the system. Y
     - At least one digit
     - At least one special character
 
-# Security Settings
+## Security Settings
 
 It will ask you to configure some basic security options. For example:
 
 1. **Signup Without Invite:** Choose whether to disable user registration without invites (defaults to disabled). This removes the "Sign Up" button on the login form and is recommended for private deployments.
 1. **Organization Creation:** Decide if users can create their own organizations (defaults to enabled)
 
-# Email Configuration
+## Email Configuration
 
 Decide whether to enable email functionality. This allows Pangolin to send transactional emails like OTP or email verification requests.
 
