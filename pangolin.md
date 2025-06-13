@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: false
-date: 2025-06-13T17:18:51.228Z
+date: 2025-06-13T17:24:50.439Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-13T13:04:34.352Z
@@ -143,5 +143,30 @@ For example on a Linux client, you can write your copied config to a wg0.conf fi
 
 > After you create your resource if you are using https certificates with Let's Encrypt (default) then you must wait some time after a target is created for your certificate to be granted and loaded by Traefik. This should take no more than a few minutes. For instant access, consider setting up wildcard certificates.
 {.is-info}
+
+### Authentication
+
+1. Choose the Authentication page under the resource
+
+By default the resource is protected with your same Pangolin account. When opening the resource it just loads because you are already logged in. If you were not, you would first be redirected to Pangolin to login before being sent back to the resource.
+
+If you would like to disable Pangolin auth, you can disable the `Use Platform SSO` toggle.
+
+> It is not recommended to expose a resource without some form of authentication. Only do this if you need to for the functionality of the resource or you trust the built-in auth.
+{.is-warning}
+
+
+## Invite Users (optional)
+
+1. Head to the Users and Roles tab
+1. Press **Invite User**
+1. Enter an email for the new user. If you have setup SMTP during the setup you can choose to send an email invite to the new user
+1. Select the role for the new user. All users must have a role. The admin role gives the user access to all resources and to create new resources and sites. The member role only provides access to resources explicitly attached to the role (none by default).
+1. Choose how long this invite will be valid for and choose **Create Invitation**
+1. If you chose not to send the email or it is not setup, then be sure to copy the invite and send it to the user
+
+The new user will be prompted to setup a password and verify their email (if SMTP is supported). They will show up in your table once they confirm their account.
+
+
 
 # Video
