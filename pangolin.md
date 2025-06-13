@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: false
-date: 2025-06-13T17:28:29.606Z
+date: 2025-06-13T17:29:17.552Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-13T13:04:34.352Z
@@ -12,6 +12,10 @@ dateCreated: 2025-06-13T13:04:34.352Z
 
 # What is Pangolin?
 Pangolin at its core is a self-hosted tunneled reverse proxy with identity and access management, designed to securely expose private resources through encrypted WireGuard tunnels running in user space. Think self hosted Cloudflare tunnels.
+> 
+> Read the [official documentation](https://docs.fossorial.io/Getting%20Started/overview)
+{.is-success}
+
 
 # Prerequisites
 - A Linux system with root access and a public IP address *(we recommend Ubuntu or Debian based systems)*
