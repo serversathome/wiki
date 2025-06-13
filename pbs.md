@@ -2,7 +2,7 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2025-06-13T03:26:18.034Z
+date: 2025-06-13T03:26:58.848Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-08T13:44:29.541Z
@@ -54,10 +54,10 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/Proxmo
 3. Create an NFS share from the dataset
 a. Use the **Advanced Options** to set the **Maproot User** to `root`
 1. Run this command inside the PBS shell changing the IP, path, and mount point for your server:
-```bash
-echo "10.99.0.191:/mnt/tank/pbs /backup nfs vers=3,nouser,atime,auto,retrans=2,rw,dev,exec 0 0" >> /etc/fstab
-```
-5. Reboot PBS
+    ```bash
+    echo "10.99.0.191:/mnt/tank/pbs /backup nfs vers=3,nouser,atime,auto,retrans=2,rw,dev,exec 0 0" >> /etc/fstab
+    ```
+1. Reboot PBS
 
 ## LXC
 3. Mount the dataset inside the LXC by running the following command in the TrueNAS Shell:
