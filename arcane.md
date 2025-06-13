@@ -2,11 +2,16 @@
 title: Arcane
 description: A guide to deploying Arcane in docker
 published: true
-date: 2025-06-08T20:59:43.593Z
+date: 2025-06-13T03:20:44.108Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-04T16:58:11.419Z
 ---
+
+> This container is in the process of being completely rewritten by the developer
+{.is-info}
+
+
 
 ![arcane.png](/arcane.png)
 
