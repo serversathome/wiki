@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: false
-date: 2025-06-13T13:21:37.595Z
+date: 2025-06-13T13:27:36.318Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-13T13:04:34.352Z
@@ -75,3 +75,68 @@ If enabled, you'll need to provide:
 - SMTP username
 - SMTP password
 - No-reply email address. This is the sender email address that Pangolin will email from. Many times this should be the same as the username.
+
+# Pangolin Configuration
+
+## Create a Org
+
+An org is a way to collect sites, users, and resources.
+
+When you log into the app for the first time you will be prompted to create an org. Simply choose a name and an ID. Note that the ID can not be changed later!
+
+## Create a site
+
+A site is a remote location that you want to proxy through the tunnel and system. For example your home server, or a IOT device. A site will terminate one tunnel.
+
+1. Head to the Sites tab and select the Add Site button (or use the tab in the setup workflow)
+1. Give your site a name like "Home Lab"
+1. Choose your connection method. You can either use the Newt client (recommended) or a standard WireGuard tunnel.
+1. Copy the Newt command or the WireGuard config, confirm you have copied it, and press **Create Site**
+
+## Connect a Tunnel
+Newt (recommended)
+
+Assuming you chose Newt above, install and configure it to connect to Gerbil and Pangolin.
+
+There are 2 ways to setup Newt: with the CLI application or the Docker container. See Newt install for all options.
+
+On Linux, you can wget the newt binary and run the command copied during the create site step. Make sure to replace amd64 with your architecture!
+
+wget -O newt "https://github.com/fosrl/newt/releases/download/1.2.1/newt_linux_amd64" && chmod +x ./newt
+
+Then run Newt
+
+./newt \
+--id 31frd0uzbjvp721 \
+--secret h51mmlknrvrwv8s4r1i210azhumt6isgbpyavxodibx1k2d6 \
+--endpoint https://example.com
+
+WireGuard
+
+With WireGuard you will be responsible for ensuring your targets are reachable with the site_block_size subnet provided or proxied/NATed from the WireGuard host.
+
+You are provided a site_block_size subnet in the subnet_group range that Gerbil uses per site.
+
+For example on a Linux client, you can write your copied config to a wg0.conf file and run wg-quick up ./wg0.conf
+
+## Create a Resource
+
+1. Head to the Resources tab and select the **Add Resource button** (or use the tab in the setup workflow)
+1. Give your resource a name like "Bitwarden"
+1. Choose a subdomain for this resource. The subdomain must be **globally unique** across all orgs and sites
+1. Choose the site that this resource is at. The resource target must be accessible behind the tunnel attached to this site.
+1. Press **Create Resource**
+
+## Add Targets and Authentication
+Target
+
+    You should now be on the Connectivity page under your new resource
+    If you would like to secure this site with https, leave the Enable SSL toggle enabled
+    Add a target for this resource. If your resource is accessible on your internal network at http://192.168.1.24:8080 for example, then choose the following Method: HTTP IP Address: 192.168.1.24 Port: 8080
+    Press Add Target and you will see the target added to the list and enabled.
+    Press Save Changes
+    Try to access your resource by clicking the url at the top
+
+tip
+
+After you create your resource if you are using https certificates with Let's Encrypt (default) then you must wait some time after a target is created for your certificate to be granted and loaded by Traefik. This should take no more than a few minutes. For instant access, consider setting up wildcard certificates.
