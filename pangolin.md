@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: false
-date: 2025-06-13T13:27:36.318Z
+date: 2025-06-13T13:39:05.582Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-13T13:04:34.352Z
@@ -128,14 +128,17 @@ For example on a Linux client, you can write your copied config to a wg0.conf fi
 1. Press **Create Resource**
 
 ## Add Targets and Authentication
-Target
+### Target
 
-    You should now be on the Connectivity page under your new resource
-    If you would like to secure this site with https, leave the Enable SSL toggle enabled
-    Add a target for this resource. If your resource is accessible on your internal network at http://192.168.1.24:8080 for example, then choose the following Method: HTTP IP Address: 192.168.1.24 Port: 8080
-    Press Add Target and you will see the target added to the list and enabled.
-    Press Save Changes
-    Try to access your resource by clicking the url at the top
+1. You should now be on the Connectivity page under your new resource
+1. If you would like to secure this site with https, leave the **Enable SSL** toggle enabled
+1. Add a target for this resource. If your resource is accessible on your internal network at `http://192.168.1.24:8080` for example, then choose the following:
+	a. **Method:** `HTTP` 
+  b. **IP Address:** `192.168.1.24` 
+  c. **Port:** `8080`
+1. Press **Add Target** and you will see the target added to the list and enabled.
+1. Press **Save Changes**
+1. Try to access your resource by clicking the url at the top
 
 tip
 
