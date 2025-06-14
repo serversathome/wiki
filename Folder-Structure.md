@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure from Trash Guides to allow for hardlinks within the arr stack
 published: true
-date: 2025-06-08T18:38:55.918Z
+date: 2025-06-14T12:49:27.003Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:27:24.035Z
@@ -27,11 +27,10 @@ The primary dataset is named `media`, and contains three main subdirectories:
 
 # Creating the Datasets and Directories
 
-The `media` dataset can be created in the TrueNAS UI, but the subdirectories **need to be created in the shell!** If your pool was named `tank` the command for this would be:
+The `media` dataset can be created in the TrueNAS UI, but the subdirectories **need to be created in the shell after** the `media` dataset has been created with the **apps** permissions preset.If your pool was named `tank` the command for this would be:
 ```bash
 mkdir -p /mnt/tank/media/{movies,tv,downloads}
 ```
-**after** the `media` dataset has been created with the **apps** permissions preset.
 
 Once the subdirectories have been created, give them the proper permissions by navigating to the **Datasets** tab in the webUI and **Editing** the permissions for the `media` dataset and **applying them recursively**.
 
