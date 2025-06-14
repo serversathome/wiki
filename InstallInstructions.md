@@ -2,7 +2,7 @@
 title: Install Instructions
 description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2025-06-14T12:42:38.649Z
+date: 2025-06-14T12:43:31.142Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:29:57.064Z
@@ -45,7 +45,7 @@ Follow the steps in this order to make the install go as smoothly as possible.
  
 - Recyclarr or Profilarr will now need to set up quality profiles for Radarr and Sonarr, which are ready to accept them.
  
-- Emby can be deployed since our media folders are being managed by Radarr and Sonarr.
+- Emby/Jellyfin can be deployed since our media folders are being managed by Radarr and Sonarr.
  
 - Unpackerr can now be deployed since we have API keys for Radarr and Sonarr in the event we get .rar files.
  
