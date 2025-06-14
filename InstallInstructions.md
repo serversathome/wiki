@@ -1,8 +1,8 @@
 ---
 title: Install Instructions
-description: A step-by-step list of the best way to install all the apps
+description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2025-06-08T18:39:00.283Z
+date: 2025-06-14T12:42:38.649Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:29:57.064Z
