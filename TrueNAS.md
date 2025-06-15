@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-06-14T12:46:11.966Z
+date: 2025-06-15T22:06:36.448Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -203,6 +203,16 @@ incus profile rm scriptcli-storage
 ```
 
 [](https://youtu.be/O9HeWPosBUQ)
+
+### Creating a Windows VM
+
+1. Download the .iso file for the version of Windows you want. These .iso files were compiled in May 2025 with the virtio drivers built in:
+
+    - [Windows 10]()
+    - [Windows 11]()
+    {.links-list}
+
+1. 
 
 ## Apps
 ### Apps
