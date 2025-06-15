@@ -2,7 +2,7 @@
 title: Home Assistant
 description: A guide to deploying Home Assistant on TrueNAS
 published: true
-date: 2025-06-15T11:37:26.888Z
+date: 2025-06-15T11:40:00.132Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-12T14:57:25.253Z
@@ -54,9 +54,12 @@ Home Assistant is free and open-source software used for home automation. It ser
 
 ## LXC
 
-It is also possible to use [Helper Scripts](https://wiki.serversatho.me/en/TrueNAS#incus-helper-scripts) to install Home Assistant as an LXC. Use the command below (after installing the `scripts-cli` to launch the container:
+It is also possible to use [Helper Scripts](https://bketelsen.github.io/IncusScripts/scripts?id=homeassistant) to install Home Assistant as an LXC. Use the command below ([after installing the `scripts-cli`](https://wiki.serversatho.me/en/TrueNAS#incus-helper-scripts)) to launch the container:
 
 ```bash
 scripts-cli launch homeassistant homeassistant
 ```
+
+> Note this this is untested for USB passthru as of 6/15/25
+{.is-warning}
 
