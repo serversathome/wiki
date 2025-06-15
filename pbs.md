@@ -2,7 +2,7 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2025-06-13T03:29:27.053Z
+date: 2025-06-15T11:26:59.572Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-08T13:44:29.541Z
@@ -28,15 +28,14 @@ Proxmox Backup Server (PBS) is an enterprise backup solution, for backing up and
     wget https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
     sudo apt update && apt upgrade -y
     sudo apt install -y whiptail apt-utils coreutils bash proxmox-widget-toolkit nano nfs-common cron
-    sudo apt update && apt install proxmox-backup -y
+    sudo apt update && apt install proxmox-backup-server -y
     echo "https://$(ip -4 addr show $(ip route | grep default | awk '{print $5}') | grep inet | awk '{print $2}' | cut -d/ -f1):8007"
     passwd root
     ```
-1. When the mail configuration screen comes up, select **Local only**
-![screenshot_from_2025-03-14_20-33-38.png](/screenshot_from_2025-03-14_20-33-38.png)
-1. Select **OK** on the next screen to use the default host name
+
 1. Once the commands have completed, **enter a root password**
-1. Go to the printed IP address to access the webui. The commands will print the IP address just before asking you to create a root password.
+1. The commands will print the IP address just before asking you to create a root password
+1. Go to the printed IP address to access the webui
 1. Login to the webui as **root** and the password you just created
 
 # Post Install Script
