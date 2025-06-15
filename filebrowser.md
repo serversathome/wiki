@@ -2,7 +2,7 @@
 title: File Browser
 description: A guide to deploy the File Browser Quantum replacement in docker
 published: true
-date: 2025-06-15T16:23:05.859Z
+date: 2025-06-15T20:36:29.529Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T23:53:09.996Z
@@ -24,15 +24,43 @@ I have tested this and there is clearly still stuff missing but in terms of file
 ```yaml
 services:
   filebrowser:
-    stdin_open: true
-    tty: true
+    environment:
+      FILEBROWSER_CONFIG: data/config.yaml
     volumes:
-      - /mnt/:/srv
+      - /mnt:/srv
+      - /mnt/tank/configs/filebrowser:/home/filebrowser/data
     ports:
       - 7999:80
-    image: gtstef/filebrowser:latest
+    image: gtstef/filebrowser
     restart: unless-stopped
     container_name: filebrowser
+```
+
+Upon first run of this it will fail to launch. You will need to shell into the `/mnt/tank/configs/filebrowser` directory and add a file called `config.yaml` with these contents:
+
+```yaml
+server:
+  port: 80
+  baseURL:  "/"
+  logging:
+    - levels: "info|warning|error"
+  sources:
+    - path: "/srv"
+userDefaults:
+  preview:
+    image: true
+    popup: true
+    video: false
+    office: false
+    highQuality: false
+  darkMode: true
+  disableSettings: false
+  singleClick: false
+  permissions:
+    admin: false
+    modify: false
+    share: false
+    api: false
 ```
 
 # Logging In
