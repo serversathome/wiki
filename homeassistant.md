@@ -1,8 +1,8 @@
 ---
 title: Home Assistant
-description: A guide to deploying Home Assistant in a VM
+description: A guide to deploying Home Assistant on TrueNAS
 published: true
-date: 2025-06-12T15:08:24.787Z
+date: 2025-06-15T11:37:26.888Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-12T14:57:25.253Z
@@ -52,5 +52,11 @@ Home Assistant is free and open-source software used for home automation. It ser
 1. You will need to find the IP address of the VM via your router and use the port 8123. Home Assistant will default to giving you homeassistant.local:8123 address. Once you have the IP you may proceed to the [Onboarding Process](https://www.home-assistant.io/getting-started/onboarding/).
 
 
+## LXC
 
+It is also possible to use [Helper Scripts](https://wiki.serversatho.me/en/TrueNAS#incus-helper-scripts) to install Home Assistant as an LXC. Use the command below (after installing the `scripts-cli` to launch the container:
+
+```bash
+scripts-cli launch homeassistant homeassistant
+```
 
