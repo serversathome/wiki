@@ -2,7 +2,7 @@
 title: Home Assistant
 description: A guide to deploying Home Assistant on TrueNAS
 published: true
-date: 2025-06-15T11:40:00.132Z
+date: 2025-06-15T11:47:32.588Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-12T14:57:25.253Z
@@ -59,6 +59,11 @@ It is also possible to use [Helper Scripts](https://bketelsen.github.io/IncusScr
 ```bash
 scripts-cli launch homeassistant homeassistant
 ```
+
+### USB Passthru
+
+To pass devices into the container, click the name of the instance and using the **Devices** menu on the right.
+![screenshot_from_2025-06-15_07-44-45.png](/screenshot_from_2025-06-15_07-44-45.png)
 
 > Note this this is untested for USB passthru as of 6/15/25
 {.is-warning}
