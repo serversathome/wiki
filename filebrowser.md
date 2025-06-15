@@ -2,7 +2,7 @@
 title: File Browser
 description: A guide to deploy the File Browser Quantum replacement in docker
 published: true
-date: 2025-06-15T21:03:18.457Z
+date: 2025-06-15T21:04:06.109Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T23:53:09.996Z
@@ -62,6 +62,8 @@ userDefaults:
     share: false
     api: false
 ```
+
+There are many more options for this config file. [See them all here](https://github.com/gtsteffaniak/filebrowser/wiki/Full-Config-Example).
 
 # Logging In
 The default user is `admin` and the default password is `admin`.
