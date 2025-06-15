@@ -2,7 +2,7 @@
 title: File Browser
 description: A guide to deploy the File Browser Quantum replacement in docker
 published: true
-date: 2025-06-15T20:36:29.529Z
+date: 2025-06-15T21:03:18.457Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T23:53:09.996Z
@@ -55,7 +55,7 @@ userDefaults:
     highQuality: false
   darkMode: true
   disableSettings: false
-  singleClick: false
+  singleClick: true
   permissions:
     admin: false
     modify: false
