@@ -2,7 +2,7 @@
 title: Home Assistant
 description: A guide to deploying Home Assistant on TrueNAS
 published: true
-date: 2025-06-15T11:47:32.588Z
+date: 2025-06-15T11:49:27.815Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-12T14:57:25.253Z
@@ -54,7 +54,9 @@ Home Assistant is free and open-source software used for home automation. It ser
 
 ## LXC
 
-It is also possible to use [Helper Scripts](https://bketelsen.github.io/IncusScripts/scripts?id=homeassistant) to install Home Assistant as an LXC. Use the command below ([after installing the `scripts-cli`](https://wiki.serversatho.me/en/TrueNAS#incus-helper-scripts)) to launch the container:
+It is also possible to use [Helper Scripts](https://bketelsen.github.io/IncusScripts/scripts?id=homeassistant) to install Home Assistant as an LXC. 
+
+Use the command below in the TrueNAS shell as `root` to launch the container ([after installing the `scripts-cli`](https://wiki.serversatho.me/en/TrueNAS#incus-helper-scripts)):
 
 ```bash
 scripts-cli launch homeassistant homeassistant
@@ -62,7 +64,8 @@ scripts-cli launch homeassistant homeassistant
 
 ### USB Passthru
 
-To pass devices into the container, click the name of the instance and using the **Devices** menu on the right.
+To pass devices into the container, click the name of the instance and using the **Devices** menu on the right:
+
 ![screenshot_from_2025-06-15_07-44-45.png](/screenshot_from_2025-06-15_07-44-45.png)
 
 > Note this this is untested for USB passthru as of 6/15/25
