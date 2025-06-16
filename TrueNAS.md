@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-06-16T00:13:33.626Z
+date: 2025-06-16T11:41:31.900Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -212,7 +212,7 @@ incus profile rm scriptcli-storage
     - [Windows 11]()
     {.links-list}
 
-1. You have to use Virtio-SCSI for the Windows installer ISO itself or it wont work (I recommend using Virtio-SCSI for root disk)
+1. You have to use Virtio-SCSI for the Windows installer ISO or it won't work (I recommend using Virtio-SCSI for root disk)
 
 ## Apps
 ### Apps
