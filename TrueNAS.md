@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-06-16T21:34:12.644Z
+date: 2025-06-16T22:08:21.576Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -213,10 +213,30 @@ incus profile rm scriptcli-storage
     - [VirtIO Drivers](http://serversatho.me/virtio-win.iso)
     {.links-list}
 
-1. You have to use Virtio-SCSI for the Windows installer ISO or it won't work (I recommend using Virtio-SCSI for root disk)
+1. Create a New Instance
+1. Give it a name
+1. Click **VM** and select the radio button for **Upload ISO, import a zvol or use another volume**
+1. Click **Upload ISO** and select the ISO you just downloaded
+1. You should see it mounted in the Volumes box and can click **Select**
+1. Assign CPU and Memory
+1. In **Storage** select **Virtio-SCSI** as the *Root Disk I/O Bus*
+1. Give it 60 GiB or more *Root Disk Size*
+1. Click the box to **Enable VNC**
+1. Click **Create**
+1. You now must jump to the VNC **quickly** so you can press any key to boot from the CD!!
 1. Go through the install per usual
 1. Once you have successfully booted into Windows, shutdown the VM
-1. Add the 
+1. Add the **VirtIO Drivers** ISO from above to the **Disks** with a *Boot Priority* of `2` and an *I/O Bus* of `Virtio-SCSI`
+1. Start the VM
+1. Navigate to **Device Manager** and right-click the **Ethernet Device**
+1. Click **Update Driver**
+1. Click **Browse my Computer for Drivers** then click **Browse**
+1. Select the drive which has the VirtIO disk mounted in it
+1. Click **Next**
+1. To enable RDP, type `settings` into the Start Bar
+1. Search for `remote desktop`
+1. Click **Remote Desktop Settings** and the flip the switch to **Enable Remote Desktop**
+
 
 
 > Activation information can be found [here](https://massgrave.dev/)
