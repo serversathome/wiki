@@ -14,7 +14,7 @@ dateCreated: 2024-12-02T15:40:57.685Z
 
 # What is Gluetun?
 
-Gluetun Docker provides a universal VPN to all docker containers + non-docker apps. It supports multiple VPN providers. 
+Gluetun Docker provides a universal VPN to all docker containers + non-docker apps. It supports [multiple VPN providers](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers).
 
 # Docker Compose
 
@@ -31,9 +31,9 @@ services:
       - VPN_SERVICE_PROVIDER=airvpn
       - VPN_TYPE=wireguard
       - WIREGUARD_PRIVATE_KEY=
-      - WIREGUARD_PRESHARED_KEY=
+      - WIREGUARD_PRESHARED_KEY= #Optional depending on provider/config
       - WIREGUARD_ADDRESSES=
-      - SERVER_COUNTRIES=
+      - SERVER_COUNTRIES= #Optional depending on provider/config
       - FIREWALL_VPN_INPUT_PORTS=6881
     ports:
       - 6881:6881/udp
@@ -45,7 +45,7 @@ services:
 
 In order for this to work with any container, you need a port in this section. 6881 is provided for torrenting, but to add Radarr for example you would need a line which looks like `- 7878:7878`. Within the Radarr container do not define any ports. 
 
-To use port forwarding, add the port you would like to forward in the `FIREWALL_VPN_INPUT_PORTS` line.
+To use port forwarding, add the port you would like to forward in the `FIREWALL_VPN_INPUT_PORTS` line. **Be aware that not all VPN providers allow for port-forwarding; this may affect your seeding speeds or prevent you from properly seeding at all.**
 
 To see an example of this with qBittorrent, see the [qBit page](/qBittorrent).
 
