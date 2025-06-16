@@ -36,7 +36,7 @@ services:
       - TS_ROUTES=192.168.1.0/24
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_EXTRA_ARGS=--advertise-exit-node
-      - TS_USERSPACE: false
+      - TS_USERSPACE=false
     network_mode: host
     cap_add:
       - NET_ADMIN
