@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-06-16T22:08:45.663Z
+date: 2025-06-16T22:11:11.434Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -237,10 +237,10 @@ incus profile rm scriptcli-storage
 1. Search for `remote desktop`
 1. Click **Remote Desktop Settings** and the flip the switch to **Enable Remote Desktop**
 
-
-
 > Activation information can be found [here](https://massgrave.dev/)
 {.is-info}
+
+[]()
 
 
 ## Apps
