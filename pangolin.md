@@ -1,8 +1,8 @@
 ---
 title: Pangolin
 description: A guide to installing Pangolin
-published: false
-date: 2025-06-14T12:22:46.831Z
+published: true
+date: 2025-06-16T17:43:10.625Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-13T13:04:34.352Z
