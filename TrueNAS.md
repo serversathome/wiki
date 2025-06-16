@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-06-16T11:41:31.900Z
+date: 2025-06-16T12:06:15.507Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -213,6 +213,11 @@ incus profile rm scriptcli-storage
     {.links-list}
 
 1. You have to use Virtio-SCSI for the Windows installer ISO or it won't work (I recommend using Virtio-SCSI for root disk)
+
+
+> Activation information can be found [here](https://massgrave.dev/)
+{.is-info}
+
 
 ## Apps
 ### Apps
