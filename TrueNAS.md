@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-06-16T22:11:11.434Z
+date: 2025-06-16T23:44:57.217Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -240,7 +240,7 @@ incus profile rm scriptcli-storage
 > Activation information can be found [here](https://massgrave.dev/)
 {.is-info}
 
-[]()
+[](https://youtu.be/5EppE_NVI9w)
 
 
 ## Apps
