@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-06-16T22:08:21.576Z
+date: 2025-06-16T22:08:45.663Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -232,7 +232,7 @@ incus profile rm scriptcli-storage
 1. Click **Update Driver**
 1. Click **Browse my Computer for Drivers** then click **Browse**
 1. Select the drive which has the VirtIO disk mounted in it
-1. Click **Next**
+1. Click **Next** then **Finish**
 1. To enable RDP, type `settings` into the Start Bar
 1. Search for `remote desktop`
 1. Click **Remote Desktop Settings** and the flip the switch to **Enable Remote Desktop**
