@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: true
-date: 2025-06-16T18:36:27.398Z
+date: 2025-06-16T23:46:18.006Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-13T13:04:34.352Z
@@ -157,3 +157,5 @@ The new user will be prompted to setup a password and verify their email (if SMT
 
 
 # Video
+
+[](https://youtu.be/1fKqQi-VuNM)
