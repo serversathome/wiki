@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: true
-date: 2025-06-16T18:17:06.688Z
+date: 2025-06-16T18:18:00.616Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-13T13:04:34.352Z
@@ -101,7 +101,7 @@ A site is a remote location that you want to proxy through the tunnel and system
 
 ## Connect a Tunnel
 
-1. uming you chose Newt above, deploy the docker compose file or bash command to your endpoint
+1. Assuming you chose Newt above, deploy the docker compose file or bash command to your endpoint
 1. Click **Save General Settings**
 1. In the left pane, click **Sites** and you should see you new site as **Online**. If not, give it a minute and refresh the page.
 
