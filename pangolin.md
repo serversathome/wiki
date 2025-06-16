@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: true
-date: 2025-06-16T18:16:59.279Z
+date: 2025-06-16T18:17:06.688Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-13T13:04:34.352Z
@@ -95,7 +95,7 @@ A site is a remote location that you want to proxy through the tunnel and system
 1. Head to the Sites tab and select the Add Site button (or use the tab in the setup workflow)
 1. Give your site a name like "HomeLab"
 1. Choose your **TunnelType**. You can either use the Newt client (recommended) or a standard WireGuard tunnel.
-1. Check the circle **I have copied theconfig**
+1. Check the circle **I have copied the config**
 1. Copy the Newt command for the Operating System you have chosen
 1. Press **Create Site**
 
