@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: true
-date: 2025-06-16T17:43:10.625Z
+date: 2025-06-16T18:16:51.314Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-13T13:04:34.352Z
@@ -93,35 +93,18 @@ When you log into the app for the first time you will be prompted to create an o
 A site is a remote location that you want to proxy through the tunnel and system. For example your home server, or a IOT device. A site will terminate one tunnel.
 
 1. Head to the Sites tab and select the Add Site button (or use the tab in the setup workflow)
-1. Give your site a name like "Home Lab"
-1. Choose your connection method. You can either use the Newt client (recommended) or a standard WireGuard tunnel.
-1. Copy the Newt command or the WireGuard config, confirm you have copied it, and press **Create Site**
+1. Give your site a name like "HomeLab"
+1. Choose your **TunnelType**. You can either use the Newt client (recommended) or a standard WireGuard tunnel.
+1. Check the circle **I have copied thr config**
+1. Copy the Newt command for the Operating System you have chosen
+1. Press **Create Site**
 
 ## Connect a Tunnel
-Newt (recommended)
 
-Assuming you chose Newt above, install and configure it to connect to Gerbil and Pangolin.
+1. uming you chose Newt above, deploy the docker compose file or bash command to your endpoint
+1. Click **Save General Settings**
+1. In the left pane, click **Sites** and you should see you new site as **Online**. If not, give it a minute and refresh the page.
 
-There are 2 ways to setup Newt: with the CLI application or the Docker container. See Newt install for all options.
-
-On Linux, you can wget the newt binary and run the command copied during the create site step. Make sure to replace amd64 with your architecture!
-
-wget -O newt "https://github.com/fosrl/newt/releases/download/1.2.1/newt_linux_amd64" && chmod +x ./newt
-
-Then run Newt
-
-./newt \
---id 31frd0uzbjvp721 \
---secret h51mmlknrvrwv8s4r1i210azhumt6isgbpyavxodibx1k2d6 \
---endpoint https://example.com
-
-WireGuard
-
-With WireGuard you will be responsible for ensuring your targets are reachable with the site_block_size subnet provided or proxied/NATed from the WireGuard host.
-
-You are provided a site_block_size subnet in the subnet_group range that Gerbil uses per site.
-
-For example on a Linux client, you can write your copied config to a wg0.conf file and run wg-quick up ./wg0.conf
 
 ## Create a Resource
 
