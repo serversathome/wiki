@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: true
-date: 2025-06-16T18:18:00.616Z
+date: 2025-06-16T23:46:18.006Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-13T13:04:34.352Z
@@ -124,7 +124,7 @@ A site is a remote location that you want to proxy through the tunnel and system
   b. **IP Address:** `192.168.1.24` 
   c. **Port:** `8080`
 1. Press **Add Target** and you will see the target added to the list and enabled.
-1. Press **Save Changes**
+1. Press **Save Target**
 1. Try to access your resource by clicking the url at the top
 
 
@@ -157,3 +157,5 @@ The new user will be prompted to setup a password and verify their email (if SMT
 
 
 # Video
+
+[](https://youtu.be/1fKqQi-VuNM)
