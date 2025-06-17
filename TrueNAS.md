@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-06-17T23:18:42.282Z
+date: 2025-06-17T23:19:42.236Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -209,7 +209,7 @@ incus profile rm scriptcli-storage
 1. Download the .iso file for the version of Windows you want. These .iso files were compiled in May 2025 with the virtio drivers built in:
 
     - [Windows 10 Pro *OOBE Enabled by default*](http://serversatho.me/win10mod.iso)
-    - [Windows 11 *OOBE Enabled by default*](http://serversatho.me/win11mod.iso)
+    - [Windows 11 Pro](http://serversatho.me/win11mod.iso)
     - [VirtIO Drivers](http://serversatho.me/virtio-win.iso)
     {.links-list}
 
