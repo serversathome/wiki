@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-06-17T21:23:11.885Z
+date: 2025-06-17T23:18:42.282Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -225,6 +225,7 @@ incus profile rm scriptcli-storage
 1. Click **Create**
 1. You now must jump to the VNC **quickly** so you can press any key to boot from the CD!!
 1. Go through the install per usual
+	a. In the event you are stopped because there is no internet hit <kbd>SHIFT F10</kbd> then type `oobe\bypassnro`
 1. Once you have successfully booted into Windows, shutdown the VM
 1. Add the **VirtIO Drivers** ISO from above to the **Disks** with a *Boot Priority* of `2` and an *I/O Bus* of `Virtio-SCSI`
 1. Start the VM
