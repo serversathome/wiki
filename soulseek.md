@@ -8,7 +8,7 @@ editor: markdown
 dateCreated: 2025-06-16T19:52:00Z
 ---
 
-> **This Page is Under Construction!** 
+> **This Page is Under Construction!**
 {.is-danger}
 
 # What is Soulseek?
@@ -21,7 +21,10 @@ The [SLSKD](https://github.com/slskd/slskd/) Docker container is a client-server
 - Have an active account on the [Soulseek Network](https://www.slsknet.org/news/node/1)
     - Registering can be done by downloading the desktop client first and going through the first-time setup
 
-# Docker Compose
+# Installation
+# {.tabset}
+## SLSKD Docker
+
 ```yaml
 services:
   slskd:
@@ -34,7 +37,7 @@ services:
     environment:
       - SLSKD_REMOTE_CONFIGURATION=true
       - SLSKD_SHARED_DIR=/music # Optional Directory you want to share with the network
-      - SLSKD_SLSK_LISTEN_PORT=50300 # Port for the Web UI
+      - SLSKD_SLSK_LISTEN_PORT=50300
       - SLSKD_DOWNLOADS_DIR=/music/downloads # Optional custom downloads directory
       - SLSKD_INCOMPLETE_DIR=/music/incomplete # Optional custom incomplete downloads directory
     volumes:
@@ -45,8 +48,52 @@ services:
     # network_mode: service:vpn # If running VPN container
     restart: unless-stopped
 ```
+
 > **NOTE:** It is not recommended to run SLSKD without a VPN, and there are a variety of containers and approaches to do so. Some threads on the matter can be found [on the SLSKD Github](https://github.com/slskd/slskd/issues/222).
 {.is-danger}
+
+## Docker + Gluetun
+```yaml
+services:
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      - VPN_SERVICE_PROVIDER=airvpn
+      - VPN_TYPE=wireguard
+      - WIREGUARD_PRIVATE_KEY=
+      - WIREGUARD_PRESHARED_KEY= #Optional depending on provider/config
+      - WIREGUARD_ADDRESSES=
+      - SERVER_COUNTRIES= #Optional depending on provider/config
+      - FIREWALL_VPN_INPUT_PORTS=6881
+    ports:
+      - 6881:6881/udp
+      - 6881:6881/tcp
+      - 5030:5030 # SLSKD port
+      - 5031:5031 # SLSKD port
+      - 50300:50300
+    restart: unless-stopped 
+  slskd:
+    image: slskd/slskd
+    container_name: slskd
+    environment:
+      - SLSKD_REMOTE_CONFIGURATION=true
+      - SLSKD_SHARED_DIR=/music
+      - SLSKD_SLSK_LISTEN_PORT=50300
+      - SLSKD_DOWNLOADS_DIR=/music/downloads
+      - SLSKD_INCOMPLETE_DIR=/music/incomplete
+    network_mode: service:gluetun
+    volumes:
+      - ./config/soulseek:/app:rw
+      - /mnt/tank/media/music:/music:rw
+      - /mnt/tank/media/music/downloads:/downloads:rw
+      - /mnt/tank/media/music/incomplete:/incomplete:rw
+    restart: unless-stopped
+```
 
 # Configuration
 The SLSKD server client uses a yaml configuration file located at `{application directory}/slskd.yml` - */mnt/tank/configs/soulseek/slskd.yml if you followed the above exactly*. However, this file is editable from within the slskd Web UI.
