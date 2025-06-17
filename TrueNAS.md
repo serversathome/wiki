@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-06-16T23:45:45.069Z
+date: 2025-06-17T21:23:11.885Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -78,7 +78,7 @@ To view progress of the expansion, run this command in the shell:
 zpool status pool_name
 ```
 Watch Lawrence do it:
-[](https://youtu.be/uPCrDmjWV_I?feature=shared)
+[](https://youtu.be/uPCrDmjWV_I)
 
 
 ## Datasets
