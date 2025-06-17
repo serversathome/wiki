@@ -1,7 +1,7 @@
 ---
 title: Soulseek
 description: A guide to deploying the SLSKD daemon via docker compose
-published: falses # made this false, not that familiar with WIKI.js
+published: false # made this false, not that familiar with WIKI.js
 date: 	2025-06-16T19:52:00Z
 tags: 
 editor: markdown
@@ -52,7 +52,7 @@ services:
 > **NOTE:** It is not recommended to run SLSKD without a VPN, and there are a variety of containers and approaches to do so. Some threads on the matter can be found [on the SLSKD Github](https://github.com/slskd/slskd/issues/222).
 {.is-danger}
 
-## Docker + Gluetun
+## SLSKD Docker + Gluetun
 ```yaml
 services:
   gluetun:
