@@ -145,7 +145,10 @@ A note for those using a CF tunnel to connect to your WebUI, make these changes 
 
 # Proxmox Root CA Cert for Homarr
 1. In the PVE dashboard, select the PVE node you wish to get a certificate for.
-2. Under **System** select **Certificates** then, double click or highlight the pve-root-ca.pem
+2. Under **System**, select **Certificates** then, double click or highlight the pve-root-ca.pem
+
+![](/Screenshot_PVE_2025-06-19-143732.png)
+
 3. Once the Certificate dialogue box opens, click the **Raw Certificate** drop-down at the bottom of the dialogue box.
 4. Copy the entire section and then paste it into notepad or another text editor. Save the file as pve_root_ca.crt
 5. This can now be uploaded to Homarr as the certificate for Proxmox VE app and integration.
@@ -154,13 +157,22 @@ A note for those using a CF tunnel to connect to your WebUI, make these changes 
 1. In the PVE dashboard select **Datacenter**, open the **Permissions** section and select **Groups**.
 2. Click **Create** and create a new group called api-users.
 3. Now go to **Users**, and create a new user, I suggest using the name of the application, in this case we will use homarr. Input a strong password. The realm will be PVE (Proxmox VE authentication server) and the group will be the api-users group we created above. Everything else can stay default.
+
+![](/Screenshot_PVE_2025-06-19-143912.png)
+
 4. Next click on **API Tokens**. Click **Add** and select the user we just created. The **Token ID** should match its use, i.e. homarr. Check **Privilege Seperation**. (THE NEXT STEP IS VERY IMPORTANT)
 5. Once you click **Add** you need to record the information provided in the **Token Secret**. (Token ID and Secret) **IF YOU DO NOT RECORD THIS, YOU WILL HAVE TO START THIS STEP OVER**. There is no way to retrieve the API token after it is created.
 6. Next select the **Permissions** section again. Click **Add** and select **API Token Permission**. Path will be /, the **API Token** will be the one you just created for the user, **Role** will be **PVEAuditor** and leave **Propagate** checked.
+
+![](/Screenshot_PVE_2025-06-19-145531.png)
+
 7. We will now repeat the same step above, except we will choose **User Permission**. The user will be the homarr user we created earlier.
+
+![](/Screenshot_PVE_2025-06-19-150025.png)
+
 8. In Homarr, under Management and Integrations, select New integration, Proxmox.
 9. Under URL, enter the IP address of your Proxmox VE.
-10. Under the Secrets section, the Username will be the name of the user you created in step 3, the Token ID will be the name of the Token ID you created in step 4, the API key will be the Secret you recorded in step 4 and the Realm will be pve.
+10. Under the Secrets section, the Username will be the name of the user you created in step 3, the Token ID will be the name of the Token ID you created in step 4, the API key will be the Secret you recorded in step 4/5 and the Realm will be pve.
 11. If everything was done correctly, you will see a successful connection message at the bottom of the screen after clicking "Test connection and create".
 12. You may need to restart Homarr to see the information for the Proxmox integration to show up. It may take some time.
 
