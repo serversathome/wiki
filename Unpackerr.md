@@ -2,7 +2,7 @@
 title: Unpackerr
 description: A guide to installing Unpackerr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-06-08T18:39:08.076Z
+date: 2025-06-19T18:02:47.245Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:33:30.432Z
@@ -16,7 +16,19 @@ Unpackerr runs as a daemon on your download host or seedbox. It checks for compl
 
 Not a starr app user, and just need to extract files? We do that too. This application can run standalone and extract files found in a "watch" folder. In other words, you can configure this application to watch your download folder, and it will happily extract everything you download.
 
-# Docker Compose
+# Installation
+# {.tabset}
+
+## TrueNAS
+
+1. Under **Unpackerr Configuration → Settings** click the **Add** button to choose the services you would like to configure
+1. Set the **type**, **URL**, and **API Key** for each service
+1. The **Path** needs to be the path where your media is stored on Truenas (ex. `/mnt/tank/media/downloads`)
+1. Leave all other settings default
+
+
+
+## Docker Compose
 
 ```yaml
 services:
@@ -119,7 +131,7 @@ services:
      - UN_WEBSERVER_UPSTREAMS=
 ```
 
-## Permissions & Folder Structure
+### Permissions & Folder Structure
 - **PUID / PGID**: Ensure you use a user/group with the correct permissions for accessing media folders. TrueNAS SCALE defaults to 568:568 for apps.
 
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
