@@ -54,9 +54,10 @@ This script provides options for managing Proxmox VE repositories, including:
 - Rebooting the system
 
 Run the command below in the **Proxmox VE Shell**:
+- Source code can be found [here](https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/post-pve-install.sh)
 
 ```bash
-bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/post-pve-install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/post-pve-install.sh)"
 ```
 > It is recommended to answer "yes" (y) to all options presented during the process
 {.is-info}
@@ -72,9 +73,10 @@ Cleaning unused kernel images is beneficial for:
 - Streamlining the boot process
 
 Run the command below in the **Proxmox VE Shell**:
+- Source code can be found [here](https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/kernel-clean.sh)
 
 ```bash
-bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/kernel-clean.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/kernel-clean.sh)"
 ```
 </details>
 
@@ -82,19 +84,20 @@ bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/kernel-cle
 <summary><strong>Proxmox VE Cron LXC Updater</strong> (click to expand)</summary>
 
 This script will add/remove a crontab schedule that updates all LXCs every Sunday at midnight.
+- Source code can be found [here](https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/cron-update-lxcs.sh)
 
 **To exclude specific LXCs from updating:**
 1. Edit crontab (`crontab -e`)
 2. Add CTIDs as shown in this example (-s 103 111):
 
 ```bash
-0 0 * * 0 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin /bin/bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/update-lxcs-cron.sh)" -s 103 111 >>/var/log/update-lxcs-cron.log 2>/dev/null
+0 0 * * 0 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/update-lxcs-cron.sh)" -s 103 111 >>/var/log/update-lxcs-cron.log 2>/dev/null
 ```
 
 Run the command below in the **Proxmox VE Shell** to set up:
 
 ```bash
-bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/cron-update-lxcs.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/cron-update-lxcs.sh)"
 ```
 </details>
 
@@ -111,7 +114,7 @@ bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/cron-updat
 
 To create a new Proxmox VE Docker LXC, run the command below in the **Proxmox VE Shell**.
 ```bash
-bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/ct/docker.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/docker.sh)"
 ```
 
 ⚡ Default Settings: 2GB RAM - 4GB Storage - 2vCPU ⚡
@@ -121,7 +124,7 @@ As an alternative option, you can use Alpine Linux and the Docker package to cre
 
 To create a new Proxmox VE Alpine-Docker LXC, run the command below in the **Proxmox VE Shell**.   
 ```bash
-bash -c "$(wget -qO - https://github.com/tteck/Proxmox/raw/main/ct/alpine-docker.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/alpine-docker.sh)"
 ```
 
 ⚡ Default Settings: 1GB RAM - 2GB Storage - 1vCPU ⚡
@@ -139,6 +142,39 @@ A note for those using a CF tunnel to connect to your WebUI, make these changes 
 
 > If you have **Botfight Mode** enabled you must create a rule to bypass for your IP
 {.is-info}
+
+# Proxmox Root CA Cert for Homarr
+1. In the PVE dashboard, select the PVE node you wish to get a certificate for.
+2. Under **System**, select **Certificates** then, double click or highlight the pve-root-ca.pem
+
+![](/Screenshot_PVE_2025-06-19-143732.png)
+
+3. Once the Certificate dialogue box opens, click the **Raw Certificate** drop-down at the bottom of the dialogue box.
+4. Copy the entire section and then paste it into notepad or another text editor. Save the file as pve_root_ca.crt
+5. This can now be uploaded to Homarr as the certificate for Proxmox VE app and integration.
+
+# Adding API Key, User Group and User for Homarr
+1. In the PVE dashboard select **Datacenter**, open the **Permissions** section and select **Groups**.
+2. Click **Create** and create a new group called api-users.
+3. Now go to **Users**, and create a new user, I suggest using the name of the application, in this case we will use homarr. Input a strong password. The realm will be PVE (Proxmox VE authentication server) and the group will be the api-users group we created above. Everything else can stay default.
+
+![](/Screenshot_PVE_2025-06-19-143912.png)
+
+4. Next click on **API Tokens**. Click **Add** and select the user we just created. The **Token ID** should match its use, i.e. homarr. Check **Privilege Seperation**. (THE NEXT STEP IS VERY IMPORTANT)
+5. Once you click **Add** you need to record the information provided in the **Token Secret**. (Token ID and Secret) **IF YOU DO NOT RECORD THIS, YOU WILL HAVE TO START THIS STEP OVER**. There is no way to retrieve the API token after it is created.
+6. Next select the **Permissions** section again. Click **Add** and select **API Token Permission**. Path will be /, the **API Token** will be the one you just created for the user, **Role** will be **PVEAuditor** and leave **Propagate** checked.
+
+![](/Screenshot_PVE_2025-06-19-145531.png)
+
+7. We will now repeat the same step above, except we will choose **User Permission**. The user will be the homarr user we created earlier.
+
+![](/Screenshot_PVE_2025-06-19-150025.png)
+
+8. In Homarr, under Management and Integrations, select New integration, Proxmox.
+9. Under URL, enter the IP address of your Proxmox VE.
+10. Under the Secrets section, the Username will be the name of the user you created in step 3, the Token ID will be the name of the Token ID you created in step 4, the API key will be the Secret you recorded in step 4/5 and the Realm will be pve.
+11. If everything was done correctly, you will see a successful connection message at the bottom of the screen after clicking "Test connection and create".
+12. You may need to restart Homarr to see the information for the Proxmox integration to show up. It may take some time.
 
 
 # Video
