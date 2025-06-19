@@ -2,7 +2,7 @@
 title: Unpackerr
 description: A guide to installing Unpackerr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-06-19T18:01:48.081Z
+date: 2025-06-19T18:02:47.245Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:33:30.432Z
@@ -131,7 +131,7 @@ services:
      - UN_WEBSERVER_UPSTREAMS=
 ```
 
-## Permissions & Folder Structure
+### Permissions & Folder Structure
 - **PUID / PGID**: Ensure you use a user/group with the correct permissions for accessing media folders. TrueNAS SCALE defaults to 568:568 for apps.
 
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
