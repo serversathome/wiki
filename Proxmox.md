@@ -54,9 +54,10 @@ This script provides options for managing Proxmox VE repositories, including:
 - Rebooting the system
 
 Run the command below in the **Proxmox VE Shell**:
+- Source code can be found [here](https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/post-pve-install.sh)
 
 ```bash
-bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/post-pve-install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/post-pve-install.sh)"
 ```
 > It is recommended to answer "yes" (y) to all options presented during the process
 {.is-info}
@@ -72,9 +73,10 @@ Cleaning unused kernel images is beneficial for:
 - Streamlining the boot process
 
 Run the command below in the **Proxmox VE Shell**:
+- Source code can be found [here](https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/kernel-clean.sh)
 
 ```bash
-bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/kernel-clean.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/kernel-clean.sh)"
 ```
 </details>
 
@@ -82,19 +84,20 @@ bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/kernel-cle
 <summary><strong>Proxmox VE Cron LXC Updater</strong> (click to expand)</summary>
 
 This script will add/remove a crontab schedule that updates all LXCs every Sunday at midnight.
+- Source code can be found [here](https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/cron-update-lxcs.sh)
 
 **To exclude specific LXCs from updating:**
 1. Edit crontab (`crontab -e`)
 2. Add CTIDs as shown in this example (-s 103 111):
 
 ```bash
-0 0 * * 0 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin /bin/bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/update-lxcs-cron.sh)" -s 103 111 >>/var/log/update-lxcs-cron.log 2>/dev/null
+0 0 * * 0 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/update-lxcs-cron.sh)" -s 103 111 >>/var/log/update-lxcs-cron.log 2>/dev/null
 ```
 
 Run the command below in the **Proxmox VE Shell** to set up:
 
 ```bash
-bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/cron-update-lxcs.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/cron-update-lxcs.sh)"
 ```
 </details>
 
@@ -111,7 +114,7 @@ bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/cron-updat
 
 To create a new Proxmox VE Docker LXC, run the command below in the **Proxmox VE Shell**.
 ```bash
-bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/ct/docker.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/docker.sh)"
 ```
 
 ⚡ Default Settings: 2GB RAM - 4GB Storage - 2vCPU ⚡
@@ -121,7 +124,7 @@ As an alternative option, you can use Alpine Linux and the Docker package to cre
 
 To create a new Proxmox VE Alpine-Docker LXC, run the command below in the **Proxmox VE Shell**.   
 ```bash
-bash -c "$(wget -qO - https://github.com/tteck/Proxmox/raw/main/ct/alpine-docker.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/alpine-docker.sh)"
 ```
 
 ⚡ Default Settings: 1GB RAM - 2GB Storage - 1vCPU ⚡
