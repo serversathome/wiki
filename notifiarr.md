@@ -1,8 +1,8 @@
 ---
 title: Notifiarr
 description: 
-published: false
-date: 2025-06-20T20:23:44.026Z
+published: true
+date: 2025-06-20T20:24:47.088Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-20T20:23:44.026Z
