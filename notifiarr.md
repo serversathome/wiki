@@ -2,7 +2,7 @@
 title: Notifiarr
 description: A guide to deploy Notifiarr via docker
 published: true
-date: 2025-06-21T12:38:29.594Z
+date: 2025-06-21T12:41:46.308Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-20T20:23:44.026Z
@@ -45,7 +45,7 @@ Notifiarr is a system that integrates with many applications to manage and custo
 1. Login to your instance.
     <img src="https://github.com/user-attachments/assets/285b21c8-02eb-480d-9b6b-cfea8c53830e">
 
-1. Verify Notifiarr can see your endpoint by visiting the Notifiarr website navigating to **Setup** on the left pane and select **Integrations → Client Settings**. Scroll down to see a green connect symbol (or a popup in the bottom right corner will say it is connected).
+1. Verify Notifiarr can see your endpoint by visiting the Notifiarr website navigating to **Setup** on the left pane and select **Integrations → Client Configuration**. Scroll down to see a green connect symbol (or a popup in the bottom right corner will say it is connected).
 
     <img src="https://github.com/user-attachments/assets/99acfedb-adbc-4a42-be0c-b2633d1aff76">
 
