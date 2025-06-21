@@ -2,7 +2,7 @@
 title: Notifiarr
 description: A guide to deploy Notifiarr via docker
 published: true
-date: 2025-06-21T12:48:29.241Z
+date: 2025-06-21T12:51:08.842Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-20T20:23:44.026Z
@@ -78,7 +78,7 @@ Notifiarr is a system that integrates with many applications to manage and custo
 1. Back in Radarr once succesful you should see two connections now:
     ![image](https://github.com/user-attachments/assets/5b04bb4e-b756-4a6c-9a51-0727729429fe)
 
-# Add integration of Trash Guides. 
+# Add Trash Guides Profiles
 1. Navigate to **Profiles** in the left side pane
   ![image](https://github.com/user-attachments/assets/77757789-edd9-4eed-8bfe-6777866a3780)
 1. Click on **Add new / Link existing**
