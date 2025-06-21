@@ -1,8 +1,8 @@
 ---
 title: Notifiarr
-description: A guide to deploy Notifiarr via docker
+description: A guide to deploy Notifiarr in TrueNAS 
 published: true
-date: 2025-06-21T13:11:08.771Z
+date: 2025-06-21T14:25:40.966Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-20T20:23:44.026Z
