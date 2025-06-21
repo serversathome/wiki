@@ -2,7 +2,7 @@
 title: Notifiarr
 description: A guide to deploy Notifiarr via docker
 published: true
-date: 2025-06-21T11:39:43.255Z
+date: 2025-06-21T12:34:04.099Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-20T20:23:44.026Z
@@ -43,26 +43,29 @@ Notifiarr is a system that integrates with many applications to manage and custo
 1. Once it is installed go to your logs and grab your password. 
 
 1. Login to your instance.
-    <img src="https://github.com/user-attachments/assets/285b21c8-02eb-480d-9b6b-cfea8c53830e" width="500" height="400">
+    <img src="https://github.com/user-attachments/assets/285b21c8-02eb-480d-9b6b-cfea8c53830e">
 
 1. Verify Notifiarr can see your endpoint by visiting the Notifiarr website navigating to **Setup** on the left pane and select **Integrations → Client Settings**. Scroll down to see a green connect symbol (or a popup in the bottom right corner will say it is connected).
 
-<figure><img src="https://github.com/user-attachments/assets/99acfedb-adbc-4a42-be0c-b2633d1aff76"><figcaption>Pop-up on bottom right></figcaption></figure>
-    <img src="https://github.com/user-attachments/assets/c929f609-6822-4ca7-8454-683b3d3982fb" width="500" height="400">
+    <img src="https://github.com/user-attachments/assets/99acfedb-adbc-4a42-be0c-b2633d1aff76">
 
-<br>*Popup in Bottom Right*<br>![image](https://github.com/user-attachments/assets/f3b8f83f-09bc-4a87-a040-6ece04ff1a91)
-<br>*Green connect status*<br>
-![image](https://github.com/user-attachments/assets/8c672f5c-b198-4b62-8e02-384161778e9c)<br>
+<img src="https://github.com/user-attachments/assets/c929f609-6822-4ca7-8454-683b3d3982fb">
+
+![image](https://github.com/user-attachments/assets/f3b8f83f-09bc-4a87-a040-6ece04ff1a91)
+*Pop up in bottom right*
+
+![image](https://github.com/user-attachments/assets/8c672f5c-b198-4b62-8e02-384161778e9c)
+*Green connect status*
+
 
 # Integrating \*arr Apps
-Once they are connected we are going to go back to your notifiarr instance to setup a Arr instance.<br>
-![image](https://github.com/user-attachments/assets/77fec8b4-b4f2-4e38-9596-5272bc633d9f)<br>
-*click the plus sign and put in your instance name, url, username and password*<br>
-![image](https://github.com/user-attachments/assets/cf606749-e09f-40c5-83c2-bf27905f2326)
-*grab your api key from your Arr instance*<br>
-![image](https://github.com/user-attachments/assets/e4f40f8d-feda-44ba-a801-d00c168ea01d)<br>
-*Go back to radarr and click on connect once you have clicked save*<br>
-<img src="https://github.com/user-attachments/assets/92e0f08c-463b-4645-ae7a-6310160068ae" width="200" height="400"><br>
+1. Navigate in the left pane of Notifiarr to **Starr Apps**
+    ![image](https://github.com/user-attachments/assets/77fec8b4-b4f2-4e38-9596-5272bc633d9f)
+1. Click the plus sign and put in your instance name, url, API Key, username and password
+    ![image](https://github.com/user-attachments/assets/cf606749-e09f-40c5-83c2-bf27905f2326)
+1. Navigate Radarr and click **Connect** once you have clicked save
+    <img src="https://github.com/user-attachments/assets/92e0f08c-463b-4645-ae7a-6310160068ae">
+
 We are going to add notifiarr connection to radarr now. In order to get your api key for the connection go to the notifiarr website. Add a Integration and select radarr. Then go to your profile page and scroll back down and create a API key for radarr
 ![image](https://github.com/user-attachments/assets/8d3e2b85-0c0e-4e31-b856-545504b4e49b)
 For the name of the Connection in radarr make sure to add a character at the end of it, any other arr's you might do will need a different character from this one as well. you you connect them go back to notifiarr website and open the radarr itegration.<br><br>
