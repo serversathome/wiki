@@ -2,7 +2,7 @@
 title: Notifiarr
 description: A guide to deploy Notifiarr via docker
 published: true
-date: 2025-06-21T13:08:54.400Z
+date: 2025-06-21T13:11:08.771Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-20T20:23:44.026Z
@@ -12,6 +12,10 @@ dateCreated: 2025-06-20T20:23:44.026Z
 
 # What is Notifiarr
 Notifiarr is a system that integrates with many applications to manage and customize notifications via Discord. You can monitor your network, services, servers, and more and be notified of issues or events.
+
+> Read the [official documentation](https://notifiarr.wiki/)
+{.is-success}
+
 
 # Setup of Notifiarr
 1. Go to [Notifiarr](https://notifiarr.com/guest/register) and create a account.
