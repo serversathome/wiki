@@ -2,7 +2,7 @@
 title: Notifiarr
 description: A guide to deploy Notifiarr via docker
 published: true
-date: 2025-06-21T12:42:32.618Z
+date: 2025-06-21T12:46:44.378Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-20T20:23:44.026Z
@@ -79,27 +79,13 @@ Notifiarr is a system that integrates with many applications to manage and custo
     ![image](https://github.com/user-attachments/assets/5b04bb4e-b756-4a6c-9a51-0727729429fe)
 
 # Add integration of Trash Guides. 
-Once added you will set it up <br>
-![image](https://github.com/user-attachments/assets/77757789-edd9-4eed-8bfe-6777866a3780)<br>
-Click on profiles. Once up you will click on Add new / Link existing
-![image](https://github.com/user-attachments/assets/3d351c2e-93e4-45a9-b430-abb7957b742a)<br>
-
-The one I personally use is SQP-1 (2160P) 
-![image](https://github.com/user-attachments/assets/9288825e-729a-4fc6-a3ea-09d31ec6b1ea)
-
-Select it and it will load the config. I would not mess with anything unless you know how to work trash guides. Just Scroll down and click Save Profile and Sync
-![image](https://github.com/user-attachments/assets/a8c83bb4-a459-46cf-abbd-e2cd2a086589)
-
-
-On the next page click Sync Profiles
-![image](https://github.com/user-attachments/assets/af9b9bbe-b437-4840-a2ae-18567ae6195b)
-
-That is it. It might take a couple of minutes to get it imported into your arr instance.
-
-![image](https://github.com/user-attachments/assets/d0e0454f-ef70-419e-89cc-05619c26ee03)
-
-Once it is however you just select that when doing any of your arr work in radarr.
-
-
-
-
+1. Navigate to **Profiles** in the left side pane
+  ![image](https://github.com/user-attachments/assets/77757789-edd9-4eed-8bfe-6777866a3780)
+1. Click on **Add new / Link existing**
+    ![image](https://github.com/user-attachments/assets/3d351c2e-93e4-45a9-b430-abb7957b742a)
+1. The one I personally use is SQP-1 (2160P) 
+    ![image](https://github.com/user-attachments/assets/9288825e-729a-4fc6-a3ea-09d31ec6b1ea)
+1. Scroll down and click **Save Profile and Sync**
+    ![image](https://github.com/user-attachments/assets/a8c83bb4-a459-46cf-abbd-e2cd2a086589)
+1. On the next page click **Sync Profiles**
+    ![image](https://github.com/user-attachments/assets/af9b9bbe-b437-4840-a2ae-18567ae6195b)
