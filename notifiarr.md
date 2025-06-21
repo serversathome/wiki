@@ -2,7 +2,7 @@
 title: Notifiarr
 description: A guide to deploy Notifiarr via docker
 published: true
-date: 2025-06-21T11:20:53.065Z
+date: 2025-06-21T11:35:18.049Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-20T20:23:44.026Z
@@ -16,51 +16,45 @@ Notifiarr is a system that integrates with many applications to manage and custo
 # Setup of Notifiarr
 1. Go to [Notifiarr](https://notifiarr.com/guest/register) and create a account.
 
-<img src="https://github.com/user-attachments/assets/3e24b851-ff45-488d-8c5d-e9286592f198" width="500" height="400">
+    <img src="https://github.com/user-attachments/assets/3e24b851-ff45-488d-8c5d-e9286592f198" width="500" height="400">
 
+1. Next it will ask you to login to Discord . This is used to setup notifications. I recommend creating a private server for the integration.
+1. [Create a bot on Discord](https://support.discord.com/hc/en-us/articles/204849977-How-do-I-create-a-server)
 
+    <img src="https://github.com/user-attachments/assets/54256674-fca4-4ef8-949c-846d7d9acad6" width="600" height="300">
 
-# Next it will ask you to login to Discord 
-This is used to setup notifications. What I did is just create a new server that is private for my eyes only. You do not need anything to go to the server that you do not want. It is a very powerful integration.
-You will need to also create a bot for Discord to integrate it. 
+1. Follow the instructions after you connect your Discord and Notifiarr (after you have created and connected the bot). It should bring you to your profile page:
 
-### Use this page for help on creating a bot: <a href="https://support.discord.com/hc/en-us/articles/204849977-How-do-I-create-a-server">Information how to create a bot,</a> if you do not know how to.
+    <img src="https://github.com/user-attachments/assets/a56f1cb3-2922-4b78-8a66-fbf0da873db0" width="600" height="300">
 
-<img src="https://github.com/user-attachments/assets/54256674-fca4-4ef8-949c-846d7d9acad6" width="600" height="300">
-
-Follow the instructions after you connect your Discord and Notfiarr. Once done creating the Bot and connecting it. Just go through the first setup.
-It should bring you to your profile page.
-
-<img src="https://github.com/user-attachments/assets/a56f1cb3-2922-4b78-8a66-fbf0da873db0" width="600" height="300">
-
-
-## Time to go over to TrueNAS and search up Notifiarr in the app store.
+# Install Notifiarr on TrueNAS
 
 <img src="https://github.com/user-attachments/assets/7a47eb6d-84c7-4467-9e8f-d71b093dd2ae" width="500" height="200">
 
+1. In order to get your API key head back to the notifiarr website in your profile. Scroll down till you see this section and copy your api key. 
+    <img src="https://github.com/user-attachments/assets/9563760b-d89c-495a-b06a-87d730c564f9" width="500" height="200">
 
-## In order to get your API key head back to the notifiarr website in your profile. Scroll down till you see this section and copy your api key. 
-<img src="https://github.com/user-attachments/assets/9563760b-d89c-495a-b06a-87d730c564f9" width="500" height="200">
+1. Enter the hostname (the IP:port of the container if you are not using an FQDN)
 
-<br>
-These are the only things you will need to change.<br>
-<img src="https://github.com/user-attachments/assets/a023a023-29d7-4eaf-9124-d11ea94a4348" width="300" height="200">
-<img src="https://github.com/user-attachments/assets/0065d224-3647-4baf-be13-4b58c584f7be" width="300" height="300"><br>
+1. Use **Host Path Configuration** for the **Notifiarr Config Storage**
+    <img src="https://github.com/user-attachments/assets/a023a023-29d7-4eaf-9124-d11ea94a4348" width="300" height="200">
+    <img src="https://github.com/user-attachments/assets/0065d224-3647-4baf-be13-4b58c584f7be" width="300" height="300">
 
-Once it is installed go to your logs and grab your password. It is randomly generated. Suggested to change your password once setup.<br>
+1. Once it is installed go to your logs and grab your password. 
 
-Login to your instance.<br>
-<img src="https://github.com/user-attachments/assets/285b21c8-02eb-480d-9b6b-cfea8c53830e" width="500" height="400"><br>
+1. Login to your instance.
+    <img src="https://github.com/user-attachments/assets/285b21c8-02eb-480d-9b6b-cfea8c53830e" width="500" height="400">
 
-On notifiarr website go to setup on the left hand side and select integrations. Then client settings. Once it is open scroll down to see a green connect symbol. or a popup in the bottom right corner will say it is connected.
+1. Verify Notifiarr can see your endpoint by visiting the Notifiarr website navigating to **Setup** on the left pane and select **Integrations → Client Settings**. Scroll down to see a green connect symbol (or a popup in the bottom right corner will say it is connected).
 
-<img src="https://github.com/user-attachments/assets/99acfedb-adbc-4a42-be0c-b2633d1aff76" width="200" height="400">
-<img src="https://github.com/user-attachments/assets/c929f609-6822-4ca7-8454-683b3d3982fb" width="500" height="400">
+    <img src="https://github.com/user-attachments/assets/99acfedb-adbc-4a42-be0c-b2633d1aff76" width="200" height="400">
+    <img src="https://github.com/user-attachments/assets/c929f609-6822-4ca7-8454-683b3d3982fb" width="500" height="400">
 
 <br>*Popup in Bottom Right*<br>![image](https://github.com/user-attachments/assets/f3b8f83f-09bc-4a87-a040-6ece04ff1a91)
 <br>*Green connect status*<br>
 ![image](https://github.com/user-attachments/assets/8c672f5c-b198-4b62-8e02-384161778e9c)<br>
 
+# Integrating \*arr Apps
 Once they are connected we are going to go back to your notifiarr instance to setup a Arr instance.<br>
 ![image](https://github.com/user-attachments/assets/77fec8b4-b4f2-4e38-9596-5272bc633d9f)<br>
 *click the plus sign and put in your instance name, url, username and password*<br>
