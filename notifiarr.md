@@ -2,7 +2,7 @@
 title: Notifiarr
 description: A guide to deploy Notifiarr via docker
 published: true
-date: 2025-06-21T11:35:18.049Z
+date: 2025-06-21T11:39:43.255Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-20T20:23:44.026Z
@@ -16,29 +16,29 @@ Notifiarr is a system that integrates with many applications to manage and custo
 # Setup of Notifiarr
 1. Go to [Notifiarr](https://notifiarr.com/guest/register) and create a account.
 
-    <img src="https://github.com/user-attachments/assets/3e24b851-ff45-488d-8c5d-e9286592f198" width="500" height="400">
+    <img src="https://github.com/user-attachments/assets/3e24b851-ff45-488d-8c5d-e9286592f198">
 
 1. Next it will ask you to login to Discord . This is used to setup notifications. I recommend creating a private server for the integration.
 1. [Create a bot on Discord](https://support.discord.com/hc/en-us/articles/204849977-How-do-I-create-a-server)
 
-    <img src="https://github.com/user-attachments/assets/54256674-fca4-4ef8-949c-846d7d9acad6" width="600" height="300">
+    <img src="https://github.com/user-attachments/assets/54256674-fca4-4ef8-949c-846d7d9acad6">
 
 1. Follow the instructions after you connect your Discord and Notifiarr (after you have created and connected the bot). It should bring you to your profile page:
 
-    <img src="https://github.com/user-attachments/assets/a56f1cb3-2922-4b78-8a66-fbf0da873db0" width="600" height="300">
+    <img src="https://github.com/user-attachments/assets/a56f1cb3-2922-4b78-8a66-fbf0da873db0">
 
 # Install Notifiarr on TrueNAS
 
-<img src="https://github.com/user-attachments/assets/7a47eb6d-84c7-4467-9e8f-d71b093dd2ae" width="500" height="200">
+<img src="https://github.com/user-attachments/assets/7a47eb6d-84c7-4467-9e8f-d71b093dd2ae">
 
 1. In order to get your API key head back to the notifiarr website in your profile. Scroll down till you see this section and copy your api key. 
-    <img src="https://github.com/user-attachments/assets/9563760b-d89c-495a-b06a-87d730c564f9" width="500" height="200">
+    <img src="https://github.com/user-attachments/assets/9563760b-d89c-495a-b06a-87d730c564f9">
 
 1. Enter the hostname (the IP:port of the container if you are not using an FQDN)
 
 1. Use **Host Path Configuration** for the **Notifiarr Config Storage**
-    <img src="https://github.com/user-attachments/assets/a023a023-29d7-4eaf-9124-d11ea94a4348" width="300" height="200">
-    <img src="https://github.com/user-attachments/assets/0065d224-3647-4baf-be13-4b58c584f7be" width="300" height="300">
+    <img src="https://github.com/user-attachments/assets/a023a023-29d7-4eaf-9124-d11ea94a4348">
+    <img src="https://github.com/user-attachments/assets/0065d224-3647-4baf-be13-4b58c584f7be">
 
 1. Once it is installed go to your logs and grab your password. 
 
@@ -47,7 +47,7 @@ Notifiarr is a system that integrates with many applications to manage and custo
 
 1. Verify Notifiarr can see your endpoint by visiting the Notifiarr website navigating to **Setup** on the left pane and select **Integrations → Client Settings**. Scroll down to see a green connect symbol (or a popup in the bottom right corner will say it is connected).
 
-    <img src="https://github.com/user-attachments/assets/99acfedb-adbc-4a42-be0c-b2633d1aff76" width="200" height="400">
+<figure><img src="https://github.com/user-attachments/assets/99acfedb-adbc-4a42-be0c-b2633d1aff76"><figcaption>Pop-up on bottom right></figcaption></figure>
     <img src="https://github.com/user-attachments/assets/c929f609-6822-4ca7-8454-683b3d3982fb" width="500" height="400">
 
 <br>*Popup in Bottom Right*<br>![image](https://github.com/user-attachments/assets/f3b8f83f-09bc-4a87-a040-6ece04ff1a91)
