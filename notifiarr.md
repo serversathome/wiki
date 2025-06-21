@@ -1,8 +1,8 @@
 ---
 title: Notifiarr
-description: A fantastic tool to add in with your ArrStack. Simplifies space and file types. Also gives well notifications.
+description: A guide to deploy Notifiarr via docker
 published: true
-date: 2025-06-20T20:24:47.088Z
+date: 2025-06-21T11:20:53.065Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-20T20:23:44.026Z
@@ -11,13 +11,10 @@ dateCreated: 2025-06-20T20:23:44.026Z
 ![image](https://github.com/user-attachments/assets/bf101ffd-2fbf-4f92-8724-76a37afd6092)
 
 # What is Notifiarr
-To put it simply Notifiarr is a app that takes Trashguides (what I use it for) and helps with making profiles or formats in your ArrStack. It has plentiful of features that you can delve into. But today I will be showing you how to set it up for Trashguides and your ArrStack.
+Notifiarr is a system that integrates with many applications to manage and customize notifications via Discord. You can monitor your network, services, servers, and more and be notified of issues or events.
 
 # Setup of Notifiarr
-<i>For this setup I am using TrueNAS Fangtooth Community Edition 25.04</i>
-<br><br>This will be a lot of back and forth<br>
-
-First off go to <a hfref="https://notifiarr.com/guest/register">Notfiarr</a> and create a account.
+1. Go to [Notifiarr](https://notifiarr.com/guest/register) and create a account.
 
 <img src="https://github.com/user-attachments/assets/3e24b851-ff45-488d-8c5d-e9286592f198" width="500" height="400">
 
