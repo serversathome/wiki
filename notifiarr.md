@@ -2,7 +2,7 @@
 title: Notifiarr
 description: A guide to deploy Notifiarr via docker
 published: true
-date: 2025-06-21T12:46:44.378Z
+date: 2025-06-21T12:48:29.241Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-20T20:23:44.026Z
@@ -61,9 +61,9 @@ Notifiarr is a system that integrates with many applications to manage and custo
 # Integrating \*arr Apps
 1. Navigate in the left pane of Notifiarr to **Starr Apps**
     ![image](https://github.com/user-attachments/assets/77fec8b4-b4f2-4e38-9596-5272bc633d9f)
-1. Click the plus sign and put in your instance name, url, API Key, username and password
+1. Click the plus sign and put in your instance name, url, API Key, username and password then click **Save**
     ![image](https://github.com/user-attachments/assets/cf606749-e09f-40c5-83c2-bf27905f2326)
-1. Navigate Radarr and click **Connect** once you have clicked save
+1. Navigate Radarr and click **Connect**
     <img src="https://github.com/user-attachments/assets/92e0f08c-463b-4645-ae7a-6310160068ae">
 
 
