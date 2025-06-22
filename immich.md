@@ -2,7 +2,7 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: 2025-06-22T13:25:49.633Z
+date: 2025-06-22T13:27:46.521Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-30T12:06:15.920Z
@@ -29,7 +29,7 @@ Easily back up, organize, and manage your photos on your own server. Immich help
 > The **Postgres Data Storage** needs the **☑ Automatic Permissions** checkbox checked!
 {.is-warning}
 
-3. If you can, increase limits on the **Resources Configuration**
+4. If you can, increase limits on the **Resources Configuration**
 
 > Check out [the new docs](https://apps.truenas.com/resources/deploy-immich) from TrueNAS
 {.is-success}
