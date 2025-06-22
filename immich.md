@@ -2,7 +2,7 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: 2025-06-08T18:40:30.731Z
+date: 2025-06-22T13:22:39.245Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-30T12:06:15.920Z
@@ -20,7 +20,7 @@ Easily back up, organize, and manage your photos on your own server. Immich help
 ![screenshot_from_2025-04-30_08-01-41.png](/screenshot_from_2025-04-30_08-01-41.png)
 
 1. Set a database and redis password
-1. Set **Host Path Storage** for **Library**, **Uploads**, **Thumbs**, **Profile**, **Video**, **Backups**, and **Postgres Storage** options
+1. Set **Host Path Storage** for **Data** and **Postgres Storage** options
 
 > Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
 {.is-info}
