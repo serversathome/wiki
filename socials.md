@@ -2,7 +2,7 @@
 title: Socials
 description: A list of all the social media accounts for Servers@Home
 published: true
-date: 2025-06-26T10:17:43.435Z
+date: 2025-06-26T10:20:12.533Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-26T10:17:43.435Z
@@ -83,5 +83,5 @@ For some of the code we would like to host, [we now have a Github repo](https://
 [Check us out in Insta!](https://www.instagram.com/serversathome)
 
 # Twitter
-
+![twitter.png](/twitter.png)
 [Follow us on Twitter!](https://x.com/serversathome)
