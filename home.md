@@ -2,7 +2,7 @@
 title: Home
 description: This is a wiki for configurations for common docker applications as well as setting up apps on TrueNAS Scale
 published: true
-date: 2025-06-27T14:55:13.214Z
+date: 2025-06-27T14:55:26.492Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:21:39.818Z
@@ -87,7 +87,7 @@ New to self-hosting? Start here:
 This wiki runs on [Wiki.js](https://js.wiki/) which doesn't notify us of comments. For urgent matters, please use Discord.
 
 🚨 **Technical Questions**  
-For complex issues, our [Discord community](/discord) provides faster responses.
+For complex issues, our [Discord community](https://discord.gg/syvCPcRJnR) provides faster responses.
 
 💡 **Feature Requests**  
 See something missing? Click the button on the bottom right to `Edit on GitHub`!
