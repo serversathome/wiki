@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-06-28T10:55:07.847Z
+date: 2025-06-28T11:05:11.809Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -269,8 +269,7 @@ incus profile rm scriptcli-storage
 > Always make sure you are using **host path configuration** for your volumes and take a backup of compose files first (if you are using them)!
 {.is-warning}
 
-1. Click **Configuration → Unset Pool**. 
-2. Click **Choose Pool** and select the pool you want your apps to run from
+[Follow this guide from Stux](https://forums.truenas.com/t/howto-copy-the-hidden-ix-apps-dataset-from-one-pool-to-another/24434)
 
 ## System
 ### General Settings
