@@ -2,7 +2,7 @@
 title: Cleanuparr
 description: A guide to deploying Cleanuparr via docker
 published: true
-date: 2025-06-28T13:00:44.781Z
+date: 2025-06-28T13:01:32.166Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-28T12:56:06.603Z
@@ -15,6 +15,10 @@ dateCreated: 2025-06-28T12:56:06.603Z
 Automated Download Management. Automatically clean up unwanted, stalled, and malicious downloads from your \*arr applications and download clients. Keep your queues clean and your media library safe.
 
 # Installation
+
+> Read the [official documentation](https://cleanuparr.github.io/Cleanuparr/docs/)
+{.is-info}
+
 
 ```yaml
 services:
