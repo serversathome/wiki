@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure from Trash Guides to allow for hardlinks within the arr stack
 published: true
-date: 2025-06-14T12:49:44.967Z
+date: 2025-06-28T11:12:51.458Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:27:24.035Z
@@ -77,7 +77,7 @@ All permissions are set to the following:
 
 | Parameter | Value |
 | --- | --- |
-| **User ID (UID)** | apps (568) |
+| **User ID (UID)** | root (0) |
 | **Group ID (GID)** | apps (568) |
 
 > **Permissions**
