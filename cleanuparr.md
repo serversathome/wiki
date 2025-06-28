@@ -2,7 +2,7 @@
 title: Cleanuparr
 description: A guide to deploying Cleanuparr via docker
 published: true
-date: 2025-06-28T13:27:58.730Z
+date: 2025-06-28T13:28:14.337Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-28T12:56:06.603Z
@@ -20,7 +20,7 @@ Automated Download Management. Automatically clean up unwanted, stalled, and mal
 # Installation
 
 > Read the [official documentation](https://cleanuparr.github.io/Cleanuparr/docs/)
-{.is-info}
+{.is-success}
 
 
 ```yaml
