@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-06-23T11:45:27.571Z
+date: 2025-06-28T10:51:03.139Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -263,6 +263,19 @@ incus profile rm scriptcli-storage
 {.is-warning}
 
 [](https://youtu.be/n7V5e09w6uw)
+
+
+## System
+### General Settings
+#### Managing Your Configuration File
+
+You should be taking regular backups of your Configuration File. Especially when upgrading versions, which you will be prompted to do before you start the upgrade.
+
+To take a backup, click **Manage Configuration → Download File**. In the event you ever need to restore from that file, click **Upload File**.
+> 
+> When uploading a config file it will overwrite your current settings with the saved ones from the file!
+{.is-warning}
+
 
 
 # Hardening
