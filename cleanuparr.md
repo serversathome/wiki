@@ -2,7 +2,7 @@
 title: Cleanuparr
 description: A guide to deploying Cleanuparr via docker
 published: true
-date: 2025-06-30T11:27:47.813Z
+date: 2025-06-30T11:31:47.758Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-28T12:56:06.603Z
@@ -118,7 +118,19 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 1. Add `radarr`, `tv-sonarr` and `cross-seed-link` to **Unlinked Categories**
 1. Click **Save**
 
+## Notifications
 
+1. Select which service you use
+1. If you use **Apprise** (most likely), enter you **URL** and **API Key**
+
+    > See the list of [Apprise Services](https://github.com/caronc/apprise/wiki)
+    {.is-info}
+
+
+1. Check all the categories you would like notifications for
+1. Click **Save**
+
+# Video
 
 
 
