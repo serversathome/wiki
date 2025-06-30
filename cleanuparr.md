@@ -2,7 +2,7 @@
 title: Cleanuparr
 description: A guide to deploying Cleanuparr via docker
 published: true
-date: 2025-06-28T13:28:14.337Z
+date: 2025-06-30T11:08:00.731Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-28T12:56:06.603Z
@@ -43,8 +43,30 @@ services:
       - TZ=America/New_York
 ```
 
+The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
+
 ## Permissions & Folder Structure
 
 - **PUID / PGID**: Ensure you use a user/group with the correct permissions for accessing media folders. TrueNAS SCALE defaults to 568:568 for apps.
 - **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/radarr
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
+
+
+# Cleanuparr Configuration
+## Instances
+1. Add your \*arr instance by navigating to the correct tab on the left pane
+1. Enter your instance name, URL and API key
+
+## Download Clients
+1. Add your qbittorrent instance by navigating to the **Download Clients** tab on the left pane
+1. Enter your instance name, client type, host (URL), username, and password
+
+## Cleanup
+### General Configuration
+1. Uncheck the box for **Display Support Banner** for a cleaner dashboard
+1. Change the **Certificate Validation** to **Disabled for Local Addresses** 
+1. If you are using [Huntarr](/huntarr), leave the **Enable Search** box unchecked
+1. Click **Save**
+
+### Queue Cleaner Configuration
+1. 
