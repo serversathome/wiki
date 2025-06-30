@@ -2,7 +2,7 @@
 title: Cleanuparr
 description: A guide to deploying Cleanuparr via docker
 published: true
-date: 2025-06-30T11:13:13.012Z
+date: 2025-06-30T11:18:31.689Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-28T12:56:06.603Z
@@ -84,10 +84,32 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 1. Check the box for **Reset Strikes On Progress**
 1. Check the box for **Ignore Private**
 
-#### Download Settings
+#### Slow Download Settings
 *These settings are up to you, but the below values are what I use*
 
 1. Set **Max Strikes** to `3`
+1. Check the box for **Ignore Private**
+1. Set **Minimum Speed** to `1 MB`
+1. Set **Minimum Time** to `0`
+1. Set ** Ignore Above Size** to `500 MB`
+
+### Content Blocker Configuration
+*I do not use this because I am also using Recyclarr (or Profilarr) to ensure my grabs are high quality. If you are not using one of those tools I would suggest enabling this feature.*
+
+### Download Cleaner Configuration
+1. Check the **Download Queue Cleaner** box
+1. Set the **Run Schedule** to `1 Hour`
+
+
+
+
+
+
+
+
+
+
+
 
 
 
