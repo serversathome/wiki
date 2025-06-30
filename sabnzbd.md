@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2025-06-30T22:29:01.291Z
+date: 2025-06-30T22:30:23.228Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T22:21:23.261Z
@@ -118,10 +118,10 @@ PersistentKeepalive = 15
 {.is-warning}
 
 # Setting up SABnzbd
-1. Go to the WebUI on http://(truenas ip):port (the port you chose during installation)
-2. Select your preferred language
-3. Enter your provider details and test the connection
-4. Click the gear icon to edit the folder settings
-5. Set the completed downloads to /downloads/complete
-6. Set the temporary downloads to /downloads/incomplete
-7. Save the changes
+1. Navigate to `http://(truenas ip):port`
+1. Select your preferred language
+1. Enter your provider details and test the connection
+1. Click the gear icon to edit the folder settings
+1. Set the completed downloads to `/media/downloads/complete`
+1. Set the temporary downloads to `/media/downloads/incomplete`
+1. Save the changes
