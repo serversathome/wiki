@@ -2,14 +2,11 @@
 title: Cleanuparr
 description: A guide to deploying Cleanuparr via docker
 published: true
-date: 2025-06-30T11:25:48.183Z
+date: 2025-06-30T11:27:30.194Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-28T12:56:06.603Z
 ---
-
-> New page under construction
-{.is-info}
 
 ![cleanuparr.png](/cleanuparr.png)
 
@@ -53,6 +50,10 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 
 
 # Cleanuparr Configuration
+> If at any time you do not know what a setting does, click the ⓘ symbol next to it to be taken to the official document page explaining it
+> 
+{.is-info}
+
 ## Instances
 1. Add your \*arr instance by navigating to the correct tab on the left pane
 1. Enter your instance name, URL and API key
