@@ -2,7 +2,7 @@
 title: Cleanuparr
 description: A guide to deploying Cleanuparr via docker
 published: true
-date: 2025-06-30T11:31:47.758Z
+date: 2025-06-30T11:32:52.777Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-28T12:56:06.603Z
@@ -123,9 +123,8 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 1. Select which service you use
 1. If you use **Apprise** (most likely), enter you **URL** and **API Key**
 
-    > See the list of [Apprise Services](https://github.com/caronc/apprise/wiki)
+    >See the list of [Apprise Services](https://github.com/caronc/apprise/wiki) to get your URL
     {.is-info}
-
 
 1. Check all the categories you would like notifications for
 1. Click **Save**
