@@ -2,7 +2,7 @@
 title: Cleanuparr
 description: A guide to deploying Cleanuparr via docker
 published: true
-date: 2025-06-30T11:39:13.638Z
+date: 2025-06-30T17:54:19.397Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-28T12:56:06.603Z
@@ -131,8 +131,9 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 
 # Video
 
+![2025-06-30-how-to-install-and-configure-cle-promo-card.png](/2025-06-30-how-to-install-and-configure-cle-promo-card.png)
 
-
+[Watch it on Patreon!](https://www.patreon.com/posts/how-to-install-132884071?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
 
 
 
