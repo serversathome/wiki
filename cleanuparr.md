@@ -2,7 +2,7 @@
 title: Cleanuparr
 description: A guide to deploying Cleanuparr via docker
 published: true
-date: 2025-06-30T11:11:50.400Z
+date: 2025-06-30T11:13:13.012Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-28T12:56:06.603Z
@@ -75,5 +75,21 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 *These settings are up to you, but the below values are what I use*
 
 1. Set **Max Strikes** to `3`
+1. Check the box for **Ignore Private**
+
+#### Stalled Download Settings
+*These settings are up to you, but the below values are what I use*
+
+1. Set **Max Strikes** to `3`
 1. Check the box for **Reset Strikes On Progress**
 1. Check the box for **Ignore Private**
+
+#### Download Settings
+*These settings are up to you, but the below values are what I use*
+
+1. Set **Max Strikes** to `3`
+
+
+
+
+
