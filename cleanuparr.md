@@ -2,7 +2,7 @@
 title: Cleanuparr
 description: A guide to deploying Cleanuparr via docker
 published: true
-date: 2025-06-30T11:08:00.731Z
+date: 2025-06-30T11:11:50.400Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-28T12:56:06.603Z
@@ -69,4 +69,11 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 1. Click **Save**
 
 ### Queue Cleaner Configuration
-1. 
+1. Check the **Enable Queue Cleaner** box
+
+#### Failed Import Settings
+*These settings are up to you, but the below values are what I use*
+
+1. Set **Max Strikes** to `3`
+1. Check the box for **Reset Strikes On Progress**
+1. Check the box for **Ignore Private**
