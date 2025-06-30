@@ -2,7 +2,7 @@
 title: Cleanuparr
 description: A guide to deploying Cleanuparr via docker
 published: true
-date: 2025-06-30T11:18:31.689Z
+date: 2025-06-30T11:25:48.183Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-28T12:56:06.603Z
@@ -92,6 +92,7 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 1. Set **Minimum Speed** to `1 MB`
 1. Set **Minimum Time** to `0`
 1. Set ** Ignore Above Size** to `500 MB`
+1. Click **Save**
 
 ### Content Blocker Configuration
 *I do not use this because I am also using Recyclarr (or Profilarr) to ensure my grabs are high quality. If you are not using one of those tools I would suggest enabling this feature.*
@@ -100,9 +101,22 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 1. Check the **Download Queue Cleaner** box
 1. Set the **Run Schedule** to `1 Hour`
 
+#### Seeding Settings
+*These settings are up to you, but the below values are what I use*
 
+1. Check the box to **Delete Private Torrents**
+1. Click the button to **Add a Category**
+1. Set the **Category Name** to `cleanuparr-unlinked`
+1. Set the **Max Seed Time** to `360`
 
+#### Unlinked Download Settings
+*These settings are up to you, but the below values are what I use*
 
+1. Check the box to **Enable Unlinked Download Handling**
+1. Set the **Target Category** to `cleanuparr-unlinked`
+1. Set the **Ignored Root Directory** to `/media/downloads`
+1. Add `radarr`, `tv-sonarr` and `cross-seed-link` to **Unlinked Categories**
+1. Click **Save**
 
 
 
