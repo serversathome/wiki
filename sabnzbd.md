@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2025-06-30T22:30:23.228Z
+date: 2025-06-30T22:30:58.720Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T22:21:23.261Z
@@ -35,7 +35,7 @@ Once the subdirectories have been created, give them the proper permissions by n
 1. Change the **SABnzbd Config Storage** to **Host Path**
 1. Add an **Additional Storage** host path pointed at your media dataset
 
-## Docker
+## Docker Compose
 ```yaml
 services:
   sabnzbd:
