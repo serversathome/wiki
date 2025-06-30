@@ -1,3 +1,13 @@
+---
+title: SABnzbd
+description: A guide to deploying SABnzbd via TrueNAS or docker
+published: true
+date: 2025-06-30T22:29:01.291Z
+tags: 
+editor: markdown
+dateCreated: 2025-06-30T22:21:23.261Z
+---
+
 ![2025-06-30-sabnzbd-logo](https://github.com/user-attachments/assets/ccfbcf99-65eb-4eed-85dc-447423728b22)
 
 # What is SABnzbd?
@@ -7,22 +17,24 @@ SABnzbd is a free, open-source Usenet download manager. It automates the process
 You need:
 
 - The media dataset created according to the [Folder-Structure](/Folder-Structure) guide
-- In the downloads directory. 2 subdirectories called complete and incomplete
+- Two subdirectories in the `downloads` directory called `complete` and `incomplete`
 
-You can create the 2 sub directories with this command (as root in the TrueNAS Shell):
+You can create the two sub-directories with this command (as root in the TrueNAS Shell):
 
 ```bash
 mkdir -p /mnt/tank/media/downloads/{complete,incomplete}
 ```
-Once the subdirectories have been created, give them the proper permissions by navigating to the **Datasets** tab in the webUI and editing the permissions for the ```media``` dataset and applying them recursively.
+
+Once the subdirectories have been created, give them the proper permissions by navigating to the **Datasets** tab in TrueNAS and editing the permissions for the `media` dataset and applying them recursively.
 
 # Installation
-# Tabs {.tabset}
+# {.tabset}
 ## TrueNAS
 ![Screenshot 2025-06-30 222117](https://github.com/user-attachments/assets/be440efb-f8cc-4bac-af3c-de0f592bc932)
-1. Change the timezone to yours
-2. Change the Storage Configuration. For example /mnt/tank/configs/sabnzbd
-3. Mount the downloads directory (ex /media/downloads) under **Additional storage**. as /downloads
+
+1. Change the **SABnzbd Config Storage** to **Host Path**
+1. Add an **Additional Storage** host path pointed at your media dataset
+
 ## Docker
 ```yaml
 services:
@@ -35,7 +47,7 @@ services:
       - TZ=Europe/Amsterdam
     volumes:
       - /mnt/tank/configs/sabnzbd:/config
-      - /mnt/tank/media/downloads:/downloads
+      - /mnt/tank/media/:/media
     ports:
       - 8080:8080
     restart: unless-stopped
@@ -75,7 +87,7 @@ services:
       - net.ipv6.conf.all.disable_ipv6=1 #
     volumes:
       - /mnt/tank/configs/sabnzbd:/config
-      - /mnt/tank/media/downloads:/downloads
+      - /mnt/tank/media/:/media
 ```
 > When you start this container it will fail until you add the VPN config file. See the Example Wireguard wg0.conf File section below
 {.is-warning}
