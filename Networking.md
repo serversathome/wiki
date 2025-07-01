@@ -2,7 +2,7 @@
 title: Networking
 description: 
 published: true
-date: 2025-07-01T20:38:49.987Z
+date: 2025-07-01T20:40:21.011Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T20:26:36.014Z
@@ -10,6 +10,7 @@ dateCreated: 2025-07-01T20:26:36.014Z
 
 # VPNs
 - [✈️ AirVPN *Used for torrenting with qBittorrent*](/AirVPN)
+- [🛡️ Gluetun *Universal VPN to all docker containers*](/gluetun)
 - [🐦 Netbird *Mesh VPN*](/netbird)
 - [🔳 Tailscale *Mesh VPN*](/tailscale)
 - [🔳 Headscale *GUI front-end for selfhosted Tailscale*](/headscale)
