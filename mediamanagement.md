@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-01T15:58:34.406Z
+date: 2025-07-01T20:11:55.140Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -30,6 +30,10 @@ dateCreated: 2025-07-01T09:24:50.754Z
 - [🎬 Radarr *Movie collection manager*](/radarr)
 - [📺 Sonarr *TV Show collection manager*](/Sonarr)
 - [🎵 Soulseek *Music sharing network*](/soulseek)
-
+- [🔍 Suggestarr *Automatic media content recommendations and download requests*](/suggestarr)
+- [🔄 Tdarr *Transcode automation*](/tdarr)
+- [📦 Unpackerr *Extracts downloads*](/Unpackerr)
+- [🧙‍♂️ Wizarr *Automatic user invitation system*](/wizarr)
+- [➕ More Apps *Ravencentric awesome-arr list*](/ravencentric)
 
 {.links-list}
