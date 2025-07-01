@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-01T20:11:55.140Z
+date: 2025-07-01T20:21:15.952Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -35,5 +35,21 @@ dateCreated: 2025-07-01T09:24:50.754Z
 - [📦 Unpackerr *Extracts downloads*](/Unpackerr)
 - [🧙‍♂️ Wizarr *Automatic user invitation system*](/wizarr)
 - [➕ More Apps *Ravencentric awesome-arr list*](/ravencentric)
-
 {.links-list}
+
+# Download Clients
+- [🧲 qBittorrent *Torrent client*](/qBittorrent)
+- [⬇️ Sabnzbd *Usenet download manager*](/sabnzbd)
+{.links-list}
+
+# Media Servers
+- [🎬 Emby](/Emby)
+- [🐟 Jellyfin](/jellyfin)
+- [▶️ Plex](/plex)
+{.links-list}
+
+# Media Management
+- [📸 Immich *Photo management*](/immich)
+- [🕹️ RomM *Video game management*](/romm)
+{.links-list}
+
