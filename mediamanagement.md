@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-01T09:48:07.732Z
+date: 2025-07-01T15:58:34.406Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -26,5 +26,10 @@ dateCreated: 2025-07-01T09:24:50.754Z
 - [🎚️ Profilarr *Import, Export & Sync Profiles & Custom Formats*](/profilarr)
 - [🐯 Prowlarr *Indexer Manager*](/Prowlarr)
 - [🔍 Recommendarr *An AI driven recommendation*](/recommendarr)
+- [♻️ Recyclarr *Automatically sync TRaSH guides*](/Recyclarr)
+- [🎬 Radarr *Movie collection manager*](/radarr)
+- [📺 Sonarr *TV Show collection manager*](/Sonarr)
+- [🎵 Soulseek *Music sharing network*](/soulseek)
+
 
 {.links-list}
