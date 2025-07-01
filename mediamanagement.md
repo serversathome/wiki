@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-01T09:30:06.417Z
+date: 2025-07-01T09:43:15.395Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -14,3 +14,15 @@ dateCreated: 2025-07-01T09:24:50.754Z
 - [🗺️ Overview Map *Overview map of how all the \*arr components of a media server fit together*](/OverviewMap)
 {.links-list}
 
+# \*arr Suite
+
+- [🔤 Bazarr *Subtitle Management*](/bazarr)
+- [🧹 Cleanuparr *Torrent Cleaner*](/cleanuparr)
+- [🌱 Cross-Seed *Automatic torrent link generator*](/crossseed)
+- [🛡️ Flaresolverr *Proxy server to bypass Cloudflare protection*](/Flaresolverr)
+- [⚔️ Huntarr *Auto discover missing content and upgrading*](/huntarr)
+- [🪼 Jellyseerr *Media request and discovery manager*](/Jellyseerr)
+- [🔔 Notifiarr *Discord notification system*](/notifiarr)
+
+
+{.links-list}
