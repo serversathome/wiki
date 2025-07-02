@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-02T22:51:11.530Z
+date: 2025-07-02T22:51:46.690Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -22,7 +22,6 @@ dateCreated: 2025-07-01T09:24:50.754Z
 {.links-list}
 
 ## Media Discovery
-- [⚔️ Huntarr *Auto discover missing content and upgrading*](/huntarr)
 - [🪼 Jellyseerr *Media request and discovery manager*](/Jellyseerr)
 - [🔍 Recommendarr *An AI driven recommendation*](/recommendarr)
 - [🎵 Soulseek *Music sharing network*](/soulseek)
@@ -30,6 +29,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 {.links-list}
 
 ## Torrent Management
+- [⚔️ Huntarr *Auto discover missing content and upgrading*](/huntarr)
 - [🧹 Cleanuparr *Torrent Cleaner*](/cleanuparr)
 - [🌱 Cross-Seed *Automatic torrent link generator*](/crossseed)
 - [📦 Unpackerr *Extracts downloads*](/Unpackerr)
