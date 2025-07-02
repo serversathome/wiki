@@ -2,7 +2,7 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: 2025-07-02T14:32:45.758Z
+date: 2025-07-02T14:36:05.908Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-24T10:59:55.365Z
@@ -14,9 +14,22 @@ Headscale aims to implement a self-hosted, open source alternative to the Tailsc
 # What is Headscale-Admin?
 A web frontend for the headscale Tailscale-compatible coordination server.
 
+# Prerequisites
+- A Linux system with root access and a public IP address *(we recommend Ubuntu or Debian based systems)*
+- A domain name pointed to your server's IP address
+- TCP ports 80 and 443 open
+
+# Choosing a VPS
+Headscale is best run from somewhere outside your network, ideally in the cloud. As such, you need to have a VPS to install Headscale.
+
+A minimal VPS instance with 1 vCPU, 1GB RAM, and 8GB SSD will perform perfectly well for most use cases. In some cases, you may be able to get away with even less.
+
+One option is [this option from Rack Nerd](https://my.racknerd.com/index.php?rp=/store/kvm-vps-latest-special-promos) and honestly it's a great choice, but any VPS will do.
+
 # Installation
 # {.tabset}
 ## Script
+The easiest way to deploy this is with the following script
 
 ## Docker Compose
 ### Headscale Container
