@@ -2,7 +2,7 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: 2025-07-02T14:50:21.738Z
+date: 2025-07-02T14:51:58.682Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-24T10:59:55.365Z
@@ -100,7 +100,7 @@ services:
 
 ### Headscale Config Yaml
 ```yaml
-server_url: https://FULL_DOMAIN
+server_url: https://my.domain.com
 listen_addr: 0.0.0.0:8080
 metrics_listen_addr: 127.0.0.1:9090
 grpc_listen_addr: 127.0.0.1:50443
@@ -173,7 +173,7 @@ logtail:
   enabled: false
 randomize_client_port: false
 ```
-- Replace `FULL_DOMAIN` with your FQDN (e.g. headscale.domain.com)
+- Replace `my.domain.com` with your FQDN (e.g. headscale.domain.com)
 
 # Logging In
 1. Run this command on the host to generate an API Key (this is not necessary if you ran the script):
