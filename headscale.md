@@ -2,7 +2,7 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: 2025-07-02T14:45:59.464Z
+date: 2025-07-02T14:50:21.738Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-24T10:59:55.365Z
@@ -54,10 +54,10 @@ services:
       - './data:/var/lib/headscale'
       - './configs/headscale:/etc/headscale'
     environment:
-      TZ: 'America/Edmonton'
+      TZ: 'America/New_York'
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.headscale.rule=Host(\`FULL_DOMAIN\`)"
+      - "traefik.http.routers.headscale.rule=Host(`my.domain.com`)"
       - "traefik.http.routers.headscale.tls.certresolver=myresolver"
       - "traefik.http.routers.headscale.entrypoints=websecure"
       - "traefik.http.routers.headscale.tls=true"
@@ -69,10 +69,10 @@ services:
     restart: 'unless-stopped'
     labels:
       - "traefik.enable=true"
-      - "traefik.http.services.headscale-admin.loadbalancer.server.port=80"
-      - "traefik.http.routers.headscale-admin.rule=Host(\`FULL_DOMAIN\`) && PathPrefix(\`/admin\`)"
+      - "traefik.http.routers.headscale-admin.rule=Host(`my.domain.com`) && PathPrefix(`/admin`)" # Fixed here
       - "traefik.http.routers.headscale-admin.entrypoints=websecure"
       - "traefik.http.routers.headscale-admin.tls=true"
+      - "traefik.http.services.headscale-admin.loadbalancer.server.port=80"
 
   traefik:
     image: "traefik:latest"
@@ -81,10 +81,10 @@ services:
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
-      - "--entryPoints.web.address=:80"
+      - "--entrypoints.web.address=:80"
       - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
       - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
-      - "--entryPoints.websecure.address=:443"
+      - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.myresolver.acme.email=you@yourdomain.com"
@@ -96,7 +96,7 @@ services:
       - "./letsencrypt:/letsencrypt"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 ```
-- Replace `FULL_DOMAIN` with your FQDN (e.g. headscale.domain.com)
+- Replace `my.domain.com` with your FQDN (e.g. headscale.domain.com)
 
 ### Headscale Config Yaml
 ```yaml
