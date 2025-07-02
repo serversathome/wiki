@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-01T20:21:15.952Z
+date: 2025-07-02T22:51:11.530Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -15,31 +15,44 @@ dateCreated: 2025-07-01T09:24:50.754Z
 {.links-list}
 
 # \*arr Suite
-
-- [🔤 Bazarr *Subtitle Management*](/bazarr)
-- [🧹 Cleanuparr *Torrent Cleaner*](/cleanuparr)
-- [🌱 Cross-Seed *Automatic torrent link generator*](/crossseed)
-- [🛡️ Flaresolverr *Proxy server to bypass Cloudflare protection*](/Flaresolverr)
-- [⚔️ Huntarr *Auto discover missing content and upgrading*](/huntarr)
-- [🪼 Jellyseerr *Media request and discovery manager*](/Jellyseerr)
-- [🔔 Notifiarr *Discord notification system*](/notifiarr)
-- [🎚️ Profilarr *Import, Export & Sync Profiles & Custom Formats*](/profilarr)
+## Core Components
 - [🐯 Prowlarr *Indexer Manager*](/Prowlarr)
-- [🔍 Recommendarr *An AI driven recommendation*](/recommendarr)
-- [♻️ Recyclarr *Automatically sync TRaSH guides*](/Recyclarr)
 - [🎬 Radarr *Movie collection manager*](/radarr)
 - [📺 Sonarr *TV Show collection manager*](/Sonarr)
+{.links-list}
+
+## Media Discovery
+- [⚔️ Huntarr *Auto discover missing content and upgrading*](/huntarr)
+- [🪼 Jellyseerr *Media request and discovery manager*](/Jellyseerr)
+- [🔍 Recommendarr *An AI driven recommendation*](/recommendarr)
 - [🎵 Soulseek *Music sharing network*](/soulseek)
 - [🔍 Suggestarr *Automatic media content recommendations and download requests*](/suggestarr)
-- [🔄 Tdarr *Transcode automation*](/tdarr)
+{.links-list}
+
+## Torrent Management
+- [🧹 Cleanuparr *Torrent Cleaner*](/cleanuparr)
+- [🌱 Cross-Seed *Automatic torrent link generator*](/crossseed)
 - [📦 Unpackerr *Extracts downloads*](/Unpackerr)
+{.links-list}
+
+## Quality Control
+- [🎚️ Profilarr *Import, Export & Sync Profiles & Custom Formats*](/profilarr)
+- [♻️ Recyclarr *Automatically sync TRaSH guides*](/Recyclarr)
+- [🔄 Tdarr *Transcode automation*](/tdarr)
+{.links-list}
+
+## Others
+
+- [🔤 Bazarr *Subtitle Management*](/bazarr)
+- [🛡️ Flaresolverr *Proxy server to bypass Cloudflare protection*](/Flaresolverr)
+- [🔔 Notifiarr *Discord notification system*](/notifiarr)
 - [🧙‍♂️ Wizarr *Automatic user invitation system*](/wizarr)
 - [➕ More Apps *Ravencentric awesome-arr list*](/ravencentric)
 {.links-list}
 
 # Download Clients
 - [🧲 qBittorrent *Torrent client*](/qBittorrent)
-- [⬇️ Sabnzbd *Usenet download manager*](/sabnzbd)
+- [⬇️ SABnzbd *Usenet download manager*](/sabnzbd)
 {.links-list}
 
 # Media Servers
