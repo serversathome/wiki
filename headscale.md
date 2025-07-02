@@ -2,7 +2,7 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: 2025-07-02T14:43:41.263Z
+date: 2025-07-02T14:45:59.464Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-24T10:59:55.365Z
@@ -75,7 +75,7 @@ services:
       - "traefik.http.routers.headscale-admin.tls=true"
 
   traefik:
-    image: "traefik:v3.3"
+    image: "traefik:latest"
     container_name: "traefik"
     command:
       - "--api.insecure=true"
