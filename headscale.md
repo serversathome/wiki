@@ -2,7 +2,7 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: 2025-07-02T14:42:20.186Z
+date: 2025-07-02T14:43:41.263Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-24T10:59:55.365Z
@@ -36,6 +36,10 @@ Run this command to launch the script:
 ```bash
 wget -q -O headscale.sh https://raw.githubusercontent.com/serversathome/ServersatHome/main/headscale.sh && chmod +x headscale.sh && sudo ./headscale.sh
 ```
+
+> Follow the directions at the end of the script for login information
+{.is-info}
+
 
 ## Docker Compose
 ### Headscale Container
