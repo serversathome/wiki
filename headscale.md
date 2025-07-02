@@ -2,7 +2,7 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: 2025-07-02T14:36:05.908Z
+date: 2025-07-02T14:42:20.186Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-24T10:59:55.365Z
@@ -16,6 +16,7 @@ A web frontend for the headscale Tailscale-compatible coordination server.
 
 # Prerequisites
 - A Linux system with root access and a public IP address *(we recommend Ubuntu or Debian based systems)*
+- [Docker](/Docker) installed on the server
 - A domain name pointed to your server's IP address
 - TCP ports 80 and 443 open
 
@@ -29,7 +30,12 @@ One option is [this option from Rack Nerd](https://my.racknerd.com/index.php?rp=
 # Installation
 # {.tabset}
 ## Script
-The easiest way to deploy this is with the following script
+The easiest way to deploy this is with my script, which (after you have met all the pre-requisites) will pull the docker containers, insert your FQDN, and generate an API key for you.
+
+Run this command to launch the script:
+```bash
+wget -q -O headscale.sh https://raw.githubusercontent.com/serversathome/ServersatHome/main/headscale.sh && chmod +x headscale.sh && sudo ./headscale.sh
+```
 
 ## Docker Compose
 ### Headscale Container
@@ -165,18 +171,10 @@ randomize_client_port: false
 ```
 - Replace `FULL_DOMAIN` with your FQDN (e.g. headscale.domain.com)
 
-# Create a User
-1. Navigate to **User View**
-1. Click the **+ New User** button
-1. Give the user a name and click the check circle
-
-# Connecting Machines
-1. Download Tailscale on machines you want to add to the tailnet
-1. Once tailscale is installed, run the command `tailscale up --accept-routes --login-server https://headscale.domain.com`
-> Change `headscale.domain.com` to your FQDN provided earlier
-{.is-warning}
-
-3. Copy the key
-1. Navigate to **Headscale-UI** → **Device View** and click **+ New Device**
-	a. If you are on Headplane its the **Machines tab** → **Add Device**
-1. Paste the device key provided from the command in step 2 and assign a user
+# Logging In
+1. Run this command on the host to generate an API Key (this is not necessary if you ran the script):
+    ```bash
+    docker exec -it headscale headscale apikey create
+    ```
+1. Navigate to `https://your.domain.com/admin/settings`
+1. Input your API key then refresh the page
