@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-02T22:51:46.690Z
+date: 2025-07-02T22:52:44.490Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -12,6 +12,18 @@ dateCreated: 2025-07-01T09:24:50.754Z
 - [📄 Install Instructions *A step-by-step list of the best way to install the \*arr apps*](/InstallInstructions)
 - [🗂️ Folder Structure *Recommended folder structure from Trash Guides to allow for hardlinks within the arr stack*](/Folder-Structure)
 - [🗺️ Overview Map *Overview map of how all the \*arr components of a media server fit together*](/OverviewMap)
+{.links-list}
+
+
+# Download Clients
+- [🧲 qBittorrent *Torrent client*](/qBittorrent)
+- [⬇️ SABnzbd *Usenet download manager*](/sabnzbd)
+{.links-list}
+
+# Media Servers
+- [🎬 Emby](/Emby)
+- [🐟 Jellyfin](/jellyfin)
+- [▶️ Plex](/plex)
 {.links-list}
 
 # \*arr Suite
@@ -48,17 +60,6 @@ dateCreated: 2025-07-01T09:24:50.754Z
 - [🔔 Notifiarr *Discord notification system*](/notifiarr)
 - [🧙‍♂️ Wizarr *Automatic user invitation system*](/wizarr)
 - [➕ More Apps *Ravencentric awesome-arr list*](/ravencentric)
-{.links-list}
-
-# Download Clients
-- [🧲 qBittorrent *Torrent client*](/qBittorrent)
-- [⬇️ SABnzbd *Usenet download manager*](/sabnzbd)
-{.links-list}
-
-# Media Servers
-- [🎬 Emby](/Emby)
-- [🐟 Jellyfin](/jellyfin)
-- [▶️ Plex](/plex)
 {.links-list}
 
 # Media Management
