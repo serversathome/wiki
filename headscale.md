@@ -2,7 +2,7 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: 2025-06-08T18:40:18.199Z
+date: 2025-07-02T14:32:45.758Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-24T10:59:55.365Z
@@ -11,518 +11,146 @@ dateCreated: 2025-03-24T10:59:55.365Z
 # What is Headscale?
 Headscale aims to implement a self-hosted, open source alternative to the Tailscale control server. Headscale's goal is to provide self-hosters and hobbyists with an open-source server they can use for their projects and labs. It implements a narrow scope, a single Tailscale network (tailnet), suitable for a personal use, or a small open-source organisation.
 
-# What is Headscale-UI and Headplane?
+# What is Headscale-Admin?
 A web frontend for the headscale Tailscale-compatible coordination server.
 
 # Installation
 # {.tabset}
-## With Headscale-UI
-```yaml
-services:
-  headscale:
-    image: headscale/headscale:stable
-    container_name: headscale
-    volumes:
-      - ./container-config:/etc/headscale
-      - ./container-data/data:/var/lib/headscale
-    ports:
-      - 27896:8080
-    command: serve
-    restart: unless-stopped
-  headscale-ui:
-    image: ghcr.io/gurucomputing/headscale-ui:latest
-    restart: unless-stopped
-    container_name: headscale-ui
-    ports:
-      - 8443:8443
-      - 8080:8080
-```
-You can change the external ports to whatever you want that is not in use.
+## Script
 
-## With Headplane
+## Docker Compose
+### Headscale Container
 ```yaml
 services:
   headscale:
-    image: headscale/headscale:latest
+    image: 'headscale/headscale:latest'
     container_name: 'headscale'
     restart: 'unless-stopped'
     command: 'serve'
     volumes:
       - './data:/var/lib/headscale'
-      - './etc/headscale:/etc/headscale'
-    ports:
-      - '8080:8080'
-      - '9090:9090'
+      - './configs/headscale:/etc/headscale'
     environment:
-      TZ: 'America/New_York'
+      TZ: 'America/Edmonton'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.headscale.rule=Host(\`FULL_DOMAIN\`)"
+      - "traefik.http.routers.headscale.tls.certresolver=myresolver"
+      - "traefik.http.routers.headscale.entrypoints=websecure"
+      - "traefik.http.routers.headscale.tls=true"
+      - "traefik.http.services.headscale.loadbalancer.server.port=8080"
 
-  headplane:
-    image: ghcr.io/tale/headplane:latest
-    container_name: headplane
-    restart: unless-stopped
+  headscale-admin:
+    image: 'goodieshq/headscale-admin:latest'
+    container_name: 'headscale-admin'
+    restart: 'unless-stopped'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.headscale-admin.loadbalancer.server.port=80"
+      - "traefik.http.routers.headscale-admin.rule=Host(\`FULL_DOMAIN\`) && PathPrefix(\`/admin\`)"
+      - "traefik.http.routers.headscale-admin.entrypoints=websecure"
+      - "traefik.http.routers.headscale-admin.tls=true"
+
+  traefik:
+    image: "traefik:v3.3"
+    container_name: "traefik"
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entryPoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - "--entryPoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.myresolver.acme.email=you@yourdomain.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
-      - '3000:3000'
+      - "80:80"
+      - "443:443"
     volumes:
-      ### HEADPLANE CONFIGURATION ###
-      - './etc/headplane/:/etc/headplane/config.yaml'
-      ### HEADSCALE CONFIGURATION ###
-      # This should match headscale.config_path in your config.yaml
-      - './etc/headscale:/etc/headscale'
-      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
 ```
-### Headplane Config
-Headplane needs an additional config file. Place this as `config.nano` in the `etc/headplane` folder created by the docker compose above:
+- Replace `FULL_DOMAIN` with your FQDN (e.g. headscale.domain.com)
+
+### Headscale Config Yaml
 ```yaml
-server:
-    host: "0.0.0.0"
-    port: 3000
-    cookie_secret: "k5F8dP2qR9wXyL3vG7sB1mN6cZ4tA0jH"
-    cookie_secure: true
-
-headscale:
-    url: "http://headscale:8080"
-    config_path: "/etc/headscale/config.yaml"
-    config_strict: true
-
-integration:
-    docker:
-        enabled: true
-        container_name: "headscale"
-        socket: "unix:///var/run/docker.sock"
-    kubernetes:
-        enabled: false
-        validate_manifest: true
-        pod_name: "headscale"
-    proc:
-        enabled: false
-
-```
-
-# Headscale Config.yaml
-After launching the docker conatiners, navigate to the volume mapped to `etc/headplane` and create a `config.yaml` file with these contents, then restart the container:
-> 
-> The only thing you should change in this yaml is the `server_url` on line 13 to your FQDN
-{.is-info}
-
-```yaml
----
-# headscale will look for a configuration file named `config.yaml` (or `config.json`) in the following order:
-#
-# - `/etc/headscale`
-# - `~/.headscale`
-# - current working directory
-
-# The url clients will connect to.
-# Typically this will be a domain like:
-#
-# https://myheadscale.example.com:443
-#
-server_url: http://127.0.0.1:8080
-
-# Address to listen to / bind to on the server
-#
-# For production:
-# listen_addr: 0.0.0.0:8080
+server_url: https://FULL_DOMAIN
 listen_addr: 0.0.0.0:8080
-
-# Address to listen to /metrics and /debug, you may want
-# to keep this endpoint private to your internal network
 metrics_listen_addr: 127.0.0.1:9090
-
-# Address to listen for gRPC.
-# gRPC is used for controlling a headscale server
-# remotely with the CLI
-# Note: Remote access _only_ works if you have
-# valid certificates.
-#
-# For production:
-# grpc_listen_addr: 0.0.0.0:50443
 grpc_listen_addr: 127.0.0.1:50443
-
-# Allow the gRPC admin interface to run in INSECURE
-# mode. This is not recommended as the traffic will
-# be unencrypted. Only enable if you know what you
-# are doing.
 grpc_allow_insecure: false
-
-# The Noise section includes specific configuration for the
-# TS2021 Noise protocol
 noise:
-  # The Noise private key is used to encrypt the traffic between headscale and
-  # Tailscale clients when using the new Noise-based protocol. A missing key
-  # will be automatically generated.
   private_key_path: /var/lib/headscale/noise_private.key
-
-# List of IP prefixes to allocate tailaddresses from.
-# Each prefix consists of either an IPv4 or IPv6 address,
-# and the associated prefix length, delimited by a slash.
-# It must be within IP ranges supported by the Tailscale
-# client - i.e., subnets of 100.64.0.0/10 and fd7a:115c:a1e0::/48.
-# See below:
-# IPv6: https://github.com/tailscale/tailscale/blob/22ebb25e833264f58d7c3f534a8b166894a89536/net/tsaddr/tsaddr.go#LL81C52-L81C71
-# IPv4: https://github.com/tailscale/tailscale/blob/22ebb25e833264f58d7c3f534a8b166894a89536/net/tsaddr/tsaddr.go#L33
-# Any other range is NOT supported, and it will cause unexpected issues.
 prefixes:
   v4: 100.64.0.0/10
   v6: fd7a:115c:a1e0::/48
-
-  # Strategy used for allocation of IPs to nodes, available options:
-  # - sequential (default): assigns the next free IP from the previous given IP.
-  # - random: assigns the next free IP from a pseudo-random IP generator (crypto/rand).
   allocation: sequential
-
-# DERP is a relay system that Tailscale uses when a direct
-# connection cannot be established.
-# https://tailscale.com/blog/how-tailscale-works/#encrypted-tcp-relays-derp
-#
-# headscale needs a list of DERP servers that can be presented
-# to the clients.
 derp:
   server:
-    # If enabled, runs the embedded DERP server and merges it into the rest of the DERP config
-    # The Headscale server_url defined above MUST be using https, DERP requires TLS to be in place
-    enabled: false
-
-    # Region ID to use for the embedded DERP server.
-    # The local DERP prevails if the region ID collides with other region ID coming from
-    # the regular DERP config.
+    enabled: true
     region_id: 999
-
-    # Region code and name are displayed in the Tailscale UI to identify a DERP region
     region_code: "headscale"
     region_name: "Headscale Embedded DERP"
-
-    # Listens over UDP at the configured address for STUN connections - to help with NAT traversal.
-    # When the embedded DERP server is enabled stun_listen_addr MUST be defined.
-    #
-    # For more details on how this works, check this great article: https://tailscale.com/blog/how-tailscale-works/
     stun_listen_addr: "0.0.0.0:3478"
-
-    # Private key used to encrypt the traffic between headscale DERP and
-    # Tailscale clients. A missing key will be automatically generated.
     private_key_path: /var/lib/headscale/derp_server_private.key
-
-    # This flag can be used, so the DERP map entry for the embedded DERP server is not written automatically,
-    # it enables the creation of your very own DERP map entry using a locally available file with the parameter DERP.paths
-    # If you enable the DERP server and set this to false, it is required to add the DERP server to the DERP map using DERP.paths
     automatically_add_embedded_derp_region: true
-
-    # For better connection stability (especially when using an Exit-Node and DNS is not working),
-    # it is possible to optionally add the public IPv4 and IPv6 address to the Derp-Map using:
     ipv4: 1.2.3.4
     ipv6: 2001:db8::1
-
-  # List of externally available DERP maps encoded in JSON
   urls:
     - https://controlplane.tailscale.com/derpmap/default
-
-  # Locally available DERP map files encoded in YAML
-  #
-  # This option is mostly interesting for people hosting
-  # their own DERP servers:
-  # https://tailscale.com/kb/1118/custom-derp-servers/
-  #
-  # paths:
-  #   - /etc/headscale/derp-example.yaml
   paths: []
-
-  # If enabled, a worker will be set up to periodically
-  # refresh the given sources and update the derpmap
-  # will be set up.
   auto_update_enabled: true
-
-  # How often should we check for DERP updates?
   update_frequency: 24h
-
-# Disables the automatic check for headscale updates on startup
 disable_check_updates: false
-
-# Time before an inactive ephemeral node is deleted?
 ephemeral_node_inactivity_timeout: 30m
-
 database:
-  # Database type. Available options: sqlite, postgres
-  # Please note that using Postgres is highly discouraged as it is only supported for legacy reasons.
-  # All new development, testing and optimisations are done with SQLite in mind.
   type: sqlite
-
-  # Enable debug mode. This setting requires the log.level to be set to "debug" or "trace".
   debug: false
-
-  # GORM configuration settings.
   gorm:
-    # Enable prepared statements.
     prepare_stmt: true
-
-    # Enable parameterized queries.
     parameterized_queries: true
-
-    # Skip logging "record not found" errors.
     skip_err_record_not_found: true
-
-    # Threshold for slow queries in milliseconds.
     slow_threshold: 1000
-
-  # SQLite config
   sqlite:
     path: /var/lib/headscale/db.sqlite
-
-    # Enable WAL mode for SQLite. This is recommended for production environments.
-    # https://www.sqlite.org/wal.html
     write_ahead_log: true
-
-    # Maximum number of WAL file frames before the WAL file is automatically checkpointed.
-    # https://www.sqlite.org/c3ref/wal_autocheckpoint.html
-    # Set to 0 to disable automatic checkpointing.
     wal_autocheckpoint: 1000
-
-  # # Postgres config
-  # Please note that using Postgres is highly discouraged as it is only supported for legacy reasons.
-  # See database.type for more information.
-  # postgres:
-  #   # If using a Unix socket to connect to Postgres, set the socket path in the 'host' field and leave 'port' blank.
-  #   host: localhost
-  #   port: 5432
-  #   name: headscale
-  #   user: foo
-  #   pass: bar
-  #   max_open_conns: 10
-  #   max_idle_conns: 10
-  #   conn_max_idle_time_secs: 3600
-
-  #   # If other 'sslmode' is required instead of 'require(true)' and 'disabled(false)', set the 'sslmode' you need
-  #   # in the 'ssl' field. Refers to https://www.postgresql.org/docs/current/libpq-ssl.html Table 34.1.
-  #   ssl: false
-
-### TLS configuration
-#
-## Let's encrypt / ACME
-#
-# headscale supports automatically requesting and setting up
-# TLS for a domain with Let's Encrypt.
-#
-# URL to ACME directory
 acme_url: https://acme-v02.api.letsencrypt.org/directory
-
-# Email to register with ACME provider
 acme_email: ""
-
-# Domain name to request a TLS certificate for:
 tls_letsencrypt_hostname: ""
-
-# Path to store certificates and metadata needed by
-# letsencrypt
-# For production:
 tls_letsencrypt_cache_dir: /var/lib/headscale/cache
-
-# Type of ACME challenge to use, currently supported types:
-# HTTP-01 or TLS-ALPN-01
-# See: docs/ref/tls.md for more information
 tls_letsencrypt_challenge_type: HTTP-01
-# When HTTP-01 challenge is chosen, letsencrypt must set up a
-# verification endpoint, and it will be listening on:
-# :http = port 80
 tls_letsencrypt_listen: ":http"
-
-## Use already defined certificates:
 tls_cert_path: ""
 tls_key_path: ""
-
 log:
-  # Output formatting for logs: text or json
   format: text
   level: info
-
-## Policy
-# headscale supports Tailscale's ACL policies.
-# Please have a look to their KB to better
-# understand the concepts: https://tailscale.com/kb/1018/acls/
 policy:
-  # The mode can be "file" or "database" that defines
-  # where the ACL policies are stored and read from.
-  mode: file
-  # If the mode is set to "file", the path to a
-  # HuJSON file containing ACL policies.
+  mode: database
   path: ""
-
-## DNS
-#
-# headscale supports Tailscale's DNS configuration and MagicDNS.
-# Please have a look to their KB to better understand the concepts:
-#
-# - https://tailscale.com/kb/1054/dns/
-# - https://tailscale.com/kb/1081/magicdns/
-# - https://tailscale.com/blog/2021-09-private-dns-with-magicdns/
-#
-# Please note that for the DNS configuration to have any effect,
-# clients must have the `--accept-dns=true` option enabled. This is the
-# default for the Tailscale client. This option is enabled by default
-# in the Tailscale client.
-#
-# Setting _any_ of the configuration and `--accept-dns=true` on the
-# clients will integrate with the DNS manager on the client or
-# overwrite /etc/resolv.conf.
-# https://tailscale.com/kb/1235/resolv-conf
-#
-# If you want stop Headscale from managing the DNS configuration
-# all the fields under `dns` should be set to empty values.
 dns:
-  # Whether to use [MagicDNS](https://tailscale.com/kb/1081/magicdns/).
   magic_dns: true
-
-  # Defines the base domain to create the hostnames for MagicDNS.
-  # This domain _must_ be different from the server_url domain.
-  # `base_domain` must be a FQDN, without the trailing dot.
-  # The FQDN of the hosts will be
-  # `hostname.base_domain` (e.g., _myhost.example.com_).
   base_domain: example.com
-
-  # List of DNS servers to expose to clients.
   nameservers:
     global:
       - 1.1.1.1
       - 1.0.0.1
       - 2606:4700:4700::1111
       - 2606:4700:4700::1001
-
-      # NextDNS (see https://tailscale.com/kb/1218/nextdns/).
-      # "abc123" is example NextDNS ID, replace with yours.
-      # - https://dns.nextdns.io/abc123
-
-    # Split DNS (see https://tailscale.com/kb/1054/dns/),
-    # a map of domains and which DNS server to use for each.
-    split:
-      {}
-      # foo.bar.com:
-      #   - 1.1.1.1
-      # darp.headscale.net:
-      #   - 1.1.1.1
-      #   - 8.8.8.8
-
-  # Set custom DNS search domains. With MagicDNS enabled,
-  # your tailnet base_domain is always the first search domain.
+    split: {}
   search_domains: []
-
-  # Extra DNS records
-  # so far only A and AAAA records are supported (on the tailscale side)
-  # See: docs/ref/dns.md
   extra_records: []
-  #   - name: "grafana.myvpn.example.com"
-  #     type: "A"
-  #     value: "100.64.0.3"
-  #
-  #   # you can also put it in one line
-  #   - { name: "prometheus.myvpn.example.com", type: "A", value: "100.64.0.3" }
-  #
-  # Alternatively, extra DNS records can be loaded from a JSON file.
-  # Headscale processes this file on each change.
-  # extra_records_path: /var/lib/headscale/extra-records.json
-
-# Unix socket used for the CLI to connect without authentication
-# Note: for production you will want to set this to something like:
 unix_socket: /var/run/headscale/headscale.sock
 unix_socket_permission: "0770"
-#
-# headscale supports experimental OpenID connect support,
-# it is still being tested and might have some bugs, please
-# help us test it.
-# OpenID Connect
-# oidc:
-#   only_start_if_oidc_is_available: true
-#   issuer: "https://your-oidc.issuer.com/path"
-#   client_id: "your-oidc-client-id"
-#   client_secret: "your-oidc-client-secret"
-#   # Alternatively, set `client_secret_path` to read the secret from the file.
-#   # It resolves environment variables, making integration to systemd's
-#   # `LoadCredential` straightforward:
-#   client_secret_path: "${CREDENTIALS_DIRECTORY}/oidc_client_secret"
-#   # client_secret and client_secret_path are mutually exclusive.
-#
-#   # The amount of time from a node is authenticated with OpenID until it
-#   # expires and needs to reauthenticate.
-#   # Setting the value to "0" will mean no expiry.
-#   expiry: 180d
-#
-#   # Use the expiry from the token received from OpenID when the user logged
-#   # in, this will typically lead to frequent need to reauthenticate and should
-#   # only been enabled if you know what you are doing.
-#   # Note: enabling this will cause `oidc.expiry` to be ignored.
-#   use_expiry_from_token: false
-#
-#   # Customize the scopes used in the OIDC flow, defaults to "openid", "profile" and "email" and add custom query
-#   # parameters to the Authorize Endpoint request. Scopes default to "openid", "profile" and "email".
-#
-#   scope: ["openid", "profile", "email", "custom"]
-#   extra_params:
-#     domain_hint: example.com
-#
-#   # List allowed principal domains and/or users. If an authenticated user's domain is not in this list, the
-#   # authentication request will be rejected.
-#
-#   allowed_domains:
-#     - example.com
-#   # Note: Groups from keycloak have a leading '/'
-#   allowed_groups:
-#     - /headscale
-#   allowed_users:
-#     - alice@example.com
-#
-#   # Optional: PKCE (Proof Key for Code Exchange) configuration
-#   # PKCE adds an additional layer of security to the OAuth 2.0 authorization code flow
-#   # by preventing authorization code interception attacks
-#   # See https://datatracker.ietf.org/doc/html/rfc7636
-#   pkce:
-#     # Enable or disable PKCE support (default: false)
-#     enabled: false
-#     # PKCE method to use:
-#     # - plain: Use plain code verifier
-#     # - S256: Use SHA256 hashed code verifier (default, recommended)
-#     method: S256
-#
-#   # Map legacy users from pre-0.24.0 versions of headscale to the new OIDC users
-#   # by taking the username from the legacy user and matching it with the username
-#   # provided by the OIDC. This is useful when migrating from legacy users to OIDC
-#   # to force them using the unique identifier from the OIDC and to give them a
-#   # proper display name and picture if available.
-#   # Note that this will only work if the username from the legacy user is the same
-#   # and there is a possibility for account takeover should a username have changed
-#   # with the provider.
-#   # When this feature is disabled, it will cause all new logins to be created as new users.
-#   # Note this option will be removed in the future and should be set to false
-#   # on all new installations, or when all users have logged in with OIDC once.
-#   map_legacy_users: false
-
-# Logtail configuration
-# Logtail is Tailscales logging and auditing infrastructure, it allows the control panel
-# to instruct tailscale nodes to log their activity to a remote server.
 logtail:
-  # Enable logtail for this headscales clients.
-  # As there is currently no support for overriding the log server in headscale, this is
-  # disabled by default. Enabling this will make your clients send logs to Tailscale Inc.
   enabled: false
-
-# Enabling this option makes devices prefer a random port for WireGuard traffic over the
-# default static port 41641. This option is intended as a workaround for some buggy
-# firewall devices. See https://tailscale.com/kb/1181/firewalls/ for more information.
 randomize_client_port: false
 ```
-
-# {.tabset}
-## Headscale-UI Configuration
-1. Login to the server at the `IP:Port` you selected
-1. Navigate to **Settings** and enter the **Headscale URL** of the Headscale server
-> Note that this must be the same FQDN used above in line 13
-{.is-info}
-
-3. Within the Headscale container shell, run the command `headscale apikeys create`
-1. Copy that key into the **Headscale API Key** in Headscale-UI
-1. Click **Test Server Settings**
-
-## Headplane Configuration
-1. Login to server at `IP:Port/admin`
-1. Within the Headscale container shell, run the command `headscale apikeys create`
-1. Enter the Headscale API Key
-
+- Replace `FULL_DOMAIN` with your FQDN (e.g. headscale.domain.com)
 
 # Create a User
 1. Navigate to **User View**
