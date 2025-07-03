@@ -2,28 +2,28 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-02T22:52:44.490Z
+date: 2025-07-03T10:32:27.085Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
 ---
 
 # Start Here
-- [📄 Install Instructions *A step-by-step list of the best way to install the \*arr apps*](/InstallInstructions)
+- [<span class="mdi mdi-format-list-numbered"></span> Install Instructions *A step-by-step list of the best way to install the \*arr apps*](/InstallInstructions)
 - [🗂️ Folder Structure *Recommended folder structure from Trash Guides to allow for hardlinks within the arr stack*](/Folder-Structure)
-- [🗺️ Overview Map *Overview map of how all the \*arr components of a media server fit together*](/OverviewMap)
+- [<span class="mdi mdi-map"></span> Overview Map *Overview map of how all the \*arr components of a media server fit together*](/OverviewMap)
 {.links-list}
 
 
 # Download Clients
 - [🧲 qBittorrent *Torrent client*](/qBittorrent)
-- [⬇️ SABnzbd *Usenet download manager*](/sabnzbd)
+- [<span class="mdi mdi-arrow-down-bold"></span> SABnzbd *Usenet download manager*](/sabnzbd)
 {.links-list}
 
 # Media Servers
-- [🎬 Emby](/Emby)
-- [🐟 Jellyfin](/jellyfin)
-- [▶️ Plex](/plex)
+- [<span class="mdi mdi-emby"></span> Emby](/Emby)
+- [<span class="mdi mdi-video"></span> Jellyfin](/jellyfin)
+- [<span class="mdi mdi-plex"></span> Plex](/plex)
 {.links-list}
 
 # \*arr Suite
@@ -34,7 +34,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 {.links-list}
 
 ## Media Discovery
-- [🪼 Jellyseerr *Media request and discovery manager*](/Jellyseerr)
+- [<span class="mdi mdi-jellyfish"></span> Jellyseerr *Media request and discovery manager*](/Jellyseerr)
 - [🔍 Recommendarr *An AI driven recommendation*](/recommendarr)
 - [🎵 Soulseek *Music sharing network*](/soulseek)
 - [🔍 Suggestarr *Automatic media content recommendations and download requests*](/suggestarr)
@@ -50,15 +50,15 @@ dateCreated: 2025-07-01T09:24:50.754Z
 ## Quality Control
 - [🎚️ Profilarr *Import, Export & Sync Profiles & Custom Formats*](/profilarr)
 - [♻️ Recyclarr *Automatically sync TRaSH guides*](/Recyclarr)
-- [🔄 Tdarr *Transcode automation*](/tdarr)
+- [<span class="mdi mdi-transfer"></span> Tdarr *Transcode automation*](/tdarr)
 {.links-list}
 
 ## Others
 
-- [🔤 Bazarr *Subtitle Management*](/bazarr)
+- [<span class="mdi mdi-subtitles"></span> Bazarr *Subtitle Management*](/bazarr)
 - [🛡️ Flaresolverr *Proxy server to bypass Cloudflare protection*](/Flaresolverr)
 - [🔔 Notifiarr *Discord notification system*](/notifiarr)
-- [🧙‍♂️ Wizarr *Automatic user invitation system*](/wizarr)
+- [<span class="mdi mdi-wizard-hat"></span> Wizarr *Automatic user invitation system*](/wizarr)
 - [➕ More Apps *Ravencentric awesome-arr list*](/ravencentric)
 {.links-list}
 
