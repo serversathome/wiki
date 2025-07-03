@@ -2,25 +2,25 @@
 title: Networking
 description: 
 published: true
-date: 2025-07-01T20:40:21.011Z
+date: 2025-07-03T10:44:01.548Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T20:26:36.014Z
 ---
 
 # VPNs
-- [✈️ AirVPN *Used for torrenting with qBittorrent*](/AirVPN)
+- [<span class="mdi mdi-earth"></span> AirVPN *Used for torrenting with qBittorrent*](/AirVPN)
 - [🛡️ Gluetun *Universal VPN to all docker containers*](/gluetun)
-- [🐦 Netbird *Mesh VPN*](/netbird)
-- [🔳 Tailscale *Mesh VPN*](/tailscale)
-- [🔳 Headscale *GUI front-end for selfhosted Tailscale*](/headscale)
-- [🐉 wg-easy *GUI front-end for Wireguard*](/wg-easy)
+- [ <span class="mdi mdi-bird"></span> Netbird *Mesh VPN*](/netbird)
+- [<span class="mdi mdi-dots-grid"></span> Tailscale *Mesh VPN*](/tailscale)
+- [<span class="mdi mdi-dots-grid"></span> Headscale *GUI front-end for selfhosted Tailscale*](/headscale)
+- [<span class="mdi mdi-security-network"></span> wg-easy *GUI front-end for Wireguard*](/wg-easy)
 {.links-list}
 
 # Reverse Proxy Managers
-- [☁️ Cloudflare Tunnels](/CloudflareTunnels)
-- [📡 Cloudflareddns *IP updater for CF for dynamic IPs*](/cloudflareddns)
-- [🔀 Nginx Proxy Manager *Manage proxy hosts with GUI*](/nginx)
-- [🦊 Pangolin *Selfhosted Cloudflare tunnel*](/pangolin)
+- [<span class="mdi mdi-cloud"></span> Cloudflare Tunnels](/CloudflareTunnels)
+- [<span class="mdi mdi-cloud"></span> Cloudflareddns *IP updater for CF for dynamic IPs*](/cloudflareddns)
+- [<span class="mdi mdi-arrow-decision-outline"></span> Nginx Proxy Manager *Manage proxy hosts with GUI*](/nginx)
+- [<span class="mdi mdi-firefox"></span> Pangolin *Selfhosted Cloudflare tunnel*](/pangolin)
 {.links-list}
 
