@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-03T10:36:48.067Z
+date: 2025-07-03T10:37:23.263Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -66,6 +66,3 @@ dateCreated: 2025-07-01T09:24:50.754Z
 - [<span class="mdi mdi-camera"></span> Immich *Photo management*](/immich)
 - [<span class="mdi mdi-gamepad-square"></span> RomM *Video game management*](/romm)
 {.links-list}
-
-
-<span class="iconify" data-icon="mdi-account"></span>
