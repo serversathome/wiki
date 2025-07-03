@@ -2,7 +2,7 @@
 title: Containerization
 description: 
 published: true
-date: 2025-07-01T21:28:45.595Z
+date: 2025-07-03T10:46:22.627Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T20:43:05.196Z
@@ -12,19 +12,19 @@ dateCreated: 2025-07-01T20:43:05.196Z
 These are GUI front-ends for managing docker containers.
 - [Arcane](/arcane)
 - [Dockge](/Dockge)
-- [Portainer](/Portainer)
+- [<span class="mdi mdi-crane"></span> Portainer](/Portainer)
 {.links-list}
 
 # Logging
-- [Dozzle *Container log viewer*](/dozzle)
+- [<span class="mdi mdi-math-log"></span> Dozzle *Container log viewer*](/dozzle)
 {.links-list}
 
 # Updating
-- [Watchtower *Auto updates for containers*](/Watchtower)
+- [<span class="mdi mdi-lighthouse-on"></span> Watchtower *Auto updates for containers*](/Watchtower)
 {.links-list}
 
 # Docker
-- [🐳 Docker *A guide to deploying docker*](/Docker)
+- [<span class="mdi mdi-docker"></span> Docker *A guide to deploying docker*](/Docker)
 {.links-list}
 
 
