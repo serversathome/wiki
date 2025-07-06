@@ -2,7 +2,7 @@
 title: Web Hosting
 description: 
 published: true
-date: 2025-07-06T10:30:27.741Z
+date: 2025-07-06T10:31:01.848Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T21:06:40.530Z
@@ -14,7 +14,7 @@ dateCreated: 2025-07-01T21:06:40.530Z
 {.links-list}
 
 # Web Site Analytics
-- [<img src="" width="25" style="vertical-align:middle;margin-right:4px"> Umami](/umami)
+- [<img src="umami.png" width="25" style="vertical-align:middle;margin-right:4px"> Umami](/umami)
 {.links-list}
 
 # Wikis
