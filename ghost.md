@@ -2,13 +2,13 @@
 title: Ghost
 description: A guide to installing Ghost in docker via compose
 published: true
-date: 2025-06-08T18:39:40.355Z
+date: 2025-07-06T10:27:46.357Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-11T11:43:39.558Z
 ---
 
-![](/ghost-1041475365.png)
+![ghost-light.png](/ghost-light.png)
 
 # What is Ghost?
 
