@@ -2,13 +2,13 @@
 title: RomM
 description: A guide to deploying RomM on TrueNAS and Docker
 published: true
-date: 2025-07-06T10:11:34.330Z
+date: 2025-07-06T10:11:49.563Z
 tags: 
 editor: markdown
 dateCreated: 2025-02-24T11:29:26.783Z
 ---
 
-![romm.png](/romm.png)
+![romm.png](/romm.pn
 
 ![screenshot_from_2025-02-24_06-28-38.png](/screenshot_from_2025-02-24_06-28-38.png)
 # What is RomM?
