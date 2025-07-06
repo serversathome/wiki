@@ -2,7 +2,7 @@
 title: Networking
 description: 
 published: true
-date: 2025-07-03T10:44:01.548Z
+date: 2025-07-06T10:24:13.061Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T20:26:36.014Z
@@ -11,16 +11,16 @@ dateCreated: 2025-07-01T20:26:36.014Z
 # VPNs
 - [<span class="mdi mdi-earth"></span> AirVPN *Used for torrenting with qBittorrent*](/AirVPN)
 - [🛡️ Gluetun *Universal VPN to all docker containers*](/gluetun)
-- [ <span class="mdi mdi-bird"></span> Netbird *Mesh VPN*](/netbird)
-- [<span class="mdi mdi-dots-grid"></span> Tailscale *Mesh VPN*](/tailscale)
-- [<span class="mdi mdi-dots-grid"></span> Headscale *GUI front-end for selfhosted Tailscale*](/headscale)
-- [<span class="mdi mdi-security-network"></span> wg-easy *GUI front-end for Wireguard*](/wg-easy)
+- [<img src="/netbird.png" width="25" style="vertical-align:middle;margin-right:4px"> Netbird *Mesh VPN*](/netbird)
+- [<img src="/tailscale-light.png" width="25" style="vertical-align:middle;margin-right:4px"> Tailscale *Mesh VPN*](/tailscale)
+- [<img src="/tailscale-light.png" width="25" style="vertical-align:middle;margin-right:4px"> Headscale *GUI front-end for selfhosted Tailscale*](/headscale)
+- [<img src="/wireguard.png" width="25" style="vertical-align:middle;margin-right:4px"> wg-easy *GUI front-end for Wireguard*](/wg-easy)
 {.links-list}
 
 # Reverse Proxy Managers
-- [<span class="mdi mdi-cloud"></span> Cloudflare Tunnels](/CloudflareTunnels)
-- [<span class="mdi mdi-cloud"></span> Cloudflareddns *IP updater for CF for dynamic IPs*](/cloudflareddns)
-- [<span class="mdi mdi-arrow-decision-outline"></span> Nginx Proxy Manager *Manage proxy hosts with GUI*](/nginx)
-- [<span class="mdi mdi-firefox"></span> Pangolin *Selfhosted Cloudflare tunnel*](/pangolin)
+- [<img src="/cloudflare.png" width="25" style="vertical-align:middle;margin-right:4px"> Cloudflare Tunnels](/CloudflareTunnels)
+- [<img src="/cloudflare.png" width="25" style="vertical-align:middle;margin-right:4px"> Cloudflareddns *IP updater for CF for dynamic IPs*](/cloudflareddns)
+- [<img src="/nginx-proxy-manager.png" width="25" style="vertical-align:middle;margin-right:4px"> Nginx Proxy Manager *Manage proxy hosts with GUI*](/nginx)
+- [<img src="/pangolin.png" width="25" style="vertical-align:middle;margin-right:4px"> Pangolin *Selfhosted Cloudflare tunnel*](/pangolin)
 {.links-list}
 
