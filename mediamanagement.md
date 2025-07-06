@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-06T09:21:02.300Z
+date: 2025-07-06T09:21:57.074Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -23,7 +23,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
   </a>
 
 - <a href="/sabnzbd">
-    <img src="/sabnzdb.png" width="25"
+    <img src="/sabnzbd.png" width="25"
          style="vertical-align:middle;margin-right:4px;">
     SABnzbd <em>Usenet Download Manager</em>
   </a>
