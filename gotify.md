@@ -2,13 +2,13 @@
 title: Gotify
 description: A guide to installing Gotify in docker via compose
 published: true
-date: 2025-07-06T10:18:28.150Z
+date: 2025-07-06T10:18:41.064Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-30T19:46:39.620Z
 ---
 
-![gotify.png](/gotify.png)
+![gotify.png](/gotify.png
 
 # What is Gotify?
 
