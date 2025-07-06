@@ -2,7 +2,7 @@
 title: Pulsarr
 description: A guide to deploying Pulsarr via docker
 published: true
-date: 2025-07-06T10:45:01.625Z
+date: 2025-07-06T10:46:28.812Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-06T09:47:13.858Z
@@ -40,6 +40,7 @@ TZ=America/New_York
 logLevel=info                  
 NODE_ARGS=--log-both  
 ```
+- Replace the `baseUrl` with your IP address
 
 ## Docker + Apprise
 ```yaml
@@ -83,6 +84,7 @@ logLevel=info
 NODE_ARGS=--log-both
 appriseUrl=http://host-ip-address:8000
 ```
+- Replace the `baseUrl` with your IP address
 - Replace `host-ip-address` with your actual server IP 
 
 # Pulsarr Configuration
