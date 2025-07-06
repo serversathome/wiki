@@ -2,7 +2,7 @@
 title: Web Hosting
 description: 
 published: true
-date: 2025-07-06T10:29:11.227Z
+date: 2025-07-06T10:30:27.741Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T21:06:40.530Z
@@ -18,5 +18,5 @@ dateCreated: 2025-07-01T21:06:40.530Z
 {.links-list}
 
 # Wikis
-- [<img src="/wikijs.png" width="25" style="vertical-align:middle;margin-right:4px"> Wiki.js *This wiki!*](/wikijs)
+- [<img src="/wiki-js.png" width="25" style="vertical-align:middle;margin-right:4px"> Wiki.js *This wiki!*](/wikijs)
 {.links-list}
