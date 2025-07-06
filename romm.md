@@ -2,13 +2,14 @@
 title: RomM
 description: A guide to deploying RomM on TrueNAS and Docker
 published: true
-date: 2025-06-08T18:40:10.122Z
+date: 2025-07-06T10:11:10.209Z
 tags: 
 editor: markdown
 dateCreated: 2025-02-24T11:29:26.783Z
 ---
 
 
+![romm.png](/romm.png)
 ![screenshot_from_2025-02-24_06-28-38.png](/screenshot_from_2025-02-24_06-28-38.png)
 # What is RomM?
 RomM (ROM Manager) allows you to scan, enrich, browse and play your game collection with a clean and responsive interface. With support for multiple platforms, various naming schemes, and custom tags, RomM is a must-have for anyone who plays on emulators.
