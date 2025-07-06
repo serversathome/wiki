@@ -2,7 +2,7 @@
 title: Pulsarr
 description: A guide to deploying Pulsarr via docker
 published: true
-date: 2025-07-06T10:51:15.781Z
+date: 2025-07-06T11:21:15.629Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-06T09:47:13.858Z
@@ -25,7 +25,7 @@ services:
     ports:
       - 3003:3003
     volumes:
-      - /mnt/tank/configs/[ulsarr:/app/data
+      - /mnt/tank/configs/pulsarr:/app/data
       - .env:/app/.env
     restart: unless-stopped
     env_file:
@@ -67,7 +67,7 @@ services:
     ports:
       - "3003:3003"
     volumes:
-      - /mnt/tank/configs/[ulsarr:/app/data
+      - /mnt/tank/configs/pulsarr:/app/data
       - .env:/app/.env
     restart: unless-stopped
     env_file:
