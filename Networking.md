@@ -2,7 +2,7 @@
 title: Networking
 description: 
 published: true
-date: 2025-07-06T15:21:56.244Z
+date: 2025-07-06T15:23:42.987Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T20:26:36.014Z
@@ -19,7 +19,7 @@ dateCreated: 2025-07-01T20:26:36.014Z
 
 # Reverse Proxy Managers
 - [<img src="/cloudflare.png" width="25" style="vertical-align:middle;margin-right:4px"> Cloudflare Tunnels *Secure Application Connections Without IP's*](/CloudflareTunnels)
-- [<img src="/cloudflare.png" width="25" style="vertical-align:middle;margin-right:4px"> Cloudflareddns *IP Updater For Dynamic IP's*](/cloudflareddns)
+- [<img src="/cloudflare.png" width="25" style="vertical-align:middle;margin-right:4px"> Cloudflared DDNS *IP Updater For Dynamic IP's*](/cloudflareddns)
 - [<img src="/nginx-proxy-manager.png" width="25" style="vertical-align:middle;margin-right:4px"> Nginx Proxy Manager *Manage Proxy Hosts With GUI*](/nginx)
 - [<img src="/pangolin.png" width="25" style="vertical-align:middle;margin-right:4px"> Pangolin *Selfhosted Cloudflare Tunnel*](/pangolin)
 {.links-list}
