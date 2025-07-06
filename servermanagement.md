@@ -2,27 +2,27 @@
 title: Server Management
 description: 
 published: true
-date: 2025-07-03T10:23:37.148Z
+date: 2025-07-06T10:18:34.130Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T21:19:58.964Z
 ---
 
 # Hypervisors
-- [<span class="mdi mdi-nas"></span> TrueNAS *Network Attached Storage*](/TrueNAS)
-- [<span class="mdi mdi-server"></span> Proxmox Virtual Environment *Virtualization*](/Proxmox)
-- [<span class="mdi mdi-server"></span> Proxmox Backup Server *Manage backups for Proxmox*](/pbs)
+- [<img src="/truenas-core.png" width="25" style="vertical-align:middle;margin-right:4px"> TrueNAS *Network Attached Storage*](/TrueNAS)
+- [<img src="/proxmox.png" width="25" style="vertical-align:middle;margin-right:4px"> Proxmox Virtual Environment *Virtualization*](/Proxmox)
+- [<img src="/proxmox.png" width="25" style="vertical-align:middle;margin-right:4px"> Proxmox Backup Server *Manage backups for Proxmox*](/pbs)
 {.links-list}
 
 
 # Monitoring
-- [<span class="mdi mdi-tune-variant"></span> Core Control *Server dashboard*](/corecontrol)
-- [<span class="mdi mdi-glasses"></span> Scrutiny *Hard drive health monitor*](/scrutiny)
-- [<span class="mdi mdi-heart-pulse"></span> Uptime Kuma *Uptime monitor*](/Kuma)
-- [<span class="mdi mdi-monitor-dashboard"></span> Webmin *Server dashboard*](/webmin)
+- [<img src="/corecontrol-light.png" width="25" style="vertical-align:middle;margin-right:4px"> Core Control *Server dashboard*](/corecontrol)
+- [<img src="/scrutiny.png" width="25" style="vertical-align:middle;margin-right:4px"> Scrutiny *Hard drive health monitor*](/scrutiny)
+- [<img src="/uptime-kuma.png" width="25" style="vertical-align:middle;margin-right:4px"> Uptime Kuma *Uptime monitor*](/Kuma)
+- [<img src="/webmin.png" width="25" style="vertical-align:middle;margin-right:4px"> Webmin *Server dashboard*](/webmin)
 {.links-list}
 
 # Notifications
 - [<span class="mdi mdi-bell"></span> Notifications *Instructions on how to enable notifications for servers and apps*](/Notifications)
-- [<span class="mdi mdi-message-alert-outline"></span> Gotify *Notification container*](/gotify)
+- [<img src="/gotif.png" width="25" style="vertical-align:middle;margin-right:4px"> Gotify *Notification container*](/gotify)
 {.links-list}
