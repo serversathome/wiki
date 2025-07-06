@@ -2,7 +2,7 @@
 title: Containerization
 description: 
 published: true
-date: 2025-07-03T10:46:22.627Z
+date: 2025-07-06T10:25:49.884Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T20:43:05.196Z
@@ -10,21 +10,21 @@ dateCreated: 2025-07-01T20:43:05.196Z
 
 # Container Managers
 These are GUI front-ends for managing docker containers.
-- [Arcane](/arcane)
-- [Dockge](/Dockge)
-- [<span class="mdi mdi-crane"></span> Portainer](/Portainer)
+- [<img src="/arcane.png" width="25" style="vertical-align:middle;margin-right:4px"> Arcane](/arcane)
+- [<img src="/dockge.png" width="25" style="vertical-align:middle;margin-right:4px"> Dockge](/Dockge)
+- [<img src="/portainer.png" width="25" style="vertical-align:middle;margin-right:4px"> Portainer](/Portainer)
 {.links-list}
 
 # Logging
-- [<span class="mdi mdi-math-log"></span> Dozzle *Container log viewer*](/dozzle)
+- [<img src="/dozzle.png" width="25" style="vertical-align:middle;margin-right:4px"> Dozzle *Container log viewer*](/dozzle)
 {.links-list}
 
 # Updating
-- [<span class="mdi mdi-lighthouse-on"></span> Watchtower *Auto updates for containers*](/Watchtower)
+- [<img src="/watchtower.png" width="25" style="vertical-align:middle;margin-right:4px"> Watchtower *Auto updates for containers*](/Watchtower)
 {.links-list}
 
 # Docker
-- [<span class="mdi mdi-docker"></span> Docker *A guide to deploying docker*](/Docker)
+- [<img src="/docker.png" width="25" style="vertical-align:middle;margin-right:4px"> Docker *A guide to deploying docker*](/Docker)
 {.links-list}
 
 
