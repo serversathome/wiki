@@ -2,7 +2,7 @@
 title: Pulsarr
 description: A guide to deploying Pulsarr via docker
 published: true
-date: 2025-07-06T10:46:28.812Z
+date: 2025-07-06T10:47:11.735Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-06T09:47:13.858Z
@@ -90,7 +90,7 @@ appriseUrl=http://host-ip-address:8000
 # Pulsarr Configuration
 1. Access the web interface at `http://your-server:3003`
 1. Create an admin account
-1. Enter your Plex token. If you do not know it, login to the webpage (not the container) for Plex then open another browser window and visit https://plex.tv/devices.xml.
+1. Enter your Plex token. If you do not know it, login to the webpage (not the container) for Plex then open another browser window and visit [https://plex.tv/devices.xml](https://plex.tv/devices.xml).
 1. Configure your Sonarr and Radarr connections:
 	a. Add instance details (URL, API key)
 	b. Configure default quality profiles and root folders
