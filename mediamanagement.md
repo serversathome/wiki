@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-06T13:15:40.076Z
+date: 2025-07-06T14:57:19.381Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -29,41 +29,41 @@ dateCreated: 2025-07-01T09:24:50.754Z
 # \*arr Suite
 ## Core Components
 - [<img src="/prowlarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Prowlarr *Indexer Manager*](/Prowlarr)
-- [<img src="/radarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Radarr *Movie collection manager*](/radarr)
-- [<img src="/sonarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Sonarr *TV Show collection manager*](/Sonarr)
+- [<img src="/radarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Radarr *Movie Collection Manager*](/radarr)
+- [<img src="/sonarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Sonarr *TV Show Collection Manager*](/Sonarr)
 {.links-list}
 
 ## Media Discovery
-- [<img src="/jellyseerr.png" width="25" style="vertical-align:middle;margin-right:4px"> Jellyseerr *Media request and discovery manager*](/Jellyseerr)
-- [<img src="/pulsarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Pulsarr *Watchlist synchronization from Plex*](/pulsarr)
-- [🔍 Recommendarr *An AI driven recommendation*](/recommendarr)
-- [<img src="/slskd.png" width="25" style="vertical-align:middle;margin-right:4px"> Soulseek *Music sharing network*](/soulseek)
-- [🔍 Suggestarr *Automatic media content recommendations and download requests*](/suggestarr)
+- [<img src="/huntarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Huntarr *Auto Discover Missing Content & Upgrading*](/huntarr)
+- [<img src="/jellyseerr.png" width="25" style="vertical-align:middle;margin-right:4px"> Jellyseerr *Media Request & Discovery Manager*](/Jellyseerr)
+- [<img src="/pulsarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Pulsarr *Watchlist Synchronization From Plex*](/pulsarr)
+- [🔍 Recommendarr *An AI Driven Media Recommender*](/recommendarr)
+- [<img src="/slskd.png" width="25" style="vertical-align:middle;margin-right:4px"> Soulseek *Music Sharing Network*](/soulseek)
+- [🔍 Suggestarr *Automatic Media Content Recommendations & Download Requests*](/suggestarr)
 {.links-list}
 
 ## Torrent Management
-- [<img src="/huntarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Huntarr *Auto discover missing content and upgrading*](/huntarr)
 - [<img src="/cleanuparr.png" width="25" style="vertical-align:middle;margin-right:4px"> Cleanuparr *Torrent Cleaner*](/cleanuparr)
-- [<img src="/cross-seed.png" width="25" style="vertical-align:middle;margin-right:4px"> Cross-Seed *Automatic torrent link generator*](/crossseed)
-- [📦 Unpackerr *Extracts downloads*](/Unpackerr)
+- [<img src="/cross-seed.png" width="25" style="vertical-align:middle;margin-right:4px"> Cross-Seed *Automatic Torrent Link Generator*](/crossseed)
+- [📦 Unpackerr *Extracts Downloads*](/Unpackerr)
 {.links-list}
 
 ## Quality Control
 - [<span class="mdi mdi-tune-vertical-variant"></span> Profilarr *Import, Export & Sync Profiles & Custom Formats*](/profilarr)
-- [<img src="/recyclarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Recyclarr *Automatically sync TRaSH guides*](/Recyclarr)
-- [<img src="/tdarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Tdarr *Transcode automation*](/tdarr)
+- [<img src="/recyclarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Recyclarr *Automatically Sync TRaSH Guides*](/Recyclarr)
+- [<img src="/tdarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Tdarr *Transcode Automation*](/tdarr)
 {.links-list}
 
 ## Others
 
 - [<img src="/bazarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Bazarr *Subtitle Management*](/bazarr)
-- [<img src="/flaresolverr.png" width="25" style="vertical-align:middle;margin-right:4px"> Flaresolverr *Proxy server to bypass Cloudflare protection*](/Flaresolverr)
-- [<img src="/notifiarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Notifiarr *Discord notification system*](/notifiarr)
-- [<img src="/wizarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Wizarr *Automatic user invitation system*](/wizarr)
+- [<img src="/flaresolverr.png" width="25" style="vertical-align:middle;margin-right:4px"> Flaresolverr *Proxy Server To Bypass Cloudflare Protection*](/Flaresolverr)
+- [<img src="/notifiarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Notifiarr *Discord Notification System*](/notifiarr)
+- [<img src="/wizarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Wizarr *Automatic User Invitation System*](/wizarr)
 - [➕ More Apps *Ravencentric awesome-arr list*](/ravencentric)
 {.links-list}
 
 # Media Management
-- [<img src="/immich.png" width="25" style="vertical-align:middle;margin-right:4px"> Immich *Photo management*](/immich)
-- [<img src="/romm.png" width="25" style="vertical-align:middle;margin-right:4px"> RomM *Video game management*](/romm)
+- [<img src="/immich.png" width="25" style="vertical-align:middle;margin-right:4px"> Immich *Photo Management*](/immich)
+- [<img src="/romm.png" width="25" style="vertical-align:middle;margin-right:4px"> RomM *Video Game Management*](/romm)
 {.links-list}
