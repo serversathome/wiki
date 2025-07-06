@@ -2,7 +2,7 @@
 title: Pulsarr
 description: A guide to deploying Pulsarr via docker
 published: true
-date: 2025-07-06T11:22:27.513Z
+date: 2025-07-06T11:36:51.957Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-06T09:47:13.858Z
@@ -100,3 +100,7 @@ appriseUrl=http://host-ip-address:8000
 	b. Configure default quality profiles and root folders
 1. Set sync permissions for any friends' watchlists you'd like to include (Ensure users have their [Account Visibility](https://app.plex.tv/desktop/#!/settings/account) set to 'Friends Only' or 'Friends of Friends')
 1. Head to the **Dashboard** page and click on the Start button next to the Main Workflow heading
+
+# Video
+![2025-07-06-automate-your-plex-watchlist-wit-promo-card.png](/2025-07-06-automate-your-plex-watchlist-wit-promo-card.png)
+[Watch it on Patreon!](https://www.patreon.com/posts/automate-your-133499239?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
