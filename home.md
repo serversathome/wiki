@@ -2,7 +2,7 @@
 title: Home
 description: This is a wiki for configurations for common docker applications as well as setting up apps on TrueNAS Scale
 published: true
-date: 2025-07-06T12:58:56.943Z
+date: 2025-07-06T13:00:45.401Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:21:39.818Z
@@ -77,7 +77,7 @@ New to self-hosting? Start here:
 | <img src="/discord.png" width="25" style="vertical-align:middle;margin-right:4px"> [Discord](https://discord.gg/syvCPcRJnR) | Get real-time help |
 | <img src="/youtube.png" width="25" style="vertical-align:middle;margin-right:4px"> [YouTube](https://www.youtube.com/@ServersatHome) | Video tutorials |
 | <img src="/github-light.png" width="25" style="vertical-align:middle;margin-right:4px"> [GitHub](https://github.com/serversathome/ServersatHome) | Report issues/suggest edits |
-| [Buy Me a Coffee](https://www.buymeacoffee.com/serversathome) | Support our work |
+|<img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/buy-me-a-coffee.png" width="25" style="vertical-align:middle;margin-right:4px"> [Buy Me a Coffee](https://www.buymeacoffee.com/serversathome) | Support our work |
 
 ---
 
