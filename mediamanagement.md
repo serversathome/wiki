@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-06T10:07:53.014Z
+date: 2025-07-06T10:10:19.934Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -58,12 +58,12 @@ dateCreated: 2025-07-01T09:24:50.754Z
 
 - [<img src="/bazarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Bazarr *Subtitle Management*](/bazarr)
 - [<img src="/flaresolverr.png" width="25" style="vertical-align:middle;margin-right:4px"> Flaresolverr *Proxy server to bypass Cloudflare protection*](/Flaresolverr)
-- [<img src="/notifarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Notifiarr *Discord notification system*](/notifiarr)
+- [<img src="/notifiarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Notifiarr *Discord notification system*](/notifiarr)
 - [<img src="/wizarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Wizarr *Automatic user invitation system*](/wizarr)
 - [➕ More Apps *Ravencentric awesome-arr list*](/ravencentric)
 {.links-list}
 
 # Media Management
-- [<span class="mdi mdi-camera"></span> Immich *Photo management*](/immich)
-- [<span class="mdi mdi-gamepad-square"></span> RomM *Video game management*](/romm)
+- <img src="/immich.png" width="25" style="vertical-align:middle;margin-right:4px"> Immich *Photo management*](/immich)
+- [<img src="/romm.png" width="25" style="vertical-align:middle;margin-right:4px"> RomM *Video game management*](/romm)
 {.links-list}
