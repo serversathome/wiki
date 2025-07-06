@@ -2,13 +2,13 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: 2025-06-10T16:54:27.043Z
+date: 2025-07-06T10:29:59.629Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-22T11:00:30.633Z
 ---
 
-![](/wikijs-full-inverted-3126313965.png)
+![wiki-js.png](/wiki-js.png)
 
 # What is Wiki.js?
 
