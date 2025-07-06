@@ -2,13 +2,13 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-06-28T11:05:11.809Z
+date: 2025-07-06T10:14:04.990Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
 ---
 
-![](/screenshot_from_2024-10-21_16-12-44.png)
+![truenas-core.png](/truenas-core.png)
 
 > This page was built to describe TrueNAS CE Fangtooth 25.04.1
 {.is-info}
