@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-06T09:21:57.074Z
+date: 2025-07-06T10:07:53.014Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -16,58 +16,50 @@ dateCreated: 2025-07-01T09:24:50.754Z
 
 
 # Download Clients
-- <a href="/qBittorrent">
-    <img src="/qbittorrent.png" width="25"
-         style="vertical-align:middle;margin-right:4px;">
-    qBittorrent <em>Torrent Client</em>
-  </a>
-
-- <a href="/sabnzbd">
-    <img src="/sabnzbd.png" width="25"
-         style="vertical-align:middle;margin-right:4px;">
-    SABnzbd <em>Usenet Download Manager</em>
-  </a>
+- [<img src="/qbittorrent.png" width="25" style="vertical-align:middle;margin-right:4px"> qBittorrent *Torrent Client*](/qBittorrent)
+- [<img src="/sabnzbd.png" width="25" style="vertical-align:middle;margin-right:4px"> SABnzbd *Usenet Download Manager*](/sabnzbd)
 {.links-list}
 
 # Media Servers
-- [<span class="mdi mdi-emby"></span> Emby](/Emby)
-- [<span class="mdi mdi-video"></span> Jellyfin](/jellyfin)
-- [<span class="mdi mdi-plex"></span> Plex](/plex)
+- [<img src="/emby.png" width="25" style="vertical-align:middle;margin-right:4px"> Emby](/Emby)
+- [<img src="/jellyfin.png" width="25" style="vertical-align:middle;margin-right:4px"> Jellyfin](/jellyfin)
+- [<img src="/plex.png" width="25" style="vertical-align:middle;margin-right:4px"> Plex](/plex)
 {.links-list}
 
 # \*arr Suite
 ## Core Components
-- [🐯 Prowlarr *Indexer Manager*](/Prowlarr)
-- [🎬 Radarr *Movie collection manager*](/radarr)
-- [📺 Sonarr *TV Show collection manager*](/Sonarr)
+- [<img src="/prowlarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Prowlarr *Indexer Manager*](/Prowlarr)
+- [<img src="/radarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Radarr *Movie collection manager*](/radarr)
+- [<img src="/sonarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Sonarr *TV Show collection manager*](/Sonarr)
 {.links-list}
 
 ## Media Discovery
-- [<span class="mdi mdi-jellyfish"></span> Jellyseerr *Media request and discovery manager*](/Jellyseerr)
+- [<img src="/jellyseerr.png" width="25" style="vertical-align:middle;margin-right:4px"> Jellyseerr *Media request and discovery manager*](/Jellyseerr)
+- [<img src="/pulsarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Pulsarr *Watchlist synchronization from Plex*](/pulsarr)
 - [🔍 Recommendarr *An AI driven recommendation*](/recommendarr)
-- [🎵 Soulseek *Music sharing network*](/soulseek)
+- [<img src="/slskd.png" width="25" style="vertical-align:middle;margin-right:4px"> Soulseek *Music sharing network*](/soulseek)
 - [🔍 Suggestarr *Automatic media content recommendations and download requests*](/suggestarr)
 {.links-list}
 
 ## Torrent Management
-- [⚔️ Huntarr *Auto discover missing content and upgrading*](/huntarr)
-- [🧹 Cleanuparr *Torrent Cleaner*](/cleanuparr)
-- [🌱 Cross-Seed *Automatic torrent link generator*](/crossseed)
+- [<img src="/huntarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Huntarr *Auto discover missing content and upgrading*](/huntarr)
+- [<img src="/cleanuparr.png" width="25" style="vertical-align:middle;margin-right:4px"> Cleanuparr *Torrent Cleaner*](/cleanuparr)
+- [<img src="/cross-seed.png" width="25" style="vertical-align:middle;margin-right:4px"> Cross-Seed *Automatic torrent link generator*](/crossseed)
 - [📦 Unpackerr *Extracts downloads*](/Unpackerr)
 {.links-list}
 
 ## Quality Control
 - [<span class="mdi mdi-tune-vertical-variant"></span> Profilarr *Import, Export & Sync Profiles & Custom Formats*](/profilarr)
-- [♻️ Recyclarr *Automatically sync TRaSH guides*](/Recyclarr)
-- [<span class="mdi mdi-transfer"></span> Tdarr *Transcode automation*](/tdarr)
+- [<img src="/recyclarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Recyclarr *Automatically sync TRaSH guides*](/Recyclarr)
+- [<img src="/tdarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Tdarr *Transcode automation*](/tdarr)
 {.links-list}
 
 ## Others
 
-- [<span class="mdi mdi-subtitles"></span> Bazarr *Subtitle Management*](/bazarr)
-- [🛡️ Flaresolverr *Proxy server to bypass Cloudflare protection*](/Flaresolverr)
-- [🔔 Notifiarr *Discord notification system*](/notifiarr)
-- [<span class="mdi mdi-wizard-hat"></span> Wizarr *Automatic user invitation system*](/wizarr)
+- [<img src="/bazarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Bazarr *Subtitle Management*](/bazarr)
+- [<img src="/flaresolverr.png" width="25" style="vertical-align:middle;margin-right:4px"> Flaresolverr *Proxy server to bypass Cloudflare protection*](/Flaresolverr)
+- [<img src="/notifarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Notifiarr *Discord notification system*](/notifiarr)
+- [<img src="/wizarr.png" width="25" style="vertical-align:middle;margin-right:4px"> Wizarr *Automatic user invitation system*](/wizarr)
 - [➕ More Apps *Ravencentric awesome-arr list*](/ravencentric)
 {.links-list}
 
