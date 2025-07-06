@@ -2,7 +2,7 @@
 title: Home
 description: This is a wiki for configurations for common docker applications as well as setting up apps on TrueNAS Scale
 published: true
-date: 2025-06-27T14:55:26.492Z
+date: 2025-07-06T12:56:16.852Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:21:39.818Z
@@ -25,7 +25,7 @@ New to self-hosting? Start here:
 
 ## 📚 Core Knowledge Areas
 
-### 🐧 TrueNAS Ecosystem
+### <img src="/truenas-core.png" width="25" style="vertical-align:middle;margin-right:4px"> TrueNAS Ecosystem
 | Guide | Description | Difficulty |
 |-------|-------------|------------|
 | [📁 Datasets & Permissions](https://wiki.serversatho.me/en/TrueNAS#datsets) | Master storage organization | Beginner |
@@ -33,17 +33,17 @@ New to self-hosting? Start here:
 | [📦 App Installation](https://wiki.serversatho.me/en/TrueNAS#apps) | Expand your TrueNAS capabilities | Beginner |
 
 ### 🏠 Self-Hosting Essentials
-🎬 [Jellyfin Media Server Setup](/jellyfin)
-📸 [Immich Photo Management](/immich)
-☁️ [Nextcloud with Nginx Proxy](/nextcloud)
+[<img src="/jellyfin.png" width="25" style="vertical-align:middle;margin-right:4px"> Jellyfin Media Server Setup](/jellyfin)
+[<img src="/immich.png" width="25" style="vertical-align:middle;margin-right:4px"> Immich Photo Management](/immich)
+[<img src="/nextcloud.png" width="25" style="vertical-align:middle;margin-right:4px"> Nextcloud with Nginx Proxy](/nextcloud)
 
-### 🐳 Containerization
-🧩 [Dockge for Container Management](/Dockge)
-🔒 [WireGuard VPN Setup](/wg-easy)
+### <img src="/docker.png" width="25" style="vertical-align:middle;margin-right:4px"> Containerization
+[<img src="/dockge.png" width="25" style="vertical-align:middle;margin-right:4px"> Dockge for Container Management](/Dockge)
+[<img src="/wireguard.png" width="25" style="vertical-align:middle;margin-right:4px"> WireGuard VPN Setup](/wg-easy)
 
 ### 🌐 Networking
-☁️ [Cloudflare Tunnels](/CloudflareTunnels)
-🕸️ [NetBird Mesh VPN](/netbird)
+[<img src="/cloudflare.png" width="25" style="vertical-align:middle;margin-right:4px"> Cloudflare Tunnels](/CloudflareTunnels)
+[<img src="/netbird.png" width="25" style="vertical-align:middle;margin-right:4px"> NetBird Mesh VPN](/netbird)
 
 
 
