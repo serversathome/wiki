@@ -2,7 +2,7 @@
 title: Pulsarr
 description: A guide to deploying Pulsarr via docker
 published: true
-date: 2025-07-06T11:21:15.629Z
+date: 2025-07-06T11:22:27.513Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-06T09:47:13.858Z
@@ -88,6 +88,10 @@ appriseUrl=http://host-ip-address:8000
 - Replace `host-ip-address` with your actual server IP 
 
 # Pulsarr Configuration
+> Read the [official documentation](https://jamcalli.github.io/Pulsarr/docs/intro)
+{.is-success}
+
+
 1. Access the web interface at `http://your-server:3003`
 1. Create an admin account
 1. Enter your [Plex token](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/)
