@@ -2,7 +2,7 @@
 title: Networking
 description: 
 published: true
-date: 2025-07-07T02:49:52.649Z
+date: 2025-07-07T17:48:13.617Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T20:26:36.014Z
@@ -25,3 +25,7 @@ dateCreated: 2025-07-01T20:26:36.014Z
 * [<img src="/nginx-proxy-manager.png"> Nginx Proxy Manager<br>*Manage proxy hosts with GUI*](/nginx)
 * [<img src="/pangolin.png"> Pangolin<br>*Self‑hosted Cloudflare Tunnel*](/pangolin)
   {.links-list}
+  
+# Ad Blocking
+- [<img src="/adguard-home.png"> AdGuard<br>*DNS level ad blocker*](/adguard)
+{.links-list}
