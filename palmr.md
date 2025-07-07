@@ -2,7 +2,7 @@
 title: Palmr
 description: A guide to deploying Palmr on docker
 published: true
-date: 2025-07-07T17:51:37.781Z
+date: 2025-07-07T17:52:10.149Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T17:51:37.781Z
@@ -27,7 +27,7 @@ services:
     ports:
       - 5487:5487 # Web port
     volumes:
-      - /mnt/tank/configs.palmr:/app/server
+      - /mnt/tank/configs/palmr:/app/server
     restart: unless-stopped
 ```
 > If the logs say `"Waiting for API..."` give it 5 minutes to wait before stopping the container
