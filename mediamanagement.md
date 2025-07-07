@@ -2,16 +2,16 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-07T02:49:32.369Z
+date: 2025-07-07T02:50:55.425Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
 ---
 
 # Start Here
-- [<span class="mdi mdi-format-list-numbered"></span> Install Instructions<br>*A step-by-step list of the arr apps*](/InstallInstructions)
+- [📖 Install Instructions<br>*A step-by-step list of the arr apps*](/InstallInstructions)
 - [🗂️ Folder Structure<br>*Recommended folder structure from Trash Guides to allow for hardlinks within the arr stack*](/Folder-Structure)
-- [<span class="mdi mdi-map"></span> Overview Map<br>*Overview map of how all the arr components of a media server fit together*](/OverviewMap)
+- [🗺️ Overview Map<br>*Overview map of how all the arr components of a media server fit together*](/OverviewMap)
 {.links-list}
 
 # Download Clients
