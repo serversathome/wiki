@@ -2,34 +2,34 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-07T02:16:19.484Z
+date: 2025-07-07T02:17:39.493Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
 ---
 
 # Start Here
-- [<span class="mdi mdi-format-list-numbered"></span> Install Instructions *A step-by-step list of the best way to install the arr apps*](/InstallInstructions)
+- [<span class="mdi mdi-format-list-numbered"></span> Install Instructions *A step-by-step list of the arr apps*](/InstallInstructions)
 - [🗂️ Folder Structure *Recommended folder structure from Trash Guides to allow for hardlinks within the arr stack*](/Folder-Structure)
 - [<span class="mdi mdi-map"></span> Overview Map *Overview map of how all the arr components of a media server fit together*](/OverviewMap)
 {.links-list}
 
 # Download Clients
-- [<img src="/qbittorrent.png"> qBittorrent *Torrent Client*](/qBittorrent)
-- [<img src="/sabnzbd.png"> SABnzbd *Usenet Download Manager*](/sabnzbd)
+- [<img src="/qbittorrent.png"> qBittorrent *Torrent client*](/qBittorrent)
+- [<img src="/sabnzbd.png"> SABnzbd *Usenet download manager*](/sabnzbd)
 {.links-list}
 
 # Media Servers
 - [<img src="/emby.png"> Emby *Your personal media on any device*](/Emby)
 - [<img src="/jellyfin.png"> Jellyfin *Volunteer-built media solution*](/jellyfin)
-- [<img src="/plex.png"> Plex *Media streaming server for movies, television shows, and music*](/plex)
+- [<img src="/plex.png"> Plex *Media-streaming server for movies, television shows, and music*](/plex)
 {.links-list}
 
 # \*arr Suite
 ## Core Components
-- [<img src="/prowlarr.png"> Prowlarr *Indexer Manager / Proxy that integrates with the Arr apps*](/Prowlarr)
-- [<img src="/radarr.png"> Radarr *Movie Organizer / Manager for Usenet & Torrent users*](/radarr)
-- [<img src="/sonarr.png"> Sonarr *TV-Show Organizer / Manager for Usenet & Torrent users*](/Sonarr)
+- [<img src="/prowlarr.png"> Prowlarr *Indexer manager / proxy that integrates with the Arr apps*](/Prowlarr)
+- [<img src="/radarr.png"> Radarr *Movie organizer / manager for Usenet & Torrent users*](/radarr)
+- [<img src="/sonarr.png"> Sonarr *TV-show organizer / manager for Usenet & Torrent users*](/Sonarr)
 {.links-list}
 
 ## Media Discovery
