@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-07T02:22:51.513Z
+date: 2025-07-07T02:49:32.369Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -20,7 +20,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 {.links-list}
 
 # Media Servers
-- [<img src="/emby.png"> Emby<br>*Your personal media on any device*](/Emby)
+- [<img src="/emby.png"> Emby <span class="badge">NEW</span><br>*Your personal media on any device*](/Emby)
 - [<img src="/jellyfin.png"> Jellyfin<br>*Volunteer-built media solution*](/jellyfin)
 - [<img src="/plex.png"> Plex<br>*Media-streaming server for movies, television shows, and music*](/plex)
 {.links-list}
@@ -62,6 +62,6 @@ dateCreated: 2025-07-01T09:24:50.754Z
 {.links-list}
 
 # Media Management
-- [<img src="/immich.png"> Immich<br>*Photo management*](/immich)
+- [<img src="/immich.png"> Immich <span class="badge">UPDATED</span><br>*Photo management*](/immich)
 - [<img src="/romm.png"> RomM<br>*Video-game / ROM management*](/romm)
 {.links-list}
