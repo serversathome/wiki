@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-07T01:49:23.993Z
+date: 2025-07-07T02:14:09.103Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -37,7 +37,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 - [<img src="/jellyseerr.png"> Jellyseerr *Media request & discovery manager*](/Jellyseerr)
 - [<img src="/pulsarr.png"> Pulsarr *Plex watch-list monitoring, routing & notifications*](/pulsarr)
 - [<img src="/recommendarr.png"> Recommendarr *Personalized recommendations for existing libraries*](/recommendarr)
-- [<img src="/slskd.png"> Soulseek *Music-sharing network*](/soulseek)
+- [<img src="/slskd.png"> Soulseek <span class="badge">NEW</span> *Music-sharing network*](/soulseek)
 - [🔍 Suggestarr *Automated recommendations & requests based on user activity*](/suggestarr)
 {.links-list}
 
