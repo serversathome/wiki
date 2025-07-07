@@ -2,7 +2,7 @@
 title: Networking
 description: 
 published: true
-date: 2025-07-07T17:48:13.617Z
+date: 2025-07-07T18:17:48.268Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T20:26:36.014Z
@@ -27,5 +27,5 @@ dateCreated: 2025-07-01T20:26:36.014Z
   {.links-list}
   
 # Ad Blocking
-- [<img src="/adguard-home.png"> AdGuard<br>*DNS level ad blocker*](/adguard)
+- [<img src="/adguard-home.png"> AdGuard <span class="badge">NEW</span><br>*DNS level ad blocker*](/adguard)
 {.links-list}
