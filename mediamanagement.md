@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-07T01:45:29.426Z
+date: 2025-07-07T01:45:57.105Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -34,11 +34,11 @@ dateCreated: 2025-07-01T09:24:50.754Z
 {.links-list}
 
 ## Media Discovery
-- [<img src="/huntarr.png" alt="Huntarr" width="24"> Huntarr *Automated Missing Content Discovery & Quality Upgrades*](/huntarr)
-- [<img src="/jellyseerr.png" alt="Jellyseerr" width="24"> Jellyseerr *Media Request & Discovery Manager*](/Jellyseerr)
-- [<img src="/pulsarr.png" alt="Pulsarr" width="24"> Pulsarr *Plex Watchlist Monitoring, Routing, & Notifications*](/pulsarr)
-- [<img src="/recommendarr.png" alt="Recommendarr" width="24"> Recommendarr *Personalized Media Recommendations For Existing Media Libraries*](/recommendarr)
-- [<img src="/slskd.png" alt="Soulseek" width="24"> Soulseek *Music Sharing Network*](/soulseek)
+- [<img src="/huntarr.png" width="24"> Huntarr *Automated Missing Content Discovery & Quality Upgrades*](/huntarr)
+- [<img src="/jellyseerr.png" width="24"> Jellyseerr *Media Request & Discovery Manager*](/Jellyseerr)
+- [<img src="/pulsarr.png" width="24"> Pulsarr *Plex Watchlist Monitoring, Routing, & Notifications*](/pulsarr)
+- [<img src="/recommendarr.png" width="24"> Recommendarr *Personalized Media Recommendations For Existing Media Libraries*](/recommendarr)
+- [<img src="/slskd.png" width="24"> Soulseek *Music Sharing Network*](/soulseek)
 - [🔍 Suggestarr *Automated Media Recommendations & Requests Based On User Activity*](/suggestarr)
 {.links-list}
 
