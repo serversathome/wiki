@@ -2,21 +2,24 @@
 title: Web Hosting
 description: 
 published: true
-date: 2025-07-06T10:31:01.848Z
+date: 2025-07-07T02:48:26.807Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T21:06:40.530Z
 ---
 
 # Web Site Hosting
-- [<img src="/ghost-light.png" width="25" style="vertical-align:middle;margin-right:4px"> Ghost](/ghost)
-- [<img src="/wordpress.png" width="25" style="vertical-align:middle;margin-right:4px"> Wordpress](/wordpress)
-{.links-list}
+
+* [<img src="/ghost-light.png"> Ghost](/ghost)
+* [<img src="/wordpress.png"> WordPress](/wordpress)
+  {.links-list}
 
 # Web Site Analytics
-- [<img src="umami.png" width="25" style="vertical-align:middle;margin-right:4px"> Umami](/umami)
-{.links-list}
+
+* [<img src="/umami.png"> Umami](/umami)
+  {.links-list}
 
 # Wikis
-- [<img src="/wiki-js.png" width="25" style="vertical-align:middle;margin-right:4px"> Wiki.js *This wiki!*](/wikijs)
-{.links-list}
+
+* [<img src="/wiki-js.png"> Wiki.js<br>*This wiki!*](/wikijs)
+  {.links-list}
