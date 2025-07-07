@@ -2,7 +2,7 @@
 title: Networking
 description: 
 published: true
-date: 2025-07-07T02:47:10.105Z
+date: 2025-07-07T02:49:52.649Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T20:26:36.014Z
@@ -14,7 +14,7 @@ dateCreated: 2025-07-01T20:26:36.014Z
 * [🛡️ Gluetun<br>*Universal VPN for Docker containers*](/gluetun)
 * [<img src="/netbird.png"> Netbird<br>*Zero‑config mesh VPN for secure device connectivity*](/netbird)
 * [<img src="/tailscale-light.png"> Tailscale<br>*Zero‑config mesh VPN for secure device connectivity*](/tailscale)
-* [<img src="/headscale.png"> Headscale<br>*Self‑hosted Tailscale node*](/headscale)
+* [<img src="/headscale.png"> Headscale <span class="badge">NEW</span><br>*Self‑hosted Tailscale node*](/headscale)
 * [<img src="/wireguard.png"> wg‑easy<br>*GUI front‑end for WireGuard*](/wg-easy)
   {.links-list}
 
