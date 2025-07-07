@@ -2,13 +2,13 @@
 title: Vaultwarden
 description: A guide to installing Vaultwarden in docker via compose
 published: true
-date: 2025-06-08T18:39:41.807Z
+date: 2025-07-07T18:08:59.793Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-16T22:16:52.287Z
 ---
 
-![](/v2-b3bfda2319d3c269e7b31e6fe81c9fd7_r-1880582152.png)
+<img src="/vaultwarden.png">
 
 # What is Vaultwarden?
 
