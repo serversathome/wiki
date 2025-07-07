@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2025-07-07T18:06:59.162Z
+date: 2025-07-07T18:07:26.570Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T18:06:48.269Z
@@ -13,6 +13,6 @@ dateCreated: 2025-07-07T18:06:48.269Z
 - [<img src="/homeassistant.png">Home Assistant<br>*Home automation*](/homeassistant)
 - [Kan.bn<br>*Open source Trello*](/kanbn)
 - [<img src="/palmr.png">Palmr<br>*Secure file sharing and upload*](/palmr)
-- [<img src="/test.png">Vaultwarden<br>*Password manager*](/vaultwarden)
+- [<img src="/vaultwarden.png">Vaultwarden<br>*Password manager*](/vaultwarden)
 
 {.links-list}
