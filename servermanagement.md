@@ -2,7 +2,7 @@
 title: Server Management
 description: 
 published: true
-date: 2025-07-07T02:46:21.957Z
+date: 2025-07-07T02:53:30.519Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T21:19:58.964Z
@@ -25,6 +25,6 @@ dateCreated: 2025-07-01T21:19:58.964Z
 
 # Notifications
 
-* [<span class="mdi mdi-bell"></span> Notifications<br>*Enable notifications for servers & apps*](/Notifications)
+* [🔔 Notifications<br>*Enable notifications for servers & apps*](/Notifications)
 * [<img src="/gotify.png"> Gotify<br>*Notification container*](/gotify)
   {.links-list}
