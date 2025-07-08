@@ -2,7 +2,7 @@
 title: Auto-Limit
 description: A guide to deploying Auto-Limit via docker
 published: true
-date: 2025-07-08T15:10:19.276Z
+date: 2025-07-08T17:06:29.949Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-08T15:10:19.276Z
@@ -27,4 +27,17 @@ services:
 ```
 
 # Auto-Limit Configuration
-1. 
+1. Navigate to the IP and Port of the container
+1. Create a username and password
+1. Click the **Configuration** tab
+1. Click **Add Media Server**
+	a. Give it an **Instance Name**
+  b. Select the **Plugin Type**
+  c. Add your **API Key**
+  d. Click **Save**
+1. Click **Add Downloader**
+	a. Give it an **Instance Name**
+  b. Select the **Plugin Type**
+  c. Add the **Server Address**
+  d. Enter your **Username** and **Password**
+  e. Set the **Download/Upload During Playback** speeds to the `KB/s` your network can handle
