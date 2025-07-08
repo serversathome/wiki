@@ -2,11 +2,13 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: 2025-07-02T14:51:58.682Z
+date: 2025-07-08T17:28:40.925Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-24T10:59:55.365Z
 ---
+
+![headscale.png](/headscale.png)
 
 # What is Headscale?
 Headscale aims to implement a self-hosted, open source alternative to the Tailscale control server. Headscale's goal is to provide self-hosters and hobbyists with an open-source server they can use for their projects and labs. It implements a narrow scope, a single Tailscale network (tailnet), suitable for a personal use, or a small open-source organisation.
