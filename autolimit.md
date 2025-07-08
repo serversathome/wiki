@@ -1,0 +1,30 @@
+---
+title: Auto-Limit
+description: A guide to deploying Auto-Limit via docker
+published: true
+date: 2025-07-08T15:10:19.276Z
+tags: 
+editor: markdown
+dateCreated: 2025-07-08T15:10:19.276Z
+---
+
+# What is Auto-Limit?
+Auto-Limit is an intelligent download speed management tool designed specifically for NAS users and home media server enthusiasts. It automatically reduces the speed of downloaders like qBittorrent and Transmission when family members are watching movies on media servers like Emby or Jellyfin, ensuring smooth streaming without buffering.
+
+# Installation
+```yaml
+services:
+  auto-limit:
+    image: xiaobaiya000/auto-limit:latest
+    container_name: auto-limit
+    ports:
+      - 9190:9190
+    volumes:
+      - /mnt/tank/configs/autolimit:/app/data
+    environment:
+      - TZ=America/New_York
+    restart: unless-stopped
+```
+
+# Auto-Limit Configuration
+1. 
