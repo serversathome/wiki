@@ -2,13 +2,13 @@
 title: Recommendarr
 description: A guide to deploying Recommendarr via docker compose
 published: true
-date: 2025-06-08T18:40:33.636Z
+date: 2025-07-08T16:25:51.758Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-15T10:52:38.357Z
 ---
 
-
+![recommendarr.png](/recommendarr.png)
 
 # What is Recommendarr?
 Recommendarr is a web application that generates personalized TV show and movie recommendations based on your Sonarr, Radarr, Plex, and Jellyfin libraries using AI.
