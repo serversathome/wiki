@@ -2,23 +2,21 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T11:59:49.358Z
+date: 2025-07-09T12:06:16.535Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:11.647Z
 ---
 
-![](https://wiki.hydrology.cc/radarr.png)
-
-# What is Radarr?
+# ![](/radarr.png){class="tab-icon"} What is Radarr?
 
 Radarr is a movie collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new movies and will interface with clients and indexers to grab, sort, and rename them. It can also be configured to automatically upgrade the quality of existing files in the library when a better quality format becomes available.
 
-# Installation Methods
+# 1 · Deploy Radarr
 
 Radarr can be installed using Docker Compose or directly via the TrueNAS SCALE Community Apps Catalog.
 
-# Tabs {.tabset}
+# {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
@@ -52,15 +50,15 @@ services:
 - Change the **Config Storage Type** to **Host Path** as per the [Folder-Structure](/Folder-Structure) guide.
  - Click **Add** under **Additional Storage** to mount the media directory inside the container.
 
-# Radarr Configuration
+# 2 · Radarr Configuration
 
-## Root Folder
+## 2.1 Root Folder
 
 1. Navigate in Radarr to **Settings** > **Media Management**
 1. click the button to **Add Root Folder**. 
 1. Select the folder path to `/media/movies`.
 
-## Download Client
+## 2.2 Download Client
 
 1. Navigate in Radarr to **Settings** > **Download Client**
 1. Click the ➕ icon. Click the box for **qBittorrent**. 
@@ -76,14 +74,14 @@ services:
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-31-16.png)
 
-# Advanced Settings
+# 3 ·  Advanced Settings
 
 The below settings are for advanced users and are totally optional. To see all of the Advanced fields (usually colored orange) be sure to click the cog icon in the top left of the window to **Show Advanced**. 
 
 >This also assumes you are using Recyclarr to sync data to Radarr. If you are not, do not continue. See the video walkthrough below for more details.
 {.is-warning}
 
-## Media Management
+## 3.1 Media Management
 
 | **Field** | **Value** |
 | --- | --- |
@@ -94,7 +92,7 @@ The below settings are for advanced users and are totally optional. To see all o
 | Set Permissions | True |
 | chmod Folder | 777 |
 
-## Profiles
+## 3.2 Profiles
 
 - Delete all profiles not created by Recyclarr.
 - Change the default profile for Jellyseerr to the new ones created by Recyclarr. 
@@ -105,11 +103,11 @@ Recyclarr automates profile creation and ensures consistent quality filtering, m
 {.is-info}
 
 
-## Connect
+## 3.3 Connect
 
 See [this section](/en/Notifications#radarrsonarrprowlarr) of the [Notifications](/Notifications) page.
 
-## Metadata
+## 3.4 Metadata
 
 Select **Kodi (XBMC)/Emby** and check the **Enable** box. Save and close.
 > **Why enable metadata?**
@@ -117,15 +115,15 @@ Enabling metadata allows Radarr to send detailed episode information, artwork, a
 {.is-info}
 
 
-## General > Backups
+## 3.5 General > Backups
 
 1. Scroll all the way to the bottom to the **Backups** section
 1. Change the folder to `/media`
 1. Set the **Interval** to 1 
 1. Set the **Retention** to your preference. (default: 7 days)
 
-# Troubleshooting
-## Radarr Cannot See Media Files
+# 4 · Troubleshooting
+## 4.1 Radarr Cannot See Media Files
 
 1. Ensure your volume paths in Docker match the root folder in Radarr.
 1. Run to check file ownership and permissions:
@@ -136,18 +134,17 @@ ls -lah /mnt/tank/media/movies
 ```bash
 chown -R 568:568 /mnt/tank/media/movies
 ```
-## Permission Errors (Permission Denied)
+## 4.2 Permission Errors (Permission Denied)
 1. Ensure your user (PUID / PGID) has access to the media folders.
 2. Try running:
 ```bash
 chmod -R 770 /mnt/tank/media/movies
 ```
-## Radarr is Downloading But Not Moving Files
+## 4.3 Radarr is Downloading But Not Moving Files
 
 - Verify that your Download Client Path Mapping is correctly set.
 - In Settings > Download Clients, ensure Radarr has access to the completed download folder.
 
 # Video Walkthrough
 
-![](/2025-03-18-advanced-media-management-with-r-promo-card.png)
-[Watch it on Patreon!](https://www.patreon.com/posts/advanced-media-124637606?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+[![](/2025-03-18-advanced-media-management-with-r-promo-card.png)](hhttps://www.patreon.com/posts/advanced-media-124637606)
