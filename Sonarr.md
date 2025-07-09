@@ -2,29 +2,28 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T10:30:10.466Z
+date: 2025-07-09T10:32:33.052Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
 ---
 
- # ![Sonarr logo](/sonarr.png){style="height:1.6rem;vertical-align\:middle"} What is Sonarr?
+# ![Sonarr](/sonarr.png){class="tab-icon"} What is Sonarr?
 
- 
-Sonarr is a PVR for Usenet and BitTorrent users. It watches RSS feeds for new episodes, grabs, sorts, and renames them, then upgrades quality when a better release appears.
- 
- <details class="quickstart">
- <summary><strong>🚀 Quick‑Start Checklist</strong></summary>
- 
- 1. **Deploy container** (Docker Compose *or* TrueNAS chart).
- 2. **Create** `/media/tv` **root folder** in Sonarr.
- 2. **Create**&nbsp;`/media/tv`&nbsp;**root folder** in Sonarr.
- 3. **Add qBittorrent** as Download Client.
- 3. **Add&nbsp;qBittorrent** as Download Client.
- 4. *(Optional)* Import Recyclarr profiles & advanced cleanup.
- 
- </details>
-  
+Sonarr is a PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, grabs, sorts, renames them, and upgrades quality when a better release appears.
+
+---
+
+<details class="quickstart" open>
+<summary><strong>🚀 Quick-Start Checklist</strong></summary>
+
+1. **Deploy container** (Docker Compose *or* TrueNAS chart).
+2. **Create** `/media/tv` **root folder** in Sonarr.
+3. **Add qBittorrent** as Download Client.
+4. *(Optional)* Import Recyclarr profiles & advanced cleanup.
+
+</details>
+
 ---
 
 # 1 · Deploy Sonarr
@@ -53,7 +52,7 @@ services:
 ### Permissions & Folder Structure {.is-success}
 
 * **PUID / PGID** – media-owner UID/GID (TrueNAS SCALE default **568:568**).
-* **Volumes** – configs at `/mnt/tank/configs/sonarr`, media at `/mnt/tank/media`.<br>
+* **Volumes** – configs at `/mnt/tank/configs/sonarr`, media at `/mnt/tank/media`.
   📌 See the [Folder-Structure](/Folder-Structure) guide.
 
 ---
@@ -73,7 +72,7 @@ services:
 ## 2.1 Root Folder
 
 1. **Settings → Media Management → Add Root Folder**
-2. Pick `/media/tv` (matches the volume).
+2. Choose `/media/tv`.
 
 ## 2.2 Download Client
 
@@ -85,7 +84,7 @@ services:
 | Host                    | `10.251.0.244` |
 | Port                    | `10095`        |
 | Username                | `admin`        |
-| Password                | •••••••••      |
+| Password                | ••••••••       |
 | Category                | `tv-sonarr`    |
 | Recent / Older Priority | **Last**       |
 | Remove Completed        | ✅              |
@@ -106,7 +105,7 @@ services:
 | Episode Formats      | *TRaSH template strings*               |
 | Series Folder Format | `{Series TitleYear} [imdbid-{ImdbId}]` |
 | Propers & Repacks    | `Do Not Prefer`                        |
-| Set Permissions      | `True` *(chmod `777`)*                 |
+| Set Permissions      | `True` *(chmod 777)*                   |
 
 ### Profiles & Quality
 
@@ -114,15 +113,13 @@ Remove default profiles → keep Recyclarr profiles → set Jellyseerr default.
 
 ### Metadata & Backups
 
-Enable **Kodi/Emby** metadata.<br>
-Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
+Enable **Kodi/Emby** metadata. Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
 
 ---
 
 # 4 · Troubleshooting
 
-<details>
-<summary><strong>Sonarr cannot see media files</strong></summary>
+<details><summary><strong>Sonarr cannot see media files</strong></summary>
 
 ```bash
 ls -lah /mnt/tank/media/tv
@@ -131,8 +128,7 @@ chown -R 568:568 /mnt/tank/media/tv
 
 </details>
 
-<details>
-<summary><strong>Permission denied</strong></summary>
+<details><summary><strong>Permission denied</strong></summary>
 
 ```bash
 chmod -R 770 /mnt/tank/media/tv
@@ -140,11 +136,10 @@ chmod -R 770 /mnt/tank/media/tv
 
 </details>
 
-<details>
-<summary><strong>Downloads stay in qBittorrent</strong></summary>
+<details><summary><strong>Downloads stay in qBittorrent</strong></summary>
 
 * Verify **Download Client Path Mapping** matches container paths.
-* Ensure Sonarr can reach the completed-downloads directory.
+* Confirm Sonarr can access the completed-downloads directory.
 
 </details>
 
