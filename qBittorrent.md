@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-07-09T12:15:13.153Z
+date: 2025-07-09T12:17:04.244Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -142,7 +142,7 @@ To add port forwarding, on the `FIREWALL_VPN_INPUT_PORTS` add a comma with no sp
 > For more info on this container, look [here](https://github.com/qdm12/gluetun-wiki?tab=readme-ov-file)
 {.is-info}
 
-##  TrueNAS LXC
+## <img src="/linuxcontainers.png" class="tab-icon"> TrueNAS LXC
 
 > The qBittorrent container in the default Apps catalog on TrueNAS **does not include a VPN**, therefore we won't use it. Instead, create a Custom App by clicking the 3 dot menu next to the blue Custom App button and click **Deploy via YAML** or follow the steps below to launch an **LXC**.
 {.is-danger}
@@ -175,7 +175,7 @@ sudo su -c "wget https://raw.githubusercontent.com/serversathome/ServersatHome/r
 
 
 
-# Example Wireguard wg0.conf File
+# 2 · Example Wireguard wg0.conf File
 
 This is an example of how your `wg0.conf` file should look like. If there's a lot of extra stuff, remove it unless you know what it's there for.
 
@@ -201,7 +201,7 @@ PersistentKeepalive = 15
 {.is-warning}
 
 
-# Testing Open Ports
+# 3 · Testing Open Ports
 
 To test if your port forward is working correctly, shell into qBit and execute:
 ```bash
@@ -209,30 +209,30 @@ curl ip.me
 ```
 to get the IP address you are using. Then plug that IP + your port into [this tool](https://www.yougetsignal.com/tools/open-ports/).
 
-# Testing Functionality
+# 4 · Testing Functionality
 
 To test everything is working, try downloading [this Ubuntu torrent](https://releases.ubuntu.com/24.04/ubuntu-24.04.2-live-server-amd64.iso.torrent). Once you have it downloaded, upload it into qBit by using the ➕ button in the upper left corner.
 
 A result of `downloading` at *any* speed indicates a success. If it stalls or errors something is wrong with permissions or dataset structure.
 
-# YouTube Walkthrough
+# 5 · YouTube Walkthrough
 
 [https://www.youtube.com/watch?v=WVM3Wgb290g](https://youtu.be/I4SRwmKLfQQ)
 
-# qBittorrent Configuration
+# 6 · qBittorrent Configuration
 
-## Logging In
+## 6.1 Logging In
 
 To login to the webUI, navigate to http://{serverIP}:8080. If when you first try to open the app and you receive a blank page which just says “Unauthorized”, don't worry, you did everything correctly. Click the URL bar and hit <kbd>Enter</kbd> and you should be forwarded to the login screen. The default username is *admin* and the password is set randomly. To see it, go into the logs and look for this line:
 
 ![](/screenshot_from_2024-08-26_07-55-35.png)
-> 
+
 > If you are having an issue where qBit is running but you cannot reach the webUI and you are coming into your network over VPN, be sure to add the VPNs IPv4 range to the `VPN_LAN_NETWORK` line in a comma separated list, no spaces
 {.is-info}
 
 
 
-## Configuration Options
+## 6.2 Configuration Options
 
 Click on the cog icon :gear: in the bar or select **Tools** > **Options** in the tool bar. I will tell you what to change tab by tab. If it is not mentioned, it is left as the default value
 # {.tabset}
@@ -283,6 +283,6 @@ Change the **Network Interface** to **VPN** (yours might also say **wg0** or **t
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-40-12.png)
 
-# Troubleshooting Video
+# 7 · Troubleshooting Video
 
 [https://youtu.be/v3cv-LO9Ufo](https://youtu.be/v3cv-LO9Ufo)
