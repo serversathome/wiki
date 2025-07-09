@@ -2,7 +2,7 @@
 title: Recyclarr
 description: A guide to installing Recyclarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T13:10:56.846Z
+date: 2025-07-09T13:11:40.532Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:34:38.606Z
@@ -247,8 +247,8 @@ vi /config/recyclarr.yml
 
 These steps effectively create a .yml config file, enter into it, paste our text into it, save and exit, then sync our changes into Radarr/Sonarr.
 
-# <img src="/patreon-light.png" class="tab-icon"> 3 · Video Walkthrough
-https://youtu.be/sIvBG9SbIQo
+# <img src="/youtube.png" class="tab-icon"><img src="/patreon-light.png" class="tab-icon"> 3 · Video Walkthrough
+[](https://youtu.be/sIvBG9SbIQo)
 
 [![](/2025-01-30-mastering-radarr--recyclarr-a--promo-card.png)](https://www.patreon.com/posts/mastering-radarr-121113567)
 
