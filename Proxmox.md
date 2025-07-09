@@ -2,7 +2,7 @@
 title: Proxmox
 description: An overview of the Proxmox hypervisor
 published: true
-date: 2025-07-09T14:43:44.223Z
+date: 2025-07-09T14:44:24.376Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:26:36.274Z
@@ -179,7 +179,7 @@ A note for those using a CF tunnel to connect to your WebUI, make these changes 
 1. You may need to restart Homarr to see the information for the Proxmox integration to show up. It may take some time.
 
 
-# Video
+# ![](/youtube.png){class="tab-icon"} Video
 
 To see an example of deploying a docker LXC with a tteck script, go here.
 
