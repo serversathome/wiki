@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T11:36:30.355Z
+date: 2025-07-09T11:37:07.854Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -50,7 +50,7 @@ services:
     restart: unless-stopped
 ```
 
-### Permissions & Folder Structure {.is-success}
+### Permissions & Folder Structure
 
 * **PUID / PGID** – media‑owner UID/GID (TrueNAS SCALE default **568:568**).
 * **Volumes** – configs at `/mnt/tank/configs/sonarr`, media at `/mnt/tank/media`.
