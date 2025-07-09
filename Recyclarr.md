@@ -2,21 +2,19 @@
 title: Recyclarr
 description: A guide to installing Recyclarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-06-13T03:08:33.315Z
+date: 2025-07-09T13:10:56.846Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:34:38.606Z
 ---
 
-![](https://wiki.hydrology.cc/recyclarr.png)
-
-# What is Recyclarr?
+# ![](/recyclarr.png){class="tab-icon"} What is Recyclarr?
 
 Recyclarr is a command-line application that will automatically synchronize recommended settings from the TRaSH guides to your Sonarr/Radarr instances.
 
-# Installation
+# 1 · Deploy Recyclarr
 # {.tabset}
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
@@ -41,17 +39,17 @@ services:
 - **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/recyclarr
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-12_09-34-37.png)
 
 - Change the **Config Storage Type** to **Host Path** as per the [Folder-Structure](/Folder-Structure) guide.
 
-# Recyclarr Configuration
+# 2 · Recyclarr Configuration
 
 Recyclarr is primarily a command-line tool. The good news is once its set up, it doesn't require further intervention (it is configured to update itself daily).
 
-## Recyclarr.yml
+## 2.1 Recyclarr.yml
 
 This is the file within Recyclarr which tells it what to sync to Sonarr/Radarr. I have pre-populated it to sync HD and UHD to Radarr and Sonarr (v4) as well as remove all the old custom formats that come preloaded with Sonarr/Radarr.
 
@@ -210,7 +208,7 @@ To download this script use the command:
 wget https://raw.githubusercontent.com/imjustleaving/ServersatHome/refs/heads/main/recyclarr.yml
 ```
 
-## Syncing Recyclarr
+## 2.2 Syncing Recyclarr
 
 1. Start by entering the shell by clicking the button below:
 
@@ -249,13 +247,10 @@ vi /config/recyclarr.yml
 
 These steps effectively create a .yml config file, enter into it, paste our text into it, save and exit, then sync our changes into Radarr/Sonarr.
 
-# Video Walkthrough
+# <img src="/patreon-light.png" class="tab-icon"> 3 · Video Walkthrough
 https://youtu.be/sIvBG9SbIQo
 
-![](/2025-01-30-mastering-radarr--recyclarr-a--promo-card.png)
-
-[Watch it on Patreon!](https://www.patreon.com/posts/mastering-radarr-121113567?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+[![](/2025-01-30-mastering-radarr--recyclarr-a--promo-card.png)](https://www.patreon.com/posts/mastering-radarr-121113567)
 
 
-![](/2025-01-30-mastering-sonarr--recyclarr-a--promo-card.png)
-[Watch it on Patreon!](https://www.patreon.com/posts/mastering-sonarr-121115716?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+[![](/2025-01-30-mastering-sonarr--recyclarr-a--promo-card.png)](https://www.patreon.com/posts/mastering-sonarr-121115716)
