@@ -2,7 +2,7 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-06-08T18:39:05.082Z
+date: 2025-07-09T11:59:49.358Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:11.647Z
@@ -19,7 +19,7 @@ Radarr is a movie collection manager for Usenet and BitTorrent users. It can mon
 Radarr can be installed using Docker Compose or directly via the TrueNAS SCALE Community Apps Catalog.
 
 # Tabs {.tabset}
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
@@ -43,7 +43,7 @@ services:
 - **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/radarr
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 ![I use the Community version of all apps when available](https://wiki.hydrology.cc/screen_shot_2023-12-08_at_1.38.00_pm.png) 
 
