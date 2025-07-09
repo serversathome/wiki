@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T10:04:40.419Z
+date: 2025-07-09T10:06:49.419Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -10,18 +10,28 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 ![Sonarr logo](/sonarr.png){style="height:1.5rem"}
 
-# What is Sonarr?
-
-Sonarr is a PVR for Usenet and BitTorrent users.<br>
-It monitors RSS feeds for new episodes, grabs, sorts, and renames them, and can auto-upgrade quality when a better version appears.
+> ## Quick-Start Checklist {.callout}
+>
+> 1. **Deploy container** (Docker Compose *or* TrueNAS chart).
+> 2. **Create `/media/tv` root folder** in Sonarr.
+> 3. **Add qBittorrent** as Download Client.
+> 4. *(Optional)* Import Recyclarr profiles & advanced cleanup.
 
 ---
 
-# Installation
+# What is Sonarr?
+
+Sonarr is a PVR for Usenet and BitTorrent users.<br>
+It monitors RSS feeds for new episodes, grabs, sorts, and renames them, then upgrades quality when better releases appear.
+
+---
+
+# 1 · Deploy Sonarr
 
 # tabs {.tabset}
 
 ## Docker Compose
+
 ```yaml
 services:
   sonarr:
@@ -38,11 +48,12 @@ services:
       - 8989:8989
     restart: unless-stopped
 ```
-### Permissions & Folder Structure
 
-* **PUID / PGID** – ensure the user owns your media folders (TrueNAS SCALE default `568:568`).
-* **Volumes** – configs under `/mnt/tank/configs/sonarr`, media under `/mnt/tank/media`.<br>
-  📌 See [Folder-Structure](/Folder-Structure) for more detail.
+### Permissions & Folder Structure {.is-success}
+
+* **PUID / PGID** – use the media-owner UID/GID (TrueNAS SCALE default **568:568**).
+* **Volumes** – keep configs in `/mnt/tank/configs/sonarr` and mount your media at `/mnt/tank/media`.<br>
+  📌 See the [Folder-Structure](/Folder-Structure) guide.
 
 ---
 
@@ -50,91 +61,67 @@ services:
 
 ![TrueNAS install](/screen_shot_2023-12-08_at_3.04.39_pm.png)
 
-1. Install **Sonarr** from *TrueNAS Community Apps*.
-2. Choose the **Community** image when available.
-3. Set **Config Storage Type → Host Path** (per [Folder-Structure](/Folder-Structure)).
-4. Under **Additional Storage** mount your media directory inside the container.
+1. Launch the **Sonarr** app from *Community Apps* (choose **Community** image).
+2. Set **Config Storage Type → Host Path**.
+3. Under **Additional Storage** mount your media dataset.
 
 ---
 
-# Sonarr Configuration
+# 2 · First-Run Configuration
 
-## Root Folder
+## 2.1 Root Folder
 
-1. *Settings → Media Management* → **Add Root Folder**
-2. Select `/media/tv`
+1. **Settings → Media Management → Add Root Folder**
+2. Pick `/media/tv` (matches the Compose/TrueNAS volume).
 
-## Download Client
+## 2.2 Download Client
 
-1. *Settings → Download Client* → ➕ → **qBittorrent**
-2. Configure:
+1. **Settings → Download Client → ➕ → qBittorrent**
+2. Fill the form:
 
-| Field            | Example Value  |
-| ---------------- | -------------- |
-| Name             | qBittorrent    |
-| Host             | `10.251.0.244` |
-| Port             | `10095`        |
-| Username         | `admin`        |
-| Password         | •••••••••      |
-| Category         | `tv-sonarr`    |
-| Recent Priority  | Last           |
-| Older Priority   | Last           |
-| Initial State    | Start          |
-| Remove Completed | ✅              |
+| Field                   | Example        |
+| ----------------------- | -------------- |
+| Host                    | `10.251.0.244` |
+| Port                    | `10095`        |
+| Username                | `admin`        |
+| Password                | •••••••••      |
+| Category                | `tv-sonarr`    |
+| Recent / Older Priority | **Last**       |
+| Remove Completed        | ✅              |
 
-> Use these values as a template—substitute your own IP, credentials and category as needed.
+> **Tip:** Use a dedicated qBittorrent category (e.g. `tv-sonarr`) to avoid clashing with non-Sonarr downloads.
 
 ---
 
-## Advanced Settings
+# 3 · Advanced Tweaks *(optional)*
 
-> **Warning –** These options assume you use Recyclarr. Enable **Show Advanced** (cog icon) first. {.is-warning}
+> **Warning** – Only if you sync settings with Recyclarr. Enable **Show Advanced** first. {.is-warning}
 
-### Media Management
+### Media-Management Presets
 
-| Field                   | Value                                                                                                                                                                                                                                  |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Rename Episodes         | `True`                                                                                                                                                                                                                                 |
-| Standard Episode Format | `{Series TitleYear} - S{season:00}E{episode:00} - {Episode CleanTitle} [{Custom Formats }{Quality Full}]{[MediaInfo VideoDynamicRangeType]}{[Mediainfo AudioCodec}{ Mediainfo AudioChannels]}{[MediaInfo VideoCodec]}{-Release Group}` |
-| Daily Episode Format    | *as above*                                                                                                                                                                                                                             |
-| Anime Episode Format    | *as above*                                                                                                                                                                                                                             |
-| Series Folder Format    | `{Series TitleYear} [imdbid-{ImdbId}]`                                                                                                                                                                                                 |
-| Episode Title Required  | `Never`                                                                                                                                                                                                                                |
-| Propers and Repacks     | `Do Not Prefer`                                                                                                                                                                                                                        |
-| Recycling Bin Cleanup   | `1`                                                                                                                                                                                                                                    |
-| Set Permissions         | `True`                                                                                                                                                                                                                                 |
-| chmod Folder            | `777`                                                                                                                                                                                                                                  |
+| Field                           | Recommended Value                      |
+| ------------------------------- | -------------------------------------- |
+| Rename Episodes                 | **True**                               |
+| Standard / Daily / Anime Format | *TRaSH template strings*               |
+| Series Folder Format            | `{Series TitleYear} [imdbid-{ImdbId}]` |
+| Propers & Repacks               | **Do Not Prefer**                      |
+| Set Permissions                 | **True** (chmod **777** folders)       |
 
-### Profiles
+### Profiles & Quality
 
-1. Delete default profiles; keep only Recyclarr-generated ones.
-2. Point Jellyseerr to the new profiles.
+Delete built-ins, keep only Recyclarr profiles, then set Jellyseerr default to the new ones.
 
-> **Why Recyclarr profiles?** They automate quality filters, metadata tags and prioritisation for consistent results. {.is-info}
+### Metadata & Backups
 
-### Connect (Notifications)
-
-See [Notifications](/Notifications#radarrsonarrprowlarr).
-
-### Metadata
-
-Enable **Kodi (XBMC) / Emby** metadata.<br>
-
-> Sends episode info, artwork and tags to your media server for richer libraries. {.is-info}
-
-### General → Backups
-
-* Folder: `/media`
-* Interval: `1`
-* Retention: `7` days (default) or your preference.
+Enable **Kodi/Emby** metadata.<br>
+Set backups to `/media`, **Interval = 1 day**, **Retention = 7**.
 
 ---
 
-# Troubleshooting
+# 4 · Troubleshooting
 
-## Sonarr cannot see media files
-
-<details><summary>Show commands</summary>
+<details>
+<summary><strong>Sonarr cannot see media files</strong></summary>
 
 ```bash
 ls -lah /mnt/tank/media/tv
@@ -143,9 +130,8 @@ chown -R 568:568 /mnt/tank/media/tv
 
 </details>
 
-## Permission denied
-
-<details><summary>Show fix</summary>
+<details>
+<summary><strong>Permission denied</strong></summary>
 
 ```bash
 chmod -R 770 /mnt/tank/media/tv
@@ -153,14 +139,17 @@ chmod -R 770 /mnt/tank/media/tv
 
 </details>
 
-## Sonarr downloads but does not move files
+<details>
+<summary><strong>Downloads stay in qBittorrent</strong></summary>
 
-* Verify **Download Client Path Mapping**.
-* Ensure Sonarr can reach the completed-downloads directory.
+* Verify **Download Client Path Mapping** matches container paths.
+* Confirm Sonarr can access the completed-downloads directory.
+
+</details>
 
 ---
 
-# Video
+# Video Guide
 
 [![Promo card](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
 
