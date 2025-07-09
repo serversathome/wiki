@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T09:55:52.222Z
+date: 2025-07-09T09:58:04.693Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -71,13 +71,21 @@ services:
 1. *Settings → Download Client* → ➕ → **qBittorrent**
 2. Configure:
 
-| Setting     | Value                    |
-| ----------- | ------------------------ |
-| Host        | *Server IP*              |
-| Port        | *qBittorrent WebUI port* |
-| Credentials | *Set during install*     |
+| Field            | Example Value  |
+| ---------------- | -------------- |
+| Name             | qBittorrent    |
+| Host             | `10.251.0.244` |
+| Port             | `10095`        |
+| Username         | `admin`        |
+| Password         | •••••••••      |
+| Category         | `tv-sonarr`    |
+| Recent Priority  | Last           |
+| Older Priority   | Last           |
+| Initial State    | Start          |
+| Remove Completed | ✅              |
 
-![qBittorrent config](/screenshot_from_2023-12-14_14-33-11.png)
+> Use these values as a template—substitute your own IP, credentials and category as needed.
+
 
 ---
 
