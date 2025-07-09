@@ -2,7 +2,7 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T12:57:21.934Z
+date: 2025-07-09T13:09:35.624Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:11.647Z
@@ -145,6 +145,6 @@ chmod -R 770 /mnt/tank/media/movies
 - Verify that your Download Client Path Mapping is correctly set.
 - In Settings > Download Clients, ensure Radarr has access to the completed download folder.
 
-# Video Walkthrough
+# <img src="/patreon-light.png" class="tab-icon"> Video Walkthrough
 
 [![](/2025-03-18-advanced-media-management-with-r-promo-card.png)](https://www.patreon.com/posts/advanced-media-124637606)
