@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T11:56:41.097Z
+date: 2025-07-09T11:57:40.155Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -179,6 +179,6 @@ chmod -R 770 /mnt/tank/media/tv
 
 ---
 
-# Video Guide
+# 5 · Video Guide
 
 [![Promo](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
