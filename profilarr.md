@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2025-06-08T18:40:16.703Z
+date: 2025-07-09T12:46:15.215Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-23T11:41:17.078Z
@@ -21,7 +21,7 @@ Configuration management tool for Radarr/Sonarr that automates importing and ver
 🛠️ Built-in conflict resolution
 
 
-# Installation
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Profilarr
 ```yaml
 services:
   profilarr:
@@ -36,11 +36,11 @@ services:
     restart: unless-stopped
 ```
 
-# Configuration
+# 2 · Configuration
 > The official guide from Profilarr is excellent. I recommend you read it [here](https://dictionarry.dev/wiki/profilarr-setup)
 {.is-info}
 
-## Initial Setup
+## 2.1 Initial Setup
 1. When logging in the first time set a username and password
 1. Navigate to **Settings** → **Database** and click the button to **Link Repository**
 	a. Enter `https://github.com/Dictionarry-Hub/database`
@@ -52,7 +52,7 @@ services:
 
 3. Move to slider to **Enable Auto Sync**
 
-## Adding Radarr/Sonarr
+## 2.2 Adding Radarr/Sonarr
 1. Navigate to **Settings** → **External Apps**
 1. Click **Add**
 ![screenshot_from_2025-03-23_17-18-36.png](/screenshot_from_2025-03-23_17-18-36.png)
@@ -70,7 +70,7 @@ services:
 {.is-danger}
 
 
-## Permanently Modifying Profiles
+## 2.3 Permanently Modifying Profiles
 > Any changes you make to the auto-populated definitions will not persist unless you make a commit
 {.is-warning}
 1. Once your changes are made navigate to **Settings** → **Database** and click the action button to select your modifications
@@ -78,14 +78,14 @@ services:
 1. Enter the information about your change
 1. Click the **Commit** button
 
-# Future Development
+# 3 · Future Development
 This software is *very* new. As such, there are some changes coming that will improve its usage: 
 - The ability to add multiple repos at the same time
 - A setting to overwrite external changes with local changes when using auto-pull
 - A more fluid way to commit changes with less clicks
 - Profilarr will handle a quick setup sync (changing media management, quality slider settings, etc)
 
-# Video Walkthrough
+# <img src="/youtube.png" class="tab-icon"> 4 · Video Walkthrough
 [](https://youtu.be/u1FQNMsuzFc)
 
 [^1]: Automatically syncs selected files whenever the database receives an update. When combined with Auto Pull, allows Profilarr to work completely autonomously
