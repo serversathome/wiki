@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T11:55:55.680Z
+date: 2025-07-09T11:56:41.097Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -109,7 +109,7 @@ services:
 |  Field                 |  Recommended                            |
 | ---------------------- | --------------------------------------- |
 |  Rename Episodes       |  `True`                                 |
-|  Episode Formats       |  [TRaSH template strings](https://trash-guides.info/Sonarr/Sonarr-recommended-naming-scheme/#episode-format)               |
+|  Episode Formats       |  [TRaSH template strings](https://trash-guides.info/Sonarr/Sonarr-recommended-naming-scheme/#episode-format)    |
 |  Series Folder Format  |  `{Series TitleYear} [imdbid-{ImdbId}]` |
 |  Propers & Repacks     |  `Do Not Prefer`                        |
 |  Set Permissions       |  `True` *(chmod 777)*                   |
@@ -138,12 +138,12 @@ Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
 
 <details><summary><strong>🔄 Restoring&nbsp;a&nbsp;Backup</strong></summary>
 
-| Step  | Action                                                                                           |
+| Step  | Action          |
 | ----- | --------------- |
-| **1** | Stop the Sonarr container / chart                                                                |
+| **1** | Stop the Sonarr container / chart     |
 | **2** | Copy the latest `*.zip` from `/media/Backups` to your config folder (`/mnt/tank/configs/sonarr`) |
-| **3** | In Sonarr: **System → Backup → Restore** → choose the file you just copied                       |
-| **4** | Restart Sonarr when prompted and verify your settings/series are back                            |
+| **3** | In Sonarr: **System → Backup → Restore** → choose the file you just copied      |
+| **4** | Restart Sonarr when prompted and verify your settings/series are back |
 
 </details>
 
