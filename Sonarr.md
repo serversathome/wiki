@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T10:32:33.052Z
+date: 2025-07-09T10:43:47.310Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -10,7 +10,7 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 # ![Sonarr](/sonarr.png){class="tab-icon"} What is Sonarr?
 
-Sonarr is a PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, grabs, sorts, renames them, and upgrades quality when a better release appears.
+Sonarr is a PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, grabs, sorts and renames them, then upgrades quality when a better release appears.
 
 ---
 
@@ -52,18 +52,27 @@ services:
 ### Permissions & Folder Structure {.is-success}
 
 * **PUID / PGID** – media-owner UID/GID (TrueNAS SCALE default **568:568**).
-* **Volumes** – configs at `/mnt/tank/configs/sonarr`, media at `/mnt/tank/media`.
+* **Volumes** – configs at `/mnt/tank/configs/sonarr`, media at `/mnt/tank/media`.<br>
   📌 See the [Folder-Structure](/Folder-Structure) guide.
 
 ---
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
+
+| Step | Action                                                                |
+| ---- | --------------------------------------------------------------------- |
+| **1**    | **Apps → Discover Apps → Sonarr → Install** )      |
+| **2**    | **Port Number → 8989**        |
+| **3**    | **Sonarr Config Storage → Host Path** → `/mnt/tank/configs/sonarr` |
+| **4**    | **Additional Storage → Host Path → Mount Dataset** `/mnt/tank/media` ➜ `/media`  |
+| **5**    | Click **Save → Deploy**                                    |
+
+<details>
+<summary>📸 Show example chart screen-shot</summary>
 
 ![TrueNAS install](/screen_shot_2023-12-08_at_3.04.39_pm.png)
 
-1. Install **Sonarr** from *Community Apps* (choose **Community** image).
-2. Set **Config Storage Type → Host Path**.
-3. Under **Additional Storage** mount your media dataset.
+</details>
 
 ---
 
@@ -72,7 +81,7 @@ services:
 ## 2.1 Root Folder
 
 1. **Settings → Media Management → Add Root Folder**
-2. Choose `/media/tv`.
+2. Choose **/media/tv**.
 
 ## 2.2 Download Client
 
@@ -89,7 +98,7 @@ services:
 | Recent / Older Priority | **Last**       |
 | Remove Completed        | ✅              |
 
-> **Tip:** Use a dedicated qBittorrent category (e.g. `tv-sonarr`) to avoid clashing with other downloads.
+> **Tip:** A dedicated category (e.g. `tv-sonarr`) keeps Sonarr torrents separate from others.
 
 ---
 
@@ -109,7 +118,7 @@ services:
 
 ### Profiles & Quality
 
-Remove default profiles → keep Recyclarr profiles → set Jellyseerr default.
+Delete default profiles → keep Recyclarr-generated profiles → set Jellyseerr default.
 
 ### Metadata & Backups
 
@@ -139,7 +148,7 @@ chmod -R 770 /mnt/tank/media/tv
 <details><summary><strong>Downloads stay in qBittorrent</strong></summary>
 
 * Verify **Download Client Path Mapping** matches container paths.
-* Confirm Sonarr can access the completed-downloads directory.
+* Ensure Sonarr can reach the completed-downloads directory.
 
 </details>
 
@@ -147,6 +156,6 @@ chmod -R 770 /mnt/tank/media/tv
 
 # Video Guide
 
-[![Promo card](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
+[![Promo](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
 
 [⇧ Back to top](#what-is-sonarr){.back-top}
