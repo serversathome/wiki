@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T10:02:30.078Z
+date: 2025-07-09T10:04:40.419Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -22,9 +22,6 @@ It monitors RSS feeds for new episodes, grabs, sorts, and renames them, and can 
 # tabs {.tabset}
 
 ## Docker Compose
-
-<details><summary>View docker-compose.yml</summary>
-
 ```yaml
 services:
   sonarr:
@@ -41,9 +38,6 @@ services:
       - 8989:8989
     restart: unless-stopped
 ```
-
-</details>
-
 ### Permissions & Folder Structure
 
 * **PUID / PGID** – ensure the user owns your media folders (TrueNAS SCALE default `568:568`).
