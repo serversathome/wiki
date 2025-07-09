@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T11:53:46.863Z
+date: 2025-07-09T11:55:55.680Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -58,15 +58,15 @@ services:
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
-|  Step  |  Action                                                                         |
-| ------ | ------------------------------------------------------------------------------- |
-| **1**  | **Apps → Discover Apps → Sonarr → Install**                                     |
-| **2**  | **Port Number → 8989**                                                          |
-| **3**  | **Sonarr Config Storage → Host Path** → `/mnt/tank/configs/sonarr`              |
+|  Step  |  Action    |
+| ------ | ----------- |
+| **1**  | **Apps → Discover Apps → Sonarr → Install**      |
+| **2**  | **Port Number → 8989**  |
+| **3**  | **Sonarr Config Storage → Host Path** → `/mnt/tank/configs/sonarr`   |
 | **4**  | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` ➜ `/media` |
-| **5**  | Click **Save → Deploy**                                                         |
+| **5**  | Click **Save → Deploy**   |
 
----
+
 
 # 2 · First‑Run Configuration
 
