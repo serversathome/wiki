@@ -2,13 +2,13 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T11:57:40.155Z
+date: 2025-07-09T12:01:05.304Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
 ---
 
-# ![Sonarr](/sonarr.png){class="tab-icon"} What is Sonarr?
+# ![](/sonarr.png){class="tab-icon"} What is Sonarr?
 
 Sonarr is a PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, grabs, sorts and renames them, then upgrades quality when a better release appears.
 
