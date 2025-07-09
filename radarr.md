@@ -2,7 +2,7 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T12:06:16.535Z
+date: 2025-07-09T12:57:21.934Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:11.647Z
@@ -147,4 +147,4 @@ chmod -R 770 /mnt/tank/media/movies
 
 # Video Walkthrough
 
-[![](/2025-03-18-advanced-media-management-with-r-promo-card.png)](hhttps://www.patreon.com/posts/advanced-media-124637606)
+[![](/2025-03-18-advanced-media-management-with-r-promo-card.png)](https://www.patreon.com/posts/advanced-media-124637606)
