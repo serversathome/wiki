@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-07-09T12:17:04.244Z
+date: 2025-07-09T12:26:42.149Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -215,7 +215,7 @@ To test everything is working, try downloading [this Ubuntu torrent](https://rel
 
 A result of `downloading` at *any* speed indicates a success. If it stalls or errors something is wrong with permissions or dataset structure.
 
-# 5 · YouTube Walkthrough
+# <img src="/youtube.png" class="tab-icon"> 5 · YouTube Walkthrough
 
 [https://www.youtube.com/watch?v=WVM3Wgb290g](https://youtu.be/I4SRwmKLfQQ)
 
@@ -231,10 +231,10 @@ To login to the webUI, navigate to http://{serverIP}:8080. If when you first try
 {.is-info}
 
 
-
 ## 6.2 Configuration Options
 
 Click on the cog icon :gear: in the bar or select **Tools** > **Options** in the tool bar. I will tell you what to change tab by tab. If it is not mentioned, it is left as the default value
+
 # {.tabset}
 ## Downloads
 
@@ -283,6 +283,6 @@ Change the **Network Interface** to **VPN** (yours might also say **wg0** or **t
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-40-12.png)
 
-# 7 · Troubleshooting Video
+# <img src="/youtube.png" class="tab-icon"> 7 · Troubleshooting Video
 
 [https://youtu.be/v3cv-LO9Ufo](https://youtu.be/v3cv-LO9Ufo)
