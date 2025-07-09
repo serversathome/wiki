@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T11:42:17.530Z
+date: 2025-07-09T11:53:21.929Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -70,34 +70,32 @@ services:
 
 # 2 · First‑Run Configuration
 
-## 2.1 Root Folder  <span class="chip">Mandatory</span>
+## 2.1 Root Folder
 
 1. **Settings → Media Management → Add Root Folder**
-2. Choose **/media/tv** and ensure the switch is set to **Monitored** (green ✔️).
+2. Choose **/media/tv** and ensure the switch is set to **Monitored** ✅ 
 
 > *If it’s Unmonitored, Sonarr will ignore new episodes!* {.is-info}
 
-## 2.2 Download Client  <span class="chip">qBittorrent</span>
-
+## 2.2 Download Client
 1. **Settings → Download Client → ➕ → qBittorrent**
 2. Fill the form:
 
 |  Field                  |  Example        |
 | ----------------------- | --------------- |
 |  Host                   |  `10.251.0.244` |
-|  Port                   |  `10095`        |
+|  Port                   |  `8080`        |
 |  Username               |  `admin`        |
 |  Password               |  ••••••••       |
 |  Category               |  `tv-sonarr`    |
 |  Recent/Older Priority  |  **Last**       |
 |  Remove Completed       |  ✅              |
 
-> **Remote downloader?** Use the **Path Translation** section (bottom of the Download Client page) to map `/downloads` inside qBittorrent to `/media` inside Sonarr.
 
 ## 2.3 Indexers (via Prowlarr)
 
 1. Install **[Prowlarr](/Prowlarr)** and connect it to Sonarr (`Settings → Apps → +`).
-2. Add indexers in Prowlarr (Jackett, Torznab, etc.).
+2. Add indexers in Prowlarr
 3. Click **Test → Save** — Sonarr now inherits all indexers automatically.
 
 ---
@@ -106,12 +104,12 @@ services:
 
 > **Warning** – For Recyclarr users. Enable **Show Advanced** first. {.is-warning}
 
-### Media‑Management Presets
+## 3.1 Media‑Management Presets
 
 |  Field                 |  Recommended                            |
 | ---------------------- | --------------------------------------- |
 |  Rename Episodes       |  `True`                                 |
-|  Episode Formats       |  *TRaSH template strings*               |
+|  Episode Formats       |  [TRaSH template strings](https://trash-guides.info/Sonarr/Sonarr-recommended-naming-scheme/#episode-format)               |
 |  Series Folder Format  |  `{Series TitleYear} [imdbid-{ImdbId}]` |
 |  Propers & Repacks     |  `Do Not Prefer`                        |
 |  Set Permissions       |  `True` *(chmod 777)*                   |
@@ -129,11 +127,11 @@ Copy these into **Settings → Profiles → Custom Formats**.
 
 </details>
 
-### Profiles & Quality
+## 3.2 Profiles & Quality
 
 Delete default profiles → keep Recyclarr‑generated profiles → set Jellyseerr default.
 
-### Metadata & Backups
+## 3.3 Metadata & Backups
 
 Enable **Kodi/Emby** metadata.
 Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
@@ -141,7 +139,7 @@ Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
 <details><summary><strong>🔄 Restoring&nbsp;a&nbsp;Backup</strong></summary>
 
 | Step  | Action                                                                                           |
-| ----- | ------------------------------------------------------------------------------------------------ |
+| ----- | --------------- |
 | **1** | Stop the Sonarr container / chart                                                                |
 | **2** | Copy the latest `*.zip` from `/media/Backups` to your config folder (`/mnt/tank/configs/sonarr`) |
 | **3** | In Sonarr: **System → Backup → Restore** → choose the file you just copied                       |
@@ -159,7 +157,7 @@ Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
 
 ```bash
 ls -lah /mnt/tank/media/tv
-chown -R 568:568 /mnt/tank/media/tv
+chgrp -R root:apps /mnt/tank/media/tv
 ```
 
 </details>
