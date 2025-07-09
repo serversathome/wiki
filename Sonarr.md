@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T11:13:59.600Z
+date: 2025-07-09T11:16:36.181Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -17,8 +17,8 @@ Sonarr is a PVR for Usenet and BitTorrent users. It monitors RSS feeds for new e
 <details class="quickstart" open>
 <summary><strong>🚀 Quick‑Start Checklist</strong></summary>
 
-1. **Deploy container** (Docker Compose *or* TrueNAS App)
-2. **Create** `/media/tv` **root folder** in Sonarr
+1. **Deploy container** (Docker Compose *or* TrueNAS chart)
+2. **Create** `/media/tv` **root folder** in Sonarr *(make sure it’s **Monitored** → ✅)*
 3. **Add qBittorrent** as Download Client
 4. **Add Indexers via Prowlarr** so Sonarr can actually find releases
 5. *(Optional)* Import Recyclarr profiles & advanced cleanup
@@ -54,7 +54,7 @@ services:
 
 * **PUID / PGID** – media‑owner UID/GID (TrueNAS SCALE default **568:568**).
 * **Volumes** – configs at `/mnt/tank/configs/sonarr`, media at `/mnt/tank/media`.
-📌 See the [Folder‑Structure](/Folder-Structure) guide.
+  📌 See the [Folder‑Structure](/Folder-Structure) guide.
 
 > **Behind a reverse‑proxy?** Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
 
@@ -69,9 +69,6 @@ services:
 | **3**  | **Sonarr Config Storage → Host Path** → `/mnt/tank/configs/sonarr`              |
 | **4**  | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` ➜ `/media` |
 | **5**  | Click **Save → Deploy**                                                         |
-📌 See the [Folder‑Structure](/Folder-Structure) guide.
-
-> **Behind a reverse‑proxy?** Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
 
 ---
 
@@ -121,7 +118,7 @@ services:
 |  Episode Formats       |  *TRaSH template strings*               |
 |  Series Folder Format  |  `{Series TitleYear} [imdbid-{ImdbId}]` |
 |  Propers & Repacks     |  `Do Not Prefer`                        |
-|  Set Permissions       |  `True` *(chmod 770)*                   |
+|  Set Permissions       |  `True` *(chmod 777)*                   |
 
 <details><summary><strong>📑 Common Tags / Custom Formats (cheat‑sheet)</strong></summary>
 
@@ -145,11 +142,15 @@ Delete default profiles → keep Recyclarr‑generated profiles → set Jellysee
 Enable **Kodi/Emby** metadata.
 Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
 
-<details><summary><strong>🔄 Restoring a Backup</strong></summary>
-1. Stop the Sonarr container / chart.  
-2. Copy the latest `*.zip` from `/media/Backups` to your config folder.  
-3. Start Sonarr → **System → Backup → Restore** and select the file.  
-4. Restart again if prompted.
+<details><summary><strong>🔄 Restoring&nbsp;a&nbsp;Backup</strong></summary>
+
+| Step  | Action                                                                                           |
+| ----- | ------------------------------------------------------------------------------------------------ |
+| **1** | Stop the Sonarr container / chart                                                                |
+| **2** | Copy the latest `*.zip` from `/media/Backups` to your config folder (`/mnt/tank/configs/sonarr`) |
+| **3** | In Sonarr: **System → Backup → Restore** → choose the file you just copied                       |
+| **4** | Restart Sonarr when prompted and verify your settings/series are back                            |
+
 </details>
 
 ---
