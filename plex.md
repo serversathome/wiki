@@ -2,7 +2,7 @@
 title: Plex
 description: A guide to installing Plex in TrueNAS and via docker compose
 published: true
-date: 2025-06-08T18:40:14.981Z
+date: 2025-07-09T14:57:10.987Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-13T10:42:37.917Z
@@ -11,17 +11,12 @@ dateCreated: 2025-03-13T10:42:37.917Z
 > Plex has recently made streaming outside your home network a paid-only feature. [Read about it here](https://www.plex.tv/blog/important-2025-plex-updates/). 
 {.is-danger}
 
-
-
-![plex.png](/plex.png)
-
-
-# What is Plex?
+# <img src="/plex.png" class="tab-icon"> What is Plex?
 A one-stop destination to stream movies, TV shows, and music, Plex is the most comprehensive entertainment platform available today. Available on almost any device, Plex is the first-and-only streaming platform to offer free ad-supported movies, shows, and live TV together with the ability to easily search—and add to your Watchlist—any title ever made, no matter which streaming service it lives on. Using the platform as their entertainment concierge, 17 million (and growing!) monthly active users count on Plex for new discoveries and recommendations from all their favorite streaming apps, personal media libraries, and beyond.
 
-# Installation
+# 1 · Deploy Plex
 # {.tabset}
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 ```yaml
 services:
   plex:
@@ -73,7 +68,7 @@ services:
 ### GPU Transcode
 To enable transcoding from your nVidia GPU, uncomment out the lines in the compose file above.
 
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 ![screenshot_from_2025-03-13_06-45-49.png](/screenshot_from_2025-03-13_06-45-49.png)
 
 1. Add your **Claim Token**
@@ -93,7 +88,7 @@ To enable transcoding from your nVidia GPU, uncomment out the lines in the compo
 > Check out [the new docs](https://apps.truenas.com/resources/deploy-plex) from TrueNAS
 {.is-success}
 
-# Plex Configuration
+# 2 · Plex Configuration
 Upon first launch follow these steps:
 1. Skip the section for Plex Pass unless you want to buy one
 1. Give your server a name and click **Next**
@@ -105,6 +100,6 @@ Upon first launch follow these steps:
 1. Repeat this process for TV Shows
 1. Click **Next** then click **Done** then click **Finish Setup**
 
-# Video Walkthrough
+# <img src="/youtube.png" class="tab-icon"> 3 · Video Walkthrough
 [](https://youtu.be/L8Wn5EPwuYI)
 
