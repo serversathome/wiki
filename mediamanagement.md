@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-08T16:29:34.910Z
+date: 2025-07-09T11:21:08.356Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -54,11 +54,11 @@ dateCreated: 2025-07-01T09:24:50.754Z
 {.links-list}
 
 ## Others
+- [🐌 Auto-Limit<span class="badge">NEW</span><br>*Intelligent download speed management*](/autolimit)
 - [<img src="/bazarr.png"> Bazarr<br>*Subtitle management*](/bazarr)
 - [<img src="/flaresolverr.png"> Flaresolverr<br>*Proxy server to bypass Cloudflare protection*](/Flaresolverr)
 - [<img src="/notifiarr.png"> Notifiarr<br>*Monitoring & notifications via Discord*](/notifiarr)
 - [<img src="/wizarr.png"> Wizarr<br>*User-invitation management for Jellyfin, Plex & Emby*](/wizarr)
-- [🐌 Auto-Limit<span class="badge">NEW</span><br>*Intelligent download speed management*](/autolimit)
 - [➕ More Apps<br>*Ravencentric awesome-arr list*](/ravencentric)
 {.links-list}
 
