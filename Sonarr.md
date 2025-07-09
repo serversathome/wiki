@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T12:01:05.304Z
+date: 2025-07-09T12:07:24.496Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -12,7 +12,6 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 Sonarr is a PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, grabs, sorts and renames them, then upgrades quality when a better release appears.
 
----
 
 <details class="quickstart" open>
 <summary><strong>🚀 Quick‑Start Checklist</strong></summary>
@@ -25,7 +24,7 @@ Sonarr is a PVR for Usenet and BitTorrent users. It monitors RSS feeds for new e
 
 </details>
 
----
+
 
 # 1 · Deploy Sonarr
 
@@ -67,7 +66,6 @@ services:
 | **5**  | Click **Save → Deploy**   |
 
 
-
 # 2 · First‑Run Configuration
 
 ## 2.1 Root Folder
@@ -98,7 +96,6 @@ services:
 2. Add indexers in Prowlarr
 3. Click **Test → Save** — Sonarr now inherits all indexers automatically.
 
----
 
 # 3 · Advanced Tweaks *(optional)*
 
@@ -147,8 +144,6 @@ Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
 
 </details>
 
----
-
 # 4 · Troubleshooting
 
 > **Check Health tab first!** Sonarr will flag missing root paths, import errors and indexer failures in **System → Health**. {.is-info}
@@ -177,8 +172,7 @@ chmod -R 770 /mnt/tank/media/tv
 
 </details>
 
----
 
 # 5 · Video Guide
 
-[![Promo](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
+[![](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
