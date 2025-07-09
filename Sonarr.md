@@ -2,18 +2,18 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T09:58:04.693Z
+date: 2025-07-09T10:02:30.078Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
 ---
 
-![Sonarr logo](/sonarr.png)
+![Sonarr logo](/sonarr.png){style="height:1.5rem"}
 
 # What is Sonarr?
 
 Sonarr is a PVR for Usenet and BitTorrent users.<br>
-It monitors RSS feeds for new episodes, grabs, sorts, and renames them, and can auto‑upgrade quality when a better version appears.
+It monitors RSS feeds for new episodes, grabs, sorts, and renames them, and can auto-upgrade quality when a better version appears.
 
 ---
 
@@ -22,6 +22,8 @@ It monitors RSS feeds for new episodes, grabs, sorts, and renames them, and can 
 # tabs {.tabset}
 
 ## Docker Compose
+
+<details><summary>View docker-compose.yml</summary>
 
 ```yaml
 services:
@@ -40,11 +42,13 @@ services:
     restart: unless-stopped
 ```
 
+</details>
+
 ### Permissions & Folder Structure
 
 * **PUID / PGID** – ensure the user owns your media folders (TrueNAS SCALE default `568:568`).
 * **Volumes** – configs under `/mnt/tank/configs/sonarr`, media under `/mnt/tank/media`.<br>
-  📌 See [Folder‑Structure](/Folder-Structure) for more detail.
+  📌 See [Folder-Structure](/Folder-Structure) for more detail.
 
 ---
 
@@ -54,7 +58,7 @@ services:
 
 1. Install **Sonarr** from *TrueNAS Community Apps*.
 2. Choose the **Community** image when available.
-3. Set **Config Storage Type → Host Path** (per [Folder‑Structure](/Folder-Structure)).
+3. Set **Config Storage Type → Host Path** (per [Folder-Structure](/Folder-Structure)).
 4. Under **Additional Storage** mount your media directory inside the container.
 
 ---
@@ -86,12 +90,11 @@ services:
 
 > Use these values as a template—substitute your own IP, credentials and category as needed.
 
-
 ---
 
 ## Advanced Settings
 
-> **Warning** – These options assume you use Recyclarr. Enable **Show Advanced** (cog icon) first. {.is-warning}
+> **Warning –** These options assume you use Recyclarr. Enable **Show Advanced** (cog icon) first. {.is-warning}
 
 ### Media Management
 
@@ -110,10 +113,10 @@ services:
 
 ### Profiles
 
-1. Delete default profiles; keep only Recyclarr‑generated ones.
+1. Delete default profiles; keep only Recyclarr-generated ones.
 2. Point Jellyseerr to the new profiles.
 
-> **Why Recyclarr profiles?**  They automate quality filters, metadata tags and prioritisation for consistent results. {.is-info}
+> **Why Recyclarr profiles?** They automate quality filters, metadata tags and prioritisation for consistent results. {.is-info}
 
 ### Connect (Notifications)
 
@@ -137,29 +140,34 @@ Enable **Kodi (XBMC) / Emby** metadata.<br>
 
 ## Sonarr cannot see media files
 
+<details><summary>Show commands</summary>
+
 ```bash
 ls -lah /mnt/tank/media/tv
-```
-
-Fix ownership if needed:
-
-```bash
 chown -R 568:568 /mnt/tank/media/tv
 ```
 
+</details>
+
 ## Permission denied
+
+<details><summary>Show fix</summary>
 
 ```bash
 chmod -R 770 /mnt/tank/media/tv
 ```
 
+</details>
+
 ## Sonarr downloads but does not move files
 
-* Verify *Download Client Path Mapping*.
-* Ensure Sonarr can reach the completed‑downloads directory.
+* Verify **Download Client Path Mapping**.
+* Ensure Sonarr can reach the completed-downloads directory.
 
 ---
 
 # Video
 
-[![Promo](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
+[![Promo card](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
+
+[⇧ Back to top](#what-is-sonarr){.back-top}
