@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T11:37:07.854Z
+date: 2025-07-09T11:38:07.215Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -55,12 +55,6 @@ services:
 * **PUID / PGID** – media‑owner UID/GID (TrueNAS SCALE default **568:568**).
 * **Volumes** – configs at `/mnt/tank/configs/sonarr`, media at `/mnt/tank/media`.
   📌 See the [Folder‑Structure](/Folder-Structure) guide.
-
-> **Behind a reverse‑proxy?** Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
-{.is-info}
-
-
----
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
