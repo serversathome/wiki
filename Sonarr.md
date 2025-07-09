@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T12:27:52.701Z
+date: 2025-07-09T14:47:09.063Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -109,7 +109,7 @@ services:
 |  Episode Formats       |  [TRaSH template strings](https://trash-guides.info/Sonarr/Sonarr-recommended-naming-scheme/#episode-format)    |
 |  Series Folder Format  |  `{Series TitleYear} [imdbid-{ImdbId}]` |
 |  Propers & Repacks     |  `Do Not Prefer`                        |
-|  Set Permissions       |  `True` *(chmod 777)*                   |
+|  Set Permissions       |  `True` *(chmod 770)*                   |
 
 <details><summary><strong>📑 Common Tags / Custom Formats (cheat‑sheet)</strong></summary>
 
