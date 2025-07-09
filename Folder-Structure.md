@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure from Trash Guides to allow for hardlinks within the arr stack
 published: true
-date: 2025-06-28T11:12:51.458Z
+date: 2025-07-09T12:21:32.867Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:27:24.035Z
@@ -25,7 +25,7 @@ The primary dataset is named `media`, and contains three main subdirectories:
 -   **downloads** – Houses downloaded torrents
     -   **torrent** – Stores incomplete torrent files and .torrent metadata files for restoring a BitTorrent client.
 
-# Creating the Datasets and Directories
+# 1 · Creating the Datasets and Directories
 
 The `media` dataset can be created in the TrueNAS UI, but the subdirectories **need to be created in the shell after** the `media` dataset has been created with the **apps** permissions preset. If your pool was named `tank` the command for this would be:
 ```bash
@@ -63,7 +63,7 @@ tank
    └── dozzle
 ```
 
-# Auto Folder Creation for TrueNAS
+# 2 · Auto Folder Creation for TrueNAS
 
 I have written a script which will create the datasets necessary for the \*arr stack as well as build a docker compose yaml with all apps configured for use with those datasets. All permissions are configured to work out-of-the-box.
 
@@ -84,7 +84,7 @@ All permissions are set to the following:
 The script sets `770` POSIX permissions so that the owner and group have full access (r/w/x), while “others” have no access. This helps avoid permissions errors while keeping things secure.
 {.is-info}
 
-## Running the Script
+## 2.1 Running the Script
 To view the script, [look here](https://raw.githubusercontent.com/imjustleaving/ServersatHome/refs/heads/main/truenas-file-structure.sh). 
 To run the script, execute this one-liner in the TrueNAS shell:
 
@@ -100,12 +100,12 @@ The script will then ask you to choose the pool to install all the datasets to.
 > If the script finds any of the paths existing already it will skip it with no modifications.
 {.is-info}
 
-## Docker Compose File
+## 2.2 Docker Compose File
 The custom docker compose file generated for your system will be in `/mnt/POOLNAME/docker/docker-compose.yml`. To view it execute
 ```bash
 cat /mnt/POOLNAME/docker/docker-compose.yml
 ```
-## Automated Deployment
+## 2.3 Automated Deployment
 At the end of the script it will prompt you would to deploy the containers. If you select `yes`, this will execute a `docker compose up -d` to launch all the containers from the shell. From there the following steps will be executed:
 
 1. You will be prompted to the paste your wireguard VPN key so qBittorrent can launch immediately with no user intervention
@@ -117,7 +117,7 @@ At the end of the script it will prompt you would to deploy the containers. If y
 > If you get the error `"Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"` navigate to the **Apps** tab and **enable the Apps service**
 {.is-warning}
 
-## Converting to Dockge (or Portainer, Arcane, TrueNAS)
+## 2.4 Converting to Dockge (or Portainer, Arcane, TrueNAS)
 
 If you would like to use a container management UI as a front-end manager for this script instead of CLI, run the script in its entirety (selecting `yes` to launch the containers), then run this commmand in the shell (assuming your pool is named `tank`):
 ```bash
@@ -126,16 +126,16 @@ cd /mnt/tank/docker && docker compose down && cat docker-compose.yml
 
 This will stop all containers and output the docker compose file for you to paste as a new stack into Dockge. Paste the compose file and launch the containers and they should instantly start, now being managed within Dockge.
 
-## Script Video
+## 2.5 Script Video
 [](https://youtu.be/8gATbBJHc5o)
 
 > If you are completely new to Docker or container volumes, you may want to check out a beginner-friendly guide (e.g. [Docker docs](https://docs.docker.com/get-started/)) before running this setup.
 {.is-info}
 
-# Hardlinks
+# 3 ·  Hardlinks
 [](https://youtu.be/dD1u0KOWizw)
 
-# Key Takeaways
+# 4 · Key Takeaways
 
 1.  Media files are stored under `media` and are neatly categorized into movies, tv, and downloads/torrent for torrent handling. For example, the file paths would be:
 
