@@ -2,23 +2,23 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2025-06-15T11:26:59.572Z
+date: 2025-07-09T14:53:58.433Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-08T13:44:29.541Z
 ---
 
-# What is Promox Backup Server?
+# ![](/proxmox.png){class="tab-icon"} 1 · What Is Proxmox Backup Server?
 Proxmox Backup Server (PBS) is an enterprise backup solution, for backing up and restoring VMs, containers, and physical hosts. By supporting incremental, fully deduplicated backups, Proxmox Backup Server significantly reduces network load and saves valuable storage space. With strong encryption and methods of ensuring data integrity, you can feel safe when backing up data, even to targets which are not fully trusted.
 
-# Installation
+# 2 · Installation
 # {.tabset}
 ## VM
 1. Go to the [official Proxmox Download Page](https://www.proxmox.com/en/downloads/proxmox-backup-server/iso) to grab the latest ISO of Proxmox Backup Server
 1. Install the ISO. PBS uses very little resources - on my machine I give it 1 CPU threads, 2 GB of memory and a 10 GB hard drive. 
 1. Boot into the webUI using `https://{IP}:8007`, **root** as the user name and the password you selected during install
 
-## Fangtooth LXC
+## <img src="/linuxcontainers.png" class="tab-icon"> Fangtooth LXC
 
 1. Create a new Instance from the **Debian bookworm (amd64, default)** image with all default settings
 1. Once its running, shell into the container and run these commands:
@@ -38,12 +38,12 @@ Proxmox Backup Server (PBS) is an enterprise backup solution, for backing up and
 1. Go to the printed IP address to access the webui
 1. Login to the webui as **root** and the password you just created
 
-# Post Install Script
+# 3 · Post Install Script
 It is recommended you run the [Proxmox Backup Server Post Install Script](https://community-scripts.github.io/ProxmoxVE/scripts?id=post-pbs-install) from [helper scripts](https://community-scripts.github.io/ProxmoxVE/) in the PBS shell using all default options:
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/post-pbs-install.sh)"
 ```
-# Adding a TrueNAS Dataset to PBS
+# 4 · Adding a TrueNAS Dataset to PBS
 1. Create a dataset on TrueNAS with generic permissions
 1. Change the permissions to user:group = `backup:backup 770` as shown below:
 ![screenshot_from_2025-06-12_23-28-32.png](/screenshot_from_2025-06-12_23-28-32.png)
@@ -71,12 +71,12 @@ sudo incus exec <container-name> -- mkdir -p /backup && sudo incus config device
 | `source=` | path on the TrueNAS host|
 | `path=` | the mount point from the mkdir above |
 
-# Add the Datastore to PBS
+# 5 · Add the Datastore to PBS
 1. Navigate in the PBS panel on the left and click **Add Datastore** 
 1. Give the datastore a name and use the path you mounted from the previous steps as the **Backing Path**
 1. Click **Add**
 
-# Adjust User Permissions
+# 6 · Adjust User Permissions
 1. Navigate to **Configuration** → **Access Control** in the left pane
 1. Add a new user leaving all options as default
 1. Click **Add**
@@ -85,7 +85,7 @@ sudo incus exec <container-name> -- mkdir -p /backup && sudo incus config device
 1. Click **Add**
 1. Select the new user and **Datastore Admin** as **Role**
 
-# Add your PBS Server to Proxmox
+# 7 · Add your PBS Server to Proxmox
 
 1. Navigate to your Proxmox VE machine 
 1. Click **Datacenter** then **Storage** in the left pane
@@ -101,7 +101,7 @@ sudo incus exec <container-name> -- mkdir -p /backup && sudo incus config device
 | Datastore| the name of the Datastore you picked on PBS |
 | Fingerprint | to get this, go to PBS Dashboard and at the top look for the blue button that says **Show Fingerprint** |
 
-# Connecting With Cloudflare Tunnels
+# <img src="/cloudflare.png" class="tab-icon"> 8 · Connecting With Cloudflare Tunnels
 A note for those using a CF tunnel to connect to your WebUI, make these changes to **Additional Application Settings** while editing your tunnel to ensure proper connection:
 1. Turn the **No TLS Verify** to `ON`
 1. Turn the **Disable Chucked Encoding** to `ON`
@@ -109,5 +109,5 @@ A note for those using a CF tunnel to connect to your WebUI, make these changes 
 > If you have **Botfight Mode** enabled you must create a rule to bypass for your IP
 {.is-info}
 
-# Video Walkthrough
+# <img src="/youtube.png" class="tab-icon"> Video Walkthrough
 [](https://youtu.be/lUWB-Dash9M)
