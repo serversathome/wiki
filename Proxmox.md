@@ -2,7 +2,7 @@
 title: Proxmox
 description: An overview of the Proxmox hypervisor
 published: true
-date: 2025-07-09T14:44:24.376Z
+date: 2025-07-09T14:45:38.853Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:26:36.274Z
@@ -11,15 +11,15 @@ dateCreated: 2024-02-23T13:26:36.274Z
 
 
 ![](https://wiki.hydrology.cc/proxmox-ve-8-1-host-summary-secure-boot.png)
-# ![](/proxmox.png){class="tab-icon"} What Is Proxmox?
+# ![](/proxmox.png){class="tab-icon"} 1 · What Is Proxmox?
 
 Proxmox Virtual Environment is a complete, open-source server management platform for enterprise virtualization. It tightly integrates the KVM hypervisor and Linux Containers (LXC), software-defined storage and networking functionality, on a single platform. With the integrated web-based user interface you can manage VMs and containers, high availability for clusters, or the integrated disaster recovery tools with ease.
 
-# Why Use It?
+# 2 · Why Use It?
 
 I am a big proponent of Ubuntu Server for its simplicity, ease of use, and community support. However, I will admit for beginners, the command line can be intimidating and Webmin is still kind of scary looking. Proxmox gives a lot more functionality to Debian in ways which Webmin does not. It also takes almost no overhead and can do containerization just as well as any other distro out there with the added benefit of virtualization, simple backup, and one-click migration. Many people use this hypervisor in small computers for high-availability clustering. 
 
-# Use Scripts to Make It Easier
+# 3 · Use Scripts to Make It Easier
 
 There is a [repository](https://community-scripts.github.io/ProxmoxVE/) maintained by the community which hosts one-line commands to help automate many of Proxmox's functions. That isn't to say the Proxmox GUI isn't useful, but there are many steps to creating some things which new users may get lost on. These scripts make life a lot simpler and faster for LXC and VM creation, as well as house keeping tasks for the hypervisor itself.
 
@@ -29,11 +29,11 @@ From Tteck: 
 > 
 > Options are displayed to users in a dialog box format. Once the user makes their selections, the script collects and validates their input to generate the final configuration for the container or virtual machine.
 
-## Update on tteck
+## 3.1 Update on tteck
 
 tteck has released a statement that due to his health the repo will no longer be getting maintenance. Read about it [here](https://servers.hydrology.cc/farewell-to-tteck/).
 
-# Scripts
+# 4 · Scripts
 
 There are probably over 100 scripts in Tteck's repo. Below are the ones I use most frequently, because after I install Proxmox and do some housekeeping, I deploy the Docker-Alpine LXC container and then use Portainer within that for my containers. You can run separate containers for all of your docker apps if you want; I do this because its easier. 
 
@@ -135,7 +135,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/Proxmo
 
 **Portainer Interface: (https) IP:9443**
 
-# Connecting With Cloudflare Tunnels
+# 5 · Connecting With Cloudflare Tunnels
 A note for those using a CF tunnel to connect to your WebUI, make these changes to **Additional Application Settings** while editing your tunnel to ensure proper connection:
 1. Turn the **No TLS Verify** to `ON`
 1. Turn the **Disable Chucked Encoding** to `ON`
@@ -144,8 +144,8 @@ A note for those using a CF tunnel to connect to your WebUI, make these changes 
 {.is-info}
 
 
-# Connecting to Homarr
-## Proxmox Root CA Cert for Homarr
+# 6 · Connecting to Homarr
+## 6.1 Proxmox Root CA Cert for Homarr
 1. In the PVE dashboard, select the PVE node you wish to get a certificate for.
 1. Under **System**, select **Certificates** then, double click or highlight the `pve-root-ca.pem`
 
@@ -155,7 +155,7 @@ A note for those using a CF tunnel to connect to your WebUI, make these changes 
 1. Copy the entire section and then paste it into notepad or another text editor. Save the file as pve_root_ca.crt
 1. This can now be uploaded to Homarr as the certificate for Proxmox VE app and integration.
 
-## Adding API Key, User Group and User for Homarr
+## 6.2 Adding API Key, User Group and User for Homarr
 1. In the PVE dashboard select **Datacenter**, open the **Permissions** section and select **Groups**.
 1. Click **Create** and create a new group called api-users.
 1. Now go to **Users**, and create a new user, I suggest using the name of the application, in this case we will use homarr. Input a strong password. The realm will be PVE (Proxmox VE authentication server) and the group will be the api-users group we created above. Everything else can stay default.
@@ -179,7 +179,7 @@ A note for those using a CF tunnel to connect to your WebUI, make these changes 
 1. You may need to restart Homarr to see the information for the Proxmox integration to show up. It may take some time.
 
 
-# ![](/youtube.png){class="tab-icon"} Video
+# ![](/youtube.png){class="tab-icon"} 7 · Video
 
 To see an example of deploying a docker LXC with a tteck script, go here.
 
