@@ -2,21 +2,19 @@
 title: AI
 description: How to deploy local AI containers on TrueNAS
 published: true
-date: 2025-06-08T18:40:08.448Z
+date: 2025-07-09T13:14:12.614Z
 tags: 
 editor: markdown
 dateCreated: 2025-02-04T22:59:57.204Z
 ---
 
-![](/ollama.png)
-
+# ![](/ollama.png){class="tab-icon"} What is Ollama?
 **Ollama** - Get up and running with large language models. Get up and running with Llama 3.2, Mistral, Gemma 2, and other large language models.
 
-![](/open-webui.png)
-
+# ![](/open-webui.png){class="tab-icon"} What is Open WebUI?
 **Open WebUI** - User-friendly AI Interface (Supports Ollama, OpenAI API, ...) Open WebUI is an extensible, feature-rich, and user-friendly self-hosted WebUI designed to operate entirely offline. It supports various LLM runners, including Ollama and OpenAI-compatible APIs.
 
-# TrueNAS
+# <img src="/truenas.png" class="tab-icon"> 1 · Deploy Containers
 
 ![](/screenshot_from_2025-02-06_07-32-03.png)
 
@@ -38,7 +36,7 @@ The changes we need to make on the **Open WebUI** configuration are:
 1.  set the **Open WebUI Data Storage** to host path
 2.  set the **Open WebUI Ollama Storage** to hostpath pointed to the *ollama* dataset we created earlier
 
-# Open WebUI Configuration
+# 2 · Open WebUI Configuration
 
 1. After creating a username and password, click the colored circle icon in the very top right corner and then select **Admin Panel**
 1. Navigate to the **Settings** tab and then **Connections**
@@ -55,6 +53,6 @@ The changes we need to make on the **Open WebUI** configuration are:
 {.is-warning}
 
 
-# Video Walkthrough
+# <img src="/youtube.png" class="tab-icon"> 3 ·Video Walkthrough
 
 [https://youtu.be/b2HeHDUbkec](https://youtu.be/b2HeHDUbkec)
