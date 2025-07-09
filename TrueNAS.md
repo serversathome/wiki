@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-07-09T12:23:02.867Z
+date: 2025-07-09T12:23:33.626Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -15,7 +15,7 @@ dateCreated: 2024-02-23T13:25:40.008Z
 [](https://youtu.be/cA8fZ-lfgaA?feature=shared)
 
 
-# YouTube Basic Walkthrough
+# <img src="/youtube.png" class="tab-icon"> YouTube Basic Walkthrough
 
 See the playlist here: https://youtube.com/playlist?list=PL6zQmF2gDqDT7SHyBe7ni1P2S4NzyJpD6&feature=shared
 
