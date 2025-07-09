@@ -2,20 +2,18 @@
 title: Huntarr
 description: A guide to deploying huntarr via docker compose
 published: true
-date: 2025-06-08T18:40:27.697Z
+date: 2025-07-09T12:57:14.942Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-25T17:34:28.189Z
 ---
 
-![huntarr.png](/huntarr.png)
-
-# What is Huntarr?
+# ![](/huntarr.png){class="tab-icon"} What is Huntarr?
  A specialized utility that automates discovering missing and upgrading your media collection!
  
 [Github](https://github.com/plexguide/Huntarr.io)
 
-# Installation
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Huntarr
 ```yaml
 services:
   huntarr:
@@ -30,7 +28,7 @@ services:
       - TZ=America/New_York
 ```
 
-# Huntarr Configuration
+# 2 · Huntarr Configuration
 1. Create a login and password
 > Password must be 8 characters long and include a number and an uppercase letter
 {.is-info}
@@ -49,7 +47,6 @@ services:
 
 
 
-# Video
+# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
 
-![2025-04-28-huntarr--automate-missing--cut-promo-card.png](/2025-04-28-huntarr--automate-missing--cut-promo-card.png)
-[See it on Patreon!](https://www.patreon.com/posts/huntarr-v7-is-130103029?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+[![](/2025-04-28-huntarr--automate-missing--cut-promo-card.png)](https://www.patreon.com/posts/huntarr-v7-is-130103029)
