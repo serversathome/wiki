@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T11:04:46.549Z
+date: 2025-07-09T11:13:45.952Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -15,12 +15,13 @@ Sonarr is a PVR for Usenet and BitTorrent users. It monitors RSS feeds for new e
 ---
 
 <details class="quickstart" open>
-<summary><strong>🚀 Quick-Start Checklist</strong></summary>
+<summary><strong>🚀 Quick‑Start Checklist</strong></summary>
 
-1. **Deploy container** (Docker Compose *or* TrueNAS chart).
-2. **Create** `/media/tv` **root folder** in Sonarr.
-3. **Add qBittorrent** as Download Client.
-4. *(Optional)* Import Recyclarr profiles & advanced cleanup.
+1. **Deploy container** (Docker Compose *or* TrueNAS App)
+2. **Create** `/media/tv` **root folder** in Sonarr
+3. **Add qBittorrent** as Download Client
+4. **Add Indexers via Prowlarr** so Sonarr can actually find releases
+5. *(Optional)* Import Recyclarr profiles & advanced cleanup
 
 </details>
 
@@ -30,7 +31,7 @@ Sonarr is a PVR for Usenet and BitTorrent users. It monitors RSS feeds for new e
 
 # tabs {.tabset}
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
@@ -49,77 +50,113 @@ services:
     restart: unless-stopped
 ```
 
-### Permissions & Folder Structure {.is-success}
+### Permissions & Folder Structure {.is-success}
 
-* **PUID / PGID** – media-owner UID/GID (TrueNAS SCALE default **568:568**).
+* **PUID / PGID** – media‑owner UID/GID (TrueNAS SCALE default **568:568**).
 * **Volumes** – configs at `/mnt/tank/configs/sonarr`, media at `/mnt/tank/media`.
-  📌 See the [Folder-Structure](/Folder-Structure) guide.
+📌 See the [Folder‑Structure](/Folder-Structure) guide.
+
+> **Behind a reverse‑proxy?** Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
 
 ---
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
+## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
-| Step  | Action                                                                          |
-| ----- | ------------------------------------------------------------------------------- |
-| **1** | **Apps → Discover Apps → Sonarr → Install**                                     |
-| **2** | **Port Number → 8989**                                                          |
-| **3** | **Sonarr Config Storage → Host Path** → `/mnt/tank/configs/sonarr`              |
-| **4** | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` ➜ `/media` |
-| **5** | Click **Save → Deploy**                                                         |
+|  Step  |  Action                                                                         |
+| ------ | ------------------------------------------------------------------------------- |
+| **1**  | **Apps → Discover Apps → Sonarr → Install**                                     |
+| **2**  | **Port Number → 8989**                                                          |
+| **3**  | **Sonarr Config Storage → Host Path** → `/mnt/tank/configs/sonarr`              |
+| **4**  | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` ➜ `/media` |
+| **5**  | Click **Save → Deploy**                                                         |
+📌 See the [Folder‑Structure](/Folder-Structure) guide.
+
+> **Behind a reverse‑proxy?** Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
 
 ---
 
-# 2 · First-Run Configuration
+# 2 · First‑Run Configuration
 
-## 2.1 Root Folder
+## 2.1 Root Folder  <span class="chip">Mandatory</span>
 
-1. **Settings → Media Management → Add Root Folder**
-2. Choose **/media/tv**.
+1. **Settings → Media Management → Add Root Folder**
+2. Choose **/media/tv** and ensure the switch is set to **Monitored** (green ✔️).
 
-## 2.2 Download Client
+> *If it’s Unmonitored, Sonarr will ignore new episodes!* {.is-info}
 
-1. **Settings → Download Client → ➕ → qBittorrent**
+## 2.2 Download Client  <span class="chip">qBittorrent</span>
+
+1. **Settings → Download Client → ➕ → qBittorrent**
 2. Fill the form:
 
-| Field                   | Example        |
-| ----------------------- | -------------- |
-| Host                    | `10.251.0.244` |
-| Port                    | `10095`        |
-| Username                | `admin`        |
-| Password                | ••••••••       |
-| Category                | `tv-sonarr`    |
-| Recent / Older Priority | **Last**       |
-| Remove Completed        | ✅              |
+|  Field                  |  Example        |
+| ----------------------- | --------------- |
+|  Host                   |  `10.251.0.244` |
+|  Port                   |  `10095`        |
+|  Username               |  `admin`        |
+|  Password               |  ••••••••       |
+|  Category               |  `tv-sonarr`    |
+|  Recent/Older Priority  |  **Last**       |
+|  Remove Completed       |  ✅              |
 
-> **Tip:** A dedicated category (e.g. `tv-sonarr`) keeps Sonarr torrents separate from others.
+> **Remote downloader?** Use the **Path Translation** section (bottom of the Download Client page) to map `/downloads` inside qBittorrent to `/media` inside Sonarr.
+
+## 2.3 Indexers (via Prowlarr)
+
+1. Install **[Prowlarr](/Prowlarr)** and connect it to Sonarr (`Settings → Apps → +`).
+2. Add indexers in Prowlarr (Jackett, Torznab, etc.).
+3. Click **Test → Save** — Sonarr now inherits all indexers automatically.
 
 ---
 
-# 3 · Advanced Tweaks *(optional)*
+# 3 · Advanced Tweaks *(optional)*
 
-> **Warning** – For Recyclarr users. Enable **Show Advanced** first. {.is-warning}
+> **Warning** – For Recyclarr users. Enable **Show Advanced** first. {.is-warning}
 
-### Media-Management Presets
+### Media‑Management Presets
 
-| Field                | Recommended                            |
-| -------------------- | -------------------------------------- |
-| Rename Episodes      | `True`                                 |
-| Episode Formats      | *TRaSH template strings*               |
-| Series Folder Format | `{Series TitleYear} [imdbid-{ImdbId}]` |
-| Propers & Repacks    | `Do Not Prefer`                        |
-| Set Permissions      | `True` *(chmod 777)*                   |
+|  Field                 |  Recommended                            |
+| ---------------------- | --------------------------------------- |
+|  Rename Episodes       |  `True`                                 |
+|  Episode Formats       |  *TRaSH template strings*               |
+|  Series Folder Format  |  `{Series TitleYear} [imdbid-{ImdbId}]` |
+|  Propers & Repacks     |  `Do Not Prefer`                        |
+|  Set Permissions       |  `True` *(chmod 777)*                   |
 
-### Profiles & Quality
+<details><summary><strong>📑 Common Tags / Custom Formats (cheat‑sheet)</strong></summary>
 
-Delete default profiles → keep Recyclarr-generated profiles → set Jellyseerr default.
+|  Tag          |  Purpose                    |
+| ------------- | --------------------------- |
+|  x265 / HEVC  |  Prefer modern video codec  |
+|  HDR10 / DV   |  Force HDR releases         |
+|  Atmos        |  Require Dolby Atmos audio  |
+|  Anime        |  Anime‑specific profiles    |
 
-### Metadata & Backups
+Copy these into **Settings → Profiles → Custom Formats**.
 
-Enable **Kodi/Emby** metadata. Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
+</details>
+
+### Profiles & Quality
+
+Delete default profiles → keep Recyclarr‑generated profiles → set Jellyseerr default.
+
+### Metadata & Backups
+
+Enable **Kodi/Emby** metadata.
+Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
+
+<details><summary><strong>🔄 Restoring a Backup</strong></summary>
+1. Stop the Sonarr container / chart.  
+2. Copy the latest `*.zip` from `/media/Backups` to your config folder.  
+3. Start Sonarr → **System → Backup → Restore** and select the file.  
+4. Restart again if prompted.
+</details>
 
 ---
 
 # 4 · Troubleshooting
+
+> **Check Health tab first!** Sonarr will flag missing root paths, import errors and indexer failures in **System → Health**. {.is-info}
 
 <details><summary><strong>Sonarr cannot see media files</strong></summary>
 
@@ -147,8 +184,8 @@ chmod -R 770 /mnt/tank/media/tv
 
 ---
 
-# Video Guide
+# Video Guide
 
 [![Promo](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
 
-[⇧ Back to top](#what-is-sonarr){.back-top}
+[⇧ Back to top](#what-is-sonarr){.back-top}
