@@ -2,7 +2,7 @@
 title: Install Instructions
 description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2025-06-14T12:43:31.142Z
+date: 2025-07-09T12:19:40.848Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:29:57.064Z
@@ -62,6 +62,4 @@ I have created a script to create all the directories and install all the contai
 
 For a video walkthrough of some of the basics containers above, look here:
 
-![](/2025-01-28-truenas-scale-build-an-arr-stac-promo-card.png)
-
-[Watch it on Patreon!](https://www.patreon.com/posts/truenas-scale-in-120976920?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+[![](/2025-01-28-truenas-scale-build-an-arr-stac-promo-card.png)](https://www.patreon.com/posts/truenas-scale-in-120976920)
