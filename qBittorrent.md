@@ -2,19 +2,19 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-06-14T12:47:43.807Z
+date: 2025-07-09T12:15:13.153Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
 ---
 
-![](/qbittorrent.png)
-# What is qBittorrent?
+
+# ![](/qbittorrent.png){class="tab-icon"} What is qBittorrent?
 qBittorrent is a free and open-source software that aims to provide the same features as µTorrent, such as polished user interface, no ads, search engine, torrent creation tool and more. It runs on all major platforms (Windows, Linux, macOS, FreeBSD, OS/2) and supports many Bittorrent extensions.
 
-# Installation
-# Tabs {.tabset}
-## Hotio + VPN
+# 1 · Deploy qBittorrent
+# {.tabset}
+## <img src="/docker.png" class="tab-icon"> Hotio + VPN
 
 ```yaml
 services:
@@ -77,7 +77,7 @@ This qBittorrent container is from hotio and uses a Wireguard VPN to protect tra
 
 
 
-## Gluetun + qBit
+## <img src="/docker.png" class="tab-icon"> Gluetun + qBit
 
 > There have been widespread reports of issues with this container. The main one being it will work for awhile then go down, or the port will be open then close on its own after 10 minutes or less. As such, I am not recommending this for the time being. Use at your own risk - no support will be answered for issues with this container
 {.is-danger}
@@ -142,7 +142,7 @@ To add port forwarding, on the `FIREWALL_VPN_INPUT_PORTS` add a comma with no sp
 > For more info on this container, look [here](https://github.com/qdm12/gluetun-wiki?tab=readme-ov-file)
 {.is-info}
 
-## TrueNAS LXC
+##  TrueNAS LXC
 
 > The qBittorrent container in the default Apps catalog on TrueNAS **does not include a VPN**, therefore we won't use it. Instead, create a Custom App by clicking the 3 dot menu next to the blue Custom App button and click **Deploy via YAML** or follow the steps below to launch an **LXC**.
 {.is-danger}
