@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T10:56:31.950Z
+date: 2025-07-09T10:59:16.949Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -69,19 +69,6 @@ services:
 
 ---
 
-### ▶ Prototype — Two-Column Step Cards (side-by-side)
-
-<div class="step-grid">
-  <div class="step-card"><span class="step-num">①</span><br><strong>Pull Image</strong><br><code>docker pull lscr.io/linuxserver/sonarr</code></div>
-  <div class="step-card"><span class="step-num">②</span><br><strong>Create Volumes</strong><br><code>mkdir -p /mnt/tank/configs/sonarr</code></div>
-  <div class="step-card"><span class="step-num">③</span><br><strong>Generate Compose</strong><br>Paste YAML ↖️</div>
-  <div class="step-card"><span class="step-num">④</span><br><strong>Up the stack</strong><br><code>docker compose up -d</code></div>
-</div>
-
-> *These “step cards” use simple flexbox (`.step-grid { display:flex; flex-wrap:wrap; gap:1rem }`). They live **under** the existing prose for easy A/B comparison.*
-
----
-
 # 2 · First-Run Configuration
 
 ## 2.1 Root Folder
@@ -105,23 +92,6 @@ services:
 | Remove Completed        | ✅              |
 
 > **Tip:** A dedicated category (e.g. `tv-sonarr`) keeps Sonarr torrents separate from others.
-
----
-
-### ▶ Prototype — Icon Tabs for Root vs Download Client
-
-# tabs {.tabset}
-
-#### <img src="/folder-icon.png" class="tab-icon"> Root Folder
-
-* Settings → **Media Management** → **Add Root Folder**.
-* Path: **/media/tv** (matches the Docker volume).
-
-#### <img src="/qbittorrent.png" class="tab-icon"> Download Client
-
-Same qBittorrent table as above (duplicated for comparison).
-
-> *These secondary tabs mirror the Docker/TrueNAS style. Decide later which version you prefer, then delete the other.*
 
 ---
 
