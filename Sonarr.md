@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T10:16:05.061Z
+date: 2025-07-09T10:16:29.961Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -15,7 +15,7 @@ Sonarr is a PVR for Usenet and BitTorrent users. It watches RSS feeds for new ep
 ---
 
 <details class="quickstart">
-<summary><strong>🚀 Quick-Start Checklist</strong></summary>
+<summary><strong>🚀 Quick‑Start Checklist</strong></summary>
 
 1. **Deploy container** (Docker Compose *or* TrueNAS chart).
 2. **Create** `/media/tv` **root folder** in Sonarr.
@@ -51,9 +51,9 @@ services:
 
 ### Permissions & Folder Structure {.is-success}
 
-* **PUID / PGID** – media-owner UID/GID (TrueNAS SCALE default **568:568**).
+* **PUID / PGID** – media‑owner UID/GID (TrueNAS SCALE default **568:568**).
 * **Volumes** – configs at `/mnt/tank/configs/sonarr`, media at `/mnt/tank/media`.<br>
-  📌 See [Folder-Structure](/Folder-Structure) for details.
+  📌 See [Folder‑Structure](/Folder-Structure) for details.
 
 ---
 
@@ -67,7 +67,7 @@ services:
 
 ---
 
-# 2 · First-Run Configuration
+# 2 · First‑Run Configuration
 
 ## 2.1 Root Folder
 
@@ -97,7 +97,7 @@ services:
 
 > **Warning** – For Recyclarr users. Enable **Show Advanced** first. {.is-warning}
 
-### Media-Management Presets
+### Media‑Management Presets
 
 | Field                | Recommended                            |
 | -------------------- | -------------------------------------- |
@@ -113,7 +113,7 @@ Remove default profiles → keep Recyclarr profiles → set Jellyseerr default.
 
 ### Metadata & Backups
 
-Enable **Kodi/Emby** metadata. Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
+Enable **Kodi/Emby** metadata. Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
 
 ---
 
@@ -142,7 +142,7 @@ chmod -R 770 /mnt/tank/media/tv
 <summary><strong>Downloads stay in qBittorrent</strong></summary>
 
 * Verify **Download Client Path Mapping** matches container paths.
-* Confirm Sonarr can access the completed-downloads directory.
+* Confirm Sonarr can access the completed‑downloads directory.
 
 </details>
 
