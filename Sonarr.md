@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T10:18:34.803Z
+date: 2025-07-09T10:21:18.370Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -154,23 +154,3 @@ chmod -R 770 /mnt/tank/media/tv
 [![Promo](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
 
 [⇧ Back to top](#what-is-sonarr){.back-top}
-
-<!--  ░░░  Add to Administration → Theme → Custom Style / Script  ░░░  -->
-
-<style>
-/* Rounded collapsible quick-start */
-details.quickstart{border-radius:8px;background:#263238;padding:0;overflow:hidden;border:1px solid #37474f}
-details.quickstart>summary{padding:.75rem 1rem;font-weight:600;cursor:pointer;list-style:none;display:flex;align-items:center;gap:.4rem}
-
-/* Section auto-numbering */
-.v-main .contents{counter-reset:section}
-.v-main .contents h2{font-size:1.4rem;font-weight:600;position:relative}
-.v-main .contents h2::before{counter-increment:section;content:counter(section)" · ";color:#42a5f5;font-weight:700;margin-right:.25rem}
-</style>
-
-<script>
-/* auto-expand details if anchor inside */
-window.addEventListener("DOMContentLoaded",()=>{
-  if(location.hash){const target=document.querySelector(location.hash);if(target){const d=target.closest("details");if(d)d.open=true;}}
-});
-</script>
