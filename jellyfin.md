@@ -2,21 +2,19 @@
 title: Jellyfin
 description: A guide to deploying Jellyfin on TrueNAS as well as Docker
 published: true
-date: 2025-06-09T13:08:27.499Z
+date: 2025-07-09T12:35:17.279Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T10:43:38.039Z
 ---
 
-
-![](/jellyfin.png)
-# What is Jellyfin?
+# ![](/jellyfin.png){class="tab-icon"} What is Jellyfin?
 
 Jellyfin enables you to collect, manage, and stream your media. Run the Jellyfin server on your system and gain access to the leading free-software entertainment system, bells and whistles included.
 
-# Installation
+# 1 · Deploy Jellyfin
 # {.tabset}
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
@@ -46,7 +44,7 @@ services:
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
 
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 1. Check the **Jellyfin Server Storage** box to **Enable Host Path for Jellyfin Server Config Volume** and select the correct path as described in the [Folder-Structure](/Folder-Structure) guide.
 1. Click the **Add** button for **Jellyfin Server Extra Host Path Volumes** to pass the `media` directory into the container as **/media**.
@@ -59,9 +57,9 @@ services:
 {.is-success}
 
 
-# Jellyfin Configuration
+# 2 · Jellyfin Configuration
 
-## Setup Media Libraries
+## 2.1 Setup Media Libraries
 
 1. Click **\+ New Library**
 2. Set the Content Type to match the folder (Movies for /media/movies and TV Shows for /media/tv)
@@ -69,14 +67,14 @@ services:
 1. Click the green **OK** at the bottom and leave the rest of the settings the same
 1. Do the same thing for your second library for TV Shows.
 
-## Watching Content
+## 2.2 Watching Content
 
 To watch content on a device in your house on your home network, download the Jellyfin App from wherever your device gets apps from. When you start the Jellyfin app, manually add a server. Type in the IP Address of your server (for me it would look like `http://192.168.1.215`) and use the default port of `8096`. Once its connected you should see the sign-in screen with your name on it. If not, use the manual login and type the username and password you set up earlier.
 
-# Video
+# <img src="/youtube.png" class="tab-icon"> 3 · Video
 [](https://youtu.be/VNhsR2lpntc)
 
-# Using NPM
+# 4 · Using NPM
 If you are using [Nginx Proxy Manager](/nginx) to route your traffic use these settings to be sure you're not caching media:
 
 ![screenshot_from_2025-03-28_07-39-15.png](/screenshot_from_2025-03-28_07-39-15.png)
@@ -90,7 +88,7 @@ If you are using [Nginx Proxy Manager](/nginx) to route your traffic use these s
 | Forward Port | port media server is running on | 
 | expandable box | `add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate"; add_header Pragma "no-cache"; add_header Expires "0";` | 
 
-# Using an Intel iGPU
+# 5 · Using an Intel iGPU
 
 > This section is under development and may not work for you
 {.is-warning}
@@ -142,7 +140,7 @@ services:
 1. Follow the steps below to use AI to assist you in selecting the appropriate codecs for your iGPU
 1. Remember to hit **Save** at the bottom when you're done
 
-# Transcoding settings
+# 6 · Transcoding settings
 Many people ask how to setup the transcoding section of Jellyfin for their specific GPU. I usually tell them "it depends" because each GPU has different capabilities. However, I will tell you a great way to answer this for your individual GPU is ChatGPT. To do this, take a screenshot of the transcode page and ask: `"if i have <insert_GPU> which of these should i select for hardware decoding and tone mapping?"`
 
 ![screenshot_from_2025-04-08_18-43-41.png](/screenshot_from_2025-04-08_18-43-41.png)
@@ -205,6 +203,6 @@ As an example, here was the response:
 > 
 > Tone Mapping Range: Auto (keeps the same color range as input; usually best unless you know you're targeting limited-range SDR).
 
-# Plug-ins
+# <img src="/youtube.png" class="tab-icon"> 7 · Plug-ins
 
 [](https://youtu.be/6oUOi8-09E8)
