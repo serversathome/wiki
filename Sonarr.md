@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T10:43:47.310Z
+date: 2025-07-09T10:45:07.657Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -66,13 +66,6 @@ services:
 | **3**    | **Sonarr Config Storage → Host Path** → `/mnt/tank/configs/sonarr` |
 | **4**    | **Additional Storage → Host Path → Mount Dataset** `/mnt/tank/media` ➜ `/media`  |
 | **5**    | Click **Save → Deploy**                                    |
-
-<details>
-<summary>📸 Show example chart screen-shot</summary>
-
-![TrueNAS install](/screen_shot_2023-12-08_at_3.04.39_pm.png)
-
-</details>
 
 ---
 
