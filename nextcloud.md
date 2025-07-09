@@ -2,7 +2,7 @@
 title: Nextcloud
 description: A guide to deploying Nextcloud on TrueNAS Scale and via docker compose
 published: true
-date: 2025-07-09T12:31:35.164Z
+date: 2025-07-09T12:32:42.245Z
 tags: 
 editor: markdown
 dateCreated: 2024-11-06T16:25:41.034Z
@@ -93,7 +93,7 @@ Once that is enabled navigate to **Administration Settings** → **External Stor
 
 To use Nextcloud as a collaborative documentation platform, we need to add Collabora in a separate container and then create a reverse proxy record for it. First deploy another container using the docker compose file.
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+## <img src="/docker.png" class="tab-icon"> 4.1 Docker Compose
 
 ```yaml
 services:
@@ -116,7 +116,7 @@ services:
 
 Note for the `domain` it needs to be in regex. Replace what I have with your correct FQDN values.
 
-## 4.1 Reverse Proxy
+## 4.2 Reverse Proxy
 
 We now need a reverse proxy entry for something like *office.example.com* pointed to an **https** entry for our sever IP. If you use Cloudflare tunnels it will look like this:
 
@@ -124,7 +124,7 @@ We now need a reverse proxy entry for something like *office.example.com* pointe
 
 Note that since Collabora has its own self-signed certificate we need to check the **No TLS Verify** option with Cloudflare or the tunnel will not connect. 
 
-## 4.2 Nextcloud Settings
+## 4.3 Nextcloud Settings
 
 Now navigate to **Nextcloud** > **Apps** > **Office & text** \> **Nextcloud Office** and enable/install this app. 
 
