@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T10:16:29.961Z
+date: 2025-07-09T10:18:34.803Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -10,12 +10,12 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 # ![Sonarr logo](/sonarr.png){style="height:1.6rem;vertical-align\:middle"} What is Sonarr?
 
-Sonarr is a PVR for Usenet and BitTorrent users. It watches RSS feeds for new episodes, grabs, sorts, and renames them, then upgrades quality when a better release appears.
+Sonarr is a PVR for Usenet and BitTorrent users. It watches RSS feeds for new episodes, grabs, sorts and renames them, then upgrades quality when a better release appears.
 
 ---
 
-<details class="quickstart">
-<summary><strong>🚀 Quick‑Start Checklist</strong></summary>
+<details class="quickstart" open>
+<summary><strong>🚀 Quick-Start Checklist</strong></summary>
 
 1. **Deploy container** (Docker Compose *or* TrueNAS chart).
 2. **Create** `/media/tv` **root folder** in Sonarr.
@@ -30,7 +30,7 @@ Sonarr is a PVR for Usenet and BitTorrent users. It watches RSS feeds for new ep
 
 # tabs {.tabset}
 
-## Docker Compose
+## ![Docker](/docker.png){style="height:1rem;vertical-align:-0.2em;margin-right:.25rem"} Docker Compose
 
 ```yaml
 services:
@@ -51,23 +51,23 @@ services:
 
 ### Permissions & Folder Structure {.is-success}
 
-* **PUID / PGID** – media‑owner UID/GID (TrueNAS SCALE default **568:568**).
+* **PUID / PGID** – media-owner UID/GID (TrueNAS SCALE default **568:568**).
 * **Volumes** – configs at `/mnt/tank/configs/sonarr`, media at `/mnt/tank/media`.<br>
-  📌 See [Folder‑Structure](/Folder-Structure) for details.
+  📌 See [Folder-Structure](/Folder-Structure) for details.
 
 ---
 
-## TrueNAS
+## ![TrueNAS](/truenas.png){style="height:1rem;vertical-align:-0.2em;margin-right:.25rem"} TrueNAS
 
 ![TrueNAS install](/screen_shot_2023-12-08_at_3.04.39_pm.png)
 
-1. Install **Sonarr** from *Community Apps* (pick **Community** image).
+1. Install **Sonarr** from *Community Apps* (choose **Community** image).
 2. Set **Config Storage Type → Host Path**.
 3. Under **Additional Storage** mount your media dataset.
 
 ---
 
-# 2 · First‑Run Configuration
+# 2 · First-Run Configuration
 
 ## 2.1 Root Folder
 
@@ -77,7 +77,7 @@ services:
 ## 2.2 Download Client
 
 1. **Settings → Download Client → ➕ → qBittorrent**
-2. Use the template below:
+2. Fill the form:
 
 | Field                   | Example        |
 | ----------------------- | -------------- |
@@ -89,7 +89,7 @@ services:
 | Recent / Older Priority | **Last**       |
 | Remove Completed        | ✅              |
 
-> **Tip:** A dedicated qBittorrent category (e.g. `tv-sonarr`) avoids clashes with other downloads.
+> **Tip:** Use a dedicated qBittorrent category (e.g. `tv-sonarr`) to avoid clashing with other downloads.
 
 ---
 
@@ -97,7 +97,7 @@ services:
 
 > **Warning** – For Recyclarr users. Enable **Show Advanced** first. {.is-warning}
 
-### Media‑Management Presets
+### Media-Management Presets
 
 | Field                | Recommended                            |
 | -------------------- | -------------------------------------- |
@@ -105,7 +105,7 @@ services:
 | Episode Formats      | *TRaSH template strings*               |
 | Series Folder Format | `{Series TitleYear} [imdbid-{ImdbId}]` |
 | Propers & Repacks    | `Do Not Prefer`                        |
-| Set Permissions      | `True` (chmod **777**)                 |
+| Set Permissions      | `True` *(chmod `777`)*                 |
 
 ### Profiles & Quality
 
@@ -113,7 +113,8 @@ Remove default profiles → keep Recyclarr profiles → set Jellyseerr default.
 
 ### Metadata & Backups
 
-Enable **Kodi/Emby** metadata. Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
+Enable **Kodi/Emby** metadata.<br>
+Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
 
 ---
 
@@ -142,7 +143,7 @@ chmod -R 770 /mnt/tank/media/tv
 <summary><strong>Downloads stay in qBittorrent</strong></summary>
 
 * Verify **Download Client Path Mapping** matches container paths.
-* Confirm Sonarr can access the completed‑downloads directory.
+* Confirm Sonarr can access the completed-downloads directory.
 
 </details>
 
@@ -152,4 +153,24 @@ chmod -R 770 /mnt/tank/media/tv
 
 [![Promo](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
 
-[⇧ Back to top](#)
+[⇧ Back to top](#what-is-sonarr){.back-top}
+
+<!--  ░░░  Add to Administration → Theme → Custom Style / Script  ░░░  -->
+
+<style>
+/* Rounded collapsible quick-start */
+details.quickstart{border-radius:8px;background:#263238;padding:0;overflow:hidden;border:1px solid #37474f}
+details.quickstart>summary{padding:.75rem 1rem;font-weight:600;cursor:pointer;list-style:none;display:flex;align-items:center;gap:.4rem}
+
+/* Section auto-numbering */
+.v-main .contents{counter-reset:section}
+.v-main .contents h2{font-size:1.4rem;font-weight:600;position:relative}
+.v-main .contents h2::before{counter-increment:section;content:counter(section)" · ";color:#42a5f5;font-weight:700;margin-right:.25rem}
+</style>
+
+<script>
+/* auto-expand details if anchor inside */
+window.addEventListener("DOMContentLoaded",()=>{
+  if(location.hash){const target=document.querySelector(location.hash);if(target){const d=target.closest("details");if(d)d.open=true;}}
+});
+</script>
