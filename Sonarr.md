@@ -2,11 +2,43 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T10:59:16.949Z
+date: 2025-07-09T11:02:27.943Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
 ---
+
+## Card‑Grid Landing (DEMO)
+
+> *Drop this **above** the “Deploy Sonarr” section to test. Uses CSS class `card-grid` already defined on category page.*
+
+<div class="card-grid" style="grid-template-columns:repeat(auto-fill,minmax(18rem,1fr));gap:1rem">
+  <div class="card" style="padding:1rem;border-left:4px solid #42a5f5;background:#263238;border-radius:8px">
+    <h3><img src="/docker.png" class="tab-icon"> Docker Compose</h3>
+    <p>Copy‑paste the ready‑made <code>docker‑compose.yml</code> and run <code>up -d</code>.</p>
+    <a href="#docker-compose" class="button">View YAML</a>
+  </div>
+  <div class="card" style="padding:1rem;border-left:4px solid #29b6f6;background:#263238;border-radius:8px">
+    <h3><img src="/truenas.png" class="tab-icon"> TrueNAS SCALE</h3>
+    <p>Use the Community Apps catalog to deploy Sonarr in a couple of clicks.</p>
+    <a href="#truenas-community-edition" class="button">Open Steps</a>
+  </div>
+  <div class="card" style="padding:1rem;border-left:4px solid #26a69a;background:#263238;border-radius:8px">
+    <h3>🎥 Video Walkthrough</h3>
+    <p>Prefer watching? Follow the full Sonarr setup on YouTube.</p>
+    <a href="#video-guide" class="button">Watch Now</a>
+  </div>
+</div>
+
+<!-- Add minimal CSS to global stylesheet if `button` not defined -->
+
+<style>
+.button{display:inline-block;padding:.4rem .9rem;background:#42a5f5;color:#fff;border-radius:6px;text-decoration:none;font-weight:500}
+.button:hover{opacity:.85}
+</style>
+
+
+
 
 # ![Sonarr](/sonarr.png){class="tab-icon"} What is Sonarr?
 
