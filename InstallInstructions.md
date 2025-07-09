@@ -2,7 +2,7 @@
 title: Install Instructions
 description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2025-07-09T12:19:40.848Z
+date: 2025-07-09T12:25:03.028Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:29:57.064Z
@@ -58,7 +58,7 @@ Follow the steps in this order to make the install go as smoothly as possible.
 # Auto Install Script
 I have created a script to create all the directories and install all the containers for you. [Go here](/Folder-Structure#auto-folder-creation-for-truenas) for more info. 
 
-# YouTube Walkthrough
+# <img src="/patreon-light.png" class="tab-icon"> Video
 
 For a video walkthrough of some of the basics containers above, look here:
 
