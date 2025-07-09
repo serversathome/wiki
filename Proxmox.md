@@ -2,7 +2,7 @@
 title: Proxmox
 description: An overview of the Proxmox hypervisor
 published: true
-date: 2025-07-09T14:45:38.853Z
+date: 2025-07-09T14:46:59.248Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:26:36.274Z
@@ -144,7 +144,7 @@ A note for those using a CF tunnel to connect to your WebUI, make these changes 
 {.is-info}
 
 
-# 6 · Connecting to Homarr
+# ![](/homarr.png){class="tab-icon"} 6 · Connecting to Homarr
 ## 6.1 Proxmox Root CA Cert for Homarr
 1. In the PVE dashboard, select the PVE node you wish to get a certificate for.
 1. Under **System**, select **Certificates** then, double click or highlight the `pve-root-ca.pem`
