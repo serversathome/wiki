@@ -2,19 +2,17 @@
 title: Gotify
 description: A guide to installing Gotify in docker via compose
 published: true
-date: 2025-07-06T10:20:41.570Z
+date: 2025-07-10T20:11:03.941Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-30T19:46:39.620Z
 ---
 
-![gotify.png](/gotify.png)
-
-# What is Gotify?
+# ![](/gotify.png){class="tab-icon"} What is Gotify?
 
 Gotify is a free and open source project that lets you control your data and communicate via a REST-API and a web socket.
 
-# Docker Compose
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Gotify
 
 ```yaml
 services:
@@ -28,12 +26,12 @@ services:
    image: gotify/server
 ```
 
-# Logging In
+# 2 · Logging In
 
 1. The default credentials are `admin:admin`
 1. Once you login, click the name **ADMIN** on the purple bar at the top to change the password.
 
-# Apps
+# 3 · Apps
 
 To create a way for your services to talk to you, each service should be its own “app”. Go to the APPS section on the header and make one app per service. 
 
@@ -45,7 +43,7 @@ On the client side, it will ask you for your server IP or URL and the app or API
 {.is-info}
 
 
-# Emby
+# <img src="/emby.png" class="tab-icon"> 4 · Emby
 
 Emby needs some special steps to use Gotify which other apps do not. Steps are below (copied from [here](https://emby.media/community/index.php?/topic/90463-gotify-notifications/)):
 
@@ -55,7 +53,7 @@ Emby needs some special steps to use Gotify which other apps do not. Steps are b
 4.  Configure the plugin by heading to the new Notification section under User settings.
 5.  Click the "+ Add Notification" button and choose "Gotify"
 
-# TrueNAS
+# <img src="/truenas.png" class="tab-icon"> 5 · TrueNAS
 
 We need to deploy a custom app for this to work. Use the YAML file below, entering in your IP address and token for Gotify:
 
@@ -81,5 +79,5 @@ Next, navigate to the **Alert Settings** page and add this alert for Slack:
 |Level|Warning|
 |Webhook URL|http://localhost:31662|
 
-# Video
+# <img src="/youtube.png" class="tab-icon"> 6 · Video
 [](https://youtu.be/CaKs9M2SL3k)
