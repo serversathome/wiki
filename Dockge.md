@@ -2,32 +2,30 @@
 title: Dockge
 description: A guide to installing Dockge on Ubuntu Server LTS
 published: true
-date: 2025-06-08T18:39:30.907Z
+date: 2025-07-10T20:01:24.868Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:43:09.366Z
 ---
 
-![](/dockge.png)
+![](/dockgedash.png)
 
-![](https://wiki.hydrology.cc/dockgedash.png)
-
-# What is Dockge?
+# ![](/dockge.png){class="tab-icon"} What is Dockge?
 
 Dockge is a self-hosted Docker stack manager developed by the same person behind the popular software Uptime Kuma.
 
 This software allows you to manage multiple Docker compose files from a single, easy-to-use interface. It is similar to the stack system Portainer implements but cleaner and simpler to use.
 
-# Installation
+# 1 · Deploy Dockge
 # {.tabset}
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 ![](/screenshot_from_2024-11-08_11-34-31.png)
 
 1. Change the **WebUI Port** to **5001** since that is the default normally used by Dockge.
 1. Change the **Dockge Stacks Storage** to **Hostpath** and make sure the dataset has permissions set for the **apps** user. 
 
-## Docker
+## <img src="/docker.png" class="tab-icon"> Docker
 
 > Note that Docker has to be installed before you can follow these steps!
 {.is-warning}
@@ -77,10 +75,10 @@ services:
      - DOCKGE_STACKS_DIR=/opt/stacks
 ```
 
-# Logging In
+# 2 · Logging In
 
 Navigate to http://{serverIP}:5001 and create a user and password to login.
 
-# YouTube Walkthrough
+# <img src="/youtube.png" class="tab-icon"> 3 · Video
 
 [https://youtu.be/LpAxsO7zAMA](https://youtu.be/mVbi6xkM-rk)
