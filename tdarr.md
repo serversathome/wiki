@@ -2,21 +2,19 @@
 title: Tdarr
 description: A guide to installing Tdarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-06-08T18:40:03.913Z
+date: 2025-07-10T19:43:33.101Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-26T22:41:02.635Z
 ---
 
-![](/tdarr.png)
-
-# What is Tdarr?
+# ![](/tdarr.png){class="tab-icon"} What is Tdarr?
 
 Tdarr is a tool that can help you optimize your media files by transcode, remux, remove unwanted streams and more. It supports cross-platform nodes, hardware transcoding, plugins and job reports.
 
-# Installation
+# 1 · Deploy Tdarr
 # {.tabset}
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
@@ -73,8 +71,7 @@ services:
 > line and uncomment all the lines below it (starting with `deploy`). 
 {.is-info}
 
-
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 ![](/screenshot_from_2025-01-26_17-42-01.png)
 
@@ -82,9 +79,9 @@ services:
 1. Click the **Add** button for **Additional Storage** to pass the `media` directory into the container.
 1. At the very bottom, click the box to **Select NVIDIA GPU(s)** to pass your dGPU into the container. 
 
-# Tdarr Configuration
+# 2 · Tdarr Configuration
 
-## Library (source tab)
+## 2.1 Library (source tab)
 
 ![](/tdarrlib.png)
 
@@ -93,7 +90,7 @@ services:
 3.  Name your library (one or movies one for tv)
 4.  Select the path inside the container (/media/movies or /media/tv)
 
-## Library (transcode cache tab)
+## 2.2 Library (transcode cache tab)
 
 ![](/tdarr5.png)
 
@@ -101,7 +98,7 @@ services:
 
 11. Enter the path `/temp`
 
-## Library (transcode options tab)
+## 2.3 Library (transcode options tab)
 
 ![](/tdarr2.png)
 
@@ -115,7 +112,7 @@ services:
 
 Now scan the Library for new files.
 
-## Tdarr tab
+## 2.4 Tdarr tab
 
 ![](/tdarr4.png)
 
@@ -129,8 +126,6 @@ Now scan the Library for new files.
 
 Scroll down to the **Staging Section** and click the box to **Auto accept successful transcodes**.
 
-# Video Walkthrough
+# 3 · Video
 
-![](/2025-01-26-truenas-scale--tdarr-efficient-promo-card.png)
-
-[Watch it on Patreon!](https://www.patreon.com/posts/truenas-scale-120842366?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+[![](/2025-01-26-truenas-scale--tdarr-efficient-promo-card.png)](https://www.patreon.com/posts/truenas-scale-120842366)
