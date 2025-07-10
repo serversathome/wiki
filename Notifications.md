@@ -2,7 +2,7 @@
 title: Notifications
 description: Learn how to setup notifications for all of your services!
 published: true
-date: 2025-06-08T18:38:58.835Z
+date: 2025-07-10T20:04:28.463Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:28:42.117Z
@@ -14,7 +14,7 @@ dateCreated: 2024-02-23T13:28:42.117Z
 {.is-info}
 
 
-# Discord
+# <img src="/discord.png" class="tab-icon"> Discord
 
 There are so many ways to get notifications, there could be an entire wiki dedicated to that alone. For simplicity's sake, we are going to go with Discord here. The prerequisite here is that you have signed up for a Discord account.
 
@@ -36,7 +36,7 @@ Start by launching Discord and set up a private server, calling it whatever you 
 
 4. Paste that to a text doc somewhere because we will need it later. 
 
-# TrueNAS Scale
+# <img src="/truenas.png" class="tab-icon"> TrueNAS Scale
 
 Now that we have a Discord server to push to, let's enable TrueNAS to notify us of alerts.
 
@@ -51,7 +51,7 @@ Now that we have a Discord server to push to, let's enable TrueNAS to notify us 
 
 ![](https://wiki.hydrology.cc/screenshot_from_2024-02-12_17-38-44.png)
 
-# Radarr/Sonarr/Prowlarr
+# <img src="/radarr.png" class="tab-icon"><img src="/sonarr.png" class="tab-icon"><img src="/prowlarr.png" class="tab-icon"> Radarr/Sonarr/Prowlarr
 
 Since all the \*arrs are basically the same UI, we will follow the same steps for all of them.
 
@@ -65,7 +65,7 @@ Since all the \*arrs are basically the same UI, we will follow the same steps fo
 {.is-info}
 
 
-# Unpackerr
+# <img src="/unpackerr.png" class="tab-icon"> Unpackerr
 
 Since this is command line, it will be a little uglier, but no less difficult. 
 
@@ -97,14 +97,14 @@ In TrueNAS, we only need to add 3 values in the *Extra Environment Variables* fo
 |  UN_WEBHOOK_0_TEMPLATE |  discord |
 
 
-# Jellyseerr
+# <img src="/jellyseerr.png" class="tab-icon"> Jellyseerr
 
 1. Navigate to **Settings** > **Notifications** > **Discord** 
 1. Paste your webhook in the correct box.
 
 ![](https://wiki.hydrology.cc/screenshot_from_2024-02-12_17-56-50.png)
 
-# Emby
+# <img src="/emby.png" class="tab-icon"> Emby
 
 > If you do not have the Premium version of Emby, this will not work because it requires an add-on
 {.is-danger}
@@ -128,7 +128,7 @@ In TrueNAS, we only need to add 3 values in the *Extra Environment Variables* fo
 
 6. Click **Save** 
 
-# Uptime Kuma
+# <img src="/uptime-kuma.png" class="tab-icon"> Uptime Kuma
 
 1. Navigate to **Settings** > **Notifications** > **Setup** **Notification**
 1. Paste your webhook URL and give it a friendly name. 
