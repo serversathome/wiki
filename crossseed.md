@@ -2,23 +2,19 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-06-11T20:38:43.663Z
+date: 2025-07-10T19:36:30.032Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T09:31:37.247Z
 ---
 
-![cross-seed.png](/cross-seed.png)
-
-
-# What is Cross Seed?
-cross-seed is an app designed to help you download torrents that you can cross seed based on your existing torrents. It is designed to match conservatively to minimize manual intervention. cross-seed can inject the torrents it finds directly into your torrent client. 
+# ![](/cross-seed.png){class="tab-icon"} What is Cross Seed?
+Cross-seed is an app designed to help you download torrents that you can cross seed based on your existing torrents. It is designed to match conservatively to minimize manual intervention. cross-seed can inject the torrents it finds directly into your torrent client. 
 
 > This container requires the ability to hardlink to your media files. If you have not read the [Folder Structure](/Folder-Structure) Guide, I recommend you have you folders set up as-described so Cross Seed can function properly.
 {.is-warning}
 
-
-# Docker Compose
+# ## <img src="/docker.png" class="tab-icon"> 1 · Deploy Cross-Seed
 ```yaml
 services:
   cross-seed:
@@ -34,7 +30,7 @@ services:
     restart: unless-stopped
 ```
 
-# Configuration
+# 2 · Configuration
 
 > This assumes Cross Seed and the other containers are within the same Docker network and can reach each other using the container name (eg http://radarr:8989)
 {.is-warning}
@@ -156,7 +152,7 @@ services:
 
 1. Restart the container
 
-# Adding qBit Scripts
+# 3 · Adding qBit Scripts
 
 > This assumes Cross Seed and qBit are within the same Docker network and can reach each other using the container name (eg http://qbittorrent:8080)
 {.is-warning}
@@ -176,14 +172,12 @@ Cross Seed has the ability upon completion of a download to automatically push t
     curl -XPOST http://cross-seed:2468/api/webhook?apikey=<API_KEY> -d "infoHash=%I"
     ```
 
-# Deleting Media
+# 4 · Deleting Media
 Since Cross Seed will create hardlinks in your directories, to remove unwanted media you need to remove it both from Sonarr/Radarr **as well as** your download client or the media will remain on your hard drive.
 
-# Troubleshooting
+# 5 · Troubleshooting
 The Cross Seed docs are excellent. Follow their instructions [here](https://www.cross-seed.org/docs/basics/faq-troubleshooting).
 
-# Video
+# <img src="/patreon-light.png" class="tab-icon"> 6 · Video
 
-![2025-06-11-how-to-set-up-cross-seed-power--promo-card.png](/2025-06-11-how-to-set-up-cross-seed-power--promo-card.png)
-
-[Watch it on Patreon!](https://www.patreon.com/posts/how-to-set-up-up-131256415?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+[![](/2025-06-11-how-to-set-up-cross-seed-power--promo-card.png)](https://www.patreon.com/posts/how-to-set-up-up-131256415)
