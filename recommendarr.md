@@ -2,7 +2,7 @@
 title: Recommendarr
 description: A guide to deploying Recommendarr via docker compose
 published: true
-date: 2025-07-10T18:34:27.876Z
+date: 2025-07-10T19:15:59.353Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-15T10:52:38.357Z
@@ -67,5 +67,5 @@ Recommendar gives you the option of using your existing API Key from ChatGPT, a 
 1. Select your **Content Language**
 1. Click the big blue button at the bottom to get recommendations
 
-# 6 · Video
+# <img src="/patreon-light.png" class="tab-icon"> 6 · Video
 [![](/2025-05-15-free-ai-media-recommendations-wi-promo-card.png)](https://www.patreon.com/posts/free-ai-media-129054870)
