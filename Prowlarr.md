@@ -2,7 +2,7 @@
 title: Prowlarr
 description: A guide to installing Prowlarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-10T18:23:52.667Z
+date: 2025-07-10T18:27:10.666Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:31:22.190Z
@@ -87,6 +87,4 @@ For those of you who are being blocked by your country's ISP, I recommend runnin
 
 # <img src="/patreon-light.png" class="tab-icon"> 4 · Video Walkthrough
 
-![](/2025-01-30-complete-guide-to-prowlarr-the--promo-card.png)
-
-[Watch it on Patreon!](https://www.patreon.com/posts/complete-guide-121131077?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+[![](/2025-01-30-complete-guide-to-prowlarr-the--promo-card.png)](https://www.patreon.com/posts/complete-guide-121131077?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
