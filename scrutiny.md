@@ -2,28 +2,25 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2025-06-08T18:40:21.430Z
+date: 2025-07-10T17:49:00.804Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-10T09:35:16.453Z
 ---
 
-![scrutiny.png](/scrutiny.png)
-
-# What is Scrutiny?
+# ![](/scrutiny.png){class="tab-icon"}What is Scrutiny?
 Scrutiny is a Hard Drive Health Dashboard & Monitoring solution, merging manufacturer provided S.M.A.R.T metrics with real-world failure rates.
 
-# Installation
+# 1 · Deploy Scrutiny
 # {.tabset}
 
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 Use all default values except for Storage Configuration, which needs **Host Path Configuration** for the `Config` folder at minimum.
 
 > Permissions should be `Generic` for the `config` dataset since Scrutiny runs as root
 {.is-info}
 
-
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 ```yaml
 services:
   scrutiny:
@@ -42,7 +39,7 @@ services:
       - /mnt/tank/configs/scrutiny/influxdb:/opt/scrutiny/influxdb
 ```
 
-# Notifications
+# 2 · Notifications
 Scruitny can notify users in the event of value changes with a file added to the `config` folder. Add `scrutiny.yaml` to the `/config` directory with the following contents, uncommenting the notification type you would like:
 
 ```yaml
@@ -98,9 +95,9 @@ notify:
 #    - "https://www.example.com/path"
 ```
 
-## Testing Notifications
+## 2.1 Testing Notifications
 1. Shell into the container
 1. Execute `curl -X POST http://localhost:8080/api/health/notify`
 
-# Video
+# <img src="/youtube.png" class="tab-icon"> Video
 [](https://youtu.be/5Pv2ip_v_2s)
