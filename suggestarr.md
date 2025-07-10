@@ -2,7 +2,7 @@
 title: Suggestarr
 description: A guide to deploying the Suggestarr container in docker
 published: true
-date: 2025-06-08T18:40:32.168Z
+date: 2025-07-10T19:09:35.844Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-09T10:33:58.203Z
@@ -12,7 +12,8 @@ dateCreated: 2025-05-09T10:33:58.203Z
 
 SuggestArr is a project designed to automate media content recommendations and download requests based on user activity in media servers like Jellyfin, Plex, and now Emby. It retrieves recently watched content, searches for similar titles using the TMDb API, and sends automated download requests to Jellyseer or Overseer.
 
-# Installation
+
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Suggestarr
 
 ```yaml
 services:
@@ -28,7 +29,7 @@ services:
       - LOG_LEVEL=info
 ```
 
-# Create a Jellyseerr User
+# 2 · Create a Jellyseerr User
 
 In order for Suggestarr to request media, it needs a **Local User** in Jellyseerr. 
 1. Navigate to **Jellyseerr → Users → Create Local User**
@@ -37,7 +38,7 @@ In order for Suggestarr to request media, it needs a **Local User** in Jellyseer
 > If you would like Suggestarr to automatically download all requested content, **Edit** the new user, click the **Permissions** tab, and check the **Auto-Approve** box
 {.is-info}
 
-# Create a TMDB API Key
+# 3 · Create a TMDB API Key
 
 This is necessary for Suggestarr to be able to browse media to recommend content.
 
@@ -47,7 +48,7 @@ This is necessary for Suggestarr to be able to browse media to recommend content
 1. Select **Settings → API**
 1. Create an API Key
 
-# Suggestarr Configuration
+# 4 · Suggestarr Configuration
 
 Navigate to your server IP and port 5000.
 
@@ -63,7 +64,6 @@ Navigate to your server IP and port 5000.
 1. Set the maximum values for searches
 1. Click **Run Now**
 
-# Video
+# 5 · Video
 
-![2025-05-09-suggestarr-automatically-add-me-promo-card.png](/2025-05-09-suggestarr-automatically-add-me-promo-card.png)
-[Watch it on Patreon!](https://www.patreon.com/posts/suggestarr-add-128533867?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+[![](/2025-05-09-suggestarr-automatically-add-me-promo-card.png)](https://www.patreon.com/posts/suggestarr-add-128533867)
