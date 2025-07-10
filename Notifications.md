@@ -2,13 +2,13 @@
 title: Notifications
 description: Learn how to setup notifications for all of your services!
 published: true
-date: 2025-07-10T20:04:28.463Z
+date: 2025-07-10T20:04:58.657Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:28:42.117Z
 ---
 
-# Gotify
+# <img src="/gotify.png" class="tab-icon"> Gotify
 
 > I am moving away from Discord in favor of [Gotify](/gotify). Unfortunately, I'm told there is no mobile app for iOS. Even though there is a Gotify template for Unpackerr, I could not get it working. Other than that, I like it much more.
 {.is-info}
