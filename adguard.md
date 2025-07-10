@@ -2,24 +2,22 @@
 title: AdGuard
 description: A guide to deploying AdGuard via TrueNAS or docker compose
 published: true
-date: 2025-07-07T17:45:32.009Z
+date: 2025-07-10T20:07:23.562Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T17:31:03.932Z
 ---
 
-![adguard-home.png](/adguard-home.png)
-
-# What is AdGuard?
+# ![](/adguard-home.png){class="tab-icon"} What is AdGuard?
 AdGuard is the best way to get rid of annoying ads and online tracking and protect your computer from malware. Make your web surfing fast, safe and ad-free.
 
 
-# Installation
+# 1 · Deploy AdGuard
 # {.tabset}
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 1. Set the **Storage Configuration** to use **Host Path** for the **AdGuard Home Config Storage** and **AdGuard Home WorkDir Storage**
 
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 ```yaml
 services:
   adguardhome:
@@ -45,17 +43,20 @@ services:
     image: adguard/adguardhome
 ```
 
-# Adguard Configuration
+# 2 · Adguard Configuration
 1. Naviagte to the IP and Port of the container
 1. Leave the **Interfaces** and **DNS Server** settings default
 1. Create a username and password
 1. Set the DNS of your router to point to the IP of the container
 
-## DNS Settings
+## 2.1 DNS Settings
 1. Add Upstream DNS Servers to the list already pre-populated
 
-## Encryption Settings
+## 2.2 Encryption Settings
 1. Check the box to **Enable Encryption** to use HTTPS, DNS-over-HTTPS, and DNS-over-TLS
 
-## DNS Blocklists
+## 2.3 DNS Blocklists
 1. Optionally add additional blocklists besides the default AdGuard DNS filter list
+
+# <img src="/youtube.png" class="tab-icon"> 3 · Video
+[](https://youtu.be/u9PioLP57-4)
