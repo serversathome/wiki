@@ -2,19 +2,18 @@
 title: Cleanuparr
 description: A guide to deploying Cleanuparr via docker
 published: true
-date: 2025-06-30T17:54:19.397Z
+date: 2025-07-10T19:15:04.398Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-28T12:56:06.603Z
 ---
 
-![cleanuparr.png](/cleanuparr.png)
-
-# What is Cleanuparr?
+# ![](/cleanuparr.png){class="tab-icon"} What is Cleanuparr?
 
 Automated Download Management. Automatically clean up unwanted, stalled, and malicious downloads from your \*arr applications and download clients. Keep your queues clean and your media library safe.
 
-# Installation
+
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Cleanuparr
 
 > Read the [official documentation](https://cleanuparr.github.io/Cleanuparr/docs/)
 {.is-success}
@@ -49,42 +48,42 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
 
-# Cleanuparr Configuration
+# 2 · Cleanuparr Configuration
 > If at any time you do not know what a setting does, click the ⓘ symbol next to it to be taken to the official document page explaining it
 {.is-info}
 
-## Instances
+## 2.1 Instances
 1. Add your \*arr instance by navigating to the correct tab on the left pane
 1. Enter your instance name, URL and API key
 
-## Download Clients
+## 2.2 Download Clients
 1. Add your qbittorrent instance by navigating to the **Download Clients** tab on the left pane
 1. Enter your instance name, client type, host (URL), username, and password
 
-## Cleanup
-### General Configuration
+## 2.3 Cleanup
+### 2.3.1 General Configuration
 1. Uncheck the box for **Display Support Banner** for a cleaner dashboard
 1. Change the **Certificate Validation** to **Disabled for Local Addresses** 
 1. If you are using [Huntarr](/huntarr), leave the **Enable Search** box unchecked
 1. Click **Save**
 
-### Queue Cleaner Configuration
+### 2.3.2 Queue Cleaner Configuration
 1. Check the **Enable Queue Cleaner** box
 
-#### Failed Import Settings
+#### 2.3.2.1 Failed Import Settings
 *These settings are up to you, but the below values are what I use*
 
 1. Set **Max Strikes** to `3`
 1. Check the box for **Ignore Private**
 
-#### Stalled Download Settings
+#### 2.3.2.2 Stalled Download Settings
 *These settings are up to you, but the below values are what I use*
 
 1. Set **Max Strikes** to `3`
 1. Check the box for **Reset Strikes On Progress**
 1. Check the box for **Ignore Private**
 
-#### Slow Download Settings
+#### 2.3.3.3 Slow Download Settings
 *These settings are up to you, but the below values are what I use*
 
 1. Set **Max Strikes** to `3`
@@ -94,14 +93,14 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 1. Set ** Ignore Above Size** to `500 MB`
 1. Click **Save**
 
-### Content Blocker Configuration
+### 2.3.3 Content Blocker Configuration
 *I do not use this because I am also using Recyclarr (or Profilarr) to ensure my grabs are high quality. If you are not using one of those tools I would suggest enabling this feature.*
 
-### Download Cleaner Configuration
+### 2.3.4 Download Cleaner Configuration
 1. Check the **Download Queue Cleaner** box
 1. Set the **Run Schedule** to `1 Hour`
 
-#### Seeding Settings
+#### 2.3.4.1 Seeding Settings
 *These settings are up to you, but the below values are what I use*
 
 1. Check the box to **Delete Private Torrents**
@@ -109,7 +108,7 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 1. Set the **Category Name** to `cleanuparr-unlinked`
 1. Set the **Max Seed Time** to `360`
 
-#### Unlinked Download Settings
+#### 2.3.4.2 Unlinked Download Settings
 *These settings are up to you, but the below values are what I use*
 
 1. Check the box to **Enable Unlinked Download Handling**
@@ -118,7 +117,7 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 1. Add `radarr`, `tv-sonarr` and `cross-seed-link` to **Unlinked Categories**
 1. Click **Save**
 
-## Notifications
+## 2.4 Notifications
 
 1. Select which service you use
 1. If you use **Apprise** (most likely), enter you **URL** and **API Key**
@@ -129,12 +128,9 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 {.is-info}
 
 
-# Video
+# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
 
-![2025-06-30-how-to-install-and-configure-cle-promo-card.png](/2025-06-30-how-to-install-and-configure-cle-promo-card.png)
-
-[Watch it on Patreon!](https://www.patreon.com/posts/how-to-install-132884071?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
-
+[![2025-06-30-how-to-install-and-configure-cle-promo-card.png](/2025-06-30-how-to-install-and-configure-cle-promo-card.png)](https://www.patreon.com/posts/how-to-install-132884071)
 
 
 
