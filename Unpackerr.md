@@ -2,24 +2,23 @@
 title: Unpackerr
 description: A guide to installing Unpackerr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-06-19T18:02:47.245Z
+date: 2025-07-10T19:40:49.227Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:33:30.432Z
 ---
 
-![](https://wiki.hydrology.cc/unpackerr-logo-text.png)
-
-# What is Unpackerr?
+# ![](/unpackerr.png){class="tab-icon"} What is Unpackerr?
 
 Unpackerr runs as a daemon on your download host or seedbox. It checks for completed downloads and extracts them so Lidarr, Radarr, Readarr, and Sonarr may import them. If your problem is rar files getting stuck in your activity queue, then this is your solution.
 
 Not a starr app user, and just need to extract files? We do that too. This application can run standalone and extract files found in a "watch" folder. In other words, you can configure this application to watch your download folder, and it will happily extract everything you download.
 
-# Installation
+# 1 · Deploy Unpackerr
 # {.tabset}
 
-## TrueNAS
+
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 1. Under **Unpackerr Configuration → Settings** click the **Add** button to choose the services you would like to configure
 1. Set the **type**, **URL**, and **API Key** for each service
@@ -28,7 +27,7 @@ Not a starr app user, and just need to extract files? We do that too. This appli
 
 
 
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
@@ -142,8 +141,6 @@ Obviously there is a lot here. Most of this can remain unmodified. For the apps 
 {.is-info}
 
 
-# YouTube Walkthrough
+# <img src="/youtube.png" class="tab-icon"> 2 · Video
 
-For a video walkthrough of deploying this container:
-
-[https://youtu.be/tXTHYMm6\_bE](https://youtu.be/tXTHYMm6_bE)
+[](https://youtu.be/tXTHYMm6_bE)
