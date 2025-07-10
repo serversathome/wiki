@@ -2,7 +2,7 @@
 title: Soulseek
 description: A guide to deploying the SLSKD daemon via docker compose
 published: true
-date: 2025-06-17T09:51:15.153Z
+date: 2025-07-10T19:08:00.187Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-17T09:45:56.812Z
@@ -11,10 +11,7 @@ dateCreated: 2025-06-17T09:45:56.812Z
 > **This Page is Under Construction!**
 {.is-danger}
 
-
-![slskd.png](/slskd.png)
-
-# What is Soulseek?
+# ![](/slskd.png){class="tab-icon"} What is Soulseek?
 Soulseek is an ad-free, spyware free, just plain free file sharing network for Windows, Mac and Linux.
 
 The [SLSKD](https://github.com/slskd/slskd/) Docker container is a client-server application allowing us to access the Soulseek network.
