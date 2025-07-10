@@ -2,21 +2,19 @@
 title: Jellyseerr
 description: A guide to installing Jellyseerr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-06-08T18:39:09.706Z
+date: 2025-07-10T18:29:48.736Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:34:01.414Z
 ---
 
-![](/jellyseerr2.png)
-
-# What is Jellyseerr?
+# ![](/jellyseerr.png){class="tab-icon"} What is Jellyseerr?
 
 Jellyseerr is a free and open source software application for managing requests for your media library. It is a a fork of Overseerr built to bring support for Jellyfin & Emby media servers!
 
-# Installation
+# 1 · Deploy Jellyseerr
 # tabs {.tabset}
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
@@ -38,16 +36,17 @@ services:
 - **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/sonarr
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
-## TrueNAS
+
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 ![](/screenshot_from_2024-02-23_09-37-02.png)
 
 1. Change the **Timezone**. For east coast time, use **America/New\_York**.
 1. Change the **Storage Configuration**. The **Jellyseerr Config Storage** *Type* should be set to **Host Path** as described in the [Folder-Structure](/Folder-Structure) guide.
 
-# Jellyseerr Configuration
+# 2 · Jellyseerr Configuration
 
-## Signing In
+## 2.1 Signing In
 
 1. Select **Sign in with Emby**
 1. Enter the IP and Port for your Emby server and use your Emby username and password to sign in
@@ -55,7 +54,7 @@ services:
 1. Click **Continue**.
 1. Click the button to **Sync Libraries** and when you get the option, slide the button for both TV and Movies then click the button for **Start Scan**, then click **Continue**.
 
-## Adding our Apps
+## 2.2 Adding our Apps
 
 6. Click the area to **Add Radarr Server** (or Sonarr Server). Make the following changes to the pop-up:
 
@@ -86,8 +85,6 @@ services:
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-36-31.png)
 
-# Video Walkthrough
+# <img src="/patreon-light.png" class="tab-icon"> 3 · Video Walkthrough
 
-![](/2025-02-10-the-complete-guide-to-jellyseerr-promo-card.png)
-
-[View it on Patreon!](https://www.patreon.com/posts/complete-guide-121946119?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+[![](/2025-02-10-the-complete-guide-to-jellyseerr-promo-card.png)](https://www.patreon.com/posts/complete-guide-121946119?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
