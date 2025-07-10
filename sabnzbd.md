@@ -2,18 +2,16 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2025-06-30T22:30:58.720Z
+date: 2025-07-10T18:18:24.156Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T22:21:23.261Z
 ---
 
-![2025-06-30-sabnzbd-logo](https://github.com/user-attachments/assets/ccfbcf99-65eb-4eed-85dc-447423728b22)
-
-# What is SABnzbd?
+# ![](/sabnzbd.png){class="tab-icon"} What is SABnzbd?
 SABnzbd is a free, open-source Usenet download manager. It automates the process of downloading, verifying, repairing, extracting, and organizing files from Usenet based on NZB files. SABnzbd runs as a web-based application and integrates with automation tools like **Sonarr**, **Radarr**, and **Lidarr** for seamless media management.
 
-# Prerequisites
+# 1 · Prerequisites
 You need:
 
 - The media dataset created according to the [Folder-Structure](/Folder-Structure) guide
@@ -27,15 +25,15 @@ mkdir -p /mnt/tank/media/downloads/{complete,incomplete}
 
 Once the subdirectories have been created, give them the proper permissions by navigating to the **Datasets** tab in TrueNAS and editing the permissions for the `media` dataset and applying them recursively.
 
-# Installation
+# 2 · Deploy SABnzbd
 # {.tabset}
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 ![Screenshot 2025-06-30 222117](https://github.com/user-attachments/assets/be440efb-f8cc-4bac-af3c-de0f592bc932)
 
 1. Change the **SABnzbd Config Storage** to **Host Path**
 1. Add an **Additional Storage** host path pointed at your media dataset
 
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 ```yaml
 services:
   sabnzbd:
@@ -52,7 +50,7 @@ services:
       - 8080:8080
     restart: unless-stopped
 ```
-## Hotio + VPN
+## <img src="/docker.png" class="tab-icon"> Hotio + VPN
 ```yaml
 services:
   sabnzbd:
@@ -117,7 +115,7 @@ PersistentKeepalive = 15
 > If you are using the hotio container for qBit with a VPN this file needs to be added to the `wireguard` folder (in the folder holding the sabnzbd configuration files) before the container can run
 {.is-warning}
 
-# Setting up SABnzbd
+# 3 · Setting up SABnzbd
 1. Navigate to `http://(truenas ip):port`
 1. Select your preferred language
 1. Enter your provider details and test the connection
