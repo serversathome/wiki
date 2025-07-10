@@ -2,7 +2,7 @@
 title: Notifications
 description: Learn how to setup notifications for all of your services!
 published: true
-date: 2025-07-10T20:04:58.657Z
+date: 2025-07-10T20:05:18.860Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:28:42.117Z
@@ -36,7 +36,7 @@ Start by launching Discord and set up a private server, calling it whatever you 
 
 4. Paste that to a text doc somewhere because we will need it later. 
 
-# <img src="/truenas.png" class="tab-icon"> TrueNAS Scale
+# <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 Now that we have a Discord server to push to, let's enable TrueNAS to notify us of alerts.
 
