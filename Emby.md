@@ -2,21 +2,19 @@
 title: Emby
 description: A guide to installing Emby in TrueNAS as well as docker via compose
 published: true
-date: 2025-06-08T18:39:17.550Z
+date: 2025-07-10T18:20:45.823Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:37:12.950Z
 ---
 
-![](/emby2.png)
-
-# What is Emby?
+# ![](/emby2.png){class="tab-icon"} What is  Emby?
 
 Emby is a personal media server that lets you access and enjoy your videos, music, and photos on any device. You can also stream live TV, manage your DVR, and control your content with parental controls and DLNA.
 
-# Installation
+# 1 · Deploy Emby
 # {.tabset}
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
@@ -50,8 +48,7 @@ services:
 > Follow the steps [in this Github page](https://github.com/NVIDIA/nvidia-container-toolkit) to allow passing an nVidia GPU into a container
 {.is-info}
 
-
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-11_08-39-08.png)
 
@@ -64,9 +61,9 @@ services:
 {.is-success}
 
 
-# Emby Configuration
+# 2 · Emby Configuration
 
-## Setup Media Libraries
+## 2.1 Setup Media Libraries
 
 1. Click **\+ New Library**
 2. Set the Content Type to match the folder (Movies for /media/movies and TV Shows for /media/tv)
@@ -79,11 +76,11 @@ services:
 {.is-info}
 
 
-## Watching Content
+## 2.2 Watching Content
 
 To watch content on a device in your house on your home network, download the Emby App from wherever your device gets apps from. When you start the Emby app, manually add a server; don't click Emby Connect. Type in the IP Address of your server (for me it would look like http://192.168.1.215/) and use the default port of 8096. Once its connected you should see the sign-in screen with your name on it. If not, use the manual login and type the username and password you set up earlier.
 
-# Using NPM
+# 3 · Using NPM
 If you are using [Nginx Proxy Manager](/nginx) to route your traffic use these settings to be sure you're not caching media:
 
 ![screenshot_from_2025-03-28_07-39-15.png](/screenshot_from_2025-03-28_07-39-15.png)
