@@ -2,7 +2,7 @@
 title: Pulsarr
 description: A guide to deploying Pulsarr via docker
 published: true
-date: 2025-07-10T18:31:53.693Z
+date: 2025-07-10T18:32:22.789Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-06T09:47:13.858Z
@@ -100,4 +100,4 @@ appriseUrl=http://host-ip-address:8000
 1. Head to the **Dashboard** page and click on the Start button next to the Main Workflow heading
 
 # <img src="/patreon-light.png" class="tab-icon"> 3 · Video
-[![2025-07-06-automate-your-plex-watchlist-wit-promo-card.png](/2025-07-06-automate-your-plex-watchlist-wit-promo-card.png)](https://www.patreon.com/posts/automate-your-133499239?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+[![](/2025-07-06-automate-your-plex-watchlist-wit-promo-card.png)](https://www.patreon.com/posts/automate-your-133499239)
