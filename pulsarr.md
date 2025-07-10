@@ -2,21 +2,19 @@
 title: Pulsarr
 description: A guide to deploying Pulsarr via docker
 published: true
-date: 2025-07-06T11:36:51.957Z
+date: 2025-07-10T18:31:53.693Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-06T09:47:13.858Z
 ---
 
-![pulsarr.png](/pulsarr.png)
-
-# What is Pulsarr?
+# ![](/pulsarr.png){class="tab-icon"} What is Pulsarr?
 
 Pulsarr is an integration tool that bridges Plex watchlists with Sonarr and Radarr, enabling real-time media monitoring and automated content acquisition all from within the Plex App itself.
 
-# Installation
+# 1 · Deploy Radarr
 # {.tabset}
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 ```yaml
 services:
   pulsarr:
@@ -42,7 +40,7 @@ NODE_ARGS=--log-both
 ```
 - Replace the `baseUrl` with your IP address
 
-## Docker + Apprise
+## <img src="/docker.png" class="tab-icon"> Docker Compose + Apprise
 ```yaml
 services:
   apprise:
@@ -87,7 +85,7 @@ appriseUrl=http://host-ip-address:8000
 - Replace the `baseUrl` with your IP address
 - Replace `host-ip-address` with your actual server IP 
 
-# Pulsarr Configuration
+# 2 · Pulsarr Configuration
 > Read the [official documentation](https://jamcalli.github.io/Pulsarr/docs/intro)
 {.is-success}
 
@@ -101,6 +99,5 @@ appriseUrl=http://host-ip-address:8000
 1. Set sync permissions for any friends' watchlists you'd like to include (Ensure users have their [Account Visibility](https://app.plex.tv/desktop/#!/settings/account) set to 'Friends Only' or 'Friends of Friends')
 1. Head to the **Dashboard** page and click on the Start button next to the Main Workflow heading
 
-# Video
-![2025-07-06-automate-your-plex-watchlist-wit-promo-card.png](/2025-07-06-automate-your-plex-watchlist-wit-promo-card.png)
-[Watch it on Patreon!](https://www.patreon.com/posts/automate-your-133499239?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
+[![2025-07-06-automate-your-plex-watchlist-wit-promo-card.png](/2025-07-06-automate-your-plex-watchlist-wit-promo-card.png)](https://www.patreon.com/posts/automate-your-133499239?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
