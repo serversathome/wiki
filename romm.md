@@ -2,25 +2,23 @@
 title: RomM
 description: A guide to deploying RomM on TrueNAS and Docker
 published: true
-date: 2025-07-06T10:11:55.060Z
+date: 2025-07-10T19:50:25.440Z
 tags: 
 editor: markdown
 dateCreated: 2025-02-24T11:29:26.783Z
 ---
 
-![romm.png](/romm.png)
-
 ![screenshot_from_2025-02-24_06-28-38.png](/screenshot_from_2025-02-24_06-28-38.png)
-# What is RomM?
+# ![](/romm.png){class="tab-icon"} What is RomM?
 RomM (ROM Manager) allows you to scan, enrich, browse and play your game collection with a clean and responsive interface. With support for multiple platforms, various naming schemes, and custom tags, RomM is a must-have for anyone who plays on emulators.
 
 > See the full documentation [here](https://docs.romm.app/latest/)
 {.is-info}
 
 
-# Installation
+# 1 · Deploy RomM
 # {.tabset}
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 ![screenshot_from_2025-02-24_06-38-49.png](/screenshot_from_2025-02-24_06-38-49.png)
 
 1. Set a secure database password
@@ -33,7 +31,7 @@ RomM (ROM Manager) allows you to scan, enrich, browse and play your game collect
 {.is-warning}
 6. Increase Resource limits (optional)
 
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 ```yaml
 services:
     romm:
@@ -85,7 +83,7 @@ services:
 ```
 
 
-# Reverse Proxy
+# 2 · Reverse Proxy
 To put this behind [Ngnix Reverse Proxy Manager](/nginx), use the following settings:
 # {.tabset}
 ## Details
@@ -109,7 +107,7 @@ To put this behind [Ngnix Reverse Proxy Manager](/nginx), use the following sett
 Paste this in the box: `proxy_max_temp_file_size 0;`
 
 
-# Metadata
+# 3 · Metadata
 # {.tabset}
 ## IGDB
 To access the IGDB API you'll need a Twitch account and a valid phone number for 2FA verification. Up-to-date instructions are available in the [IGDB API documentation](https://api-docs.igdb.com/#account-creation). When registering your application in the Twitch Developer Portal, fill out the form like so:
@@ -136,7 +134,7 @@ To access the MobyGames API, [create a MobyGames account](https://www.mobygames.
 
 To access steamGridDB API, you need to login into their [website](https://www.steamgriddb.com/) with a [steam account](https://store.steampowered.com/join). Once logged in, go to your [API tab under the preferences page](https://www.steamgriddb.com/profile/preferences/api). Copy the key shown and use it to set `STEAMGRIDDB_API_KEY`.
 
-# Troubleshooting
+# 4 · Troubleshooting
 # {.tabset}
 ## General
 ### Why is not PSP emulation enabled if EmulatorJS supports it?
@@ -188,5 +186,5 @@ If you're running RomM behind a reverse-proxy (Caddy, Nginx, etc.), ensure that 
 
 This is likely due to mis-configured environment variables; verify that `CLIENT_ID` and `CLIENT_SECRET` are set correctly, and that both match the values in IGDB.
 
-# Video Walkthrough
+# <img src="/youtube.png" class="tab-icon"> 5 · Video Walkthrough
 [](https://youtu.be/lQeUq5Pzo1o)
