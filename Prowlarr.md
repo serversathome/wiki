@@ -2,7 +2,7 @@
 title: Prowlarr
 description: A guide to installing Prowlarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-06-08T18:39:03.572Z
+date: 2025-07-10T18:21:45.586Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:31:22.190Z
@@ -10,7 +10,7 @@ dateCreated: 2024-02-23T13:31:22.190Z
 
 ![](https://wiki.hydrology.cc/prowlarr.png)
 
-# What is Prowlarr?
+# ![](/prowlarr.png){class="tab-icon"} What is Prowlarr?
 
 Prowlarr is a indexer manager/proxy built on the popular arr .net/reactjs base stack to integrate with your various PVR apps. Prowlarr supports both Torrent Trackers and Usenet Indexers. It integrates seamlessly with Sonarr, Radarr, Lidarr, and Readarr offering complete management of your indexers with no per app Indexer setup required (we do it all).
 # Installation
