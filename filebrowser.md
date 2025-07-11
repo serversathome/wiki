@@ -2,13 +2,13 @@
 title: File Browser
 description: A guide to deploy the File Browser Quantum replacement in docker
 published: true
-date: 2025-07-11T12:18:13.967Z
+date: 2025-07-11T12:18:26.111Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T23:53:09.996Z
 ---
 
-# ![](/filebrowser-quantum.png){class="tab-icon"} What is File Browser?
+# ![](/filebrowser-quantum.png){class="tab-icon"} What is File Browser Quantum?
 File Browser provides a file managing interface within a specified directory and it can be used to upload, delete, preview, rename and edit your files. 
 
 # This is not the old File Browser
