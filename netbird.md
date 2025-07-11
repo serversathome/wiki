@@ -2,19 +2,16 @@
 title: Netbird
 description: A guide to installing and using Netbird
 published: true
-date: 2025-06-09T09:50:55.613Z
+date: 2025-07-11T10:44:11.687Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-09T14:00:43.710Z
 ---
 
-![netbird.png](/netbird.png)
-
-
-# What is Netbird?
+# ![](/netbird.png){class="tab-icon"} What is Netbird?
 NetBird combines a WireGuard®-based overlay network with Zero Trust Network Access, providing a unified open-source platform for reliable and secure connectivity
 
-# Installation
+# 1 · Deploy Netbird
 You must first go to [https://netbird.io](https://netbird.io) and click Get Started. After you create an account:
 1. Navigate to **Setup Keys** ➡ **Create Setup Keys**
 1. Give it a name
@@ -22,7 +19,7 @@ You must first go to [https://netbird.io](https://netbird.io) and click Get Star
 1. Set the expiry to `0`
 
 # {.tabset}
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 ```yaml
 services:
   netbird:
@@ -39,14 +36,14 @@ services:
 ```
 Paste your Setup Key created from above in the `- NB_SETUP_KEY=` line.
 
-## Bare Metal Linux
+## <img src="/linux.png" class="tab-icon"> Bare Metal Linux
 
 ```bash
 curl -fsSL https://pkgs.netbird.io/install.sh | sh
 ```
 Once this is installed, execute `netbird up --setup-key <key-value>` to start the connection using the setup key created above.
 
-## Windows
+## <img src="/microsoft-windows.png" class="tab-icon"> Windows
 1. Download the installer from [https://pkgs.netbird.io/windows/x64](https://pkgs.netbird.io/windows/x64)
 1. Click on "Connect" from the NetBird icon in your system tray
 a. Alternatively you can connect through the command line by executing `netbird up --setup-key <key-value>` using the setup key created above
@@ -58,7 +55,7 @@ Get the app from your respective app store:
 - [iOS *Apple App Store*](https://apps.apple.com/us/app/netbird-p2p-vpn/id6469329339)
 {.links-list}
 
-# Updating
+# 2 · Updating
 On linux and mobile, updates are fairly easy through basic `apt upgrade -y` and app store downloads. However on Windows Netbird requires you to redownload the installer. As such, I have made this powershell script that can run as a Scheduled Task:
 
 > Run this as admin!
@@ -129,7 +126,7 @@ catch {
 }
 ```
 
-# Networking Quirks
+# 3 · Networking Quirks
 When installing Netbird on a host running Docker containers as well as acting as a subnet router, other Netbird peers will not be able to reach the container IP:Port through the subnet.
 
 For example, if I am running Netbird in a Docker container on my TrueNAS server (192.168.1.50 or 100.50.21.156 or DNS=truenas) routing for my 192.168.1.0/24 subnet, I will not be able to access my Jellfin server @ 192.168.1.50:8096 from other peers. I *would* be able to access it from the Netbird IP of 100.50.21.156:8096 or http://truenas:8096 due to the magic of Netbird, but many people would want to continue to use the IPv4 of 192.168.1.50:8096.
@@ -151,5 +148,5 @@ sudo iptables -t nat -A POSTROUTING -o wt0 -j MASQUERADE
 
 Also an interesting quirk: when running a Windows endpoint which also publishes a subnet, I am not able to RDP into the box using the private IPv4. For example, I expose the 10.240 route on a windows endpoint and when I try to RDP into 10.240.0.136 (the host) it does not work. It will work with the DNS name or the 100. address assigned by Netbird.
 
-# Video
+# 4 · Video
 [](https://youtu.be/skbWnMSwZcE)
