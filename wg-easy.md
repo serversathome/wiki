@@ -2,24 +2,22 @@
 title: wg-easy
 description: Configuring the wg-easy container to manage wireguard
 published: true
-date: 2025-06-09T18:06:03.514Z
+date: 2025-07-11T10:41:03.583Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:39:17.982Z
 ---
 
-![](/wireguard.png)
-
 ![](/screenshot_from_2024-02-23_11-04-33.png)
 
-# What is wg-easy?
+# ![](/wireguard.png){class="tab-icon"} What is wg-easy?
 
 wg-easy is the easiest way to run WireGuard VPN + Web-based Admin UI.
 
 
-# Installation
+# 1 · Deploy wg-easy
 # {.tabset}
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 > wg-easy has recently been overhauled and this page does not reflect the new changes yet!
 {.is-danger}
@@ -82,7 +80,8 @@ services:
 | `UI_TRAFFIC_STATS` | `false` | `true` | Enable detailed RX / TX client stats in Web UI |
 | `UI_CHART_TYPE` | `0` | `1` | UI\_CHART\_TYPE=0 # Charts disabled, UI\_CHART\_TYPE=1 # Line chart, UI\_CHART\_TYPE=2 # Area chart, UI\_CHART\_TYPE=3 # Bar chart |
 
-## TrueNAS
+
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 ![](https://wiki.hydrology.cc/screen_shot_2023-12-09_at_7.58.29_am.png)
 
@@ -115,6 +114,6 @@ Once this is done, go to your **System Settings** > **Advanced** > **Sysctl** bo
 
 Last step, traffic will go from wherever you are to the IP/domain you added during install. The issue is your router will block this once it gets there. You need to set up a **port forward** from your router to your TrueNAS IP in its settings. Since your router is different than mine I can't help you here, but Google how to do port forwarding for your router model and you'll find a YouTube video on how to do it.
 
-# YouTube Walkthrough
+# <img src="/youtube.png" class="tab-icon"> 2 · Video
 
 [](https://youtu.be/aPF_JhuwKmQ)
