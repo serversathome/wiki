@@ -2,7 +2,7 @@
 title: Netbird
 description: A guide to installing and using Netbird
 published: true
-date: 2025-07-11T10:44:11.687Z
+date: 2025-07-11T12:25:41.428Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-09T14:00:43.710Z
@@ -148,5 +148,5 @@ sudo iptables -t nat -A POSTROUTING -o wt0 -j MASQUERADE
 
 Also an interesting quirk: when running a Windows endpoint which also publishes a subnet, I am not able to RDP into the box using the private IPv4. For example, I expose the 10.240 route on a windows endpoint and when I try to RDP into 10.240.0.136 (the host) it does not work. It will work with the DNS name or the 100. address assigned by Netbird.
 
-# 4 · Video
+# <img src="/youtube.png" class="tab-icon"> 4 · Video
 [](https://youtu.be/skbWnMSwZcE)
