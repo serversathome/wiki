@@ -2,7 +2,7 @@
 title: Wizarr
 description: A guide to deploying Wizarr
 published: true
-date: 2025-07-11T12:36:14.435Z
+date: 2025-07-11T12:37:53.280Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-11T10:21:57.578Z
@@ -38,11 +38,13 @@ services:
 > 
 > Read the [official documentation](https://docs.wizarr.dev/)
 {.is-success}
-
-
+1. Create an admin account
+1. Navigate to **Settings Servers**
+1. Add your media server
 > You will first need to create an API Key for Jellyfin by navigating to the **Administration Dashboard** → **API Keys** and clicking the `+` in the top left
 {.is-info}
 
-# 3 · Video
+
+# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
 
 [![](/2025-04-14-wizarr-share-your-plex-jellyfi-promo-card.png)](https://www.patreon.com/posts/wizarr-share-or-126460048)
