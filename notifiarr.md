@@ -2,15 +2,13 @@
 title: Notifiarr
 description: A guide to deploy Notifiarr in TrueNAS 
 published: true
-date: 2025-07-06T10:07:27.197Z
+date: 2025-07-11T12:38:38.149Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-20T20:23:44.026Z
 ---
 
-![notifiarr.png](/notifiarr.png)
-
-# What is Notifiarr
+# ![](/notifiarr.png){class="tab-icon"} What is Notifiarr
 Notifiarr is a system that integrates with many applications to manage and customize notifications via Discord. You can monitor your network, services, servers, and more and be notified of issues or events.
 
 > Read the [official documentation](https://notifiarr.wiki/)
