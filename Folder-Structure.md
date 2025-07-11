@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure from Trash Guides to allow for hardlinks within the arr stack
 published: true
-date: 2025-07-09T12:21:32.867Z
+date: 2025-07-11T12:24:28.477Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:27:24.035Z
@@ -126,13 +126,13 @@ cd /mnt/tank/docker && docker compose down && cat docker-compose.yml
 
 This will stop all containers and output the docker compose file for you to paste as a new stack into Dockge. Paste the compose file and launch the containers and they should instantly start, now being managed within Dockge.
 
-## 2.5 Script Video
+## <img src="/youtube.png" class="tab-icon"> 2.5 Script Video
 [](https://youtu.be/8gATbBJHc5o)
 
 > If you are completely new to Docker or container volumes, you may want to check out a beginner-friendly guide (e.g. [Docker docs](https://docs.docker.com/get-started/)) before running this setup.
 {.is-info}
 
-# 3 ·  Hardlinks
+# <img src="/youtube.png" class="tab-icon"> 3 ·  Hardlinks
 [](https://youtu.be/dD1u0KOWizw)
 
 # 4 · Key Takeaways
