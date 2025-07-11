@@ -2,22 +2,20 @@
 title: Home Assistant
 description: A guide to deploying Home Assistant on TrueNAS
 published: true
-date: 2025-06-15T11:49:27.815Z
+date: 2025-07-11T10:37:32.232Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-12T14:57:25.253Z
 ---
 
-![homeassistant.png](/homeassistant.png)
-
-# What is Home Assistant?
+# ![](/homeassistant.png){class="tab-icon"} What is Home Assistant?
 Home Assistant is free and open-source software used for home automation. It serves as an integration platform and smart home hub, allowing users to control smart home devices. 
 
-# Installation
+# 1 · Installation
 
-## VM
+## 1.1 VM
 
-### Creating the VM on TrueNAS
+### 1.1.1 Creating the VM on TrueNAS
 1. Go to the [official Ubuntu Desktop download page](https://ubuntu.com/download/desktop) to grab the latest ISO of Ubuntu Desktop.
 1. Create a new Instance in TrueNAS, give it a name and select VM under the **"Virtualization Method"**. Under **"VM Image Options"** select the **"Upload ISO"** radio button. Click the **"Select Volume"** button and upload the Ubuntu Desktop ISO you downloaded in step 1.
 
@@ -36,7 +34,7 @@ Home Assistant is free and open-source software used for home automation. It ser
 1. Create the VM. 
 
 
-### Inside the VM
+### 1.1.2 Inside the VM
 
 1. VNC into the VM and select "Try or Install Ubuntu". Follow the on screen prompts, **skip the update**. Once you see two options, install or try, select **Try Ubuntu** and click close.
 
@@ -52,7 +50,7 @@ Home Assistant is free and open-source software used for home automation. It ser
 1. You will need to find the IP address of the VM via your router and use the port 8123. Home Assistant will default to giving you homeassistant.local:8123 address. Once you have the IP you may proceed to the [Onboarding Process](https://www.home-assistant.io/getting-started/onboarding/).
 
 
-## LXC
+## <img src="/linuxcontainers.png" class="tab-icon"> 1.2 LXC
 
 It is also possible to use [Helper Scripts](https://bketelsen.github.io/IncusScripts/scripts?id=homeassistant) to install Home Assistant as an LXC. 
 
@@ -62,7 +60,7 @@ Use the command below in the TrueNAS shell as `root` to launch the container ([a
 scripts-cli launch homeassistant homeassistant
 ```
 
-### USB Passthru
+### 1.2.1 USB Passthru
 
 To pass devices into the container, click the name of the instance and using the **Devices** menu on the right:
 
