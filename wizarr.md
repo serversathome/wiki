@@ -2,18 +2,16 @@
 title: Wizarr
 description: A guide to deploying Wizarr
 published: true
-date: 2025-06-13T03:14:22.611Z
+date: 2025-07-11T12:34:41.932Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-11T10:21:57.578Z
 ---
 
-![wizarr.png](/wizarr.png)
-
-# What is Wizarr?
+# ![](/wizarr.png){class="tab-icon"} What is Wizarr?
 Wizarr is an automated user invitation system compatible with Plex, Jellyfin and Emby. You can create a unique link, share it with a user, and they will be invited to your Media Server after they complete the simple signup process!
 
-# Installation
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Wizarr
 ```yaml
 services:
   wizarr:
@@ -36,14 +34,13 @@ services:
 {.is-info}
 
 
-# Wizarr Configuration
+# 2 · Wizarr Configuration
 
 Wizarr has moved their docs. 🙁
 
 > You will first need to create an API Key for Jellyfin by navigating to the **Administration Dashboard** → **API Keys** and clicking the `+` in the top left
 {.is-info}
 
-# Video
+# 3 · Video
 
-![2025-04-14-wizarr-share-your-plex-jellyfi-promo-card.png](/2025-04-14-wizarr-share-your-plex-jellyfi-promo-card.png)
-[Watch it on Patreon!](https://www.patreon.com/posts/wizarr-share-or-126460048?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+[![](/2025-04-14-wizarr-share-your-plex-jellyfi-promo-card.png)](https://www.patreon.com/posts/wizarr-share-or-126460048)
