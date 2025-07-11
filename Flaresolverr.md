@@ -2,7 +2,7 @@
 title: Flaresolverr
 description: A guide to installing Flaresolverr on TrueNAS and Ubuntu Server LTS
 published: true
-date: 2025-07-11T12:33:17.822Z
+date: 2025-07-11T12:33:23.622Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:35:16.347Z
@@ -11,7 +11,7 @@ dateCreated: 2024-02-23T13:35:16.347Z
 # ![](/flaresolverr.png){class="tab-icon"} What is Flaresolverr?
 FlareSolverr is a proxy server to bypass Cloudflare and DDoS-GUARD protection.
 
-# 1 · Deploy Falresolverr
+# 1 · Deploy Flaresolverr
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
