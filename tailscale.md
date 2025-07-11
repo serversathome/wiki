@@ -2,17 +2,16 @@
 title: Tailscale
 description: A guide to deploying Tailscale on TrueNAS Scale and docker compose
 published: true
-date: 2025-06-08T18:40:11.787Z
+date: 2025-07-11T12:27:37.914Z
 tags: 
 editor: markdown
 dateCreated: 2025-02-26T21:48:50.009Z
 ---
 
-![tailscale-light.png](/tailscale-light.png)
-# What is Tailscale?
+# ![](/tailscale-light.png){class="tab-icon"} What is Tailscale?
 Tailscale makes creating software-defined networks easy: securely connecting users, services, and devices.
 
-# Installation
+# 1 · Deploy Tailscale
 You must first go to [tailscale.com](https://tailscale.com) and click **Get Started**. After you create an account:
 1. Navigate to **Settings** ➡ **Keys** ➡ **Auth keys** then click the **Gen Auth Key** button
 1. Switch the **Reusable** to **ON**
@@ -22,7 +21,7 @@ You must first go to [tailscale.com](https://tailscale.com) and click **Get Star
 
 
 # {.tabset}
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 ```yaml
 services:
   tailscale:
@@ -47,7 +46,7 @@ services:
 1. Modify the `TS_ROUTES` for the CIDR address of the TrueNAS Server. For example, if your server is at 192.168.1.20 your CIDR address would be 192.168.1.0/24.
 
 
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 ![screenshot_from_2025-02-26_16-41-35.png](/screenshot_from_2025-02-26_16-41-35.png)
 
 1. Add your Auth Key from Tailscale 
@@ -55,7 +54,7 @@ services:
 1. Add an **Advertised Route**. This should be the CIDR address of the TrueNAS Server. For example, if your server is at 192.168.1.20 your CIDR address would be 192.168.1.0/24.
 1. Change your **Tailscale State Storage** to host path and point it to a dataset which is set with root permissions.
 
-# Tailscale Configuration
+# 2 · Tailscale Configuration
 1. Go to your Tailscale dashboard @ https://tailscale.com
 1. Navigate to **Machines**
 1. Find your TrueNAS Server and click the 3 dot menu and select **Disable Key Expiry**
@@ -68,6 +67,6 @@ services:
 > Find your TrueNAS Server and click the 3 dot menu and select **Edit Route** ➡   **Exit Node** ➡ check box to Use as exit node
 {.is-info}
 
-# Video Walkthrough
 
+# <img src="/youtube.png" class="tab-icon"> 3 · Video
 [](https://youtu.be/lajmJtNycgQ)
