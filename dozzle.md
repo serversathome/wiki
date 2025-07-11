@@ -2,24 +2,23 @@
 title: Dozzle
 description: A guide to deploying Dozzle on TrueNAS Scale and via Docker Compose
 published: true
-date: 2025-06-09T17:33:48.376Z
+date: 2025-07-11T12:21:16.003Z
 tags: 
 editor: markdown
 dateCreated: 2024-11-04T21:31:46.439Z
 ---
 
-![](/dozzle.png)
-
-# What is Dozzle?
+# ![](/dozzle.png){class="tab-icon"} What is Dozzle?
 
 Dozzle is a small lightweight application with a web based interface to monitor Docker logs. It doesn’t store any log files. It is for live monitoring of your container logs only.
 
-# Installation
+# 1 · Deploy Dozzle
 # {.tabset}
-## TrueNAS
+
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 Since dozzle does not require any volumes, unless you want to change the port, leave all setting default
 
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
@@ -33,6 +32,6 @@ services:
      - /var/run/docker.sock:/var/run/docker.sock
 ```
 
-# YouTube Walkthrough
+# <img src="/youtube.png" class="tab-icon"> 2 · Video
 
 [https://youtu.be/LNDkGBOfv6Y](https://youtu.be/LNDkGBOfv6Y)
