@@ -2,7 +2,7 @@
 title: Bazarr
 description: A guide to deploying Bazarr via docker compose
 published: true
-date: 2025-07-11T12:31:21.875Z
+date: 2025-07-11T12:31:35.743Z
 tags: 
 editor: markdown
 dateCreated: 2024-09-01T11:48:39.955Z
@@ -54,5 +54,5 @@ Before you do, you will probably want free account in these two places which wil
 1.  For **Providers** I used [opensubtitles.com](https://www.opensubtitles.com/en).
 2.  For my anti-captcha I used [anti-captcha.com](https://anti-captcha.com/). ( ← If you stick to opensubtitles only, you won't need this but it is generally recommended to use more than one provider.)
 
-# 3 · Video
+# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
 [![](/2025-04-09-bazarr-automated-subtitle-manag-promo-card.png)](https://www.patreon.com/posts/bazarr-automated-126312662)
