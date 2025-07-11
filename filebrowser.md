@@ -2,15 +2,13 @@
 title: File Browser
 description: A guide to deploy the File Browser Quantum replacement in docker
 published: true
-date: 2025-06-15T21:11:19.781Z
+date: 2025-07-11T12:18:13.967Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T23:53:09.996Z
 ---
 
-![408705763-59986a2a-f960-4536-aa35-4a9a7c98ad48.png](/408705763-59986a2a-f960-4536-aa35-4a9a7c98ad48.png)
-
-# What is File Browser?
+# ![](/filebrowser-quantum.png){class="tab-icon"} What is File Browser?
 File Browser provides a file managing interface within a specified directory and it can be used to upload, delete, preview, rename and edit your files. 
 
 # This is not the old File Browser
@@ -20,7 +18,7 @@ Some kind human has forked the repo and built a much better version (that is sti
 
 I have tested this and there is clearly still stuff missing but in terms of file management it works great!
 
-# Docker Compose
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy File Browser
 ```yaml
 services:
   filebrowser:
@@ -65,5 +63,5 @@ userDefaults:
 
 There are many more options for this config file. [See them all here](https://github.com/gtsteffaniak/filebrowser/wiki/Full-Config-Example).
 
-# Logging In
+# 2 · Logging In
 The default user is `admin` and the default password is `admin`.
