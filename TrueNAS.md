@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-07-09T12:23:33.626Z
+date: 2025-07-11T12:22:15.049Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -282,7 +282,7 @@ To take a backup, click **Manage Configuration → Download File**. In the event
 
 
 
-# Hardening
+# <img src="/youtube.png" class="tab-icon"> Hardening
 
 [Lawrence](https://www.youtube.com/@LAWRENCESYSTEMS) does a great job of going over some basic security hardening tasks. Watch his video for some tips.  
 [https://youtu.be/u0btB6IkkEk?feature=shared](https://youtu.be/u0btB6IkkEk?feature=shared)
