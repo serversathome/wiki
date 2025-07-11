@@ -2,21 +2,19 @@
 title: Cloudflare Tunnels
 description: A guide to installing Cloudflare Tunnels in TrueNAS Scale as well as on bare metal
 published: true
-date: 2025-06-08T18:39:23.728Z
+date: 2025-07-11T12:29:15.315Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:39:55.579Z
 ---
 
-![](/cloudflare.png)
-
-# What are Cloudflare Tunnels?
+# ![](/cloudflare.png){class="tab-icon"} What are Cloudflare Tunnels?
 
 Cloudflare Tunnel provides you with a secure way to connect your resources to Cloudflare without a publicly routable IP address. With Tunnel, you do not send traffic to an external IP — instead, a lightweight daemon in your infrastructure (cloudflared) creates outbound-only connections to Cloudflare’s global network. Cloudflare Tunnel can connect HTTP web servers, SSH servers, remote desktops, and other protocols safely to Cloudflare. This way, your origins can serve traffic through Cloudflare without being vulnerable to attacks that bypass Cloudflare.
 
-# Installaton
+# 1 · Deploy Cloudflare Tunnels
 # {.tabset}
-## Bare Metal
+## <img src="/windows-terminal.png" class="tab-icon"> Bare Metal
 
 I don't like to run Cloudflare Tunnels in a container because it means the docker networks have to be modified in each stack to have access from the tunnel. Instead, I run the tunnel on bare metal and update it with a cronjob when necessary. This is even easier to do than a docker compose file. 
 
@@ -29,7 +27,8 @@ Open a free account on Cloudflare and secure a domain name. This will cost money
 5.  In the next section **Install and run a connector**, copy the command from the left box into the terminal and run it.
 6.  At the bottom of the screen in the **Connectors** section, once the command has run successfully, your tunnel will appear. Click **Next**.
 
-## TrueNAS
+
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-11_11-42-42.png)
 
@@ -45,7 +44,7 @@ Open a free account on Cloudflare and secure a domain name. This will cost money
 
 To add apps to your tunnel, login to Cloudflare.com and click the **Zero Trust** link in the left panel > **Access** > **Tunnels**. Find the tunnel you just created and click the 3 dots at the right end of the row, and click **Configure**. Follow the Adding Endpoints section below to add apps from TrueNAS.
 
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 ```yaml
 services:
   cloudflared:
@@ -55,7 +54,7 @@ services:
     container_name: tunnel
 ```
 
-# Adding Endpoints
+# 2 · Adding Endpoints
 
 The next section allows you to **Add public hostnames** for your tunnel. This is where you specify what the tunnel connects to. Every service on your network you want to connect to over the internet needs to be added here. 
 
@@ -73,8 +72,8 @@ This is an example for a bogus tunnel named “test” which points to my emby c
 
 This example entry would create an endpoint in my existing tunnel. Now if I navigated to emby.mydomain.com in my web browser I would be routed to my Emby server in my home.
 
-# Streaming Media
-> 
+# 3 · Streaming Media
+
 > Do not, under any circumstances, use tunnels to stream media!
 {.is-danger}
 
