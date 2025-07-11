@@ -2,36 +2,34 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: 2025-07-08T17:28:40.925Z
+date: 2025-07-11T12:16:14.981Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-24T10:59:55.365Z
 ---
 
-![headscale.png](/headscale.png)
-
-# What is Headscale?
+# ![](/headscale.png){class="tab-icon"} What is Headscale?
 Headscale aims to implement a self-hosted, open source alternative to the Tailscale control server. Headscale's goal is to provide self-hosters and hobbyists with an open-source server they can use for their projects and labs. It implements a narrow scope, a single Tailscale network (tailnet), suitable for a personal use, or a small open-source organisation.
 
 # What is Headscale-Admin?
 A web frontend for the headscale Tailscale-compatible coordination server.
 
-# Prerequisites
+# 1 · Prerequisites
 - A Linux system with root access and a public IP address *(we recommend Ubuntu or Debian based systems)*
 - [Docker](/Docker) installed on the server
 - A domain name pointed to your server's IP address
 - TCP ports 80 and 443 open
 
-# Choosing a VPS
+# 2 · Choosing a VPS
 Headscale is best run from somewhere outside your network, ideally in the cloud. As such, you need to have a VPS to install Headscale.
 
 A minimal VPS instance with 1 vCPU, 1GB RAM, and 8GB SSD will perform perfectly well for most use cases. In some cases, you may be able to get away with even less.
 
 One option is [this option from Rack Nerd](https://my.racknerd.com/index.php?rp=/store/kvm-vps-latest-special-promos) and honestly it's a great choice, but any VPS will do.
 
-# Installation
+# 3 · Deploy Radarr
 # {.tabset}
-## Script
+## <img src="/windows-terminal.png" class="tab-icon"> Script
 The easiest way to deploy this is with my script, which (after you have met all the pre-requisites) will pull the docker containers, insert your FQDN, and generate an API key for you.
 
 Run this command to launch the script:
@@ -43,7 +41,7 @@ wget -q -O headscale.sh https://raw.githubusercontent.com/serversathome/Serversa
 {.is-info}
 
 
-## Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 ### Headscale Container
 ```yaml
 services:
@@ -177,10 +175,13 @@ randomize_client_port: false
 ```
 - Replace `my.domain.com` with your FQDN (e.g. headscale.domain.com)
 
-# Logging In
+# 4 · Logging In
 1. Run this command on the host to generate an API Key (this is not necessary if you ran the script):
     ```bash
     docker exec -it headscale headscale apikey create
     ```
 1. Navigate to `https://your.domain.com/admin/settings`
 1. Input your API key then refresh the page
+
+# <img src="/youtube.png" class="tab-icon"> 5 · Video
+[](https://youtu.be/r-qn6DrJ6IA)
