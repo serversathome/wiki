@@ -2,18 +2,16 @@
 title: Watchtower
 description: A guide on how to install Watchtower for container updates
 published: true
-date: 2025-06-08T18:39:32.487Z
+date: 2025-07-11T12:19:59.592Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:43:38.252Z
 ---
 
-![](/watchtower.png)
-
-# What is Watchtower?
+# ![](/watchtower.png){class="tab-icon"} What is Watchtower?
 Watchtower is a tool that automates the updating of Docker containers by pulling new images and restarting the containers with the same options used during deployment.
 
-# Docker Compose
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Watchtower
 
 ```yaml
 services:
@@ -43,7 +41,7 @@ services:
 {.is-warning}
 
 
-# Run On-Command
+# 2 · Run On-Command
 
 If you ever need to update your apps outside of the specified schedule, use this command from the shell of the machine hosting watchtower:
 
@@ -51,9 +49,9 @@ If you ever need to update your apps outside of the specified schedule, use this
 docker exec -it watchtower /watchtower --run-once
 ```
 
-# Notifications
+# 3 · Notifications
 
-## Discord
+## 3.1 Discord
 
 To use the Discord notification uncomment out the top line `WATCHTOWER_NOTIFICATION_URL`
 
@@ -65,7 +63,7 @@ The shoutrrr service URL should look like this:
 
 discord://`token`@`webhookid`
 
-## Gotify
+## 3.2 Gotify
 
 To use Gotify, uncomment out the bottom 3 lines:
 `WATCHTOWER_NOTIFICATIONS`
