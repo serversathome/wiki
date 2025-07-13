@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-13T11:05:11.984Z
+date: 2025-07-13T21:11:49.092Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -29,7 +29,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 # \*arr Suite
 ## Core Components
 - [<img src="/prowlarr.png"> Prowlarr<br>*Indexer manager / proxy that integrates with the Arr apps*](/Prowlarr)
-- [<img src="/radarr.png"> Radarr<br>*Movie organizer / manager for Usenet & Torrent users*](/radarr)
+- [<img src="/radarr.png"> Radarr <span class="badge">UPDATED</span><br>*Movie organizer / manager for Usenet & Torrent users*](/radarr)
 - [<img src="/sonarr.png"> Sonarr <span class="badge">UPDATED</span><br>*TV-show organizer / manager for Usenet & Torrent users*](/Sonarr)
 {.links-list}
 
