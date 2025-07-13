@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2025-07-13T22:09:44.320Z
+date: 2025-07-13T22:10:06.604Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T22:21:23.261Z
@@ -181,6 +181,7 @@ Ensure host path uses the same PUID/PGID as Sonarr/Radarr (TrueNAS: 568:568) or 
 > **Special thanks to the following members for reviewing and polishing this guide**
 > - Deepblue
 > - Scar13t
+> - TechFahter
 > - Tom Tech
 
 Feel free to open a pull‑request or ping us on Discord if you spot an inaccuracy!
