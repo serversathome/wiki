@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-13T21:11:49.092Z
+date: 2025-07-13T21:40:47.530Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -16,7 +16,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 
 # Download Clients
 - [<img src="/qbittorrent.png"> qBittorrent<br>*Torrent client*](/qBittorrent)
-- [<img src="/sabnzbd.png"> SABnzbd<br>*Usenet download manager*](/sabnzbd)
+- [<img src="/sabnzbd.png"> SABnzbd <span class="badge">UPDATED</span><br>*Usenet download manager*](/sabnzbd)
 {.links-list}
 
 # Media Servers
