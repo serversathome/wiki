@@ -2,121 +2,164 @@
 title: Soulseek
 description: A guide to deploying the SLSKD daemon via docker compose
 published: true
-date: 2025-07-10T19:08:00.187Z
+date: 2025-07-13T22:25:05.837Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-17T09:45:56.812Z
 ---
 
-> **This Page is Under Construction!**
-{.is-danger}
+# ![Soulseek](/slskd.png){class="tab-icon"} What is Soulseek?
 
-# ![](/slskd.png){class="tab-icon"} What is Soulseek?
-Soulseek is an ad-free, spyware free, just plain free file sharing network for Windows, Mac and Linux.
+**Soulseek** is a legendary, ad‑free peer‑to‑peer network for sharing music and rare files.  The modern container **[slskd](https://github.com/slskd/slskd)** runs Soulseek as a lightweight server daemon you can access via web‑UI or mobile clients.
 
-The [SLSKD](https://github.com/slskd/slskd/) Docker container is a client-server application allowing us to access the Soulseek network.
+---
 
-# Prerequisites
+<details class="quickstart" open>
+<summary><strong>🚀 Quick‑Start Checklist</strong></summary>
 
-- Have an active account on the [Soulseek Network](https://www.slsknet.org/news/node/1)
-    - Registering can be done by downloading the desktop client first and going through the first-time setup
+1. **Deploy container** (Docker Compose *or* Docker + VPN).
+2. **Create account** in the desktop client *(needed once)* → username & password.
+3. **Mount music** → `/music`;  set **Downloads** → `/music/downloads`, **Incomplete** → `/music/incomplete`.
+4. Log in to **web‑UI** → `Settings → Options` → add Soulseek credentials.
+5. *(Recommended)* Run behind **Gluetun / AirVPN** for privacy.
 
-# Installation
-# {.tabset}
-## SLSKD Docker
+</details>
+
+---
+
+# 1 · Deploy slskd
+
+# tabs {.tabset}
+
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
   slskd:
     image: slskd/slskd:latest
     container_name: slskd
-    ports:
-      - "5030:5030"
-      - "5031:5031"
-      - "50300:50300"
+    user: 568:568           # TrueNAS media UID:GID
     environment:
-      - SLSKD_REMOTE_CONFIGURATION=true
-      - SLSKD_SHARED_DIR=/music # Optional Directory you want to share with the network
-      - SLSKD_SLSK_LISTEN_PORT=50300
-      - SLSKD_DOWNLOADS_DIR=/music/downloads # Optional custom downloads directory
-      - SLSKD_INCOMPLETE_DIR=/music/incomplete # Optional custom incomplete downloads directory
+      SLSKD_REMOTE_CONFIGURATION: "true"   # enable web‑UI config
+      SLSKD_SLSK_LISTEN_PORT: 50300        # incoming port
+      # Optional paths (leave blank to use /downloads & /incomplete inside /app)
+      SLSKD_DOWNLOADS_DIR: /music/downloads
+      SLSKD_INCOMPLETE_DIR: /music/incomplete
+    ports:
+      - 5030:5030   # Web‑UI
+      - 5031:5031   # WebSocket API
+      - 50300:50300 # P2P listen
     volumes:
-      - /mnt/tank/configs/soulseek:/app:rw
-      - /mnt/tank/media/music:/music:rw
-      - /mnt/tank/media/music/downloads:/downloads:rw
-      - /mnt/tank/media/music/incomplete:/incomplete:rw
-    # network_mode: service:vpn # If running VPN container
+      - /mnt/tank/configs/soulseek:/app
+      - /mnt/tank/media/music:/music
     restart: unless-stopped
 ```
 
-> **NOTE:** It is not recommended to run SLSKD without a VPN, and there are a variety of containers and approaches to do so. Some threads on the matter can be found [on the SLSKD Github](https://github.com/slskd/slskd/issues/222).
-{.is-danger}
+### Permissions & Folder Structure {.is-success}
 
-## SLSKD Docker + Gluetun
+* **PUID / PGID** — match media owner (TrueNAS default **568:568**).
+* **Volumes** — configs in `/mnt/tank/configs/soulseek`, library in `/mnt/tank/media/music`.
+
+> ⚠️ Soulseek exposes your IP.  Consider the VPN stack below for safety. {.is-warning}
+
+---
+
+## <img src="/docker.png" class="tab-icon"> Docker Compose + Gluetun VPN
+
 ```yaml
 services:
   gluetun:
     image: qmcgaw/gluetun
     container_name: gluetun
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - /dev/net/tun:/dev/net/tun
+    cap_add: [ NET_ADMIN ]
+    devices: [ "/dev/net/tun:/dev/net/tun" ]
     environment:
-      - VPN_SERVICE_PROVIDER=airvpn
-      - VPN_TYPE=wireguard
-      - WIREGUARD_PRIVATE_KEY=
-      - WIREGUARD_PRESHARED_KEY= #Optional depending on provider/config
-      - WIREGUARD_ADDRESSES=
-      - SERVER_COUNTRIES= #Optional depending on provider/config
-      - FIREWALL_VPN_INPUT_PORTS=6881
+      VPN_SERVICE_PROVIDER: airvpn
+      VPN_TYPE: wireguard
+      WIREGUARD_PRIVATE_KEY: "<key>"
+      SERVER_COUNTRIES: CA
+      FIREWALL_VPN_INPUT_PORTS: 50300
     ports:
-      - 6881:6881/udp
-      - 6881:6881/tcp
-      - 5030:5030 # SLSKD port
-      - 5031:5031 # SLSKD port
-      - 50300:50300
-    restart: unless-stopped 
+      - 5030:5030     # slskd web‑UI
+      - 5031:5031
+      - 50300:50300   # P2P port (UDP/TCP inside tunnel)
+    restart: unless-stopped
+
   slskd:
-    image: slskd/slskd
+    image: slskd/slskd:latest
     container_name: slskd
+    network_mode: service:gluetun   # route through VPN
     environment:
-      - SLSKD_REMOTE_CONFIGURATION=true
-      - SLSKD_SHARED_DIR=/music
-      - SLSKD_SLSK_LISTEN_PORT=50300
-      - SLSKD_DOWNLOADS_DIR=/music/downloads
-      - SLSKD_INCOMPLETE_DIR=/music/incomplete
-    network_mode: service:gluetun
+      SLSKD_REMOTE_CONFIGURATION: "true"
+      SLSKD_SLSK_LISTEN_PORT: 50300
+      SLSKD_DOWNLOADS_DIR: /music/downloads
+      SLSKD_INCOMPLETE_DIR: /music/incomplete
     volumes:
-      - ./config/soulseek:/app:rw
-      - /mnt/tank/media/music:/music:rw
-      - /mnt/tank/media/music/downloads:/downloads:rw
-      - /mnt/tank/media/music/incomplete:/incomplete:rw
+      - /mnt/tank/configs/soulseek:/app
+      - /mnt/tank/media/music:/music
     restart: unless-stopped
 ```
 
-# Configuration
-The SLSKD server client uses a yaml configuration file located at `{application directory}/slskd.yml` - */mnt/tank/configs/soulseek/slskd.yml if you followed the above exactly*. However, this file is editable from within the slskd Web UI.
+---
 
-Once you have an account and have the daemon running, open the SLSKD Web UI (http://{serverIP}:5030), and sign in. The default username is *slskd* and the password is *slskd*. Click 'System' at the top right and navigate to the 'Options' tab. You will see an 'edit' button to edit the configuration file.
+# 2 · First‑Run Configuration
 
-![](slskd1.png)
+1. Open `http://SERVER_IP:5030` → login (**slskd / slskd**).
+2. **System → Options → edit slskd.yml**:
 
-A window will open up where all the lines of the .yaml are commented out. You can ignore all lines, as SLSKD will load somewhat-sensible defaults for any lines not explicitly used.
+   * `soulseek.username: YOUR_USER`
+   * `soulseek.password: YOUR_PASS`
+   * *(optional)* `soulseek.description: "Hi, enjoy the tunes!"`
+3. **Save → Restart daemon**.  Watch logs until **Connected to server** appears.
+4. Under **Shares → Directories** add `/music` or any sub‑folders you want to share.
 
-Scroll to find the 'Soulseek' section, uncomment the lines:
-- soulseek
-- username
-- password
+---
 
-and input your values for username and password.
+# 3 · Advanced Tweaks
 
-Optionally, uncomment the 'description' field and input a message you want other users on the network to see when they find your profile. More information on further configuration options can be found on the [SLSKD Github page](https://github.com/slskd/slskd/blob/master/docs/config.md)
+| Option                  | Recommended   | Why                            |
+| ----------------------- | ------------- | ------------------------------ |
+| **listen\_port\_range** | `50300-50310` | Avoid ISP‑blocked default 2234 |
+| **max\_uploads**        | `3`           | Prevent bandwidth hogging      |
+| **download\_slots**     | `6`           | Balanced performance           |
+| **skip\_extensions**    | `.log,.nfo`   | Saves space                    |
 
-# Future Steps
-SLSKD simply allows you to download files from the Soulseek network. It is not a media player. There are a variety of self-hostable music players and music management applications you can configure and use to stream your newly-shared files. A short list for further searching:
-- [Jellyfin](/jellyfin.md)
-- [Emby](/Emby.md)
-- [Plex](/plex.md)
-    - [Plexamp](https://www.plex.tv/plexamp/) - a music-dedicated client
-- [Navidrome](https://www.navidrome.org/) - a self-hostable streaming service with an available docker image
+---
+
+# 4 · Troubleshooting
+
+<details><summary><strong>Cannot connect / red banner</strong></summary>
+  
+- Soulseek credentials wrong → re‑enter & restart.  
+- Check ISP blocks → run via VPN.
+  
+</details>
+
+<details><summary><strong>Downloads stuck at 0 B/s</strong></summary>
+  
+- Inbound port closed. Forward **50300** on router *or* use VPN with port‑forwarding.  
+- Peer offline; try other sources.
+  
+</details>
+
+<details><summary><strong>Permission denied saving files</strong></summary>
+  
+Ensure `chown 568:568 /mnt/tank/media/music*` and container runs as `user: 568:568`.
+  
+</details>
+
+## ✏️ Editors & Contributors
+
+> **Special thanks to the following members for reviewing and polishing this guide**
+> - Dayce
+> - Scar13t
+
+Feel free to open a pull‑request or ping us on Discord if you spot an inaccuracy!
+
+---
+
+# <img src="/patreon-light.png" class="tab-icon"> Video Guide
+
+*Coming soon – follow our [YouTube](https://www.youtube.com/@ServersatHome).*
+
+[⇧ Back to top](#what-is-soulseek){.back-top}
