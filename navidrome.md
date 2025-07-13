@@ -2,47 +2,124 @@
 title: Navidrome
 description: A guide to deploying the Navidrome music player using docker
 published: true
-date: 2025-07-13T11:02:08.748Z
+date: 2025-07-13T22:14:37.444Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-13T10:43:27.715Z
 ---
 
-# ![](/navidrome.png){class="tab-icon"}What is Navidrome?
-Navidrome can be used as a standalone server, that allows you to browse and listen to your music collection using a web browser.
+# ![Navidrome](/navidrome.png){class="tab-icon"} What is Navidrome?
 
+**Navidrome** is a lightweight self‑hosted music streaming server (Subsonic compatible). It scans your music library, then lets you stream or download tracks via the web‑UI or mobile apps like DSub/Ultrasonic.
 
-# <img src="/docker.png" class="tab-icon"> Deploy Navidrome
+---
+
+<details class="quickstart" open>
+<summary><strong>🚀 Quick‑Start Checklist</strong></summary>
+
+1. **Deploy container** (Docker Compose *or* TrueNAS App)
+2. **Mount music** → `/music`, **Config** → `/data`
+3. Wait for **first scan** (progress top‑left)
+4. Create **admin user** → set password
+5. *(Optional)* Tag library cleanly with **MusicBrainz Picard** or **Beets**
+
+</details>
+
+---
+
+# 1 · Deploy Navidrome
+
+# tabs {.tabset}
+
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
-  #----------- MUSIC PLAYER -----------#
   navidrome:
     image: deluan/navidrome:latest
-    user: 568:568
-    ports:
-      - 4533:4533
-    restart: unless-stopped
+    container_name: navidrome
+    user: 568:568            # PUID:PGID (TrueNAS default)
     environment:
-      ND_SCANNER_SCHEDULE: 1h # Optional
-      ND_LOGLEVEL: info # Optional
-      ND_SESSIONTIMEOUT: 12h # Optional
-      #ND_BASEURL: ""
+      ND_SCANNER_SCHEDULE: 1h   # rescans every hour
+      ND_LOGLEVEL: info
+      ND_SESSIONTIMEOUT: 12h
     volumes:
       - /mnt/tank/configs/navidrome/data:/data
       - /mnt/tank/media/music:/music
+    ports:
+      - 4533:4533
+    restart: unless-stopped
 ```
 
-## Permissions & Folder Structure
-- **PUID / PGID**: Ensure you use a user/group with the correct permissions for accessing media folders. TrueNAS SCALE defaults to 568:568 for apps.
-- **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/emby
-    - **Dockge**: you can pass the dockge ./config/ folder structure if you are using that instead
-- 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
+### Permissions & Folder Structure {.is-success}
 
-> Refer to the offical [Navidrome docker installation steps](https://www.navidrome.org/docs/installation/docker/) for further information on the optional environment variables. 
-{.is-success}
+* **PUID / PGID** – use your media‑owner account (`568:568` on SCALE).
+* **Volumes** – `/data` stores library cache & artwork, `/music` is read‑only music share.
+  📌 See the [Folder‑Structure](/Folder-Structure) guide.
 
+> Official env‑vars list: [Navidrome Docker Docs](https://www.navidrome.org/docs/installation/docker/) {.is-info}
 
-That's it, there isn't much more to it but to ensure your music files are placed in the appropriate mounted path.
+---
 
-For music management and tagging, many users recommend using [MusicBrainz Picard](https://picard.musicbrainz.org/) or [Beets](https://beets.io/), which can ensure that your Navidrome library is as clean and well-organized as possible.
+## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
+
+| Step  | Action                                                                                      |
+| ----- | ------------------------------------------------------------------------------------------- |
+| **1** | **Apps → Discover Apps → Navidrome → Install**                                              |
+| **2** | **Config Storage → Host Path** → `/mnt/tank/configs/navidrome/data`                         |
+| **3** | **Additional Storage → Host Path** → mount `/mnt/tank/media/music` ➜ `/music` *(read‑only)* |
+| **4** | Expose port **4533** → 4533                                                                 |
+| **5** | **Save → Deploy**                                                                           |
+
+---
+
+# 2 · First‑Run Configuration
+
+1. Browse to `http://SERVER_IP:4533` → create **admin** user.
+2. Navidrome scans your library automatically. Watch progress top‑left.
+3. **Settings → Transcoding** — enable optional MP3/Opus profiles for mobile data‑savings.
+4. **Settings → Last.fm** — add API key if you want scrobbling.
+
+---
+
+# 3 · Recommended Tweaks *(optional)*
+
+| Setting                 | Recommended | Why                                  |
+| ----------------------- | ----------- | ------------------------------------ |
+| **Scanner Schedule**    | `1h`        | Picks up new music hourly            |
+| **Cover Size Limit**    | `6000` px   | Keeps huge artwork but not originals |
+| **Transcoding Threads** | `4`         | Speed on multi‑core CPUs             |
+| **Session Timeout**     | `12h`       | Stay logged in on home network       |
+
+---
+
+# 4 · Troubleshooting
+
+<details><summary><strong>No music found after scan</strong></summary>
+- Confirm path `/music` contains FLAC/MP3 files (not inside artist/album subfolders? That’s okay).  
+- Check **Logs → Level INFO** for `scanner` errors (permissions, invalid tags).
+</details>
+
+<details><summary><strong>Cover art missing</strong></summary>
+- Navidrome looks for `cover.jpg|png` or `folder.jpg` per album.  
+- Embed artwork with **MusicBrainz Picard** or `beet embedart`.
+</details>
+
+<details><summary><strong>Slow transcoding / buffering</strong></summary>
+- Enable **hardware transcoding**: set `ND_TRANSCODING_FFMPEG_PARAMS="-threads 2 -codec:a libmp3lame -b:a 192k"`.  
+- Or raise CPU limits on the container.
+</details>
+
+---
+
+## ✏️ Editors & Contributors
+
+> Guide by **@Hydrology** with input from community testers. PRs welcome!
+
+---
+
+# <img src="/patreon-light.png" class="tab-icon"> Video Guide
+
+*Coming soon – subscribe to our [YouTube](https://www.youtube.com/@ServersatHome).*
+
+[⇧ Back to top](#what-is-navidrome){.back-top}
