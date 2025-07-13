@@ -2,7 +2,7 @@
 title: Navidrome
 description: A guide to deploying the Navidrome music player using docker
 published: true
-date: 2025-07-13T22:24:25.744Z
+date: 2025-07-13T22:42:53.361Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-13T10:43:27.715Z
@@ -132,5 +132,3 @@ Feel free to open a pull‑request or ping us on Discord if you spot an inaccura
 # <img src="/youtube.png" class="tab-icon"> Video Guide
 
 *Coming soon – subscribe to our [YouTube](https://www.youtube.com/@ServersatHome).*
-
-[⇧ Back to top](#what-is-navidrome){.back-top}
