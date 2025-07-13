@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2025-07-13T22:10:06.604Z
+date: 2025-07-13T22:39:35.520Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T22:21:23.261Z
@@ -60,7 +60,7 @@ services:
 
 ## <img src="/docker.png" class="tab-icon"> Hotio + VPN (WireGuard)
 
-A single VPN container protects SABnzbd & qBittorrent.
+*A single VPN container protects SABnzbd & qBittorrent.*
 
 ```yaml
 services:
@@ -98,9 +98,10 @@ services:
       - /mnt/tank/configs/sabnzbd:/config
       - /mnt/tank/media:/media
 ```
----
 
 > **wg0.conf required** – drop your WireGuard file into `config/wireguard/wg0.conf` before first launch. {.is-warning}
+
+---
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
@@ -147,12 +148,20 @@ Sonarr/Radarr will assign these per download and sort post‑process.
 
 > **Show Advanced** in the UI to reveal orange fields. {.is-warning}
 
-| Setting                  | Recommended     | Why                                    |
-| ------------------------ | --------------- | -------------------------------------- |
-| **Direct Unpack**        | `True`          | Speeds up large releases               |
-| **Rating**               | Block below 50% | Filters junk uploads                   |
-| **Maximum Retries**      | `3`             | Avoid infinite loops                   |
-| **Permissions**          | `chmod 770`     | Matches media-share mask               |
+| Setting             | Recommended     | Why                      |
+| ------------------- | --------------- | ------------------------ |
+| **Direct Unpack**   | `True`          | Speeds up large releases |
+| **Rating**          | Block below 50% | Filters junk uploads     |
+| **Maximum Retries** | `3`             | Avoid infinite loops     |
+| **Permissions**     | `chmod 770`     | Matches media-share mask |
+
+### Post‑Processing Cleanup (blocked extensions)
+
+Paste this list into **Settings → Switches → Cleanup list** to delete unsafe executables after download:
+
+```
+exe, bat, cmd, com, scr, pif, hta, vbs, js, jar, wsf, ps1, msi, msp, cpl, ad, apk, dll, bin, gadget, vb, vbe, ws, wsc, wsh, lnk, iso, img, dmg, zipx, psm1, psd1, psc1, sh, rb, perl, py, pyd, url
+```
 
 ---
 
@@ -165,13 +174,13 @@ Another service (often Hotio/qBittorrent) is already bound to 8080. Change Web 
 <details>
   <summary><strong>Downloads stay in “Failed” state</strong></summary>
 
-  - **Missing par2 binaries** — enable *Repair* in **Settings → Switches**  
-  - **News‑server article age too low** — switch to a provider with **> 3000 days** retention.
+* **Missing par2 binaries** — enable *Repair* in **Settings → Switches**
+* **News‑server article age too low** — switch to a provider with **> 3000 days** retention.
 
 </details>
 
 <details><summary><strong>Permission denied writing to /media</strong></summary>
-Ensure host path uses the same PUID/PGID as Sonarr/Radarr (TrueNAS: 568:568) or run chown -R 568:568 /mnt/tank/media
+Ensure host path uses the same PUID/PGID as Sonarr/Radarr (TrueNAS: 568:568) or run `chown -R 568:568 /mnt/tank/media`.
 </details>
 
 ---
@@ -179,10 +188,11 @@ Ensure host path uses the same PUID/PGID as Sonarr/Radarr (TrueNAS: 568:568) or 
 ## ✏️ Editors & Contributors
 
 > **Special thanks to the following members for reviewing and polishing this guide**
-> - Deepblue
-> - Scar13t
-> - TechFahter
-> - Tom Tech
+>
+> * Deepblue
+> * Scar13t
+> * TechFahter
+> * Tom Tech
 
 Feel free to open a pull‑request or ping us on Discord if you spot an inaccuracy!
 
