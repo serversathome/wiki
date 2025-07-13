@@ -2,7 +2,7 @@
 title: Navidrome
 description: A guide to deploying the Navidrome music player using docker
 published: true
-date: 2025-07-13T22:20:56.473Z
+date: 2025-07-13T22:23:34.775Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-13T10:43:27.715Z
@@ -57,7 +57,7 @@ services:
 * **Volumes** – `/data` stores library cache & artwork, `/music` is read‑only music share.
   📌 See the [Folder‑Structure](/Folder-Structure) guide.
 
-> Official env‑vars list: [Navidrome Docker Docs](https://www.navidrome.org/docs/installation/docker/) {.is-info}
+> Official env‑vars list: [Navidrome Docker Docs](https://www.navidrome.org/docs/usage/configuration-options/) {.is-info}
 
 ---
 
