@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-13T20:58:00.816Z
+date: 2025-07-13T21:03:25.316Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -18,7 +18,7 @@ Sonarr is a PVR for Usenet and BitTorrent users. It monitors RSS feeds for new e
 <summary><strong>🚀 Quick‑Start Checklist</strong></summary>
 
 1. **Deploy container** (Docker Compose *or* TrueNAS chart)
-2. **Create** `/media/tv` **root folder** in Sonarr *(make sure it’s **Monitored** → ✅)*
+2. **Create** `/media/tv` **root folder** in Sonarr (make sure it’s **Monitored** → ✅)
 3. **Add qBittorrent** as Download Client
 4. **Add Indexers via Prowlarr** so Sonarr can actually find releases
 5. *(Optional)* Import Recyclarr profiles & advanced cleanup
