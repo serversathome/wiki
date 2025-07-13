@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2025-07-13T22:09:30.044Z
+date: 2025-07-13T22:09:44.320Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T22:21:23.261Z
@@ -152,7 +152,7 @@ Sonarr/Radarr will assign these per download and sort post‑process.
 | **Direct Unpack**        | `True`          | Speeds up large releases               |
 | **Rating**               | Block below 50% | Filters junk uploads                   |
 | **Maximum Retries**      | `3`             | Avoid infinite loops                   |
-| **Permissions**          | `chmod 775`     | Matches media-share mask               |
+| **Permissions**          | `chmod 770`     | Matches media-share mask               |
 
 ---
 
