@@ -2,7 +2,7 @@
 title: Navidrome
 description: A guide to deploying the Navidrome music player using docker
 published: true
-date: 2025-07-13T22:16:10.415Z
+date: 2025-07-13T22:20:56.473Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-13T10:43:27.715Z
@@ -96,18 +96,24 @@ services:
 # 4 · Troubleshooting
 
 <details><summary><strong>No music found after scan</strong></summary>
+  
 - Confirm path `/music` contains FLAC/MP3 files (not inside artist/album subfolders? That’s okay).  
 - Check **Logs → Level INFO** for `scanner` errors (permissions, invalid tags).
+  
 </details>
 
 <details><summary><strong>Cover art missing</strong></summary>
+  
 - Navidrome looks for `cover.jpg|png` or `folder.jpg` per album.  
 - Embed artwork with **MusicBrainz Picard** or `beet embedart`.
+  
 </details>
 
 <details><summary><strong>Slow transcoding / buffering</strong></summary>
+  
 - Enable **hardware transcoding**: set `ND_TRANSCODING_FFMPEG_PARAMS="-threads 2 -codec:a libmp3lame -b:a 192k"`.  
 - Or raise CPU limits on the container.
+  
 </details>
 
 ---
