@@ -2,7 +2,7 @@
 title: Navidrome
 description: A guide to deploying the Navidrome music player using docker
 published: true
-date: 2025-07-13T22:42:53.361Z
+date: 2025-07-13T22:44:05.378Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-13T10:43:27.715Z
@@ -59,19 +59,17 @@ services:
 
 > Official env‑vars list: [Navidrome Docker Docs](https://www.navidrome.org/docs/usage/configuration-options/) {.is-info}
 
----
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
 | Step  | Action                                                                                      |
-| ----- | ------------------------------------------------------------------------------------------- |
-| **1** | **Apps → Discover Apps → Navidrome → Install**                                              |
-| **2** | **Config Storage → Host Path** → `/mnt/tank/configs/navidrome/data`                         |
+| ----- | ----------- |
+| **1** | **Apps → Discover Apps → Navidrome → Install**   |
+| **2** | **Config Storage → Host Path** → `/mnt/tank/configs/navidrome/data`    |
 | **3** | **Additional Storage → Host Path** → mount `/mnt/tank/media/music` ➜ `/music` *(read‑only)* |
-| **4** | Expose port **4533** → 4533                                                                 |
-| **5** | **Save → Deploy**                                                                           |
+| **4** | Expose port **4533** → 4533       |
+| **5** | **Save → Deploy**     |
 
----
 
 # 2 · First‑Run Configuration
 
@@ -80,7 +78,6 @@ services:
 3. **Settings → Transcoding** — enable optional MP3/Opus profiles for mobile data‑savings.
 4. **Settings → Last.fm** — add API key if you want scrobbling.
 
----
 
 # 3 · Recommended Tweaks *(optional)*
 
@@ -91,7 +88,6 @@ services:
 | **Transcoding Threads** | `4`         | Speed on multi‑core CPUs             |
 | **Session Timeout**     | `12h`       | Stay logged in on home network       |
 
----
 
 # 4 · Troubleshooting
 
@@ -116,7 +112,6 @@ services:
   
 </details>
 
----
 
 ## ✏️ Editors & Contributors
 
@@ -127,7 +122,6 @@ services:
 
 Feel free to open a pull‑request or ping us on Discord if you spot an inaccuracy!
 
----
 
 # <img src="/youtube.png" class="tab-icon"> Video Guide
 
