@@ -2,7 +2,7 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-13T21:06:45.400Z
+date: 2025-07-13T21:10:31.818Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:11.647Z
@@ -113,9 +113,9 @@ services:
 |  Field                  |  Recommended           |
 | ----------------------- | ---------------------- |
 |  Rename Movies          |  `True`                |
-|  Standard Movie Format  |  *TRaSH Radarr string* |
+|  Standard Movie Format  |  [TRaSH Radarr string](https://trash-guides.info/Radarr/Radarr-recommended-naming-scheme/#standard) |
 |  Propers & Repacks      |  `Do Not Prefer`       |
-|  Set Permissions        |  `True` *(chmod 777)*  |
+|  Set Permissions        |  `True` *(chmod 770)*  |
 
 <details><summary><strong>📑 Common Tags / Custom Formats (cheat‑sheet)</strong></summary>
 
@@ -180,11 +180,14 @@ chmod -R 770 /mnt/tank/media/movies
 
 ## ✏️ Editors & Contributors
 
-> Special thanks to **@Hydrology** and the Servers\@Home community for maintaining this guide.
+> **Special thanks to the following members for reviewing and polishing this guide**
+> - Scar13t
+
+Feel free to open a pull‑request or ping us on Discord if you spot an inaccuracy!
 
 ---
 
-# Video Guide
+# <img src="/patreon-light.png" class="tab-icon"> 5 · Video Guide 
 
 [![Promo](/2025-03-18-advanced-media-management-with-r-promo-card.png)](https://www.patreon.com/posts/advanced-media-124637606)
 
