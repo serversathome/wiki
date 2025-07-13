@@ -2,13 +2,13 @@
 title: Navidrome
 description: A guide to deploying the Navidrome music player using docker
 published: true
-date: 2025-07-13T10:59:55.231Z
+date: 2025-07-13T11:02:08.748Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-13T10:43:27.715Z
 ---
 
-# What is Navidrome?
+# ![](/navidrome.png){class="tab-icon"}What is Navidrome?
 Navidrome can be used as a standalone server, that allows you to browse and listen to your music collection using a web browser.
 
 
