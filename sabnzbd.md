@@ -2,38 +2,37 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2025-07-10T18:18:24.156Z
+date: 2025-07-13T21:25:43.845Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T22:21:23.261Z
 ---
 
-# ![](/sabnzbd.png){class="tab-icon"} What is SABnzbd?
-SABnzbd is a free, open-source Usenet download manager. It automates the process of downloading, verifying, repairing, extracting, and organizing files from Usenet based on NZB files. SABnzbd runs as a web-based application and integrates with automation tools like **Sonarr**, **Radarr**, and **Lidarr** for seamless media management.
+# ![SABnzbd](/sabnzbd.png){class="tab-icon"} What is SABnzbd?
 
-# 1 · Prerequisites
-You need:
+**SABnzbd** is a free, open‑source Usenet downloader.  It automatically **grabs → verifies → repairs → extracts → renames → sorts** NZB files, then hands off the finished job to tools such as **Sonarr / Radarr / Lidarr** for seamless media management.
 
-- The media dataset created according to the [Folder-Structure](/Folder-Structure) guide
-- Two subdirectories in the `downloads` directory called `complete` and `incomplete`
+---
 
-You can create the two sub-directories with this command (as root in the TrueNAS Shell):
+<details class="quickstart" open>
+<summary><strong>🚀 Quick‑Start Checklist</strong></summary>
 
-```bash
-mkdir -p /mnt/tank/media/downloads/{complete,incomplete}
-```
+1. **Deploy container** (Docker Compose *or* TrueNAS App)
+2. **Create** `/media/downloads` with **complete** + **incomplete** sub‑folders
+3. **Point SABnzbd**: *Temporary* → `/media/downloads/incomplete`, *Completed* → `/media/downloads/complete`
+4. **Add Usenet provider** credentials + **News Server**
+5. *(Optional)* Route SABnzbd & qBittorrent **through VPN** using the *Hotio + VPN* stack
 
-Once the subdirectories have been created, give them the proper permissions by navigating to the **Datasets** tab in TrueNAS and editing the permissions for the `media` dataset and applying them recursively.
+</details>
 
-# 2 · Deploy SABnzbd
-# {.tabset}
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-![Screenshot 2025-06-30 222117](https://github.com/user-attachments/assets/be440efb-f8cc-4bac-af3c-de0f592bc932)
+---
 
-1. Change the **SABnzbd Config Storage** to **Host Path**
-1. Add an **Additional Storage** host path pointed at your media dataset
+# 1 · Deploy SABnzbd
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+# tabs {.tabset}
+
+## <img src="/docker.png" class="tab-icon"> Docker Compose
+
 ```yaml
 services:
   sabnzbd:
@@ -42,84 +41,133 @@ services:
     environment:
       - PUID=568
       - PGID=568
-      - TZ=Europe/Amsterdam
+      - TZ=America/New_York
     volumes:
       - /mnt/tank/configs/sabnzbd:/config
-      - /mnt/tank/media/:/media
+      - /mnt/tank/media:/media
     ports:
       - 8080:8080
     restart: unless-stopped
 ```
-## <img src="/docker.png" class="tab-icon"> Hotio + VPN
+
+### Permissions & Folder Structure {.is-success}
+
+* **PUID / PGID** – match your media‑owner account (TrueNAS default **568:568**).
+* **Volumes** – configs at `/mnt/tank/configs/sabnzbd`, media at `/mnt/tank/media`.
+  📌 Follow the [Folder‑Structure](/Folder-Structure) guide.
+
+---
+
+## <img src="/docker.png" class="tab-icon"> Hotio + VPN (WireGuard)
+
+A single VPN container protects SABnzbd & qBittorrent.
+
 ```yaml
 services:
   sabnzbd:
-    container_name: sabnzbd
     image: ghcr.io/hotio/sabnzbd
-    ports:
-      - 8080:8080
+    network_mode: service:pia-vpn   # locked to VPN
+    volumes:
+      - /mnt/tank/configs/sabnzbd:/config
+      - /mnt/tank/media:/media
     environment:
       - PUID=568
       - PGID=568
       - UMASK=002
-      - TZ=Europe/Amsterdam
-      - WEBUI_PORTS=8080/tcp,8080/udp
-      - VPN_ENABLED=true #
-      - VPN_CONF=wg0 #
-      - VPN_PROVIDER=generic #
-      - VPN_LAN_NETWORK=192.168.1.0/24 #
-      - VPN_LAN_LEAK_ENABLED=false #
-      - VPN_EXPOSE_PORTS_ON_LAN #
-      - VPN_AUTO_PORT_FORWARD=false #
-      - VPN_AUTO_PORT_FORWARD_TO_PORTS= #
-      - VPN_FIREWALL_TYPE=auto #
-      - VPN_HEALTHCHECK_ENABLED=false #
-      - VPN_NAMESERVERS= #
-      - PRIVOXY_ENABLED=false #
-      - UNBOUND_ENABLED=false #
-      - UNBOUND_NAMESERVERS #
-    cap_add:
-      - NET_ADMIN
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1 #
-      - net.ipv6.conf.all.disable_ipv6=1 #
-    volumes:
-      - /mnt/tank/configs/sabnzbd:/config
-      - /mnt/tank/media/:/media
-```
-> When you start this container it will fail until you add the VPN config file. See the Example Wireguard wg0.conf File section below
-{.is-warning}
-
-### Example Wireguard wg0.conf File
-
-This is an example of how your `wg0.conf` file should look like. If there's a lot of extra stuff, remove it unless you know what it's there for.
-
-```yaml
-[Interface]
-Address = 10.171.142.169
-PrivateKey = supersecretkey
-MTU = 1320
-DNS = 10.128.0.1
-
-[Peer]
-PublicKey = supersecretkey
-PresharedKey = supersecretkey
-Endpoint = 1.2.3.4:51820
-AllowedIPs = 0.0.0.0/0
-PersistentKeepalive = 15
+      - TZ=America/New_York
+    depends_on:
+      - pia-vpn
 ```
 
-> For more clarification on these values, [look here](https://hotio.dev/containers/sabnzbd/#__tabbed_2_1)
-{.is-info}
+## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
-> If you are using the hotio container for qBit with a VPN this file needs to be added to the `wireguard` folder (in the folder holding the sabnzbd configuration files) before the container can run
-{.is-warning}
+| Step  | Action                                                                          |
+| ----- | ------------------------------------------------------------------------------- |
+| **1** | **Apps → Discover Apps → SABnzbd → Install**                                    |
+| **2** | **SABnzbd Config Storage → Host Path** → `/mnt/tank/configs/sabnzbd`            |
+| **3** | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` ➜ `/media` |
+| **4** | Click **Save → Deploy**                                                         |
 
-# 3 · Setting up SABnzbd
-1. Navigate to `http://(truenas ip):port`
-1. Select your preferred language
-1. Enter your provider details and test the connection
-1. Click the gear icon to edit the folder settings
-1. Set the completed downloads to `/media/downloads/complete`
-1. Set the temporary downloads to `/media/downloads/incomplete`
-1. Save the changes
+---
+
+> **wg0.conf required** – drop your WireGuard file into `config/wireguard/wg0.conf` before first launch. {.is-warning}
+
+---
+
+# 2 · First‑Run Configuration
+
+## 2.1 Folder Paths  <span class="chip">Mandatory</span>
+
+Inside the web‑UI (`Settings → Folders`):
+
+| Purpose             | Path                          |
+| ------------------- | ----------------------------- |
+| Temporary Downloads | `/media/downloads/incomplete` |
+| Completed Downloads | `/media/downloads/complete`   |
+
+## 2.2 Usenet Server  <span class="chip">Provider Login</span>
+
+1. **Settings → Servers → +**
+2. Enter your provider’s host, port, SSL, username & password.
+3. **Test Server** → green ✔️ → **Save**.
+
+## 2.3 Categories (for Sonarr/Radarr)
+
+Create two categories:
+
+| Category        | Directory       | Script |
+| --------------- | --------------- | ------ |
+| `tv-sonarr`     | (leave default) | none   |
+| `movies-radarr` | (leave default) | none   |
+
+Sonarr/Radarr will assign these per download and sort post‑process.
+
+---
+
+# 3 · Advanced Tweaks *(optional)*
+
+> **Show Advanced** in the UI to reveal orange fields. {.is-warning}
+
+| Setting                  | Recommended     | Why                                    |
+| ------------------------ | --------------- | -------------------------------------- |
+| **Direct Unpack**        | `True`          | Speeds up large releases               |
+| **Action when Complete** | `Move`          | Keeps incomplete & complete dirs clean |
+| **Rating**               | Block below 50% | Filters junk uploads                   |
+| **Maximum Retries**      | `3`             | Avoid infinite loops                   |
+| **Permissions**          | `chmod 775`     | Matches media-share mask               |
+
+---
+
+# 4 · Troubleshooting
+
+<details><summary><strong>SABnzbd won’t start (port in use)</strong></summary>
+Another service (often Hotio/qBittorrent) is already bound to 8080. Change Web UI port in your compose file or TrueNAS form.
+</details>
+
+<details><summary><strong>Downloads stay in “Failed” state</strong></summary>
+- Missing par2 binaries → enable Repair in Settings > Switches  
+- News‑server article age too low → switch to a provider with >3000d retention.
+</details>
+
+<details><summary><strong>Permission denied writing to /media</strong></summary>
+Ensure host path uses the same PUID/PGID as Sonarr/Radarr (TrueNAS: 568:568) or run `chown -R 568:568 /mnt/tank/media`.
+</details>
+
+---
+
+## ✏️ Editors & Contributors
+
+> **Special thanks to the following members for reviewing and polishing this guide**
+> - Deepblue
+> - Scar13t
+> - Tom Tech
+
+Feel free to open a pull‑request or ping us on Discord if you spot an inaccuracy!
+
+---
+
+# <img src="/patreon-light.png" class="tab-icon"> Video Guide
+
+*Coming soon – follow our [Patreon](https://www.patreon.com/serversathome) for a walk‑through!*
+
+[⇧ Back to top](#what-is-sabnzbd){.back-top}
