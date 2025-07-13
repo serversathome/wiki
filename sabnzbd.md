@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2025-07-13T21:25:43.845Z
+date: 2025-07-13T21:27:08.341Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T22:21:23.261Z
@@ -78,6 +78,9 @@ services:
     depends_on:
       - pia-vpn
 ```
+---
+
+> **wg0.conf required** – drop your WireGuard file into `config/wireguard/wg0.conf` before first launch. {.is-warning}
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
@@ -87,10 +90,6 @@ services:
 | **2** | **SABnzbd Config Storage → Host Path** → `/mnt/tank/configs/sabnzbd`            |
 | **3** | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` ➜ `/media` |
 | **4** | Click **Save → Deploy**                                                         |
-
----
-
-> **wg0.conf required** – drop your WireGuard file into `config/wireguard/wg0.conf` before first launch. {.is-warning}
 
 ---
 
