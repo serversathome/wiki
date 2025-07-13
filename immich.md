@@ -210,4 +210,4 @@ tank
 1. Click **Save**
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
-[](https://youtu.be/abqnhmOs7_A)
+[](https://youtu.be/TqjlUocu6ZI)
