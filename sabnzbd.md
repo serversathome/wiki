@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2025-07-13T22:44:45.965Z
+date: 2025-07-13T22:48:15.195Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T22:21:23.261Z
@@ -12,7 +12,6 @@ dateCreated: 2025-06-30T22:21:23.261Z
 
 **SABnzbd** is a free, open‑source Usenet downloader.  It automatically **grabs → verifies → repairs → extracts → renames → sorts** NZB files, then hands off the finished job to tools such as **Sonarr / Radarr / Lidarr** for seamless media management.
 
----
 
 <details class="quickstart" open>
 <summary><strong>🚀 Quick‑Start Checklist</strong></summary>
@@ -25,12 +24,9 @@ dateCreated: 2025-06-30T22:21:23.261Z
 
 </details>
 
----
 
 # 1 · Deploy SABnzbd
-
 # {.tabset}
-
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
@@ -56,7 +52,6 @@ services:
 * **Volumes** – configs at `/mnt/tank/configs/sabnzbd`, media at `/mnt/tank/media`.
   📌 Follow the [Folder‑Structure](/Folder-Structure) guide.
 
----
 
 ## <img src="/docker.png" class="tab-icon"> Hotio + VPN (WireGuard)
 
@@ -101,18 +96,16 @@ services:
 
 > **wg0.conf required** – drop your WireGuard file into `config/wireguard/wg0.conf` before first launch. {.is-warning}
 
----
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
 | Step  | Action                                                                          |
-| ----- | ------------------------------------------------------------------------------- |
-| **1** | **Apps → Discover Apps → SABnzbd → Install**                                    |
-| **2** | **SABnzbd Config Storage → Host Path** → `/mnt/tank/configs/sabnzbd`            |
+| ----- | -------------------- |
+| **1** | **Apps → Discover Apps → SABnzbd → Install**    |
+| **2** | **SABnzbd Config Storage → Host Path** → `/mnt/tank/configs/sabnzbd`  |
 | **3** | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` ➜ `/media` |
-| **4** | Click **Save → Deploy**                                                         |
+| **4** | Click **Save → Deploy**      |
 
----
 
 # 2 · First‑Run Configuration
 
@@ -142,8 +135,6 @@ Create two categories:
 
 Sonarr/Radarr will assign these per download and sort post‑process.
 
----
-
 # 3 · Advanced Tweaks *(optional)*
 
 > **Show Advanced** in the UI to reveal orange fields. {.is-warning}
@@ -163,7 +154,6 @@ Paste this list into **Settings → Switches → Cleanup list** to delete unsafe
 exe, bat, cmd, com, scr, pif, hta, vbs, js, jar, wsf, ps1, msi, msp, cpl, ad, apk, dll, bin, gadget, vb, vbe, ws, wsc, wsh, lnk, iso, img, dmg, zipx, psm1, psd1, psc1, sh, rb, perl, py, pyd, url
 ```
 
----
 
 # 4 · Troubleshooting
 
@@ -183,8 +173,6 @@ Another service (often Hotio/qBittorrent) is already bound to 8080. Change Web 
 Ensure host path uses the same PUID/PGID as Sonarr/Radarr (TrueNAS: 568:568) or run `chown -R 568:568 /mnt/tank/media`.
 </details>
 
----
-
 ## ✏️ Editors & Contributors
 
 > **Special thanks to the following members for reviewing and polishing this guide**
@@ -196,10 +184,7 @@ Ensure host path uses the same PUID/PGID as Sonarr/Radarr (TrueNAS: 568:568) or 
 
 Feel free to open a pull‑request or ping us on Discord if you spot an inaccuracy!
 
----
-
 # <img src="/patreon-light.png" class="tab-icon"> Video Guide
 
 *Coming soon – follow our [Patreon](https://www.patreon.com/serversathome) for a walk‑through!*
 
-[⇧ Back to top](#what-is-sabnzbd){.back-top}
