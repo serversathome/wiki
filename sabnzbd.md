@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2025-07-13T21:27:08.341Z
+date: 2025-07-13T21:32:37.025Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T22:21:23.261Z
@@ -65,18 +65,38 @@ A single VPN container protects SABnzbd & qBittorrent.
 ```yaml
 services:
   sabnzbd:
+    container_name: sabnzbd
     image: ghcr.io/hotio/sabnzbd
-    network_mode: service:pia-vpn   # locked to VPN
-    volumes:
-      - /mnt/tank/configs/sabnzbd:/config
-      - /mnt/tank/media:/media
+    ports:
+      - 8080:8080
     environment:
       - PUID=568
       - PGID=568
       - UMASK=002
-      - TZ=America/New_York
-    depends_on:
-      - pia-vpn
+      - TZ=Europe/Amsterdam
+      - WEBUI_PORTS=8080/tcp,8080/udp
+      - VPN_ENABLED=true #
+      - VPN_CONF=wg0 #
+      - VPN_PROVIDER=generic #
+      - VPN_LAN_NETWORK=192.168.1.0/24 #
+      - VPN_LAN_LEAK_ENABLED=false #
+      - VPN_EXPOSE_PORTS_ON_LAN #
+      - VPN_AUTO_PORT_FORWARD=false #
+      - VPN_AUTO_PORT_FORWARD_TO_PORTS= #
+      - VPN_FIREWALL_TYPE=auto #
+      - VPN_HEALTHCHECK_ENABLED=false #
+      - VPN_NAMESERVERS= #
+      - PRIVOXY_ENABLED=false #
+      - UNBOUND_ENABLED=false #
+      - UNBOUND_NAMESERVERS #
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1 #
+      - net.ipv6.conf.all.disable_ipv6=1 #
+    volumes:
+      - /mnt/tank/configs/sabnzbd:/config
+      - /mnt/tank/media:/media
 ```
 ---
 
@@ -143,13 +163,16 @@ Sonarr/Radarr will assign these per download and sort post‑process.
 Another service (often Hotio/qBittorrent) is already bound to 8080. Change Web UI port in your compose file or TrueNAS form.
 </details>
 
-<details><summary><strong>Downloads stay in “Failed” state</strong></summary>
-- Missing par2 binaries → enable Repair in Settings > Switches  
-- News‑server article age too low → switch to a provider with >3000d retention.
+<details>
+  <summary><strong>Downloads stay in “Failed” state</strong></summary>
+
+  - **Missing par2 binaries** — enable *Repair* in **Settings → Switches**  
+  - **News‑server article age too low** — switch to a provider with **> 3000 days** retention.
+
 </details>
 
 <details><summary><strong>Permission denied writing to /media</strong></summary>
-Ensure host path uses the same PUID/PGID as Sonarr/Radarr (TrueNAS: 568:568) or run `chown -R 568:568 /mnt/tank/media`.
+Ensure host path uses the same PUID/PGID as Sonarr/Radarr (TrueNAS: 568:568) or run chown -R 568:568 /mnt/tank/media
 </details>
 
 ---
