@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-13T11:04:38.507Z
+date: 2025-07-13T11:05:11.984Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -23,7 +23,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 - [<img src="/emby.png"> Emby <span class="badge">NEW</span><br>*Your personal media on any device*](/Emby)
 - [<img src="/jellyfin.png"> Jellyfin<br>*Volunteer-built media solution*](/jellyfin)
 - [<img src="/plex.png"> Plex<br>*Media-streaming server for movies, television shows, and music*](/plex)
-- [<img src="/navidrome.png"> Navidrone<br>*Music streaming server in your web browser*](/plex)
+- [<img src="/navidrome.png"> Navidrone<br>*Music streaming server in your web browser*](/navidrome)
 {.links-list}
 
 # \*arr Suite
