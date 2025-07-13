@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2025-07-07T18:41:11.926Z
+date: 2025-07-13T10:54:38.490Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T18:06:48.269Z
@@ -12,6 +12,7 @@ dateCreated: 2025-07-07T18:06:48.269Z
 - [<img src="/filebrowser-quantum.png"> Filebrowser<br>*Browse files though a GUI*](/filebrowser)
 - [<img src="/homeassistant.png">Home Assistant<br>*Home automation*](/homeassistant)
 - [📎 Kan.bn <span class="badge">NEW</span><br>*Open source Trello*](/kanbn)
+- [<img src="/nextcloud.png">Nextcloud<br>*Google suite replacement*](/nextcloud)
 - [<img src="/palmr.png">Palmr <span class="badge">NEW</span><br>*Secure file sharing and upload*](/palmr)
 - [<img src="/vaultwarden.png">Vaultwarden<br>*Password manager*](/vaultwarden)
 
