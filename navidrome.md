@@ -2,7 +2,7 @@
 title: Navidrome
 description: A guide to deploying the Navidrome music player using docker
 published: true
-date: 2025-07-13T22:44:05.378Z
+date: 2025-07-13T22:44:19.213Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-13T10:43:27.715Z
@@ -12,7 +12,6 @@ dateCreated: 2025-07-13T10:43:27.715Z
 
 **Navidrome** is a lightweight self‑hosted music streaming server (Subsonic compatible). It scans your music library, then lets you stream or download tracks via the web‑UI or mobile apps like DSub/Ultrasonic.
 
----
 
 <details class="quickstart" open>
 <summary><strong>🚀 Quick‑Start Checklist</strong></summary>
@@ -25,7 +24,6 @@ dateCreated: 2025-07-13T10:43:27.715Z
 
 </details>
 
----
 
 # 1 · Deploy Navidrome
 
