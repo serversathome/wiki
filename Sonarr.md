@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-13T20:49:40.614Z
+date: 2025-07-13T20:58:00.816Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -94,7 +94,7 @@ services:
 |  Password               |  ••••••••       |
 |  Category               |  `tv-sonarr`    |
 |  Recent/Older Priority  |  **Last**       |
-|  Remove Completed       |  ✅              |
+|  Remove Completed       |  ✅             |
 
 > **Remote downloader?** Use the **Path Translation** section (bottom of the Download Client page) to map `/downloads` inside qBittorrent to `/media` inside Sonarr.
 
@@ -115,7 +115,7 @@ services:
 |  Field                 |  Recommended                            |
 | ---------------------- | --------------------------------------- |
 |  Rename Episodes       |  `True`                                 |
-|  Episode Formats       |  *TRaSH template strings*               |
+|  Episode Formats       |  [TRaSH template strings](https://trash-guides.info/Sonarr/Sonarr-recommended-naming-scheme/#episode-format)                         |
 |  Series Folder Format  |  `{Series TitleYear} [imdbid-{ImdbId}]` |
 |  Propers & Repacks     |  `Do Not Prefer`                        |
 |  Set Permissions       |  `True` *(chmod 777)*                   |
@@ -194,7 +194,7 @@ Feel free to open a pull‑request or ping us on Discord if you spot an inaccura
 
 ---
 
-# Video Guide
+#  # <img src="/patreon-light.png" class="tab-icon"> 5 · Video Guide 
 
 [![Promo](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
 
