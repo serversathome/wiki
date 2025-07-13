@@ -2,7 +2,7 @@
 title: Navidrome
 description: A guide to deploying the Navidrome music player using docker
 published: true
-date: 2025-07-13T22:15:10.971Z
+date: 2025-07-13T22:16:10.415Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-13T10:43:27.715Z
@@ -112,9 +112,13 @@ services:
 
 ---
 
-## ✏️ Editors & Contributors
+## ✏️ Editors & Contributors
 
-> Guide by **@Hydrology** with input from community testers. PRs welcome!
+> **Special thanks to the following members for reviewing and polishing this guide**
+> - Dayce
+> - Scar13t
+
+Feel free to open a pull‑request or ping us on Discord if you spot an inaccuracy!
 
 ---
 
