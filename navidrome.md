@@ -2,19 +2,17 @@
 title: Navidrome
 description: A guide to deploying the Navidrome music player using docker
 published: true
-date: 
+date: 2025-07-13T10:59:24.179Z
 tags: 
 editor: markdown
-dateCreated: 2025-07-12T09:45:56.812Z
+dateCreated: 2025-07-13T10:43:27.715Z
 ---
 
 # What is Navidrome?
 Navidrome can be used as a standalone server, that allows you to browse and listen to your music collection using a web browser.
 
 
-# 1 · Deploy Navidrome
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+# 1 · <img src="/docker.png" class="tab-icon"> Deploy Navidrome
 
 ```yaml
 services:
@@ -35,14 +33,15 @@ services:
       - /mnt/tank/media/music:/music
 ```
 
-### Permissions & Folder Structure
+## Permissions & Folder Structure
 - **PUID / PGID**: Ensure you use a user/group with the correct permissions for accessing media folders. TrueNAS SCALE defaults to 568:568 for apps.
 - **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/emby
     - **Dockge**: you can pass the dockge ./config/ folder structure if you are using that instead
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
-### Official Navidrome Docs
-Refer to the offical [Navidrome docker installation steps](https://www.navidrome.org/docs/installation/docker/) for further information on the optional environment variables. 
+> Refer to the offical [Navidrome docker installation steps](https://www.navidrome.org/docs/installation/docker/) for further information on the optional environment variables. 
+{.is-success}
+
 
 That's it, there isn't much more to it but to ensure your music files are placed in the appropriate mounted path.
 
