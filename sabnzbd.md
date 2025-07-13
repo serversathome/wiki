@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2025-07-13T22:39:35.520Z
+date: 2025-07-13T22:44:45.965Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T22:21:23.261Z
@@ -29,7 +29,7 @@ dateCreated: 2025-06-30T22:21:23.261Z
 
 # 1 · Deploy SABnzbd
 
-# tabs {.tabset}
+# {.tabset}
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
