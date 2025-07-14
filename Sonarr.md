@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T04:28:17.202Z
+date: 2025-07-14T04:43:16.670Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -26,11 +26,11 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 > Create the following datasets in **TrueNAS** or match these paths in **Docker volumes**.
 
-| Dataset               | Mount Path in App     | Description              |
-|-----------------------|------------------------|---------------------------|
-| `tank/configs/sonarr` | `/config`              | Stores Sonarr's config    |
-| `tank/media`          | `/media`               | Shared media mount        |
-| `tank/media/tv`       | `/media/tv`            | Folder for TV downloads   |
+| Dataset               | Mount Path in App | Description             |
+| --------------------- | ----------------- | ----------------------- |
+| `tank/configs/sonarr` | `/config`         | Stores Sonarr's config  |
+| `tank/media`          | `/media`          | Shared media mount      |
+| `tank/media/tv`       | `/media/tv`       | Folder for TV downloads |
 
 ```text
 /mnt/tank/
@@ -40,8 +40,7 @@ dateCreated: 2024-02-23T13:32:51.765Z
     └── tv/
 ```
 
-> 🔒 Set ownership to `apps(568):apps(568)` the default user/group used by TrueNAS SCALE apps and most containers.  
-> This ensures Sonarr has full access to config and media folders.
+> 🔒 Set ownership to `apps(568):apps(568)` (default user/group for SCALE apps). This ensures Sonarr can read/write configs and media.
 
 ---
 
@@ -60,68 +59,61 @@ services:
       - /mnt/tank/configs/sonarr:/config
       - /mnt/tank/media:/media
     ports:
-      - 8989:8989 # Consider exposing to 127.0.0.1 if using reverse proxy
+      - 8989:8989 # Use 127.0.0.1:8989 for reverse proxy setups
     restart: unless-stopped
 ```
 
-> **Behind a reverse‑proxy?**  
-Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
+> **Behind a reverse‑proxy?** Expose port **8989** on `127.0.0.1` and route through Nginx Proxy Manager or Cloudflare Tunnel.
 
 ---
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
-> **Use the official TrueNAS app with custom host paths.**
+> Use the official TrueNAS Sonarr app with custom host paths.
 
-| Step | Action |
-|------|--------|
-| **1** | **Apps → Discover Apps → Sonarr → Install** |
-| **2** | **Port Number → 8989** |
-| **3** | **Sonarr Config Storage → Host Path** → `/mnt/tank/configs/sonarr` |
-| **4** | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` → `/media` |
-| **5** | Click **Save → Deploy** |
+| Step | Action                                                         |
+| ---- | -------------------------------------------------------------- |
+| 1    | Apps → Discover Apps → Sonarr → Install                        |
+| 2    | Set **Port** to 8989                                           |
+| 3    | Sonarr Config Storage → Host Path → `/mnt/tank/configs/sonarr` |
+| 4    | Additional Storage → Host Path → `/mnt/tank/media` → `/media`  |
+| 5    | Click **Save** → **Deploy**                                    |
 
 ---
 
 ## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
 
-> Configure reverse proxy access for Sonarr via NGINX (subdirectory or subdomain).  
-Prefer a GUI? See [NGINX Proxy Manager](/nginx) or [Cloudflare Tunnel](/CloudflareTunnels).
+> Configure a reverse proxy (subdirectory or subdomain). Prefer a GUI? See [NGINX Proxy Manager](/nginx) or [Cloudflare Tunnel](/CloudflareTunnels).
 
-### NGINX (Subdirectory: `/sonarr`)
+### Subdirectory `/sonarr`
 
 ```nginx
 location ^~ /sonarr {
-    proxy_pass http://127.0.0.1:8989;
-    proxy_set_header Host $host;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Host $host;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    proxy_redirect off;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection $http_connection;
+  proxy_pass http://127.0.0.1:8989;
+  proxy_set_header Host $host;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header X-Forwarded-Proto $scheme;
+  proxy_http_version 1.1;
+  proxy_set_header Upgrade $http_upgrade;
+  proxy_set_header Connection $http_connection;
 }
 ```
 
-### NGINX (Subdomain: `sonarr.yourdomain.tld`)
+### Subdomain `sonarr.yourdomain.tld`
 
 ```nginx
 server {
-  listen      80;
-  listen [::]:80;
-  server_name sonarr.*;
+  listen 80;
+  server_name sonarr.yourdomain.tld;
 
   location / {
-    proxy_set_header   Host $host;
-    proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header   X-Forwarded-Host $host;
-    proxy_set_header   X-Forwarded-Proto $scheme;
-    proxy_set_header   Upgrade $http_upgrade;
-    proxy_set_header   Connection $http_connection;
-    proxy_redirect     off;
-    proxy_http_version 1.1;
     proxy_pass http://127.0.0.1:8989;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $http_connection;
   }
 }
 ```
@@ -130,256 +122,157 @@ server {
 
 # 2 · First‑Run Configuration
 
-> **Set folders, connect a downloader, and add indexers. Done in ~5 minutes.**
+> **Set folders, connect a downloader, and add indexers. Done in \~5 minutes.**
 
-<details><summary><strong>⚙️ Quick‑Start Walkthrough</strong></summary>
+# tabs {.tabset}
 
-### Media Management
+## 📁 Library
 
-**Settings → Media Management**
+<details open><summary><strong>⚙️ Media Management</strong></summary>
 
-- ✅ Enable **Rename Episodes**
-- Recommended: Include quality and release group in episode naming
-- Advanced: Enable **Use Hard Links instead of Copy** *(better performance)*
-- ➕ Add `.srt` to **import extra files**
-
-### Root Folders
-
-**Settings → Media Management → Root Folders**
-
-- Add `/media/tv`  
-- Must be separate from the download folder
-- Ensure Sonarr has read/write access
-
-### Profiles
-
-**Settings → Profiles**
-
-- Create or customize profiles with desired quality sources  
-- Remove unused ones
-
-### Indexers
-
-**Settings → Indexers**
-
-- Add at least one indexer *(Usenet or Torrent)*
-- Most require **API keys** (Usenet) or **Prowlarr** (Torrents)
-
-### Download Clients
-
-**Settings → Download Clients**
-
-- Sonarr communicates via your client’s **API**
-- Set **Category** like `tv-sonarr`
-- Ensure client and Sonarr can both access the downloaded files
-
-> For more info, see: [TRaSH's Guides](https://trash-guides.info/Download-Clients/)
+* ✅ Enable **Rename Episodes**
+* Include quality and release group in naming
+* Enable **Use Hard Links instead of Copy** for performance
+* ➕ Add `.srt` to **Import Extra Files**
 
 </details>
 
-## 2.1 Root Folder  <span class="chip">Mandatory</span>
+<details><summary><strong>📁 Root Folders</strong></summary>
 
-1. **Settings → Media Management → Add Root Folder**
-2. Choose **/media/tv** and ensure the switch is set to **Monitored** (green ✔️).
-
-> *If it’s Unmonitored, Sonarr will ignore new episodes!* {.is-info}
-
-## 2.2 Download Client  <span class="chip">qBittorrent</span>
-
-1. **Settings → Download Client → ➕ → qBittorrent**
-2. Fill the form:
-
-| Field                 | Example        |
-| --------------------- | -------------- |
-| Host                  | `10.251.0.244` |
-| Port                  | `10095`        |
-| Username              | `admin`        |
-| Password              | ••••••••       |
-| Category              | `tv-sonarr`    |
-| Recent/Older Priority | **Last**       |
-| Remove Completed      | ✅             |
-
-> **Remote downloader?** Use the **Path Translation** section (bottom of the Download Client page) to map `/downloads` inside qBittorrent to `/media` inside Sonarr.
-
-## 2.3 Indexers (via Prowlarr)
-
-1. Install **[Prowlarr](/Prowlarr)** and connect it to Sonarr (`Settings → Apps → +`).
-2. Add indexers in Prowlarr (Jackett, Torznab, etc.).
-3. Click **Test → Save** — Sonarr now inherits all indexers automatically.
-
-
-## 2.4 📖 FAQ
-
-<details><summary><strong>Why didn’t Sonarr grab an episode I was expecting?</strong></summary>
-
-Sonarr relies on RSS syncs — not active searching. If an episode appears on your indexer after the last RSS check, it’ll be picked up. If not, you can:
-
-- Run a manual search on the episode
-- Review the search results for errors (red icons)
-- Add more indexers
-</details>
-
-<details><summary><strong>What do Activity status colors mean?</strong></summary>
-
-- **Blue**: Download is in progress
-- **Yellow**: Warning (e.g. missing file)
-- **Red**: Error (e.g. cannot import file)
-
-Hover over the icon for more info.
-</details>
-
-<details><summary><strong>Can I rename all my series folders at once?</strong></summary>
-
-Yes:
-1. Go to **Series → Select → Edit**
-2. Change **Root Folder** to the same one it's already using
-3. Enable **Move Files**
-
-This triggers a folder rename based on your current naming format.
-</details>
-
-<details><summary><strong>Why are files still in my download folder?</strong></summary>
-
-Sonarr hard-links or copies them based on your setup. Files stay in the original folder to allow seeding. When the seeding goal is met, and **Remove Completed** is enabled, Sonarr tells the client to delete them.
-</details>
-
-<details><summary><strong>How do I back up and restore Sonarr?</strong></summary>
-
-**Backup:** `System → Backup → Backup → Download .zip`
-
-**Restore:**
-- Install Sonarr, go to `System → Backup → Restore`
-- Choose the `.zip` backup
-
-Cross-platform restore (Windows → Linux) requires manual path edits.
-</details>
-
-# 3 · Advanced Tweaks *(optional)*
-
-> For users running Recyclarr or tuning quality control.
-
-### Media‑Management Presets
-
-| Field                | Recommended                                                                                                 |
-| -------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Rename Episodes      | `True`                                                                                                      |
-| Episode Formats      | [TRaSH template strings](https://trash-guides.info/Sonarr/Sonarr-recommended-naming-scheme/#episode-format) |
-| Series Folder Format | `{Series TitleYear} [imdbid-{ImdbId}]`                                                                      |
-| Propers & Repacks    | `Do Not Prefer`                                                                                             |
-| Set Permissions      | `True` *(chmod 770)*                                                                                        |
-
-<details><summary><strong>📁 Common Tags / Custom Formats</strong></summary>
-
-| Tag         | Purpose                   |
-| ----------- | ------------------------- |
-| x265 / HEVC | Prefer modern video codec |
-| HDR10 / DV  | Force HDR releases        |
-| Atmos       | Require Dolby Atmos audio |
-| Anime       | Anime-specific profiles   |
+* Add `/media/tv` as a monitored root folder
+* Ensure Sonarr has read/write access
 
 </details>
 
-### Profiles & Quality
+## 🔍 Indexers
 
-- Delete default profiles
-- Keep Recyclarr-generated profiles
-- Set Jellyseerr as default profile where applicable
+<details open><summary><strong>📡 Configure via Prowlarr</strong></summary>
 
-### Metadata & Backups
-
-- Enable **Kodi/Emby** metadata
-- Backup folder: `/media`, Interval: **1 day**, Retention: **7**
-
-<details><summary><strong>🔄 Restoring a Backup</strong></summary>
-
-| Step  | Action                                                                                           |
-| ----- | ------------------------------------------------------------------------------------------------ |
-| **1** | Stop the Sonarr container / chart                                                                |
-| **2** | Copy the latest `*.zip` from `/media/Backups` to your config folder (`/mnt/tank/configs/sonarr`) |
-| **3** | In Sonarr: **System → Backup → Restore** → choose the file you just copied                       |
-| **4** | Restart Sonarr when prompted and verify your settings/series are back                            |
+1. Install **[Prowlarr](/Prowlarr)**
+2. In Sonarr: **Settings → Apps → +** and connect Prowlarr
+3. Add indexers (Jackett, Torznab, etc.) within Prowlarr
+4. **Test → Save** — Sonarr will import these indexers automatically
 
 </details>
 
-<details><summary><strong>🧬 Running Multiple Instances</strong></summary>
+## 📥 Download Clients
 
-> Want to manage **both 1080p and 4K** libraries separately? Sonarr supports running multiple instances.
+<details open><summary><strong>qBittorrent Setup</strong></summary>
 
-**Requirements:**
-- Each instance needs its own `/config` folder
-- Different **external port** per instance (e.g. `8989`, `7879`, etc.)
-- Unique **root folders**, **download categories**, and **app names**
+| Field            | Example        |
+| ---------------- | -------------- |
+| Host             | `10.251.0.244` |
+| Port             | `10095`        |
+| Username         | `admin`        |
+| Password         | ••••••••       |
+| Category         | `tv-sonarr`    |
+| Remove Completed | ✅              |
 
-**Docker:**
-Just spin up a second container with a different name, port, and volumes:
-```yaml
-  sonarr-4k:
-    image: lscr.io/linuxserver/sonarr:latest
-    container_name: sonarr-4k
-    environment:
-      - PUID=568
-      - PGID=568
-      - TZ=America/New_York
-    volumes:
-      - /mnt/tank/configs/sonarr4k:/config
-      - /mnt/tank/media-4k:/media
-    ports:
-      - 7879:8989 # Change external port to avoid conflict
-    restart: unless-stopped
-```
+> Remote downloader? Use **Path Translation** to map `/downloads` inside qBittorrent to `/media` inside Sonarr.
 
-> You can even use one Sonarr to sync to the other via **Lists → Import → Sonarr**.
+</details>
+
+## 🎯 Profiles
+
+<details open><summary><strong>Quality Profiles</strong></summary>
+
+* Create or customize profiles with desired sources
+* Remove defaults you don't use
+* Set **Cutoff** to stop upgrades when target quality is reached
+
+</details>
+
+## 🛠️ Automation
+
+<details open><summary><strong>Recyclarr Setup (Optional)</strong></summary>
+
+* Sync TRaSH naming templates, profiles, and quality settings
+* Useful for multiple libraries (4K vs 1080p)
+* Place Recyclarr config in Sonarr's `/config` or a separate folder
 
 </details>
 
 ---
 
-# 4 · Troubleshooting
+# 3 · FAQ
 
-> **Start with the Health tab** — Sonarr flags missing root paths, failed downloads, and indexer issues. {.is-info}
+<details><summary><strong>Why didn’t Sonarr grab an episode?</strong></summary>
 
-<details><summary><strong>Sonarr cannot see media files</strong></summary>
+Check RSS sync timing, run a manual search, and ensure indexers are active.
+
+</details>
+
+<details><summary><strong>What do status colors mean?</strong></summary>
+
+* **Blue**: Download in progress
+* **Yellow**: Warning (e.g. missing file)
+* **Red**: Error
+
+</details>
+
+<details><summary><strong>How to back up and restore?</strong></summary>
+
+* **Backup**: System → Backup → Download .zip
+* **Restore**: System → Backup → Restore → Upload .zip
+
+</details>
+
+---
+
+# 4 · Advanced Tweaks *(optional)*
+
+> For power users tuning profiles, metadata, or running multiple instances.
+
+<details><summary><strong>🧩 Media Management Presets</strong></summary>
+
+| Field           | Recommendation                         |
+| --------------- | -------------------------------------- |
+| Rename Episodes | True                                   |
+| Episode Format  | `{Series TitleYear} [imdbid-{ImdbId}]` |
+| Use Hard Links  | True                                   |
+
+</details>
+
+<details><summary><strong>🧬 Multiple Instances</strong></summary>
+
+* Different `/config` folders and external ports
+* Unique root folders, download categories, and container names
+
+</details>
+
+---
+
+# 5 · Troubleshooting
+
+> **Start with the Health tab** to spot missing paths or failed downloads.
+
+<details><summary><strong>Permission Denied</strong></summary>
 
 ```bash
-ls -lah /mnt/tank/media/tv
+chmod -R 770 /mnt/tank/media/tv
 chown -R 568:568 /mnt/tank/media/tv
 ```
 
 </details>
 
-<details><summary><strong>Permission denied</strong></summary>
+<details><summary><strong>Downloads not importing</strong></summary>
 
-```bash
-chmod -R 770 /mnt/tank/media/tv
-```
-
-</details>
-
-<details><summary><strong>Downloads stay in qBittorrent</strong></summary>
-
-* Verify **Download Client Path Mapping** matches container paths.
-* Confirm Sonarr can access the completed-downloads directory.
+Verify path translation and permissions between Sonarr and your client.
 
 </details>
 
 ---
 
-## ✏️ Editors & Contributors
-
-Thank you to everyone who helped improve this guide:
+## ✏️ Editors & Contributors
 
 * **Scar13t** — Page Layout & Design
 
-> Want to help? Open a pull request or ping us on Discord!
+> Want to help? Open a PR or join us on Discord!
 
 ---
 
-# 📀 5 · Video Guide
+# 📀 6 · Video Guide
 
-[![Promo](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
+[![Watch on Patreon](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
 
-[⇗ Back to top](#what-is-sonarr){.back-top}
-
----
-
-· Last updated: 07-13-2025
+[⇗ Back to top](#what-is-sonarr){.back-top}
