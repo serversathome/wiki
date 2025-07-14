@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T14:42:24.176Z
+date: 2025-07-14T14:44:56.421Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -46,8 +46,6 @@ Start by setting up your datasets, then choose your install method.
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
-<details class="code-block"><summary>Show Compose example</summary>
-
 ```yaml
 services:
   sonarr:
@@ -65,15 +63,9 @@ services:
     restart: unless-stopped
 ```
 
-</details>
-
-> **Behind a reverse-proxy?** Expose port **8989** on `127.0.0.1` and route through Nginx Proxy Manager or Cloudflare Tunnel.
-
----
-
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
-> Use the official TrueNAS Sonarr app with custom host paths.
+Use the official TrueNAS Sonarr app with custom host paths.
 
 | Step | Action                                                        |
 | ---- | ------------------------------------------------------------- |
@@ -83,7 +75,6 @@ services:
 | 4    | Additional Storage → Host Path → `/mnt/tank/media` → `/media` |
 | 5    | Click **Save** → **Deploy**                                   |
 
----
 
 ## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
 
@@ -134,7 +125,6 @@ server {
 
 </details>
 
----
 
 # 2 · First-Run Configuration
 
@@ -167,8 +157,8 @@ server {
 <div class="table-scroll">
 
 | Client      | Host         |  Port | Category  | Remove Completed |
-| ----------- | ------------ | ----: | --------- | ---------------: |
-| qBittorrent | 10.251.0.244 | 10095 | tv-sonarr |                ✅ |
+| ----------- | ------------ | ---- | --------- | --------------- |
+| qBittorrent | 192.168.1.25 | 8080 | tv-sonarr | ✅ |
 
 </div>
 
