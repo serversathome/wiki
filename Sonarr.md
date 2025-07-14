@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T05:06:48.887Z
+date: 2025-07-14T05:11:13.422Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -63,7 +63,7 @@ services:
     restart: unless-stopped
 ```
 
-> **Behind a reverse‑proxy?** Expose port **8989** on `127.0.0.1` and route through Nginx Proxy Manager or Cloudflare Tunnel.
+> **Behind a reverse-proxy?** Expose port **8989** on `127.0.0.1` and route through Nginx Proxy Manager or Cloudflare Tunnel.
 
 ---
 
@@ -81,7 +81,7 @@ services:
 
 ---
 
-## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
+## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
 
 > Configure a reverse proxy (subdirectory or subdomain). Prefer a GUI? See [NGINX Proxy Manager](/nginx) or [Cloudflare Tunnel](/CloudflareTunnels).
 
@@ -120,7 +120,7 @@ server {
 
 ---
 
-# 2 · First‑Run Configuration
+# 2 · First-Run Configuration
 
 > **Set folders, connect a downloader, and add indexers. Done in \~5 minutes.**
 
@@ -225,7 +225,9 @@ server {
 
 * **Imports, Deletes, Upgrades, Grabs, Renames, Failures** – view recent operations.
 
-**Queue**
+</details>
+
+<details><summary><strong>📥 Queue</strong></summary>
 
 * Shows active downloads from your client's category. Use **Show Unknown** to display unidentified releases.
 * Usenet clients look 60 items deep—keep queue shallow to avoid missed imports.
@@ -235,7 +237,7 @@ server {
 
 | Icon | Action                     |
 | ---- | -------------------------- |
-| X    | Remove item from queue     |
+| ❌    | Remove item from queue     |
 | 🗑️  | Remove release from client |
 | 🚫   | Blocklist release          |
 | 👤   | Manual import              |
@@ -243,16 +245,26 @@ server {
 
 </details>
 
-<details open><summary><strong>📜 History & Blocklist</strong></summary>
+## 🚨 Wanted
 
-* **History** – Lists completed tasks (imports, failures, grabs, deletes, upgrades). Filter and expand for details.
-* **Blocklist** – Prevents retries for failed items (manual or automatic). Info icon shows reason; X icon removes from blocklist.
+<details open><summary><strong>📂 Missing Episodes</strong></summary>
 
-**Common Reasons:**
+* View episodes marked missing from disk.
+* **Search Selected**: lookup specific episodes via indexers.
+* **Unmonitor Selected**: stop monitoring selected episodes.
+* **Search All**: triggers searches for all missing episodes (uncancelable).
+* **Manual Import**: import files into existing series (Choose Move Automatically or Interactive Import).
+* Directories with >100 files won’t be scanned recursively.
 
-* Manually marked as failed
-* Removed with "Add to blocklist"
-* Download failure reported by client
+</details>
+
+<details open><summary><strong>📋 Cutoff Unmet</strong></summary>
+
+* Shows monitored episodes below your quality cutoff.
+* **Search Selected**: search for upgrades.
+* **Unmonitor Selected**: exclude from future upgrades.
+* **Search All**: bulk upgrade search—use with care.
+* **Filter**: narrow results by show, season, or status.
 
 </details>
 
