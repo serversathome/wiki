@@ -2,7 +2,7 @@
 title: Auto-Limit
 description: A guide to deploying Auto-Limit via docker
 published: true
-date: 2025-07-08T17:06:29.949Z
+date: 2025-07-14T16:44:12.612Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-08T15:10:19.276Z
@@ -41,3 +41,7 @@ services:
   c. Add the **Server Address**
   d. Enter your **Username** and **Password**
   e. Set the **Download/Upload During Playback** speeds to the `KB/s` your network can handle
+  
+# Video
+
+[![](/2025-07-14-fix-buffering-forever-auto-limi-promo-card.png)](https://www.patreon.com/posts/fix-buffering-133668383)
