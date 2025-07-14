@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T01:21:31.542Z
+date: 2025-07-14T01:35:50.839Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -16,9 +16,15 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 ---
 
-## 🗂️ Required Folder Setup
+# 1 · Deploy Sonarr
 
-Before installing, create the following datasets in **TrueNAS** or ensure matching paths in your **Docker volumes**:
+> **Start by setting up your datasets, then choose your install method.**
+
+# tabs {.tabset}
+
+## <img src="/folder-icon.png" class="tab-icon"> Folder Setup
+
+> Create the following datasets in **TrueNAS** or match these paths in **Docker volumes**.
 
 | Dataset               | Mount Path in App     | Description              |
 |-----------------------|------------------------|---------------------------|
@@ -38,26 +44,6 @@ Before installing, create the following datasets in **TrueNAS** or ensure matchi
 > This ensures Sonarr has full access to config and media folders.
 
 ---
-
-<details class="quickstart" open>
-<summary><strong>🚀 Quick‑Start Checklist</strong> <span title="Use this to get Sonarr running quickly on Docker or TrueNAS">ℹ️</span></summary>
-
-1. **Deploy container** (Docker Compose *or* TrueNAS chart)
-2. **Create** `/media/tv` root folder in Sonarr (make sure it’s **Monitored** → ✅)
-3. **Add qBittorrent** as Download Client
-4. **Connect Indexers via Prowlarr**
-5. *(Optional)* Import Recyclarr profiles for advanced filtering
-
-</details>
-
----
-
-
-# 1 · Deploy Sonarr
-
-> **Choose your install method and match your folder paths carefully.**
-
-# tabs {.tabset}
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
@@ -100,6 +86,7 @@ services:
 | **5** | Click **Save → Deploy** |
 
 > 📌 Make sure your datasets are created beforehand, and permissions are aligned with the app’s PUID/PGID (typically 568:568 on TrueNAS CE).
+
 
 ---
 
