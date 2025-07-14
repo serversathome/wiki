@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T14:45:20.666Z
+date: 2025-07-14T14:47:32.611Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -57,7 +57,7 @@ services:
       - /mnt/tank/configs/sonarr:/config
       - /mnt/tank/media:/media
     ports:
-      - 127.0.0.1:8989:8989
+      - 8989:8989
     restart: unless-stopped
 ```
 
