@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T05:35:19.333Z
+date: 2025-07-14T05:39:40.406Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -126,7 +126,7 @@ server {
 
 # 2 · First-Run Configuration
 
-> **Quickly set up your library, download client, and indexers.**
+> ⚙️ **Quickly set up your library, download client, and indexers.**
 
 # tabs {.tabset}
 
@@ -170,7 +170,7 @@ server {
 
 # 3 · System & Maintenance
 
-> **System health, tasks, backups & settings in one place.**
+> 🛠️ **System health, tasks, backups & settings in one place.**
 
 # tabs {.tabset}
 
@@ -209,13 +209,16 @@ Click warnings for remediation or logs.
 
 Toggle **Show Advanced** and click **Save** when done.
 
+
+---
+
 ---
 
 # 4 · Advanced Tweaks *(Optional)*
 
-> For users running Recyclarr or tuning quality control.
+> 🧪 For users running Recyclarr or tuning quality control.
 
-### Media Management Presets
+### 🛠️ Media Management Presets
 
 | Field                | Recommended                                                                                                 |
 | -------------------- | ----------------------------------------------------------------------------------------------------------- |
@@ -225,7 +228,7 @@ Toggle **Show Advanced** and click **Save** when done.
 | Propers & Repacks    | Do Not Prefer                                                                                               |
 | Set Permissions      | True *(chmod 770)*                                                                                          |
 
-<details><summary><strong>Common Tags / Custom Formats</strong></summary>
+<details><summary><strong>🏷️ Common Tags / Custom Formats</strong></summary>
 
 | Tag         | Purpose                   |
 | ----------- | ------------------------- |
@@ -236,18 +239,18 @@ Toggle **Show Advanced** and click **Save** when done.
 
 </details>
 
-### Profiles & Quality
+### 📐 Profiles & Quality
 
 * Delete default profiles
 * Keep Recyclarr-generated profiles
 * Set Jellyseerr as default where needed
 
-### Metadata & Backups
+### 💾 Metadata & Backups
 
 * Enable **Kodi/Emby** metadata
 * Backup folder: `/media`, Interval: **1 day**, Retention: **7**
 
-<details><summary><strong>Restoring a Backup</strong></summary>
+<details><summary><strong>📤 Restoring a Backup</strong></summary>
 
 | Step | Action                                                                 |
 | ---- | ---------------------------------------------------------------------- |
@@ -258,7 +261,7 @@ Toggle **Show Advanced** and click **Save** when done.
 
 </details>
 
-<details><summary><strong>Running Multiple Instances</strong></summary>
+<details><summary><strong>📚 Running Multiple Instances</strong></summary>
 
 > Manage **1080p & 4K** libraries separately.
 
@@ -286,17 +289,18 @@ services:
       - 7879:8989
     restart: unless-stopped
 ```
-  
-> You can sync instances via **Lists → Import → Sonarr**.
+
+> 🔄 You can sync instances via **Lists → Import → Sonarr**.
 
 </details>
+
 ---
 
 # 5 · Troubleshooting
 
-> **Start with the Health tab** — Sonarr flags missing paths, failed downloads, and indexer issues. {.is-info}
+> 🧯 **Start with the Health tab** — Sonarr flags missing paths, failed downloads, and indexer issues. {.is-info}
 
-<details><summary><strong>Sonarr cannot see media files</strong></summary>
+<details><summary><strong>📂 Sonarr cannot see media files</strong></summary>
 
 ```bash
 ls -lah /mnt/tank/media/tv
@@ -305,7 +309,7 @@ chown -R 568:568 /mnt/tank/media/tv
 
 </details>
 
-<details><summary><strong>Permission denied</strong></summary>
+<details><summary><strong>🔐 Permission denied</strong></summary>
 
 ```bash
 chmod -R 770 /mnt/tank/media/tv
@@ -313,7 +317,7 @@ chmod -R 770 /mnt/tank/media/tv
 
 </details>
 
-<details><summary><strong>Downloads stay in qBittorrent</strong></summary>
+<details><summary><strong>📦 Downloads stay in qBittorrent</strong></summary>
 
 * Verify **Download Client Path Mapping** matches container paths.
 * Confirm Sonarr can access completed-downloads directory.
@@ -326,10 +330,9 @@ chmod -R 770 /mnt/tank/media/tv
 
 * **Scar13t** — Page Layout & Design
 
-> Want to help? Open a PR or ping us on Discord!
+> 🤝 Want to help? Open a PR or ping us on Discord!
 
 ---
-
 
 # 6 · Video Guide
 
