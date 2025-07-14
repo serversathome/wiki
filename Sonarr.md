@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T04:14:58.384Z
+date: 2025-07-14T04:22:54.335Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -12,7 +12,10 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 **Sonarr** is a TV-series PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, grabs, sorts, and renames them, and upgrades quality when better releases appear.
 
-> 📌 Works great with **qBittorrent**, **Prowlarr**, and **Jellyfin/Plex** for fully automated TV downloads.
+> 📌 Works great with:
+> - **qBittorrent** for torrent downloads
+> - **Prowlarr** for indexer management
+> - **Jellyfin/Plex** for library integration
 
 ---
 
@@ -60,7 +63,7 @@ services:
       - /mnt/tank/configs/sonarr:/config
       - /mnt/tank/media:/media
     ports:
-      - 8989:8989
+      - 8989:8989 # Consider exposing to 127.0.0.1 if using reverse proxy
     restart: unless-stopped
 ```
 
@@ -236,12 +239,14 @@ server {
 
 ### Profiles & Quality
 
-Delete default profiles → keep Recyclarr-generated profiles → set Jellyseerr default.
+- Delete default profiles
+- Keep Recyclarr-generated profiles
+- Set Jellyseerr as default profile where applicable
 
 ### Metadata & Backups
 
-Enable **Kodi/Emby** metadata.  
-Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
+- Enable **Kodi/Emby** metadata
+- Backup folder: `/media`, Interval: **1 day**, Retention: **7**
 
 <details><summary><strong>🔄 Restoring a Backup</strong></summary>
 
@@ -277,7 +282,7 @@ Just spin up a second container with a different name, port, and volumes:
       - /mnt/tank/configs/sonarr4k:/config
       - /mnt/tank/media-4k:/media
     ports:
-      - 7879:8989
+      - 7879:8989 # Change external port to avoid conflict
     restart: unless-stopped
 ```
 
@@ -331,7 +336,7 @@ Thank you to everyone who helped improve this guide:
 
 [![Promo](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
 
-[⇧ Back to top](#what-is-sonarr){.back-top}
+[⇗ Back to top](#what-is-sonarr){.back-top}
 
 ---
 
