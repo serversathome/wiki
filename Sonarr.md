@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T01:19:40.190Z
+date: 2025-07-14T01:21:31.542Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -10,21 +10,21 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 # ![Sonarr](/sonarr.png){class="tab-icon"} What is Sonarr?
 
-**Sonarr** is a TV-series PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, automatically grabs, sorts, and renames them, and upgrades the quality when better releases appear.
+**Sonarr** is a TV-series PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, grabs, sorts, and renames them, and upgrades quality when better releases appear.
 
-> 📌 *It works great alongside qBittorrent, Prowlarr, and Jellyfin or Plex for a fully automated setup.*
+> 📌 Works great with **qBittorrent**, **Prowlarr**, and **Jellyfin/Plex** for fully automated TV downloads.
 
 ---
 
-## 🗂️ Prepare Datasets & Folder Structure
+## 🗂️ Required Folder Setup
 
-> Create these datasets in TrueNAS before deploying Sonarr.
+Before installing, create the following datasets in **TrueNAS** or ensure matching paths in your **Docker volumes**:
 
-| Dataset               | Mount Path in App     | Purpose                  |
+| Dataset               | Mount Path in App     | Description              |
 |-----------------------|------------------------|---------------------------|
-| `tank/configs/sonarr` | `/config`              | Stores Sonarr settings   |
-| `tank/media`          | `/media`               | Shared media folder      |
-| `tank/media/tv`       | `/media/tv`            | TV series destination    |
+| `tank/configs/sonarr` | `/config`              | Stores Sonarr's config    |
+| `tank/media`          | `/media`               | Shared media mount        |
+| `tank/media/tv`       | `/media/tv`            | Folder for TV downloads   |
 
 ```text
 /mnt/tank/
@@ -34,8 +34,8 @@ dateCreated: 2024-02-23T13:32:51.765Z
     └── tv/
 ```
 
-> Set ownership to `apps(568):apps(568)` to match the default user/group used by TrueNAS apps and many Docker containers.
-> This ensures Sonarr has permission to read/write your config and media folders.
+> 🔒 Set ownership to `apps(568):apps(568)` — the default user/group used by TrueNAS SCALE apps and most containers.  
+> This ensures Sonarr has full access to config and media folders.
 
 ---
 
@@ -43,14 +43,15 @@ dateCreated: 2024-02-23T13:32:51.765Z
 <summary><strong>🚀 Quick‑Start Checklist</strong> <span title="Use this to get Sonarr running quickly on Docker or TrueNAS">ℹ️</span></summary>
 
 1. **Deploy container** (Docker Compose *or* TrueNAS chart)
-2. **Create** `/media/tv` **root folder** in Sonarr (make sure it’s **Monitored** → ✅)
+2. **Create** `/media/tv` root folder in Sonarr (make sure it’s **Monitored** → ✅)
 3. **Add qBittorrent** as Download Client
-4. **Add Indexers via Prowlarr** so Sonarr can actually find releases
-5. *(Optional)* Import Recyclarr profiles & advanced cleanup
+4. **Connect Indexers via Prowlarr**
+5. *(Optional)* Import Recyclarr profiles for advanced filtering
 
 </details>
 
 ---
+
 
 # 1 · Deploy Sonarr
 
