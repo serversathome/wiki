@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T04:43:16.670Z
+date: 2025-07-14T04:51:03.712Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -233,10 +233,35 @@ Check RSS sync timing, run a manual search, and ensure indexers are active.
 
 </details>
 
-<details><summary><strong>🧬 Multiple Instances</strong></summary>
+<details><summary><strong>🧬 Running Multiple Instances</strong></summary>
 
-* Different `/config` folders and external ports
-* Unique root folders, download categories, and container names
+> Want to manage **both 1080p and 4K** libraries separately? Sonarr supports running multiple instances.
+
+**Requirements:**
+
+* Each instance needs its own /config folder
+* Different **external port** per instance (e.g. 8989, 7879, etc.)
+* Unique **root folders**, **download categories**, and **app names**
+
+**Docker:**
+
+```yaml
+  sonarr-4k:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr-4k
+    environment:
+      - PUID=568
+      - PGID=568
+      - TZ=America/New_York
+    volumes:
+      - /mnt/tank/configs/sonarr4k:/config
+      - /mnt/tank/media-4k:/media
+    ports:
+      - 7879:8989
+    restart: unless-stopped
+```
+
+> You can even use one Sonarr to sync to the other via **Lists → Import → Sonarr**.
 
 </details>
 
