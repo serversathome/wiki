@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T03:46:59.648Z
+date: 2025-07-14T03:54:29.214Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -83,10 +83,10 @@ Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy 
 
 ---
 
-## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
+## <img src="/nginx.png" class="tab-icon"> NGINX Reverse Proxy
 
 > Configure reverse proxy access for Sonarr via NGINX (subdirectory or subdomain).  
-Prefer a GUI? See [NGINX Proxy Manager](/nginx) or [Cloudflare Tunnel](/CloudflareTunnels).
+Prefer a GUI? See [NGINX Proxy Manager](/NGINXProxyManager) or [Cloudflare Tunnel](/CloudflareTunnel).
 
 ### NGINX (Subdirectory: `/sonarr`)
 
@@ -206,6 +206,37 @@ Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
 | **2** | Copy the latest `*.zip` from `/media/Backups` to your config folder (`/mnt/tank/configs/sonarr`) |
 | **3** | In Sonarr: **System → Backup → Restore** → choose the file you just copied                       |
 | **4** | Restart Sonarr when prompted and verify your settings/series are back                            |
+
+</details>
+
+<details><summary><strong>🧬 Running Multiple Instances</strong></summary>
+
+> Want to manage **both 1080p and 4K** libraries separately? Sonarr supports running multiple instances.
+
+**Requirements:**
+- Each instance needs its own `/config` folder
+- Different **external port** per instance (e.g. `8989`, `7879`, etc.)
+- Unique **root folders**, **download categories**, and **app names**
+
+**Docker:**
+Just spin up a second container with a different name, port, and volumes:
+```yaml
+  sonarr-4k:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr-4k
+    environment:
+      - PUID=568
+      - PGID=568
+      - TZ=America/New_York
+    volumes:
+      - /mnt/tank/configs/sonarr4k:/config
+      - /mnt/tank/media-4k:/media
+    ports:
+      - 7879:8989
+    restart: unless-stopped
+```
+
+> You can even use one Sonarr to sync to the other via **Lists → Import → Sonarr**.
 
 </details>
 
