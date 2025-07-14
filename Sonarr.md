@@ -2,15 +2,17 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T13:55:15.559Z
+date: 2025-07-14T14:11:36.347Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
 ---
 
-# ![Sonarr](/sonarr.png){class="tab-icon"} What is Sonarr?
+# ![Sonarr](/sonarr.png){.tab-icon} What is Sonarr?
 
 **Sonarr** is a TV-series PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, grabs, sorts, and renames them, and upgrades quality when better releases appear.
+
+---
 
 # 1 · Deploy Sonarr
 
@@ -22,11 +24,15 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 > Create the following datasets in **TrueNAS** or match these paths in **Docker volumes**. {.is-info}
 
+<div class="table-scroll">
+
 | Dataset               | Mount Path in App | Description             |
 | --------------------- | ----------------- | ----------------------- |
 | `tank/configs/sonarr` | `/config`         | Stores Sonarr's config  |
 | `tank/media`          | `/media`          | Shared media mount      |
 | `tank/media/tv`       | `/media/tv`       | Folder for TV downloads |
+
+</div>
 
 ```text
 /mnt/tank/
@@ -36,9 +42,13 @@ dateCreated: 2024-02-23T13:32:51.765Z
     └── tv/
 ```
 
-> 🔒 Set ownership to `apps(568):apps(568)` (default user/group for SCALE apps). This ensures Sonarr can read/write configs and media.{.is-success} 
+> 🔒 Set ownership to `apps(568):apps(568)` (default user/group for SCALE apps). This ensures Sonarr can read/write configs and media. {.is-success}
+
+---
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
+
+<details class="code-block"><summary>Show Compose example</summary>
 
 ```yaml
 services:
@@ -57,7 +67,11 @@ services:
     restart: unless-stopped
 ```
 
+</details>
+
 > **Behind a reverse-proxy?** Expose port **8989** on `127.0.0.1` and route through Nginx Proxy Manager or Cloudflare Tunnel.
+
+---
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
@@ -65,17 +79,21 @@ services:
 
 | Step | Action                                                        |
 | ---- | ------------------------------------------------------------- |
-| 1    | Apps → Discover Apps → Sonarr → Install                       |
-| 2    | Set **Port** to 8989                                          |
+| 1    | Apps → Discover Apps → **Sonarr** → **Install**               |
+| 2    | Set **Port** to **8989**                                      |
 | 3    | Sonarr Config → Host Path → `/mnt/tank/configs/sonarr`        |
 | 4    | Additional Storage → Host Path → `/mnt/tank/media` → `/media` |
 | 5    | Click **Save** → **Deploy**                                   |
+
+---
 
 ## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
 
 > Configure a reverse proxy (subdirectory or subdomain). Prefer a GUI? See [NGINX Proxy Manager](/nginx) or [Cloudflare Tunnel](/CloudflareTunnels).
 
 <details><summary>Subdirectory <code>/sonarr</code></summary>
+
+<details class="code-block"><summary>Nginx location block</summary>
 
 ```nginx
 location ^~ /sonarr {
@@ -91,7 +109,11 @@ location ^~ /sonarr {
 
 </details>
 
+</details>
+
 <details><summary>Subdomain <code>sonarr.yourdomain.tld</code></summary>
+
+<details class="code-block"><summary>Nginx server block</summary>
 
 ```nginx
 server {
@@ -112,6 +134,10 @@ server {
 
 </details>
 
+</details>
+
+---
+
 # 2 · First-Run Configuration
 
 > ⚙️ **Quickly set up your library, download client, and indexers.** {.is-success}
@@ -121,41 +147,51 @@ server {
 ## 📁 Library Setup
 
 <details open><summary><strong>Media Management</strong></summary>
-  
-- Enable **Rename Episodes** & **Use Hard Links**
-- Add `.srt` to **Import Extra Files**
+
+* Enable **Rename Episodes** & **Use Hard Links**
+* Add `.srt` to **Import Extra Files**
 
 </details>
 
 <details><summary><strong>Root Folders</strong></summary>
-  
-- Add `/media/tv` as a monitored root
-- Ensure Sonarr user has read/write access
+
+* Add `/media/tv` as a monitored root
+* Ensure Sonarr user has read/write access
 
 </details>
+
+---
 
 ## 📥 Clients & Indexers
 
 <details open><summary><strong>qBittorrent & Prowlarr</strong></summary>
 
-| Client      | Host         | Port  | Category  | Remove Completed |
-| ----------- | ------------ | ----- | --------- | ---------------- |
-| qBittorrent | 10.251.0.244 | 10095 | tv-sonarr | ✅                |
+<div class="table-scroll">
+
+| Client      | Host         |  Port | Category  | Remove Completed |
+| ----------- | ------------ | ----: | --------- | ---------------: |
+| qBittorrent | 10.251.0.244 | 10095 | tv-sonarr |                ✅ |
+
+</div>
 
 1. Map `/downloads` → `/media` via **Path Translation**.
-2. Sonarr → Settings → Apps → **+** → Prowlarr → Test → Save.
+2. Sonarr → *Settings → Apps* → **+** → *Prowlarr* → **Test** → **Save**.
 
 </details>
+
+---
 
 ## 🎯 Quality Profiles
 
 <details open><summary><strong>Profiles</strong></summary>
-  
-- Create or customize quality profiles
-- Remove unused defaults
-- Set a **Cutoff** for desired quality
+
+* Create or customize quality profiles
+* Remove unused defaults
+* Set a **Cutoff** for desired quality
 
 </details>
+
+---
 
 # 3 · System & Maintenance
 
@@ -165,12 +201,14 @@ server {
 
 ## ⚙️ Status & Health
 
-* **System**: .NET/Mono, SQLite ≥3.9, MediaInfo, clock sync, permissions
+* **System**: .NET/Mono, SQLite ≥ 3.9, MediaInfo, clock sync, permissions
 * **Clients**: reachable, CDD enabled, path mapping
 * **Indexers**: RSS & Search enabled, avoid Jackett `/all`
 * **Roots & Lists**: paths exist & accessible
 
-Click warnings for remediation or logs.
+*Click warnings for remediation or logs.*
+
+---
 
 ## 📊 Tasks & Queue
 
@@ -178,12 +216,18 @@ Click warnings for remediation or logs.
 * **Queue**: active downloads & history
 * Icons: Retry, Remove, Blocklist, Manual Import
 
+---
+
 ## 💾 Backup & Updates
 
-* **Backup**: Manual snapshot, restore, delete (System → Backups)
-* **Updates**: view/install versions (System → Updates)
+* **Backup**: manual snapshot, restore, delete (`System → Backups`)
+* **Updates**: view/install versions (`System → Updates`)
+
+---
 
 ## ⚙️ Settings Overview
+
+<div class="table-scroll">
 
 | Section             | Purpose                        |
 | ------------------- | ------------------------------ |
@@ -196,14 +240,19 @@ Click warnings for remediation or logs.
 | Analytics & Updates | Usage stats, update channels   |
 | Backups             | Automated settings backups     |
 
-Toggle **Show Advanced** and click **Save** when done.
+</div>
 
+*Toggle **Show Advanced** and click **Save** when done.*
+
+---
 
 # 4 · Advanced Tweaks *(Optional)*
 
 > 🧪 For users running Recyclarr or tuning quality control.
 
 ### 🛠️ Media Management Presets
+
+<div class="table-scroll">
 
 | Field                | Recommended                                                                                                 |
 | -------------------- | ----------------------------------------------------------------------------------------------------------- |
@@ -212,6 +261,8 @@ Toggle **Show Advanced** and click **Save** when done.
 | Series Folder Format | {Series TitleYear} \[imdbid-{ImdbId}]                                                                       |
 | Propers & Repacks    | Do Not Prefer                                                                                               |
 | Set Permissions      | True *(chmod 770)*                                                                                          |
+
+</div>
 
 <details><summary><strong>🏷️ Common Tags / Custom Formats</strong></summary>
 
@@ -230,6 +281,8 @@ Toggle **Show Advanced** and click **Save** when done.
 * Keep Recyclarr-generated profiles
 * Set Jellyseerr as default where needed
 
+---
+
 ### 💾 Metadata & Backups
 
 * Enable **Kodi/Emby** metadata
@@ -241,7 +294,7 @@ Toggle **Show Advanced** and click **Save** when done.
 | ---- | ---------------------------------------------------------------------- |
 | 1    | Stop Sonarr container                                                  |
 | 2    | Copy latest `.zip` from `/media/Backups` to `/mnt/tank/configs/sonarr` |
-| 3    | Sonarr: **System → Backup → Restore** → Choose file                    |
+| 3    | Sonarr: *System → Backup → Restore* → Choose file                      |
 | 4    | Restart Sonarr and verify settings/series                              |
 
 </details>
@@ -256,7 +309,7 @@ Toggle **Show Advanced** and click **Save** when done.
 * Unique external ports (e.g. 8989, 7879)
 * Distinct root folders, categories, and names
 
-**Docker Example:**
+<details class="code-block"><summary>Docker example</summary>
 
 ```yaml
 services:
@@ -274,6 +327,8 @@ services:
       - 7879:8989
     restart: unless-stopped
 ```
+
+</details>
 
 > 🔄 You can sync instances via **Lists → Import → Sonarr**. {.is-info}
 
@@ -311,7 +366,7 @@ chmod -R 770 /mnt/tank/media/tv
 
 ---
 
-## ✏️ Editors & Contributors
+## ✏️ Editors & Contributors
 
 * **Scar13t** — Page Layout & Design
 
@@ -319,6 +374,6 @@ chmod -R 770 /mnt/tank/media/tv
 
 ---
 
-# <img src="/patreon-light.png" class="tab-icon"> 6 · Video Guide 
+# <img src="/patreon-light.png" class="tab-icon"> 6 · Video Guide
 
 [![Watch on Patreon](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
