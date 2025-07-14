@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T03:55:18.005Z
+date: 2025-07-14T04:00:18.747Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -83,10 +83,10 @@ Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy 
 
 ---
 
-## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
+## <img src="/nginx.png" class="tab-icon"> NGINX Reverse Proxy
 
 > Configure reverse proxy access for Sonarr via NGINX (subdirectory or subdomain).  
-Prefer a GUI? See [NGINX Proxy Manager](/nginx) or [Cloudflare Tunnel](/CloudflareTunnels).
+Prefer a GUI? See [NGINX Proxy Manager](/NGINXProxyManager) or [Cloudflare Tunnel](/CloudflareTunnel).
 
 ### NGINX (Subdirectory: `/sonarr`)
 
@@ -131,6 +131,51 @@ server {
 # 2 · First‑Run Configuration
 
 > **Set folders, connect a downloader, and add indexers. Done in ~5 minutes.**
+
+<details><summary><strong>⚙️ Quick‑Start Walkthrough</strong></summary>
+
+### Media Management
+
+**Settings → Media Management**
+
+- ✅ Enable **Rename Episodes**
+- Recommended: Include quality and release group in episode naming
+- Advanced: Enable **Use Hard Links instead of Copy** *(better performance)*
+- ➕ Add `.srt` to **import extra files**
+
+### Root Folders
+
+**Settings → Media Management → Root Folders**
+
+- Add `/media/tv`  
+- Must be separate from the download folder
+- Ensure Sonarr has read/write access
+
+### Profiles
+
+**Settings → Profiles**
+
+- Create or customize profiles with desired quality sources  
+- Remove unused ones
+
+### Indexers
+
+**Settings → Indexers**
+
+- Add at least one indexer *(Usenet or Torrent)*
+- Most require **API keys** (Usenet) or **Prowlarr** (Torrents)
+
+### Download Clients
+
+**Settings → Download Clients**
+
+- Sonarr communicates via your client’s **API**
+- Set **Category** like `tv-sonarr`
+- Ensure client and Sonarr can both access the downloaded files
+
+> For more info, see: [TRaSH's Guides](https://trash-guides.info/Download-Clients/)
+
+</details>
 
 ## 2.1 Root Folder  <span class="chip">Mandatory</span>
 
