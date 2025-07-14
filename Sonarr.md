@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T05:26:13.743Z
+date: 2025-07-14T05:35:19.333Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -107,6 +107,7 @@ location ^~ /sonarr {
 server {
   listen 80;
   server_name sonarr.yourdomain.tld;
+
   location / {
     proxy_pass http://127.0.0.1:8989;
     proxy_set_header Host $host;
@@ -129,7 +130,7 @@ server {
 
 # tabs {.tabset}
 
-## 📁 Library
+## 📁 Library Setup
 
 <details open><summary><strong>Media Management</strong></summary>
 - Enable **Rename Episodes** & **Use Hard Links**
@@ -143,7 +144,7 @@ server {
 
 </details>
 
-## 📥 Download Clients & Indexers
+## 📥 Clients & Indexers
 
 <details open><summary><strong>qBittorrent & Prowlarr</strong></summary>
 
@@ -151,7 +152,7 @@ server {
 | ----------- | ------------ | ----- | --------- | ---------------- |
 | qBittorrent | 10.251.0.244 | 10095 | tv-sonarr | ✅                |
 
-1. Use **Path Translation** to map `/downloads` → `/media` in Sonarr.
+1. Map `/downloads` → `/media` via **Path Translation**.
 2. Sonarr → Settings → Apps → **+** → Prowlarr → Test → Save.
 
 </details>
@@ -169,16 +170,18 @@ server {
 
 # 3 · System & Maintenance
 
+> **System health, tasks, backups & settings in one place.**
+
 # tabs {.tabset}
 
 ## ⚙️ Status & Health
 
 * **System**: .NET/Mono, SQLite ≥3.9, MediaInfo, clock sync, permissions
-* **Clients**: configured, reachable, CDD enabled, path mapping
+* **Clients**: reachable, CDD enabled, path mapping
 * **Indexers**: RSS & Search enabled, avoid Jackett `/all`
 * **Roots & Lists**: paths exist & accessible
 
-Click any warning for remediation tips or logs.
+Click warnings for remediation or logs.
 
 ## 📊 Tasks & Queue
 
@@ -189,7 +192,7 @@ Click any warning for remediation tips or logs.
 ## 💾 Backup & Updates
 
 * **Backup**: Manual snapshot, restore, delete (System → Backups)
-* **Updates**: view/install new versions (System → Updates)
+* **Updates**: view/install versions (System → Updates)
 
 ## ⚙️ Settings Overview
 
@@ -204,11 +207,131 @@ Click any warning for remediation tips or logs.
 | Analytics & Updates | Usage stats, update channels   |
 | Backups             | Automated settings backups     |
 
-Toggle **Show Advanced** in Settings and click **Save** when done.
+Toggle **Show Advanced** and click **Save** when done.
 
 ---
 
-# 4 · Video Guide
+# 4 · Advanced Tweaks *(Optional)*
+
+> For users running Recyclarr or tuning quality control.
+
+### Media Management Presets
+
+| Field                | Recommended                                                                                                 |
+| -------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Rename Episodes      | True                                                                                                        |
+| Episode Formats      | [TRaSH template strings](https://trash-guides.info/Sonarr/Sonarr-recommended-naming-scheme/#episode-format) |
+| Series Folder Format | {Series TitleYear} \[imdbid-{ImdbId}]                                                                       |
+| Propers & Repacks    | Do Not Prefer                                                                                               |
+| Set Permissions      | True *(chmod 770)*                                                                                          |
+
+<details><summary><strong>Common Tags / Custom Formats</strong></summary>
+
+| Tag         | Purpose                   |
+| ----------- | ------------------------- |
+| x265 / HEVC | Prefer modern video codec |
+| HDR10 / DV  | Force HDR releases        |
+| Atmos       | Require Dolby Atmos audio |
+| Anime       | Anime-specific profiles   |
+
+</details>
+
+### Profiles & Quality
+
+* Delete default profiles
+* Keep Recyclarr-generated profiles
+* Set Jellyseerr as default where needed
+
+### Metadata & Backups
+
+* Enable **Kodi/Emby** metadata
+* Backup folder: `/media`, Interval: **1 day**, Retention: **7**
+
+<details><summary><strong>Restoring a Backup</strong></summary>
+
+| Step | Action                                                                 |
+| ---- | ---------------------------------------------------------------------- |
+| 1    | Stop Sonarr container                                                  |
+| 2    | Copy latest `.zip` from `/media/Backups` to `/mnt/tank/configs/sonarr` |
+| 3    | Sonarr: **System → Backup → Restore** → Choose file                    |
+| 4    | Restart Sonarr and verify settings/series                              |
+
+</details>
+
+<details><summary><strong>Running Multiple Instances</strong></summary>
+
+> Manage **1080p & 4K** libraries separately.
+
+**Requirements:**
+
+* Separate `/config` per instance
+* Unique external ports (e.g. 8989, 7879)
+* Distinct root folders, categories, and names
+
+**Docker Example:**
+
+```yaml
+services:
+  sonarr-4k:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr-4k
+    environment:
+      - PUID=568
+      - PGID=568
+      - TZ=America/New_York
+    volumes:
+      - /mnt/tank/configs/sonarr4k:/config
+      - /mnt/tank/media-4k:/media
+    ports:
+      - 7879:8989
+    restart: unless-stopped
+```
+  
+> You can sync instances via **Lists → Import → Sonarr**.
+
+</details>
+---
+
+# 5 · Troubleshooting
+
+> **Start with the Health tab** — Sonarr flags missing paths, failed downloads, and indexer issues. {.is-info}
+
+<details><summary><strong>Sonarr cannot see media files</strong></summary>
+
+```bash
+ls -lah /mnt/tank/media/tv
+chown -R 568:568 /mnt/tank/media/tv
+```
+
+</details>
+
+<details><summary><strong>Permission denied</strong></summary>
+
+```bash
+chmod -R 770 /mnt/tank/media/tv
+```
+
+</details>
+
+<details><summary><strong>Downloads stay in qBittorrent</strong></summary>
+
+* Verify **Download Client Path Mapping** matches container paths.
+* Confirm Sonarr can access completed-downloads directory.
+
+</details>
+
+---
+
+## ✏️ Editors & Contributors
+
+* **Scar13t** — Page Layout & Design
+
+> Want to help? Open a PR or ping us on Discord!
+
+---
+
+
+# 6 · Video Guide
 
 [![Watch on Patreon](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
 
