@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T04:09:29.525Z
+date: 2025-07-14T04:11:52.053Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -14,13 +14,14 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 > 📌 Works great with **qBittorrent**, **Prowlarr**, and **Jellyfin/Plex** for fully automated TV downloads.
 
-<details><summary><strong>🧠 How does Sonarr find new episodes?</strong></summary>
+<details><summary><strong>📘 How Sonarr Finds Episodes</strong></summary>
 
-Sonarr does **not** actively search the internet for every missing episode. Instead, it monitors your indexers’ **RSS feeds** for newly posted releases and compares them against your monitored series.
+Sonarr uses RSS feeds to spot newly uploaded releases and compares them to your monitored shows and quality profiles. If a match is found, it grabs the file automatically.
 
-- For **old episodes**, go to the show’s page and click the **Search** icon.
-- New uploads are picked up automatically if they meet your profile.
-- If Sonarr was offline for a while, it can “page back” to catch missed uploads.
+- **RSS interval:** 15–60 minutes
+- **Manual search needed for past episodes**
+- **Search triggers:** Missing episodes, manual search, API calls, adding a show with search enabled
+- **Auto-search:** Only for recently aired episodes or those added in the last 14 days
 
 </details>
 
@@ -53,7 +54,13 @@ Sonarr does **not** actively search the internet for every missing episode. Inst
 > 🔒 Set ownership to `apps(568):apps(568)` the default user/group used by TrueNAS SCALE apps and most containers.  
 > This ensures Sonarr has full access to config and media folders.
 
-> 💡 **Tip**: Sonarr uses **hardlinks** to save space, but this only works if your **download and media folders share the same filesystem**.
+<details><summary><strong>💡 Hardlinks vs. Copies</strong></summary>
+
+Sonarr uses **hardlinks** when importing media, avoiding duplicate files and saving space. This only works if the source (e.g. completed downloads) and destination (e.g. `/media/tv`) are on the **same dataset** or filesystem.
+
+If hardlinking fails, Sonarr will fallback to copying.
+
+</details>
 
 ---
 
@@ -138,4 +145,4 @@ server {
 }
 ```
 
----
+...
