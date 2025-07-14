@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T01:35:50.839Z
+date: 2025-07-14T01:41:46.634Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -22,7 +22,7 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 # tabs {.tabset}
 
-## <img src="/folder-icon.png" class="tab-icon"> Folder Setup
+## 📂 Folder Setup
 
 > Create the following datasets in **TrueNAS** or match these paths in **Docker volumes**.
 
