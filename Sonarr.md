@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T04:51:03.712Z
+date: 2025-07-14T05:02:16.255Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -125,6 +125,43 @@ server {
 > **Set folders, connect a downloader, and add indexers. Done in \~5 minutes.**
 
 # tabs {.tabset}
+
+## 📺 Series
+
+<details open><summary><strong>🔍 Series Overview</strong></summary>
+
+* **Library view**: See every show you’re tracking; click one for details or bulk actions.
+* **Search bar**: Instantly find a specific series in large libraries.
+* **Filters**: Narrow by release date, episode count, disk size, tags, or custom fields.
+
+**Add New Series**
+
+1. Click **Add New**
+2. Fill in:
+
+   * **Root Folder** (where files live)
+   * **Monitor** (All, Future, Missing, Existing, First Season, Latest Season, None)
+   * **Quality Profile** (e.g. 1080p)
+   * **Series Type** (standard vs. anime search rules)
+   * **Season Folder** (on/off)
+   * **Tags** (for release/delay/indexer profiles or organization)
+3. Hit **Start Search** to grab missing or cutoff-unmet episodes.
+
+**Library Import**
+
+* Pull in an existing, well-organized media folder.
+* Not for download or unstructured folders—must be one series per folder, correctly named.
+* Ensure the Sonarr user has R/W on that path, and that downloads and media live in separate folders.
+
+**Mass Editor**
+
+* Select multiple series → bulk-edit monitor settings, profiles, tags, etc.
+
+**Season Pass**
+
+* See at a glance how many seasons you have and which episodes are still missing.
+
+</details>
 
 ## 📁 Library
 
