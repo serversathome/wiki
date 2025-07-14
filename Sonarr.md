@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T03:42:31.638Z
+date: 2025-07-14T03:45:40.696Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -64,6 +64,11 @@ services:
     restart: unless-stopped
 ```
 
+> **Behind a reverse‑proxy?**  
+Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
+
+---
+
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
 > **Use the official TrueNAS app with custom host paths.**
@@ -78,10 +83,10 @@ services:
 
 ---
 
-## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
+## <img src="/nginx.png" class="tab-icon"> NGINX Reverse Proxy
 
-> **Behind a reverse‑proxy?**  
-Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
+> Configure reverse proxy access for Sonarr via NGINX (subdirectory or subdomain).  
+Prefer a GUI? See [NGINX Proxy Manager](/NGINXProxyManager) or [Cloudflare Tunnel](/CloudflareTunnel).
 
 ### NGINX (Subdirectory: `/sonarr`)
 
@@ -147,7 +152,7 @@ server {
 | Password              | ••••••••       |
 | Category              | `tv-sonarr`    |
 | Recent/Older Priority | **Last**       |
-| Remove Completed      | ✅              |
+| Remove Completed      | ✅             |
 
 > **Remote downloader?** Use the **Path Translation** section (bottom of the Download Client page) to map `/downloads` inside qBittorrent to `/media` inside Sonarr.
 
@@ -171,7 +176,7 @@ server {
 | Episode Formats      | [TRaSH template strings](https://trash-guides.info/Sonarr/Sonarr-recommended-naming-scheme/#episode-format) |
 | Series Folder Format | `{Series TitleYear} [imdbid-{ImdbId}]`                                                                      |
 | Propers & Repacks    | `Do Not Prefer`                                                                                             |
-| Set Permissions      | `True` *(chmod 777)*                                                                                        |
+| Set Permissions      | `True` *(chmod 770)*                                                                                        |
 
 <details><summary><strong>📁 Common Tags / Custom Formats</strong></summary>
 
