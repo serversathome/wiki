@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T04:22:54.335Z
+date: 2025-07-14T04:28:17.202Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -12,10 +12,7 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 **Sonarr** is a TV-series PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, grabs, sorts, and renames them, and upgrades quality when better releases appear.
 
-> 📌 Works great with:
-> - **qBittorrent** for torrent downloads
-> - **Prowlarr** for indexer management
-> - **Jellyfin/Plex** for library integration
+> 📌 Works great with **qBittorrent**, **Prowlarr**, and **Jellyfin / Plex** for fully automated TV downloads.
 
 ---
 
@@ -210,7 +207,52 @@ server {
 2. Add indexers in Prowlarr (Jackett, Torznab, etc.).
 3. Click **Test → Save** — Sonarr now inherits all indexers automatically.
 
----
+
+## 2.4 📖 FAQ
+
+<details><summary><strong>Why didn’t Sonarr grab an episode I was expecting?</strong></summary>
+
+Sonarr relies on RSS syncs — not active searching. If an episode appears on your indexer after the last RSS check, it’ll be picked up. If not, you can:
+
+- Run a manual search on the episode
+- Review the search results for errors (red icons)
+- Add more indexers
+</details>
+
+<details><summary><strong>What do Activity status colors mean?</strong></summary>
+
+- **Blue**: Download is in progress
+- **Yellow**: Warning (e.g. missing file)
+- **Red**: Error (e.g. cannot import file)
+
+Hover over the icon for more info.
+</details>
+
+<details><summary><strong>Can I rename all my series folders at once?</strong></summary>
+
+Yes:
+1. Go to **Series → Select → Edit**
+2. Change **Root Folder** to the same one it's already using
+3. Enable **Move Files**
+
+This triggers a folder rename based on your current naming format.
+</details>
+
+<details><summary><strong>Why are files still in my download folder?</strong></summary>
+
+Sonarr hard-links or copies them based on your setup. Files stay in the original folder to allow seeding. When the seeding goal is met, and **Remove Completed** is enabled, Sonarr tells the client to delete them.
+</details>
+
+<details><summary><strong>How do I back up and restore Sonarr?</strong></summary>
+
+**Backup:** `System → Backup → Backup → Download .zip`
+
+**Restore:**
+- Install Sonarr, go to `System → Backup → Restore`
+- Choose the `.zip` backup
+
+Cross-platform restore (Windows → Linux) requires manual path edits.
+</details>
 
 # 3 · Advanced Tweaks *(optional)*
 
