@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T05:25:21.142Z
+date: 2025-07-14T05:26:13.743Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -167,9 +167,7 @@ server {
 
 ---
 
-# 3 · Miscellaneous Info
-
-> **Additional sections tucked away for clarity.**
+# 3 · System & Maintenance
 
 # tabs {.tabset}
 
