@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T03:35:59.371Z
+date: 2025-07-14T03:42:31.638Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -64,11 +64,6 @@ services:
     restart: unless-stopped
 ```
 
-> **Behind a reverse‑proxy?**  
-Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
-
----
-
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
 > **Use the official TrueNAS app with custom host paths.**
@@ -84,6 +79,9 @@ Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy 
 ---
 
 ## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
+
+> **Behind a reverse‑proxy?**  
+Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
 
 ### NGINX (Subdirectory: `/sonarr`)
 
