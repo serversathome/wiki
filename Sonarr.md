@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T05:13:35.890Z
+date: 2025-07-14T05:15:08.722Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -401,8 +401,6 @@ Verify path translation and permissions between Sonarr and your client.
 
 # 7 · Settings Overview
 
-> A high-level look at Sonarr’s settings. For full details, see the [Settings Guide](/settings).
-
 1. **Access & Navigation**
 
    * Click **Settings** in the left menu.
@@ -422,7 +420,5 @@ Verify path translation and permissions between Sonarr and your client.
    * **Metadata & UI**: NFO generation, calendar, date formats, style preferences.
    * **Analytics & Updates**: Anonymous usage stats, update channels.
    * **Backups**: Automated settings backups with retention policies.
-
-> For advanced token lists, naming examples, and in-depth options, refer to the [Community Settings Reference](/settings#detailed).
 
 [⇗ Back to top](#what-is-sonarr){.back-top}
