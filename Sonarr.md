@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T14:55:42.250Z
+date: 2025-07-14T14:57:05.392Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -160,8 +160,6 @@ server {
 * Set a **Cutoff** for desired quality
 
 
-
-
 # 3 · System & Maintenance
 
 🛠️ **System health, tasks, backups & settings in one place.**
@@ -177,7 +175,7 @@ server {
 
 *Click warnings for remediation or logs.*
 
----
+
 
 ## 📊 Tasks & Queue
 
@@ -185,7 +183,7 @@ server {
 * **Queue**: active downloads & history
 * Icons: Retry, Remove, Blocklist, Manual Import
 
----
+
 
 ## 💾 Backup & Updates
 
@@ -213,11 +211,9 @@ server {
 
 *Toggle **Show Advanced** and click **Save** when done.*
 
----
-
 # 4 · Advanced Tweaks *(Optional)*
 
-> 🧪 For users running Recyclarr or tuning quality control.
+🧪 For users running Recyclarr or tuning quality control.
 
 ### 🛠️ Media Management Presets
 
@@ -250,7 +246,7 @@ server {
 * Keep Recyclarr-generated profiles
 * Set Jellyseerr as default where needed
 
----
+
 
 ### 💾 Metadata & Backups
 
