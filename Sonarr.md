@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T05:13:19.059Z
+date: 2025-07-14T05:13:35.890Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -399,7 +399,7 @@ Verify path translation and permissions between Sonarr and your client.
 
 [![Watch on Patreon](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
 
-### 7 · Settings Overview
+# 7 · Settings Overview
 
 > A high-level look at Sonarr’s settings. For full details, see the [Settings Guide](/settings).
 
