@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T14:54:16.915Z
+date: 2025-07-14T14:55:42.250Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -132,19 +132,13 @@ server {
 
 ## 📁 Library Setup
 
-<details open><summary><strong>Media Management</strong></summary>
-
 * Enable **Rename Episodes** & **Use Hard Links**
 * Add `.srt` to **Import Extra Files**
 
-</details>
-
-<details><summary><strong>Root Folders</strong></summary>
-
+**Root Folders**
 * Add `/media/tv` as a monitored root
 * Ensure Sonarr user has read/write access
 
-</details>
 
 
 ## 📥 Clients & Indexers
