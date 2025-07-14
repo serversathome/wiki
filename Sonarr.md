@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T05:04:46.329Z
+date: 2025-07-14T05:06:48.887Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -81,7 +81,7 @@ services:
 
 ---
 
-## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
+## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
 
 > Configure a reverse proxy (subdirectory or subdomain). Prefer a GUI? See [NGINX Proxy Manager](/nginx) or [Cloudflare Tunnel](/CloudflareTunnels).
 
@@ -219,6 +219,43 @@ server {
 
 </details>
 
+## 📊 Activity & Queue
+
+<details open><summary><strong>🛠️ Activity</strong></summary>
+
+* **Imports, Deletes, Upgrades, Grabs, Renames, Failures** – view recent operations.
+
+**Queue**
+
+* Shows active downloads from your client's category. Use **Show Unknown** to display unidentified releases.
+* Usenet clients look 60 items deep—keep queue shallow to avoid missed imports.
+* Enable **Remove Completed Downloads** in client settings.
+
+**Action Icons**
+
+| Icon | Action                     |
+| ---- | -------------------------- |
+| X    | Remove item from queue     |
+| 🗑️  | Remove release from client |
+| 🚫   | Blocklist release          |
+| 👤   | Manual import              |
+| 🎯   | Send to download client    |
+
+</details>
+
+<details open><summary><strong>📜 History & Blocklist</strong></summary>
+
+* **History** – Lists completed tasks (imports, failures, grabs, deletes, upgrades). Filter and expand for details.
+* **Blocklist** – Prevents retries for failed items (manual or automatic). Info icon shows reason; X icon removes from blocklist.
+
+**Common Reasons:**
+
+* Manually marked as failed
+* Removed with "Add to blocklist"
+* Download failure reported by client
+
+</details>
+
 ## 📆 Calendar & iCal Feed
 
 <details open><summary><strong>🗓️ Calendar Overview</strong></summary>
@@ -289,7 +326,7 @@ Check RSS sync timing, run a manual search, and ensure indexers are active.
 
 **Requirements:**
 
-* Each instance needs its own /config folder
+* Each instance needs its own `/config` folder
 * Different **external port** per instance (e.g. 8989, 7879, etc.)
 * Unique **root folders**, **download categories**, and **app names**
 
