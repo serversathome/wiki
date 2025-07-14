@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T13:19:47.864Z
+date: 2025-07-14T13:55:15.559Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -36,7 +36,7 @@ dateCreated: 2024-02-23T13:32:51.765Z
     └── tv/
 ```
 
-> 🔒 Set ownership to `apps(568):apps(568)` (default user/group for SCALE apps). This ensures Sonarr can read/write configs and media. 
+> 🔒 Set ownership to `apps(568):apps(568)` (default user/group for SCALE apps). This ensures Sonarr can read/write configs and media.{.is-success} 
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
@@ -114,7 +114,7 @@ server {
 
 # 2 · First-Run Configuration
 
-> ⚙️ **Quickly set up your library, download client, and indexers.**
+> ⚙️ **Quickly set up your library, download client, and indexers.** {.is-success}
 
 # tabs {.tabset}
 
