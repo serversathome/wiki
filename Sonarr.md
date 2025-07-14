@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T03:15:29.317Z
+date: 2025-07-14T03:23:04.758Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -64,8 +64,69 @@ services:
     restart: unless-stopped
 ```
 
-> **Behind a reverse‑proxy?** 
+> **Behind a reverse‑proxy?**  
 Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
+
+<details><summary><strong>🔁 NGINX / Apache Reverse Proxy</strong></summary>
+
+### NGINX (Subdirectory: `/sonarr`)
+
+```nginx
+location ^~ /sonarr {
+    proxy_pass http://127.0.0.1:8989;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_redirect off;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $http_connection;
+}
+```
+
+### NGINX (Subdomain: `sonarr.yourdomain.tld`)
+
+```nginx
+server {
+  listen      80;
+  listen [::]:80;
+  server_name sonarr.*;
+
+  location / {
+    proxy_set_header   Host $host;
+    proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header   X-Forwarded-Host $host;
+    proxy_set_header   X-Forwarded-Proto $scheme;
+    proxy_set_header   Upgrade $http_upgrade;
+    proxy_set_header   Connection $http_connection;
+    proxy_redirect     off;
+    proxy_http_version 1.1;
+    proxy_pass http://127.0.0.1:8989;
+  }
+}
+```
+
+### Apache (Subdirectory: `/sonarr`)
+
+```apache
+<Location /sonarr>
+  ProxyPreserveHost on
+  ProxyPass http://127.0.0.1:8989/sonarr connectiontimeout=5 timeout=300
+  ProxyPassReverse http://127.0.0.1:8989/sonarr
+</Location>
+```
+
+### Apache (Root VirtualHost)
+
+```apache
+ProxyPass / http://127.0.0.1:8989/sonarr/
+ProxyPassReverse / http://127.0.0.1:8989/sonarr/
+```
+
+> ⚠️ Exclude `/sonarr/api/` from auth middleware if securing via Apache.
+
+</details>
 
 ---
 
@@ -80,9 +141,6 @@ Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy 
 | **3** | **Sonarr Config Storage → Host Path** → `/mnt/tank/configs/sonarr` |
 | **4** | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` → `/media` |
 | **5** | Click **Save → Deploy** |
-
-
-
 
 ---
 
