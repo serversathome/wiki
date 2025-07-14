@@ -2,7 +2,7 @@
 title: Maintainerr
 description: A guide to deploying Maintainer via docker
 published: true
-date: 2025-07-14T12:07:00.413Z
+date: 2025-07-14T12:09:05.945Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-14T11:50:00.697Z
@@ -33,3 +33,10 @@ services:
           - 6246:6246
         restart: unless-stopped
 ```
+
+# 2 · Maintainerr Configuration
+
+> Read the [official documentation](https://docs.maintainerr.info/latest/#__consent)!
+{.is-success}
+
+
