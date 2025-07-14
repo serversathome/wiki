@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T05:02:16.255Z
+date: 2025-07-14T05:04:46.329Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -44,7 +44,7 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 ---
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
@@ -67,7 +67,7 @@ services:
 
 ---
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
+## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
 > Use the official TrueNAS Sonarr app with custom host paths.
 
@@ -81,7 +81,7 @@ services:
 
 ---
 
-## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
+## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
 
 > Configure a reverse proxy (subdirectory or subdomain). Prefer a GUI? See [NGINX Proxy Manager](/nginx) or [Cloudflare Tunnel](/CloudflareTunnels).
 
@@ -120,7 +120,7 @@ server {
 
 ---
 
-# 2 · First‑Run Configuration
+# 2 · First‑Run Configuration
 
 > **Set folders, connect a downloader, and add indexers. Done in \~5 minutes.**
 
@@ -219,6 +219,19 @@ server {
 
 </details>
 
+## 📆 Calendar & iCal Feed
+
+<details open><summary><strong>🗓️ Calendar Overview</strong></summary>
+
+* **Recently Aired**: Episodes from the past 7 days
+* **Upcoming**: Episodes airing in the next 28 days
+
+**iCal Feed**
+
+* Subscribe to get the past 7 days and next 28 days in your calendar app
+
+</details>
+
 ## 🛠️ Automation
 
 <details open><summary><strong>Recyclarr Setup (Optional)</strong></summary>
@@ -256,7 +269,7 @@ Check RSS sync timing, run a manual search, and ensure indexers are active.
 
 ---
 
-# 4 · Advanced Tweaks *(optional)*
+# 4 · Advanced Tweaks *(optional)*
 
 > For power users tuning profiles, metadata, or running multiple instances.
 
