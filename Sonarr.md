@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T01:41:46.634Z
+date: 2025-07-14T02:09:48.584Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -40,7 +40,7 @@ dateCreated: 2024-02-23T13:32:51.765Z
     └── tv/
 ```
 
-> 🔒 Set ownership to `apps(568):apps(568)` — the default user/group used by TrueNAS SCALE apps and most containers.  
+> 🔒 Set ownership to `apps(568):apps(568)` the default user/group used by TrueNAS SCALE apps and most containers.  
 > This ensures Sonarr has full access to config and media folders.
 
 ---
@@ -64,12 +64,8 @@ services:
     restart: unless-stopped
 ```
 
-### Permissions & Folder Structure {.is-success}
-
-* **PUID / PGID** – <span title="Ensures file ownership inside the container matches your host user">UID/GID of media owner</span> (TrueNAS SCALE default **568:568**).
-* **Volumes** – configs at `/mnt/tank/configs/sonarr`, media at `/mnt/tank/media`.
-
-> **Behind a reverse‑proxy?** Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
+> **Behind a reverse‑proxy?** 
+Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
 
 ---
 
@@ -85,7 +81,7 @@ services:
 | **4** | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` → `/media` |
 | **5** | Click **Save → Deploy** |
 
-> 📌 Make sure your datasets are created beforehand, and permissions are aligned with the app’s PUID/PGID (typically 568:568 on TrueNAS CE).
+
 
 
 ---
