@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T14:48:15.798Z
+date: 2025-07-14T14:54:16.915Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -146,42 +146,31 @@ server {
 
 </details>
 
----
 
 ## 📥 Clients & Indexers
 
-<details open><summary><strong>qBittorrent & Prowlarr</strong></summary>
+**qBittorrent & Prowlarr**
 
-<div class="table-scroll">
 
 | Client      | Host         |  Port | Category  | Remove Completed |
 | ----------- | ------------ | ---- | --------- | --------------- |
 | qBittorrent | 192.168.1.25 | 8080 | tv-sonarr | ✅ |
 
-</div>
-
-1. Map `/downloads` → `/media` via **Path Translation**.
-2. Sonarr → *Settings → Apps* → **+** → *Prowlarr* → **Test** → **Save**.
-
-</details>
-
----
 
 ## 🎯 Quality Profiles
 
-<details open><summary><strong>Profiles</strong></summary>
+**Profiles**
 
 * Create or customize quality profiles
 * Remove unused defaults
 * Set a **Cutoff** for desired quality
 
-</details>
 
----
+
 
 # 3 · System & Maintenance
 
-> 🛠️ **System health, tasks, backups & settings in one place.**
+🛠️ **System health, tasks, backups & settings in one place.**
 
 # tabs {.tabset}
 
