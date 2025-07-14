@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T03:23:04.758Z
+date: 2025-07-14T03:24:38.158Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -67,7 +67,7 @@ services:
 > **Behind a reverse‑proxy?**  
 Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
 
-<details><summary><strong>🔁 NGINX / Apache Reverse Proxy</strong></summary>
+<details><summary><strong>🔁 NGINX Reverse Proxy</strong></summary>
 
 ### NGINX (Subdirectory: `/sonarr`)
 
@@ -106,25 +106,6 @@ server {
   }
 }
 ```
-
-### Apache (Subdirectory: `/sonarr`)
-
-```apache
-<Location /sonarr>
-  ProxyPreserveHost on
-  ProxyPass http://127.0.0.1:8989/sonarr connectiontimeout=5 timeout=300
-  ProxyPassReverse http://127.0.0.1:8989/sonarr
-</Location>
-```
-
-### Apache (Root VirtualHost)
-
-```apache
-ProxyPass / http://127.0.0.1:8989/sonarr/
-ProxyPassReverse / http://127.0.0.1:8989/sonarr/
-```
-
-> ⚠️ Exclude `/sonarr/api/` from auth middleware if securing via Apache.
 
 </details>
 
