@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T15:05:45.359Z
+date: 2025-07-14T15:07:18.025Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -229,16 +229,6 @@ server {
 
 </div>
 
-<details><summary><strong>🏷️ Common Tags / Custom Formats</strong></summary>
-
-| Tag         | Purpose                   |
-| ----------- | ------------------------- |
-| x265 / HEVC | Prefer modern video codec |
-| HDR10 / DV  | Force HDR releases        |
-| Atmos       | Require Dolby Atmos audio |
-| Anime       | Anime-specific profiles   |
-
-</details>
 
 ### 📐 Profiles & Quality
 
