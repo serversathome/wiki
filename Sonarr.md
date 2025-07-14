@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T01:05:16.112Z
+date: 2025-07-14T01:13:05.878Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -13,6 +13,28 @@ dateCreated: 2024-02-23T13:32:51.765Z
 **Sonarr** is a TV-series PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, automatically grabs, sorts, and renames them, and upgrades the quality when better releases appear.
 
 > 📌 *It works great alongside qBittorrent, Prowlarr, and Jellyfin or Plex for a fully automated setup.*
+
+---
+
+## 🗂️ Prepare Datasets & Folder Structure
+
+> Create these datasets in TrueNAS before deploying Sonarr.
+
+| Dataset               | Mount Path in App     | Purpose                  |
+|-----------------------|------------------------|---------------------------|
+| `tank/configs/sonarr` | `/config`              | Stores Sonarr settings   |
+| `tank/media`          | `/media`               | Shared media folder      |
+| `tank/media/tv`       | `/media/tv` (nested)   | TV series destination    |
+
+```text
+/mnt/tank/
+├── configs/
+│   └── sonarr/
+└── media/
+    └── tv/
+```
+
+> 🔒 Set ownership to `568:568` for compatibility with TrueNAS Apps or Docker containers.
 
 ---
 
@@ -59,14 +81,6 @@ services:
 * **PUID / PGID** – <span title="Ensures file ownership inside the container matches your host user">UID/GID of media owner</span> (TrueNAS SCALE default **568:568**).
 * **Volumes** – configs at `/mnt/tank/configs/sonarr`, media at `/mnt/tank/media`.
 
-```text
-/mnt/tank/
-├── configs/
-│   └── sonarr/
-└── media/
-    └── tv/
-```
-
 > **Behind a reverse‑proxy?** Expose port **8989** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
 
 ---
@@ -75,21 +89,21 @@ services:
 
 > **Use the official TrueNAS app with custom host paths.**
 
-```markdown
-|  Step  | Action                                                                         |
-| ------ | ------------------------------------------------------------------------------- |
-| **1**  | **Apps → Discover Apps → Sonarr → Install**                                     |
-| **2**  | **Port Number → 8989**                                                          |
-| **3**  | **Sonarr Config Storage → Host Path** → `/mnt/tank/configs/sonarr`              |
-| **4**  | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` ➜ `/media` |
-| **5**  | Click **Save → Deploy**                                                         |
-```
+| Step | Action |
+|------|--------|
+| **1** | **Apps → Discover Apps → Sonarr → Install** |
+| **2** | **Port Number → 8989** |
+| **3** | **Sonarr Config Storage → Host Path** → `/mnt/tank/configs/sonarr` |
+| **4** | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` → `/media` |
+| **5** | Click **Save → Deploy** |
+
+> 📌 Make sure your datasets are created beforehand, and permissions are aligned with the app’s PUID/PGID (typically 568:568 on TrueNAS CE).
 
 ---
 
 # 2 · First‑Run Configuration
 
-> **Set folders, connect a downloader, and add indexers. Done in \~5 minutes.**
+> **Set folders, connect a downloader, and add indexers. Done in ~5 minutes.**
 
 ## 2.1 Root Folder  <span class="chip">Mandatory</span>
 
@@ -154,7 +168,7 @@ Delete default profiles → keep Recyclarr-generated profiles → set Jellyseerr
 
 ### Metadata & Backups
 
-Enable **Kodi/Emby** metadata.
+Enable **Kodi/Emby** metadata.  
 Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
 
 <details><summary><strong>🔄 Restoring a Backup</strong></summary>
