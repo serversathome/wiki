@@ -2,7 +2,7 @@
 title: Maintainerr
 description: A guide to deploying Maintainer via docker
 published: true
-date: 2025-07-14T12:09:05.945Z
+date: 2025-07-14T14:40:57.389Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-14T11:50:00.697Z
@@ -18,7 +18,7 @@ Maintainerr makes managing your media easy.
 
 If you answered yes to any of those questions.. You NEED Maintainerr. It's a one-stop-shop for handling those outlying shows and movies that take up precious space on your server.
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Radarr
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Maintainerr
 ```yaml
 services:
     maintainerr:
