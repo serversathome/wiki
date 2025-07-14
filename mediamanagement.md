@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-14T11:51:33.705Z
+date: 2025-07-14T13:23:36.242Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -45,7 +45,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 ## Torrent Management
 - [<img src="/cleanuparr.png"> Cleanuparr<br>*Automated cleanup of unwanted / blocked media files*](/cleanuparr)
 - [<img src="/cross-seed.png"> Cross-Seed<br>*Automatic torrent-link generator*](/crossseed)
-- [<img src="/maintainerr.png"> Maintainerr<br>*Maintenance tool for the Plex ecosystem*](/maintainerr)
+- [<img src="/maintainerr.png"> Maintainerr <span class="badge">NEW</span><br>*Maintenance tool for the Plex ecosystem*](/maintainerr)
 - [📦 Unpackerr<br>*Extracts media & imports into the Arr apps*](/Unpackerr)
 {.links-list}
 
