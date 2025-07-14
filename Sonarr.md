@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T14:47:32.611Z
+date: 2025-07-14T14:48:15.798Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -76,7 +76,7 @@ Use the official TrueNAS Sonarr app with custom host paths.
 
 ## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
 
-> Configure a reverse proxy (subdirectory or subdomain). Prefer a GUI? See [NGINX Proxy Manager](/nginx) or [Cloudflare Tunnel](/CloudflareTunnels).
+> Configure a reverse proxy (subdirectory or subdomain). Prefer a GUI? See [NGINX Proxy Manager](/nginx) or [Cloudflare Tunnel](/CloudflareTunnels). {.is-info}
 
 <details><summary>Subdirectory <code>/sonarr</code></summary>
 
