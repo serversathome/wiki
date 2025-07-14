@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T01:14:10.647Z
+date: 2025-07-14T01:19:40.190Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -34,7 +34,8 @@ dateCreated: 2024-02-23T13:32:51.765Z
     └── tv/
 ```
 
-> 🔒 Set ownership to `568:568` for compatibility with TrueNAS Apps or Docker containers.
+> Set ownership to `apps(568):apps(568)` to match the default user/group used by TrueNAS apps and many Docker containers.
+> This ensures Sonarr has permission to read/write your config and media folders.
 
 ---
 
