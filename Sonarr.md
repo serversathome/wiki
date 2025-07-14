@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T15:07:18.025Z
+date: 2025-07-14T15:08:17.599Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -244,11 +244,11 @@ server {
 * Backup folder: `/media`, Interval: **1 day**, Retention: **7**
 
 <details><summary><strong>📤 Restoring a Backup</strong></summary>
-
-  1. Navigate to **System → Backup**
-  1. Use one of two options for restoration:
-  	a. Either restore from a backup in the configured folder by clicking the clock icon at the end of a row
-  	b.  Click the **Restore Backup** icon in the top to restore from a local .zip backup
+  
+1. Navigate to **System → Backup**
+1. Use one of two options for restoration:
+a. Either restore from a backup in the configured folder by clicking the clock icon at the end of a row
+b.  Click the **Restore Backup** icon in the top to restore from a local .zip backup
 
 </details>
 
