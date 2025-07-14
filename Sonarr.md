@@ -2,38 +2,17 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T01:00:56.418Z
+date: 2025-07-14T01:03:51.753Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
----
-
-# ![Sonarr](/sonarr.png){class="tab-icon"} What is Sonarr?
-
-**Sonarr** is a TV-series PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, automatically grabs, sorts, and renames them, and upgrades the quality when better releases appear.
-
-> 📌 *It works great alongside qBittorrent, Prowlarr, and Jellyfin or Plex for a fully automated setup.*
-
----
-
-<details class="quickstart" open>
-<summary><strong>🚀 Quick‑Start Checklist</strong> <span title="Use this to get Sonarr running quickly on Docker or TrueNAS">ℹ️</span></summary>
-
-1. **Deploy container** (Docker Compose *or* TrueNAS chart)
-2. **Create** `/media/tv` **root folder** in Sonarr (make sure it’s **Monitored** → ✅)
-3. **Add qBittorrent** as Download Client
-4. **Add Indexers via Prowlarr** so Sonarr can actually find releases
-5. *(Optional)* Import Recyclarr profiles & advanced cleanup
-
-</details>
-
 ---
 
 # 1 · Deploy Sonarr
 
 > **Choose your install method and match your folder paths carefully.**
 
-## tabs {.tabset}
+# tabs {.tabset}
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
@@ -75,13 +54,15 @@ services:
 
 > **Use the official TrueNAS app with custom host paths.**
 
-| Step  | Action                                                                          |
-| ----- | ------------------------------------------------------------------------------- |
-| **1** | **Apps → Discover Apps → Sonarr → Install**                                     |
-| **2** | **Port Number → 8989**                                                          |
-| **3** | **Sonarr Config Storage → Host Path** → `/mnt/tank/configs/sonarr`              |
-| **4** | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` ➔ `/media` |
-| **5** | Click **Save → Deploy**                                                         |
+```markdown
+|  Step  | Action                                                                         |
+| ------ | ------------------------------------------------------------------------------- |
+| **1**  | **Apps → Discover Apps → Sonarr → Install**                                     |
+| **2**  | **Port Number → 8989**                                                          |
+| **3**  | **Sonarr Config Storage → Host Path** → `/mnt/tank/configs/sonarr`              |
+| **4**  | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` ➜ `/media` |
+| **5**  | Click **Save → Deploy**                                                         |
+```
 
 ---
 
