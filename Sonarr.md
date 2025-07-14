@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T13:06:38.946Z
+date: 2025-07-14T13:14:17.331Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -11,8 +11,6 @@ dateCreated: 2024-02-23T13:32:51.765Z
 # ![Sonarr](/sonarr.png){class="tab-icon"} What is Sonarr?
 
 **Sonarr** is a TV-series PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, grabs, sorts, and renames them, and upgrades quality when better releases appear.
-
----
 
 # 1 · Deploy Sonarr
 
@@ -40,8 +38,6 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 > 🔒 Set ownership to `apps(568):apps(568)` (default user/group for SCALE apps). This ensures Sonarr can read/write configs and media. 
 
----
-
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
@@ -63,8 +59,6 @@ services:
 
 > **Behind a reverse-proxy?** Expose port **8989** on `127.0.0.1` and route through Nginx Proxy Manager or Cloudflare Tunnel.
 
----
-
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
 > Use the official TrueNAS Sonarr app with custom host paths.
@@ -76,8 +70,6 @@ services:
 | 3    | Sonarr Config → Host Path → `/mnt/tank/configs/sonarr`        |
 | 4    | Additional Storage → Host Path → `/mnt/tank/media` → `/media` |
 | 5    | Click **Save** → **Deploy**                                   |
-
----
 
 ## <img src="/nginx-proxy-manager.png" class="tab-icon"> NGINX Reverse Proxy
 
@@ -119,8 +111,6 @@ server {
 ```
 
 </details>
-
----
 
 # 2 · First-Run Configuration
 
@@ -167,8 +157,6 @@ server {
 
 </details>
 
----
-
 # 3 · System & Maintenance
 
 > 🛠️ **System health, tasks, backups & settings in one place.**
@@ -210,10 +198,6 @@ Click warnings for remediation or logs.
 
 Toggle **Show Advanced** and click **Save** when done.
 
-
----
-
----
 
 # 4 · Advanced Tweaks *(Optional)*
 
