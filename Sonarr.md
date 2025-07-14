@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T05:39:40.406Z
+date: 2025-07-14T13:04:56.495Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -11,8 +11,6 @@ dateCreated: 2024-02-23T13:32:51.765Z
 # ![Sonarr](/sonarr.png){class="tab-icon"} What is Sonarr?
 
 **Sonarr** is a TV-series PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, grabs, sorts, and renames them, and upgrades quality when better releases appear.
-
-> 📌 Works great with **qBittorrent**, **Prowlarr**, and **Jellyfin / Plex** for fully automated TV downloads.
 
 ---
 
@@ -24,7 +22,7 @@ dateCreated: 2024-02-23T13:32:51.765Z
 
 ## 📂 Folder Setup
 
-> Create the following datasets in **TrueNAS** or match these paths in **Docker volumes**.
+> Create the following datasets in **TrueNAS** or match these paths in **Docker volumes**. {.is-info}
 
 | Dataset               | Mount Path in App | Description             |
 | --------------------- | ----------------- | ----------------------- |
@@ -40,7 +38,7 @@ dateCreated: 2024-02-23T13:32:51.765Z
     └── tv/
 ```
 
-> 🔒 Set ownership to `apps(568):apps(568)` (default user/group for SCALE apps). This ensures Sonarr can read/write configs and media.
+> 🔒 Set ownership to `apps(568):apps(568)` (default user/group for SCALE apps). This ensures Sonarr can read/write configs and media. 
 
 ---
 
