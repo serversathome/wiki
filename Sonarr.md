@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T05:11:13.422Z
+date: 2025-07-14T05:13:19.059Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -237,7 +237,7 @@ server {
 
 | Icon | Action                     |
 | ---- | -------------------------- |
-| ❌    | Remove item from queue     |
+| X    | Remove item from queue     |
 | 🗑️  | Remove release from client |
 | 🚫   | Blocklist release          |
 | 👤   | Manual import              |
@@ -398,5 +398,31 @@ Verify path translation and permissions between Sonarr and your client.
 # 📀 6 · Video Guide
 
 [![Watch on Patreon](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
+
+### 7 · Settings Overview
+
+> A high-level look at Sonarr’s settings. For full details, see the [Settings Guide](/settings).
+
+1. **Access & Navigation**
+
+   * Click **Settings** in the left menu.
+   * Use the sub-menu for categories (Media Management, Profiles, Indexers, Download Clients, Connect, Metadata, UI, etc.).
+   * Toggle **Show Advanced** at the top to reveal advanced options.
+   * Remember to click the **Save** (disk) icon before leaving any page.
+
+2. **Key Sections**
+
+   * **Media Management**: Folder setup, import behavior, file naming rules.
+   * **Episode Naming**: Token-based templates for Standard, Daily, Anime types.
+   * **Custom Formats**: Scoring rules to prioritize releases.
+   * **Delay & Release Profiles**: Control timing and filtering of grabs.
+   * **Indexers & Download Clients**: Configure Usenet/Torrent sources and clients.
+   * **Remote Path Mapping**: Map remote download paths to local file system.
+   * **Connect**: Set up notifications and external integrations.
+   * **Metadata & UI**: NFO generation, calendar, date formats, style preferences.
+   * **Analytics & Updates**: Anonymous usage stats, update channels.
+   * **Backups**: Automated settings backups with retention policies.
+
+> For advanced token lists, naming examples, and in-depth options, refer to the [Community Settings Reference](/settings#detailed).
 
 [⇗ Back to top](#what-is-sonarr){.back-top}
