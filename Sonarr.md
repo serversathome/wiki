@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T14:57:05.392Z
+date: 2025-07-14T14:58:09.991Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -256,11 +256,11 @@ server {
 <details><summary><strong>📤 Restoring a Backup</strong></summary>
 
 | Step | Action                                                                 |
-| ---- | ---------------------------------------------------------------------- |
-| 1    | Stop Sonarr container                                                  |
+| ---- | -------------------- |
+| 1    | Stop Sonarr container |
 | 2    | Copy latest `.zip` from `/media/Backups` to `/mnt/tank/configs/sonarr` |
-| 3    | Sonarr: *System → Backup → Restore* → Choose file                      |
-| 4    | Restart Sonarr and verify settings/series                              |
+| 3    | Sonarr: *System → Backup → Restore* → Choose file   |
+| 4    | Restart Sonarr and verify settings/series  |
 
 </details>
 
@@ -271,7 +271,7 @@ server {
 **Requirements:**
 
 * Separate `/config` per instance
-* Unique external ports (e.g. 8989, 7879)
+* Unique external ports (e.g. 8988, 7879)
 * Distinct root folders, categories, and names
 
 <details class="code-block"><summary>Docker example</summary>
@@ -289,7 +289,7 @@ services:
       - /mnt/tank/configs/sonarr4k:/config
       - /mnt/tank/media-4k:/media
     ports:
-      - 7879:8989
+      - 8988:8989
     restart: unless-stopped
 ```
 
