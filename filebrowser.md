@@ -2,7 +2,7 @@
 title: File Browser
 description: A guide to deploy the File Browser Quantum replacement in docker
 published: true
-date: 2025-07-11T12:18:26.111Z
+date: 2025-07-16T16:44:24.803Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-11T23:53:09.996Z
@@ -44,6 +44,8 @@ server:
     - levels: "info|warning|error"
   sources:
     - path: "/srv"
+      config:
+        defaultEnabled: true # add source for all users by default 
 userDefaults:
   preview:
     image: true
@@ -55,10 +57,10 @@ userDefaults:
   disableSettings: false
   singleClick: true
   permissions:
-    admin: false
-    modify: false
-    share: false
-    api: false
+    admin: true
+    modify: true
+    share: true
+    api: true
 ```
 
 There are many more options for this config file. [See them all here](https://github.com/gtsteffaniak/filebrowser/wiki/Full-Config-Example).
