@@ -2,7 +2,7 @@
 title: AI
 description: How to deploy local AI containers on TrueNAS
 published: true
-date: 2025-07-17T17:02:46.383Z
+date: 2025-07-17T17:05:56.518Z
 tags: 
 editor: markdown
 dateCreated: 2025-02-04T22:59:57.204Z
@@ -89,11 +89,11 @@ services:
 1. Here is an example of the time and token response of an RX6650 XT 8GiB:
 This is using gemma3:4b and asking the question, "What is the secret of the universe?"
 
-![Screenshot_2025-07-17-115222.png](/Screenshot_2025-07-17-115222.png)
+    ![Screenshot_2025-07-17-115222.png](/Screenshot_2025-07-17-115222.png)
 
 I must also give credit to two specific posts that made this all possible.
-1. https://forums.truenas.com/t/amd-gpu-configuration-for-open-web-ui/43812/4
-2. https://major.io/p/ollama-with-amd-radeon-6600xt/
+1. [https://forums.truenas.com/t/amd-gpu-configuration-for-open-web-ui/43812/4](https://forums.truenas.com/t/amd-gpu-configuration-for-open-web-ui/43812/4)
+2. [https://major.io/p/ollama-with-amd-radeon-6600xt/](https://major.io/p/ollama-with-amd-radeon-6600xt/)
 
 
 # 3 · Open WebUI Configuration
