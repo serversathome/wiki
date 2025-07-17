@@ -2,7 +2,7 @@
 title: AI
 description: How to deploy local AI containers on TrueNAS
 published: true
-date: 2025-07-17T16:57:42.557Z
+date: 2025-07-17T17:02:46.383Z
 tags: 
 editor: markdown
 dateCreated: 2025-02-04T22:59:57.204Z
@@ -41,19 +41,14 @@ The changes we need to make on the **Open WebUI** configuration are:
 
 The following will show an example compose file that should get most users up and running with an AMD GPU, specefically those that are trying to use a GPU that is not officially supported by Ollama but can utilize ROCM. Make sure to change the path under volumes to match your setup.
 
-HSA_OVERRIDE_GFX_VERSION will depend on your GPU model: You can reference the following site - https://rocm.docs.amd.com/en/latest/reference/gpu-arch-specs.html and plug in the LLVM target name to HSA_OVERRIDE_GFX_VERSION under the **environment** section below. For example if you are using RDNA 2, stick with 10.3.0. Rule of thumb, ignore the sub version number, i.e. the 2 in gfx1032.
+`HSA_OVERRIDE_GFX_VERSION` will depend on your GPU model: You can reference the [this site](https://rocm.docs.amd.com/en/latest/reference/gpu-arch-specs.html) and plug in the LLVM target name to `HSA_OVERRIDE_GFX_VERSION` under the **environment** section below. For example if you are using RDNA 2, stick with 10.3.0. Rule of thumb, ignore the sub version number, i.e. the 2 in gfx1032.
 
-**Compose Example**
-```
+## <img src="/docker.png" class="tab-icon"> 2.1 Docker Compose
+```yaml
 services:
   ollama:
     cap_drop:
       - ALL
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-          memory: 4096M
     devices:
       - /dev/dri:/dev/dri
       - /dev/kfd:/dev/kfd
@@ -67,12 +62,6 @@ services:
       - 44
       - 107
       - 568
-    healthcheck:
-      interval: 10s
-      retries: 30
-      start_period: 10s
-      test: timeout 1 bash -c 'cat < /dev/null > /dev/tcp/127.0.0.1/30068'
-      timeout: 5s
     image: ollama/ollama:rocm
     platform: linux/amd64
     ports:
@@ -87,17 +76,17 @@ services:
     stdin_open: False
     tty: False
     volumes:
-      - /mnt/name_of_your_pool/name_of_your_dataset:/root/.ollama
+      - /mnt/tank/configs/ollama:/root/.ollama
 ```      
-Once you have successfully installed the container, you should be able to open the logs and see the following or similar message that will verify ollama is able to see and use your AMD GPU. 
+1. Once you have successfully installed the container, you should be able to open the logs and see the following or similar message that will verify ollama is able to see and use your AMD GPU. 
 
-![Screenshot_2025-07-17-113913.png](/Screenshot_2025-07-17-113913.png)
+    ![Screenshot_2025-07-17-113913.png](/Screenshot_2025-07-17-113913.png)
 
-After you have confirmed your GPU is being utilized, you can follow the video below to pull LLMs into ollama.
+1. After you have confirmed your GPU is being utilized, you can follow the video below to pull LLMs into ollama.
 
-Keep in mind initial response by ollama will be slow, the GPU needs to "wake up" so to speak. After about 3 minutes the LLM will become idle and your GPU will "go to sleep". This is not inherently a bad thing, as this keeps system resources, your GPU, from running persistently.
+1. Keep in mind initial response by ollama will be slow, the GPU needs to "wake up" so to speak. After about 3 minutes the LLM will become idle and your GPU will "go to sleep". This is not inherently a bad thing, as this keeps system resources, your GPU, from running persistently.
 
-Here is an example of the time and token response of an RX6650 XT 8GiB:
+1. Here is an example of the time and token response of an RX6650 XT 8GiB:
 This is using gemma3:4b and asking the question, "What is the secret of the universe?"
 
 ![Screenshot_2025-07-17-115222.png](/Screenshot_2025-07-17-115222.png)
