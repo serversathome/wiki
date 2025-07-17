@@ -2,7 +2,7 @@
 title: AI
 description: How to deploy local AI containers on TrueNAS
 published: true
-date: 2025-07-17T17:05:56.518Z
+date: 2025-07-17T17:26:26.871Z
 tags: 
 editor: markdown
 dateCreated: 2025-02-04T22:59:57.204Z
@@ -37,11 +37,11 @@ The changes we need to make on the **Open WebUI** configuration are:
 2.  set the **Open WebUI Ollama Storage** to hostpath pointed to the *ollama* dataset we created earlier
 
 # 2 · Ollama ROCM
-**Run Ollama with an unofficialy supported AMD GPU**
+**Run Ollama with an unofficially supported AMD GPU**
 
-The following will show an example compose file that should get most users up and running with an AMD GPU, specefically those that are trying to use a GPU that is not officially supported by Ollama but can utilize ROCM. Make sure to change the path under volumes to match your setup.
+The following will show an example compose file that should get most users up and running with an AMD GPU, specifically those that are trying to use a GPU that is not officially supported by Ollama but can utilize ROCM. Make sure to change the path under volumes to match your setup.
 
-`HSA_OVERRIDE_GFX_VERSION` will depend on your GPU model: You can reference the [this site](https://rocm.docs.amd.com/en/latest/reference/gpu-arch-specs.html) and plug in the LLVM target name to `HSA_OVERRIDE_GFX_VERSION` under the **environment** section below. For example if you are using RDNA 2, stick with 10.3.0. Rule of thumb, ignore the sub version number, i.e. the 2 in gfx1032.
+`HSA_OVERRIDE_GFX_VERSION` will depend on your GPU model: You can reference [this site](https://rocm.docs.amd.com/en/latest/reference/gpu-arch-specs.html) and plug in the LLVM target name to `HSA_OVERRIDE_GFX_VERSION` under the **environment** section below. For example if you are using RDNA 2, stick with 10.3.0. Rule of thumb, ignore the sub version number, i.e. the 2 in gfx1032.
 
 ## <img src="/docker.png" class="tab-icon"> 2.1 Docker Compose
 ```yaml
