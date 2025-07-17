@@ -2,7 +2,7 @@
 title: AI
 description: How to deploy local AI containers on TrueNAS
 published: true
-date: 2025-07-09T13:14:12.614Z
+date: 2025-07-17T16:57:42.557Z
 tags: 
 editor: markdown
 dateCreated: 2025-02-04T22:59:57.204Z
@@ -36,7 +36,7 @@ The changes we need to make on the **Open WebUI** configuration are:
 1.  set the **Open WebUI Data Storage** to host path
 2.  set the **Open WebUI Ollama Storage** to hostpath pointed to the *ollama* dataset we created earlier
 
-# Ollama ROCM
+# 2 · Ollama ROCM
 **Run Ollama with an unofficialy supported AMD GPU**
 
 The following will show an example compose file that should get most users up and running with an AMD GPU, specefically those that are trying to use a GPU that is not officially supported by Ollama but can utilize ROCM. Make sure to change the path under volumes to match your setup.
@@ -107,7 +107,7 @@ I must also give credit to two specific posts that made this all possible.
 2. https://major.io/p/ollama-with-amd-radeon-6600xt/
 
 
-# 2 · Open WebUI Configuration
+# 3 · Open WebUI Configuration
 
 1. After creating a username and password, click the colored circle icon in the very top right corner and then select **Admin Panel**
 1. Navigate to the **Settings** tab and then **Connections**
@@ -124,6 +124,6 @@ I must also give credit to two specific posts that made this all possible.
 {.is-warning}
 
 
-# <img src="/youtube.png" class="tab-icon"> 3 ·Video Walkthrough
+# <img src="/youtube.png" class="tab-icon"> 4 ·Video Walkthrough
 
 [https://youtu.be/b2HeHDUbkec](https://youtu.be/b2HeHDUbkec)
