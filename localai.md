@@ -36,6 +36,77 @@ The changes we need to make on the **Open WebUI** configuration are:
 1.  set the **Open WebUI Data Storage** to host path
 2.  set the **Open WebUI Ollama Storage** to hostpath pointed to the *ollama* dataset we created earlier
 
+# Ollama ROCM
+**Run Ollama with an unofficialy supported AMD GPU**
+
+The following will show an example compose file that should get most users up and running with an AMD GPU, specefically those that are trying to use a GPU that is not officially supported by Ollama but can utilize ROCM. Make sure to change the path under volumes to match your setup.
+
+HSA_OVERRIDE_GFX_VERSION will depend on your GPU model: You can reference the following site - https://rocm.docs.amd.com/en/latest/reference/gpu-arch-specs.html and plug in the LLVM target name to HSA_OVERRIDE_GFX_VERSION under the **environment** section below. For example if you are using RDNA 2, stick with 10.3.0. Rule of thumb, ignore the sub version number, i.e. the 2 in gfx1032.
+
+**Compose Example**
+```
+services:
+  ollama:
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4096M
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/kfd:/dev/kfd
+    environment:
+      HSA_OVERRIDE_GFX_VERSION: 10.3.0
+      OLLAMA_HOST: 0.0.0.0:30068
+      TZ: America/New_York
+      UMASK: '002'
+      UMASK_SET: '002'
+    group_add:
+      - 44
+      - 107
+      - 568
+    healthcheck:
+      interval: 10s
+      retries: 30
+      start_period: 10s
+      test: timeout 1 bash -c 'cat < /dev/null > /dev/tcp/127.0.0.1/30068'
+      timeout: 5s
+    image: ollama/ollama:rocm
+    platform: linux/amd64
+    ports:
+      - mode: ingress
+        protocol: tcp
+        published: 30068
+        target: 30068
+    privileged: False
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges=true
+    stdin_open: False
+    tty: False
+    volumes:
+      - /mnt/name_of_your_pool/name_of_your_dataset:/root/.ollama
+```      
+Once you have successfully installed the container, you should be able to open the logs and see the following or similar message that will verify ollama is able to see and use your AMD GPU. 
+
+![Screenshot_2025-07-17-113913.png](/Screenshot_2025-07-17-113913.png)
+
+After you have confirmed your GPU is being utilized, you can follow the video below to pull LLMs into ollama.
+
+Keep in mind initial response by ollama will be slow, the GPU needs to "wake up" so to speak. After about 3 minutes the LLM will become idle and your GPU will "go to sleep". This is not inherently a bad thing, as this keeps system resources, your GPU, from running persistently.
+
+Here is an example of the time and token response of an RX6650 XT 8GiB:
+This is using gemma3:4b and asking the question, "What is the secret of the universe?"
+
+![Screenshot_2025-07-17-115222.png](/Screenshot_2025-07-17-115222.png)
+
+I must also give credit to two specific posts that made this all possible.
+1. https://forums.truenas.com/t/amd-gpu-configuration-for-open-web-ui/43812/4
+2. https://major.io/p/ollama-with-amd-radeon-6600xt/
+
+
 # 2 · Open WebUI Configuration
 
 1. After creating a username and password, click the colored circle icon in the very top right corner and then select **Admin Panel**
