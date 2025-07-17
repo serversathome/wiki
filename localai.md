@@ -88,17 +88,19 @@ services:
     tty: False
     volumes:
       - /mnt/name_of_your_pool/name_of_your_dataset:/root/.ollama
-```
+```      
 Once you have successfully installed the container, you should be able to open the logs and see the following or similar message that will verify ollama is able to see and use your AMD GPU. 
 
-# ![](/Screenshot_2025-07-17-113913.png)
+![Screenshot_2025-07-17-113913.png](/Screenshot_2025-07-17-113913.png)
 
 After you have confirmed your GPU is being utilized, you can follow the video below to pull LLMs into ollama.
 
 Keep in mind initial response by ollama will be slow, the GPU needs to "wake up" so to speak. After about 3 minutes the LLM will become idle and your GPU will "go to sleep". This is not inherently a bad thing, as this keeps system resources, your GPU, from running persistently.
 
 Here is an example of the time and token response of an RX6650 XT 8GiB:
-This is using gemma3:4b and asking "What is the secret of the universe?"
+This is using gemma3:4b and asking the question, "What is the secret of the universe?"
+
+![Screenshot_2025-07-17-115222.png](/Screenshot_2025-07-17-115222.png)
 
 I must also give credit to two specific posts that made this all possible.
 1. https://forums.truenas.com/t/amd-gpu-configuration-for-open-web-ui/43812/4
