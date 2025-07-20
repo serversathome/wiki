@@ -2,7 +2,7 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-13T21:10:31.818Z
+date: 2025-07-20T10:46:16.088Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:11.647Z
@@ -11,8 +11,6 @@ dateCreated: 2024-02-23T13:32:11.647Z
 # ![Radarr](/radarr.png){class="tab-icon"} What is Radarr?
 
 Radarr is a **movie collection manager** for Usenet and BitTorrent. It monitors RSS feeds for new releases, interfaces with clients/indexers to grab, sort, and rename movies, and can upgrade quality automatically when better releases appear.
-
----
 
 <details class="quickstart" open>
 <summary><strong>🚀 Quick‑Start Checklist</strong></summary>
@@ -24,8 +22,6 @@ Radarr is a **movie collection manager** for Usenet and BitTorrent. It monitors 
 5. *(Optional)* Import Recyclarr profiles & advanced cleanup
 
 </details>
-
----
 
 # 1 · Deploy Radarr
 
@@ -56,21 +52,15 @@ services:
 * **Volumes** – configs at `/mnt/tank/configs/radarr`, media at `/mnt/tank/media`.
   📌 See the [Folder‑Structure](/Folder-Structure) guide.
 
-> **Behind a reverse‑proxy?** Expose port **7878** only on `127.0.0.1` and route externally via Nginx Proxy Manager or Cloudflare Tunnel.
-
----
-
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
 
 |  Step  |  Action                                                                         |
-| ------ | ------------------------------------------------------------------------------- |
-| **1**  | **Apps → Discover Apps → Radarr → Install**                                     |
-| **2**  | **Port Number → 7878**                                                          |
-| **3**  | **Radarr Config Storage → Host Path** → `/mnt/tank/configs/radarr`              |
+| ------ | ------ |
+| **1**  | **Apps → Discover Apps → Radarr → Install**      |
+| **2**  | **Port Number → 7878**   |
+| **3**  | **Radarr Config Storage → Host Path** → `/mnt/tank/configs/radarr`     |
 | **4**  | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` ➜ `/media` |
-| **5**  | Click **Save → Deploy**                                                         |
-
----
+| **5**  | Click **Save → Deploy**     |
 
 # 2 · First‑Run Configuration
 
@@ -86,23 +76,20 @@ services:
 
 |  Field                  |  Example         |
 | ----------------------- | ---------------- |
-|  Host                   |  `10.251.0.244`  |
-|  Port                   |  `10095`         |
+|  Host                   |  `192.168.1.25`  |
+|  Port                   |  `8080`         |
 |  Username               |  `admin`         |
 |  Password               |  ••••••••        |
 |  Category               |  `movies-radarr` |
 |  Recent/Older Priority  |  **Last**        |
 |  Remove Completed       |  ✅               |
 
-> **Remote downloader?** Use **Path Translation** to map `/downloads` (qBittorrent) → `/media` (Radarr).
-
 ## 2.3 Indexers (via Prowlarr)
 
 1. Connect Radarr in **Prowlarr → Settings → Apps → +**.
-2. Add indexers (Jackett, Torznab, etc.).
+2. Add indexers
 3. **Test → Save** — Radarr inherits them automatically.
 
----
 
 # 3 · Advanced Tweaks *(optional)*
 
@@ -137,18 +124,14 @@ Delete default profiles → keep Recyclarr-generated profiles → set Jellyseerr
 Enable **Kodi/Emby** metadata.
 Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
 
-<details><summary><strong>🔄 Restoring&nbsp;a&nbsp;Backup</strong></summary>
-
-| Step  | Action                                                                      |
-| ----- | --------------------------------------------------------------------------- |
-| **1** | Stop the Radarr container / chart                                           |
-| **2** | Copy the latest `*.zip` from `/media/Backups` to `/mnt/tank/configs/radarr` |
-| **3** | **System → Backup → Restore** inside Radarr, select the file                |
-| **4** | Restart Radarr and verify library/settings                                  |
+<details><summary><strong>📤 Restoring a Backup</strong></summary>
+  
+1. Navigate to **System → Backup**
+1. Use one of two options for restoration:
+a. Either restore from a backup in the configured folder by clicking the clock icon at the end of a row
+b.  Click the **Restore Backup** icon in the top to restore from a local .zip backup
 
 </details>
-
----
 
 # 4 · Troubleshooting
 
@@ -176,8 +159,6 @@ chmod -R 770 /mnt/tank/media/movies
 
 </details>
 
----
-
 ## ✏️ Editors & Contributors
 
 > **Special thanks to the following members for reviewing and polishing this guide**
@@ -185,10 +166,6 @@ chmod -R 770 /mnt/tank/media/movies
 
 Feel free to open a pull‑request or ping us on Discord if you spot an inaccuracy!
 
----
-
 # <img src="/patreon-light.png" class="tab-icon"> 5 · Video Guide 
 
 [![Promo](/2025-03-18-advanced-media-management-with-r-promo-card.png)](https://www.patreon.com/posts/advanced-media-124637606)
-
-[⇧ Back to top](#what-is-radarr){.back-top}
