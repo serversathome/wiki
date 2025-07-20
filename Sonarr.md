@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-14T15:08:17.599Z
+date: 2025-07-20T10:41:08.752Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -160,58 +160,7 @@ server {
 * Set a **Cutoff** for desired quality
 
 
-# 3 · System & Maintenance
-
-🛠️ **System health, tasks, backups & settings in one place.**
-
-# tabs {.tabset}
-
-## ⚙️ Status & Health
-
-* **System**: .NET/Mono, SQLite ≥ 3.9, MediaInfo, clock sync, permissions
-* **Clients**: reachable, CDD enabled, path mapping
-* **Indexers**: RSS & Search enabled, avoid Jackett `/all`
-* **Roots & Lists**: paths exist & accessible
-
-*Click warnings for remediation or logs.*
-
-
-
-## 📊 Tasks & Queue
-
-* **Scheduled**: updates, backups, health checks, etc.
-* **Queue**: active downloads & history
-* Icons: Retry, Remove, Blocklist, Manual Import
-
-
-
-## 💾 Backup & Updates
-
-* **Backup**: manual snapshot, restore, delete (`System → Backups`)
-* **Updates**: view/install versions (`System → Updates`)
-
----
-
-## ⚙️ Settings Overview
-
-<div class="table-scroll">
-
-| Section             | Purpose                        |
-| ------------------- | ------------------------------ |
-| Media Management    | Roots, imports, naming         |
-| Profiles            | Quality, delay, custom formats |
-| Indexers & Clients  | RSS/Search, download setup     |
-| Remote Path Mapping | Map remote → local paths       |
-| Connect             | Notifications & integrations   |
-| Metadata & UI       | NFO, calendar, appearance      |
-| Analytics & Updates | Usage stats, update channels   |
-| Backups             | Automated settings backups     |
-
-</div>
-
-*Toggle **Show Advanced** and click **Save** when done.*
-
-# 4 · Advanced Tweaks *(Optional)*
+# 3 · Advanced Tweaks *(Optional)*
 
 🧪 For users running Recyclarr or tuning quality control.
 
@@ -254,7 +203,7 @@ b.  Click the **Restore Backup** icon in the top to restore from a local .zip ba
 
 <details><summary><strong>📚 Running Multiple Instances</strong></summary>
 
-> Manage **1080p & 4K** libraries separately.
+**Manage 1080p & 4K libraries separately**
 
 **Requirements:**
 
@@ -289,7 +238,7 @@ services:
 
 ---
 
-# 5 · Troubleshooting
+# 4 · Troubleshooting
 
 > 🧯 **Start with the Health tab** — Sonarr flags missing paths, failed downloads, and indexer issues. {.is-info}
 
@@ -329,6 +278,6 @@ chmod -R 770 /mnt/tank/media/tv
 
 ---
 
-# <img src="/patreon-light.png" class="tab-icon"> 6 · Video Guide
+# <img src="/patreon-light.png" class="tab-icon"> 5 · Video Guide
 
 [![Watch on Patreon](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
