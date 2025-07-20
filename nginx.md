@@ -2,7 +2,7 @@
 title: Nginx Proxy Manager
 description: 
 published: true
-date: 2025-07-09T12:41:09.895Z
+date: 2025-07-20T20:04:48.691Z
 tags: 
 editor: markdown
 dateCreated: 2024-04-15T18:47:30.212Z
@@ -54,8 +54,6 @@ In order to reverse proxy your content, you must have ports 80 and 443 properly 
 Whoever manages your domain should have an area for the DNS entries. In order to use nginx properly, we need two records in our DNS table. The first is the A record which points anyone going to example.com to the IP of our server. The second is a CNAME record for \*.example.com which means any subdomain (like cloud.example.com) will also point to the IP address of example.com. The picture below is what this looks like on Cloudflare.
 
 ![](/screenshot_from_2024-08-02_09-09-50.png)
-
-A and CNAME records for Cloudflare
 
 # 4 · Add Proxy Hosts
 # {.tabset}
