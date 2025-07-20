@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-07-18T11:36:37.185Z
+date: 2025-07-20T20:07:32.487Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -279,6 +279,9 @@ To take a backup, click **Manage Configuration → Download File**. In the event
 > 
 > When uploading a config file it will overwrite your current settings with the saved ones from the file!
 {.is-warning}
+
+#### GUI
+Some apps like Nginx Proxy Manager require ports `80` and `443`. By default, TrueNAS uses these for the webGUI. Change them by clicking the **Settings** button to any other open port.
 
 
 
