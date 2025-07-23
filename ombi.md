@@ -2,7 +2,7 @@
 title: Ombi
 description: A guide to deploying Ombi via docker compose
 published: true
-date: 2025-07-23T14:27:14.815Z
+date: 2025-07-23T18:35:49.968Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-23T14:27:14.815Z
@@ -36,3 +36,9 @@ services:
   📌 See the [Folder‑Structure](/Folder-Structure) guide.
 
 # 2 · First‑Run Configuration
+
+
+
+# <img src="/patreon-light.png" class="tab-icon"> 2 · Video
+
+[![](/2025-07-23-self-host-ombi-the-media-reques-promo-card.png)](https://www.patreon.com/posts/self-host-ombi-134798112)
