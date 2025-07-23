@@ -2,7 +2,7 @@
 title: Ombi
 description: A guide to deploying Ombi via docker compose
 published: true
-date: 2025-07-23T18:44:12.790Z
+date: 2025-07-23T18:49:11.775Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-23T14:27:14.815Z
@@ -49,6 +49,10 @@ services:
 1. Navigate to the **Media Server** tab
 1. Click the **Load Libraries** button
 1. Click **Submit**
+1. Navigate to the **Configuration → User Management** tab
+1. Toggle the **Import Users** to `on`
+1. Click **Run Importer**
+1. Click **Submit**
 
 ## 3.1 Sync \*arr Apps
 1. Navigate to **TV** or **Movies** tab
@@ -61,6 +65,11 @@ services:
 1. Select the desired default quality profile
 1. Select the root folder
 1. Click **Submit**
+
+## Optional Configuration
+
+1. Navigate to the **Configuration** tab and deselect `Allow anonymous usage collection`
+1. Navigate to the **Notifications** tab and configure a notification method
 
 # <img src="/patreon-light.png" class="tab-icon"> 4 · Video
 
