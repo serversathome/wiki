@@ -2,13 +2,13 @@
 title: Kan.bn
 description: A guide to deploying Kan.bn in docker
 published: true
-date: 2025-07-07T17:56:48.924Z
+date: 2025-07-23T23:37:23.061Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T17:56:48.924Z
 ---
 
-# What is Kan.bn?
+# ![](/kan.png){class="tab-icon"} What is Kan?
 
 A powerful, flexible kanban app that helps you organise work, track progress, and deliver results—all in one place.
 
