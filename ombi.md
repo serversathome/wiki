@@ -2,7 +2,7 @@
 title: Ombi
 description: A guide to deploying Ombi via docker compose
 published: true
-date: 2025-07-23T18:35:49.968Z
+date: 2025-07-23T18:44:12.790Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-23T14:27:14.815Z
@@ -29,7 +29,7 @@ services:
     restart: unless-stopped
 ```
 
-### Permissions & Folder Structure {.is-success}
+### Permissions & Folder Structure
 
 * **PUID / PGID** – media‑owner UID/GID (TrueNAS SCALE default **568:568**).
 * **Volumes** – configs at `/mnt/tank/configs/ombi`
@@ -37,8 +37,31 @@ services:
 
 # 2 · First‑Run Configuration
 
+1. Select SQLite DB
+1. Choose which media server you would like Ombi to manage and enter credentials
+1. Create an Ombi username and password
+1. Click **Next** to leave all fields blank for **Customize your Ombi** (optional)
+1. Click **Finish**
 
+# 3 · Ombi Configuration
 
-# <img src="/patreon-light.png" class="tab-icon"> 2 · Video
+1. Navigate to **Settings** in the left pane
+1. Navigate to the **Media Server** tab
+1. Click the **Load Libraries** button
+1. Click **Submit**
+
+## 3.1 Sync \*arr Apps
+1. Navigate to **TV** or **Movies** tab
+1. Switch **Enable** to `on`
+1. Enter the IP or hostname of the container
+1. Enter the port
+1. Enter the API key
+1. Click **Test Connectivity**
+1. Click **Load Qualities**, **Load Folders**, and **Load Tags**
+1. Select the desired default quality profile
+1. Select the root folder
+1. Click **Submit**
+
+# <img src="/patreon-light.png" class="tab-icon"> 4 · Video
 
 [![](/2025-07-23-self-host-ombi-the-media-reques-promo-card.png)](https://www.patreon.com/posts/self-host-ombi-134798112)
