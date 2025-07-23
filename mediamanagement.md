@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-14T13:23:36.242Z
+date: 2025-07-23T14:28:14.451Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -36,6 +36,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 ## Media Discovery
 - [<img src="/huntarr.png"> Huntarr<br>*Automated missing-content discovery & quality upgrades*](/huntarr)
 - [<img src="/jellyseerr.png"> Jellyseerr<br>*Media request & discovery manager*](/Jellyseerr)
+- [<img src="/ombi.png"> Ombi<br>*Media request & discovery manager*](/ombi)
 - [<img src="/pulsarr.png"> Pulsarr<br>*Plex watch-list monitoring, routing & notifications*](/pulsarr)
 - [<img src="/recommendarr.png"> Recommendarr<br>*Personalized recommendations for existing libraries*](/recommendarr)
 - [<img src="/slskd.png"> Soulseek <span class="badge">NEW</span><br>*Music-sharing network*](/soulseek)
