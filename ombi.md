@@ -2,7 +2,7 @@
 title: Ombi
 description: A guide to deploying Ombi via docker compose
 published: true
-date: 2025-07-23T18:49:11.775Z
+date: 2025-07-23T18:50:09.274Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-23T14:27:14.815Z
@@ -66,11 +66,11 @@ services:
 1. Select the root folder
 1. Click **Submit**
 
-## Optional Configuration
+# 4 · Optional Configuration
 
 1. Navigate to the **Configuration** tab and deselect `Allow anonymous usage collection`
 1. Navigate to the **Notifications** tab and configure a notification method
 
-# <img src="/patreon-light.png" class="tab-icon"> 4 · Video
+# <img src="/patreon-light.png" class="tab-icon"> 5 · Video
 
 [![](/2025-07-23-self-host-ombi-the-media-reques-promo-card.png)](https://www.patreon.com/posts/self-host-ombi-134798112)
