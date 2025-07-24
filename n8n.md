@@ -2,7 +2,7 @@
 title: n8n
 description: A guide to deploying n8n on TrueNAS as well as docker compose
 published: true
-date: 2025-07-24T17:05:05.950Z
+date: 2025-07-24T17:10:51.469Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-24T16:54:38.031Z
@@ -31,7 +31,7 @@ services:
       - N8N_SECURE_COOKIE=false
       - WEBHOOK_URL=
     volumes:
-      - /mnt/bigdeal/configs/n8n:/home/node/.
+      - /mnt/bigdeal/configs/n8n:/home/node/.n8n
     restart: unless-stopped
     user: 568:568
 ```
