@@ -2,7 +2,7 @@
 title: n8n
 description: A guide to deploying n8n on TrueNAS as well as docker compose
 published: true
-date: 2025-07-24T17:49:29.289Z
+date: 2025-07-24T17:51:17.632Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-24T16:54:38.031Z
@@ -48,3 +48,7 @@ services:
 
 # 2 · n8n Configuration
 
+1. Navigate to the IP and Port of your container
+1. Enter an email
+1. Enter your first and last name
+1. Create a strong password
