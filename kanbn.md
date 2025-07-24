@@ -2,7 +2,7 @@
 title: Kan.bn
 description: A guide to deploying Kan.bn in docker
 published: true
-date: 2025-07-23T23:37:23.061Z
+date: 2025-07-24T00:48:31.809Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T17:56:48.924Z
@@ -42,4 +42,6 @@ services:
     restart: unless-stopped
 ```
 - Change your `NEXT_PUBLIC_BASE_URL` to the correct value
-
+> 
+> Read the [official docs](https://docs.kan.bn/introduction)!
+{.is-success}
