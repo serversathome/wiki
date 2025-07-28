@@ -2,7 +2,7 @@
 title: Duplicati
 description: A guide to deploying Duplicati on TrueNAS as well as via docker compose
 published: true
-date: 2025-07-28T13:23:41.722Z
+date: 2025-07-28T13:46:48.094Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-28T10:28:55.007Z
@@ -18,7 +18,6 @@ Duplicati is an open-source backup client that securely stores encrypted, increm
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 1. Set a **Password**
 1. Set an **Encryption Key** to enable encryption (optional)
-1. Set the **User ID** to `0` for access to all datasets
 1. Change the **Data Storage** to *Host Path*
 1. Add **Additional Storage**
 a. Change the **Type** to *Host Path*
@@ -41,7 +40,7 @@ services:
       - PUID=0
       - PGID=0
       - TZ=America/New_York
-      - DUPLICATI_WEBSERVICE_PASSWORD=changeme
+      - SETTINGS_ENCRYPTION_KEY=changeme
     volumes:
       - /mnt/tank/configs/duplicati:/config
       - /mnt/tank/backups:/backups
