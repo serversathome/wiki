@@ -2,13 +2,11 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-28T13:27:21.318Z
+date: 2025-07-28T13:32:37.477Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
 ---
-
-# ![Sonarr](/sonarr.png){.tab-icon} What is Sonarr?
 
 **Sonarr** is a TV-series PVR for Usenet and BitTorrent users. It monitors RSS feeds for new episodes, grabs, sorts, and renames them, and upgrades quality when better releases appear.
 
@@ -277,6 +275,8 @@ chmod -R 770 /mnt/tank/media/tv
 
 ---
 
+# <img src="/patreon-light.png" class="tab-icon"> 5 · Video Guide
+
 <div class="video-grid">
 
   <div class="video-card">
@@ -284,24 +284,24 @@ chmod -R 770 /mnt/tank/media/tv
       <img src="/patreon-light.png" alt="Patreon Logo">
       <span>Patreon Video</span>
     </div>
-    <a href="https://www.patreon.com/posts/advanced-media-124639393" target="_blank">
+    <a href="https://www.patreon.com/posts/advanced-media-124639393" target="_blank" rel="noopener noreferrer">
       <img src="/2025-03-24-advanced-media-management-with-s-promo-card.png" class="video-thumbnail" alt="Advanced Media Management on Patreon">
     </a>
     <div class="video-title">Advanced Media Management</div>
   </div>
 
-<div class="video-card">
-  <div class="video-platform">
-    <img src="/youtube.png" alt="YouTube Logo">
-    <span>YouTube Guide</span>
+  <div class="video-card">
+    <div class="video-platform">
+      <img src="/youtube.png" alt="YouTube Logo">
+      <span>YouTube Guide</span>
+    </div>
+    <a href="https://youtu.be/gp06bncv8zs" target="_blank" rel="noopener noreferrer">
+      <img src="/youtube_thumbnails/sonarr_&_truenas.jpg" class="video-thumbnail" alt="Installing Sonarr TrueNAS Community Edition 2025">
+    </a>
+    <div class="video-title">Installing Sonarr (TrueNAS CE 2025)</div>
   </div>
-  <a href="https://youtu.be/gp06bncv8zs" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.youtube.com/vi/gp06bncv8zs/hqdefault.jpg" class="video-thumbnail" alt="Installing Sonarr TrueNAS Community Edition 2025">
-  </a>
-  <div class="video-title">Installing Sonarr (TrueNAS CE 2025)</div>
-</div>
-
 
 </div>
+
 
 
