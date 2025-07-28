@@ -2,7 +2,7 @@
 title: Duplicati
 description: A guide to deploying Duplicati on TrueNAS as well as via docker compose
 published: true
-date: 2025-07-28T10:39:15.274Z
+date: 2025-07-28T11:49:53.314Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-28T10:28:55.007Z
@@ -23,6 +23,10 @@ Dozzle is a small lightweight application with a web based interface to monitor 
 1. Add **Additional Storage**
 a. Change the **Type** to *Host Path*
 b. Set the **Mount Path** to `/storage`
+c. Select a **Host Path**
+1. Add **Additional Storage**
+a. Change the **Type** to *Host Path*
+b. Set the **Mount Path** to `/source`
 c. Select a **Host Path**
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
