@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-23T14:28:14.451Z
+date: 2025-07-28T13:09:01.065Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -20,10 +20,10 @@ dateCreated: 2025-07-01T09:24:50.754Z
 {.links-list}
 
 # Media Servers
-- [<img src="/emby.png"> Emby <span class="badge">NEW</span><br>*Your personal media on any device*](/Emby)
+- [<img src="/emby.png"> Emby<br>*Your personal media on any device*](/Emby)
 - [<img src="/jellyfin.png"> Jellyfin<br>*Volunteer-built media solution*](/jellyfin)
 - [<img src="/plex.png"> Plex<br>*Media-streaming server for movies, television shows, and music*](/plex)
-- [<img src="/navidrome.png"> Navidrone <span class="badge">NEW</span><br>*Music streaming server in your web browser*](/navidrome)
+- [<img src="/navidrome.png"> Navidrone<br>*Music streaming server in your web browser*](/navidrome)
 {.links-list}
 
 # \*arr Suite
@@ -36,17 +36,17 @@ dateCreated: 2025-07-01T09:24:50.754Z
 ## Media Discovery
 - [<img src="/huntarr.png"> Huntarr<br>*Automated missing-content discovery & quality upgrades*](/huntarr)
 - [<img src="/jellyseerr.png"> Jellyseerr<br>*Media request & discovery manager*](/Jellyseerr)
-- [<img src="/ombi.png"> Ombi<br>*Media request & discovery manager*](/ombi)
+- [<img src="/ombi.png"> Ombi <span class="badge">NEW</span><br>*Media request & discovery manager*](/ombi)
 - [<img src="/pulsarr.png"> Pulsarr<br>*Plex watch-list monitoring, routing & notifications*](/pulsarr)
 - [<img src="/recommendarr.png"> Recommendarr<br>*Personalized recommendations for existing libraries*](/recommendarr)
-- [<img src="/slskd.png"> Soulseek <span class="badge">NEW</span><br>*Music-sharing network*](/soulseek)
+- [<img src="/slskd.png"> Soulseek<br>*Music-sharing network*](/soulseek)
 - [🔍 Suggestarr<br>*Automated recommendations & requests based on user activity*](/suggestarr)
 {.links-list}
 
 ## Torrent Management
 - [<img src="/cleanuparr.png"> Cleanuparr<br>*Automated cleanup of unwanted / blocked media files*](/cleanuparr)
 - [<img src="/cross-seed.png"> Cross-Seed<br>*Automatic torrent-link generator*](/crossseed)
-- [<img src="/maintainerr.png"> Maintainerr <span class="badge">NEW</span><br>*Maintenance tool for the Plex ecosystem*](/maintainerr)
+- [<img src="/maintainerr.png"> Maintainerr<br>*Maintenance tool for the Plex ecosystem*](/maintainerr)
 - [📦 Unpackerr<br>*Extracts media & imports into the Arr apps*](/Unpackerr)
 {.links-list}
 
@@ -66,6 +66,6 @@ dateCreated: 2025-07-01T09:24:50.754Z
 {.links-list}
 
 # Media Management
-- [<img src="/immich.png"> Immich <span class="badge">UPDATED</span><br>*Photo management*](/immich)
+- [<img src="/immich.png"> Immich/span><br>*Photo management*](/immich)
 - [<img src="/romm.png"> RomM<br>*Video-game / ROM management*](/romm)
 {.links-list}
