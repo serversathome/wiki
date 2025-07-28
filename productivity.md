@@ -2,13 +2,14 @@
 title: Productivity
 description: 
 published: true
-date: 2025-07-24T17:12:25.384Z
+date: 2025-07-28T13:22:57.117Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T18:06:48.269Z
 ---
 
 - [<img src="/ollama.png"> AI<br>*Run AI locally*](/localai)
+- [<img src="/duplicati.png"> Duplicati<br>*Automated Backup*](/localai)
 - [<img src="/filebrowser-quantum.png"> Filebrowser<br>*Browse files though a GUI*](/filebrowser)
 - [<img src="/homeassistant.png">Home Assistant<br>*Home automation*](/homeassistant)
 - [<img src="/kan.png"> Kan.bn <span class="badge">NEW</span><br>*Open source Trello*](/kanbn)
