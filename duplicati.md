@@ -2,13 +2,13 @@
 title: Duplicati
 description: A guide to deploying Duplicati on TrueNAS as well as via docker compose
 published: true
-date: 2025-07-28T10:28:55.007Z
+date: 2025-07-28T10:29:06.435Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-28T10:28:55.007Z
 ---
 
-# ![](/duplicati.png){class="tab-icon"} What is Duplicati?
+# ![](/.png){class="tab-icon"} What is Duplicati?
 
 The seamless way for your Plex and Emby users to request new content. Ombi integrates with your media server and automatically manages user requests.
 
