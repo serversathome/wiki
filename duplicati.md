@@ -2,7 +2,7 @@
 title: Duplicati
 description: A guide to deploying Duplicati on TrueNAS as well as via docker compose
 published: true
-date: 2025-07-28T11:49:53.314Z
+date: 2025-07-28T11:52:48.924Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-28T10:28:55.007Z
@@ -41,6 +41,7 @@ services:
       - PUID=0
       - PGID=0
       - TZ=America/New_York
+      - DUPLICATI__WEBSERVICE_PASSWORD=changeme
     volumes:
       - /mnt/tank/configs/duplicati:/config
       - /mnt/tank/backups:/backups
