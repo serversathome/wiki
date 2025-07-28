@@ -2,7 +2,7 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-28T13:13:14.325Z
+date: 2025-07-28T13:21:45.523Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:51.765Z
@@ -279,4 +279,23 @@ chmod -R 770 /mnt/tank/media/tv
 
 # <img src="/patreon-light.png" class="tab-icon"> 5 · Video Guide
 
-[<img src="/2025-03-24-advanced-media-management-with-s-promo-card.png" class="video-thumbnail" alt="Watch on Patreon">](https://www.patreon.com/posts/advanced-media-124639393)
+<div class="video-grid">
+
+  <div class="video-card">
+    <img src="/patreon-light.png" alt="Patreon" class="video-platform-icon">
+    <a href="https://www.patreon.com/posts/advanced-media-124639393" target="_blank">
+      <img src="/2025-03-24-advanced-media-management-with-s-promo-card.png" class="video-thumbnail" alt="Advanced Media Management on Patreon">
+    </a>
+    <p><strong>Advanced Media Management</strong></p>
+  </div>
+
+  <div class="video-card">
+    <img src="/youtube.png" alt="YouTube" class="video-platform-icon">
+    <a href="https://youtu.be/gp06bncv8zs" target="_blank">
+      <img src="https://img.youtube.com/vi/gp06bncv8zs/hqdefault.jpg" class="video-thumbnail" alt="Installing Sonarr TrueNAS Community Edition 2025">
+    </a>
+    <p><strong>Installing Sonarr (TrueNAS CE 2025)</strong></p>
+  </div>
+
+</div>
+
