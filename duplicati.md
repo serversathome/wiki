@@ -2,7 +2,7 @@
 title: Duplicati
 description: A guide to deploying Duplicati on TrueNAS as well as via docker compose
 published: true
-date: 2025-07-28T10:32:45.022Z
+date: 2025-07-28T10:33:00.098Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-28T10:28:55.007Z
@@ -12,7 +12,7 @@ dateCreated: 2025-07-28T10:28:55.007Z
 
 Dozzle is a small lightweight application with a web based interface to monitor Docker logs. It doesn’t store any log files. It is for live monitoring of your container logs only.
 
-# 1 · Deploy Dozzle
+# 1 · Deploy Duplicati
 # {.tabset}
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
