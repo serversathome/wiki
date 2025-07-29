@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-07-09T12:26:42.149Z
+date: 2025-07-29T23:33:46.653Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -170,10 +170,6 @@ sudo su -c "wget https://raw.githubusercontent.com/serversathome/ServersatHome/r
 > 
 > Once the script has finished, it will print out the IP of the web interface as well as the username and password
 {.is-success}
-
-[](https://youtu.be/0i5Sn9mG7RQ)
-
-
 
 # 2 · Example Wireguard wg0.conf File
 
