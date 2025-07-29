@@ -2,7 +2,7 @@
 title: Trailarr
 description: A guide to deploying Trailarr in docker
 published: true
-date: 2025-07-29T10:57:05.267Z
+date: 2025-07-29T11:22:30.065Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-29T10:31:01.593Z
@@ -36,6 +36,7 @@ services:
 
 ## 2.1 Adding Connections
 1. Navigate to **Connections** and add your Radarr/Sonarr URL and API Key
+1. Change the **Monitor Type** to `Missing`
 1. Click **Test**
 1. Click the folder icon in the **Path Mappings** seciton and use the default provided path
 1. Click **Test** again
