@@ -2,7 +2,7 @@
 title: Trailarr
 description: A guide to deploying Trailarr in docker
 published: true
-date: 2025-07-29T10:31:01.594Z
+date: 2025-07-29T10:31:14.362Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-29T10:31:01.593Z
@@ -11,7 +11,7 @@ dateCreated: 2025-07-29T10:31:01.593Z
 # ![](/trailarr.png){class="tab-icon"} What is Trailarr?
 Trailarr is a Docker application to download and manage trailers for your Radarr, and Sonarr libraries.
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Duplicati
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Trailarr
 
 ```yaml
 services:
