@@ -2,7 +2,7 @@
 title: Duplicati
 description: A guide to deploying Duplicati on TrueNAS as well as via docker compose
 published: true
-date: 2025-07-28T15:38:35.676Z
+date: 2025-07-29T10:31:43.386Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-28T10:28:55.007Z
@@ -96,3 +96,5 @@ f. Click **OK**
 
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
+
+https://youtu.be/ZxSpwwtJ3aA
