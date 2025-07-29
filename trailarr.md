@@ -2,7 +2,7 @@
 title: Trailarr
 description: A guide to deploying Trailarr in docker
 published: true
-date: 2025-07-29T10:39:57.783Z
+date: 2025-07-29T10:41:36.238Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-29T10:31:01.593Z
@@ -30,6 +30,9 @@ services:
 ```
 
 # 2 · Trailarr Configuration
+
+> Default credentials are **admin:trailarr**
+{.is-info}
 
 
 
