@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-29T10:33:01.970Z
+date: 2025-07-29T10:33:29.151Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -61,7 +61,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 - [<img src="/bazarr.png"> Bazarr<br>*Subtitle management*](/bazarr)
 - [<img src="/flaresolverr.png"> Flaresolverr<br>*Proxy server to bypass Cloudflare protection*](/Flaresolverr)
 - [<img src="/notifiarr.png"> Notifiarr<br>*Monitoring & notifications via Discord*](/notifiarr)
-- [<img src="/trailarr.png"> Trailarr<br>*Add trailers to your media*](/wizarr)
+- [<img src="/trailarr.png"> Trailarr<br>*Add trailers to your media*](/trailarr)
 - [<img src="/wizarr.png"> Wizarr<br>*User-invitation management for Jellyfin, Plex & Emby*](/wizarr)
 - [➕ More Apps<br>*Ravencentric awesome-arr list*](/ravencentric)
 {.links-list}
