@@ -2,7 +2,7 @@
 title: Trailarr
 description: A guide to deploying Trailarr in docker
 published: true
-date: 2025-07-29T10:33:51.969Z
+date: 2025-07-29T10:39:57.783Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-29T10:31:01.593Z
@@ -24,6 +24,7 @@ services:
       - /mnt/tank/configs/trailarr:/config
       - /mnt/tank/media/movies:/media/movies
       - /mnt/tank/media/tv:/media/tv
+    ports:
       - "7889:7889"
     restart: unless-stopped
 ```
