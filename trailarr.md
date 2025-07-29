@@ -2,7 +2,7 @@
 title: Trailarr
 description: A guide to deploying Trailarr in docker
 published: true
-date: 2025-07-29T10:31:14.362Z
+date: 2025-07-29T10:33:51.969Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-29T10:31:01.593Z
@@ -33,4 +33,4 @@ services:
 
 
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
