@@ -2,7 +2,7 @@
 title: Maintainerr
 description: A guide to deploying Maintainer via docker
 published: true
-date: 2025-07-14T16:34:43.712Z
+date: 2025-07-30T18:28:28.215Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-14T11:50:00.697Z
@@ -42,7 +42,5 @@ services:
 1. At a minimum, add Plex, Radarr, and Sonarr servers
 2. Create rules to define how Maintainerr will handle media
 
-
-
-
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
+https://youtu.be/u8k-IlkShKs
