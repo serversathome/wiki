@@ -2,7 +2,7 @@
 title: Kan
 description: A guide to deploying Kan.bn in docker
 published: true
-date: 2025-07-29T23:35:53.893Z
+date: 2025-07-30T18:27:35.379Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T17:56:48.924Z
@@ -45,3 +45,6 @@ services:
 > 
 > Read the [official docs](https://docs.kan.bn/introduction)!
 {.is-success}
+
+# Video
+https://youtu.be/_Upe8mr5KMA
