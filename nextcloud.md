@@ -2,7 +2,7 @@
 title: Nextcloud
 description: A guide to deploying Nextcloud on TrueNAS Scale and via docker compose
 published: true
-date: 2025-07-09T12:32:42.245Z
+date: 2025-07-30T18:29:32.531Z
 tags: 
 editor: markdown
 dateCreated: 2024-11-06T16:25:41.034Z
@@ -128,7 +128,9 @@ Note that since Collabora has its own self-signed certificate we need to check t
 
 Now navigate to **Nextcloud** > **Apps** > **Office & text** \> **Nextcloud Office** and enable/install this app. 
 
-Next navigate to **Nextcloud** > **Administration Settings** >  **Office** and click the radio button to **Use your own server**. Enter the address of your FQDN and click save. You should see a green bar across the top that says *Collabora Online server is reachable*. 
+Next navigate to **Nextcloud** > **Administration Settings** >  **Office** and click the radio button to **Use your own server**. Enter the address of your FQDN and click save. You should see a green bar across the top that says *Collabora Online server is reachable*.
+
+https://youtu.be/ibL9qAlUZes
 
 # <img src="/youtube.png" class="tab-icon"> YouTube Walkthrough
 
