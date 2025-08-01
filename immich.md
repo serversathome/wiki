@@ -2,7 +2,7 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: 2025-07-09T12:44:35.939Z
+date: 2025-08-01T18:43:29.096Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-30T12:06:15.920Z
@@ -41,7 +41,7 @@ services:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     volumes:
-      - /mnt/tank/configs/immich/uploads:/usr/src/app/upload
+      - /mnt/tank/configs/immich/uploads:/data
       - /etc/localtime:/etc/localtime:ro
     ports:
       - '2283:2283'
