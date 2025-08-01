@@ -2,7 +2,7 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: 2025-08-01T18:48:40.000Z
+date: 2025-08-01T20:56:16.752Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-30T12:06:15.920Z
@@ -209,5 +209,25 @@ tank
 1. Add the path you mounted earlier and click **Add**
 1. Click **Save**
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# 3 · Migrating to New Dataset Structure
+
+1. Create new dataset (I am calling them `immich1` for simplicity) with **apps** permission preset
+1. Create two sub-datasets: `data` and `db` with **apps** permission preset
+1. Use `rsync` to copy data from the old datasets to the new ones (assuming this is how your old dataset structure is named)
+    ```bash
+    rsync -avhz --progress /mnt/tank/configs/immich/backups/ /mnt/tank/configs/immich1/data/backups/ && \
+    rsync -avhz --progress /mnt/tank/configs/immich/library/ /mnt/tank/configs/immich1/data/library/ && \
+    rsync -avhz --progress /mnt/tank/configs/immich/profile/ /mnt/tank/configs/immich1/data/profile/ && \
+    rsync -avhz --progress /mnt/tank/configs/immich/thumbs/ /mnt/tank/configs/immich1/data/thumbs/ && \
+    rsync -avhz --progress /mnt/tank/configs/immich/video/ /mnt/tank/configs/immich1/data/encoded-video/ && \
+    rsync -avhz --progress /mnt/tank/configs/immich/uploads/ /mnt/tank/configs/immich1/data/upload/ && \
+    rsync -avhz --progress /mnt/tank/configs/immich/db/ /mnt/tank/configs/immich1/db/
+    ```
+1. Edit Immich app
+a. Scroll down to **Storage Configuration** and uncheck the box **Use Old Storage Configuration (Deprecated)**
+b. Set the **Data Storage** to the new dataset `/mnt/tank/immich1/data`
+c. Set the **Postgres Data Storage** to the new dataset `/mnt/tank/immich1/db` and be sure to check the **Automatic Permissions** checkbox
+d. Click the blue **Update** button
+
+# <img src="/youtube.png" class="tab-icon"> 4 · Video
 [](https://youtu.be/TqjlUocu6ZI)
