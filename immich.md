@@ -2,7 +2,7 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: 2025-08-01T20:56:16.752Z
+date: 2025-08-03T19:12:13.282Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-30T12:06:15.920Z
@@ -240,7 +240,7 @@ tank
 
 1. Create new parent dataset (I am calling this `immich1` for simplicity & clarity) with **apps** permission preset
 1. Create two sub-datasets: `data` and `db` with **apps** permission preset
-1. Use `rsync` to copy data from the old datasets to the new ones (assuming this is how your old dataset structure is named). `rsync` will create the new sub-directories when it completes the sync task.
+1. Use `rsync` to copy data from the old datasets to the new ones (assuming this is how your old dataset structure is named). `rsync` will create the new sub-directories when it completes the sync task. Run the following command in the TrueNAS shell as `root`:
     ```bash
     rsync -avhz --progress /mnt/tank/configs/immich/backups/ /mnt/tank/configs/immich1/data/backups/ && \
     rsync -avhz --progress /mnt/tank/configs/immich/library/ /mnt/tank/configs/immich1/data/library/ && \
