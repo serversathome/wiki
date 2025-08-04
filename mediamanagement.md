@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-08-04T12:06:10.822Z
+date: 2025-08-04T12:40:17.674Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -40,6 +40,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 - [<img src="/ombi.png"> Ombi <span class="badge">NEW</span><br>*Media request & discovery manager*](/ombi)
 - [<img src="/pulsarr.png"> Pulsarr<br>*Plex watch-list monitoring, routing & notifications*](/pulsarr)
 - [<img src="/recommendarr.png"> Recommendarr<br>*Personalized recommendations for existing libraries*](/recommendarr)
+- [🎧 Releasarr<br>*Music discovery platform*](/releasarr)
 - [<img src="/slskd.png"> Soulseek<br>*Music-sharing network*](/soulseek)
 - [🔍 Suggestarr<br>*Automated recommendations & requests based on user activity*](/suggestarr)
 {.links-list}
