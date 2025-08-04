@@ -2,7 +2,7 @@
 title: Invoicerr
 description: A guide to deploying Invoicerr via docker
 published: true
-date: 2025-08-04T11:30:46.749Z
+date: 2025-08-04T11:33:34.266Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T11:29:50.007Z
