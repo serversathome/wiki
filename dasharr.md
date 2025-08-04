@@ -2,7 +2,7 @@
 title: Dasharr
 description: A guide to deploying Dasharr in docker
 published: true
-date: 2025-08-04T11:22:31.095Z
+date: 2025-08-04T11:23:57.253Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T11:22:20.098Z
@@ -25,3 +25,12 @@ services:
       - /mnt/tank/configs/dasharr:/app/config
     restart: unless-stopped
 ```
+
+# 2 · Configure Dasharr
+
+1. Navigate to http://IP:3000
+1. Click **Configuration** in the navigation
+1. Select a service to configure
+1. Enter your service URL and API key/token
+1. Click **Test Connection** to verify
+1. Click **Save** Configuration
