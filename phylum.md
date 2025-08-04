@@ -2,7 +2,7 @@
 title: Phylum
 description: A guide to deploying Phylum via docker
 published: true
-date: 2025-08-04T12:25:07.864Z
+date: 2025-08-04T12:25:47.262Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T12:25:07.864Z
@@ -58,3 +58,6 @@ Then create a user by running the following command in the TrueNAS shell:
 ```bash
 docker exec -it phylum_server phylum admin user create
 ```
+
+> [Read the official documentation!](https://codeberg.org/shroff/phylum)
+{.is-success}
