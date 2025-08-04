@@ -2,7 +2,7 @@
 title: Containerization
 description: 
 published: true
-date: 2025-08-04T11:18:15.322Z
+date: 2025-08-04T13:05:41.473Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T20:43:05.196Z
@@ -28,7 +28,7 @@ These are GUI front-ends for managing Docker containers.
 * [<img src="/watchtower.png"> Watchtower<br>*Auto-updates for containers*](/Watchtower)
   {.links-list}
 
-# Docker
+# Other
 
 * [<img src="/docker.png"> Docker<br>*Guide to deploying Docker*](/Docker)
   {.links-list}
