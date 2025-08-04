@@ -2,7 +2,7 @@
 title: Media Manager
 description: A guide to deploying Media Manager via docker
 published: true
-date: 2025-08-04T12:09:17.327Z
+date: 2025-08-04T12:09:27.068Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T11:59:15.707Z
@@ -44,9 +44,8 @@ services:
       POSTGRES_PASSWORD: MediaManager
 
 ```
-> 
+
 > Read the [official documentation!](https://maxdorninger.github.io/MediaManager/introduction.html)
-> 
 {.is-success}
 
 Once this is created you need to paste the toml file below to `/mnt/tank/configs/mediamanager` using something like `nano` by entering this command in the TrueNAS shell:
