@@ -2,7 +2,7 @@
 title: Notifiarr
 description: A guide to deploy Notifiarr in TrueNAS 
 published: true
-date: 2025-07-11T12:38:38.149Z
+date: 2025-08-04T18:37:35.548Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-20T20:23:44.026Z
@@ -15,13 +15,13 @@ Notifiarr is a system that integrates with many applications to manage and custo
 {.is-success}
 
 
-# Setup of Notifiarr
+# 1 · Setup of Notifiarr
 1. Go to [Notifiarr](https://notifiarr.com/guest/register) and create a account.
 
     <img src="https://github.com/user-attachments/assets/3e24b851-ff45-488d-8c5d-e9286592f198">
 
 1. Next it will ask you to login to Discord . This is used to setup notifications. I recommend creating a private server for the integration.
-1. [Create a bot on Discord](https://support.discord.com/hc/en-us/articles/204849977-How-do-I-create-a-server)
+1. [Create a server on Discord](https://support.discord.com/hc/en-us/articles/204849977-How-do-I-create-a-server)
 
     <img src="https://github.com/user-attachments/assets/54256674-fca4-4ef8-949c-846d7d9acad6">
 
@@ -29,38 +29,44 @@ Notifiarr is a system that integrates with many applications to manage and custo
 
     <img src="https://github.com/user-attachments/assets/a56f1cb3-2922-4b78-8a66-fbf0da873db0">
 
-# Install Notifiarr on TrueNAS
-
-<img src="https://github.com/user-attachments/assets/7a47eb6d-84c7-4467-9e8f-d71b093dd2ae">
-
-1. In order to get your API key head back to the notifiarr website in your profile. Scroll down till you see this section and copy your api key. 
+1. In order to get your API key scroll down till you see this section and copy your api key. 
     <img src="https://github.com/user-attachments/assets/9563760b-d89c-495a-b06a-87d730c564f9">
 
-1. Enter the hostname (the IP:port of the container if you are not using an FQDN)
+# 2 · Deploy Notifiarr
+# tabs {.tabset}
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
-1. Use **Host Path Configuration** for the **Notifiarr Config Storage**
-    <img src="https://github.com/user-attachments/assets/a023a023-29d7-4eaf-9124-d11ea94a4348">
-    <img src="https://github.com/user-attachments/assets/0065d224-3647-4baf-be13-4b58c584f7be">
+```yaml
+services:
+  notifiarr:
+    container_name: notifiarr
+    hostname: notifiarr
+    image: golift/notifiarr
+    restart: unless-stopped
+    ports:
+      - "5454:5454"
+    volumes:
+      - /mnt/tank/configs/notifiarr:/config
+      - /var/run/utmp:/var/run/utmp
+      - /etc/machine-id:/etc/machine-id
+```
 
-1. Once it is installed go to your logs and grab your password. 
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
-1. Login to your instance.
-    <img src="https://github.com/user-attachments/assets/285b21c8-02eb-480d-9b6b-cfea8c53830e">
+![](/screenshot_from_2024-02-23_09-37-02.png)
 
+1. Change the **Hostname** to the IP of your TrueNAS server
+1. Change the **Storage Configuration**. The **Notifiarr Config Storage** *Type* should be set to **Host Path** and point to `/mnt/tank/configs/notifiarr`
+
+# 3 · Logging In
+1. The username is `admin`. The one-time password is printed in the logs.
+1. Login to your instance
 1. Verify Notifiarr can see your endpoint by visiting the Notifiarr website navigating to **Setup** on the left pane and select **Integrations → Client Configuration**. Scroll down to see a green connect symbol (or a popup in the bottom right corner will say it is connected).
-
-    <img src="https://github.com/user-attachments/assets/99acfedb-adbc-4a42-be0c-b2633d1aff76">
 
 <img src="https://github.com/user-attachments/assets/c929f609-6822-4ca7-8454-683b3d3982fb">
 
-![image](https://github.com/user-attachments/assets/f3b8f83f-09bc-4a87-a040-6ece04ff1a91)
-*Pop up in bottom right*
 
-![image](https://github.com/user-attachments/assets/8c672f5c-b198-4b62-8e02-384161778e9c)
-*Green connect status*
-
-
-# Integrating \*arr Apps
+# 4 · Integrating \*arr Apps
 1. Navigate in the left pane of Notifiarr to **Starr Apps**
     ![image](https://github.com/user-attachments/assets/77fec8b4-b4f2-4e38-9596-5272bc633d9f)
 1. Click the plus sign and put in your instance name, url, API Key, username and password then click **Save**
