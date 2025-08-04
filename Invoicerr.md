@@ -2,7 +2,7 @@
 title: Invoicerr
 description: A guide to deploying Invoicerr via docker
 published: true
-date: 2025-08-04T11:29:50.007Z
+date: 2025-08-04T11:30:46.749Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T11:29:50.007Z
@@ -17,6 +17,7 @@ services:
   invoicerr:
     image: ghcr.io/impre-visible/invoicerr:latest
     container_name: invoicerr
+    restart: unless-stopped
     ports:
       - "8001:80"
     environment:
@@ -57,6 +58,7 @@ services:
   invoicerr_db:
     image: postgres:latest
     container_name: invoicerr_db
+    restart: unless-stopped
     environment:
       POSTGRES_USER: invoicerr
       POSTGRES_PASSWORD: invoicerr
