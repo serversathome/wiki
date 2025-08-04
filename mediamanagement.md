@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-07-29T10:33:29.151Z
+date: 2025-08-04T11:24:42.693Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -59,6 +59,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 ## Others
 - [🐌 Auto-Limit<span class="badge">NEW</span><br>*Intelligent download speed management*](/autolimit)
 - [<img src="/bazarr.png"> Bazarr<br>*Subtitle management*](/bazarr)
+- [<img src="/dasharr.png"> Dasharr<br>*Dashboard*](/dasharr)
 - [<img src="/flaresolverr.png"> Flaresolverr<br>*Proxy server to bypass Cloudflare protection*](/Flaresolverr)
 - [<img src="/notifiarr.png"> Notifiarr<br>*Monitoring & notifications via Discord*](/notifiarr)
 - [<img src="/trailarr.png"> Trailarr<br>*Add trailers to your media*](/trailarr)
