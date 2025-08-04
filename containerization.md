@@ -2,7 +2,7 @@
 title: Containerization
 description: 
 published: true
-date: 2025-08-04T13:05:41.473Z
+date: 2025-08-04T13:12:34.726Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T20:43:05.196Z
@@ -30,5 +30,6 @@ These are GUI front-ends for managing Docker containers.
 
 # Other
 
+* [<img src="/composetoolbox.png"> Compose Toolbox<br>*Compose file validator*](/composetoolbox)
 * [<img src="/docker.png"> Docker<br>*Guide to deploying Docker*](/Docker)
   {.links-list}
