@@ -2,7 +2,7 @@
 title: Notifiarr
 description: A guide to deploy Notifiarr in TrueNAS 
 published: true
-date: 2025-08-04T18:37:35.548Z
+date: 2025-08-04T18:39:31.153Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-20T20:23:44.026Z
@@ -75,18 +75,15 @@ services:
     <img src="https://github.com/user-attachments/assets/92e0f08c-463b-4645-ae7a-6310160068ae">
 
 
-## Generate an API Key in Notifiarr
+## 4.1 Generate an API Key in Notifiarr
 1. Navigate to the Notifiarr website
 1. Add an **Integration** and select **Radarr**
 1. Navigate to your profile page and scroll back down and create a API key for Radarr:
     ![image](https://github.com/user-attachments/assets/8d3e2b85-0c0e-4e31-b856-545504b4e49b)
-1. For the name of the connection, be sure to append a number to the end of the name. Every new connection will need the next incremented number.
 1. Click **Add Notifiarr Connect**
     ![image](https://github.com/user-attachments/assets/47ccce49-a2da-4bb8-9dde-add97e1168df)
-1. Back in Radarr you should see two connections now. Do not delete the one without the number, but you can disable all notifications from it:
-    ![image](https://github.com/user-attachments/assets/5b04bb4e-b756-4a6c-9a51-0727729429fe)
 
-# Add Trash Guides Profiles
+# 5 · Add Trash Guides Profiles
 1. Navigate to **Profiles** in the left side pane
   ![image](https://github.com/user-attachments/assets/77757789-edd9-4eed-8bfe-6777866a3780)
 1. Click on **Add new / Link existing**
