@@ -2,7 +2,7 @@
 title: Media Manager
 description: A guide to deploying Media Manager via docker
 published: true
-date: 2025-08-05T19:24:13.208Z
+date: 2025-08-05T19:33:58.267Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T11:59:15.707Z
@@ -48,7 +48,7 @@ services:
 > Read the [official documentation!](https://maxdorninger.github.io/MediaManager/introduction.html)
 {.is-success}
 
-## 2 · Media Manager Configuration
+# 2 · Media Manager Configuration
 
 1. Edit the `config.toml' file by entering this command in the TrueNAS shell:
     ```bash
