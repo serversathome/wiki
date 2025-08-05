@@ -2,7 +2,7 @@
 title: Media Manager
 description: A guide to deploying Media Manager via docker
 published: true
-date: 2025-08-05T19:09:24.580Z
+date: 2025-08-05T19:09:32.507Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T11:59:15.707Z
@@ -51,9 +51,9 @@ services:
 ## 2 · Media Manager Configuration
 
 1. Edit the `config.toml' file by entering this command in the TrueNAS shell:
-```bash
-nano /mnt/tank/configs/mediamanager/config.toml
-```
+    ```bash
+    nano /mnt/tank/configs/mediamanager/config.toml
+    ```
 1. Edit the `frontend_url` and `cors_urls` lines by removing `localhost` and adding the IP of your server
 1. Restart the docker container
 1. Navigate to the IP and port of the container and login with `admin@example.com` and password `admin`
