@@ -2,7 +2,7 @@
 title: Media Manager
 description: A guide to deploying Media Manager via docker
 published: true
-date: 2025-08-05T19:33:58.267Z
+date: 2025-08-05T19:34:30.897Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T11:59:15.707Z
@@ -59,3 +59,5 @@ services:
 1. Add the Prowlarr URL and API key and set to `true`
 1. Restart the docker container
 1. Navigate to the IP and port of the container and login with `admin@example.com` and password `admin`
+
+# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
