@@ -2,7 +2,7 @@
 title: Media Manager
 description: A guide to deploying Media Manager via docker
 published: true
-date: 2025-08-05T19:34:30.897Z
+date: 2025-08-05T21:19:06.087Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T11:59:15.707Z
@@ -61,3 +61,5 @@ services:
 1. Navigate to the IP and port of the container and login with `admin@example.com` and password `admin`
 
 # <img src="/patreon-light.png" class="tab-icon"> 3 · Video
+
+[![](/2025-08-05-mediamanager-one-app-to-replace-promo-card.png)](https://www.patreon.com/posts/mediamanager-one-135812951)
