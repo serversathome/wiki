@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-07-20T20:08:40.248Z
+date: 2025-08-06T11:51:03.351Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -151,95 +151,6 @@ Before we setup the VM, we have to build a network bridge. This is necessary bec
 
 ## Instances
 ### Instances
-[](https://youtu.be/z2UUBW1eHsk)
-
-### Upgrading VMs From Previous Versions
-
-Right now this is difficult to do with Windows but has been fairly straight forward with Linux. With Linux I notice the ethernet device changes upon migration, so if you are having issues use VNC to look at the console and troubleshoot your networking.
-
-For Windows [this migration guide](https://forums.truenas.com/t/guide-how-to-install-migrate-windows-vm-to-fangtooth-incus-using-virtio-drivers/37056) should help. I didn't write it, but it seems to work for many people.
-
-### Changing Default Port 53
-
-By default, Incus runs on port 53, which will conflict with any DNS servers you want to run. To change the default port for Incus, run this command in the TrueNAS shell:
-
-```bash
-sudo incus network set incusbr0 raw.dnsmasq="port=5354"
-```
-
-Also, if you use a bridge and set Incus to use the bridge, it also solves the conflict.
-
-### Incus Helper Scripts
-
-> Note that this repo is under development so not everything is functional!
-{.is-warning}
-
-Starting on Fangtooth, the ability to launch LXCs via the TrueNAS command line is now a thing. Similar to Proxmox, the creation of pre-built containers is vastly simplified by the use of scripts. [See this website](https://bketelsen.github.io/IncusScripts/) for a list of scripts available.
-
-#### Installing the CLI
-
-In order to use the scripts you must first install the Helper Scripts CLI.
-1. Create a dataset for the CLI (unmodified general permissions will be fine)
-1. Navigate to the TrueNAS shell
-1. Enter these commands, assuming the path of the dataset is `/mnt/tank/scripts`:
-```bash
-cd /mnt/tank/scripts
-wget https://github.com/bketelsen/IncusScripts/releases/download/v0.2.1/scripts-cli_Linux_x86_64.tar.gz
-tar -xzvf scripts-cli_Linux_x86_64.tar.gz
-echo 'export PATH=$PATH:/mnt/tank/scripts' >> ~/.zshrc
-source ~/.zshrc
-echo 'export PATH=$PATH:/mnt/tank/scripts' >> ~/.bashrc
-source ~/.bashrc
-```
-
-#### Uninstalling the CLI
-
-In the event you want to remove the scripts, simple delete the dataset you downloaded the to CLI in the above step. If you are still having issues, trying running this command in the TrueNAS shell:
-
-```bash
-incus profile rm scriptcli-storage
-```
-
-[](https://youtu.be/O9HeWPosBUQ)
-
-### Creating a Windows VM
-
-1. Download the .iso file for the version of Windows you want. These .iso files were compiled in May 2025 with the virtio drivers built in:
-
-    - [Windows 10 Pro *OOBE Enabled by default*](http://serversatho.me/win10mod.iso)
-    - [Windows 11 Pro](http://serversatho.me/win11mod.iso)
-    - [VirtIO Drivers](http://serversatho.me/virtio-win.iso)
-    {.links-list}
-
-1. Create a New Instance
-1. Give it a name
-1. Click **VM** and select the radio button for **Upload ISO, import a zvol or use another volume**
-1. Click **Upload ISO** and select the ISO you just downloaded
-1. You should see it mounted in the Volumes box and can click **Select**
-1. Assign CPU and Memory
-1. In **Storage** select **Virtio-SCSI** as the *Root Disk I/O Bus*
-1. Give it 60 GiB or more *Root Disk Size*
-1. Click the box to **Enable VNC**
-1. Click **Create**
-1. You now must jump to the VNC **quickly** so you can press any key to boot from the CD!!
-1. Go through the install per usual
-	a. In the event you are stopped because there is no internet hit <kbd>SHIFT F10</kbd> then type `oobe\bypassnro`
-1. Once you have successfully booted into Windows, shutdown the VM
-1. Add the **VirtIO Drivers** ISO from above to the **Disks** with a *Boot Priority* of `2` and an *I/O Bus* of `Virtio-SCSI`
-1. Start the VM
-1. Navigate to **Device Manager** and right-click the **Ethernet Device**
-1. Click **Update Driver**
-1. Click **Browse my Computer for Drivers** then click **Browse**
-1. Select the drive which has the VirtIO disk mounted in it
-1. Click **Next** then **Finish**
-1. To enable RDP type `settings` into the Start Bar
-1. Search for `remote desktop`
-1. Click **Remote Desktop Settings** and the flip the switch to **Enable Remote Desktop**
-
-> Activation information can be found [here](https://massgrave.dev/)
-{.is-info}
-
-[](https://youtu.be/_YkNDg1QurI)
 
 
 ## Apps
