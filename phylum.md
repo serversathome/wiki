@@ -2,7 +2,7 @@
 title: Phylum
 description: A guide to deploying Phylum via docker
 published: true
-date: 2025-08-04T12:25:47.262Z
+date: 2025-08-07T17:18:30.586Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T12:25:07.864Z
@@ -51,7 +51,7 @@ services:
 ```
 Run the following command in the TrueNAS shell before launching the container:
 ```bash
-touch /mnt/tank/configs/phylum/storage/config.yml
+rm -rf /mnt/tank/configs/phylum/storage/config.yml && touch /mnt/tank/configs/phylum/storage/config.yml
 ```
 
 Then create a user by running the following command in the TrueNAS shell:
