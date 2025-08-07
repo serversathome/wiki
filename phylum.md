@@ -2,7 +2,7 @@
 title: Phylum
 description: A guide to deploying Phylum via docker
 published: true
-date: 2025-08-07T17:18:30.586Z
+date: 2025-08-07T17:29:30.743Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T12:25:07.864Z
@@ -54,9 +54,9 @@ Run the following command in the TrueNAS shell before launching the container:
 rm -rf /mnt/tank/configs/phylum/storage/config.yml && touch /mnt/tank/configs/phylum/storage/config.yml
 ```
 
-Then create a user by running the following command in the TrueNAS shell:
+Then create a user by running the following command in the TrueNAS shell replacing the `email`:
 ```bash
-docker exec -it phylum_server phylum admin user create
+docker exec -it phylum_server phylum admin user create email --no-email
 ```
 
 > [Read the official documentation!](https://codeberg.org/shroff/phylum)
