@@ -1,8 +1,8 @@
 ---
-title: Invoicerr
+title: invoicerr
 description: A guide to deploying Invoicerr via docker
 published: true
-date: 2025-08-04T11:33:34.266Z
+date: 2025-08-07T16:47:11.763Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T11:29:50.007Z
@@ -35,16 +35,16 @@ services:
 
       # OIDC Configuration (example for Authentik)
       - OIDC_ISSUER="https://auth.chevrier.dev"
-      - # Endpoints for OIDC
+      # Endpoints for OIDC
       - OIDC_AUTHORIZATION_ENDPOINT="https://auth.chevrier.dev/authorize"
       - OIDC_TOKEN_ENDPOINT="https://auth.chevrier.dev/token"
       - OIDC_USERINFO_ENDPOINT="https://auth.chevrier.dev/userinfo"
       - OIDC_TOKEN_REVOKE_ENDPOINT="https://auth.chevrier.dev/revoke"
       - OIDC_END_SESSION_ENDPOINT="https://auth.chevrier.dev/end_session"
       - OIDC_JWKS_URI="https://auth.chevrier.dev/.well-known/jwks.json"
-      - # Callback URL for OIDC
+      # Callback URL for OIDC
       - OIDC_CALLBACK_URL="https://invoicerr.chevrier.dev/api/auth/callback"
-      - # Client ID and Secret for OIDC
+      # Client ID and Secret for OIDC
       - OIDC_CLIENT_ID="your-client-id"
       - OIDC_CLIENT_SECRET="your-client-secret"
 
