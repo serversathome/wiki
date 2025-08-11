@@ -2,7 +2,7 @@
 title: Pi-Hole
 description: A guide to deploying Pi-Hole
 published: true
-date: 2025-08-11T12:42:07.484Z
+date: 2025-08-11T12:55:16.428Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-11T12:00:04.102Z
@@ -43,6 +43,18 @@ services:
 1. Enter the password you set above
 
 # 3 · Pi-Hole Configuration
+1. Navigate to **System → Settings** in the left pane
+a. In the **DNS** tab select the DNS servers you want to use
+
+# 4 · Adding Block Lists
+1. Navigate to **Group Management → Lists** in the left pane
+1. Paste the URL in the **Addresses** field then click **Add Blocklist**
+> 
+> A basic list to add is EasyList `https://v.firebog.net/hosts/Easylist.txt`
+{.is-info}
+
+3. Navigate to **System → Tools → Update Gravity** in the left pane
+1. Click **Update** and do not navigate away from the page!
 
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
