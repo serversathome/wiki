@@ -2,7 +2,7 @@
 title: Pi-Hole
 description: A guide to deploying Pi-Hole
 published: true
-date: 2025-08-11T12:32:20.388Z
+date: 2025-08-11T12:42:07.484Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-11T12:00:04.102Z
@@ -38,7 +38,11 @@ services:
     restart: unless-stopped
 ```
 
-# 2 · Pi-Hole Configuration
+# 2 · Logging In
+1. Naviagte to `https://{IP}/admin/login`
+1. Enter the password you set above
+
+# 3 · Pi-Hole Configuration
 
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
