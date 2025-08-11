@@ -2,7 +2,7 @@
 title: Pi-Hole
 description: A guide to deploying Pi-Hole
 published: true
-date: 2025-08-11T12:00:04.102Z
+date: 2025-08-11T12:02:34.225Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-11T12:00:04.102Z
@@ -31,6 +31,8 @@ services:
       TZ: 'America/New_York'
       FTLCONF_webserver_api_password: 'changeme'
       FTLCONF_dns_listeningMode: 'all'
+      PIHOLE_UID: 568
+      PIHOLE_GID: 568
     volumes:
       - '/mnt/tank/configs/pihole:/etc/pihole'
     restart: unless-stopped
