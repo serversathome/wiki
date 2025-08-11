@@ -2,7 +2,7 @@
 title: Pi-Hole
 description: A guide to deploying Pi-Hole
 published: true
-date: 2025-08-11T12:02:34.225Z
+date: 2025-08-11T12:32:20.388Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-11T12:00:04.102Z
@@ -14,7 +14,7 @@ Pi-hole is a software that blocks ads and trackers across your entire network.
 # 1 · Deploy Pi-Hole
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
-1. Set the **Storage Configuration** to use **Host Path** for the **Pi-Hole Home Config Storage** and **Pi-Hole Home WorkDir Storage**
+1. Set the **Storage Configuration** to use **Host Path** for the **Pi-Hole Config Storage** and **Pi-Hole DNSMASQ Configuration**
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 ```yaml
@@ -38,7 +38,7 @@ services:
     restart: unless-stopped
 ```
 
-# 2 · P-Hole Configuration
+# 2 · Pi-Hole Configuration
 
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
