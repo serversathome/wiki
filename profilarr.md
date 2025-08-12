@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2025-07-09T12:46:15.215Z
+date: 2025-08-12T19:43:47.895Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-23T11:41:17.078Z
@@ -37,7 +37,7 @@ services:
 ```
 
 # 2 · Configuration
-> The official guide from Profilarr is excellent. I recommend you read it [here](https://dictionarry.dev/wiki/profilarr-setup)
+> The official guide from Profilarr is excellent. I recommend you read it [here](https://dictionarry.dev/)
 {.is-info}
 
 ## 2.1 Initial Setup
