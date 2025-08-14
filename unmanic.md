@@ -2,7 +2,7 @@
 title: Unmanic
 description: A guide to deploying Unmanic
 published: true
-date: 2025-08-14T19:38:33.051Z
+date: 2025-08-14T20:52:41.642Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-14T19:02:47.616Z
@@ -77,4 +77,14 @@ services:
 1. Click the **Hom** button at the top
 1. In the **Pending Tasks** box, click **Rescan Library Now**
 1. You should see your workers spin up as they find media to transcode to h265
+
+## 2.5 Recommended Plugins
+
+| Name | Function |
+|----|-----|
+|File Size Metrics Data Panel | Aggregate changes in file size metrics for processed files and add a data panel for displaying the results. |
+| Modify Unmanic's Default File Movements | Good if you don't want to delete the original file |
+| Notify Radarr/Sonarr | Notify Radarr/Sonarr on movie update to rescan and rename a modified file. |
+| Reject File if Larger than Original | This plugin will reset the current working file to the original source if it is larger than the original source. | 
+
 
