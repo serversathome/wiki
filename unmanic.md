@@ -2,7 +2,7 @@
 title: Unmanic
 description: A guide to deploying Unmanic
 published: true
-date: 2025-08-14T20:53:22.454Z
+date: 2025-08-14T20:54:01.141Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-14T19:02:47.616Z
@@ -84,7 +84,7 @@ services:
 |----|-----|
 |File Size Metrics Data Panel | Aggregate changes in file size metrics for processed files and add a data panel for displaying the results. |
 | Modify Unmanic's Default File Movements | Good if you don't want to delete the original file. |
-| Notify Radarr/Sonarr | Notify Radarr/Sonarr on movie update to rescan and rename a modified file. |
+| Notify Radarr/Sonarr | Notify Radarr/Sonarr on movie or series update to rescan and rename a modified file. |
 | Reject File if Larger than Original | This plugin will reset the current working file to the original source if it is larger than the original source. | 
 
 
