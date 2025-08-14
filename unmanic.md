@@ -2,7 +2,7 @@
 title: Unmanic
 description: A guide to deploying Unmanic
 published: true
-date: 2025-08-14T19:18:51.656Z
+date: 2025-08-14T19:36:06.639Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-14T19:02:47.616Z
@@ -37,12 +37,33 @@ services:
 1. Upon first login, expand the left pane with the hamburger menu ☰ in the top left
 1. Click on **Settings**
 
-## 2.1 Libraries
+## 2.1 Plugins
+1. Click on **Plugins**
+1. Click **Install Plugin From Repo**
+	a. Click **Refresh Repositories**
+	b. In the search bar type `transcode`
+	c. Click the purple button in the **Transcode Video Files** box to download the plugin
+	d. Close the window
+1. Click the **Settings** button in the new Transcode Video Files box
+	a. Switch the **Video Encoder** to `NVENC` if you are using an nVidia GPU
+
+> There are **many** other plugins that do various functions. Take time to explore more!
+{.is-info}
+
+## 2.2 Workers
+1. Click on **Workers**
+1. Click on the + symbol in the **Worker Groups** section
+1. Give it a name
+1. Increase your worker count based on what your GPU can handle
+
+
+## 2.3 Libraries
 1. Click on **Library**
 	a. Under **Libraries** click on the **Settings** button
 	b. Set the **Library Path** to your movies directory
 	c. Turn on the switch for **Enable library scanner for this library**
 	d. Turn on the switch for **Enable file monitor for this library**
+	e. Click the + icon in the **Plugins** section and select the Transcode Plugin
 1. Click the + Icon under **Libraries** to add a new library
 	a. Click the folder icon at the top with the two periods ( .. ) to go up one path
  	b. Set your **Library Path** to your TV directory
@@ -51,3 +72,9 @@ services:
 
 > You may get a warning at the bottom of the screen which says `Unmanic has stopped all workers..` This is normal
 {.is-info}
+
+## 2.4 Start Workers
+1. Click the **Hom** button at the top
+1. In the **Pending Tasks** box, click **Rescan Library Now**
+1. You should see your workers spin up as they find media to transcode to h265
+
