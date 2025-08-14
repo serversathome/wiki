@@ -2,7 +2,7 @@
 title: Unmanic
 description: A guide to deploying Unmanic
 published: true
-date: 2025-08-14T19:02:47.616Z
+date: 2025-08-14T19:04:41.730Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-14T19:02:47.616Z
@@ -37,3 +37,4 @@ services:
 1. Upon first login, expand the left pane with the hamburger menu ☰ in the top left
 1. Click on **Library** 
 a. Under **Libraries** click on the **Settings** button
+b. Turn on the switch for **Enable library scanner for this library**
