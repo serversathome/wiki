@@ -2,7 +2,7 @@
 title: Unmanic
 description: A guide to deploying Unmanic
 published: true
-date: 2025-08-14T19:36:06.639Z
+date: 2025-08-14T19:38:33.051Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-14T19:02:47.616Z
@@ -10,7 +10,7 @@ dateCreated: 2025-08-14T19:02:47.616Z
 
 # ![](/unmanic.png){class="tab-icon"} What is Unmanic?
 
-Tdarr is a tool that can help you optimize your media files by transcode, remux, remove unwanted streams and more. It supports cross-platform nodes, hardware transcoding, plugins and job reports.
+Unmanic gives you the power to automate the management of any file library through the use of customised modular task flows to suit your specific needs, giving you the ultimate, simple to configure, set-and-forget library optimisation tool.
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Unmanic
 
