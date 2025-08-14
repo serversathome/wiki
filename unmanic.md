@@ -2,7 +2,7 @@
 title: Unmanic
 description: A guide to deploying Unmanic
 published: true
-date: 2025-08-14T20:54:01.141Z
+date: 2025-08-14T20:54:52.171Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-14T19:02:47.616Z
@@ -86,5 +86,7 @@ services:
 | Modify Unmanic's Default File Movements | Good if you don't want to delete the original file. |
 | Notify Radarr/Sonarr | Notify Radarr/Sonarr on movie or series update to rescan and rename a modified file. |
 | Reject File if Larger than Original | This plugin will reset the current working file to the original source if it is larger than the original source. | 
-
+> 
+> Remember to add any new plugins to the Library to enable them!
+{.is-success}
 
