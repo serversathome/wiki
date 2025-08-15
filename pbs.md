@@ -2,7 +2,7 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2025-07-09T14:53:58.433Z
+date: 2025-08-15T10:46:16.473Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-08T13:44:29.541Z
@@ -20,12 +20,12 @@ Proxmox Backup Server (PBS) is an enterprise backup solution, for backing up and
 
 ## <img src="/linuxcontainers.png" class="tab-icon"> Fangtooth LXC
 
-1. Create a new Instance from the **Debian bookworm (amd64, default)** image with all default settings
+1. Create a new Instance from the **Debian trixie (amd64, default)** image with all default settings
 1. Once its running, shell into the container and run these commands:
     ```bash
-    echo "deb http://download.proxmox.com/debian/pbs bookworm pbs-no-subscription" | sudo tee -a /etc/apt/sources.list
+    echo "deb http://download.proxmox.com/debian/pbs trixie pbs-no-subscription" | sudo tee -a /etc/apt/sources.list
     sudo apt install wget -y
-    wget https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
+    wget https://enterprise.proxmox.com/debian/proxmox-release-trixie.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-trixie.gpg
     sudo apt update && apt upgrade -y
     sudo apt install -y whiptail apt-utils coreutils bash proxmox-widget-toolkit nano nfs-common cron
     sudo apt update && apt install proxmox-backup-server -y
