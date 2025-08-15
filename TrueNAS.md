@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2025-08-15T10:49:19.434Z
+date: 2025-08-15T10:49:51.474Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:25:40.008Z
@@ -149,8 +149,8 @@ We need to change the Nameservers away from our local to something more reliable
 Before we setup the VM, we have to build a network bridge. This is necessary because without it, our VM won't be able to see anything on our TrueNAS host. Follow the [docs](https://www.truenas.com/docs/scale/scaletutorials/network/interfaces/settingupbridge/) or even better, follow this YouTube video:  
 [](https://youtu.be/XBcAMd_wyI0)
 
-## Instances
-### Instances
+## Containers
+## Virtual Machines
 
 
 ## Apps
