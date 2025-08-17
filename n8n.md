@@ -2,7 +2,7 @@
 title: n8n
 description: A guide to deploying n8n on TrueNAS as well as docker compose
 published: true
-date: 2025-07-30T18:26:39.816Z
+date: 2025-08-17T11:20:44.988Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-24T16:54:38.031Z
@@ -35,6 +35,10 @@ services:
     restart: unless-stopped
     user: 568:568
 ```
+> **Start Command Not Found**
+> For some reason, n8n does not respect the `user` field, so whatever volume you use must have 777 permissions. To do this run the `chmod 777 /mnt/tank/configs/n8n` command to correct the issue.
+{.is-danger}
+
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
