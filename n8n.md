@@ -2,7 +2,7 @@
 title: n8n
 description: A guide to deploying n8n on TrueNAS as well as docker compose
 published: true
-date: 2025-08-17T11:20:44.988Z
+date: 2025-08-17T11:21:07.694Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-24T16:54:38.031Z
@@ -47,7 +47,7 @@ services:
 1. Set a **Redis Password**
 1. Set an **Encryption Key**
 1. The **Storage Configuration** *n8n Data Storage* should be set to **Host Path** as described in [Folder Structure](/Folder-Structure).
-1. The **Storage Configuration** *n8n Postgres Data Storage* should be set to **Host Path** and the box for ** Automatic Permissions** needs to be checked
+1. The **Storage Configuration** *n8n Postgres Data Storage* should be set to **Host Path** and the box for **Automatic Permissions** needs to be checked
 1. Increase **Resources Configuration**
 
 # 2 · n8n Configuration
