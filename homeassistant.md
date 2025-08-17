@@ -48,24 +48,3 @@ Home Assistant is free and open-source software used for home automation. It ser
 1. Once the restore process is done, power off the Ubuntu VM and remove the .iso from the Disks section in TrueNAS. Start the VM and VNC back into it. You should see HAOS booting and eventually you will see the splash screen.
 
 1. You will need to find the IP address of the VM via your router and use the port 8123. Home Assistant will default to giving you homeassistant.local:8123 address. Once you have the IP you may proceed to the [Onboarding Process](https://www.home-assistant.io/getting-started/onboarding/).
-
-
-## <img src="/linuxcontainers.png" class="tab-icon"> 1.2 LXC
-
-It is also possible to use [Helper Scripts](https://bketelsen.github.io/IncusScripts/scripts?id=homeassistant) to install Home Assistant as an LXC. 
-
-Use the command below in the TrueNAS shell as `root` to launch the container ([after installing the `scripts-cli`](https://wiki.serversatho.me/en/TrueNAS#incus-helper-scripts)):
-
-```bash
-scripts-cli launch homeassistant homeassistant
-```
-
-### 1.2.1 USB Passthru
-
-To pass devices into the container, click the name of the instance and using the **Devices** menu on the right:
-
-![screenshot_from_2025-06-15_07-44-45.png](/screenshot_from_2025-06-15_07-44-45.png)
-
-> Note this this is untested for USB passthru as of 6/15/25
-{.is-warning}
-
