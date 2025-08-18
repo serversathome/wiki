@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-07-29T23:33:46.653Z
+date: 2025-08-18T20:40:55.101Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -141,35 +141,6 @@ To add port forwarding, on the `FIREWALL_VPN_INPUT_PORTS` add a comma with no sp
 
 > For more info on this container, look [here](https://github.com/qdm12/gluetun-wiki?tab=readme-ov-file)
 {.is-info}
-
-## <img src="/linuxcontainers.png" class="tab-icon"> TrueNAS LXC
-
-> The qBittorrent container in the default Apps catalog on TrueNAS **does not include a VPN**, therefore we won't use it. Instead, create a Custom App by clicking the 3 dot menu next to the blue Custom App button and click **Deploy via YAML** or follow the steps below to launch an **LXC**.
-{.is-danger}
-
-### Prerequisites
-1. Use TrueNAS Fangtooth 25.04 or higher
-1. Have a [bridge built](https://wiki.serversatho.me/en/TrueNAS#building-a-bridge) and configured (**Instances → Configuration → Global Settings**)
-1. Have a wireguard file from your VPN provider
-1. Make sure your folder structure follows the [guide](/Folder-Structure) (your `media` folder must have a `downloads` folder within it)
-
-> qBit will run with user:group `568` permissions
-{.is-info}
-
-
-### Launch the Container
-
-1. Navigate to **Instances** and launch a container named `qbit` with the **Ubuntu Noble** image (leave all other settings default)
-1. Run this command as `root` in the TrueNAS shell:
-```bash
-sudo su -c "wget https://raw.githubusercontent.com/serversathome/ServersatHome/refs/heads/main/qbit-lxc.sh && chmod +x qbit-lxc.sh && bash qbit-lxc.sh"
-
-```
-3. Enter your `media` dataset path when prompted
-1. Enter the contents of your wireguard config file when prompted then hit <kbd>CTRL</kbd>+<kbd>D</kbd>
-> 
-> Once the script has finished, it will print out the IP of the web interface as well as the username and password
-{.is-success}
 
 # 2 · Example Wireguard wg0.conf File
 
