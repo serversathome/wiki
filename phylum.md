@@ -2,7 +2,7 @@
 title: Phylum
 description: A guide to deploying Phylum via docker
 published: true
-date: 2025-08-19T21:23:02.021Z
+date: 2025-08-19T21:31:07.197Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T12:25:07.864Z
@@ -18,7 +18,6 @@ services:
     image: shroff12/phylum:latest
     volumes:
       - /mnt/tank/configs/phylum/storage:/app/storage
-      - /mnt/tank/configs/phylum/storage/config.yml:/app/config.yml
     environment:
       PHYLUM_DB_HOST: db
       PHYLUM_DB_PASSWORD: changeme
