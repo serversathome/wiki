@@ -2,7 +2,7 @@
 title: Unmanic
 description: A guide to deploying Unmanic
 published: true
-date: 2025-08-14T20:54:52.171Z
+date: 2025-08-19T15:44:04.845Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-14T19:02:47.616Z
@@ -89,4 +89,7 @@ services:
 > 
 > Remember to add any new plugins to the Library to enable them!
 {.is-success}
+
+# <img src="/patreon-light.png" class="tab-icon"> 4 · Video
+[![](/2025-08-19-unmanic-the-best-tool-for-auto--promo-card.png)](https://www.patreon.com/posts/unmanic-best-for-136500688)
 
