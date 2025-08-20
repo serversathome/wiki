@@ -27,6 +27,7 @@ services:
     container_name: scrutiny
     restart: unless-stopped
     image: ghcr.io/analogj/scrutiny:master-omnibus
+    privileged: true
     cap_add:
       - SYS_RAWIO
     ports:
