@@ -2,7 +2,7 @@
 title: Phylum
 description: A guide to deploying Phylum via docker
 published: true
-date: 2025-08-21T18:43:52.386Z
+date: 2025-08-21T18:44:40.357Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T12:25:07.864Z
@@ -57,6 +57,10 @@ services:
     ```bash
     docker exec -it phylum_server phylum admin user create admin@test.com --no-email
     ```
+> 
+> The password must be at least 8 characters long
+{.is-warning}
+
 
 > [Read the official documentation!](https://codeberg.org/shroff/phylum)
 {.is-success}
