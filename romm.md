@@ -81,7 +81,9 @@ services:
             timeout: 5s
             retries: 5
 ```
-
+> You have to create an empty config.yml file in the config dataset, otherwise the container won't start.
+> This can be done with the command ```sudo touch /mnt/tank/configs/romm/config/config.yml```
+{.is-warning}
 
 # 2 · Reverse Proxy
 To put this behind [Ngnix Reverse Proxy Manager](/nginx), use the following settings:
