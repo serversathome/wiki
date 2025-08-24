@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2025-08-12T19:43:47.895Z
+date: 2025-08-24T10:45:02.945Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-23T11:41:17.078Z
@@ -78,14 +78,23 @@ services:
 1. Enter the information about your change
 1. Click the **Commit** button
 
-# 3 · Future Development
+# 3 · Media Management
+
+There are some other tweaks which need to be done in Sonarr and Radarr. You can find these in the Advanced section of their respective pages, however, Profilarr can automate that for us.
+
+1. Navigate to the **Media Management** tab
+1. Click the **Radarr** subtab
+1. Click the **Sync All** button in the top right
+1. Repeat this process for Sonarr
+
+# 4 · Future Development
 This software is *very* new. As such, there are some changes coming that will improve its usage: 
 - The ability to add multiple repos at the same time
 - A setting to overwrite external changes with local changes when using auto-pull
 - A more fluid way to commit changes with less clicks
 - Profilarr will handle a quick setup sync (changing media management, quality slider settings, etc)
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Video Walkthrough
+# <img src="/youtube.png" class="tab-icon"> 5 · Video
 [](https://youtu.be/u1FQNMsuzFc)
 
 [^1]: Automatically syncs selected files whenever the database receives an update. When combined with Auto Pull, allows Profilarr to work completely autonomously
