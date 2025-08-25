@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2025-08-25T10:06:17.254Z
+date: 2025-08-25T10:49:01.615Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-23T11:41:17.078Z
@@ -89,7 +89,7 @@ There are some other tweaks which need to be done in Sonarr and Radarr. You can 
 
 # 4 · Anime
 
-To get an anime profile you could either build one yourself through the UI or link to the Servers@Home Profilarr repo. To link, instead of using rhe Dictionarry link from step 2.1.2.a, use the link below:
+To get an anime profile you could either build one yourself through the UI or link to the Servers@Home Profilarr repo. To link, instead of using the Dictionarry link from step 2.1.2.a, use the link below:
 ```bash
 https://github.com/serversathome/profilarr
 ```
