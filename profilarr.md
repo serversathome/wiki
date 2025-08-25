@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2025-08-25T10:03:46.828Z
+date: 2025-08-25T10:06:17.254Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-23T11:41:17.078Z
@@ -87,13 +87,20 @@ There are some other tweaks which need to be done in Sonarr and Radarr. You can 
 1. Click the **Sync All** button in the top right
 1. Repeat this process for Sonarr
 
-# 4 · Future Development
+# 4 · Anime
+
+To get an anime profile you could either build one yourself through the UI or link to the Servers@Home Profilarr repo. To link, instead of using rhe Dictionarry link from step 2.1.2.a, use the link below:
+```bash
+https://github.com/serversathome/profilarr
+```
+
+# 5 · Future Development
 This software is *very* new. As such, there are some changes coming that will improve its usage: 
 - The ability to add multiple repos at the same time
 - A setting to overwrite external changes with local changes when using auto-pull
 - A more fluid way to commit changes with less clicks
 
-# <img src="/youtube.png" class="tab-icon"> 5 · Video
+# <img src="/youtube.png" class="tab-icon"> 6 · Video
 [](https://youtu.be/u1FQNMsuzFc)
 
 [^1]: Automatically syncs selected files whenever the database receives an update. When combined with Auto Pull, allows Profilarr to work completely autonomously
