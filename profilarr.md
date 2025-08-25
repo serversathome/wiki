@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2025-08-24T10:45:02.945Z
+date: 2025-08-25T10:03:46.828Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-23T11:41:17.078Z
@@ -92,7 +92,6 @@ This software is *very* new. As such, there are some changes coming that will im
 - The ability to add multiple repos at the same time
 - A setting to overwrite external changes with local changes when using auto-pull
 - A more fluid way to commit changes with less clicks
-- Profilarr will handle a quick setup sync (changing media management, quality slider settings, etc)
 
 # <img src="/youtube.png" class="tab-icon"> 5 · Video
 [](https://youtu.be/u1FQNMsuzFc)
