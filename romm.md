@@ -32,13 +32,14 @@ RomM (ROM Manager) allows you to scan, enrich, browse and play your game collect
 6. Increase Resource limits (optional)
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
+> Create all datasets with the generic preset, and give the Other read, write, execute permissions!
+{.is-warning}
 ```yaml
 services:
     romm:
         image: rommapp/romm:latest
         container_name: romm
         restart: unless-stopped
-        user: 568:568
         environment:
             - DB_HOST=romm-db
             - DB_NAME=romm
