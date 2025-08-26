@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2025-08-26T17:46:22.669Z
+date: 2025-08-26T17:47:03.845Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T18:06:48.269Z
@@ -18,7 +18,7 @@ dateCreated: 2025-07-07T18:06:48.269Z
 - [<img src="/nextcloud.png">Nextcloud<br>*Google suite replacement*](/nextcloud)
 - [<img src="/palmr.png">Palmr <span class="badge">NEW</span><br>*Secure file sharing and upload*](/palmr)
 - [<img src="/phylum.png">Phylum <span class="badge">NEW</span><br>*Google Drive replacement*](/phylum)
-- [<img src="/reactive-resume.png">Reactive Resume <span class="badge">NEW</span><br>*Google Drive replacement*](/reactiveresume)
+- [<img src="/reactive-resume.png">Reactive Resume <span class="badge">NEW</span><br>*Private resume builder*](/reactiveresume)
 - [<img src="/vaultwarden.png">Vaultwarden<br>*Password manager*](/vaultwarden)
 
 {.links-list}
