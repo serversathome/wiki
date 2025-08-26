@@ -2,7 +2,7 @@
 title: Windows Docker
 description: A guide to deploying a Windows OS in a docker container
 published: true
-date: 2025-08-26T20:39:27.977Z
+date: 2025-08-26T20:44:03.479Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-26T20:38:44.030Z
@@ -35,7 +35,7 @@ services:
     restart: on-failure
     volumes:
       - /mnt/tank/configs/windows:/storage
-      - ${HOME}:/shared # Mount Linux user home directory @ '\\host.lan\Data'.
+      # - ${HOME}:/shared # Mount Linux user home directory @ '\\host.lan\Data'.
       - ./oem:/oem 
     devices:
       - /dev/kvm
