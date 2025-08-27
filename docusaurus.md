@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T09:02:21.781Z
+date: 2025-08-27T09:08:03.185Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -85,15 +85,21 @@ services:
       '
     profiles: ["build"]
 ```
-1. Run the following command in the directory with the `compose.yaml` file in it:
+> The following commands assume your `stacks` directory for Dockge is at `/mnt/tank/stacks` and you named this container `docusaurus`
+{.is-warning}
+
+
+1. Run the following command in the TrueNAS shell:
     ```bash
-    docker compose run --rm --profile init docusaurus-init
+    docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml run --rm --profile init docusaurus-init
+
     ```
 	a.  When it asks `Ok to proceed? (y)` hit <kbd>ENTER</kbd>
   b. When it asks `Which language do you want to use?`  hit <kbd>ENTER</kbd>
-1. Run the following command in the directory with the `compose.yaml` file in it:
+1. Run the following command in the TrueNAS shell:
     ```bash
-    docker compose up -d docusaurus-dev
+    docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml up -d docusaurus-dev
+
     ```
 
 # 2 · How it Works
