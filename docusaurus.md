@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T08:46:07.803Z
+date: 2025-08-27T09:00:56.733Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -14,47 +14,43 @@ Docusaurus is an open-source static site generator designed for building documen
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Docusaurus
 ```yaml
 services:
-  # One-time scaffolder
+  # One-time scaffolder (used only on first run)
   docusaurus-init:
     image: node:20-alpine
     working_dir: /work
     volumes:
-      - ./:/work
+      - /mnt/tank/configs/docusaurus:/work
     command: >
       sh -lc '
         set -e;
         corepack enable;
-        # ensure ./site does not pre-exist to avoid CLI refusal
-        if [ -e site ]; then
-          if [ "$(ls -A site | wc -l)" -gt 0 ]; then
-            echo "ERROR: ./site already exists and is not empty."; exit 1;
-          else
-            rmdir site;
-          fi
+        # ensure folder is empty before scaffolding
+        if [ "$(ls -A /work | wc -l)" -gt 0 ]; then
+          echo "ERROR: /mnt/tank/configs/docusaurus is not empty"; exit 1;
         fi;
-        npx create-docusaurus@latest site classic
+        npx create-docusaurus@latest . classic
       '
     profiles: ["init"]
 
-  # Main dev server
-  docusaurus:
+  # Development server (hot reload)
+  docusaurus-dev:
     image: node:20-alpine
-    container_name: docusaurus
+    container_name: docusaurus-dev
     working_dir: /usr/src/app
     volumes:
-      - ./site:/usr/src/app
+      - /mnt/tank/configs/docusaurus:/usr/src/app
     ports:
       - "9100:3000"
     environment:
       - HOST=0.0.0.0
-      - CHOKIDAR_USEPOLLING=1   # helps file change detection on some hosts
+      - CHOKIDAR_USEPOLLING=1
     command: >
       sh -lc '
         set -e;
         corepack enable;
         if [ ! -f package.json ]; then
-          echo "No Docusaurus project in ./site. Run: docker compose run --rm docusaurus-init";
-          sleep 3600;  # stay up without restart loop
+          echo "No Docusaurus project in /usr/src/app. Run: docker compose run --rm docusaurus-init";
+          sleep 3600;
         else
           yarn install;
           yarn start --host 0.0.0.0;
@@ -62,16 +58,48 @@ services:
       '
     restart: unless-stopped
 
+  # Production server (static build served via nginx)
+  docusaurus-prod:
+    image: nginx:alpine
+    container_name: docusaurus-prod
+    depends_on:
+      - docusaurus-build
+    volumes:
+      - /mnt/tank/configs/docusaurus/build:/usr/share/nginx/html:ro
+    ports:
+      - "9200:80"
+    restart: unless-stopped
+
+  # Build step (generates /mnt/tank/configs/docusaurus/build)
+  docusaurus-build:
+    image: node:20-alpine
+    working_dir: /usr/src/app
+    volumes:
+      - /mnt/tank/configs/docusaurus:/usr/src/app
+    command: >
+      sh -lc '
+        set -e;
+        corepack enable;
+        yarn install;
+        yarn build;
+      '
+    profiles: ["build"]
 ```
 1. Run the following command in the directory with the `compose.yaml` file in it:
     ```bash
-    docker compose run --rm docusaurus-init
+    docker compose run --rm --profile init docusaurus-init
     ```
 	a.  When it asks `Ok to proceed? (y)` hit <kbd>ENTER</kbd>
   b. When it asks `Which language do you want to use?`  hit <kbd>ENTER</kbd>
 1. Run the following command in the directory with the `compose.yaml` file in it:
     ```bash
-    docker compose up -d docusaurus
+    docker compose up -d docusaurus-dev
     ```
 
-# 2 · Configuration
+# 2 · How it Works
+
+Docusaurs has both a `dev` site running on port `9100` and a `production` site which will run on port `9200`. It is generally unsafe to expose the `dev` server to the internet, so Docusaurus "builds" a production site from the dev site for the public.
+
+Everytime you make a change to the files in `/mnt/tank/configs/docusaurus` the `dev` site will be updated immediately. However, the `prod` site will need to be rebuilt every time. 
+
+1. To build
