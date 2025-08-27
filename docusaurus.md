@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T12:04:39.504Z
+date: 2025-08-27T12:15:59.643Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -30,7 +30,7 @@ services:
       - /app/node_modules
     ports:
       - "9100:3000"
-    command: yarn start
+    command: yarn start --host 0.0.0.0
     environment:
       - NODE_ENV=development
 
