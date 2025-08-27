@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T09:54:40.483Z
+date: 2025-08-27T10:08:57.768Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -84,7 +84,7 @@ services:
       '
     profiles: ["build"]
 ```
-> The following commands assume your `stacks` directory for Dockge is at `/mnt/tank/stacks` and you named this container `docusaurus`
+> The following commands assume your `stacks` directory for Dockge is at `/mnt/tank/stacks` you named this container `docusaurus` and the `configs` directory is at `/mnt/tank/configs`
 {.is-warning}
 
 
