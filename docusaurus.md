@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T09:38:15.328Z
+date: 2025-08-27T09:54:40.483Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -120,4 +120,3 @@ Once the `prod` site is built, point your reverse proxy at `http://{IP}:9200` to
 
 ## 2.2 Editing the Files
 
-I recommend using something like [Filebrowser Quantum](/filebrowser) to edit the `.md` files in the `/mnt/tank/configs/docusaurus` directory if you dont want to use the shell.
