@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T09:23:30.163Z
+date: 2025-08-27T09:25:34.583Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -12,6 +12,11 @@ dateCreated: 2025-08-27T08:38:39.465Z
 Docusaurus is an open-source static site generator designed for building documentation websites quickly and easily, primarily using Markdown. It allows users to create customizable sites while focusing on content creation, making it popular among software documentation teams.
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Docusaurus
+
+> Do not hit `Deploy` in Dockge. Hit the `Save` button then run the commands below from the shell!
+{.is-danger}
+
+
 ```yaml
 services:
   # One-time scaffolder (used only on first run)
