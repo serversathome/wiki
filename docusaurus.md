@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T09:16:39.959Z
+date: 2025-08-27T09:18:12.062Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -89,15 +89,13 @@ services:
 
 1. Run the following command in the TrueNAS shell:
     ```bash
-    docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml run --rm init docusaurus-init
-
+    docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml -p docusaurus run --rm docusaurus-init
     ```
 	a.  When it asks `Ok to proceed? (y)` hit <kbd>ENTER</kbd>
   b. When it asks `Which language do you want to use?`  hit <kbd>ENTER</kbd>
 1. Run the following command in the TrueNAS shell:
     ```bash
     docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml up -d docusaurus-dev
-
     ```
 
 # 2 · How it Works
