@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T12:03:43.893Z
+date: 2025-08-27T12:04:39.504Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -23,7 +23,7 @@ services:
   docusaurus-dev:
     build:
       context: /mnt/tank/configs/docusaurus
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
     working_dir: /app
     volumes:
       - /mnt/tank/configs/docusaurus:/app
@@ -38,7 +38,7 @@ services:
   docusaurus-build:
     build:
       context: /mnt/tank/configs/docusaurus
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
     working_dir: /app
     volumes:
       - /mnt/tank/configs/docusaurus:/app
@@ -48,7 +48,7 @@ services:
   docusaurus-prod:
     build:
       context: /mnt/tank/configs/docusaurus
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
     working_dir: /app
     volumes:
       - /mnt/tank/configs/docusaurus:/app
