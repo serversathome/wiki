@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T08:38:39.465Z
+date: 2025-08-27T08:46:07.803Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -63,5 +63,15 @@ services:
     restart: unless-stopped
 
 ```
+1. Run the following command in the directory with the `compose.yaml` file in it:
+    ```bash
+    docker compose run --rm docusaurus-init
+    ```
+	a.  When it asks `Ok to proceed? (y)` hit <kbd>ENTER</kbd>
+  b. When it asks `Which language do you want to use?`  hit <kbd>ENTER</kbd>
+1. Run the following command in the directory with the `compose.yaml` file in it:
+    ```bash
+    docker compose up -d docusaurus
+    ```
 
 # 2 · Configuration
