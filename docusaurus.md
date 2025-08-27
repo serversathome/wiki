@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T09:00:56.733Z
+date: 2025-08-27T09:02:21.781Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -102,4 +102,7 @@ Docusaurs has both a `dev` site running on port `9100` and a `production` site w
 
 Everytime you make a change to the files in `/mnt/tank/configs/docusaurus` the `dev` site will be updated immediately. However, the `prod` site will need to be rebuilt every time. 
 
-1. To build
+To build the `prod` site after edits, run the following command in the `/mnt/tank/stacks/docusaurus` directory:
+```bash
+docker compose run --rm --profile build docusaurus-build && docker compose up -d docusaurus-prod
+```
