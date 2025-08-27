@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T12:15:59.643Z
+date: 2025-08-27T12:17:08.556Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -108,7 +108,9 @@ Everytime you make a change to the files in `/mnt/tank/configs/docusaurus` the `
 
 To build the `prod` site after edits, run the following command in the TrueNAS shell:
 ```bash
-docker compose run --rm docusaurus-build && docker compose up -d docusaurus-prod
+docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml run --rm docusaurus-build && \
+docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml up -d docusaurus-prod
+
 ```
 
 When it asks `Do you want to continue? [Y/n]` hit <kbd>ENTER</kbd>.
