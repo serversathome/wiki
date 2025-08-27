@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T12:19:35.045Z
+date: 2025-08-27T12:22:03.031Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -54,7 +54,7 @@ services:
       - /mnt/tank/configs/docusaurus:/app
     ports:
       - "9200:5000"
-    command: yarn serve
+    command: yarn serve --host 0.0.0.0
     depends_on:
       - docusaurus-build
     restart: unless-stopped
