@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T11:21:15.677Z
+date: 2025-08-27T11:23:47.686Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -55,7 +55,7 @@ services:
 ```
 
 ## 1.2 Dockerfile
-> This `dockerfile.yaml` needs to be places in the `/mnt/tank/stacks/docusaurus` dataset
+> This `dockerfile` needs to be places in the `/mnt/tank/stacks/docusaurus` dataset
 {.is-info}
 
 
