@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T09:21:37.967Z
+date: 2025-08-27T09:23:30.163Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -24,7 +24,7 @@ services:
       sh -lc '
         set -e;
         corepack enable;
-        npx create-docusaurus@latest . classic --force
+        npx create-docusaurus@latest . classic
       '
     profiles: ["init"]
 
