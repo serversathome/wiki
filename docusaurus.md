@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T11:23:47.686Z
+date: 2025-08-27T11:41:01.986Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -19,9 +19,11 @@ Docusaurus is an open-source static site generator designed for building documen
 ## 1.1 Docker Compose
 ```yaml
 services:
-  # Dev server with live reload
+  # Dev container (hot reload)
   docusaurus-dev:
-    build: .
+    build:
+      context: /mnt/tank/configs/docusaurus
+      dockerfile: Dockerfile
     working_dir: /app
     volumes:
       - /mnt/tank/configs/docusaurus:/app
@@ -32,17 +34,21 @@ services:
     environment:
       - NODE_ENV=development
 
-  # One-off build container
+  # Build container (one-off)
   docusaurus-build:
-    build: .
+    build:
+      context: /mnt/tank/configs/docusaurus
+      dockerfile: Dockerfile
     working_dir: /app
     volumes:
       - /mnt/tank/configs/docusaurus:/app
     command: yarn build
 
-  # Prod server using Docusaurus serve
+  # Prod container (serve static build)
   docusaurus-prod:
-    build: .
+    build:
+      context: /mnt/tank/configs/docusaurus
+      dockerfile: Dockerfile
     working_dir: /app
     volumes:
       - /mnt/tank/configs/docusaurus:/app
@@ -52,6 +58,7 @@ services:
     depends_on:
       - docusaurus-build
     restart: unless-stopped
+
 ```
 
 ## 1.2 Dockerfile
@@ -60,27 +67,18 @@ services:
 
 
 ```yaml
-# Base image with Node and Yarn
 FROM node:20-alpine
 
 WORKDIR /app
-
-# Install Yarn via Corepack
 RUN corepack enable
 
-# Copy package files first for caching
-COPY package.json yarn.lock ./
-
-# Install dependencies
-RUN yarn install
-
-# Copy site files
+COPY package.json yarn.lock* ./
+RUN if [ -f package.json ]; then yarn install; fi
 COPY . .
 
-# Expose dev port
-EXPOSE 3000
-# Expose prod port (serve command)
-EXPOSE 5000
+EXPOSE 3000 5000
+
+CMD ["yarn", "start"]
 
 ```
 
@@ -90,7 +88,8 @@ EXPOSE 5000
 
 1. Run the following command in the TrueNAS shell:
     ```bash
-		docker compose up docusaurus-dev
+		docker run -it --name temp-docusaurus node:20-alpine npx create-docusaurus@latest /app classic && docker cp temp-docusaurus:/app/. /mnt/tank/configs/docusaurus/ && docker rm temp-docusaurus
+
     ```
 	a.  When it asks `Ok to proceed? (y)` hit <kbd>ENTER</kbd>
   b. When it asks `Which language do you want to use?`  hit <kbd>ENTER</kbd>
