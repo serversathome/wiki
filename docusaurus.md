@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T09:08:03.185Z
+date: 2025-08-27T09:09:57.373Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -108,7 +108,9 @@ Docusaurs has both a `dev` site running on port `9100` and a `production` site w
 
 Everytime you make a change to the files in `/mnt/tank/configs/docusaurus` the `dev` site will be updated immediately. However, the `prod` site will need to be rebuilt every time. 
 
-To build the `prod` site after edits, run the following command in the `/mnt/tank/stacks/docusaurus` directory:
+To build the `prod` site after edits, run the following command in the TrueNAS shell:
 ```bash
-docker compose run --rm --profile build docusaurus-build && docker compose up -d docusaurus-prod
+docker compose -f /mnt/tank/stacks/docusaurus/docker-compose.yaml -p docusaurus run --rm --profile build docusaurus-build && \
+docker compose -f /mnt/tank/stacks/docusaurus/docker-compose.yaml -p docusaurus up -d docusaurus-prod
+
 ```
