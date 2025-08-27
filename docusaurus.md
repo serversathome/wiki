@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T10:08:57.768Z
+date: 2025-08-27T11:21:15.677Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -16,81 +16,81 @@ Docusaurus is an open-source static site generator designed for building documen
 > Do not hit `Deploy` in Dockge. Hit the `Save` button then run the commands below from the shell!
 {.is-danger}
 
-
+## 1.1 Docker Compose
 ```yaml
 services:
-  # One-time scaffolder (used only on first run)
-  docusaurus-init:
-    image: node:20-alpine
-    working_dir: /work
-    volumes:
-      - /mnt/tank/configs/docusaurus:/work
-    command: >
-      sh -lc '
-        set -e;
-        corepack enable;
-        npx create-docusaurus@latest . classic
-      '
-    profiles: ["init"]
-
-  # Development server (hot reload)
+  # Dev server with live reload
   docusaurus-dev:
-    image: node:20-alpine
-    container_name: docusaurus-dev
-    working_dir: /usr/src/app
+    build: .
+    working_dir: /app
     volumes:
-      - /mnt/tank/configs/docusaurus:/usr/src/app
+      - /mnt/tank/configs/docusaurus:/app
+      - /app/node_modules
     ports:
       - "9100:3000"
+    command: yarn start
     environment:
-      - HOST=0.0.0.0
-      - CHOKIDAR_USEPOLLING=1
-    command: >
-      sh -lc '
-        set -e;
-        corepack enable;
-        if [ ! -f package.json ]; then
-          echo "No Docusaurus project in /usr/src/app. Run: docker compose run --rm docusaurus-init";
-          sleep 3600;
-        else
-          yarn install;
-          yarn start --host 0.0.0.0;
-        fi
-      '
-    restart: unless-stopped
+      - NODE_ENV=development
 
-  # Production server (static build served via nginx)
-  docusaurus-prod:
-    image: nginx:alpine
-    container_name: docusaurus-prod
-    volumes:
-      - /mnt/tank/configs/docusaurus/build:/usr/share/nginx/html:ro
-    ports:
-      - "9200:80"
-    restart: unless-stopped
-
-  # Build step (generates /mnt/tank/configs/docusaurus/build)
+  # One-off build container
   docusaurus-build:
-    image: node:20-alpine
-    working_dir: /usr/src/app
+    build: .
+    working_dir: /app
     volumes:
-      - /mnt/tank/configs/docusaurus:/usr/src/app
-    command: >
-      sh -lc '
-        set -e;
-        corepack enable;
-        yarn install;
-        yarn build;
-      '
-    profiles: ["build"]
+      - /mnt/tank/configs/docusaurus:/app
+    command: yarn build
+
+  # Prod server using Docusaurus serve
+  docusaurus-prod:
+    build: .
+    working_dir: /app
+    volumes:
+      - /mnt/tank/configs/docusaurus:/app
+    ports:
+      - "9200:5000"
+    command: yarn serve
+    depends_on:
+      - docusaurus-build
+    restart: unless-stopped
 ```
+
+## 1.2 Dockerfile
+> This `dockerfile.yaml` needs to be places in the `/mnt/tank/stacks/docusaurus` dataset
+{.is-info}
+
+
+```yaml
+# Base image with Node and Yarn
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install Yarn via Corepack
+RUN corepack enable
+
+# Copy package files first for caching
+COPY package.json yarn.lock ./
+
+# Install dependencies
+RUN yarn install
+
+# Copy site files
+COPY . .
+
+# Expose dev port
+EXPOSE 3000
+# Expose prod port (serve command)
+EXPOSE 5000
+
+```
+
 > The following commands assume your `stacks` directory for Dockge is at `/mnt/tank/stacks` you named this container `docusaurus` and the `configs` directory is at `/mnt/tank/configs`
 {.is-warning}
 
 
 1. Run the following command in the TrueNAS shell:
     ```bash
-    docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml -p docusaurus run --rm docusaurus-init
+		docker compose up docusaurus-dev
     ```
 	a.  When it asks `Ok to proceed? (y)` hit <kbd>ENTER</kbd>
   b. When it asks `Which language do you want to use?`  hit <kbd>ENTER</kbd>
@@ -109,8 +109,7 @@ Everytime you make a change to the files in `/mnt/tank/configs/docusaurus` the `
 
 To build the `prod` site after edits, run the following command in the TrueNAS shell:
 ```bash
-docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml -p docusaurus run --rm docusaurus-build && \
-docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml -p docusaurus up -d docusaurus-prod
+docker compose run --rm docusaurus-build && docker compose up -d docusaurus-prod
 ```
 
 When it asks `Do you want to continue? [Y/n]` hit <kbd>ENTER</kbd>.
