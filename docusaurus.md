@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T09:10:52.470Z
+date: 2025-08-27T09:12:09.242Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -113,3 +113,5 @@ To build the `prod` site after edits, run the following command in the TrueNAS s
 docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml run --rm --profile build docusaurus-build && \
 docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml up -d docusaurus-prod
 ```
+
+Once the `prod` site is built, point your reverse proxy at `http://{IP}:9200` to serve your Docusaurus site. 
