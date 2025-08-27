@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T09:14:56.501Z
+date: 2025-08-27T09:16:39.959Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -62,8 +62,6 @@ services:
   docusaurus-prod:
     image: nginx:alpine
     container_name: docusaurus-prod
-    depends_on:
-      - docusaurus-build
     volumes:
       - /mnt/tank/configs/docusaurus/build:/usr/share/nginx/html:ro
     ports:
