@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T09:18:12.062Z
+date: 2025-08-27T09:21:37.967Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -24,11 +24,7 @@ services:
       sh -lc '
         set -e;
         corepack enable;
-        # ensure folder is empty before scaffolding
-        if [ "$(ls -A /work | wc -l)" -gt 0 ]; then
-          echo "ERROR: /mnt/tank/configs/docusaurus is not empty"; exit 1;
-        fi;
-        npx create-docusaurus@latest . classic
+        npx create-docusaurus@latest . classic --force
       '
     profiles: ["init"]
 
