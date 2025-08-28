@@ -2,7 +2,7 @@
 title: PuniPuni
 description: A guide to deploying PuniPuni
 published: true
-date: 2025-08-28T18:49:17.938Z
+date: 2025-08-28T18:50:02.318Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-28T18:49:03.863Z
@@ -13,7 +13,6 @@ PuniPuni is an user invitation system for Jellyfin, inspired by Wizarr. Built wi
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy PuniPuni
 ```yaml
-version: '3.8'
 services:
   puni-app:
     image: kowlown/punipuni:latest
@@ -26,3 +25,5 @@ services:
       - PUNI_ADMIN_PASSWORD=admin
     volumes:
       - /mnt/tank/configs/punipuni/:/welcome-pages
+```
+
