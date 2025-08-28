@@ -2,7 +2,7 @@
 title: PuniPuni
 description: A guide to deploying PuniPuni
 published: true
-date: 2025-08-28T18:50:02.318Z
+date: 2025-08-28T18:55:52.813Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-28T18:49:03.863Z
@@ -16,14 +16,27 @@ PuniPuni is an user invitation system for Jellyfin, inspired by Wizarr. Built wi
 services:
   puni-app:
     image: kowlown/punipuni:latest
-    container_name: punipuni
-    restart: unless-stopped
     ports:
       - "8089:8080"
     environment:
+      - PUNI_APPLICATION_DATABASE_TYPE=postgresql
+      - PUNI_APPLICATION_DATABASE_HOST=postgres
+      - PUNI_APPLICATION_DATABASE_PORT=5432
+      - PUNI_APPLICATION_DATABASE_USERNAME=dbuser
+      - PUNI_APPLICATION_DATABASE_PASSWORD=dbpassword
       - PUNI_ADMIN_USERNAME=admin
-      - PUNI_ADMIN_PASSWORD=admin
+      - PUNI_ADMIN_PASSWORD=adminpassword
+      - PUNI_APPLICATION_WELCOME_PAGES=./welcome-pages
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:17
+    environment:
+      - POSTGRES_DB=database
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbpassword
     volumes:
-      - /mnt/tank/configs/punipuni/:/welcome-pages
+      - /mnt/tank/configs/punipuni/:/var/lib/postgresql/data
 ```
 
