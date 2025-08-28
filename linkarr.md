@@ -2,7 +2,7 @@
 title: Linkarr
 description: A guide to deploying Linkarr
 published: true
-date: 2025-08-28T14:00:37.397Z
+date: 2025-08-28T14:02:24.922Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-28T14:00:37.397Z
@@ -32,6 +32,9 @@ services:
 ```
 
 ## 1.1 Config File
+> Place this file in `/mnt/tank/configs/linkarr/`
+{.is-info}
+
 ```json
 {
   "mode": "watch",
