@@ -2,7 +2,7 @@
 title: Networking
 description: 
 published: true
-date: 2025-08-11T12:59:12.739Z
+date: 2025-08-28T14:47:27.341Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T20:26:36.014Z
@@ -29,6 +29,7 @@ dateCreated: 2025-07-01T20:26:36.014Z
 # Ad Blocking
 - [<img src="/adguard-home.png"> AdGuard <span class="badge">NEW</span><br>*DNS level ad blocker*](/adguard)
 - [<img src="/pi-hole.png"> Pi-Hole <span class="badge">NEW</span><br>*DNS level ad blocker*](/pihole)
+- [<img src="/pi-hole.png"> Pi-Dash <span class="badge">NEW</span><br>*Dashboard for monitoring multiple Pi-holes*](/pidash)
 {.links-list}
 
 # Other
