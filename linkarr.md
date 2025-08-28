@@ -2,7 +2,7 @@
 title: Linkarr
 description: A guide to deploying Linkarr
 published: true
-date: 2025-08-28T14:07:02.946Z
+date: 2025-08-28T14:07:12.407Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-28T14:00:37.397Z
@@ -52,7 +52,7 @@ services:
       - /mnt/tank/configs/linkarr/config.json:/config/config.json
     restart: unless-stopped
 ```
-> You must map your **source** and **destination** folders to the same paths inside the container as on your host system. This ensures symlinks work correctly.
+> You must map your **source** and **destination** folders to the same paths inside the container as on your host system. This ensures hardlinks work correctly.
 {.is-warning}
 
 
