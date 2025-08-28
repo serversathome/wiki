@@ -2,7 +2,7 @@
 title: Cr*n Master
 description: A guide to deploying Cr*n Master
 published: true
-date: 2025-08-28T18:15:53.169Z
+date: 2025-08-28T18:16:04.141Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-28T18:15:53.169Z
@@ -27,7 +27,6 @@ services:
       - NEXT_PUBLIC_CLOCK_UPDATE_INTERVAL=30000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      # DO NOT change the location of ./scripts as all cronjobs that use custom scripts created via the app
       - /mnt/tank/configs/cronmaster/scripts:/app/scripts
       - /mnt/tank/configs/cronmaster/data:/app/data
       - /mnt/tank/configs/cronmaster/snippets:/app/snippets
