@@ -2,7 +2,7 @@
 title: Linkarr
 description: A guide to deploying Linkarr
 published: true
-date: 2025-08-28T14:07:12.407Z
+date: 2025-08-28T14:07:49.304Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-28T14:00:37.397Z
@@ -39,7 +39,7 @@ Organize your media library with ease - without moving or duplicating your files
 </table>
 
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Trailarr
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Linkarr
 
 ```yaml
 services:
