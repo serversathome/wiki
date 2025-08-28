@@ -2,7 +2,7 @@
 title: Pi-Dash
 description: A guide to deploying Pi-Dash
 published: true
-date: 2025-08-28T14:38:41.759Z
+date: 2025-08-28T14:49:18.020Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-28T14:38:41.759Z
@@ -26,7 +26,7 @@ services:
 ```
 
 ## 1.1 Config File
-> This file needs to be placed in `/mnt/tank/configs/pidash`
+> This file needs to be placed in `/mnt/tank/configs/pidash/config.json`
 {.is-info}
 
 ```json
@@ -50,7 +50,7 @@ services:
 ```
 
 ## 1.2 Manifest File
-> This file needs to be placed in `/mnt/tank/configs/pidash`
+> This file needs to be placed in `/mnt/tank/configs/pidash/manifest.json`
 {.is-info}
 ```json
 {
