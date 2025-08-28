@@ -2,7 +2,7 @@
 title: Linkarr
 description: A guide to deploying Linkarr
 published: true
-date: 2025-08-28T14:02:24.922Z
+date: 2025-08-28T14:05:12.913Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-28T14:00:37.397Z
@@ -15,6 +15,28 @@ Organize your media library with ease - without moving or duplicating your files
 🧲 Perfect for seeding/usenet: Works with files managed by torrent or usenet clients.
 🎬 Jellyfin ready: Import organized folders directly into your media server.
 🐳 Easy Docker deployment: Run anywhere, just map your folders.
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>📂 <strong>Before (Source Folder)</strong></th>
+<th>📂 <strong>After (Organized Folder)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TV</td>
+<td><code>/media/TV/</code><br>└─ 📂<code>Show.Name.S01/</code><br>&nbsp;&nbsp;&nbsp;&nbsp;├── <code>Show.Name.S01E01.1080p.mkv</code><br>&nbsp;&nbsp;&nbsp;&nbsp;└── <code>Show.Name.S01E02.1080p.mkv</code><br>└─📂 <code>Show.Name.S02/</code><br>&nbsp;&nbsp;&nbsp;&nbsp;├── <code>Show.Name.S02E01.1080p.mkv</code><br>&nbsp;&nbsp;&nbsp;&nbsp;└── <code>Show.Name.S02E02.1080p.mkv</code><br>└── <code>Another.Show.Name.S04E07.1080p.mkv</code></td>
+<td><code>/organized/TV/</code><br>└─🗂️ <code>Show Name/</code><br>&nbsp;&nbsp;&nbsp;&nbsp;└─📂 <code>Season 01/</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─🔗 <code>Show.Name.S01E01.1080p.mkv</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─🔗 <code>Show.Name.S01E02.1080p.mkv</code> <br>&nbsp;&nbsp;&nbsp;&nbsp;└─📂 <code>Season 02/</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─🔗 <code>Show.Name.S02E01.1080p.mkv</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─🔗 <code>Show.Name.S02E02.1080p.mkv</code> <br>└─🗂️ <code>Another Show Name/</code><br>&nbsp;&nbsp;&nbsp;&nbsp;└─📂 <code>Season 04/</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─🔗 <code>Show.Name.S04E07.1080p.mkv</code></td>
+</tr>
+<tr>
+<td>Movies</td>
+<td><code>/media/Movies/</code><br>└─📂 <code>Movie.Title.2023.1080p/</code><br>&nbsp;&nbsp;&nbsp;&nbsp;└── <code>Movie.Title.2023.1080p.mkv</code><br>└── <code>Another.Movie.Title.2024.1080p.mkv</code></td>
+<td><code>/organized/Movies/</code><br>└─📂 <code>Movie Title (2023)/</code><br>&nbsp;&nbsp;&nbsp;&nbsp;└─🔗 <code>Movie.Title.2023.1080p.mkv</code> <br>└─📂 <code>Another Movie Title (2024)/</code><br>&nbsp;&nbsp;&nbsp;&nbsp;└─🔗 <code>Another.Movie.Title.2024.1080p.mkv</code></td>
+</tr>
+</tbody>
+</table>
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Trailarr
