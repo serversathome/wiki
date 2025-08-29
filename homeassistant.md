@@ -11,40 +11,69 @@ dateCreated: 2025-06-12T14:57:25.253Z
 # ![](/homeassistant.png){class="tab-icon"} What is Home Assistant?
 Home Assistant is free and open-source software used for home automation. It serves as an integration platform and smart home hub, allowing users to control smart home devices. 
 
-# 1 · Installation
+# ![](/homeassistant/homeassistant.png){class="tab-icon"} What is Home Assistant?
+Home Assistant is free and open-source software used for home automation. It serves as an integration platform and smart home hub, allowing users to control smart home devices.
 
-## 1.1 VM
+# 1 · Prerequisites
+To install Home Assistant, you need a couple of things:
+- An Ubuntu based ISO file (Ubuntu Desktop works fine, but I had better luck with Linux Mint)
+- Minimum of 2 CPU cores (more is better)
+- Minimum of 8GB memory (more is better)
+- A network bridge set up
 
-### 1.1.1 Creating the VM on TrueNAS
-1. Go to the [official Ubuntu Desktop download page](https://ubuntu.com/download/desktop) to grab the latest ISO of Ubuntu Desktop.
-1. Create a new Instance in TrueNAS, give it a name and select VM under the **"Virtualization Method"**. Under **"VM Image Options"** select the **"Upload ISO"** radio button. Click the **"Select Volume"** button and upload the Ubuntu Desktop ISO you downloaded in step 1.
+# 2 · Setup VM
 
-	![Screenshot_2025-06-12-081310.png](/Screenshot_2025-06-12-081310.png)
+### 2.1 Operating system
+Set the options as follows:
 
-	![Screenshot_2025-06-12-082603.png](/Screenshot_2025-06-12-082603.png)
+Guest Operating System = Linux
+Name = (whatever you want)
+Password = (password for the VNC)
 
-1. Give the VM an appropriate amount of resources for Home Assistant. This can vary depending on how many add-ons and devices you plan on running. Don't worry about resources for Ubuntu, we are only using the bootable .iso to download and install the HAOS (home assistant operating system). I would recommend 2 CPUs and 8 GiB of ram to start. You can always increase this later. For storage I recommend at least 32GiB to start. For the **"Root Disk I/O Bus"** you need to select which works best for your system.
+Leave everything else alone
 
-	![Screenshot_2025-06-12-083558.png](/Screenshot_2025-06-12-083558.png)
+<img width="449" height="985" alt="image" src="https://github.com/user-attachments/assets/e1cd6220-2a6e-4de4-8acb-d7e4436b72df" />
 
-	![Screenshot_2025-06-12-084257.png](/Screenshot_2025-06-12-084257.png)
+### 2.2 CPU And Memory
+Set the options as follows:
 
-1. For network I chose my previously made bridge "br0".
-1. Enable VNC and give it a password of your choosing. If you already have a VM with VNC enabled you will need to change the default 5900 port. I chose 5901. 
-1. Create the VM. 
+Virtual CPUs = 1 (it's important to leave this at 1 unless you have dual sockets)
+Cores = 2 (or more)
+Threads = 2 (or more)
+CPU Mode = host
+Memory size = 8 GiB (or more)
 
+Leave everything else alone
 
-### 1.1.2 Inside the VM
+<img width="459" height="973" alt="image" src="https://github.com/user-attachments/assets/662be758-75d2-44e7-a1fe-ae9272dfe4f9" />
 
-1. VNC into the VM and select "Try or Install Ubuntu". Follow the on screen prompts, **skip the update**. Once you see two options, install or try, select **Try Ubuntu** and click close.
+### 2.3 Disks
+Specify a zvol location and give it a minimum of 32 GB
 
-	![Screenshot_2025-06-12-085240.png](/Screenshot_2025-06-12-085240.png)
+<img width="438" height="469" alt="image" src="https://github.com/user-attachments/assets/6ff94310-0031-4469-ac6a-23d779061e81" />
 
-	![Screenshot_2025-06-12-090034.png](/Screenshot_2025-06-12-090034.png)
+### 2.4 Network
+Choose the network adapter type that you have available and attach it to the NIC (br0 if you have a bridge)
 
+<img width="434" height="381" alt="image" src="https://github.com/user-attachments/assets/a21c0dde-503f-4bce-8089-4973c2fc288e" />
 
-1. Open Firefox in your Ubuntu VM and proceed to the [official Home Assistant Installation guide](https://www.home-assistant.io/installation/generic-x86-64). Next, jump to the section titled: **Method 1: Installing HAOS via Ubuntu booting from a USB flash drive**. Skip to step 5 and click the "download the image" link. Once the download is complete, skip to step 7 and following the instructions. Select the disk you sized during the creation of the VM in TrueNAS.
+### 2.5 Installation Media
+Point to the Ubuntu Desktop/Linux Mint ISO file (or upload it if you need to)
+Leave everything else alone and click
 
-1. Once the restore process is done, power off the Ubuntu VM and remove the .iso from the Disks section in TrueNAS. Start the VM and VNC back into it. You should see HAOS booting and eventually you will see the splash screen.
+# 3. Installing Home Assistant
+
+1. VNC into the VM and select "Try or Install Ubuntu (or Start Linux Mint)".
+
+<img width="925" height="562" alt="image" src="https://github.com/user-attachments/assets/342107c5-6ebf-4505-80e1-099d7ed43017" />
+
+1. Open Firefox in your VM and proceed to the [official Home Assistant Installation guide](https://www.home-assistant.io/installation/generic-x86-64). Next, jump to the section titled: **Method 1: Installing HAOS via Ubuntu booting from a USB flash drive**. Skip to step 5 and click the "download the image" link. Once the download is complete, right click on the file and open with **Disk Image Writer**. Set the destination to the disk you added during the VM setup and click **Start Restoring**
+
+<img width="799" height="244" alt="image" src="https://github.com/user-attachments/assets/7985a772-c87a-4a75-8afd-31fde625698e" />
+
+<img width="519" height="255" alt="image" src="https://github.com/user-attachments/assets/24df6c0f-fff6-4f0f-a9fc-7beff185911a" />
+
+1. Once the restore process is done, power off the VM and remove the .iso from the Disks section in TrueNAS. Start the VM and VNC back into it. You should see HAOS booting and eventually you will see the splash screen.
 
 1. You will need to find the IP address of the VM via your router and use the port 8123. Home Assistant will default to giving you homeassistant.local:8123 address. Once you have the IP you may proceed to the [Onboarding Process](https://www.home-assistant.io/getting-started/onboarding/).
+
