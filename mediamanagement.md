@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-08-28T14:12:40.194Z
+date: 2025-09-01T11:52:24.920Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -73,5 +73,6 @@ dateCreated: 2025-07-01T09:24:50.754Z
 
 # Media Management
 - [<img src="/immich.png"> Immich<br>*Photo management*](/immich)
+- [<img src="/immich.png"> Immich Drop<br>*Remote photo upload*](/immichdrop)
 - [<img src="/romm.png"> RomM<br>*Video-game / ROM management*](/romm)
 {.links-list}
