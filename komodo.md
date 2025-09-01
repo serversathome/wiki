@@ -1,0 +1,135 @@
+---
+title: Komodo
+description: A guide to deploying Komodo
+published: true
+date: 2025-09-01T21:20:12.233Z
+tags: 
+editor: markdown
+dateCreated: 2025-09-01T21:20:12.233Z
+---
+
+# ![](/komodo.png){class="tab-icon"} What is Komodo?
+
+
+
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Komodo
+
+```yaml
+services:
+  mongo:
+    image: mongo
+    command: --quiet --wiredTigerCacheSizeGB 0.25
+    restart: unless-stopped
+    volumes:
+      - /mnt/tank/configs/komodo/mongo-data:/data/db
+      - /mnt/tank/configs/komodo/mongo-config:/data/configdb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${KOMODO_DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DB_PASSWORD}
+  
+  core:
+    image: ghcr.io/moghtech/komodo-core:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    ports:
+      - 9120:9120
+    env_file: ./.env
+    environment:
+      KOMODO_DATABASE_ADDRESS: mongo:27017
+      KOMODO_DATABASE_USERNAME: ${KOMODO_DB_USERNAME}
+      KOMODO_DATABASE_PASSWORD: ${KOMODO_DB_PASSWORD}
+    volumes:
+      - ${COMPOSE_KOMODO_BACKUPS_PATH}:/backups
+
+  periphery:
+    image: ghcr.io/moghtech/komodo-periphery:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc:/proc
+      - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
+```
+
+## 1.1 Environment Variables
+
+```yaml
+COMPOSE_KOMODO_IMAGE_TAG=latest
+
+COMPOSE_KOMODO_BACKUPS_PATH=/mnt/tank/configs/komodo/backups
+
+## DB credentials
+KOMODO_DB_USERNAME=admin
+KOMODO_DB_PASSWORD=admin
+
+## Configure a secure passkey to authenticate between Core / Periphery.
+KOMODO_PASSKEY=a_random_passkey
+
+TZ=America/New_York
+
+KOMODO_HOST=https://demo.komo.do
+
+KOMODO_TITLE=Komodo
+
+KOMODO_FIRST_SERVER=https://periphery:8120
+
+KOMODO_FIRST_SERVER_NAME=Local
+
+KOMODO_DISABLE_CONFIRM_DIALOG=false
+
+KOMODO_MONITORING_INTERVAL="15-sec"
+
+KOMODO_RESOURCE_POLL_INTERVAL="1-hr"
+
+KOMODO_WEBHOOK_SECRET=a_random_secret
+
+KOMODO_JWT_SECRET=a_random_jwt_secret
+
+KOMODO_LOCAL_AUTH=true
+
+KOMODO_INIT_ADMIN_USERNAME=admin
+
+KOMODO_INIT_ADMIN_PASSWORD=changeme
+
+KOMODO_DISABLE_USER_REGISTRATION=false
+
+KOMODO_ENABLE_NEW_USERS=false
+
+KOMODO_DISABLE_NON_ADMIN_CREATE=false
+
+KOMODO_TRANSPARENT_MODE=false
+
+
+KOMODO_LOGGING_PRETTY=true
+
+KOMODO_PRETTY_STARTUP_CONFIG=true
+
+
+KOMODO_OIDC_ENABLED=false
+KOMODO_GITHUB_OAUTH_ENABLED=false
+KOMODO_GOOGLE_OAUTH_ENABLED=false
+
+
+KOMODO_AWS_ACCESS_KEY_ID= # Alt: KOMODO_AWS_ACCESS_KEY_ID_FILE
+KOMODO_AWS_SECRET_ACCESS_KEY= # Alt: KOMODO_AWS_SECRET_ACCESS_KEY_FILE
+
+
+
+
+PERIPHERY_ROOT_DIRECTORY=/mnt/tank/configs/etc/komodo
+
+PERIPHERY_PASSKEYS=${KOMODO_PASSKEY}
+
+PERIPHERY_DISABLE_TERMINALS=false
+
+PERIPHERY_SSL_ENABLED=true
+
+
+PERIPHERY_INCLUDE_DISK_MOUNTS=/etc/hostname
+
+
+PERIPHERY_LOGGING_PRETTY=true
+
+PERIPHERY_PRETTY_STARTUP_CONFIG=true
+```
