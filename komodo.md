@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2025-09-01T21:21:10.443Z
+date: 2025-09-01T21:36:20.587Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T21:20:12.233Z
@@ -64,6 +64,9 @@ services:
 ```
 
 ## 1.1 Environment Variables
+
+> If you are using Dockge, place these directly underneath the `compose.yaml` section where is says `.env`
+{.is-info}
 
 ```yaml
 COMPOSE_KOMODO_IMAGE_TAG=latest
