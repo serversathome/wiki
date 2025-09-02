@@ -1,8 +1,8 @@
 ---
-title: Speed Test Tracker
+title: Speedtest Tracker
 description: A guide to deploy Speed Test Tracker
 published: true
-date: 2025-09-02T14:29:31.734Z
+date: 2025-09-02T14:29:41.085Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-02T14:27:43.594Z
