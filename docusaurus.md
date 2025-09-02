@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-08-27T12:22:03.031Z
+date: 2025-09-02T22:36:11.546Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -19,84 +19,67 @@ Docusaurus is an open-source static site generator designed for building documen
 ## 1.1 Docker Compose
 ```yaml
 services:
-  # Dev container (hot reload)
-  docusaurus-dev:
-    build:
-      context: /mnt/tank/configs/docusaurus
-      dockerfile: dockerfile
-    working_dir: /app
-    volumes:
-      - /mnt/tank/configs/docusaurus:/app
-      - /app/node_modules
-    ports:
-      - "9100:3000"
-    command: yarn start --host 0.0.0.0
-    environment:
-      - NODE_ENV=development
 
-  # Build container (one-off)
-  docusaurus-build:
-    build:
-      context: /mnt/tank/configs/docusaurus
-      dockerfile: dockerfile
-    working_dir: /app
-    volumes:
-      - /mnt/tank/configs/docusaurus:/app
-    command: yarn build
-
-  # Prod container (serve static build)
-  docusaurus-prod:
-    build:
-      context: /mnt/tank/configs/docusaurus
-      dockerfile: dockerfile
-    working_dir: /app
-    volumes:
-      - /mnt/tank/configs/docusaurus:/app
+  dev:
+    container_name: docusaurus-dev
+    image: trevorbrunette/docusaurus:dev
     ports:
-      - "9200:5000"
-    command: yarn serve --host 0.0.0.0
+      - 3000:3000
+    volumes:
+      - ${APPS}/docusaurus:/opt/docusaurus
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost:3000/
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      # Give More Time To Start Up If Failed 
+      start_period: 120s
+
+  build:
     depends_on:
-      - docusaurus-build
-    restart: unless-stopped
+      dev:
+        condition: service_healthy
+    container_name: docusaurus-build
+    image: trevorbrunette/docusaurus:build
+    restart: no
+    volumes:
+      - ${APPS}/docusaurus:/opt/docusaurus
+    healthcheck:
+      test:
+        - CMD
+        - bash
+        - -c
+        - "[ -f /opt/docusaurus/index.html ]"
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 3s
 
+  server:
+    depends_on:
+      - build
+    container_name: docusaurus-serve
+    image: trevorbrunette/docusaurus:serve
+    ports:
+      - 8082:8080
+    volumes:
+      - ${APPS}/docusaurus:/opt/docusaurus
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost:8080/
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+networks: {}
 ```
-
-## 1.2 Dockerfile
-> This `dockerfile` needs to be places in the `/mnt/tank/configs/docusaurus` dataset
-{.is-info}
-
-
-```yaml
-FROM node:20-alpine
-
-WORKDIR /app
-RUN corepack enable
-
-COPY package.json yarn.lock* ./
-RUN if [ -f package.json ]; then yarn install; fi
-COPY . .
-
-EXPOSE 3000 5000
-
-CMD ["yarn", "start"]
-
-```
-
-> The following commands assume your `stacks` directory for Dockge is at `/mnt/tank/stacks` you named this container `docusaurus` and the `configs` directory is at `/mnt/tank/configs`
-{.is-warning}
-
-
-1. Run the following command in the TrueNAS shell:
-    ```bash
-		docker run -it --name temp-docusaurus node:20-alpine npx create-docusaurus@latest /app classic && docker cp temp-docusaurus:/app/. /mnt/tank/configs/docusaurus/ && docker rm temp-docusaurus
-
-    ```
-	a.  When it asks `Ok to proceed? (y)` hit <kbd>ENTER</kbd>
-  b. When it asks `Which language do you want to use?`  hit <kbd>ENTER</kbd>
-1. Run the following command in the TrueNAS shell:
-    ```bash
-    docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml up -d docusaurus-dev
-    ```
 
 # 2 · How it Works
 
@@ -108,8 +91,7 @@ Everytime you make a change to the files in `/mnt/tank/configs/docusaurus` the `
 
 To build the `prod` site after edits, run the following command in the TrueNAS shell:
 ```bash
-docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml run --rm docusaurus-build && \
-docker compose -f /mnt/tank/stacks/docusaurus/compose.yaml up -d docusaurus-prod
+
 ```
 
 
