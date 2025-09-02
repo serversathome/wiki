@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-02T22:36:11.546Z
+date: 2025-09-02T22:39:55.756Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -13,10 +13,7 @@ Docusaurus is an open-source static site generator designed for building documen
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Docusaurus
 
-> Do not hit `Deploy` in Dockge. Hit the `Save` button then run the commands below from the shell!
-{.is-danger}
 
-## 1.1 Docker Compose
 ```yaml
 services:
 
@@ -26,18 +23,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ${APPS}/docusaurus:/opt/docusaurus
-    healthcheck:
-      test:
-        - CMD
-        - curl
-        - -f
-        - http://localhost:3000/
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      # Give More Time To Start Up If Failed 
-      start_period: 120s
+      - /mnt/tank/configs/docusaurus:/opt/docusaurus
 
   build:
     depends_on:
@@ -47,38 +33,37 @@ services:
     image: trevorbrunette/docusaurus:build
     restart: no
     volumes:
-      - ${APPS}/docusaurus:/opt/docusaurus
-    healthcheck:
-      test:
-        - CMD
-        - bash
-        - -c
-        - "[ -f /opt/docusaurus/index.html ]"
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 3s
+      - /mnt/tank/configs/docusaurus:/opt/docusaurus
 
   server:
-    depends_on:
-      - build
     container_name: docusaurus-serve
+    restart: unless-stopped
     image: trevorbrunette/docusaurus:serve
     ports:
       - 8082:8080
     volumes:
-      - ${APPS}/docusaurus:/opt/docusaurus
-    healthcheck:
-      test:
-        - CMD
-        - curl
-        - -f
-        - http://localhost:8080/
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 30s
-networks: {}
+      - /mnt/tank/configs/docusaurus/docusaurus:/opt/docusaurus
+
+
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+      - PASSWORD=password #optional
+      - HASHED_PASSWORD= #optional
+      - SUDO_PASSWORD=password #optional
+      - SUDO_PASSWORD_HASH= #optional
+      - PROXY_DOMAIN=code-server.my.domain #optional
+      - DEFAULT_WORKSPACE=/config/workspace #optional
+      - PWA_APPNAME=code-server #optional
+    volumes:
+      - /path/to/code-server/config:/config
+    ports:
+      - 8443:8443
+    restart: unless-stopped
 ```
 
 # 2 · How it Works
