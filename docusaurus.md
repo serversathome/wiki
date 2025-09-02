@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-02T23:08:41.207Z
+date: 2025-09-02T23:09:47.791Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -84,13 +84,8 @@ services:
       - PUID=0
       - PGID=0
       - TZ=America/New_York
-      - PASSWORD=password #optional
-      - HASHED_PASSWORD= #optional
-      - SUDO_PASSWORD=password #optional
-      - SUDO_PASSWORD_HASH= #optional
-      - PROXY_DOMAIN=code-server.my.domain #optional
+      - PASSWORD=password
       - DEFAULT_WORKSPACE=/mnt/
-      - PWA_APPNAME=code-server #optional
     volumes:
       - /mnt/tank/configs/codeserver:/config
       - /mnt/tank/configs/docusaurus:/mnt
