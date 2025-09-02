@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-02T22:59:26.185Z
+date: 2025-09-02T23:04:21.544Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -101,20 +101,19 @@ services:
 
 # 2 · How it Works
 
-Docusaurs has both a `dev` site running on port `9100` and a `production` site which will run on port `9200`. It is generally unsafe to expose the `dev` server to the internet, so Docusaurus "builds" a production site from the dev site for the public.
+Docusaurs has both a `dev` site running on port `3000` and a `production` site which will run on port `8082`. It is generally unsafe to expose the `dev` server to the internet, so Docusaurus "builds" a production site from the dev site for the public.
 
 Everytime you make a change to the files in `/mnt/tank/configs/docusaurus` the `dev` site will be updated immediately. However, the `prod` site will need to be rebuilt every time. 
 
 ## 2.1 Building a Production Site
 
-To build the `prod` site after edits, run the following command in the TrueNAS shell:
-```bash
-
-```
+To build the `prod` site after edits, press the **Start** button in Dockge, or restart the containers if you deployed them via CLI or some other container manager.
 
 
-Once the `prod` site is built, point your reverse proxy at `http://{IP}:9200` to serve your Docusaurus site. 
+Once the `prod` site is built, point your reverse proxy at `http://{IP}:8082` to serve your Docusaurus site. 
 
 
 ## 2.2 Editing the Files
+
+This compose stack comes with a **VS Code** container which will allow you to edit the files in the `/mnt/tank/configs/docusaurus` directory through a visual editor. Once the files are edited the changes will be reflected immediately on the `dev` server. 
 
