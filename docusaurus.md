@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-02T22:43:14.434Z
+date: 2025-09-02T22:44:52.616Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -45,16 +45,37 @@ services:
     restart: no
     volumes:
       - /mnt/tank/configs/docusaurus:/opt/docusaurus
+    healthcheck:
+      test:
+        - CMD
+        - bash
+        - -c
+        - "[ -f /opt/docusaurus/index.html ]"
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 3s
 
   server:
+    depends_on:
+      - build
     container_name: docusaurus-serve
-    restart: unless-stopped
     image: trevorbrunette/docusaurus:serve
     ports:
       - 8082:8080
     volumes:
-      - /mnt/tank/configs/docusaurus/docusaurus:/opt/docusaurus
-
+      - /mnt/tank/configs/docusaurus:/opt/docusaurus
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost:8080/
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+networks: {}
 
   code-server:
     image: lscr.io/linuxserver/code-server:latest
