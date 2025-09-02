@@ -2,7 +2,7 @@
 title: Networking
 description: 
 published: true
-date: 2025-09-02T00:45:31.817Z
+date: 2025-09-02T14:28:58.419Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T20:26:36.014Z
@@ -35,4 +35,5 @@ dateCreated: 2025-07-01T20:26:36.014Z
 # Other
 - [<img src="/dockpeek.png"> Dockpeek<br>*View and access exposed container ports*](/dockpeek)
 - [<img src="/portracker.png"> Portracker <span class="badge">NEW</span><br>*Live map of ports in use*](/portracker)
+- [<img src="/speedtest-tracker.png"> Speedtest Tracker <span class="badge">NEW</span><br>*Monitors the performance and uptime of your internet connection*](/portracker)
 {.links-list}
