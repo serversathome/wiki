@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-02T22:41:56.014Z
+date: 2025-09-02T22:43:14.434Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -24,6 +24,17 @@ services:
       - 3000:3000
     volumes:
       - /mnt/tank/configs/docusaurus:/opt/docusaurus
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost:3000/
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      # Give More Time To Start Up If Failed 
+      start_period: 120s
 
   build:
     depends_on:
