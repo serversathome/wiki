@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-02T23:04:21.544Z
+date: 2025-09-02T23:07:42.376Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -98,6 +98,9 @@ services:
       - 8443:8443
     restart: unless-stopped
 ```
+> If your Dockge stack says **exited**, that is normal. The `build` container does not run constantly and will throw a false positive to Dockge even though all the other containers should read `healthy` or `running`.
+{.is-info}
+
 
 # 2 · How it Works
 
