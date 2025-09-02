@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-02T22:44:52.616Z
+date: 2025-09-02T22:45:07.320Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -75,7 +75,7 @@ services:
       timeout: 10s
       retries: 3
       start_period: 30s
-networks: {}
+
 
   code-server:
     image: lscr.io/linuxserver/code-server:latest
