@@ -2,7 +2,7 @@
 title: Speedtest Tracker
 description: A guide to deploy Speed Test Tracker
 published: true
-date: 2025-09-02T14:29:41.085Z
+date: 2025-09-02T14:58:14.438Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-02T14:27:43.594Z
@@ -30,3 +30,6 @@ services:
     volumes:
       - /mnt/tank/configs/speedtesttracker:/config
 ```
+
+# 2 · First Login
+The default user is `admin@example.com` and the default password is `password`.
