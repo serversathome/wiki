@@ -1,8 +1,8 @@
 ---
-title: Horbor Guard
+title: Harbor Guard
 description: A guide to deploying Harbor Guard
 published: true
-date: 2025-09-02T14:00:23.191Z
+date: 2025-09-02T14:02:32.925Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-02T14:00:23.191Z
