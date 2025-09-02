@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-02T23:07:42.376Z
+date: 2025-09-02T23:08:41.207Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -119,4 +119,6 @@ Once the `prod` site is built, point your reverse proxy at `http://{IP}:8082` to
 ## 2.2 Editing the Files
 
 This compose stack comes with a **VS Code** container which will allow you to edit the files in the `/mnt/tank/configs/docusaurus` directory through a visual editor. Once the files are edited the changes will be reflected immediately on the `dev` server. 
+
+To login to the code container, visit `http://{IP}:8443` and use the password `password`.
 
