@@ -11,6 +11,9 @@ dateCreated: 2025-09-02T14:27:43.594Z
 # ![](/speedtest-tracker.png){class="tab-icon"} What is Speedtest Tracker?
 Speedtest Tracker is a self-hosted application that monitors the performance and uptime of your internet connection. Build using Laravel and Speedtest CLI from Ookla®, deployable with Docker.
 
+> Generate an app key using this command in the TrueNAS shell: ```echo -n 'base64:'; openssl rand -base64 32;```
+{.is-info}
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Speedtest Tracker
 
 ```yaml
@@ -30,6 +33,8 @@ services:
     volumes:
       - /mnt/tank/configs/speedtesttracker:/config
 ```
-
 # 2 · First Login
 The default user is `admin@example.com` and the default password is `password`.
+
+> Find additional environment variables on their documentation here [here](https://docs.speedtest-tracker.dev/getting-started/environment-variables) 
+{.is-info}
