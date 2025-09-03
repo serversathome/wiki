@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T09:20:57.729Z
+date: 2025-09-03T09:23:48.291Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -150,12 +150,6 @@ We need to set up a Personal Access Token so we have permission to publish to ou
 1. Set the `url` to `https://{github username}.github.io`
 1. Chnage the `organizationName`to your GitHub org/user name
 1. Change the `projectName` to your repo name
-1. Add the main branch directly under `projectName`: 
-```yml
-deployment: {
-    branch: 'main', // The name of the branch you want to push to
-  },
-  ```
 
 
 ## 3.3 Initialize the Repo
@@ -177,7 +171,7 @@ deployment: {
     git commit -m "Initial commit for Docusaurus site"
     ```
     ```bash
-    git push --set-upstream origin master
+    git push --set-upstream origin main
     ```
 
 ## 3.4 Publishing
