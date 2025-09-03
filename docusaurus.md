@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T11:45:59.617Z
+date: 2025-09-03T12:25:26.973Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -170,7 +170,7 @@ Add Pages following the steps below:
 1. Either hit the **Start** button in Dockge or restart the stack to tirgger a build
 1. Run the following command from the TrueNAS shell to publish the site to GitHub:
 ```bash
-docker start docusaurus-build && docker exec docusaurus-build npm run deploy
+
 ```
 
 
