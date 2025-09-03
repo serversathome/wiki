@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T08:26:02.953Z
+date: 2025-09-03T08:26:18.454Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -119,7 +119,7 @@ To login to the code container, visit `http://{IP}:8443` and use the password `p
 
 # 3 · Publishing to GitHub
 
-GitHub can host our Docusaurus site on GitHub Pages. Follow the instructions below to publish your production site to GitHub.
+GitHub can host your Docusaurus site on GitHub Pages. Follow the instructions below to publish your production site to GitHub.
 
 ## 3.1 GitHub Pages
 
