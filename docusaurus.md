@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T09:23:48.291Z
+date: 2025-09-03T09:35:23.364Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -150,7 +150,7 @@ We need to set up a Personal Access Token so we have permission to publish to ou
 1. Set the `url` to `https://{github username}.github.io`
 1. Chnage the `organizationName`to your GitHub org/user name
 1. Change the `projectName` to your repo name
-
+1. Add `deploymentBranch: 'master',` directly under `projectName`
 
 ## 3.3 Initialize the Repo
 1. Navigate to the directory where the config files are (`/mnt/tank/configs/docusaurus`)
