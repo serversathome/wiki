@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T11:35:56.197Z
+date: 2025-09-03T11:45:59.617Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -113,7 +113,7 @@ Once the `prod` site is built, point your reverse proxy at `http://{IP}:8082` to
 
 ## 2.2 Editing the Files
 
-This compose stack comes with a **VS Code** container which will allow you to edit the files in the `/mnt/tank/configs/docusaurus` directory through a visual editor. Once the files are edited the changes will be reflected immediately on the `dev` server. 
+This compose stack comes with a **VS Code** container which will allow you to edit the files in the `/mnt/tank/configs/docusaurus` directory through a visual editor. Once the files are edited the changes will be reflected immediately on the `dev` server.
 
 To login to the code container, visit `http://{IP}:8443` and use the password `password`.
 
@@ -121,13 +121,13 @@ To login to the code container, visit `http://{IP}:8443` and use the password `p
 
 GitHub can host your Docusaurus site on GitHub Pages. Follow the instructions below to publish your production site to GitHub.
 
-## 3.2 Docusaurus Configuration
+## 3.1 Docusaurus Configuration
 1. Open the `docusaurus.config.js` file
 1. Set the `url` to `https://{github username}.github.io`
 1. Chnage the `organizationName`to your GitHub org/user name
 1. Change the `projectName` to your repo name
 
-## 3.1 Permissions
+## 3.2 Permissions
 
 We need to set up a Personal Access Token so we have permission to publish to our GitHub site.
 
@@ -156,19 +156,23 @@ We need to set up a Personal Access Token so we have permission to publish to ou
     git add . && git commit -m "Initial commit for Docusaurus site" && git branch -M main && git fetch origin main && git push --force-with-lease --set-upstream origin main
     ```
 
-## 3.4 Publishing
+## 3.4 GitHub Pages
+
+Add Pages following the steps below:
+
+1. Once inside your repo, click **Settings → Pages**
+1. Under **Branch**, set the first dropdown box to **Main**
+1. Set the folder to `/docs`
+1. Click the **Save** button directly next to it
+
+
+## 3.5 Publishing
 1. Either hit the **Start** button in Dockge or restart the stack to tirgger a build
 1. Run the following command from the TrueNAS shell to publish the site to GitHub:
 ```bash
 docker start docusaurus-build && docker exec docusaurus-build npm run deploy
 ```
 
-## 3.1 GitHub Pages
-
-Set up a repo and add Pages following the steps below:
-
-1. Once inside your repo, click **Settings → Pages**
-1. Under **Branch**, set the first dropdown box to **Main** and click the **Save** button directly next to it
 
 
 
