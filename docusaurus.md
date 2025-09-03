@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T09:02:27.590Z
+date: 2025-09-03T09:09:16.758Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -133,12 +133,12 @@ Set up a repo and add Pages following the steps below:
 We need to set up a Personal Access Token so we have permission to publish to our GitHub site.
 
 1. Go to your GitHub account **Settings**
-1. In the left sidebar, click on **Developer settings**
-1. Click on **Personal access tokens → Tokens (classic)**
-1. Click on **Generate new token (classic)**
-1. Give your token a descriptive name (e.g., docusaurus-deploy)
+1. In the left sidebar, click on **Developer settings** all the way at the bottom
+1. Click on **Personal access tokens → Fine-grained tokens**
+1. Click on **Generate new token**
+1. Give your token a name (e.g., docusaurus-deploy)
 1. Set an expiration date for the token
-1. Under **Select scopes**, check the box for repo to grant full control of private repositories
+1. Under **Repository access** choose your docusaurus repo
 1. Click **Generate token** at the bottom
 1. Copy the generated token immediately. You will not be able to see it again.
 
