@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T08:26:46.346Z
+date: 2025-09-03T08:51:57.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -134,4 +134,21 @@ Set up a repo and add Pages following the steps below:
 1. Change the `baseUrl` to ` `
 1. Chnage the `organizationName`to your GitHub org/user name
 1. Change the `projectName` to your repo name
+
+## 3.3 Initialize the Repo
+1. Navigate to the directory where the config files are (`/mnt/tank/configs/docusaurus`)
+1. Run the following commands entering your correct username:
+```bash
+git init
+git remote add origin https://github.com/{USERNAME}/docs.git
+git add .
+git commit -m "Initial commit for Docusaurus site"
+```
+
+## 3.3 Publishing
+1. Either hit the **Start** button in Dockge or restart the stack to tirgger a build
+1. Run the following command from the TrueNAS shell to publish the site to GitHub:
+```bash
+docker start docusaurus-build && docker exec docusaurus-build npm run deploy
+```
 
