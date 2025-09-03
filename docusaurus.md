@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T10:56:44.006Z
+date: 2025-09-03T11:02:55.656Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -121,14 +121,13 @@ To login to the code container, visit `http://{IP}:8443` and use the password `p
 
 GitHub can host your Docusaurus site on GitHub Pages. Follow the instructions below to publish your production site to GitHub.
 
-## 3.1 GitHub Pages
+## 3.2 Docusaurus Configuration
+1. Open the `docusaurus.config.js` file
+1. Set the `url` to `https://{github username}.github.io`
+1. Chnage the `organizationName`to your GitHub org/user name
+1. Change the `projectName` to your repo name
 
-Set up a repo and add Pages following the steps below:
-
-1. Once inside your repo, click **Settings → Pages**
-1. Under **Branch**, set the first dropdown box to **Main** and click the **Save** button directly next to it
-
-### 3.1.1 Permissions
+## 3.1 Permissions
 
 We need to set up a Personal Access Token so we have permission to publish to our GitHub site.
 
@@ -143,13 +142,6 @@ We need to set up a Personal Access Token so we have permission to publish to ou
 	a. Check the **Contents** box and give **Read and write** permissions
 1. Click **Generate token** at the bottom
 1. Copy the generated token immediately. You will not be able to see it again.
-
-
-## 3.2 Docusaurus Configuration
-1. Open the `docusaurus.config.js` file
-1. Set the `url` to `https://{github username}.github.io`
-1. Chnage the `organizationName`to your GitHub org/user name
-1. Change the `projectName` to your repo name
 
 ## 3.3 Initialize the Repo
 1. Navigate to the directory where the config files are (`/mnt/tank/configs/docusaurus`)
@@ -180,5 +172,12 @@ We need to set up a Personal Access Token so we have permission to publish to ou
 docker start docusaurus-build && docker exec docusaurus-build npm run deploy
 ```
 
-## 3.5 
+## 3.1 GitHub Pages
+
+Set up a repo and add Pages following the steps below:
+
+1. Once inside your repo, click **Settings → Pages**
+1. Under **Branch**, set the first dropdown box to **Main** and click the **Save** button directly next to it
+
+
 
