@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T11:14:58.511Z
+date: 2025-09-03T11:17:01.135Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -148,9 +148,6 @@ We need to set up a Personal Access Token so we have permission to publish to ou
 1. Run the following commands one at a time:
     ```bash
     git init
-    ```
-    ```bash
-    git remote add origin https://github.com/{USERNAME}/docs.git
     ```
     ```bash
     git remote add origin https://<YOUR_PERSONAL_ACCESS_TOKEN>@github.com/{USERNAME}/{REPONAME}.git
