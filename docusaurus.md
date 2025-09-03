@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T08:26:18.454Z
+date: 2025-09-03T08:26:46.346Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -123,7 +123,7 @@ GitHub can host your Docusaurus site on GitHub Pages. Follow the instructions be
 
 ## 3.1 GitHub Pages
 
-Set up a repo and add pages following the steps below:
+Set up a repo and add Pages following the steps below:
 
 1. Once inside your repo, click **Settings → Pages**
 1. Under **Branch**, set the first dropdown box to **Main** and click the **Save** button directly next to it
