@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T09:11:12.914Z
+date: 2025-09-03T09:13:48.267Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -128,7 +128,7 @@ Set up a repo and add Pages following the steps below:
 1. Once inside your repo, click **Settings → Pages**
 1. Under **Branch**, set the first dropdown box to **Main** and click the **Save** button directly next to it
 
-## 3.1.1 Permissions
+### 3.1.1 Permissions
 
 We need to set up a Personal Access Token so we have permission to publish to our GitHub site.
 
@@ -148,7 +148,6 @@ We need to set up a Personal Access Token so we have permission to publish to ou
 ## 3.2 Docusaurus Configuration
 1. Open the `docusaurus.config.js` file
 1. Set the `url` to `https://{github username}.github.io`
-1. Change the `baseUrl` to ` `
 1. Chnage the `organizationName`to your GitHub org/user name
 1. Change the `projectName` to your repo name
 
