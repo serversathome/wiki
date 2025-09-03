@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T09:09:16.758Z
+date: 2025-09-03T09:11:12.914Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -139,6 +139,8 @@ We need to set up a Personal Access Token so we have permission to publish to ou
 1. Give your token a name (e.g., docusaurus-deploy)
 1. Set an expiration date for the token
 1. Under **Repository access** choose your docusaurus repo
+1. In the **Permissions** section, click **Add Permissions** 
+	a. Check the **Contents** box and give **Read and write** permissions
 1. Click **Generate token** at the bottom
 1. Copy the generated token immediately. You will not be able to see it again.
 
