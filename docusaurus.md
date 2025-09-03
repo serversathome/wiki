@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-02T23:09:47.791Z
+date: 2025-09-03T08:26:02.953Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -116,4 +116,22 @@ Once the `prod` site is built, point your reverse proxy at `http://{IP}:8082` to
 This compose stack comes with a **VS Code** container which will allow you to edit the files in the `/mnt/tank/configs/docusaurus` directory through a visual editor. Once the files are edited the changes will be reflected immediately on the `dev` server. 
 
 To login to the code container, visit `http://{IP}:8443` and use the password `password`.
+
+# 3 · Publishing to GitHub
+
+GitHub can host our Docusaurus site on GitHub Pages. Follow the instructions below to publish your production site to GitHub.
+
+## 3.1 GitHub Pages
+
+Set up a repo and add pages following the steps below:
+
+1. Once inside your repo, click **Settings → Pages**
+1. Under **Branch**, set the first dropdown box to **Main** and click the **Save** button directly next to it
+
+## 3.2 Docusaurus Configuration
+1. Open the `docusaurus.config.js` file
+1. Set the `url` to `https://{github username}.github.io`
+1. Change the `baseUrl` to ` `
+1. Chnage the `organizationName`to your GitHub org/user name
+1. Change the `projectName` to your repo name
 
