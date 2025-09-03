@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T09:40:48.224Z
+date: 2025-09-03T09:41:19.783Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -154,7 +154,7 @@ We need to set up a Personal Access Token so we have permission to publish to ou
 
 ## 3.3 Initialize the Repo
 1. Navigate to the directory where the config files are (`/mnt/tank/configs/docusaurus`)
-1. Run the following commands one at a time entering your correct username:
+1. Run the following commands one at a time:
     ```bash
     git init
     ```
