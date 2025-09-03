@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T11:31:52.507Z
+date: 2025-09-03T11:35:56.197Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -153,7 +153,7 @@ We need to set up a Personal Access Token so we have permission to publish to ou
     git remote add origin https://<YOUR_PERSONAL_ACCESS_TOKEN>@github.com/{USERNAME}/{REPONAME}.git
     ```
     ```bash
-    git add . && git commit -m "Initial commit for Docusaurus site" && git branch -M main && git push --set-upstream origin main
+    git add . && git commit -m "Initial commit for Docusaurus site" && git branch -M main && git fetch origin main && git push --force-with-lease --set-upstream origin main
     ```
 
 ## 3.4 Publishing
