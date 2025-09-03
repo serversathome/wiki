@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T09:13:48.267Z
+date: 2025-09-03T09:20:57.729Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -150,15 +150,15 @@ We need to set up a Personal Access Token so we have permission to publish to ou
 1. Set the `url` to `https://{github username}.github.io`
 1. Chnage the `organizationName`to your GitHub org/user name
 1. Change the `projectName` to your repo name
+1. Add the main branch directly under `projectName`: 
+```yml
+deployment: {
+    branch: 'main', // The name of the branch you want to push to
+  },
+  ```
 
-## 3.3 Publishing
-1. Either hit the **Start** button in Dockge or restart the stack to tirgger a build
-1. Run the following command from the TrueNAS shell to publish the site to GitHub:
-```bash
-docker start docusaurus-build && docker exec docusaurus-build npm run deploy
-```
 
-## 3.4 Initialize the Repo
+## 3.3 Initialize the Repo
 1. Navigate to the directory where the config files are (`/mnt/tank/configs/docusaurus`)
 1. Run the following commands one at a time entering your correct username:
     ```bash
@@ -179,7 +179,13 @@ docker start docusaurus-build && docker exec docusaurus-build npm run deploy
     ```bash
     git push --set-upstream origin master
     ```
-1. Enter your username and password
 
+## 3.4 Publishing
+1. Either hit the **Start** button in Dockge or restart the stack to tirgger a build
+1. Run the following command from the TrueNAS shell to publish the site to GitHub:
+```bash
+docker start docusaurus-build && docker exec docusaurus-build npm run deploy
+```
 
+## 3.5 
 
