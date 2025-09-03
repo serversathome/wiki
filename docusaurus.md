@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T08:51:57.000Z
+date: 2025-09-03T09:02:27.590Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -128,6 +128,21 @@ Set up a repo and add Pages following the steps below:
 1. Once inside your repo, click **Settings → Pages**
 1. Under **Branch**, set the first dropdown box to **Main** and click the **Save** button directly next to it
 
+## 3.1.1 Permissions
+
+We need to set up a Personal Access Token so we have permission to publish to our GitHub site.
+
+1. Go to your GitHub account **Settings**
+1. In the left sidebar, click on **Developer settings**
+1. Click on **Personal access tokens → Tokens (classic)**
+1. Click on **Generate new token (classic)**
+1. Give your token a descriptive name (e.g., docusaurus-deploy)
+1. Set an expiration date for the token
+1. Under **Select scopes**, check the box for repo to grant full control of private repositories
+1. Click **Generate token** at the bottom
+1. Copy the generated token immediately. You will not be able to see it again.
+
+
 ## 3.2 Docusaurus Configuration
 1. Open the `docusaurus.config.js` file
 1. Set the `url` to `https://{github username}.github.io`
@@ -135,20 +150,35 @@ Set up a repo and add Pages following the steps below:
 1. Chnage the `organizationName`to your GitHub org/user name
 1. Change the `projectName` to your repo name
 
-## 3.3 Initialize the Repo
-1. Navigate to the directory where the config files are (`/mnt/tank/configs/docusaurus`)
-1. Run the following commands entering your correct username:
-```bash
-git init
-git remote add origin https://github.com/{USERNAME}/docs.git
-git add .
-git commit -m "Initial commit for Docusaurus site"
-```
-
 ## 3.3 Publishing
 1. Either hit the **Start** button in Dockge or restart the stack to tirgger a build
 1. Run the following command from the TrueNAS shell to publish the site to GitHub:
 ```bash
 docker start docusaurus-build && docker exec docusaurus-build npm run deploy
 ```
+
+## 3.4 Initialize the Repo
+1. Navigate to the directory where the config files are (`/mnt/tank/configs/docusaurus`)
+1. Run the following commands one at a time entering your correct username:
+    ```bash
+    git init
+    ```
+    ```bash
+    git remote add origin https://github.com/{USERNAME}/docs.git
+    ```
+    ```bash
+    git remote set-url origin https://<YOUR_PERSONAL_ACCESS_TOKEN>@github.com/{USERNAME}/{REPONAME}.git
+    ```
+    ```bash
+    git add .
+    ```
+    ```bash
+    git commit -m "Initial commit for Docusaurus site"
+    ```
+    ```bash
+    git push --set-upstream origin master
+    ```
+1. Enter your username and password
+
+
 
