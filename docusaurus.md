@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T11:17:01.135Z
+date: 2025-09-03T11:18:16.939Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-27T08:38:39.465Z
@@ -157,6 +157,9 @@ We need to set up a Personal Access Token so we have permission to publish to ou
     ```
     ```bash
     git commit -m "Initial commit for Docusaurus site"
+    ```
+    ```bash
+    git branch -M main
     ```
     ```bash
     git push --set-upstream origin main
