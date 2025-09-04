@@ -2,7 +2,7 @@
 title: Vaultwarden
 description: A guide to installing Vaultwarden in docker via compose
 published: true
-date: 2025-09-04T15:01:22.084Z
+date: 2025-09-04T15:13:41.403Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-16T22:16:52.287Z
@@ -12,6 +12,7 @@ dateCreated: 2024-08-16T22:16:52.287Z
 
 Vaultwarden is a free and secure password manager that works on any device and platform. It is the community version of Bitwarden, with features like organizations, attachments, API, and more.
 
+# 1 · Deploy Vaultwarden
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
@@ -43,11 +44,11 @@ services:
 {.is-info}
 
 
-# 1 · Logging In
+# 2 · Logging In
 
 Your Vaultwarden server is now ready on whatever port you specified. However, do not go to http://{localhost}:8090. Even though the page will load you will not be able to create an account. You must come in over https, usually using a reverse proxy like Cloudflare tunnels or Nginx. 
 
-# 2 · Admin Controls
+# 3 · Admin Controls
 
 After you have created your account, to prevent other users from doing so on your server, you must disable to ability to create new account from the admin panel. 
 1. Go back to your compose file an uncomment out the `ADMIN_TOKEN` line and relaunch your container
@@ -59,6 +60,6 @@ After you have created your account, to prevent other users from doing so on you
 
 ![](/untitled.jpeg)
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# <img src="/youtube.png" class="tab-icon"> 4 · Video
 
 [https://youtu.be/cWvWIPMoR1M](https://youtu.be/cWvWIPMoR1M)
