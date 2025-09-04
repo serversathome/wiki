@@ -2,12 +2,11 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-08-18T20:40:55.101Z
+date: 2025-09-04T10:09:52.801Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
 ---
-
 
 # ![](/qbittorrent.png){class="tab-icon"} What is qBittorrent?
 qBittorrent is a free and open-source software that aims to provide the same features as µTorrent, such as polished user interface, no ads, search engine, torrent creation tool and more. It runs on all major platforms (Windows, Linux, macOS, FreeBSD, OS/2) and supports many Bittorrent extensions.
@@ -144,7 +143,7 @@ To add port forwarding, on the `FIREWALL_VPN_INPUT_PORTS` add a comma with no sp
 
 
 
-> ## <img src="/docker.png" class="tab-icon"> NordVPN + qBit
+## <img src="/docker.png" class="tab-icon"> NordVPN + qBit
 
 
 ```yaml
