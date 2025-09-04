@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2025-09-04T15:19:25.418Z
+date: 2025-09-04T15:20:31.718Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T21:20:12.233Z
@@ -30,7 +30,10 @@ With Komodo you can:
 1. Set a **Database Password**
 1. Set a **Passkey (Periphery)**
 1. Set **Backups Storage**, **Syncs Storage**, **Periphery Root Storage**, and **MongoDB Data Storage** to **Host Path**
-	a. Remember to check the box for **Automatic Permissions** under **MongoDB Data Storage**
+
+> Remember to check the box for **Automatic Permissions** under **MongoDB Data Storage**
+{.is-warning}
+
 
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
