@@ -2,7 +2,7 @@
 title: Containerization
 description: 
 published: true
-date: 2025-08-28T17:59:16.140Z
+date: 2025-09-02T14:01:29.080Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T20:43:05.196Z
@@ -15,6 +15,7 @@ These are GUI front-ends for managing Docker containers.
 * [<img src="/arcane.png"> Arcane](/arcane)
 * [<img src="/containery-white.png"> Containery](/containery)
 * [<img src="/dockge.png"> Dockge](/Dockge)
+* [<img src="/komodo.png"> Komodo](/komodo)
 * [<img src="/portainer.png"> Portainer](/Portainer)
   {.links-list}
 
@@ -32,5 +33,6 @@ These are GUI front-ends for managing Docker containers.
 
 * [<img src="/composetoolbox.png"> Compose Toolbox<br>*Compose file validator*](/composetoolbox)
 * [<img src="/docker.png"> Docker<br>*Guide to deploying Docker*](/Docker)
-* [<img src="/dockpeek.png"> Dockpeek<br>*View and access exposed container ports*](/dockpeek)
+* [<img src="/harbor-guard.png"> Harbor Guard<br>*A comprehensive container security scanning platform*](/harborguard)
+
 {.links-list}

@@ -2,7 +2,7 @@
 title: Watchtower
 description: A guide on how to install Watchtower for container updates
 published: true
-date: 2025-07-11T12:19:59.592Z
+date: 2025-09-04T09:31:19.202Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:43:38.252Z
@@ -16,7 +16,7 @@ Watchtower is a tool that automates the updating of Docker containers by pulling
 ```yaml
 services:
   watchtower:
-    image: containrrr/watchtower
+    image: nickfedor/watchtower
     container_name: watchtower
     environment:
       - TZ=America/New_York
@@ -33,7 +33,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 ```
 
-> I have added some custom environment variables to this compose file. For a full explanation of all possible variables, [see the docs](https://containrrr.dev/watchtower/arguments/)
+> I have added some custom environment variables to this compose file. For a full explanation of all possible variables, [see the docs](https://watchtower.nickfedor.com/v1.11.8/configuration/arguments/)
 {.is-info}
 
 > Watchtower does not update apps from the TrueNAS catalog. To skip those, add this line to the `environment` section:

@@ -67,13 +67,13 @@ Leave everything else alone and click
 
 <img width="925" height="562" alt="image" src="https://github.com/user-attachments/assets/342107c5-6ebf-4505-80e1-099d7ed43017" />
 
-1. Open Firefox in your VM and proceed to the [official Home Assistant Installation guide](https://www.home-assistant.io/installation/generic-x86-64). Next, jump to the section titled: **Method 1: Installing HAOS via Ubuntu booting from a USB flash drive**. Skip to step 5 and click the "download the image" link. Once the download is complete, right click on the file and open with **Disk Image Writer**. Set the destination to the disk you added during the VM setup and click **Start Restoring**
+2. Open Firefox in your VM and proceed to the [official Home Assistant Installation guide](https://www.home-assistant.io/installation/generic-x86-64). Next, jump to the section titled: **Method 1: Installing HAOS via Ubuntu booting from a USB flash drive**. Skip to step 5 and click the "download the image" link. Once the download is complete, right click on the file and open with **Disk Image Writer**. Set the destination to the disk you added during the VM setup and click **Start Restoring**
 
 <img width="799" height="244" alt="image" src="https://github.com/user-attachments/assets/7985a772-c87a-4a75-8afd-31fde625698e" />
 
 <img width="519" height="255" alt="image" src="https://github.com/user-attachments/assets/24df6c0f-fff6-4f0f-a9fc-7beff185911a" />
 
-1. Once the restore process is done, power off the VM and remove the .iso from the Disks section in TrueNAS. Start the VM and VNC back into it. You should see HAOS booting and eventually you will see the splash screen.
+3. Once the restore process is done, power off the VM and remove the .iso from the Disks section in TrueNAS. Start the VM and VNC back into it. You should see HAOS booting and eventually you will see the splash screen.
 
-1. You will need to find the IP address of the VM via your router and use the port 8123. Home Assistant will default to giving you homeassistant.local:8123 address. Once you have the IP you may proceed to the [Onboarding Process](https://www.home-assistant.io/getting-started/onboarding/).
+4. You will need to find the IP address of the VM via your router and use the port 8123. Home Assistant will default to giving you homeassistant.local:8123 address. Once you have the IP you may proceed to the [Onboarding Process](https://www.home-assistant.io/getting-started/onboarding/).
 

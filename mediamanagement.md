@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-08-28T14:12:40.194Z
+date: 2025-09-01T12:24:02.898Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -35,6 +35,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 {.links-list}
 
 ## Media Discovery
+- [<img src="/agregarr.png"> Agregarr<br>*Keeps your Plex Home and Recommended fresh*](/agregarr)
 - [<img src="/huntarr.png"> Huntarr<br>*Automated missing-content discovery & quality upgrades*](/huntarr)
 - [<img src="/jellyseerr.png"> Jellyseerr<br>*Media request & discovery manager*](/Jellyseerr)
 - [<img src="/ombi.png"> Ombi <span class="badge">NEW</span><br>*Media request & discovery manager*](/ombi)
@@ -73,5 +74,6 @@ dateCreated: 2025-07-01T09:24:50.754Z
 
 # Media Management
 - [<img src="/immich.png"> Immich<br>*Photo management*](/immich)
+- [<img src="/immich.png"> Immich Drop<br>*Remote photo upload*](/immichdrop)
 - [<img src="/romm.png"> RomM<br>*Video-game / ROM management*](/romm)
 {.links-list}

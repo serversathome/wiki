@@ -2,7 +2,7 @@
 title: Vaultwarden
 description: A guide to installing Vaultwarden in docker via compose
 published: true
-date: 2025-07-11T10:39:00.841Z
+date: 2025-09-04T15:13:41.403Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-16T22:16:52.287Z
@@ -12,7 +12,18 @@ dateCreated: 2024-08-16T22:16:52.287Z
 
 Vaultwarden is a free and secure password manager that works on any device and platform. It is the community version of Bitwarden, with features like organizations, attachments, API, and more.
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Vaultwarden
+# 1 · Deploy Vaultwarden
+# {.tabset}
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
+
+1. Set the **Database Password** to something secure
+1. Set the **Admin Token** to enable to admin console
+1. Set the **Certificate ID** to `truenas_default Certificate`
+1. Set the **Vaultwarden Data Storage** to **Host Path**
+1. Set the **Vaultwarden Postgres Data Storage** to **Host Path** and select the box for **Automatic Permissions**
+
+
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
