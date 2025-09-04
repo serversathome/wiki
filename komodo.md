@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2025-09-01T21:36:20.587Z
+date: 2025-09-04T15:16:30.809Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T21:20:12.233Z
@@ -23,7 +23,15 @@ With Komodo you can:
 
 
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Komodo
+# 1 · Deploy Komodo
+# {.tabset}
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
+
+1. 
+
+
+## <img src="/docker.png" class="tab-icon"> Docker Compose
+
 
 ```yaml
 services:
@@ -63,7 +71,7 @@ services:
       - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
 ```
 
-## 1.1 Environment Variables
+### Environment Variables
 
 > If you are using Dockge, place these directly underneath the `compose.yaml` section where is says `.env`
 {.is-info}
