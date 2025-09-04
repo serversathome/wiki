@@ -29,8 +29,8 @@ The Pangolin docs recommend [this option from Rack Nerd](https://my.racknerd.com
 
 # 3 · Installation
 Pangolin is installed on bare metal using this command:
-```bash
-wget -O installer "https://github.com/fosrl/pangolin/releases/download/1.5.1/installer_linux_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')" && chmod +x ./installer
+```bash 
+curl -fsSL https://digpangolin.com/get-installer.sh | bash 
 ```
 
 The downloaded files will be named `installer` in the current directory.
