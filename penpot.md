@@ -2,7 +2,7 @@
 title: Penpot
 description: A guide to deploying Penpot
 published: true
-date: 2025-09-04T16:16:57.344Z
+date: 2025-09-04T16:20:29.368Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-04T16:16:57.343Z
@@ -44,13 +44,13 @@ x-body-size: &penpot-http-body-size
 
 services:
   penpot-frontend:
-    image: "penpotapp/frontend:${PENPOT_VERSION:-latest}"
-    restart: always
+    image: penpotapp/frontend:latest
+    restart: unless-stopped
     ports:
       - 9001:8080
 
     volumes:
-      - penpot_assets:/opt/data/assets
+      - /mnt/tank/config/penpot/penpot_assets:/opt/data/assets
 
     depends_on:
       - penpot-backend
@@ -60,11 +60,11 @@ services:
       << : [*penpot-flags, *penpot-http-body-size]
 
   penpot-backend:
-    image: "penpotapp/backend:${PENPOT_VERSION:-latest}"
-    restart: always
+    image: penpotapp/backend:latest
+    restart: unless-stopped
 
     volumes:
-      - penpot_assets:/opt/data/assets
+      - /mnt/tank/config/penpot/penpot_assets:/opt/data/assets
 
     depends_on:
       penpot-postgres:
@@ -103,8 +103,8 @@ services:
       PENPOT_SMTP_SSL: false
 
   penpot-exporter:
-    image: "penpotapp/exporter:${PENPOT_VERSION:-latest}"
-    restart: always
+    image: penpotapp/exporter:latest
+    restart: unless-stopped
 
     depends_on:
       penpot-valkey:
@@ -117,7 +117,7 @@ services:
 
   penpot-postgres:
     image: "postgres:15"
-    restart: always
+    restart: unless-stopped
     stop_signal: SIGINT
 
     healthcheck:
@@ -128,7 +128,7 @@ services:
       start_period: 2s
 
     volumes:
-      - penpot_postgres_v15:/var/lib/postgresql/data
+      - /mnt/tank/config/penpot/penpot_postgres_v15:/var/lib/postgresql/data
 
     environment:
       - POSTGRES_INITDB_ARGS=--data-checksums
@@ -138,7 +138,7 @@ services:
 
   penpot-valkey:
     image: valkey/valkey:8.1
-    restart: always
+    restart: unless-stopped
 
     healthcheck:
       test: ["CMD-SHELL", "valkey-cli ping | grep PONG"]
@@ -150,7 +150,7 @@ services:
 
   penpot-mailcatch:
     image: sj26/mailcatcher:latest
-    restart: always
+    restart: unless-stopped
     expose:
       - '1025'
     ports:
