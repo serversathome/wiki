@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2025-09-04T15:16:30.809Z
+date: 2025-09-04T15:19:25.418Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T21:20:12.233Z
@@ -27,7 +27,10 @@ With Komodo you can:
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
-1. 
+1. Set a **Database Password**
+1. Set a **Passkey (Periphery)**
+1. Set **Backups Storage**, **Syncs Storage**, **Periphery Root Storage**, and **MongoDB Data Storage** to **Host Path**
+	a. Remember to check the box for **Automatic Permissions** under **MongoDB Data Storage**
 
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
