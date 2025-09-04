@@ -142,6 +142,69 @@ To add port forwarding, on the `FIREWALL_VPN_INPUT_PORTS` add a comma with no sp
 > For more info on this container, look [here](https://github.com/qdm12/gluetun-wiki?tab=readme-ov-file)
 {.is-info}
 
+
+
+> ## <img src="/docker.png" class="tab-icon"> NordVPN + qBit
+
+
+```yaml
+services:
+  nordvpn:
+    image: ghcr.io/bubuntux/nordlynx
+    container_name: nordvpn
+    cap_add:
+      - NET_ADMIN # Required for VPN
+      - NET_RAW
+      - SYS_MODULE
+    environment:
+      - PRIVATE_KEY={ENTER YOUR PRIVATE KEY HERE}
+      - CONNECT=United_States # Set preferred country/server
+      - TECHNOLOGY=NordLynx # Or OPENVPN
+      - NETWORK={ENTER YOUR LAN SUBNET HERE;i.e. 192.168.1.0/24} # LAN subnet allowed to access UI
+    ports:
+      - 8081:8080 #expose port for qbittorrent webgui. Must expose for the VPN container as Qbit passes all traffic through this container.
+    dns: #This helps if you are getting DNS errors when deploying the container.
+      - 1.1.1.1
+      - 8.8.8.8
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1 #This disables the ipv6 table otherwise you'll get ipv6 errors.
+      - net.ipv4.ip_forward=1
+    volumes:
+      - /mnt/tank/configs/nordvpn:/config
+    devices:
+      - /dev/net/tun
+    restart: unless-stopped
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    network_mode: container:nordvpn # Force traffic through VPN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+      - WEBUI_PORT=8080
+    volumes:
+      - /mnt/tank/configs/qbittorrent:/config
+      - /mnt/tank/media:/media  # Can set as /downloads if that is how your file structure is designed.
+    depends_on:
+      - nordvpn
+    restart: unless-stopped
+networks:
+  default:
+    driver: bridge
+```
+
+To get your Private Key needed to make this container work, you will need to log into your NordVPN account and head to the "NordVPN" service located on the left menu option.  Scroll down until you see the "Access Token" option and click on "Get Access Token".  You will likely need to verify your email address.  Once verified, click on the "Generate a New Token" option and leave set to 30 day period, as the token will not be necessary after being used to generate your Private Key.
+
+You will now use the Token you have generated to generate your Private Key by using the following command to run a container in a removal state, so that it will display in the terminal what your Private Key is for NordVPN to be able to enter into the compose file above.  You will want to use a Shell that has access to the Docker service.  If you have been using Dockge installed on a Truenas instance, you can shell into the Dockge app to use this command to generate your Private Key.
+
+    ```
+    docker run --rm --cap-add=NET_ADMIN -e TOKEN={{{TOKEN}}} ghcr.io/bubuntux/nordvpn:get_private_key
+    ```
+
+>For more info on this container, look [here](https://github.com/bubuntux/nordlynx)
+{.is-info}
+
 # 2 · Example Wireguard wg0.conf File
 
 This is an example of how your `wg0.conf` file should look like. If there's a lot of extra stuff, remove it unless you know what it's there for.
