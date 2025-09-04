@@ -2,7 +2,7 @@
 title: Penpot
 description: A guide to deploying Penpot
 published: true
-date: 2025-09-04T16:20:29.368Z
+date: 2025-09-04T16:24:22.945Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-04T16:16:57.343Z
@@ -18,11 +18,13 @@ Penpot is the first open-source design tool for design and code collaboration. D
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
+1. Set the **Public URI** to the IP:Port of your server
 1. Set a **Database Password**
-1. Set a **Passkey (Periphery)**
-1. Set **Backups Storage**, **Syncs Storage**, **Periphery Root Storage**, and **MongoDB Data Storage** to **Host Path**
+1. Set a **Redis Password**
+1. Set the **Penpot Assets Storage** to **Host Path**
+1. Set the **Penpot Postgres Data Storage** to **Host Path**
 
-> Remember to check the box for **Automatic Permissions** under **MongoDB Data Storage**
+> Remember to check the box for **Automatic Permissions** under **Postgres Data Storage**
 {.is-warning}
 
 
