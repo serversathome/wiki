@@ -2,7 +2,7 @@
 title: Penpot
 description: A guide to deploying Penpot
 published: true
-date: 2025-09-04T16:24:22.945Z
+date: 2025-09-04T23:27:05.793Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-04T16:16:57.343Z
@@ -52,7 +52,7 @@ services:
       - 9001:8080
 
     volumes:
-      - /mnt/tank/config/penpot/penpot_assets:/opt/data/assets
+      - /mnt/tank/configs/penpot/penpot_assets:/opt/data/assets
 
     depends_on:
       - penpot-backend
@@ -66,7 +66,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - /mnt/tank/config/penpot/penpot_assets:/opt/data/assets
+      - /mnt/tank/configs/penpot/penpot_assets:/opt/data/assets
 
     depends_on:
       penpot-postgres:
@@ -130,7 +130,7 @@ services:
       start_period: 2s
 
     volumes:
-      - /mnt/tank/config/penpot/penpot_postgres_v15:/var/lib/postgresql/data
+      - /mnt/tank/configs/penpot/penpot_postgres_v15:/var/lib/postgresql/data
 
     environment:
       - POSTGRES_INITDB_ARGS=--data-checksums
