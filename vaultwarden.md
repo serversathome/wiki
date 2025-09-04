@@ -2,7 +2,7 @@
 title: Vaultwarden
 description: A guide to installing Vaultwarden in docker via compose
 published: true
-date: 2025-07-11T10:39:00.841Z
+date: 2025-09-04T14:28:28.875Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-16T22:16:52.287Z
@@ -12,7 +12,15 @@ dateCreated: 2024-08-16T22:16:52.287Z
 
 Vaultwarden is a free and secure password manager that works on any device and platform. It is the community version of Bitwarden, with features like organizations, attachments, API, and more.
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Vaultwarden
+# {.tabset}
+##
+
+
+
+
+
+
+## <img src="/docker.png" class="tab-icon"> 1 · Deploy Vaultwarden
 
 ```yaml
 services:
