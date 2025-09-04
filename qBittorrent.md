@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-09-04T10:09:52.801Z
+date: 2025-09-04T10:10:58.805Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -197,9 +197,9 @@ To get your Private Key needed to make this container work, you will need to log
 
 You will now use the Token you have generated to generate your Private Key by using the following command to run a container in a removal state, so that it will display in the terminal what your Private Key is for NordVPN to be able to enter into the compose file above.  You will want to use a Shell that has access to the Docker service.  If you have been using Dockge installed on a Truenas instance, you can shell into the Dockge app to use this command to generate your Private Key.
 
-    ```
-    docker run --rm --cap-add=NET_ADMIN -e TOKEN={{{TOKEN}}} ghcr.io/bubuntux/nordvpn:get_private_key
-    ```
+```bash
+docker run --rm --cap-add=NET_ADMIN -e TOKEN={{{TOKEN}}} ghcr.io/bubuntux/nordvpn:get_private_key
+```
 
 >For more info on this container, look [here](https://github.com/bubuntux/nordlynx)
 {.is-info}
