@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2025-08-29T20:12:51.549Z
+date: 2025-09-04T16:26:08.313Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T18:06:48.269Z
@@ -16,6 +16,7 @@ dateCreated: 2025-07-07T18:06:48.269Z
 - [<img src="/n8n.png">n8n<br>*Automated workflow tool*](/n8n)
 - [<img src="/nextcloud.png">Nextcloud<br>*Google suite replacement*](/nextcloud)
 - [<img src="/palmr.png">Palmr<br>*Secure file sharing and upload*](/palmr)
+- [<img src="/penpot.png">Penpot<br>*Tool for design and code collaboration*](/penpot)
 - [<img src="/phylum.png">Phylum<br>*Google Drive replacement*](/phylum)
 - [<img src="/reactive-resume.png">Reactive Resume <span class="badge">NEW</span><br>*Private resume builder*](/reactiveresume)
 - [🚢 ShipShipShip <span class="badge">NEW</span><br>*Changelog and roadmap platform*](/shipshipship)
