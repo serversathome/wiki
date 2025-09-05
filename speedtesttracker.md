@@ -2,7 +2,7 @@
 title: Speedtest Tracker
 description: A guide to deploy Speed Test Tracker
 published: true
-date: 2025-09-05T10:43:23.179Z
+date: 2025-09-05T10:45:50.494Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-02T14:27:43.594Z
@@ -16,7 +16,7 @@ Speedtest Tracker is a self-hosted application that monitors the performance and
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
-1. Generate an app key by running `x` in the TrueNAS shell or use the example key from the Docker Compose tab
+1. Generate an app key by running `echo -n 'hex:'; openssl rand -hex 16` in the TrueNAS shell or use the example key from the Docker Compose tab
 1. Change the **Config Storage** to **Host Path**
 
 
