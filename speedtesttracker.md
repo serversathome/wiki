@@ -2,7 +2,7 @@
 title: Speedtest Tracker
 description: A guide to deploy Speed Test Tracker
 published: true
-date: 2025-09-05T10:41:34.780Z
+date: 2025-09-05T10:41:52.138Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-02T14:27:43.594Z
@@ -43,5 +43,5 @@ services:
 # 2 · First Login
 The default user is `admin@example.com` and the default password is `password`.
 
-> Find additional environment variables in their documentation [here](https://docs.speedtest-tracker.dev/getting-started/environment-variables) 
+> Find additional environment variables in their [documentation](https://docs.speedtest-tracker.dev/getting-started/environment-variables) 
 {.is-info}
