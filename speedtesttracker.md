@@ -2,7 +2,7 @@
 title: Speedtest Tracker
 description: A guide to deploy Speed Test Tracker
 published: true
-date: 2025-09-03T19:58:41.371Z
+date: 2025-09-05T10:38:44.097Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-02T14:27:43.594Z
@@ -28,7 +28,7 @@ services:
     environment:
       - PUID=568
       - PGID=568
-      - APP_KEY=1tZoe4IX020scKR9Sep4myluMpPKvhzJYYcXzRSd0ag=
+      - APP_KEY=scKR9Sep4myluMpPKvhzJYYcXzRSd0ag
       - DB_CONNECTION=sqlite
     volumes:
       - /mnt/tank/configs/speedtesttracker:/config
