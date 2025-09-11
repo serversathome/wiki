@@ -2,11 +2,16 @@
 title: qBit Manager
 description: A guide to deploying qBit Manage
 published: true
-date: 2025-09-11T09:40:32.816Z
+date: 2025-09-11T09:49:37.430Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-11T09:40:32.816Z
 ---
+
+> UNDER CONSTRUCTION
+{.is-danger}
+
+
 
 # ![](/qbit-manage.png){class="tab-icon"} What is qBit Manage?
 This is a program used to manage your qBittorrent instance such as:
