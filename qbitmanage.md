@@ -1,8 +1,8 @@
 ---
-title: qBit Manager
+title: qBit Manage
 description: A guide to deploying qBit Manage
 published: true
-date: 2025-09-11T09:49:37.430Z
+date: 2025-09-11T13:54:21.300Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-11T09:40:32.816Z
