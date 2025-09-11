@@ -2,7 +2,7 @@
 title: Boxarr
 description: A guide to deploying Boxarr
 published: true
-date: 2025-09-11T18:19:35.615Z
+date: 2025-09-11T18:20:38.657Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-11T14:02:01.158Z
@@ -40,4 +40,4 @@ services:
 Since this is the first time the container will run, click the **Weeks** tab and select **Update Last Week**. If you do not run this manually the container will update your movies on the next scheduled run.
 
 # <img src="/patreon-light.png" class="tab-icon"> 4 · Video
-![](/2025-09-11-boxarr--automatically-add-weekl-promo-card.png)https://www.patreon.com/posts/boxarr-add-box-138680972
+[![](/2025-09-11-boxarr--automatically-add-weekl-promo-card.png)](https://www.patreon.com/posts/boxarr-add-box-138680972)
