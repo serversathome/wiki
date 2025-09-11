@@ -2,7 +2,7 @@
 title: Boxarr
 description: A guide to deploying Boxarr
 published: true
-date: 2025-09-11T17:51:18.833Z
+date: 2025-09-11T17:52:39.727Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-11T14:02:01.158Z
@@ -37,4 +37,4 @@ services:
 
 # 3 · Find Movies
 
-Since this is the first time the container will run, click the **Weeks** tab and select 
+Since this is the first time the container will run, click the **Weeks** tab and select **Update Last Week**.
