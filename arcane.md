@@ -2,14 +2,14 @@
 title: Arcane
 description: A guide to deploying Arcane in docker
 published: true
-date: 2025-09-11T08:54:30.437Z
+date: 2025-09-11T09:23:50.014Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-04T16:58:11.419Z
 ---
 
 # ![](/arcane.png){class="tab-icon"} What is Arcane?
-Arcane is a Simple and Elegant Docker Management UI written in Typescript and SvelteKit. It aims to provide an intuitive interface for managing your Docker containers, images, volumes, and networks.
+Arcane is a modern easy to use way to manage your docker containers, images, volumes, and networks — all in one place.
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Arcane
 ```yaml
