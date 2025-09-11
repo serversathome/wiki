@@ -2,7 +2,7 @@
 title: Compose Toolbox
 description: A guide to deploying Compose Toolbox via docker
 published: true
-date: 2025-08-04T13:11:29.269Z
+date: 2025-09-11T09:13:33.368Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T13:11:29.269Z
@@ -17,13 +17,14 @@ ComposeToolbox is a self-hostable web application that allows users to edit, val
 ```yaml
 services:
   composetoolbox:
-    image: ghcr.io/bluegoosemedia/composetoolbox:latest
+    image: ghcr.io/bluegoosemedia/composetoolbox
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
     restart: unless-stopped
-    container_name: composetoolbox
+    volumes:
+      - ./composetoolbox/data:/app/data 
 
 ```
 
