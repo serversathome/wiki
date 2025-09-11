@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-09-11T09:42:18.603Z
+date: 2025-09-11T14:03:04.467Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -36,6 +36,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 
 ## Media Discovery
 - [<img src="/agregarr.png"> Agregarr<br>*Keeps your Plex Home and Recommended fresh*](/agregarr)
+- [<img src="/boxarr.png"> Boxarr<br>*Monitors weekly box office charts*](/boxarr)
 - [<img src="/huntarr.png"> Huntarr<br>*Automated missing-content discovery & quality upgrades*](/huntarr)
 - [<img src="/jellyseerr.png"> Jellyseerr<br>*Media request & discovery manager*](/Jellyseerr)
 - [<img src="/ombi.png"> Ombi <span class="badge">NEW</span><br>*Media request & discovery manager*](/ombi)
