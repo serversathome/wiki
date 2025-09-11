@@ -2,7 +2,7 @@
 title: Boxarr
 description: A guide to deploying Boxarr
 published: true
-date: 2025-09-11T14:02:01.158Z
+date: 2025-09-11T17:48:40.588Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-11T14:02:01.158Z
@@ -28,3 +28,10 @@ services:
 ```
 
 # 2 · Boxarr Configuration
+1. Enter Radarr URL as `http://IP:port`
+1. Enter Radarr **API Key**
+1. Select Radarr **Root Folder**
+1. Select **Default Quality Profile**
+1. Select number of movies per week
+1. Click **Save Configuration**
+
