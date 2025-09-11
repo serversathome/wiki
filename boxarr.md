@@ -2,7 +2,7 @@
 title: Boxarr
 description: A guide to deploying Boxarr
 published: true
-date: 2025-09-11T17:48:40.588Z
+date: 2025-09-11T17:51:18.833Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-11T14:02:01.158Z
@@ -35,3 +35,6 @@ services:
 1. Select number of movies per week
 1. Click **Save Configuration**
 
+# 3 · Find Movies
+
+Since this is the first time the container will run, click the **Weeks** tab and select 
