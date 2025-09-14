@@ -62,4 +62,4 @@ After you have created your account, to prevent other users from doing so on you
 
 # <img src="/youtube.png" class="tab-icon"> 4 · Video
 
-[https://youtu.be/cWvWIPMoR1M](https://youtu.be/cWvWIPMoR1M)
+[https://www.youtube.com/watch?v=DqNZO6n8Wqc](https://www.youtube.com/watch?v=DqNZO6n8Wqc)
