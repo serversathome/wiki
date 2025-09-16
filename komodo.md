@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2025-09-16T17:06:19.281Z
+date: 2025-09-16T17:18:57.929Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T21:20:12.233Z
@@ -160,6 +160,27 @@ PERIPHERY_INCLUDE_DISK_MOUNTS=/etc/hostname
 PERIPHERY_LOGGING_PRETTY=true
 
 PERIPHERY_PRETTY_STARTUP_CONFIG=true
+```
+
+## Stacks Importer
+```yaml
+services:
+  komodo-import:
+    image: foxxmd/komodo-import:pr-4
+    user: 0:0
+    restart: no
+    volumes:
+      ## Parent directory where all subfolders are compose projects
+      - /mnt/tank/stacks:/filesOnServer
+    environment:
+      ## Same as mounted directory above
+      - HOST_PARENT_PATH=/mnt/tank/stacks
+      - STACKS_FROM=dir
+      - SERVER_NAME=TrueNAS
+      - KOMODO_URL=http://192.168.1.18:30160
+      - API_KEY=
+      - API_SECRET=
+      - OUTPUT_API_SYNC=true
 ```
 
 # 2 · First Login
