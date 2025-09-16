@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2025-09-16T18:07:36.445Z
+date: 2025-09-16T18:10:15.206Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T21:20:12.233Z
@@ -166,7 +166,7 @@ PERIPHERY_PRETTY_STARTUP_CONFIG=true
 ```yaml
 services:
   komodo-import:
-    image: foxxmd/komodo-import:pr-4
+    image: foxxmd/komodo-import:latest
     user: 0:0
     restart: no
     volumes:
