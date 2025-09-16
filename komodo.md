@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2025-09-16T17:18:57.929Z
+date: 2025-09-16T18:05:23.601Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T21:20:12.233Z
@@ -176,8 +176,8 @@ services:
       ## Same as mounted directory above
       - HOST_PARENT_PATH=/mnt/tank/stacks
       - STACKS_FROM=dir
-      - SERVER_NAME=TrueNAS
-      - KOMODO_URL=http://192.168.1.18:30160
+      - SERVER_NAME=Local
+      - KOMODO_URL=http://10.99.0.191:30160
       - API_KEY=
       - API_SECRET=
       - OUTPUT_API_SYNC=true
@@ -185,3 +185,15 @@ services:
 
 # 2 · First Login
 Komodo should now be accessible on the specified port and navigating to `http://<address>:<port>` will display the login page. Enter your preferred admin username and password, and click "**Sign Up**", *not* "Log In", to create your admin user for Komodo. Any additional users to create accounts will be disabled by default, and must be enabled by an admin.
+
+# 3 · Importing Existing Stacks
+1. Edit your Komodo settings and add **Additional Storage**
+	a. Set **Type** to `Host Path`
+  b. Set the **Mount Path** to `/filesOnServer`
+  c. Set the **Host Path** to your `stacks` directory
+1. Navigate to **Settings → Profile** tab in Komodo and create a **New API Key**
+1. Run the **Stacks Importer** docker container above, pasting in the API keys you just created
+1. Once you deploy it, the logs should say `komodo-import-1 exited with code 0` if successful
+1. Navigate to the **Syncs** tab in the left pane of Komodo
+1. Click the entry for `komodo-import`
+1. 
