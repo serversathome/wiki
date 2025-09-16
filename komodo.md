@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2025-09-16T18:05:23.601Z
+date: 2025-09-16T18:07:36.445Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T21:20:12.233Z
@@ -196,4 +196,5 @@ Komodo should now be accessible on the specified port and navigating to `http://
 1. Once you deploy it, the logs should say `komodo-import-1 exited with code 0` if successful
 1. Navigate to the **Syncs** tab in the left pane of Komodo
 1. Click the entry for `komodo-import`
-1. 
+1. Click the **Execute Sync** button 
+1. Navigate to your **Stacks** tab and you should now see your existing stacks
