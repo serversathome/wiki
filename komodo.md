@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2025-09-04T15:20:31.718Z
+date: 2025-09-16T17:06:19.281Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T21:20:12.233Z
@@ -161,3 +161,6 @@ PERIPHERY_LOGGING_PRETTY=true
 
 PERIPHERY_PRETTY_STARTUP_CONFIG=true
 ```
+
+# 2 · First Login
+Komodo should now be accessible on the specified port and navigating to `http://<address>:<port>` will display the login page. Enter your preferred admin username and password, and click "**Sign Up**", *not* "Log In", to create your admin user for Komodo. Any additional users to create accounts will be disabled by default, and must be enabled by an admin.
