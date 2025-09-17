@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2025-09-16T18:10:15.206Z
+date: 2025-09-17T14:33:35.248Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T21:20:12.233Z
@@ -174,7 +174,7 @@ services:
       - /mnt/tank/stacks:/filesOnServer
     environment:
       ## Same as mounted directory above
-      - HOST_PARENT_PATH=/mnt/tank/stacks
+      - HOST_DIR=/mnt/tank/stacks
       - STACKS_FROM=dir
       - SERVER_NAME=Local
       - KOMODO_URL=http://10.99.0.191:30160
