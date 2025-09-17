@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2025-09-17T14:33:35.248Z
+date: 2025-09-17T14:43:05.444Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T21:20:12.233Z
@@ -189,8 +189,7 @@ Komodo should now be accessible on the specified port and navigating to `http://
 # 3 · Importing Existing Stacks
 1. Edit your Komodo settings and add **Additional Storage**
 	a. Set **Type** to `Host Path`
-  b. Set the **Mount Path** to `/filesOnServer`
-  c. Set the **Host Path** to your `stacks` directory
+  b. Set the **Mount Path** and **Host Path** to `/mnt/tank/stacks` or whatever your stacks directory is
 1. Navigate to **Settings → Profile** tab in Komodo and create a **New API Key**
 1. Run the **Stacks Importer** docker container above, pasting in the API keys you just created
 1. Once you deploy it, the logs should say `komodo-import-1 exited with code 0` if successful
