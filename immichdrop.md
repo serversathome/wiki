@@ -2,7 +2,7 @@
 title: Immich Drop
 description: A guide to deploying Immich Drop
 published: true
-date: 2025-09-01T11:48:30.786Z
+date: 2025-09-17T17:31:52.121Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T11:48:30.786Z
@@ -44,4 +44,6 @@ IMMICH_API_KEY=your_immich_api_key_here
 MAX_CONCURRENT=3
 IMMICH_ALBUM_NAME=family-dropbox # Optional
 STATE_DB=/data/state.db
+CHUNKED_UPLOADS_ENABLED=true
+CHUNK_SIZE_MB=95
 ```
