@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2025-09-18T15:51:20.827Z
+date: 2025-09-18T15:54:31.054Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T21:20:12.233Z
@@ -106,7 +106,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /proc:/proc
-      - /mnt/tank/configs/etc/komodo:/mnt/tank/configs/etc/komodo
+      - /mnt/tank/configs/komodo/etc:/mnt/tank/configs/komodo/etc
 ```
 
 ## Stacks Importer
