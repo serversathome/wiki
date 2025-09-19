@@ -2,7 +2,7 @@
 title: Sprout Track
 description: A guide to deploying Sprout Track
 published: true
-date: 2025-09-19T09:29:02.593Z
+date: 2025-09-19T09:34:29.179Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-19T09:07:30.076Z
@@ -24,5 +24,11 @@ An application for tracking baby activities, milestones, and development.
 # 2 · First Login
 > The default security PIN after setup is: 111222
 {.is-success}
-
+1. Enter a **Family Name**
+1. Enter a **Family URL**
+1. Click **Next**
+1. Enter a **PIN**
+1. Click **Next**
+1. Enter your baby's information
+1. Click **Complete Setup**
 
