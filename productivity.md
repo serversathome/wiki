@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2025-09-19T09:09:30.456Z
+date: 2025-09-19T09:10:47.207Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T18:06:48.269Z
@@ -21,7 +21,7 @@ dateCreated: 2025-07-07T18:06:48.269Z
 - [<img src="/phylum.png">Phylum<br>*Google Drive replacement*](/phylum)
 - [<img src="/reactive-resume.png">Reactive Resume <span class="badge">NEW</span><br>*Private resume builder*](/reactiveresume)
 - [🚢 ShipShipShip <span class="badge">NEW</span><br>*Changelog and roadmap platform*](/shipshipship)
-- [<img src="/sprout-track.png">Sprout Track <span class="badge">NEW</span><br>*Application for tracking baby activities*](/tracktor)
+- [<img src="/sprout-track.png">Sprout Track <span class="badge">NEW</span><br>*Application for tracking baby activities*](/sprouttrack)
 - [<img src="/vaultwarden.png">Vaultwarden<br>*Password manager*](/vaultwarden)
 - [<img src="/microsoft-windows.png">Windows 11<br>*Dockerized Windows 11*](/windows)
 {.links-list}
