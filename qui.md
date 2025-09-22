@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2025-09-22T15:28:55.036Z
+date: 2025-09-22T15:42:53.808Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-22T15:28:55.036Z
@@ -25,6 +25,9 @@ services:
 ```
 
 # 2 · Logging In
+1. Navigate to http://{IP}:7476
+1. Set a username and password
+1. Add a new instance
 
 
 # <img src="/patreon-light.png" class="tab-icon"> 3 · Video
