@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-09-04T10:10:58.805Z
+date: 2025-09-22T15:45:50.552Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -289,8 +289,7 @@ Uncheck the box for **Torrent Queuing**. 
 
 ## Web UI
 
-> This part is completely optional, but I highly suggest using a skin for the Web UI called **VueTorrent**
-{.is-info}
+### VueTorrent
 
 To get VueTorrent (I put mine in `/mnt/tank/media/downloads/VueTorrent`) run this command in the TrueNAS shell:
 ```bash
@@ -305,6 +304,9 @@ I keep mine up to date (assuming I save it in `/mnt/tank/media/downloads`) by ad
 ```bash
 git -C /mnt/tank/media/downloads/VueTorrent pull
 ```
+
+### Qui
+To use Qui instead, visit the [Qui page](/qui) to deploy the container alongside qBittorrent.
 
 ## Advanced
 
