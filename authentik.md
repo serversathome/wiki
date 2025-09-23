@@ -2,7 +2,7 @@
 title: Authentik
 description: A guide to deploying Authentik
 published: true
-date: 2025-09-23T11:29:20.546Z
+date: 2025-09-23T12:07:43.465Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-23T11:23:01.113Z
@@ -109,7 +109,10 @@ services:
 ```
 
 1. Make a dataset in TrueNAS called `authentik` with 770 permmissions
-
+1. To generate your own `POSTGRES_PASSWORD` run this command in the terminal:
+```bash
+openssl rand -base64 36
+```
 4. In TrueNAS terminal copy and run this command `openssl rand -base64 36` the string that is output will replace `${POSTGRES_PASSWORD}` simply add it to your .env section (e.g. `${POSTGRES_PASSWORD}=36 character string`)
 5. Next copy and run `openssl rand -base64 60` the string that is output will replace `${AUTHENTIK_SECRET_KEY}` simply add it to your .env section (e.g. `${AUTHENTIK_SECRET_KEY}=60 character string`)
 
