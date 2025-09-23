@@ -2,7 +2,7 @@
 title: Immich Drop
 description: A guide to deploying Immich Drop
 published: true
-date: 2025-09-23T16:50:40.624Z
+date: 2025-09-23T16:51:13.517Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T11:48:30.786Z
@@ -24,9 +24,8 @@ services:
       - HOST=0.0.0.0
       - PORT=8080
       - IMMICH_BASE_URL=http://your-immich-server:2283/api
-      - IMMICH_API_KEY=your_immich_api_key_here
+      - IMMICH_API_KEY=
       - MAX_CONCURRENT=3
-      - IMMICH_ALBUM_NAME=family-dropbox # Optional
       - STATE_DB=/data/state.db
       - CHUNKED_UPLOADS_ENABLED=true
       - CHUNK_SIZE_MB=95
