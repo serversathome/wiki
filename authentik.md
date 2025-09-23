@@ -2,7 +2,7 @@
 title: Authentik
 description: A guide to deploying Authentik
 published: true
-date: 2025-09-23T12:08:45.740Z
+date: 2025-09-23T12:09:45.014Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-23T11:23:01.113Z
@@ -102,7 +102,7 @@ services:
     restart: unless-stopped
     user: root
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock # Leave volume default
+      - /var/run/docker.sock:/var/run/docker.sock
       - ${MNT}/media:/media # Point this to your authentik dataset, "media" folder will auto create on compose launch
       - ${MNT}/certs:/certs # Point this to your authentik dataset, "certs" folder will auto create on compose launch
       - ${MNT}/templates:/templates # Point this to your authentik dataset, "templates" folder will auto create on compose launch
