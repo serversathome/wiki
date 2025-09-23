@@ -19,8 +19,8 @@ You can use authentik in an existing environment to add support for new protocol
 # 1 · Installation
     1. Make a dataset in TrueNAS called `authentik` 
     2. Set permissions to generic with 770 permmissions
-    3. In terminal
-
+    3. In TrueNAS terminal run this command `openssl rand -base64 36` the string that is output will replace `${POSTGRES_PASSWORD}` 
+    4. In terminal run `openssl rand -base64 60` the string that is output will replace `${AUTHENTIK_SECRET_KEY}`
 ```yaml
 services:
   postgresql:
