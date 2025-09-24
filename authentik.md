@@ -2,7 +2,7 @@
 title: Authentik
 description: A guide to deploying Authentik
 published: true
-date: 2025-09-23T12:09:45.014Z
+date: 2025-09-24T00:27:22.077Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-23T11:23:01.113Z
@@ -20,24 +20,22 @@ You can use authentik in an existing environment to add support for new protocol
 ```yaml
 services:
   postgresql:
-    env_file:
-      - .env
     environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_USER: ${POSTGRES_USER} # Whatever user name you want
+      POSTGRES_DB: authentik
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
     healthcheck:
       interval: 30s
       retries: 5
       start_period: 20s
       test:
         - CMD-SHELL
-        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+        - pg_isready -d $authentik -U $admin
       timeout: 5s
     image: docker.io/library/postgres:16-alpine
     restart: unless-stopped
     volumes:
-      - database:/var/lib/postgresql/data # Leave this volume default
+      - /mnt/tank/authentik/database:/var/lib/postgresql/data # Leave this volume default
   
   redis:
     command: --save 60 1 --loglevel warning
@@ -52,7 +50,7 @@ services:
     image: docker.io/library/redis:alpine
     restart: unless-stopped
     volumes:
-      - redis:/data # Leave this volume default
+      - /mnt/tank/authentik/redis:/data # Leave this volume default
   
   server:
     container_name: authentik
@@ -62,24 +60,22 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    env_file:
-      - .env
     user: root
     environment:
       AUTHENTIK_POSTGRESQL__HOST: postgresql
-      AUTHENTIK_POSTGRESQL__NAME: ${POSTGRES_DB}
-      AUTHENTIK_POSTGRESQL__PASSWORD: ${POSTGRES_PASSWORD}
-      AUTHENTIK_POSTGRESQL__USER: ${POSTGRES_USER}
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: admin
+      AUTHENTIK_POSTGRESQL__USER: admin
       AUTHENTIK_REDIS__HOST: redis
-      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
+      AUTHENTIK_SECRET_KEY: QJNn5SO37k99gl9NwDxvFfSKs/K5Brb1hhz/TiHJ/zMIn7JjC0ZjDmVcIlqdm0qukVp+Fj9tKfD/sdx4
     image: ghcr.io/goauthentik/server:2025.8.1
     ports:
       - 9000:9000 #http port
       - 9443:9443 #https port
     restart: unless-stopped
     volumes:
-      - ${MNT}/media:/media # Point this to your authentik dataset, "media" folder will auto create on compose launch
-      - ${MNT}/templates:/templates # Point this to your authentik dataset, "templates" folder will auto create on compose launch
+      - /mnt/tank/authentik/media:/media
+      - /mnt/tank/authentik/templates:/templates
 
   worker:
     container_name: authentik-worker
@@ -89,23 +85,21 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    env_file:
-      - .env
     environment:
       AUTHENTIK_POSTGRESQL__HOST: postgresql
-      AUTHENTIK_POSTGRESQL__NAME: ${POSTGRES_DB}
-      AUTHENTIK_POSTGRESQL__PASSWORD: ${POSTGRES_PASSWORD}
-      AUTHENTIK_POSTGRESQL__USER: ${POSTGRES_USER}
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: admin
+      AUTHENTIK_POSTGRESQL__USER: admin
       AUTHENTIK_REDIS__HOST: redis
-      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
+      AUTHENTIK_SECRET_KEY: QJNn5SO37k99gl9NwDxvFfSKs/K5Brb1hhz/TiHJ/zMIn7JjC0ZjDmVcIlqdm0qukVp+Fj9tKfD/sdx4
     image: ghcr.io/goauthentik/server:2025.8.1
     restart: unless-stopped
     user: root
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${MNT}/media:/media # Point this to your authentik dataset, "media" folder will auto create on compose launch
-      - ${MNT}/certs:/certs # Point this to your authentik dataset, "certs" folder will auto create on compose launch
-      - ${MNT}/templates:/templates # Point this to your authentik dataset, "templates" folder will auto create on compose launch
+      - /mnt/tank/authentik/media:/media
+      - /mnt/tank/authentik/certs:/certs
+      - /mnt/tank/authentik/templates:/templates
 ```
 
 1. Make a dataset in TrueNAS called `authentik` with 770 permmissions
