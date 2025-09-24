@@ -2,7 +2,7 @@
 title: Authentik
 description: A guide to deploying Authentik
 published: true
-date: 2025-09-24T00:27:22.077Z
+date: 2025-09-24T00:29:17.218Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-23T11:23:01.113Z
@@ -11,10 +11,6 @@ dateCreated: 2025-09-23T11:23:01.113Z
 # ![](/authentik.png){class="tab-icon"} What is Authentik?
 
 Authentik is an IdP (Identity Provider) and SSO (Single Sign On) platform that is built with security at the forefront of every piece of code, every feature, with an emphasis on flexibility and versatility.
-
-With authentik, site administrators, application developers, and security engineers have a dependable and secure solution for authentication in almost any type of environment. There are robust recovery actions available for the users and applications, including user profile and password management. You can quickly edit, deactivate, or even impersonate a user profile, and set a new password for new users or reset an existing password.
-
-You can use authentik in an existing environment to add support for new protocols, so introducing authentik to your current tech stack doesn't present re-architecting challenges. We support all of the major providers, such as OAuth2, SAML, LDAP, and SCIM, so you can pick the protocol that you need for each application.
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Authentik
 ```yaml
