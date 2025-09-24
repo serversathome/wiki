@@ -2,13 +2,14 @@
 title: Productivity
 description: 
 published: true
-date: 2025-09-19T09:10:47.207Z
+date: 2025-09-24T00:28:22.284Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T18:06:48.269Z
 ---
 
 - [<img src="/ollama.png"> AI<br>*Run AI locally*](/localai)
+- [<img src="/authentik.png"> Authentik<br>*Run AI locally*](/authentik)
 - [<img src="/cronmaster.png"> Cr\*n Master<br>*UI dashboard for cronjobs*](/cronmaster)
 - [<img src="/duplicati.png"> Duplicati<br>*Automated Backup*](/duplicati)
 - [<img src="/filebrowser-quantum.png"> Filebrowser<br>*Browse files though a GUI*](/filebrowser)
