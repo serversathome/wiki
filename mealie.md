@@ -2,7 +2,7 @@
 title: Mealie
 description: A guide to deploying Mealie
 published: true
-date: 2025-09-24T19:28:33.919Z
+date: 2025-09-24T19:30:15.474Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-24T19:27:24.300Z
@@ -34,6 +34,10 @@ services:
       OPENAI_ENABLE_IMAGE_SERVICES: "false"
       OPENAI_SEND_DATABASE_DATA: "false"
 ```
+
+> See more environment variable options and explanations [here](https://docs.mealie.io/documentation/getting-started/installation/backend-config/)
+{.is-info}
+
 
 # 2 · Why Add AI?
 - The OpenAI Ingredient Parser can be used as an alternative to the NLP and Brute Force parsers. Simply choose the OpenAI parser while parsing ingredients 
