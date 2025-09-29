@@ -2,13 +2,13 @@
 title: CrossWatch
 description: A guide to deploying CrossWatch
 published: true
-date: 2025-09-29T17:06:20.606Z
+date: 2025-09-29T17:07:58.918Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-29T17:06:20.606Z
 ---
 
-# What is CrossWatch?
+# <img src="/crosswatch.png" class="tab-icon"> What is CrossWatch?
 Synchronize your data across Plex, Jellyfin, SIMKL, Trakt, and more. Keep your movies and shows in sync, no matter where you watch. 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy CrossWatch
