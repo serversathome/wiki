@@ -2,7 +2,7 @@
 title: Mediqux
 description: A guide to deploy Mediqux
 published: true
-date: 2025-09-29T15:00:42.733Z
+date: 2025-09-29T15:11:39.261Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-29T14:47:33.544Z
@@ -22,7 +22,7 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - /mnt/tank/configs/mediqux/db:/var/lib/postgresql/data
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U admin -d mediqux"]
@@ -49,7 +49,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./mediqux_uploads:/app/uploads
+      - /mnt/tank/configs/mediqux/uploads:/app/uploads
     depends_on:
       postgres:
         condition: service_healthy
