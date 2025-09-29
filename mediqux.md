@@ -2,14 +2,14 @@
 title: Mediqux
 description: A guide to deploy Mediqux
 published: true
-date: 2025-09-29T14:54:20.239Z
+date: 2025-09-29T15:00:42.733Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-29T14:47:33.544Z
 ---
 
 # 🏥 What is Mediqux?
-A comprehensive medical record system for individuals and families. Built for complete local deployment with automated lab report processing.
+A privacy-first, locally-hosted medical record system for individuals, families, and small healthcare practices - featuring comprehensive patient management, lab result processing, and medication tracking with complete data sovereignty. 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Mediqux
 ```yaml
@@ -44,8 +44,8 @@ services:
       FRONTEND_URL: http://10.99.0.191:8086
       MAX_FILE_SIZE: 10MB
       UPLOAD_PATH: -/app/uploads
-      PUID: 568
-      PGID: 568
+      PUID: 1000
+      PGID: 1000
     ports:
       - "3000:3000"
     volumes:
