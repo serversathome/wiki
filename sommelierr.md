@@ -2,14 +2,14 @@
 title: Sommelierr
 description: A guide to deploying Sommelierr
 published: true
-date: 2025-09-29T16:49:14.234Z
+date: 2025-09-29T16:50:56.850Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-29T16:49:14.234Z
 ---
 
 # What is Sommelierr?
-
+This container generates random recommendation from your Radarr and Sonarr libraries.
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Sommelierr
 
