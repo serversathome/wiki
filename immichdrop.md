@@ -2,7 +2,7 @@
 title: Immich Drop
 description: A guide to deploying Immich Drop
 published: true
-date: 2025-09-23T16:51:13.517Z
+date: 2025-09-30T14:48:35.455Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T11:48:30.786Z
@@ -35,3 +35,5 @@ services:
     volumes:
       - /mnt/tank/configs/immichdrop:/data
 ```
+1. For the `IMMICH_BASE_URL` use the private IP address of Immich if it is reachable from the Immich Drop container (otherwise use the public URL)
+1. To create the Immich API key, navigate to Immich → User Icon (top right) → Account Settings → API Key
