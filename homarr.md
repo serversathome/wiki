@@ -2,7 +2,7 @@
 title: Homarr
 description: A guide to deploying Homarr
 published: true
-date: 2025-09-30T18:22:23.612Z
+date: 2025-09-30T18:24:20.087Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-30T18:22:23.612Z
@@ -33,4 +33,6 @@ services:
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
-1. Set the **Web Host** to the IP of the server or your FQDN
+1. Set the **Secret Encryption Key** to something strong
+1. Check the box to **Mount Docker Socket**
+1. Set the **Homarr Data Storage** to *Host Path* and select a dataset to store the config files
