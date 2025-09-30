@@ -2,7 +2,7 @@
 title: Homarr
 description: A guide to deploying Homarr
 published: true
-date: 2025-09-30T18:24:20.087Z
+date: 2025-09-30T18:28:16.641Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-30T18:22:23.612Z
@@ -36,3 +36,7 @@ services:
 1. Set the **Secret Encryption Key** to something strong
 1. Check the box to **Mount Docker Socket**
 1. Set the **Homarr Data Storage** to *Host Path* and select a dataset to store the config files
+
+# <img src="/patreon-light.png" class="tab-icon"> 2 · Video
+
+[![](/2025-06-03-build-the-ultimate-homarr-dashbo-promo-card.png)](https://www.patreon.com/posts/build-ultimate-130614993)
