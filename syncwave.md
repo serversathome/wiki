@@ -2,13 +2,13 @@
 title: Syncwave
 description: A guide to deploying Syncwave
 published: true
-date: 2025-09-30T16:01:01.577Z
+date: 2025-09-30T16:02:51.680Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-30T16:01:01.577Z
 ---
 
-# What is Syncwave?
+# <img src="/syncwave.png" class="tab-icon"> What is Syncwave?
 
 Syncwave is a real-time kanban board that's simple and beautiful. 
 
