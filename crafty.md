@@ -2,7 +2,7 @@
 title: Crafty Controller
 description: A guide to deploying Crafty Controller
 published: true
-date: 2025-10-01T18:34:09.242Z
+date: 2025-10-01T18:45:38.269Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-01T17:20:49.848Z
@@ -53,4 +53,10 @@ sudo cat /mnt/tank/configs/crafty/config/default-creds.txt
 
 # 3 · Create a Minecraft Server
 1. Click **Servers** in the left pane
-1. Click 
+1. Click **Create New Server**
+1. Select a **Server Type** of *Minecraft Servers*
+1. Enter a **Server Name**
+1. Adjust Memory Resources as necessary
+1. Change the **Port** to `25560`
+	a. To run multiple servers, select a different port for each server and remember to expose them on the host
+1. Click **Build Server**
