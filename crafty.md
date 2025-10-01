@@ -2,7 +2,7 @@
 title: Crafty Controller
 description: A guide to deploying Crafty Controller
 published: true
-date: 2025-10-01T17:57:42.123Z
+date: 2025-10-01T18:34:09.242Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-01T17:20:49.848Z
@@ -50,3 +50,7 @@ services:
 ```bash
 sudo cat /mnt/tank/configs/crafty/config/default-creds.txt
 ```
+
+# 3 · Create a Minecraft Server
+1. Click **Servers** in the left pane
+1. Click 
