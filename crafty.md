@@ -2,7 +2,7 @@
 title: Crafty Controller
 description: A guide to deploying Crafty Controller
 published: true
-date: 2025-10-01T17:20:49.848Z
+date: 2025-10-01T17:21:19.546Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-01T17:20:49.848Z
@@ -10,7 +10,7 @@ dateCreated: 2025-10-01T17:20:49.848Z
 
 # ![](/crafty-controller.png){class="tab-icon"} What is Crafty Controller?
 
-Vaultwarden is a free and secure password manager that works on any device and platform. It is the community version of Bitwarden, with features like organizations, attachments, API, and more.
+Crafty Controller is a web-based panel that lets you manage Minecraft servers from a user-friendly interface. You can create and run servers, manage players, change settings, view files, and get support from the developer and community.
 
 # 1 · Deploy Crafty Controller
 # {.tabset}
