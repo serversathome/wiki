@@ -2,7 +2,7 @@
 title: Crafty Controller
 description: A guide to deploying Crafty Controller
 published: true
-date: 2025-10-01T18:53:38.079Z
+date: 2025-10-01T18:54:30.844Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-01T17:20:49.848Z
@@ -75,3 +75,4 @@ sudo cat /mnt/tank/configs/crafty/config/default-creds.txt
 1. After the tunnel is deployed, scroll to the section labeled **Update Local Address**
 1. Enter the address of the server running Crafty and the port you selected for your Minecraft server
 11. Click **Update**
+1. At the top you will see the public URL which ends in `.ply.gg`
