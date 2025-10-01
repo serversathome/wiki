@@ -2,7 +2,7 @@
 title: Crafty Controller
 description: A guide to deploying Crafty Controller
 published: true
-date: 2025-10-01T18:45:38.269Z
+date: 2025-10-01T18:53:38.079Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-01T17:20:49.848Z
@@ -60,3 +60,18 @@ sudo cat /mnt/tank/configs/crafty/config/default-creds.txt
 1. Change the **Port** to `25560`
 	a. To run multiple servers, select a different port for each server and remember to expose them on the host
 1. Click **Build Server**
+1. Click the Play Button in the panel to start the server
+
+# 4 · Share Your Server With Playit
+1. Create an account on https://playit.gg
+1. Click the **Agents** tab at the top
+1. Click **Deploy a new docker based agent**
+1. Give it a name 
+1. Click **Create**
+1. Copy the docker compose file and deploy it on TrueNAS
+1. Go back to Playit and click the **Tunnels** at the top
+1. Select **Tunnel Type** of `TCP`
+1. Leave all settings default and click **Add Tunnel**
+1. After the tunnel is deployed, scroll to the section labeled **Update Local Address**
+1. Enter the address of the server running Crafty and the port you selected for your Minecraft server
+11. Click **Update**
