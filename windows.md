@@ -2,7 +2,7 @@
 title: Windows Docker
 description: A guide to deploying a Windows OS in a docker container
 published: true
-date: 2025-08-26T20:44:03.479Z
+date: 2025-10-03T10:37:47.866Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-26T20:38:44.030Z
@@ -42,3 +42,5 @@ services:
       - /dev/net/tun
 ```
 
+# <img src="/youtube.png" class="tab-icon"> 2 · Video 
+https://youtu.be/JtVfJn2drY4
