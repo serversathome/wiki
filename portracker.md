@@ -2,7 +2,7 @@
 title: Portracker
 description: A guide to deploying Portracker via docker
 published: true
-date: 2025-10-06T23:18:05.247Z
+date: 2025-10-06T23:18:20.019Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T12:30:09.026Z
@@ -56,3 +56,4 @@ The `TRUENAS_WS_BASE` environment variable needs to be set to the IP of your Tru
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
 
+https://youtu.be/oTG5gBA6UgM
