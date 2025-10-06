@@ -2,7 +2,7 @@
 title: Portracker
 description: A guide to deploying Portracker via docker
 published: true
-date: 2025-10-06T23:18:20.019Z
+date: 2025-10-06T23:21:58.251Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T12:30:09.026Z
@@ -52,7 +52,7 @@ services:
 
 To generate the `TRUENAS_API_KEY`, click the username in the top right of the web UI and select **My API Keys**. Click **Add** in the top right and generate a new API key, then copy it into the compose file above.
 
-The `TRUENAS_WS_BASE` environment variable needs to be set to the IP of your TrueNAS server and the https port you have set for the webGUI. 
+The `TRUENAS_WS_BASE` environment variable needs to be set to the IP of your TrueNAS server and the https port you have set for the webGUI in the format `wss://IP:port`. 
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
 
