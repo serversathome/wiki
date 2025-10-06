@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-09-22T15:45:50.552Z
+date: 2025-10-06T15:10:45.637Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -39,7 +39,7 @@ services:
       - VPN_AUTO_PORT_FORWARD_TO_PORTS=
       - VPN_FIREWALL_TYPE=auto
       - VPN_HEALTHCHECK_ENABLED=false
-      - VPN_NAMESERVERS=
+      - VPN_NAMESERVERS=wg
       - PRIVOXY_ENABLED=false
     cap_add:
       - NET_ADMIN
