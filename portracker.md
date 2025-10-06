@@ -2,7 +2,7 @@
 title: Portracker
 description: A guide to deploying Portracker via docker
 published: true
-date: 2025-10-06T14:03:28.536Z
+date: 2025-10-06T14:26:04.364Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T12:30:09.026Z
@@ -38,5 +38,9 @@ services:
 ```
 
 # 2 · Integrating With TrueNAS
+> 
+> This feature is currently not working
+{.is-danger}
 
-To geenrate an API key for TrueNAS, click the username in the top right of the web UI and select **My API Keys**. Click **Add** in the top right and generate a new API key, then copy it into the compose file above.
+
+To generate an API key for TrueNAS, click the username in the top right of the web UI and select **My API Keys**. Click **Add** in the top right and generate a new API key, then copy it into the compose file above.
