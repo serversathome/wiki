@@ -2,7 +2,7 @@
 title: Portracker
 description: A guide to deploying Portracker via docker
 published: true
-date: 2025-08-04T12:30:09.026Z
+date: 2025-10-06T13:39:56.912Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T12:30:09.026Z
@@ -19,7 +19,12 @@ services:
     image: mostafawahied/portracker:latest
     container_name: portracker
     restart: unless-stopped
-    network_mode: "host"
+    pid: "host"
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
     volumes:
       - /mnt/tank/configs/portracker:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
