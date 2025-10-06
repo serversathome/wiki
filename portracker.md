@@ -2,7 +2,7 @@
 title: Portracker
 description: A guide to deploying Portracker via docker
 published: true
-date: 2025-10-06T23:13:31.149Z
+date: 2025-10-06T23:16:59.778Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T12:30:09.026Z
@@ -11,7 +11,17 @@ dateCreated: 2025-08-04T12:30:09.026Z
 # ![](/portracker.png){class="tab-icon"} What is Portracker?
 By auto-discovering services on your systems, portracker provides a live, accurate map of your network. It helps eliminate manual tracking in spreadsheets and prevents deployment failures caused by port conflicts.
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Portracker
+
+# 1 · Deploy Portracker
+# {.tabset}
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
+
+1. Add two **Additional Environment Variables** (see [section 2]() for explanation)
+	a. TRUENAS_API_KEY
+  b. TRUENAS_WS_BASE
+1. Set the **Data Storage** to *Host Path*
+
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
