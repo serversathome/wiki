@@ -2,7 +2,7 @@
 title: Portracker
 description: A guide to deploying Portracker via docker
 published: true
-date: 2025-10-06T23:16:59.778Z
+date: 2025-10-06T23:18:05.247Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T12:30:09.026Z
@@ -16,7 +16,7 @@ By auto-discovering services on your systems, portracker provides a live, accura
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
-1. Add two **Additional Environment Variables** (see [section 2]() for explanation)
+1. Add two **Additional Environment Variables** (see [section 2](https://wiki.serversatho.me/en/portracker#h-2-integrating-with-truenas) for explanation)
 	a. TRUENAS_API_KEY
   b. TRUENAS_WS_BASE
 1. Set the **Data Storage** to *Host Path*
@@ -53,3 +53,6 @@ services:
 To generate the `TRUENAS_API_KEY`, click the username in the top right of the web UI and select **My API Keys**. Click **Add** in the top right and generate a new API key, then copy it into the compose file above.
 
 The `TRUENAS_WS_BASE` environment variable needs to be set to the IP of your TrueNAS server and the https port you have set for the webGUI. 
+
+# <img src="/youtube.png" class="tab-icon"> 3 · Video
+
