@@ -2,7 +2,7 @@
 title: Portracker
 description: A guide to deploying Portracker via docker
 published: true
-date: 2025-10-06T13:39:56.912Z
+date: 2025-10-06T13:51:33.726Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T12:30:09.026Z
@@ -20,6 +20,8 @@ services:
     container_name: portracker
     restart: unless-stopped
     pid: "host"
+    ports:
+    	- 4999:4999
     cap_add:
       - SYS_PTRACE
       - SYS_ADMIN
