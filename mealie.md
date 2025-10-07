@@ -2,7 +2,7 @@
 title: Mealie
 description: A guide to deploying Mealie
 published: true
-date: 2025-09-24T19:30:15.474Z
+date: 2025-10-07T09:35:00.253Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-24T19:27:24.300Z
@@ -45,3 +45,29 @@ services:
 - You can import an image of a written recipe, which is sent to OpenAI and imported into Mealie. The recipe can be hand-written or typed, as long as the text is in the picture. You can also optionally have OpenAI translate the recipe into your own language 
 
 If you have another service you'd like to use in-place of OpenAI, you can configure Mealie to use that instead, as long as it has an OpenAI-compatible API. For instance, a common self-hosted alternative to OpenAI is Ollama. To use Ollama with Mealie, change your `OPENAI_BASE_URL` to http://localhost:11434/v1 (where http://localhost:11434 is wherever you're hosting Ollama, and /v1 enables the OpenAI-compatible endpoints). Note that you must provide an API key, even though it is ultimately ignored by Ollama.
+
+# 3 · Grab Recipes from Social
+Have you found a recipe on social media and don’t want to write it out yourself? This tool lets you import recipes from videos directly into Mealie.
+
+> See the [GitHub repo](https://github.com/GerardPolloRebozado/social-to-mealie) for more information!
+{.is-info}
+
+
+```yaml
+services:
+  social-to-mealie:
+    restart: unless-stopped
+    image: ghcr.io/gerardpollorebozado/social-to-mealie:latest
+    container_name: social-to-mealie
+    environment:
+      - OPENAI_URL=https://api.openai.com/v1 #URL of api endpoint of AI provider
+      - OPENAI_API_KEY=
+      - WHISPER_MODEL=whisper-1 # this model will be used to transcribe the audio to text
+      - MEALIE_URL=https://mealie.example.com
+      - MEALIE_API_KEY=
+provided in Spanish
+    ports:
+      - 4000:3000
+    security_opt:
+      - no-new-privileges:true
+```
