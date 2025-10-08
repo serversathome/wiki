@@ -2,7 +2,7 @@
 title: Uptime Kuma
 description: A guide to installing Uptime Kuma in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-10T17:51:40.256Z
+date: 2025-10-08T08:27:10.274Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:37:43.656Z
@@ -25,6 +25,7 @@ services:
     container_name: kuma
     volumes:
       - /mnt/tank/configs/kuma:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 3001:3001
     restart: unless-stopped
