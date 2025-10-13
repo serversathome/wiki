@@ -2,7 +2,7 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2025-10-13T18:25:15.911Z
+date: 2025-10-13T20:44:03.782Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-13T15:42:09.466Z
@@ -42,7 +42,9 @@ services:
 1. Use a URL for a m3u list like `https://iptv-org.github.io/iptv/languages/eng.m3u`
 1. Set the **Account Type** to `Standard`
 1. Click the **Save** button at the bottom
-1. Click 
+1. Click **Configure Groups** in the message window in the bottom right
+1. Click the **Groups** button
+1. Click **Save and Refresh**
 
 # 4 · Linking With Your Media Server
 1. For Emby, navigate to the **Admin Panel** by clicking the cog wheel in the upper right corner
