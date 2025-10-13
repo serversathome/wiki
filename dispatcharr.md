@@ -2,7 +2,7 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2025-10-13T20:44:03.782Z
+date: 2025-10-13T20:46:48.956Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-13T15:42:09.466Z
@@ -45,6 +45,7 @@ services:
 1. Click **Configure Groups** in the message window in the bottom right
 1. Click the **Groups** button
 1. Click **Save and Refresh**
+1. Select all Streams in the Dashboard and click **Create Channels** to turn them into live TV channels
 
 # 4 · Linking With Your Media Server
 1. For Emby, navigate to the **Admin Panel** by clicking the cog wheel in the upper right corner
