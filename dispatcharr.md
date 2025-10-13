@@ -2,7 +2,7 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2025-10-13T20:46:48.956Z
+date: 2025-10-13T22:01:04.144Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-13T15:42:09.466Z
@@ -61,3 +61,4 @@ services:
 
 
 # <img src="/patreon-light.png" class="tab-icon"> 5 · Video
+[![](/2025-10-13-add-live-tv-to-your-media-server-promo-card.png)](https://www.patreon.com/posts/add-live-tv-to-141152111)
