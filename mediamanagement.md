@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-09-29T17:09:14.869Z
+date: 2025-10-13T15:44:02.660Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -70,6 +70,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 - [<img src="/bazarr.png"> Bazarr<br>*Subtitle management*](/bazarr)
 - [<img src="/crosswatch.png"> CrossWatch<br>*Sync client for Plex and Jellyfin*](/crosswatch)
 - [<img src="/dasharr.png"> Dasharr<br>*Dashboard*](/dasharr)
+- [<img src="/dispatcharr.png"> Dispatcharr<br>*Live TV for media server*](/dispatcharr)
 - [<img src="/flaresolverr.png"> Flaresolverr<br>*Proxy server to bypass Cloudflare protection*](/Flaresolverr)
 - [<img src="/linkarr.png"> Linkarr<br>*Organize your media library*](/linkarr)
 - [<img src="/notifiarr.png"> Notifiarr<br>*Monitoring & notifications via Discord*](/notifiarr)
