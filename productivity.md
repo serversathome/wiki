@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2025-10-13T18:47:56.503Z
+date: 2025-10-13T18:48:03.035Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T18:06:48.269Z
@@ -15,7 +15,7 @@ dateCreated: 2025-07-07T18:06:48.269Z
 - [<img src="/filebrowser-quantum.png"> Filebrowser<br>*Browse files though a GUI*](/filebrowser)
 - [<img src="/homeassistant.png">Home Assistant<br>*Home automation*](/homeassistant)
 - [<img src="/kan.png"> Kan<br>*Open source Trello*](/kanbn)
-- [<img src="/linkwarden.png"> Linkwarden<br>*collaborative bookmark manager*](/linkwarden)
+- [<img src="/linkwarden.png"> Linkwarden<br>*Collaborative bookmark manager*](/linkwarden)
 - [<img src="/mealie.png"> Mealie<br>*Recipe manager and meal planner*](/mealie)
 - [🏥 Mediqux<br>*Locally-hosted medical record system*](/mediqux)
 - [<img src="/n8n.png">n8n<br>*Automated workflow tool*](/n8n)
