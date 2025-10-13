@@ -2,7 +2,7 @@
 title: Linkwarden
 description: A guide to deploying Linkwarden
 published: true
-date: 2025-10-13T18:46:07.664Z
+date: 2025-10-13T19:48:33.378Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-13T18:46:07.664Z
@@ -61,7 +61,8 @@ services:
 
 # 2 · Logging In
 1. Navigate to `http://PORT:IP` 
-
-
+1. Click **Sign Up** at the bottom of the window
+1. Enter your credentials then click **Sign Up**
+1. Login with your created credentials
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
