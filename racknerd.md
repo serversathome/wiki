@@ -2,7 +2,7 @@
 title: Racknerd VPS
 description: A guide to deploying a Racknerd VPS
 published: true
-date: 2025-10-14T13:58:42.235Z
+date: 2025-10-14T15:14:34.275Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-14T13:12:23.435Z
@@ -60,9 +60,11 @@ By default, docker ports exposed on the host bypass ufw, so if you have compose 
     ports:
       - 8080:8080
 ```
-you would be able to access port 8080 from the public IP. This bypasses our firewall and makes our VPS insecure.
+you would be able to access port 8080 from the public IP. This bypasses our firewall and makes our VPS insecure. As such, you should not have this block in your compose stacks.
 
 ## 5.1 Using a Reverse Proxy
 
-A good way to make docker containers on the VPS accessible is with a reverse proxy like [CloudflareTunnels](/CloudflareTunnels) or [Nginx Proxy Manage](/nginx)
+A good way to make docker containers on the VPS accessible is with a reverse proxy like [Cloudflare Tunnels](/CloudflareTunnels) or [Nginx Proxy Manager](/nginx). When using this reverse proxy, you have to refer to the container by its hostname and not its port since the typical ` - ports:` block will be commented out of docker container running on the VPS. 
+
+The entry in the reverse proxy will look like `http://container_name:8080`. This also means the reverse proxy and all containers need to share the same docker network, which they will not by default. You must create a docker network and add all containers to it so their hostnames can be used. 
 
