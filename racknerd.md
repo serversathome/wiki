@@ -2,7 +2,7 @@
 title: Racknerd VPS
 description: A guide to deploying a Racknerd VPS
 published: true
-date: 2025-10-14T13:34:04.922Z
+date: 2025-10-14T13:39:32.359Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-14T13:12:23.435Z
@@ -31,5 +31,11 @@ RackNerd is a global provider of Infrastructure as a Service (IaaS) solutions, o
 1. Naviagte to the [Control Panel](https://nerdvm.racknerd.com/) and login
 
 # 3 • Accessing Your Server
-1. Note 
-1. Open a terminal and 
+1. Note your IP address from [this page](https://my.racknerd.com/clientarea.php?action=services)
+1. Open a terminal and use the command (using your IP address from step 3.1)
+    ```bash
+    ssh root@{IP}
+    ```
+1. Your password was emailed to you. If you forgot it navigate to [this page](https://my.racknerd.com/clientarea.php?action=emails) and look for the message titled `KVM VPS Login Information`
+
+# 4 • Securing Your Server
