@@ -41,7 +41,7 @@ services:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     volumes:
-      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - ${UPLOAD_LOCATION}:/data
       - /etc/localtime:/etc/localtime:ro
     ports:
       - '2283:2283'
@@ -131,7 +131,7 @@ services:
                 - compute
                 - video
     volumes:
-      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - ${UPLOAD_LOCATION}:/data
       - /etc/localtime:/etc/localtime:ro
     ports:
       - '2283:2283'
@@ -240,7 +240,7 @@ services:
     devices:
       - /dev/dri:/dev/dri
     volumes:
-      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - ${UPLOAD_LOCATION}:/data
       - /etc/localtime:/etc/localtime:ro
     ports:
       - '2283:2283'
@@ -353,7 +353,7 @@ services:
     devices:
       - /dev/dri:/dev/dri
     volumes:
-      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - ${UPLOAD_LOCATION}:/data
       - /etc/localtime:/etc/localtime:ro
     ports:
       - '2283:2283'
@@ -461,7 +461,7 @@ services:
     devices:
       - /dev/dri:/dev/dri
     volumes:
-      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - ${UPLOAD_LOCATION}:/data
       - /etc/localtime:/etc/localtime:ro
     ports:
       - '2283:2283'
