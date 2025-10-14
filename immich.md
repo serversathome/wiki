@@ -3,7 +3,7 @@ title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
 date: 2025-08-03T19:12:13.282Z
-tags: 
+tags:
 editor: markdown
 dateCreated: 2025-04-30T12:06:15.920Z
 ---
@@ -33,7 +33,7 @@ Easily back up, organize, and manage your photos on your own server. Immich help
 > Check out [the new docs](https://apps.truenas.com/resources/deploy-immich) from TrueNAS
 {.is-success}
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose - CPU
 
 ```yaml
 services:
@@ -41,7 +41,7 @@ services:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     volumes:
-      - /mnt/tank/configs/immich/uploads:/data
+      - ${UPLOAD_LOCATION}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
     ports:
       - '2283:2283'
@@ -56,47 +56,49 @@ services:
     container_name: immich_machine_learning
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
     volumes:
-      - ./model-cache:/cache
+      - model-cache:/cache
     restart: unless-stopped
     healthcheck:
       disable: false
 
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8-bookworm@sha256:42cba146593a5ea9a622002c1b7cba5da7be248650cbb64ecb9c6c33d29794b1
+    image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
     healthcheck:
-      test: redis-cli ping || exit 1
+      disable: false
     restart: unless-stopped
 
   database:
     container_name: immich_postgres
-    image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:739cdd626151ff1f796dc95a6591b55a714f341c737e27f045019ceabf8e8c52
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:41eacbe83eca995561fe43814fd4891e16e39632806253848efaf04d3c8a8b84
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_DB: ${DB_DATABASE_NAME}
       POSTGRES_INITDB_ARGS: '--data-checksums'
     volumes:
-      - /mnt/tank/configs/immich/db:/var/lib/postgresql/data
+      - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
     healthcheck:
-      test: >-
-        pg_isready --dbname="$${POSTGRES_DB}" --username="$${POSTGRES_USER}" || exit 1; Chksum="$$(psql --dbname="$${POSTGRES_DB}" --username="$${POSTGRES_USER}" --tuples-only --no-align --command='SELECT COALESCE(SUM(checksum_failures), 0) FROM pg_stat_database')"; echo "checksum failure count is $$Chksum"; [ "$$Chksum" = '0' ] || exit 1
-      interval: 5m
-      start_interval: 30s
-      start_period: 5m
-    command: >-
-      postgres -c shared_preload_libraries=vectors.so -c 'search_path="$$user", public, vectors' -c logging_collector=on -c max_wal_size=2GB -c shared_buffers=512MB -c wal_compression=on
+      disable: false
     restart: unless-stopped
 ```
- ### env Variables
+
+### env Variables
+
  ```yaml
+UPLOAD_LOCATION=/mnt/tank/configs/immich/uploads
 IMMICH_VERSION=release
+DB_DATA_LOCATION=/mnt/tank/configs/immich/db
 DB_PASSWORD=postgres
 DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
  ```
- Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/).
- 
+
+> Make sure to change the `DB_PASSWORD` to something random!
+{.is-danger}
+
+Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/).
+
 ### Folder Structure
 ```xml
 tank
@@ -105,41 +107,19 @@ tank
         ├── uploads
         └── db
 ```
+
 - The `uploads` directory will be where all photos are stored in individual folders per user
 
 > Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
 {.is-info}
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose with nVidia GPU
+## <img src="/docker.png" class="tab-icon"> Docker Compose - Nvidia
 
 ```yaml
 services:
   immich-server:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
-    volumes:
-      - /mnt/tank/configs/immich/uploads:/data
-      - /etc/localtime:/etc/localtime:ro
-    ports:
-      - 2283:2283
-    depends_on:
-      - redis
-      - database
-    restart: unless-stopped
-    healthcheck:
-      disable: false
-  immich-machine-learning:
-    container_name: immich_machine_learning
-    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}-cuda
-    volumes:
-      - /mnt/tank/configs/immich/ml:/cache
-    restart: unless-stopped
-    healthcheck:
-      disable: false
-    environment:
-      - MACHINE_LEARNING__FACE_RECOGNITION_MODEL=mobile_face
-      - MACHINE_LEARNING__FACE_DETECTION_MODEL=yunet
-      - MACHINE_LEARNING__CLIP_MODEL=ViT-B-16__laion2b_s34b_b88k
     deploy:
       resources:
         reservations:
@@ -148,55 +128,417 @@ services:
               count: 1
               capabilities:
                 - gpu
+                - compute
+                - video
+    volumes:
+      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - '2283:2283'
+    depends_on:
+      - redis
+      - database
+    restart: unless-stopped
+    healthcheck:
+      disable: false
+
+  immich-machine-learning:
+    container_name: immich_machine_learning
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}-cuda
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities:
+                - gpu
+    volumes:
+      - model-cache:/cache
+    restart: unless-stopped
+    healthcheck:
+      disable: false
+
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8-bookworm@sha256:42cba146593a5ea9a622002c1b7cba5da7be248650cbb64ecb9c6c33d29794b1
+    image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
     healthcheck:
-      test: redis-cli ping || exit 1
+      disable: false
     restart: unless-stopped
+
   database:
     container_name: immich_postgres
-    image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:739cdd626151ff1f796dc95a6591b55a714f341c737e27f045019ceabf8e8c52
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:41eacbe83eca995561fe43814fd4891e16e39632806253848efaf04d3c8a8b84
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_DB: ${DB_DATABASE_NAME}
-      POSTGRES_INITDB_ARGS: --data-checksums
+      POSTGRES_INITDB_ARGS: '--data-checksums'
     volumes:
-      - /mnt/tank/configs/immich/db:/var/lib/postgresql/data
+      - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
     healthcheck:
-      test: pg_isready --dbname="$${POSTGRES_DB}" --username="$${POSTGRES_USER}" ||
-        exit 1; Chksum="$$(psql --dbname="$${POSTGRES_DB}"
-        --username="$${POSTGRES_USER}" --tuples-only --no-align
-        --command='SELECT COALESCE(SUM(checksum_failures), 0) FROM
-        pg_stat_database')"; echo "checksum failure count is $$Chksum"; [
-        "$$Chksum" = '0' ] || exit 1
-      interval: 5m
-      start_interval: 30s
-      start_period: 5m
-    command: postgres -c shared_preload_libraries=vectors.so -c
-      'search_path="$$user", public, vectors' -c logging_collector=on -c
-      max_wal_size=2GB -c shared_buffers=512MB -c wal_compression=on
+      disable: false
     restart: unless-stopped
 ```
- ### env Variables
+
+### env Variables
+
  ```yaml
+UPLOAD_LOCATION=/mnt/tank/configs/immich/uploads
 IMMICH_VERSION=release
+DB_DATA_LOCATION=/mnt/tank/configs/immich/db
+DB_PASSWORD=postgres
+DB_USERNAME=postgres
+DB_DATABASE_NAME=immich
+MACHINE_LEARNING_MODEL_TTL=0
+MACHINE_LEARNING_MODEL_TTL_POLL_S=0
+ ```
+
+> Make sure to change the `DB_PASSWORD` to something random!
+{.is-danger}
+
+Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/).
+
+> In case you want to use multiple gpus see: [https://docs.immich.app/features/ml-hardware-acceleration#multi-gpu](https://docs.immich.app/features/ml-hardware-acceleration#multi-gpu)
+> The GPU must have compute capability 5.2 or greater.
+> The server must have the official NVIDIA driver installed.
+> The installed driver must be >= 545 (it must support CUDA 12.3).
+{.is-info}
+
+### Folder Structure
+
+```xml
+tank
+ └── configs
+   └── immich
+        ├── uploads
+        └── db
+```
+
+- The `uploads` directory will be where all photos are stored in individual folders per user
+
+> Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
+{.is-info}
+
+### Confirming GPU Utilization
+
+To confirm you are actually using your GPU, you should do the following:
+
+1. On TrueNAS go to System > Shell
+2. Run `watch -d -n 1 nvidia-smi` inside the terminal
+3. You should be able to see a python process running if there is a job running for Smart Search, Facial Detection or Facial Recognition
+
+This is under assumption that you have some content in your library.
+
+## <img src="/docker.png" class="tab-icon"> Docker Compose - AMD
+
+```yaml
+services:
+  immich-server:
+    container_name: immich_server
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - '2283:2283'
+    depends_on:
+      - redis
+      - database
+    restart: unless-stopped
+    healthcheck:
+      disable: false
+
+  immich-machine-learning:
+    container_name: immich_machine_learning
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}-rocm
+    group_add:
+      - video
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/kfd:/dev/kfd
+    volumes:
+      - model-cache:/cache
+    restart: unless-stopped
+    healthcheck:
+      disable: false
+
+  redis:
+    container_name: immich_redis
+    image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
+    healthcheck:
+      disable: false
+    restart: unless-stopped
+
+  database:
+    container_name: immich_postgres
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:41eacbe83eca995561fe43814fd4891e16e39632806253848efaf04d3c8a8b84
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_DB: ${DB_DATABASE_NAME}
+      POSTGRES_INITDB_ARGS: '--data-checksums'
+    volumes:
+      - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
+    healthcheck:
+      disable: false
+    restart: unless-stopped
+```
+
+> The GPU must be supported by ROCm. If it isn't officially supported, you can attempt to use the `HSA_OVERRIDE_GFX_VERSION` environmental variable: `HSA_OVERRIDE_GFX_VERSION=<a supported version, e.g. 10.3.0>`. If this doesn't work, you might need to also set `HSA_USE_SVM=0`.
+> The ROCm image is quite large and requires at least 35GiB of free disk space. However, pulling later updates to the service through Docker will generally only amount to a few hundred megabytes as the rest will be cached.
+> This backend is new and may experience some issues. For example, GPU power consumption can be higher than usual after running inference, even if the machine learning service is idle. In this case, it will only go back to normal after being idle for 5 minutes (configurable with the [MACHINE_LEARNING_MODEL_TTL](https://docs.immich.app/install/environment-variables) setting).
+{.is-info}
+
+### env Variables
+
+ ```yaml
+UPLOAD_LOCATION=/mnt/tank/configs/immich/uploads
+IMMICH_VERSION=release
+DB_DATA_LOCATION=/mnt/tank/configs/immich/db
+DB_PASSWORD=postgres
+DB_USERNAME=postgres
+DB_DATABASE_NAME=immich
+MACHINE_LEARNING_MODEL_TTL=0
+MACHINE_LEARNING_MODEL_TTL_POLL_S=0
+ ```
+
+> Make sure to change the `DB_PASSWORD` to something random!
+{.is-danger}
+
+Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/).
+
+
+### Folder Structure
+
+```xml
+tank
+ └── configs
+   └── immich
+        ├── uploads
+        └── db
+```
+
+- The `uploads` directory will be where all photos are stored in individual folders per user
+
+> Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
+{.is-info}
+
+### Confirming GPU Utilization
+
+To confirm you are actually using your GPU, you should do the following:
+
+1. On TrueNAS go to System > Shell
+2. Run `docker exec -it immich_machine_learning bash` to enter the container
+3. First you will have to update the repositories and install radeontop package by running
+
+```sh
+apt update && apt install radeontop
+```
+
+4. Run `radeontop` inside the terminal
+5. You should be able to see usage increasing if there is a job running for Smart Search, Facial Detection or Facial Recognition
+
+This is under assumption that you have some content in your library.
+
+## <img src="/docker.png" class="tab-icon"> Docker Compose - OpenVINO
+
+```yaml
+services:
+  immich-server:
+    container_name: immich_server
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - '2283:2283'
+    depends_on:
+      - redis
+      - database
+    restart: unless-stopped
+    healthcheck:
+      disable: false
+
+  immich-machine-learning:
+    container_name: immich_machine_learning
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}-openvivo
+    group_add:
+      - video
+    device_cgroup_rules:
+      - 'c 189:* rmw'
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - model-cache:/cache
+      - /dev/bus/usb:/dev/bus/usb
+    restart: unless-stopped
+    healthcheck:
+      disable: false
+
+  redis:
+    container_name: immich_redis
+    image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
+    healthcheck:
+      disable: false
+    restart: unless-stopped
+
+  database:
+    container_name: immich_postgres
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:41eacbe83eca995561fe43814fd4891e16e39632806253848efaf04d3c8a8b84
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_DB: ${DB_DATABASE_NAME}
+      POSTGRES_INITDB_ARGS: '--data-checksums'
+    volumes:
+      - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
+    healthcheck:
+      disable: false
+    restart: unless-stopped
+```
+
+> Integrated GPUs are more likely to experience issues than discrete GPUs, especially for older processors or servers with low RAM.
+> Ensure the server's kernel version is new enough to use the device for hardware accceleration.
+> Expect higher RAM usage when using OpenVINO compared to CPU processing.
+{.is-info}
+
+### env Variables
+
+ ```yaml
+UPLOAD_LOCATION=/mnt/tank/configs/immich/uploads
+IMMICH_VERSION=release
+DB_DATA_LOCATION=/mnt/tank/configs/immich/db
+DB_PASSWORD=postgres
+DB_USERNAME=postgres
+DB_DATABASE_NAME=immich
+MACHINE_LEARNING_MODEL_TTL=0
+MACHINE_LEARNING_MODEL_TTL_POLL_S=0
+ ```
+
+> Make sure to change the `DB_PASSWORD` to something random!
+{.is-danger}
+
+Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/).
+
+
+### Folder Structure
+
+```xml
+tank
+ └── configs
+   └── immich
+        ├── uploads
+        └── db
+```
+
+- The `uploads` directory will be where all photos are stored in individual folders per user
+
+> Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
+{.is-info}
+
+### Confirming GPU Utilization
+
+To confirm you are actually using your GPU, you should do the following:
+
+1. On TrueNAS go to System > Shell
+2. Run `intel_gpu_top` inside the terminal
+3. You should be able to see a python process running if there is a job running for Smart Search, Facial Detection or Facial Recognition
+
+This is under assumption that you have some content in your library.
+
+## <img src="/docker.png" class="tab-icon"> Docker Compose - VAAPI (Intel/AMD/Nvidia)
+
+```yaml
+services:
+  immich-server:
+    container_name: immich_server
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - '2283:2283'
+    depends_on:
+      - redis
+      - database
+    restart: unless-stopped
+    healthcheck:
+      disable: false
+
+  immich-machine-learning:
+    container_name: immich_machine_learning
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
+    volumes:
+      - model-cache:/cache
+    restart: unless-stopped
+    healthcheck:
+      disable: false
+
+  redis:
+    container_name: immich_redis
+    image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
+    healthcheck:
+      disable: false
+    restart: unless-stopped
+
+  database:
+    container_name: immich_postgres
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:41eacbe83eca995561fe43814fd4891e16e39632806253848efaf04d3c8a8b84
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_DB: ${DB_DATABASE_NAME}
+      POSTGRES_INITDB_ARGS: '--data-checksums'
+    volumes:
+      - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
+    healthcheck:
+      disable: false
+    restart: unless-stopped
+```
+
+> In case your graphics card, dedicated or integrated, doesn't support machine learning, you can still accelerate transcoding!
+>
+> You may want to choose a slower preset than for software transcoding to maintain quality and efficiency
+> While you can use VAAPI with NVIDIA and Intel devices, prefer the more specific APIs since they're more optimized for their respective devices
+{.is-info}
+
+### env Variables
+
+ ```yaml
+UPLOAD_LOCATION=/mnt/tank/configs/immich/uploads
+IMMICH_VERSION=release
+DB_DATA_LOCATION=/mnt/tank/configs/immich/db
 DB_PASSWORD=postgres
 DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
  ```
- Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/).
- 
+
+> Make sure to change the `DB_PASSWORD` to something random!
+{.is-danger}
+
+Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/).
+
 ### Folder Structure
 ```xml
 tank
  └── configs
    └── immich
         ├── uploads
-        ├── ml
         └── db
 ```
+
+- The `uploads` directory will be where all photos are stored in individual folders per user
+
+> Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
+{.is-info}
+
 # 2 · Adding External Libraries
 1. If installing from the TrueNAS apps catalog, under **Storage Configuration →  Additional Storage**, add a host path pointed to where your photos are stored
 1. If installing via docker compose, add an additional line in the `immich_server` section pointed to where your photos are stored
@@ -256,6 +598,17 @@ b. Set the **Data Storage** to the new dataset `/mnt/tank/immich1/data`
 c. Set the **Postgres Data Storage** to the new dataset `/mnt/tank/immich1/db` and be sure to check the **Automatic Permissions** checkbox
 d. Click the blue **Update** button
 1. Once all running, you can remove the old dataset `immich`
+
+# 4 · Picking the right ML model
+
+[Immich's documentation](https://docs.immich.app/features/searching#clip-models) is very thorough regarding this so you should just read from there.
+Many users don't even know that they can change the model and that it will impact their users significantly, especially if they are not English speakers.
+
+Main things you want to pay attention to is if you need Multilingual model and model size so you are sure it will fit inside your GPU.
+Immich team also provided a list of languages that are supported by the Multilingual models and how well they perform.
+
+* `nllb` models expect the search query to be in the language specified in the user settings
+* `xlm` and `siglip2` models understand search text regardless of the current language setting
 
 # <img src="/youtube.png" class="tab-icon"> 4 · Video
 [](https://youtu.be/TqjlUocu6ZI)
