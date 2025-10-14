@@ -2,7 +2,7 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2025-10-13T22:01:04.144Z
+date: 2025-10-14T10:09:32.196Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-13T15:42:09.466Z
@@ -48,7 +48,8 @@ services:
 1. Select all Streams in the Dashboard and click **Create Channels** to turn them into live TV channels
 
 # 4 · Linking With Your Media Server
-1. For Emby, navigate to the **Admin Panel** by clicking the cog wheel in the upper right corner
+## 4.1 Emby
+1. Navigate to the **Admin Panel** by clicking the cog wheel in the upper right corner
 1. Click **Live TV**
 1. Click **+ Add TV Source**
 1. Select **M3U**
@@ -58,6 +59,18 @@ services:
 
 > Each client will need to make sure they have their dashboard set to show Live TV channels
 {.is-success}
+
+## 4.2 Jellyfin
+1. Navigate to the **Admin Panel** by clicking the icon of a man in the upper right corner
+1. Click **Dashboard**
+1. Click **Live TV**
+1. Click the **+** next to **Tuner Devices** at the top
+1. Under **Tuner Type** select `M3U Tuner`
+1. Get the URL from the purple **M3U** button in the **Channels** tab of Dispatcharr
+1. Click **Save**
+
+## 4.3 Plex
+I do not have Plex, but if any of *you* do and you have these linked please [edit this page]() and add those instructions here!
 
 
 # <img src="/patreon-light.png" class="tab-icon"> 5 · Video
