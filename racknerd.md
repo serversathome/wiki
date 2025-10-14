@@ -2,11 +2,22 @@
 title: Racknerd VPS
 description: A guide to deploying a Racknerd VPS
 published: true
-date: 2025-10-14T13:12:23.435Z
+date: 2025-10-14T13:23:01.676Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-14T13:12:23.435Z
 ---
 
-# Header
-Your content here
+# <img src="/racknerd.jpg" class="tab-icon"> What is Racknerd?
+
+RackNerd is a global provider of Infrastructure as a Service (IaaS) solutions, offering dedicated servers, virtual private servers (VPS), and colocation services across multiple datacenter locations. They focus on providing reliable hosting solutions with 24/7 support and competitive pricing.
+
+# 1 • Deploying a VPS
+
+1. Create an account on [Racknerd](https://www.racknerd.com/)
+1. Use one of the affilate links to get a discount on a VPS:
+	a. 1 vCPU | 1GB RAM | 20GB SSD | 2TB bandwidth | $10.96/yr [sign up here](https://my.racknerd.com/aff.php?aff=15328&pid=912)
+  b. 2 vCPU | 2GB RAM | 30GB SSD | 3.5TB bandwidth | $17.66/yr [sign up here](https://my.racknerd.com/aff.php?aff=15328&pid=913)
+
+# 2 • Logging into the Control Panel
+https://my.racknerd.com/clientarea.php?action=services
