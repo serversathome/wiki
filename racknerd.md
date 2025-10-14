@@ -2,7 +2,7 @@
 title: Racknerd VPS
 description: A guide to deploying a Racknerd VPS
 published: true
-date: 2025-10-14T13:39:32.359Z
+date: 2025-10-14T13:43:42.663Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-14T13:12:23.435Z
@@ -27,7 +27,7 @@ RackNerd is a global provider of Infrastructure as a Service (IaaS) solutions, o
 
 # 2 • Logging into the Control Panel
 1. Once your VPS is deployed, navigate to [this page](https://my.racknerd.com/clientarea.php?action=services) and click on the row showing your VPS
-1. At the bottom of the screen, you will see a link to the [Control Panel](https://nerdvm.racknerd.com/) along with your username. Your password will be emailed to you.
+1. At the bottom of the screen, you will see a link to the [Control Panel](https://nerdvm.racknerd.com/) along with your username. Your password will be emailed to you. If you forgot it navigate to [this page](https://my.racknerd.com/clientarea.php?action=emails) and look for the message titled `KVM VPS Login Information`
 1. Naviagte to the [Control Panel](https://nerdvm.racknerd.com/) and login
 
 # 3 • Accessing Your Server
@@ -39,3 +39,7 @@ RackNerd is a global provider of Infrastructure as a Service (IaaS) solutions, o
 1. Your password was emailed to you. If you forgot it navigate to [this page](https://my.racknerd.com/clientarea.php?action=emails) and look for the message titled `KVM VPS Login Information`
 
 # 4 • Securing Your Server
+
+By default, Racknerd has no security on their VPS. We will deploy `ufw` (universal firewall) allowing traffic only on port 22 for ssh with limited login attempts to prevent bruteforce attacks.
+
+1. 
