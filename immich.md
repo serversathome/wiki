@@ -343,7 +343,7 @@ apt update && apt install radeontop
 
 This is under assumption that you have some content in your library.
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose - OpenVINO
+## <img src="/docker.png" class="tab-icon"> Docker Compose - Intel
 
 ```yaml
 services:
