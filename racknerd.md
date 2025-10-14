@@ -2,7 +2,7 @@
 title: Racknerd VPS
 description: A guide to deploying a Racknerd VPS
 published: true
-date: 2025-10-14T13:52:49.478Z
+date: 2025-10-14T13:58:42.235Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-14T13:12:23.435Z
@@ -48,11 +48,21 @@ By default, Racknerd has no security on their VPS. We will deploy `ufw` (univers
     sudo ufw default deny incoming && sudo ufw default allow outbound && sudo ufw limit 22/tcp && sudo ufw enable -y && sudo ufw status verbose
     ```
 
-This is a very safe way to secure access to your server. In the event you wanted no ports open you could install a VPN like tailscale, netbird, twingate, or the like which do not require outbound ports to be open. If you choose to do this, you can remove the `sudo ufw limit 22/tcp` from the above command and no ports will be open. 
+This is a very safe way to secure access to your server. In the event you wanted no ports open you could install a VPN like [tailscale](/tailscale), [netbird](/netbird), twingate, or the like which do not require outbound ports to be open. If you choose to do this, you can remove the `sudo ufw limit 22/tcp` from the above command and no ports will be open. 
 
 # 5 • Running & Accessing Docker
 1. To install docker, run the command:
     ```bash
     curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
     ```
-1. 
+By default, docker ports exposed on the host bypass ufw, so if you have compose stacks which contain lines like:
+```yaml
+    ports:
+      - 8080:8080
+```
+you would be able to access port 8080 from the public IP. This bypasses our firewall and makes our VPS insecure.
+
+## 5.1 Using a Reverse Proxy
+
+A good way to make docker containers on the VPS accessible is with a reverse proxy like [CloudflareTunnels](/CloudflareTunnels) or [Nginx Proxy Manage](/nginx)
+
