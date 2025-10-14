@@ -113,7 +113,7 @@ tank
 > Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
 {.is-info}
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose - Nvidia
+## <img src="/docker.png" class="tab-icon"> Docker Compose - Nvidia GPU
 
 ```yaml
 services:
@@ -230,7 +230,7 @@ To confirm you are actually using your GPU, you should do the following:
 
 This is under assumption that you have some content in your library.
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose - AMD
+## <img src="/docker.png" class="tab-icon"> Docker Compose - AMD GPU
 
 ```yaml
 services:
@@ -343,7 +343,7 @@ apt update && apt install radeontop
 
 This is under assumption that you have some content in your library.
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose - Intel
+## <img src="/docker.png" class="tab-icon"> Docker Compose - Intel GPU/iGPU
 
 ```yaml
 services:
