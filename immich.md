@@ -599,7 +599,7 @@ c. Set the **Postgres Data Storage** to the new dataset `/mnt/tank/immich1/db` a
 d. Click the blue **Update** button
 1. Once all running, you can remove the old dataset `immich`
 
-# 4 · Picking the right ML model
+# 4 · Picking the right CLIP model
 
 [Immich's documentation](https://docs.immich.app/features/searching#clip-models) is very thorough regarding this so you should just read from there.
 Many users don't even know that they can change the model and that it will impact their users significantly, especially if they are not English speakers.
