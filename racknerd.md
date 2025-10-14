@@ -2,7 +2,7 @@
 title: Racknerd VPS
 description: A guide to deploying a Racknerd VPS
 published: true
-date: 2025-10-14T15:14:34.275Z
+date: 2025-10-14T15:17:34.067Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-14T13:12:23.435Z
@@ -49,6 +49,14 @@ By default, Racknerd has no security on their VPS. We will deploy `ufw` (univers
     ```
 
 This is a very safe way to secure access to your server. In the event you wanted no ports open you could install a VPN like [tailscale](/tailscale), [netbird](/netbird), twingate, or the like which do not require outbound ports to be open. If you choose to do this, you can remove the `sudo ufw limit 22/tcp` from the above command and no ports will be open. 
+
+## 4.1 Security Updates
+
+By default, there are no updates running on the server, which means security patches are not being applied. To automatically enable updates nightly at 3am, run this command in the shell:
+
+```bash
+(crontab -l 2>/dev/null; echo "0 3 * * * apt update && apt upgrade -y && apt autoremove -y") | crontab -
+```
 
 # 5 • Running & Accessing Docker
 1. To install docker, run the command:
