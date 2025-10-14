@@ -2,7 +2,7 @@
 title: Nextcloud
 description: A guide to deploying Nextcloud on TrueNAS Scale and via docker compose
 published: true
-date: 2025-07-30T18:29:32.531Z
+date: 2025-10-14T09:58:21.436Z
 tags: 
 editor: markdown
 dateCreated: 2024-11-06T16:25:41.034Z
@@ -88,6 +88,13 @@ To do this, go the the directory where the configs are stored (usually the mount
 The point of Nextcloud is to be able to access your files remotely. To do this, you need to add **Additional Storage** from TrueNAS or another volume in the compose file so Nextcloud can see your files. Once you have that added, navigate within Nextcloud to **Apps** (top right circle) → **Disabled Apps** → **External Storage** and **Enable** that app.
 
 Once that is enabled navigate to **Administration Settings** → **External Storage** (the one at the bottom under the **Administration** heading). Give it a name in the leftmost box, then in the **Configuration** field enter the path you mounted it as (so if I added a volume which was `/mnt/tank/files:/files` I would use the internal path here of `/files`). Add a person or group that this will be available to and click the check box at the end of the row. I recommend you also click the 3 dot box at the end of the row and select the checkbox to **Enable Sharing** so you can give people links to your files if you want.
+
+## 3.3 Logging in With Your Phone
+
+To access the fastest way via mobile, use a QR code to login. To generate the QR code:
+1. Navigate to **Administration Setings → Security**
+1. At the bottom, add an **App name** then click the blue button next to it to **Create a new app password**
+1. Click the button to **Show QR code for mobile apps**
 
 # 4 · Deploy Collabora
 
