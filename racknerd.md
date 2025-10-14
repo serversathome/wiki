@@ -2,7 +2,7 @@
 title: Racknerd VPS
 description: A guide to deploying a Racknerd VPS
 published: true
-date: 2025-10-14T13:43:42.663Z
+date: 2025-10-14T13:49:19.235Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-14T13:12:23.435Z
@@ -42,4 +42,8 @@ RackNerd is a global provider of Infrastructure as a Service (IaaS) solutions, o
 
 By default, Racknerd has no security on their VPS. We will deploy `ufw` (universal firewall) allowing traffic only on port 22 for ssh with limited login attempts to prevent bruteforce attacks.
 
-1. 
+1. SSH into your server
+1. Run the command:
+    ```bash
+    sudo ufw default deny incoming && sudo ufw default allow outbound && sudo ufw limit 22/tcp && sudo ufw enable -y && sudo ufw status verbose
+    ```
