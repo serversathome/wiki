@@ -2,7 +2,7 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2025-10-14T10:09:53.672Z
+date: 2025-10-15T11:46:15.531Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-13T15:42:09.466Z
@@ -13,8 +13,9 @@ Dispatcharr is an open-source powerhouse for managing IPTV streams and EPG data 
 
 Think of Dispatcharr as the *arr family’s IPTV cousin — simple, smart, and designed for streamers who want reliability and flexibility.
 
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Dispatcharr
+# 1 · Deploy Dispatcharr
+# {.tabset}
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
@@ -31,6 +32,41 @@ services:
       - REDIS_HOST=localhost
       - CELERY_BROKER_URL=redis://localhost:6379/0
       - DISPATCHARR_LOG_LEVEL=info
+```
+
+## <img src="/docker.png" class="tab-icon"> Docker + VPN
+```yaml
+services:
+  dispatcharr:
+    image: ghcr.io/dispatcharr/dispatcharr:latest
+    container_name: dispatcharr
+    restart: unless-stopped
+    volumes:
+      - /mnt/tank/configs/dispatcharr/data:/data
+    environment:
+      - DISPATCHARR_ENV=aio
+      - REDIS_HOST=localhost
+      - CELERY_BROKER_URL=redis://localhost:6379/0
+      - DISPATCHARR_LOG_LEVEL=info
+    network_mode: "service:gluetun"
+
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      - VPN_SERVICE_PROVIDER=airvpn
+      - VPN_TYPE=wireguard
+      - WIREGUARD_PRIVATE_KEY=
+      - WIREGUARD_PRESHARED_KEY=
+      - WIREGUARD_ADDRESSES=
+      - SERVER_COUNTRIES=
+    ports:
+      - 9191:9191
+    restart: unless-stopped
 ```
 
 # 2 · Logging In
