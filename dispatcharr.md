@@ -2,7 +2,7 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2025-10-15T11:46:15.531Z
+date: 2025-10-15T11:47:11.914Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-13T15:42:09.466Z
@@ -61,9 +61,9 @@ services:
       - VPN_SERVICE_PROVIDER=airvpn
       - VPN_TYPE=wireguard
       - WIREGUARD_PRIVATE_KEY=
-      - WIREGUARD_PRESHARED_KEY=
+      - WIREGUARD_PRESHARED_KEY=     #Optional depending on provider/config
       - WIREGUARD_ADDRESSES=
-      - SERVER_COUNTRIES=
+      - SERVER_COUNTRIES=     #Optional depending on provider/config
     ports:
       - 9191:9191
     restart: unless-stopped
