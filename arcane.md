@@ -2,7 +2,7 @@
 title: Arcane
 description: A guide to deploying Arcane in docker
 published: true
-date: 2025-09-11T09:23:50.014Z
+date: 2025-10-16T16:05:10.227Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-04T16:58:11.419Z
@@ -22,21 +22,17 @@ services:
       - 3552:3552
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /mnt/tank/stacks:/app/data/projects
+      - /mnt/tank/stacks:/mnt/tank/stacks
       - /mnt/tank/configs/arcane:/app/data
     environment:
       - PUID=568
       - PGID=568
-      - APP_URL=http://10.99.0.191:3552
+      - PROJECTS_DIRECTORY=/mnt/tank/stacks
+      - APP_URL=http://10.99.0.242:3552
       - ENCRYPTION_KEY=799513078c58a0163eb3cb217b1226aaad243a350043bf130b711d9770b1fc19
       - JWT_SECRET=ed012e40dbfbcad08a59b23a6456496ed353bd1b47e30d391363fa7b4e1d4adf
-
 ```
 1. Pick a `configs` directory which exists already with `568` permissions
-1. Choose your existing `stacks` directory to bind to `/app/data/projects`
-
-> I have noticed if you run this in conjunction with Dockge and you use the `./` to save your data locally in the `stacks` directory, Arcane will **overwrite** the permissions to `apps:apps` and break your install! *Hostpath is not affected by this.*
-{.is-danger}
 
 # 2 · Logging In
 1. Navigate to http://{IP}:3552
