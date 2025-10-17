@@ -2,7 +2,7 @@
 title: AdGuard
 description: A guide to deploying AdGuard via TrueNAS or docker compose
 published: true
-date: 2025-07-10T20:07:23.562Z
+date: 2025-10-17T11:07:29.739Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T17:31:03.932Z
@@ -30,7 +30,7 @@ services:
       - 53:53/tcp
       - 53:53/udp
       - 67:67/udp
-      - 68:68/udp
+      # - 68:68/udp
       - 80:80/tcp
       - 443:443/tcp
       - 443:443/udp
