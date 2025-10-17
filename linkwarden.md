@@ -2,7 +2,7 @@
 title: Linkwarden
 description: A guide to deploying Linkwarden
 published: true
-date: 2025-10-13T19:48:33.378Z
+date: 2025-10-17T11:17:54.788Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-13T18:46:07.664Z
@@ -66,3 +66,4 @@ services:
 1. Login with your created credentials
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
+https://youtu.be/VV9Vuh_r1RY
