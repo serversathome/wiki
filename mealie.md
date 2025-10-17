@@ -2,7 +2,7 @@
 title: Mealie
 description: A guide to deploying Mealie
 published: true
-date: 2025-10-07T09:35:00.253Z
+date: 2025-10-17T11:18:55.898Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-24T19:27:24.300Z
@@ -46,7 +46,7 @@ services:
 
 If you have another service you'd like to use in-place of OpenAI, you can configure Mealie to use that instead, as long as it has an OpenAI-compatible API. For instance, a common self-hosted alternative to OpenAI is Ollama. To use Ollama with Mealie, change your `OPENAI_BASE_URL` to http://localhost:11434/v1 (where http://localhost:11434 is wherever you're hosting Ollama, and /v1 enables the OpenAI-compatible endpoints). Note that you must provide an API key, even though it is ultimately ignored by Ollama.
 
-# 3 · Grab Recipes from Social
+# <img src="/docker.png" class="tab-icon"> 3 · Grab Recipes from Social
 Have you found a recipe on social media and don’t want to write it out yourself? This tool lets you import recipes from videos directly into Mealie.
 
 > See the [GitHub repo](https://github.com/GerardPolloRebozado/social-to-mealie) for more information!
