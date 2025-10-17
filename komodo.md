@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2025-09-18T15:54:31.054Z
+date: 2025-10-17T11:17:21.569Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-01T21:20:12.233Z
@@ -109,7 +109,7 @@ services:
       - /mnt/tank/configs/komodo/etc:/mnt/tank/configs/komodo/etc
 ```
 
-## Stacks Importer
+## <img src="/docker.png" class="tab-icon"> Stacks Importer
 ```yaml
 services:
   komodo-import:
