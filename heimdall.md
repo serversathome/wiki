@@ -2,14 +2,18 @@
 title: Heimdall
 description: A guide to deploying Heimdall
 published: true
-date: 2025-10-19T23:59:32.015Z
+date: 2025-10-20T12:53:07.356Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-19T23:59:32.015Z
 ---
 
 # ![](/heimdall.png){class="tab-icon"} What is Heimdall?
-A sleek, modern dashboard that puts all of your apps and services at your fingertips. Control everything in one convenient location. Seamlessly integrates with the apps you've added, providing you with valuable information.
+As the name suggests Heimdall Application Dashboard is a dashboard for all your web applications. It doesn't need to be limited to applications though, you can add links to anything you like.
+
+Heimdall is an elegant solution to organise all your web applications. It’s dedicated to this purpose so you won’t lose your links in a sea of bookmarks.
+
+Why not use it as your browser start page? It even has the ability to include a search bar using either Google, Bing or DuckDuckGo.
 
 
 # 1 · Deploy Heimdall
