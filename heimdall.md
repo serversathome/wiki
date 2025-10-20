@@ -2,7 +2,7 @@
 title: Heimdall
 description: A guide to deploying Heimdall
 published: true
-date: 2025-10-20T12:53:07.356Z
+date: 2025-10-20T20:23:37.784Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-19T23:59:32.015Z
@@ -44,4 +44,4 @@ By default, Heimdall blocks lookup requests to private or reserved IP addresses,
 1. Set the **Heimdall Data Storage** to *Host Path* and select a dataset to store the config files
 
 # <img src="/youtube.png" class="tab-icon"> 2 · Video
-
+https://youtu.be/-pm-F9dzYn0
