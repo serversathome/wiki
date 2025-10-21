@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-21T17:17:48.584Z
+date: 2025-10-21T17:18:56.945Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -165,9 +165,9 @@ jwt:
       secret: rV48t6COlobRUUUWUnD8vSdsXA_dXa2s_Xmt9A_TCqM=
 ```
 # 2 · Signing Up
-1. Navigate to http://{IP}:3000 
-1. Click **Register**
-1. After you add an email and strong password click **Sign Up**
+1. Navigate to `http://{IP}:3000` 
+1. Click **Don't Have An Account**
+1. After you add an email and strong password click **Create Account**
 1. Inspect the logs and look for this line to get your Verification Code:
     ```bash
     INFO[0074]email.go:202 sendViaTransmail Skipping sending email to test@test.com: Verification code: 068638
