@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-21T17:16:19.485Z
+date: 2025-10-21T17:17:48.584Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -169,6 +169,9 @@ jwt:
 1. Click **Register**
 1. After you add an email and strong password click **Sign Up**
 1. Inspect the logs and look for this line to get your Verification Code:
-```bash
-INFO[0074]email.go:202 sendViaTransmail Skipping sending email to test@test.com: Verification code: 068638
-```
+    ```bash
+    INFO[0074]email.go:202 sendViaTransmail Skipping sending email to test@test.com: Verification code: 068638
+    ```
+1. Click **Verify** after entering your code
+1. Save your recovery key as it will not be shown again
+1. Click "Continue with free plan 10 GB free forever"
