@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-21T14:53:53.629Z
+date: 2025-10-21T14:54:31.428Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -13,7 +13,7 @@ dateCreated: 2025-10-21T14:47:39.040Z
 Ente Photos is the private, secure photo storage app with end-to-end encryption.
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Ente Photos
-Ente Photos requires a normal docker compose file and in the same folder an additional file named `museum.yaml` to be present and configured. 
+Ente Photos requires a normal docker compose file and in the **same folder** an additional file named `museum.yaml` to be present and configured. 
 
 > For both files below, replace my `10.99.0.242` IP address with the address of your server!
 {.is-danger}
