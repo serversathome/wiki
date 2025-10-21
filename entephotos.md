@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-21T14:54:31.428Z
+date: 2025-10-21T17:13:40.345Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -71,7 +71,7 @@ services:
       start_period: 40s
       start_interval: 1s
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - ./postgres-data:/var/lib/postgresql/data
 
   minio:
     image: minio/minio
@@ -84,7 +84,7 @@ services:
       MINIO_ROOT_PASSWORD: Jczt/BEywUms1wRKJ8BbaMmaxyGy
     command: server /data --address ":3200" --console-address ":3201"
     volumes:
-      - minio-data:/data
+      - ./minio-data:/data
     post_start:
       - command: |
           sh -c '
@@ -102,10 +102,6 @@ services:
           mc mb -p wasabi-eu-central-2-v3
           mc mb -p scw-eu-fr-v3
           '
-
-volumes:
-  postgres-data:
-  minio-data:
 ```
 
 ## Mueseum.yaml
