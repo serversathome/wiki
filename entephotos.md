@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-21T14:51:15.482Z
+date: 2025-10-21T14:53:53.629Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -33,7 +33,7 @@ services:
       - ./museum.yaml:/museum.yaml:ro
       - ./data:/data:ro
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost:8080/ping"]
+      test: ["CMD", "curl", "--fail", "http://10.99.0.242:8080/ping"]
       interval: 60s
       timeout: 5s
       retries: 3
@@ -57,8 +57,8 @@ services:
       # - 3004:3004 # Cast
     # Modify these values to your custom subdomains, if using any
     environment:
-      ENTE_API_ORIGIN: http://localhost:8080
-      ENTE_ALBUMS_ORIGIN: https://localhost:3002
+      ENTE_API_ORIGIN: http://10.99.0.242:8080
+      ENTE_ALBUMS_ORIGIN: https://10.99.0.242:3002
 
   postgres:
     image: postgres:15
@@ -130,7 +130,7 @@ s3:
          # use_path_style_urls: true
          key: minio-user-Av/ztrFm
          secret: Jczt/BEywUms1wRKJ8BbaMmaxyGy
-         endpoint: localhost:3200
+         endpoint: 10.99.0.242:3200
          region: eu-central-2
          bucket: b2-eu-cen
       wasabi-eu-central-2-v3:
@@ -138,7 +138,7 @@ s3:
          # use_path_style_urls: true
          key: minio-user-Av/ztrFm
          secret: Jczt/BEywUms1wRKJ8BbaMmaxyGy
-         endpoint: localhost:3200
+         endpoint: 10.99.0.242:3200
          region: eu-central-2
          bucket: wasabi-eu-central-2-v3
          compliance: false
@@ -147,7 +147,7 @@ s3:
          # use_path_style_urls: true
          key: minio-user-Av/ztrFm
          secret: Jczt/BEywUms1wRKJ8BbaMmaxyGy
-         endpoint: localhost:3200
+         endpoint: 10.99.0.242:3200
          region: eu-central-2
          bucket: scw-eu-fr-v3
 
@@ -155,11 +155,11 @@ s3:
 apps:
     # If you're running a self hosted instance and wish to serve public links,
     # set this to the URL where your albums web app is running.
-    public-albums: http://localhost:3002
-    cast: http://localhost:3004
+    public-albums: http://10.99.0.242:3002
+    cast: http://10.99.0.242:3004
     # Set this to the URL where your accounts web app is running, primarily used for
     # passkey based 2FA.
-    accounts: http://localhost:3001
+    accounts: http://10.99.0.242:3001
 
 key:
       encryption: OSszWn1D13RxVsLp4b5TZuICvlt9JSWKwyP4YpFxCDc=
