@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2025-10-22T19:17:26.006Z
+date: 2025-10-22T19:23:37.306Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-22T18:47:24.209Z
@@ -117,7 +117,24 @@ PANEL_PORT=8080
 TZ=America/New_York
 ```
 
-# 2 · Creating an Admin User
+# 2 · Creating TrueNAS Groups and Datasets
+## 2.1 Adding a Group
+1. Navigate to **Credentials → Groups → Add**
+1. Use the **GID** of `1000`
+1. Give it a **Name**
+1. Click **Save**
+
+## Adding a Dataset
+1. Navigate to **Datasets**
+1. Click **Add Dataset**
+1. Give it a **Name**
+1. Edit the permissions on the dataset you just created
+1. Change the **Group** to the name of the group you created from step 2.1
+1. Check the box to **Apply Group**
+1. Check all the boxes under **Access** in the **Group** row to give full permissions
+1. Uncheck all the boxes in the **Other** row to remove permissions
+
+# 3 · Creating an Admin User
 To create an admin user run this command in the TrueNAS shell **as root**:
 
 ```bash
