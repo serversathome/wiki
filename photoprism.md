@@ -2,7 +2,7 @@
 title: PhotoPrism
 description: A guide to deploying PhotoPrism
 published: true
-date: 2025-10-22T21:27:40.338Z
+date: 2025-10-22T21:54:00.773Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-22T21:23:53.786Z
@@ -112,6 +112,10 @@ services:
       MARIADB_PASSWORD: "insecure"
       MARIADB_ROOT_PASSWORD: "insecure"
 ```
+
+> For information about all of the environment variables, [see the docs](https://docs.photoprism.app/getting-started/config-options/)
+{.is-info}
+
 
 ### env File
 ```yaml
