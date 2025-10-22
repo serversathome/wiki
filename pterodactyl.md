@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2025-10-22T19:24:51.737Z
+date: 2025-10-22T19:25:10.210Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-22T18:47:24.209Z
@@ -109,7 +109,7 @@ networks:
       com.docker.network.bridge.name: wings0
 ```
 
-# 1.1 env Variables
+## 1.1 env Variables
 
 ```yaml
 CONFIG_VOLUME=/mnt/tank/configs/pterodactyl
