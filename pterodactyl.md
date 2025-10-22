@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2025-10-22T20:05:12.587Z
+date: 2025-10-22T20:33:40.169Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-22T18:47:24.209Z
@@ -141,8 +141,6 @@ To create an admin user run this command in the TrueNAS shell **as root**:
 ```bash
 docker exec -it pterodactyl_panel php artisan p:user:make
 ```
-> Be sure to change the values above to the user you want to create!
-{.is-warning}
 
 # 4 · Reverse Proxy
 1. Using whichever reverse proxy you want, create an entry for the Panel
@@ -152,5 +150,14 @@ docker exec -it pterodactyl_panel php artisan p:user:make
 # 5 · Creating a Node (Wings)
 1. Navigate to the **Locations** tab in the left pane and click **Create New** in the top right
 1. Navigate to **Nodes** and click **Create New** in the top right
+ ## Basic Details
 1. Give it a name
 1. Set the FQDN to the second FQDN you created in step 4
+1. Set **Behind Proxy** to **Behind Proxy**
+## Configuration
+1. Give it a **Total Memory**
+1. Set the **Memory Over-Allocation** to `0`
+1. Set **Total Disk Space**
+1. Set the **Disk Over-Allocation** to `0`
+1. Set the **Daemon Port** to `443`
+1. Click **Create Node**
