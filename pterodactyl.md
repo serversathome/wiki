@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2025-10-22T19:25:37.166Z
+date: 2025-10-22T19:37:00.830Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-22T18:47:24.209Z
@@ -115,6 +115,7 @@ networks:
 CONFIG_VOLUME=/mnt/tank/configs/pterodactyl
 PANEL_PORT=8080
 TZ=America/New_York
+FQDN=
 ```
 
 # 2 · Creating TrueNAS Groups and Datasets
