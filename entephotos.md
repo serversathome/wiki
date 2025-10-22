@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-21T17:18:56.945Z
+date: 2025-10-22T09:56:38.244Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -121,7 +121,7 @@ s3:
       # Set this to false if using subdomain-style URL. This is set to true for ensuring compatibility with MinIO when SSL is enabled.
       use_path_style_urls: true
       b2-eu-cen:
-         # Uncomment the below configuration to override the top-level configuration 
+         # Uncomment the below configuration to override the top-level configuration
          # are_local_buckets: true
          # use_path_style_urls: true
          key: minio-user-Av/ztrFm
@@ -163,6 +163,18 @@ key:
 
 jwt:
       secret: rV48t6COlobRUUUWUnD8vSdsXA_dXa2s_Xmt9A_TCqM=
+
+
+internal:
+    admins:
+        - 1580559962386438
+
+internal:
+    hardcoded-ott:
+        emails:
+            - "example@example.org,123456"
+        local-domain-suffix: "@example.org"
+        local-domain-value: 123456
 ```
 # 2 · Signing Up
 1. Navigate to `http://{IP}:3000` 
