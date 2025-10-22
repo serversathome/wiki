@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2025-10-22T19:56:38.414Z
+date: 2025-10-22T19:59:50.720Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-22T18:47:24.209Z
@@ -148,3 +148,7 @@ docker exec -it pterodactyl_panel php artisan p:user:make
 1. Using whichever reverse proxy you want, create an entry for the Panel
 1. Edit the `.env` variables in the docker compose file and use the new FQDN you created
 1. Create a second entry for `wings` pointed at the IP of your server and port `8443`
+
+# 5 · Creating a Node (Wings)
+1. Navigate to **Nodes** and click **Create New** in the top right
+1. 
