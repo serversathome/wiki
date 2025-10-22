@@ -2,7 +2,7 @@
 title: PhotoPrism
 description: A guide to deploying PhotoPrism
 published: true
-date: 2025-10-22T21:24:35.631Z
+date: 2025-10-22T21:27:40.338Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-22T21:23:53.786Z
@@ -16,11 +16,11 @@ PhotoPrism® is an AI-Powered Photos App for the Decentralized Web. It makes use
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
-1. Set the **Database Password** to something secure
-1. Set the **Admin Token** to enable to admin console
-1. Set the **Certificate ID** to `truenas_default Certificate`
-1. Set the **Vaultwarden Data Storage** to **Host Path**
-1. Set the **Vaultwarden Postgres Data Storage** to **Host Path** and select the box for **Automatic Permissions**
+1. Set the **Site URL** to either your local IP or a FQDN
+1. Set the **Admin Password** 
+1. Set the **Photoprism Import Storage** to **Host Path**
+1. Set the **Photoprism Storage** to **Host Path**
+1. Set the **Photoprism Originals Storage** to **Host Path**
 
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
