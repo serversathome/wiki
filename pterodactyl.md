@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2025-10-22T19:39:15.003Z
+date: 2025-10-22T19:46:23.840Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-22T18:47:24.209Z
@@ -139,13 +139,7 @@ FQDN=
 To create an admin user run this command in the TrueNAS shell **as root**:
 
 ```bash
-docker compose run --rm panel php artisan p:user:make \
-  --email=example@gmail.com \
-  --username=admin \
-  --name-first=First \
-  --name-last=Last \
-  --password=changeme \
-  --admin=1 --no-password
+docker exec -it pterodactyl_panel php artisan p:user:make
 ```
 > Be sure to change the values above to the user you want to create!
 {.is-warning}
