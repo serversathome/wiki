@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2025-10-22T19:23:37.306Z
+date: 2025-10-22T19:24:51.737Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-22T18:47:24.209Z
@@ -149,4 +149,5 @@ docker compose run --rm panel php artisan p:user:make \
 > Be sure to change the values above to the user you want to create!
 {.is-warning}
 
-
+# 4 · Reverse Proxy
+1. 
