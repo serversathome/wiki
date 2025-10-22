@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2025-10-22T20:02:32.082Z
+date: 2025-10-22T20:05:12.587Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-22T18:47:24.209Z
@@ -150,6 +150,7 @@ docker exec -it pterodactyl_panel php artisan p:user:make
 1. Create a second entry for `wings` pointed at the IP of your server and port `8443`
 
 # 5 · Creating a Node (Wings)
+1. Navigate to the **Locations** tab in the left pane and click **Create New** in the top right
 1. Navigate to **Nodes** and click **Create New** in the top right
 1. Give it a name
 1. Set the FQDN to the second FQDN you created in step 4
