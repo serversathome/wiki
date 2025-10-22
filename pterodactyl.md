@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2025-10-22T19:37:00.830Z
+date: 2025-10-22T19:39:15.003Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-22T18:47:24.209Z
@@ -62,7 +62,7 @@ services:
       DB_HOST: db
       DB_PORT: 3306
       DB_USERNAME: pterodactyl 
-      DB_PASSWORD: pterodactyl
+      DB_PASSWORD: pterodactyl!
       CACHE_DRIVER: redis
       SESSION_DRIVER: redis
       QUEUE_DRIVER: redis
