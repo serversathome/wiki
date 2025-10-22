@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2025-10-22T19:25:10.210Z
+date: 2025-10-22T19:25:37.166Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-22T18:47:24.209Z
@@ -124,7 +124,7 @@ TZ=America/New_York
 1. Give it a **Name**
 1. Click **Save**
 
-## Adding a Dataset
+## 2.2 Adding a Dataset
 1. Navigate to **Datasets**
 1. Click **Add Dataset**
 1. Give it a **Name**
