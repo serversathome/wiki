@@ -2,7 +2,7 @@
 title: PhotoPrism
 description: A guide to deploying PhotoPrism
 published: true
-date: 2025-10-22T21:23:53.786Z
+date: 2025-10-22T21:24:35.631Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-22T21:23:53.786Z
@@ -47,7 +47,7 @@ services:
       PHOTOPRISM_DEFAULT_TLS: "true"               
       PHOTOPRISM_DEFAULT_LOCALE: "en"               
       PHOTOPRISM_PLACES_LOCALE: "local"           
-      PHOTOPRISM_SITE_URL: "http://${HOST}:2342/"
+      PHOTOPRISM_SITE_URL: ${HOST}
       PHOTOPRISM_SITE_TITLE: "PhotoPrism"
       PHOTOPRISM_SITE_CAPTION: "AI-Powered Photos App"
       PHOTOPRISM_SITE_DESCRIPTION: ""               
@@ -115,6 +115,6 @@ services:
 
 ### env File
 ```yaml
-HOST=10.99.0.242
+HOST=http://10.99.0.242:2342
 CONFIG_PATH=/mnt/tank/configs/photoprism
 ```
