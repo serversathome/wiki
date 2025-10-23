@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-23T13:37:11.538Z
+date: 2025-10-23T13:40:25.339Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -175,3 +175,9 @@ jwt:
 1. Click **Verify** after entering your code
 1. Save your recovery key as it will not be shown again
 1. Click "Continue with free plan 10 GB free forever"
+
+# 3 · Removing Storage Limits
+1. In the TrueNAS shell, run this command **as root**:
+```bash
+docker exec -i ente-postgres-1 psql -U pguser -d ente_db -c "INSERT INTO storage_bonus (bonus_id, user_id, storage, type, valid_till) VALUES ('self-hosted-myself', (SELECT user_id FROM users LIMIT 1), 109951162777600, 'ADD_ON_SUPPORT', 0) ON CONFLICT (bonus_id) DO UPDATE SET storage = EXCLUDED.storage;"
+```
