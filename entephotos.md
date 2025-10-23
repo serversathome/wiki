@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-23T13:56:36.909Z
+date: 2025-10-23T14:18:32.986Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -74,13 +74,30 @@ services:
   minio:
     image: minio/minio
     ports:
-      - "3200:3200"
-    environment:
-      MINIO_ROOT_USER: minio-user-Av/ztrFm
-      MINIO_ROOT_PASSWORD: Jczt/BEywUms1wRKJ8BbaMmaxyGy
+      - 3200:3200 # MinIO API
+      # - 3201:3201 # MinIO Console (uncomment to access externally)
+    env_file:
+      - .env
     command: server /data --address ":3200" --console-address ":3201"
     volumes:
-      - "${CONFIG_DIR}/minio-data:/data"
+      - minio-data:/data
+    post_start:
+      - command: |
+          sh -c '
+          #!/bin/sh
+
+          while ! mc alias set h0 http://minio:3200 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD} 2>/dev/null
+          do
+            echo "Waiting for minio..."
+            sleep 0.5
+          done
+
+          cd /data
+
+          mc mb -p b2-eu-cen
+          mc mb -p wasabi-eu-central-2-v3
+          mc mb -p scw-eu-fr-v3
+          '
 ```
 
 ## env File
