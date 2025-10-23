@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-23T14:23:11.000Z
+date: 2025-10-23T18:39:07.231Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -174,7 +174,6 @@ jwt:
     INFO[0074]email.go:202 sendViaTransmail Skipping sending email to test@test.com: Verification code: 068638
     ```
 1. Click **Verify** after entering your code
-1. Save your recovery key as it will not be shown again
 1. Click "Continue with free plan 10 GB free forever"
 
 # 3 · Removing Storage Limits
