@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-22T09:56:38.244Z
+date: 2025-10-23T13:37:11.538Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -163,18 +163,6 @@ key:
 
 jwt:
       secret: rV48t6COlobRUUUWUnD8vSdsXA_dXa2s_Xmt9A_TCqM=
-
-
-internal:
-    admins:
-        - 1580559962386438
-
-internal:
-    hardcoded-ott:
-        emails:
-            - "example@example.org,123456"
-        local-domain-suffix: "@example.org"
-        local-domain-value: 123456
 ```
 # 2 · Signing Up
 1. Navigate to `http://{IP}:3000` 
