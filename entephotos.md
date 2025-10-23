@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-23T13:40:25.339Z
+date: 2025-10-23T13:47:52.114Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -25,15 +25,15 @@ services:
   museum:
     image: ghcr.io/ente-io/server
     ports:
-      - 8080:8080 # API
+      - ${PORT}:8080 # API
     depends_on:
       postgres:
         condition: service_healthy
     volumes:
-      - ./museum.yaml:/museum.yaml:ro
-      - ./data:/data:ro
+      - ${CONFIG_DIR}/museum.yaml:/museum.yaml:ro
+      - ${CONFIG_DIR}/data:/data:ro
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://10.99.0.242:8080/ping"]
+      test: ["CMD", "curl", "--fail", "http://${IP}:${PORT}/ping"]
       interval: 60s
       timeout: 5s
       retries: 3
@@ -51,14 +51,10 @@ services:
     # Uncomment what you need to tweak.
     ports:
       - 3000:3000 # Photos web app
-      # - 3001:3001 # Accounts
       - 3002:3002 # Public albums
-      # - 3003:3003 # Auth
-      # - 3004:3004 # Cast
-    # Modify these values to your custom subdomains, if using any
-    environment:
-      ENTE_API_ORIGIN: http://10.99.0.242:8080
-      ENTE_ALBUMS_ORIGIN: https://10.99.0.242:3002
+
+      ENTE_API_ORIGIN: http://${IP}:${PORT}
+      ENTE_ALBUMS_ORIGIN: https://${IP}:3002
 
   postgres:
     image: postgres:15
@@ -71,20 +67,18 @@ services:
       start_period: 40s
       start_interval: 1s
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - ${CONFIG_DIR}/postgres-data:/var/lib/postgresql/data
 
   minio:
     image: minio/minio
     ports:
-      - 3200:3200 # MinIO API
-      # Uncomment to enable MinIO Web UI      
-      # - 3201:3201
+      - 3200:3200
     environment:
       MINIO_ROOT_USER: minio-user-Av/ztrFm
       MINIO_ROOT_PASSWORD: Jczt/BEywUms1wRKJ8BbaMmaxyGy
     command: server /data --address ":3200" --console-address ":3201"
     volumes:
-      - ./minio-data:/data
+      - ${CONFIG_DIR}/minio-data:/data
     post_start:
       - command: |
           sh -c '
@@ -102,6 +96,13 @@ services:
           mc mb -p wasabi-eu-central-2-v3
           mc mb -p scw-eu-fr-v3
           '
+```
+
+## env File
+```yaml
+CONFIG_DIR=/mnt/tank/configs/ente
+IP=10.99.0.242
+PORT=8080
 ```
 
 ## Museum.yaml
@@ -126,7 +127,7 @@ s3:
          # use_path_style_urls: true
          key: minio-user-Av/ztrFm
          secret: Jczt/BEywUms1wRKJ8BbaMmaxyGy
-         endpoint: 10.99.0.242:3200
+         endpoint: ${IP}:3200
          region: eu-central-2
          bucket: b2-eu-cen
       wasabi-eu-central-2-v3:
@@ -134,7 +135,7 @@ s3:
          # use_path_style_urls: true
          key: minio-user-Av/ztrFm
          secret: Jczt/BEywUms1wRKJ8BbaMmaxyGy
-         endpoint: 10.99.0.242:3200
+         endpoint: ${IP}:3200
          region: eu-central-2
          bucket: wasabi-eu-central-2-v3
          compliance: false
@@ -143,7 +144,7 @@ s3:
          # use_path_style_urls: true
          key: minio-user-Av/ztrFm
          secret: Jczt/BEywUms1wRKJ8BbaMmaxyGy
-         endpoint: 10.99.0.242:3200
+         endpoint: ${IP}:3200
          region: eu-central-2
          bucket: scw-eu-fr-v3
 
@@ -151,11 +152,11 @@ s3:
 apps:
     # If you're running a self hosted instance and wish to serve public links,
     # set this to the URL where your albums web app is running.
-    public-albums: http://10.99.0.242:3002
-    cast: http://10.99.0.242:3004
+    public-albums: http://${IP}:3002
+    cast: http://${IP}:3004
     # Set this to the URL where your accounts web app is running, primarily used for
     # passkey based 2FA.
-    accounts: http://10.99.0.242:3001
+    accounts: http://${IP}:3001
 
 key:
       encryption: OSszWn1D13RxVsLp4b5TZuICvlt9JSWKwyP4YpFxCDc=
