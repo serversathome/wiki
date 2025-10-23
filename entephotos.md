@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-23T14:19:49.520Z
+date: 2025-10-23T14:20:20.563Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -80,7 +80,7 @@ services:
       MINIO_ROOT_PASSWORD: Jczt/BEywUms1wRKJ8BbaMmaxyGy
     command: server /data --address ":3200" --console-address ":3201"
     volumes:
-      - ./minio-data:/data
+      - ${CONFIG_DIR}/minio-data:/data
     post_start:
       - command: |
           sh -c '
