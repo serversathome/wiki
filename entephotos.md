@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-23T13:47:52.114Z
+date: 2025-10-23T13:56:36.909Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -25,15 +25,15 @@ services:
   museum:
     image: ghcr.io/ente-io/server
     ports:
-      - ${PORT}:8080 # API
+      - "${PORT}:8080" # API
     depends_on:
       postgres:
         condition: service_healthy
     volumes:
-      - ${CONFIG_DIR}/museum.yaml:/museum.yaml:ro
-      - ${CONFIG_DIR}/data:/data:ro
+      - "./museum.yaml:/museum.yaml"
+      - "${CONFIG_DIR}/data:/data"
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://${IP}:${PORT}/ping"]
+      test: ["CMD", "curl", "--fail", "http://127.0.0.1:8080/ping"]
       interval: 60s
       timeout: 5s
       retries: 3
@@ -43,18 +43,18 @@ services:
   socat:
     image: alpine/socat
     network_mode: service:museum
-    depends_on: [museum]
+    depends_on:
+      - museum
     command: "TCP-LISTEN:3200,fork,reuseaddr TCP:minio:3200"
 
   web:
     image: ghcr.io/ente-io/web
-    # Uncomment what you need to tweak.
     ports:
-      - 3000:3000 # Photos web app
-      - 3002:3002 # Public albums
-
-      ENTE_API_ORIGIN: http://${IP}:${PORT}
-      ENTE_ALBUMS_ORIGIN: https://${IP}:3002
+      - "3000:3000" # Photos web app
+      - "3002:3002" # Public albums
+    environment:
+      ENTE_API_ORIGIN: "http://${IP}:${PORT}"
+      ENTE_ALBUMS_ORIGIN: "https://${IP}:3002"
 
   postgres:
     image: postgres:15
@@ -63,39 +63,24 @@ services:
       POSTGRES_PASSWORD: eXa6yOupIVyGXe02XnwTJX8ZjsfX
       POSTGRES_DB: ente_db
     healthcheck:
-      test: pg_isready -q -d ente_db -U pguser
+      test: ["CMD-SHELL", "pg_isready -q -d ente_db -U pguser"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
       start_period: 40s
-      start_interval: 1s
     volumes:
-      - ${CONFIG_DIR}/postgres-data:/var/lib/postgresql/data
+      - "${CONFIG_DIR}/postgres-data:/var/lib/postgresql/data"
 
   minio:
     image: minio/minio
     ports:
-      - 3200:3200
+      - "3200:3200"
     environment:
       MINIO_ROOT_USER: minio-user-Av/ztrFm
       MINIO_ROOT_PASSWORD: Jczt/BEywUms1wRKJ8BbaMmaxyGy
     command: server /data --address ":3200" --console-address ":3201"
     volumes:
-      - ${CONFIG_DIR}/minio-data:/data
-    post_start:
-      - command: |
-          sh -c '
-          #!/bin/sh
-
-          while ! mc alias set h0 http://minio:3200 minio-user-Av/ztrFm Jczt/BEywUms1wRKJ8BbaMmaxyGy 2>/dev/null
-          do
-            echo "Waiting for minio..."
-            sleep 0.5
-          done
-
-          cd /data
-
-          mc mb -p b2-eu-cen
-          mc mb -p wasabi-eu-central-2-v3
-          mc mb -p scw-eu-fr-v3
-          '
+      - "${CONFIG_DIR}/minio-data:/data"
 ```
 
 ## env File
