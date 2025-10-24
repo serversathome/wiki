@@ -2,7 +2,7 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2025-10-15T11:47:11.914Z
+date: 2025-10-24T18:38:45.057Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-13T15:42:09.466Z
@@ -107,7 +107,3 @@ services:
 
 ## 4.3 Plex
 I do not have Plex, but if any of *you* do and you have these linked please [edit this page](https://github.com/serversathome/wiki/blob/main/dispatcharr.md) and add those instructions here!
-
-
-# <img src="/patreon-light.png" class="tab-icon"> 5 · Video
-[![](/2025-10-13-add-live-tv-to-your-media-server-promo-card.png)](https://www.patreon.com/posts/add-live-tv-to-141152111)
