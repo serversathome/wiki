@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-23T18:39:07.231Z
+date: 2025-10-24T15:16:12.793Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -96,14 +96,14 @@ services:
           '
 ```
 
-## env File
+## 1.2 env File
 ```yaml
 CONFIG_DIR=/mnt/tank/configs/ente
 IP=10.99.0.242
 PORT=8080
 ```
 
-## Museum.yaml
+## 1.3 Museum.yaml
 > For `museum.yaml` below, replace `${IP}` with the address of your server!
 {.is-danger}
 
