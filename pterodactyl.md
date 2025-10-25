@@ -2,11 +2,17 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2025-10-22T20:33:40.169Z
+date: 2025-10-25T10:13:24.234Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-22T18:47:24.209Z
 ---
+
+> DOES NOT WORK
+{.is-danger}
+
+
+
 
 # ![](/pterodactyl.png){class="tab-icon"} What is Pterodactyl?
 
