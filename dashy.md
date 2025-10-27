@@ -2,7 +2,7 @@
 title: Dashy
 description: A guide to deploying Dashy
 published: true
-date: 2025-10-27T21:24:31.267Z
+date: 2025-10-27T21:24:46.963Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-27T20:57:44.719Z
@@ -18,7 +18,7 @@ A self-hostable personal dashboard built for you. Includes status-checking, widg
 1. Set the **Dashy Config Storage** to **Host Path**
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+### Docker Compose
 ```yaml
 services:
   dashy:
