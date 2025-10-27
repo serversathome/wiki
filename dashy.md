@@ -2,7 +2,7 @@
 title: Dashy
 description: A guide to deploying Dashy
 published: true
-date: 2025-10-27T21:24:18.657Z
+date: 2025-10-27T21:24:31.267Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-27T20:57:44.719Z
@@ -36,7 +36,7 @@ services:
     restart: unless-stopped
 ```
 
-## Sample Config File
+### Sample Config File
 ```yaml
 # my-config.yml
 # Blank Dashy configuration template
