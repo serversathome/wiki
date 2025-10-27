@@ -2,7 +2,7 @@
 title: Dashy
 description: A guide to deploying Dashy
 published: true
-date: 2025-10-27T20:57:44.719Z
+date: 2025-10-27T21:20:08.122Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-27T20:57:44.719Z
@@ -24,8 +24,8 @@ services:
   dashy:
     container_name: Dashy
     image: lissy93/dashy
-    volumes:
-      - /mnt/tank/configs/dashy/my-config.yml:/app/user-data/conf.yml
+    # volumes:
+      # - /mnt/tank/configs/dashy/my-config.yml:/app/user-data/conf.yml
       # - /path/to/item-icons:/app/user-data/item-icons/
     ports:
       - 4000:8080
