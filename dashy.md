@@ -2,7 +2,7 @@
 title: Dashy
 description: A guide to deploying Dashy
 published: true
-date: 2025-10-27T21:20:08.122Z
+date: 2025-10-27T21:24:18.657Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-27T20:57:44.719Z
@@ -34,4 +34,29 @@ services:
       - UID=568
       - GID=568
     restart: unless-stopped
+```
+
+## Sample Config File
+```yaml
+# my-config.yml
+# Blank Dashy configuration template
+# Docs: https://dashy.to/docs/configuring
+
+appConfig:
+  theme: colorful
+  layout: auto
+  title: "My Dashboard"
+  iconSize: medium
+  headerStyle: boxed
+  hideVersion: true
+
+pageInfo:
+  title: "My Dashboard"
+  description: "Centralized access to all my self-hosted services"
+  navLinks: []
+
+sections:
+  - name: "Section 1"
+    icon: "fa-solid fa-folder"
+    items: []
 ```
