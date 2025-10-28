@@ -81,6 +81,9 @@ services:
     healthcheck:
       disable: false
     restart: unless-stopped
+
+volumes:
+  model-cache:
 ```
 
 ### env Variables
@@ -179,6 +182,9 @@ services:
     healthcheck:
       disable: false
     restart: unless-stopped
+
+volumes:
+  model-cache:
 ```
 
 ### env Variables
@@ -285,6 +291,9 @@ services:
     healthcheck:
       disable: false
     restart: unless-stopped
+
+volumes:
+  model-cache:
 ```
 
 > The GPU must be supported by ROCm. If it isn't officially supported, you can attempt to use the `HSA_OVERRIDE_GFX_VERSION` environmental variable: `HSA_OVERRIDE_GFX_VERSION=<a supported version, e.g. 10.3.0>`. If this doesn't work, you might need to also set `HSA_USE_SVM=0`.
@@ -400,6 +409,9 @@ services:
     healthcheck:
       disable: false
     restart: unless-stopped
+
+volumes:
+  model-cache:
 ```
 
 > Integrated GPUs are more likely to experience issues than discrete GPUs, especially for older processors or servers with low RAM.
@@ -501,6 +513,9 @@ services:
     healthcheck:
       disable: false
     restart: unless-stopped
+
+volumes:
+  model-cache:
 ```
 
 > In case your graphics card, dedicated or integrated, doesn't support machine learning, you can still accelerate transcoding!
