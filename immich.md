@@ -78,8 +78,7 @@ services:
       POSTGRES_INITDB_ARGS: '--data-checksums'
     volumes:
       - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
-    healthcheck:
-      disable: false
+    shm_size: 128mb
     restart: unless-stopped
 
 volumes:
@@ -179,8 +178,7 @@ services:
       POSTGRES_INITDB_ARGS: '--data-checksums'
     volumes:
       - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
-    healthcheck:
-      disable: false
+    shm_size: 128mb
     restart: unless-stopped
 
 volumes:
@@ -288,8 +286,7 @@ services:
       POSTGRES_INITDB_ARGS: '--data-checksums'
     volumes:
       - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
-    healthcheck:
-      disable: false
+    shm_size: 128mb
     restart: unless-stopped
 
 volumes:
@@ -406,8 +403,7 @@ services:
       POSTGRES_INITDB_ARGS: '--data-checksums'
     volumes:
       - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
-    healthcheck:
-      disable: false
+    shm_size: 128mb
     restart: unless-stopped
 
 volumes:
@@ -510,8 +506,7 @@ services:
       POSTGRES_INITDB_ARGS: '--data-checksums'
     volumes:
       - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
-    healthcheck:
-      disable: false
+    shm_size: 128mb
     restart: unless-stopped
 
 volumes:
