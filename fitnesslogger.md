@@ -2,7 +2,7 @@
 title: Fitness Logger
 description: A guide to deploying Fitness Logger
 published: true
-date: 2025-10-28T18:17:19.682Z
+date: 2025-10-28T18:18:07.787Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-28T18:17:19.681Z
@@ -49,7 +49,7 @@ services:
     image: serversathome/fitness-frontend:latest
     container_name: fitness-frontend
     ports:
-      - "80:80"
+      - "8085:80"
     depends_on:
       - backend
     restart: unless-stopped
