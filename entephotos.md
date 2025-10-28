@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2025-10-24T15:16:12.793Z
+date: 2025-10-28T17:13:37.676Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-21T14:47:39.040Z
@@ -49,8 +49,8 @@ services:
       - "3000:3000" # Photos web app
       - "3002:3002" # Public albums
     environment:
-      ENTE_API_ORIGIN: "http://${IP}:${PORT}"
-      ENTE_ALBUMS_ORIGIN: "https://${IP}:3002"
+      ENTE_API_ORIGIN: "${IP}:${PORT}"
+      ENTE_ALBUMS_ORIGIN: "${IP}:3002"
 
   postgres:
     image: postgres:15
@@ -99,7 +99,7 @@ services:
 ## 1.2 env File
 ```yaml
 CONFIG_DIR=/mnt/tank/configs/ente
-IP=10.99.0.242
+IP=http://10.99.0.242
 PORT=8080
 ```
 
