@@ -43,6 +43,8 @@ services:
     volumes:
       - ${UPLOAD_LOCATION}:/data
       - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
     ports:
       - '2283:2283'
     depends_on:
@@ -57,6 +59,8 @@ services:
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
     volumes:
       - model-cache:/cache
+    env_file:
+      - .env
     restart: unless-stopped
     healthcheck:
       disable: false
@@ -137,6 +141,8 @@ services:
     volumes:
       - ${UPLOAD_LOCATION}:/data
       - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
     ports:
       - '2283:2283'
     depends_on:
@@ -159,6 +165,8 @@ services:
                 - gpu
     volumes:
       - model-cache:/cache
+    env_file:
+      - .env
     restart: unless-stopped
     healthcheck:
       disable: false
@@ -250,6 +258,8 @@ services:
     volumes:
       - ${UPLOAD_LOCATION}:/data
       - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
     ports:
       - '2283:2283'
     depends_on:
@@ -269,6 +279,8 @@ services:
       - /dev/kfd:/dev/kfd
     volumes:
       - model-cache:/cache
+    env_file:
+      - .env
     restart: unless-stopped
     healthcheck:
       disable: false
@@ -367,6 +379,8 @@ services:
     volumes:
       - ${UPLOAD_LOCATION}:/data
       - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
     ports:
       - '2283:2283'
     depends_on:
@@ -388,6 +402,8 @@ services:
     volumes:
       - model-cache:/cache
       - /dev/bus/usb:/dev/bus/usb
+    env_file:
+      - .env
     restart: unless-stopped
     healthcheck:
       disable: false
@@ -479,6 +495,8 @@ services:
     volumes:
       - ${UPLOAD_LOCATION}:/data
       - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
     ports:
       - '2283:2283'
     depends_on:
@@ -493,6 +511,8 @@ services:
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
     volumes:
       - model-cache:/cache
+    env_file:
+      - .env
     restart: unless-stopped
     healthcheck:
       disable: false
