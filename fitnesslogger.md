@@ -2,7 +2,7 @@
 title: Fitness Logger
 description: A guide to deploying Fitness Logger
 published: true
-date: 2025-10-28T18:18:07.787Z
+date: 2025-10-28T18:44:09.902Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-28T18:17:19.681Z
@@ -54,3 +54,7 @@ services:
       - backend
     restart: unless-stopped
 ```
+
+# 2 · Logging In
+1. Navigate to http://{IP}:8085
+1. The default user is `admin` and the default password is `admin123`
