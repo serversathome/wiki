@@ -65,7 +65,7 @@ services:
     container_name: immich_redis
     image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
     healthcheck:
-      disable: false
+      test: redis-cli ping || exit 1
     restart: unless-stopped
 
   database:
@@ -166,7 +166,7 @@ services:
     container_name: immich_redis
     image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
     healthcheck:
-      disable: false
+      test: redis-cli ping || exit 1
     restart: unless-stopped
 
   database:
@@ -275,7 +275,7 @@ services:
     container_name: immich_redis
     image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
     healthcheck:
-      disable: false
+      test: redis-cli ping || exit 1
     restart: unless-stopped
 
   database:
@@ -393,7 +393,7 @@ services:
     container_name: immich_redis
     image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
     healthcheck:
-      disable: false
+      test: redis-cli ping || exit 1
     restart: unless-stopped
 
   database:
@@ -497,7 +497,7 @@ services:
     container_name: immich_redis
     image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
     healthcheck:
-      disable: false
+      test: redis-cli ping || exit 1
     restart: unless-stopped
 
   database:
