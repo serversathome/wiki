@@ -2,7 +2,7 @@
 title: Fitness Logger
 description: A guide to deploying Fitness Logger
 published: true
-date: 2025-10-28T18:44:09.902Z
+date: 2025-10-28T20:49:46.661Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-28T18:17:19.681Z
@@ -44,6 +44,8 @@ services:
       db:
         condition: service_healthy
     restart: unless-stopped
+    environment:
+  		- REGISTRATION_ENABLED=true
 
   frontend:
     image: serversathome/fitness-frontend:latest
