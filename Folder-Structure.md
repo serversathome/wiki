@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure from Trash Guides to allow for hardlinks within the arr stack
 published: true
-date: 2025-07-11T12:24:28.477Z
+date: 2025-11-03T11:32:25.608Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:27:24.035Z
@@ -121,7 +121,7 @@ At the end of the script it will prompt you would to deploy the containers. If y
 
 If you would like to use a container management UI as a front-end manager for this script instead of CLI, run the script in its entirety (selecting `yes` to launch the containers), then run this commmand in the shell (assuming your pool is named `tank`):
 ```bash
-cd /mnt/tank/docker && docker compose down && cat docker-compose.yml
+sudo cd /mnt/tank/docker && docker compose down && cat docker-compose.yml
 ```
 
 This will stop all containers and output the docker compose file for you to paste as a new stack into Dockge. Paste the compose file and launch the containers and they should instantly start, now being managed within Dockge.
