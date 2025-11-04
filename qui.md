@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2025-11-04T16:13:05.422Z
+date: 2025-11-04T16:15:09.345Z
 tags: 
 editor: markdown
 dateCreated: 2025-09-22T15:28:55.036Z
@@ -31,3 +31,4 @@ services:
 
 
 # <img src="/patreon-light.png" class="tab-icon"> 3 · Video
+[![](/2025-09-29-qui-a-better-qbit-interface-promo-card.png)](https://www.patreon.com/posts/qui-better-qbit-139484651)
