@@ -2,7 +2,7 @@
 title: GPU Hot
 description: A guide to deploying GPU Hot
 published: true
-date: 2025-11-04T21:48:09.183Z
+date: 2025-11-04T22:03:22.672Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-04T21:48:09.183Z
@@ -27,4 +27,5 @@ services:
     ports:
       - 1312:1312
     image: ghcr.io/psalias2006/gpu-hot:latest
+    pid: host
 ```
