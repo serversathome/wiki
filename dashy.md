@@ -2,7 +2,7 @@
 title: Dashy
 description: A guide to deploying Dashy
 published: true
-date: 2025-10-28T14:42:37.866Z
+date: 2025-11-04T01:18:39.407Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-27T20:57:44.719Z
@@ -37,9 +37,6 @@ services:
 
 ### Sample Config File
 ```yaml
-# my-config.yml
-# Blank Dashy configuration template
-# Docs: https://dashy.to/docs/configuring
 
 appConfig:
   theme: colorful
