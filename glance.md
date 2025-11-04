@@ -2,7 +2,7 @@
 title: Glance
 description: A guide to deploying Glance dashboard
 published: true
-date: 2025-11-04T14:38:18.641Z
+date: 2025-11-04T15:24:28.183Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-04T14:22:18.630Z
@@ -20,6 +20,7 @@ services:
     restart: unless-stopped
     volumes:
       - /mnt/tank/configs/glance/:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 8080:8080
 ```
