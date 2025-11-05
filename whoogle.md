@@ -2,7 +2,7 @@
 title: Whoogle
 description: A guide to deploying Whoogle
 published: true
-date: 2025-11-05T10:58:43.725Z
+date: 2025-11-05T11:02:30.763Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-05T10:58:43.725Z
@@ -40,3 +40,7 @@ services:
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 1. No changes needed, just deploy!
+
+# 2 · Add Custom CSS
+To make Whoogle look better, try some of the user submitted CSS from GitHub:
+https://github.com/benbusby/whoogle-search/wiki/User-Contributed-CSS-Themes
