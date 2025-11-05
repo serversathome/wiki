@@ -2,7 +2,7 @@
 title: Install Instructions
 description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2025-07-09T12:25:03.028Z
+date: 2025-11-05T20:55:43.889Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:29:57.064Z
@@ -23,7 +23,7 @@ Follow the steps in this order to make the install go as smoothly as possible.
 | 7   | Install Flaresolverr | [Flaresolverr](/Flaresolverr) |
 | 8   | Install Prowlarr | [Prowlarr](/Prowlarr) |
 | 9   | Install Recyclarr or Profilarr | [Recyclarr](/Recyclarr) / [Profilarr](/profilarr) |
-| 10  | Install Emby/Jellyfin | [Emby/Jellyfin](/Emby) |
+| 10  | Install Emby/Jellyfin | [Emby](/Emby)/[Jellyfin](/jellyfin) |
 | 11  | Install Unpackerr | [Unpackerr](/Unpackerr) |
 | 12  | Install Jellyseerr | [Jellyseerr](/Jellyseerr) |
 | 13  | Install Bazarr | [Bazarr](/bazarr) |
