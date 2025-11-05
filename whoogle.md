@@ -2,7 +2,7 @@
 title: Whoogle
 description: A guide to deploying Whoogle
 published: true
-date: 2025-11-05T11:02:30.763Z
+date: 2025-11-05T11:08:06.011Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-05T10:58:43.725Z
@@ -44,3 +44,5 @@ services:
 # 2 · Add Custom CSS
 To make Whoogle look better, try some of the user submitted CSS from GitHub:
 https://github.com/benbusby/whoogle-search/wiki/User-Contributed-CSS-Themes
+
+(I like [Google Dark](https://github.com/benbusby/whoogle-search/wiki/User-Contributed-CSS-Themes#google-dark-by-treyg----screenshots))
