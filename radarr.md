@@ -2,7 +2,7 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-20T10:46:16.088Z
+date: 2025-11-05T15:47:12.240Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:32:11.647Z
@@ -16,7 +16,7 @@ Radarr is a **movie collection manager** for Usenet and BitTorrent. It monitors 
 <summary><strong>🚀 Quick‑Start Checklist</strong></summary>
 
 1. **Deploy container** (Docker Compose *or* TrueNAS Apps)
-2. **Create** `/media/movies` **root folder** in Radarr (Monitored → ✅)
+2. **Create** `/media/movies` **root folder** in Radarr
 3. **Add qBittorrent** as Download Client
 4. **Add Indexers via Prowlarr** so Radarr can actually find releases
 5. *(Optional)* Import Recyclarr profiles & advanced cleanup
