@@ -2,7 +2,7 @@
 title: Unpackerr
 description: A guide to installing Unpackerr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-11-06T16:42:37.024Z
+date: 2025-11-06T16:44:09.520Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:33:30.432Z
@@ -56,7 +56,7 @@ services:
       - UN_DIR_MODE=0755
       # Sonarr Config 
       - UN_SONARR_0_URL=http://sonarr:8989
-      - **UN_SONARR_0_API_KEY=YOUR_SONARR_API_KEY
+      - UN_SONARR_0_API_KEY=YOUR_SONARR_API_KEY
       - UN_SONARR_0_PATHS_0=/media/downloads
       - UN_SONARR_0_PROTOCOLS=torrent
       - UN_SONARR_0_TIMEOUT=10s
@@ -64,7 +64,7 @@ services:
       - UN_SONARR_0_DELETE_DELAY=5m
       # Radarr Config
       - UN_RADARR_0_URL=http://radarr:7878
-      - **UN_RADARR_0_API_KEY=YOUR_RADARR_API_KEY
+      - UN_RADARR_0_API_KEY=YOUR_RADARR_API_KEY
       - UN_RADARR_0_PATHS_0=/media/downloads
       - UN_RADARR_0_PROTOCOLS=torrent
       - UN_RADARR_0_TIMEOUT=10s
@@ -72,7 +72,7 @@ services:
       - UN_RADARR_0_DELETE_DELAY=5m
       # Lidarr Config
       - UN_LIDARR_0_URL=http://lidarr:8686
-      - **UN_LIDARR_0_API_KEY=YOUR_LIDARR_API_KEY
+      - UN_LIDARR_0_API_KEY=YOUR_LIDARR_API_KEY
       - UN_LIDARR_0_PATHS_0=/media/downloads
       - UN_LIDARR_0_PROTOCOLS=torrent
       - UN_LIDARR_0_TIMEOUT=10s
@@ -80,7 +80,7 @@ services:
       - UN_LIDARR_0_DELETE_DELAY=5m
       # Readarr Config
       - UN_READARR_0_URL=http://readarr:8787
-      - **UN_READARR_0_API_KEY=YOUR_READARR_API_KEY
+      - UN_READARR_0_API_KEY=YOUR_READARR_API_KEY
       - UN_READARR_0_PATHS_0=/media/downloads
       - UN_READARR_0_PROTOCOLS=torrent
       - UN_READARR_0_TIMEOUT=10s
