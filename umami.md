@@ -2,7 +2,7 @@
 title: Umami
 description: A guide to installing Umami in docker via compose
 published: true
-date: 2025-07-06T10:30:45.970Z
+date: 2025-11-07T10:51:37.022Z
 tags: 
 editor: markdown
 dateCreated: 2024-06-30T21:47:45.888Z
@@ -19,7 +19,7 @@ Umami is a simple, fast, privacy-focused, open-source analytics solution. Umami 
 ```yaml
 services:
  umami:
-   image: ghcr.io/umami-software/umami:postgresql-latest
+   image: ghcr.io/umami-software/umami:latest
    container_name: umami
    ports:
      - "3002:3000"
