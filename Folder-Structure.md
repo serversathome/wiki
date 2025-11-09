@@ -1,8 +1,8 @@
 ---
 title: Folder Structure
-description: Recommended folder structure from Trash Guides to allow for hardlinks within the arr stack
+description: Recommended folder structure to allow for hardlinks within the arr stack
 published: true
-date: 2025-11-09T12:35:20.645Z
+date: 2025-11-09T12:36:00.977Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:27:24.035Z
