@@ -2,17 +2,13 @@
 title: Portainer
 description: A guide to installing Portainer on Ubuntu Server LTS
 published: true
-date: 2025-06-08T18:39:26.465Z
+date: 2025-11-09T13:59:41.166Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:41:40.846Z
 ---
 
-![](/portainer2.png)
-
-![](https://wiki.hydrology.cc/portainerdash.png)
-
-# What is Portainer?
+# <img src="/portainer2.png" class="tab-icon"> What is Portainer?
 
 Portainer is a popular Docker UI that helps you visualize your containers, images, volumes and networks. Portainer helps you take control of the Docker resources on your machine, avoiding lengthy terminal commands.
 
