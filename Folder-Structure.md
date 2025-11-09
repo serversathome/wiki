@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure from Trash Guides to allow for hardlinks within the arr stack
 published: true
-date: 2025-11-03T11:34:36.641Z
+date: 2025-11-09T12:35:20.645Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:27:24.035Z
@@ -92,7 +92,7 @@ To run the script, execute this one-liner in the TrueNAS shell:
 sudo su -c "wget https://raw.githubusercontent.com/serversathome/ServersatHome/refs/heads/main/truenas-file-structure.sh && chmod +x truenas-file-structure.sh && bash truenas-file-structure.sh"
 ```
 
-The script will then ask you to choose the pool to install all the datasets to. 
+The script will then ask you to choose a pool to install the configs and the media datasets to. 
 
 > Make sure your pool name is all lowercase and has no spaces!
 {.is-danger}
@@ -109,7 +109,6 @@ cat /mnt/POOLNAME/docker/docker-compose.yml
 At the end of the script it will prompt you would to deploy the containers. If you select `yes`, this will execute a `docker compose up -d` to launch all the containers from the shell. From there the following steps will be executed:
 
 1. You will be prompted to the paste your wireguard VPN key so qBittorrent can launch immediately with no user intervention
-1. You will be prompted to sync recyclarr with radarr and sonarr. If you choose this, it will sync the 1080p and 4K profiles found in the [example recyclarr.yml](https://wiki.serversatho.me/en/Recyclarr#recyclarryml) file with radarr and sonarr. 
 1. The script will set `/media/downloads` as the default save path for qBittorrent
 1. The script will set the root folders for Radarr and Sonarr to the correct paths
 1. The script will print out a list of URLs for all running containers as well as the password generated to login to qBittorrent for the first time
