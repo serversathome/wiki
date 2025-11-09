@@ -2,7 +2,7 @@
 title: Portainer
 description: A guide to installing Portainer on Ubuntu Server LTS
 published: true
-date: 2025-11-09T13:59:41.166Z
+date: 2025-11-09T14:00:38.552Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:41:40.846Z
@@ -14,14 +14,14 @@ Portainer is a popular Docker UI that helps you visualize your containers, image
 
 # Installation
 # {.tabset}
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 ![](/screenshot_from_2024-11-08_11-29-50.png)
 
 1. Change **Portainer Data Storage** to **Host Path**. 
 1. Change the **Port** to 9443 since that is the default for Portainer and is referenced in all their documentation.
 
-## Docker
+## <img src="/docker.png" class="tab-icon"> Docker
 
 > Note that Docker has to be installed before you can follow these steps!
 {.is-warning}
