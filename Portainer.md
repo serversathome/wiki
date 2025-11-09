@@ -2,7 +2,7 @@
 title: Portainer
 description: A guide to installing Portainer on Ubuntu Server LTS
 published: true
-date: 2025-11-09T14:00:38.552Z
+date: 2025-11-09T14:01:33.333Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:41:40.846Z
@@ -53,7 +53,7 @@ services:
 
 # Login
 
-1. Portainer is now running on port 9443, behind https. To login, enter https://{serverIP}:9443 in the address bar, then create your user and password. 
+1. Portainer is now running on port 9443, behind https. To login, enter `https://{serverIP}:9443` in the address bar, then create your user and password. 
 
 1. After logging in, click the box for **Get Started**. 
 
