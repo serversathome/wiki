@@ -2,7 +2,7 @@
 title: Arcane
 description: A guide to deploying Arcane in docker
 published: true
-date: 2025-10-16T16:05:10.227Z
+date: 2025-11-11T19:06:18.330Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-04T16:58:11.419Z
@@ -15,7 +15,7 @@ Arcane is a modern easy to use way to manage your docker containers, images, vol
 ```yaml
 services:
   arcane:
-    image: ghcr.io/ofkm/arcane:latest
+    image: ghcr.io/getarcaneapp/arcane:latest
     container_name: arcane
     restart: unless-stopped
     ports:
