@@ -2,7 +2,7 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2025-11-13T17:25:36.910Z
+date: 2025-11-13T22:05:33.753Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-08T13:44:29.541Z
@@ -10,6 +10,15 @@ dateCreated: 2025-03-08T13:44:29.541Z
 
 # ![](/proxmox.png){class="tab-icon"} 1 · What Is Proxmox Backup Server?
 Proxmox Backup Server (PBS) is an enterprise backup solution, for backing up and restoring VMs, containers, and physical hosts. By supporting incremental, fully deduplicated backups, Proxmox Backup Server significantly reduces network load and saves valuable storage space. With strong encryption and methods of ensuring data integrity, you can feel safe when backing up data, even to targets which are not fully trusted.
+
+## 1.1 Why Use This?
+
+Using **Proxmox Backup Server (PBS)** is generally better than backing up Proxmox VMs directly to a TrueNAS NFS share because PBS provides deduplication and incremental backups. Instead of saving full VM backup files every time, PBS stores data in chunks and only uploads the blocks that changed. This dramatically reduces storage usage and speeds up backup jobs, especially when backing up multiple similar VMs or running daily schedules.
+
+PBS also adds features that NFS-backed backups simply don’t have: built-in encryption, automatic verification to detect corruption, and flexible retention policies (daily/weekly/monthly). These features make backups safer, more space-efficient, and easier to maintain without manual cleanup or scripting. NFS backups, by comparison, are full image files with no deduplication, no integrity checks, and no retention logic.
+
+Finally, PBS integrates directly into the Proxmox interface and supports fast, granular restores including disk-level and file-level recovery. NFS backups can only restore full VMs and offer no dedup stats, chunk verification, or incremental versioning. In short: PBS gives you faster backups, safer data, and massive storage savings, all while still letting you store the data on TrueNAS if you want.
+
 
 # 2 · Installation
 # {.tabset}
