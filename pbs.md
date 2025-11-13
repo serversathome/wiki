@@ -2,7 +2,7 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2025-08-15T10:46:16.473Z
+date: 2025-11-13T17:25:36.910Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-08T13:44:29.541Z
@@ -95,8 +95,8 @@ sudo incus exec <container-name> -- mkdir -p /backup && sudo incus config device
 | Field | Value |
 | --- | --- |
 | ID | Any name you choose | 
-| Server | the IP of the PBS server | 
-| Username | the user you created |
+| Server | the IP of the PBS server (no port number needed) | 
+| Username | the user you created (example: user@pbs) |
 | Password | the password you chose | 
 | Datastore| the name of the Datastore you picked on PBS |
 | Fingerprint | to get this, go to PBS Dashboard and at the top look for the blue button that says **Show Fingerprint** |
