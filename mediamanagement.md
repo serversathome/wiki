@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2025-10-22T21:54:50.142Z
+date: 2025-11-14T13:34:26.964Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-01T09:24:50.754Z
@@ -59,7 +59,7 @@ dateCreated: 2025-07-01T09:24:50.754Z
 {.links-list}
 
 ## Quality Control
-- [🅿️ Profilarr<br>*Import, export & sync profiles / custom formats*](/profilarr)
+- [<img src="/profilarr.png"> Profilarr<br>*Import, export & sync profiles / custom formats*](/profilarr)
 - [<img src="/recyclarr.png"> Recyclarr<br>*Automatically sync TRaSH Guides*](/Recyclarr)
 - [<img src="/tdarr.png"> Tdarr<br>*Transcode automation*](/tdarr)
 - [<img src="/unmanic.png"> Unmanic <span class="badge">NEW</span><br>*Transcode automation*](/unmanic)
