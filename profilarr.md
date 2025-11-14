@@ -2,16 +2,13 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2025-08-25T10:49:01.615Z
+date: 2025-11-14T13:33:39.646Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-23T11:41:17.078Z
 ---
 
-![screenshot_from_2025-03-23_08-05-46.png](/screenshot_from_2025-03-23_08-05-46.png)
-[See it on GitHub](https://github.com/Dictionarry-Hub/profilarr)
-
-# What is Profilarr?
+# <img src="/profilarr.png" class="tab-icon"> What is Profilarr?
 Configuration management tool for Radarr/Sonarr that automates importing and version control of custom formats and quality profiles.
 
 🔄 Automatic synchronization with remote configuration databases
