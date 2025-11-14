@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2025-11-14T13:33:39.646Z
+date: 2025-11-14T13:37:07.425Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-23T11:41:17.078Z
@@ -46,6 +46,10 @@ services:
 
 >   Currently Profilarr does not sync directly with Trash Guides
 {.is-warning}
+
+> If you are downloading anime, use the repo from the [Anime Section](https://wiki.serversatho.me/en/profilarr#h-4-anime) below
+{.is-success}
+
 
 3. Move to slider to **Enable Auto Sync**
 
