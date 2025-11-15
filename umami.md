@@ -2,19 +2,27 @@
 title: Umami
 description: A guide to installing Umami in docker via compose
 published: true
-date: 2025-11-07T10:51:37.022Z
+date: 2025-11-15T11:58:40.956Z
 tags: 
 editor: markdown
 dateCreated: 2024-06-30T21:47:45.888Z
 ---
 
-![umami.png](/umami.png)
-
-# What is Umami?
+# <img src="/umami.png" class="tab-icon"> What is Umami?
 
 Umami is a simple, fast, privacy-focused, open-source analytics solution. Umami is a better alternative to [Google Analytics](https://marketingplatform.google.com/about/analytics/) because it gives you total control of your data and does not violate the privacy of your users.
 
-# Docker Compose
+# 1 · Deploy Umami
+# {.tabset}
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
+
+1. Set a **Database Password**
+1. Set an **App Secret**
+1. Set the **WebUI Port** to `3002`
+1. Set the **Postgres Data Storage** to **Host Path** and select the box for **Automatic Permissions**
+
+
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ```yaml
 services:
@@ -54,17 +62,17 @@ services:
 
 1. Change the default user names and passwords from the example. 
 
-> To login, go to http://{IP}:3002. The default username is *admin* and the password is *umami*. 
-{.is-info}
+# 2 · Logging In
 
+1. Navigate to `http://{IP}:3002`. The default username is *admin* and the password is *umami*.
 
-# Adding Websites
+# 3 · Adding Websites
 
 Navigate to **Settings** > **\+ Add Website**.
 
 ![](/screenshot_from_2024-06-30_17-48-16.png)
 
-Name your website. For the domain, omit the http://. 
+Name your website. For the domain, omit the `http://`. 
 
 ![](/screenshot_from_2024-06-30_17-49-09.png)
 
