@@ -76,3 +76,7 @@ sudo cat /mnt/tank/configs/crafty/config/default-creds.txt
 1. Enter the address of the server running Crafty and the port you selected for your Minecraft server
 11. Click **Update**
 1. At the top you will see the public URL which ends in `.ply.gg`
+
+# <img src="/youtube.png" class="tab-icon"> 5 · YouTube Walkthrough
+
+[https://www.youtube.com/watch?v=A9Nld6MxhXk](https://www.youtube.com/watch?v=A9Nld6MxhXk)
