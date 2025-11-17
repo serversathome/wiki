@@ -2,7 +2,7 @@
 title: Crafty Controller
 description: A guide to deploying Crafty Controller
 published: true
-date: 2025-10-01T19:00:32.346Z
+date: 2025-11-17T21:56:23.536Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-01T17:20:49.848Z
@@ -77,6 +77,6 @@ sudo cat /mnt/tank/configs/crafty/config/default-creds.txt
 11. Click **Update**
 1. At the top you will see the public URL which ends in `.ply.gg`
 
-# <img src="/youtube.png" class="tab-icon"> 5 · YouTube Walkthrough
+# <img src="/youtube.png" class="tab-icon"> 5 · Video
 
 [https://www.youtube.com/watch?v=A9Nld6MxhXk](https://www.youtube.com/watch?v=A9Nld6MxhXk)
