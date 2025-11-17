@@ -2,7 +2,7 @@
 title: Code Server
 description: A guide to deploying Code Server
 published: true
-date: 2025-11-17T21:20:08.827Z
+date: 2025-11-17T21:20:19.800Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-17T21:16:14.652Z
@@ -10,7 +10,7 @@ dateCreated: 2025-11-17T21:16:14.652Z
 
 # ![](/coder.png){class="tab-icon"} What is Code Server?
 
-
+Run VS Code on any machine anywhere and access it in the browser.
 
 # 1 · Deploy Code Server
 # {.tabset}
