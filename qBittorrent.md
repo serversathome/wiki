@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-11-17T21:06:44.886Z
+date: 2025-11-17T21:07:09.782Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -156,9 +156,9 @@ services:
       - NET_RAW
       - SYS_MODULE
     environment:
-      - PRIVATE_KEY={ENTER YOUR PRIVATE KEY HERE}
-      - CONNECT=United_States # Set preferred country/server
-      - TECHNOLOGY=NordLynx # Or OPENVPN
+      - PRIVATE_KEY=
+      - CONNECT=United_States
+      - TECHNOLOGY=NordLynx
       - NETWORK={ENTER YOUR LAN SUBNET HERE;i.e. 192.168.1.0/24} 
     ports:
       - 8081:8080
