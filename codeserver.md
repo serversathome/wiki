@@ -1,0 +1,40 @@
+---
+title: Code Server
+description: A guide to deploying Code Server
+published: true
+date: 2025-11-17T21:16:14.652Z
+tags: 
+editor: markdown
+dateCreated: 2025-11-17T21:16:14.652Z
+---
+
+# ![](/coder.png){class="tab-icon"} What is Code Server?
+
+
+
+# 1 · Deploy Code Server
+# {.tabset}
+
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
+1. 
+
+## <img src="/docker.png" class="tab-icon"> Docker Compose
+
+```yaml
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=568
+      - PGID=568
+      - TZ=America/New_York
+      - PASSWORD=admin
+    volumes:
+      # This is where code-server stores its configuration and extensions
+      - ./config:/config
+      - /mnt/tank:/config/workspace
+    ports:
+      - 8443:8443
+    restart: unless-stopped
+```
