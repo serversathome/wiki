@@ -2,7 +2,7 @@
 title: Beszel
 description: A guide to deploying Beszel
 published: true
-date: 2025-11-17T16:20:32.858Z
+date: 2025-11-17T16:21:35.080Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-17T16:16:46.529Z
@@ -52,3 +52,4 @@ To install beszel-agent with winget, use the following command:
 ```powershell
 & iwr -useb https://get.beszel.dev -OutFile "$env:TEMP\install-agent.ps1"; & Powershell -ExecutionPolicy Bypass -File "$env:TEMP\install-agent.ps1"
 ```
+To edit the service, see [these instructions from Beszel](https://beszel.dev/guide/agent-installation#edit-configuration).
