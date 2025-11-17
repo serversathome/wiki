@@ -2,7 +2,7 @@
 title: Cal.com
 description: A guide to deploying Cal.com
 published: true
-date: 2025-11-17T15:13:47.020Z
+date: 2025-11-17T15:18:02.352Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-17T15:00:57.067Z
@@ -48,7 +48,7 @@ Scheduling infrastructure for absolutely everyone.
     redis:
       container_name: redis
       image: redis:latest
-      restart: always
+      restart: unless-stopped
       volumes:
         - /mnt/tank/configs/calcom/redis-data:/data
       ports:
@@ -152,5 +152,5 @@ Scheduling infrastructure for absolutely everyone.
 ```
   </details>
 
-6. Edit the `.env` file in Dockge
+7. Edit the `.env` file in Dockge
 a. Change any URL from `localhost` to the URL of your server
