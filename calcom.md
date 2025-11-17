@@ -2,7 +2,7 @@
 title: Cal.com
 description: A guide to deploying Cal.com
 published: true
-date: 2025-11-17T15:00:57.067Z
+date: 2025-11-17T15:11:34.992Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-17T15:00:57.067Z
@@ -16,6 +16,10 @@ Scheduling infrastructure for absolutely everyone.
 1. As root, run this command
     ```bash
     git clone https://github.com/calcom/cal.com.git
+    ```
+1. Rename the stack
+    ```bash
+    mv cal.com calcom
     ```
 1. Change into the directory
     ```bash
@@ -147,3 +151,6 @@ services:
       - studio
 ```
   </details>
+
+6. Edit the `.env` file in Dockge
+a. Change any URL from `localhost` to the URL of your server
