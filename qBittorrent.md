@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-10-06T15:10:45.637Z
+date: 2025-11-17T21:06:44.886Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -159,14 +159,14 @@ services:
       - PRIVATE_KEY={ENTER YOUR PRIVATE KEY HERE}
       - CONNECT=United_States # Set preferred country/server
       - TECHNOLOGY=NordLynx # Or OPENVPN
-      - NETWORK={ENTER YOUR LAN SUBNET HERE;i.e. 192.168.1.0/24} # LAN subnet allowed to access UI
+      - NETWORK={ENTER YOUR LAN SUBNET HERE;i.e. 192.168.1.0/24} 
     ports:
-      - 8081:8080 #expose port for qbittorrent webgui. Must expose for the VPN container as Qbit passes all traffic through this container.
-    dns: #This helps if you are getting DNS errors when deploying the container.
+      - 8081:8080
+    dns:
       - 1.1.1.1
       - 8.8.8.8
     sysctls:
-      - net.ipv6.conf.all.disable_ipv6=1 #This disables the ipv6 table otherwise you'll get ipv6 errors.
+      - net.ipv6.conf.all.disable_ipv6=1
       - net.ipv4.ip_forward=1
     volumes:
       - /mnt/tank/configs/nordvpn:/config
@@ -176,21 +176,19 @@ services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
-    network_mode: container:nordvpn # Force traffic through VPN
+    network_mode: container:nordvpn
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=568
+      - PGID=568
       - TZ=America/New_York
       - WEBUI_PORT=8080
     volumes:
       - /mnt/tank/configs/qbittorrent:/config
-      - /mnt/tank/media:/media  # Can set as /downloads if that is how your file structure is designed.
+      - /mnt/tank/media:/media  
     depends_on:
       - nordvpn
     restart: unless-stopped
-networks:
-  default:
-    driver: bridge
+
 ```
 
 To get your Private Key needed to make this container work, you will need to log into your NordVPN account and head to the "NordVPN" service located on the left menu option.  Scroll down until you see the "Access Token" option and click on "Get Access Token".  You will likely need to verify your email address.  Once verified, click on the "Generate a New Token" option and leave set to 30 day period, as the token will not be necessary after being used to generate your Private Key.
