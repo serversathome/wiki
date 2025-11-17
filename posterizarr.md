@@ -2,13 +2,22 @@
 title: Posterizarr
 description: A guide to deploying Posterizarr
 published: true
-date: 2025-11-17T13:46:25.136Z
+date: 2025-11-17T13:47:09.903Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-17T13:46:25.136Z
 ---
 
 # ![](/posterizarr.png){class="tab-icon"} What is Posterizarr?
+
+Automate the creation of beautiful, textless posters for your Plex, Jellyfin, or Emby library.
+
+Posterizarr is a PowerShell script with a full Web UI that automates generating images for your media library. It fetches artwork from Fanart.tv, TMDB, TVDB, Plex, and IMDb, focusing on textless images and applying your own custom overlays and text.
+
+- User-Friendly Web UI: Manage settings, monitor activity, and trigger runs from a browser.
+- Multiple Media Servers: Supports Plex, Jellyfin, and Emby.
+- Kometa Integration: Organizes assets in a Kometa-compatible folder structure.
+- Smart Integration: Trigger runs from Tautulli, Sonarr, and Radarr.
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Posterizarr
