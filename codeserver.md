@@ -2,7 +2,7 @@
 title: Code Server
 description: A guide to deploying Code Server
 published: true
-date: 2025-11-17T21:16:14.652Z
+date: 2025-11-17T21:20:08.827Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-17T21:16:14.652Z
@@ -16,7 +16,10 @@ dateCreated: 2025-11-17T21:16:14.652Z
 # {.tabset}
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
-1. 
+1. Set an **Additional Environment Variable** 
+a. Name = PASSWORD
+b. Value = *choose a password*
+1. Set the **Code Server Project Storage** to *Host Path* and select your pool 
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
