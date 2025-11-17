@@ -2,7 +2,7 @@
 title: Code Server
 description: A guide to deploying Code Server
 published: true
-date: 2025-11-17T21:20:19.800Z
+date: 2025-11-17T21:20:45.700Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-17T21:16:14.652Z
@@ -34,7 +34,6 @@ services:
       - TZ=America/New_York
       - PASSWORD=admin
     volumes:
-      # This is where code-server stores its configuration and extensions
       - ./config:/config
       - /mnt/tank:/config/workspace
     ports:
