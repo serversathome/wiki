@@ -2,7 +2,7 @@
 title: Pulsarr
 description: A guide to deploying Pulsarr via docker
 published: true
-date: 2025-07-10T18:32:22.789Z
+date: 2025-11-17T13:44:03.883Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-06T09:47:13.858Z
@@ -12,7 +12,7 @@ dateCreated: 2025-07-06T09:47:13.858Z
 
 Pulsarr is an integration tool that bridges Plex watchlists with Sonarr and Radarr, enabling real-time media monitoring and automated content acquisition all from within the Plex App itself.
 
-# 1 · Deploy Radarr
+# 1 · Deploy Pulsarr
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 ```yaml
