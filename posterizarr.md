@@ -2,7 +2,7 @@
 title: Posterizarr
 description: A guide to deploying Posterizarr
 published: true
-date: 2025-11-17T13:47:09.903Z
+date: 2025-11-17T14:35:16.722Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-17T13:46:25.136Z
@@ -41,3 +41,7 @@ services:
       - /mnt/tank/configs/posterizarr/assetsbackup:/assetsbackup:rw
       - /mnt/tank/configs/posterizarr/manualassets:/manualassets:rw
 ```
+
+# <img src="/patreon-light.png" class="tab-icon"> 2 · Video
+
+[![2025-11-17-edit-poster-art-with-posterizarr-promo-card.png](/2025-11-17-edit-poster-art-with-posterizarr-promo-card.png)](https://www.patreon.com/posts/edit-poster-art-143777654)
