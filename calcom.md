@@ -2,7 +2,7 @@
 title: Cal.com
 description: A guide to deploying Cal.com
 published: true
-date: 2025-11-17T15:11:34.992Z
+date: 2025-11-17T15:13:47.020Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-17T15:00:57.067Z
@@ -33,122 +33,122 @@ Scheduling infrastructure for absolutely everyone.
 <details><summary><strong>Replace Compose.yaml with This!</strong></summary>
   
   ```yaml
-services:
-  database:
-    container_name: database
-    image: postgres
-    restart: unless-stopped
-    volumes:
-      - /mnt/tank/configs/calcom/database-data:/var/lib/postgresql
-    environment:
-      - POSTGRES_USER=unicorn_user
-      - POSTGRES_PASSWORD=magical_password
-      - POSTGRES_DB=calendso
+  services:
+    database:
+      container_name: database
+      image: postgres
+      restart: unless-stopped
+      volumes:
+        - /mnt/tank/configs/calcom/database-data:/var/lib/postgresql
+      environment:
+        - POSTGRES_USER=unicorn_user
+        - POSTGRES_PASSWORD=magical_password
+        - POSTGRES_DB=calendso
 
-  redis:
-    container_name: redis
-    image: redis:latest
-    restart: always
-    volumes:
-      - /mnt/tank/configs/calcom/redis-data:/data
-    ports:
-      - "${REDIS_PORT:-6379}:6379"
+    redis:
+      container_name: redis
+      image: redis:latest
+      restart: always
+      volumes:
+        - /mnt/tank/configs/calcom/redis-data:/data
+      ports:
+        - "${REDIS_PORT:-6379}:6379"
 
-  calcom:
-    image: calcom.docker.scarf.sh/calcom/cal.com
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        NEXT_PUBLIC_WEBAPP_URL: ${NEXT_PUBLIC_WEBAPP_URL}
-        NEXT_PUBLIC_API_V2_URL: ${NEXT_PUBLIC_API_V2_URL}
-        NEXT_PUBLIC_LICENSE_CONSENT: ${NEXT_PUBLIC_LICENSE_CONSENT}
-        NEXT_PUBLIC_WEBSITE_TERMS_URL: ${NEXT_PUBLIC_WEBSITE_TERMS_URL}
-        NEXT_PUBLIC_WEBSITE_PRIVACY_POLICY_URL: ${NEXT_PUBLIC_WEBSITE_PRIVACY_POLICY_URL}
-        NEXT_PUBLIC_SINGLE_ORG_SLUG: ${NEXT_PUBLIC_SINGLE_ORG_SLUG}
-        ORGANIZATIONS_ENABLED: ${ORGANIZATIONS_ENABLED}
-        CALCOM_TELEMETRY_DISABLED: ${CALCOM_TELEMETRY_DISABLED}
-        NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
-        CALENDSO_ENCRYPTION_KEY: ${CALENDSO_ENCRYPTION_KEY}
-        DATABASE_URL: ${DATABASE_URL}
-        DATABASE_DIRECT_URL: ${DATABASE_URL}
-        CSP_POLICY: ${CSP_POLICY}
-    restart: unless-stopped
-    ports:
-      - 3000:3000
-    env_file: .env
-    environment:
-      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}/${POSTGRES_DB}
-      - DATABASE_DIRECT_URL=${DATABASE_URL}
-    depends_on:
-      - database
+    calcom:
+      image: calcom.docker.scarf.sh/calcom/cal.com
+      build:
+        context: .
+        dockerfile: Dockerfile
+        args:
+          NEXT_PUBLIC_WEBAPP_URL: ${NEXT_PUBLIC_WEBAPP_URL}
+          NEXT_PUBLIC_API_V2_URL: ${NEXT_PUBLIC_API_V2_URL}
+          NEXT_PUBLIC_LICENSE_CONSENT: ${NEXT_PUBLIC_LICENSE_CONSENT}
+          NEXT_PUBLIC_WEBSITE_TERMS_URL: ${NEXT_PUBLIC_WEBSITE_TERMS_URL}
+          NEXT_PUBLIC_WEBSITE_PRIVACY_POLICY_URL: ${NEXT_PUBLIC_WEBSITE_PRIVACY_POLICY_URL}
+          NEXT_PUBLIC_SINGLE_ORG_SLUG: ${NEXT_PUBLIC_SINGLE_ORG_SLUG}
+          ORGANIZATIONS_ENABLED: ${ORGANIZATIONS_ENABLED}
+          CALCOM_TELEMETRY_DISABLED: ${CALCOM_TELEMETRY_DISABLED}
+          NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+          CALENDSO_ENCRYPTION_KEY: ${CALENDSO_ENCRYPTION_KEY}
+          DATABASE_URL: ${DATABASE_URL}
+          DATABASE_DIRECT_URL: ${DATABASE_URL}
+          CSP_POLICY: ${CSP_POLICY}
+      restart: unless-stopped
+      ports:
+        - 3000:3000
+      env_file: .env
+      environment:
+        - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}/${POSTGRES_DB}
+        - DATABASE_DIRECT_URL=${DATABASE_URL}
+      depends_on:
+        - database
 
-  calcom-api:
-    container_name: calcom-api
-    build:
-      context: .
-      dockerfile: apps/api/v2/Dockerfile
-      args:
-        DATABASE_URL: ${DATABASE_URL}
-        DATABASE_DIRECT_URL: ${DATABASE_URL}
-    restart: unless-stopped
-    ports:
-      - "${API_PORT:-80}:${API_PORT:-80}"
-    env_file: .env
-    environment:
-      - NODE_ENV=${NODE_ENV}
-      - API_PORT=${API_PORT:-80}
-      - API_URL=${API_URL}
-      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}/${POSTGRES_DB}
-      - DATABASE_READ_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}/${POSTGRES_DB}
-      - DATABASE_WRITE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}/${POSTGRES_DB}
-      - DATABASE_DIRECT_URL=${DATABASE_URL}
-      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-      - JWT_SECRET=${JWT_SECRET}
-      - REDIS_URL=${REDIS_URL}
-      - LOG_LEVEL=${LOG_LEVEL}
-      - API_KEY_PREFIX=${API_KEY_PREFIX}
-      - WEB_APP_URL=${WEB_APP_URL}
-      - IS_E2E=${IS_E2E:-false}
-      - REWRITE_API_V2_PREFIX=${REWRITE_API_V2_PREFIX:-true}
-      - CALCOM_LICENSE_KEY=${CALCOM_LICENSE_KEY}
-      - NEXT_PUBLIC_VAPID_PUBLIC_KEY=${NEXT_PUBLIC_VAPID_PUBLIC_KEY}
-      - VAPID_PRIVATE_KEY=${VAPID_PRIVATE_KEY}
-      - STRIPE_API_KEY=${STRIPE_API_KEY}
-      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
-      - STRIPE_PRICE_ID_STARTER=${STRIPE_PRICE_ID_STARTER}
-      - STRIPE_PRICE_ID_STARTER_OVERAGE=${STRIPE_PRICE_ID_STARTER_OVERAGE}
-      - STRIPE_PRICE_ID_ESSENTIALS=${STRIPE_PRICE_ID_ESSENTIALS}
-      - STRIPE_PRICE_ID_ESSENTIALS_OVERAGE=${STRIPE_PRICE_ID_ESSENTIALS_OVERAGE}
-      - STRIPE_PRICE_ID_ENTERPRISE=${STRIPE_PRICE_ID_ENTERPRISE}
-      - STRIPE_PRICE_ID_ENTERPRISE_OVERAGE=${STRIPE_PRICE_ID_ENTERPRISE_OVERAGE}
-      - STRIPE_TEAM_MONTHLY_PRICE_ID=${STRIPE_TEAM_MONTHLY_PRICE_ID}
-      - IS_TEAM_BILLING_ENABLED=${IS_TEAM_BILLING_ENABLED:-false}
-      - AXIOM_DATASET=${AXIOM_DATASET}
-      - AXIOM_TOKEN=${AXIOM_TOKEN}
-      - LOGGER_BRIDGE_LOG_LEVEL=${LOGGER_BRIDGE_LOG_LEVEL}
-      - DOCS_URL=${DOCS_URL}
-      - GET_LICENSE_KEY_URL=${GET_LICENSE_KEY_URL}
-    depends_on:
-      - database
-      - redis
+    calcom-api:
+      container_name: calcom-api
+      build:
+        context: .
+        dockerfile: apps/api/v2/Dockerfile
+        args:
+          DATABASE_URL: ${DATABASE_URL}
+          DATABASE_DIRECT_URL: ${DATABASE_URL}
+      restart: unless-stopped
+      ports:
+        - "${API_PORT:-80}:${API_PORT:-80}"
+      env_file: .env
+      environment:
+        - NODE_ENV=${NODE_ENV}
+        - API_PORT=${API_PORT:-80}
+        - API_URL=${API_URL}
+        - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}/${POSTGRES_DB}
+        - DATABASE_READ_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}/${POSTGRES_DB}
+        - DATABASE_WRITE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}/${POSTGRES_DB}
+        - DATABASE_DIRECT_URL=${DATABASE_URL}
+        - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+        - JWT_SECRET=${JWT_SECRET}
+        - REDIS_URL=${REDIS_URL}
+        - LOG_LEVEL=${LOG_LEVEL}
+        - API_KEY_PREFIX=${API_KEY_PREFIX}
+        - WEB_APP_URL=${WEB_APP_URL}
+        - IS_E2E=${IS_E2E:-false}
+        - REWRITE_API_V2_PREFIX=${REWRITE_API_V2_PREFIX:-true}
+        - CALCOM_LICENSE_KEY=${CALCOM_LICENSE_KEY}
+        - NEXT_PUBLIC_VAPID_PUBLIC_KEY=${NEXT_PUBLIC_VAPID_PUBLIC_KEY}
+        - VAPID_PRIVATE_KEY=${VAPID_PRIVATE_KEY}
+        - STRIPE_API_KEY=${STRIPE_API_KEY}
+        - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+        - STRIPE_PRICE_ID_STARTER=${STRIPE_PRICE_ID_STARTER}
+        - STRIPE_PRICE_ID_STARTER_OVERAGE=${STRIPE_PRICE_ID_STARTER_OVERAGE}
+        - STRIPE_PRICE_ID_ESSENTIALS=${STRIPE_PRICE_ID_ESSENTIALS}
+        - STRIPE_PRICE_ID_ESSENTIALS_OVERAGE=${STRIPE_PRICE_ID_ESSENTIALS_OVERAGE}
+        - STRIPE_PRICE_ID_ENTERPRISE=${STRIPE_PRICE_ID_ENTERPRISE}
+        - STRIPE_PRICE_ID_ENTERPRISE_OVERAGE=${STRIPE_PRICE_ID_ENTERPRISE_OVERAGE}
+        - STRIPE_TEAM_MONTHLY_PRICE_ID=${STRIPE_TEAM_MONTHLY_PRICE_ID}
+        - IS_TEAM_BILLING_ENABLED=${IS_TEAM_BILLING_ENABLED:-false}
+        - AXIOM_DATASET=${AXIOM_DATASET}
+        - AXIOM_TOKEN=${AXIOM_TOKEN}
+        - LOGGER_BRIDGE_LOG_LEVEL=${LOGGER_BRIDGE_LOG_LEVEL}
+        - DOCS_URL=${DOCS_URL}
+        - GET_LICENSE_KEY_URL=${GET_LICENSE_KEY_URL}
+      depends_on:
+        - database
+        - redis
 
-  # Optional use of Prisma Studio. In production, comment out or remove the section below to prevent unwanted access to your database.
-  studio:
-    image: calcom.docker.scarf.sh/calcom/cal.com
-    restart: unless-stopped
-    ports:
-      - 5555:5555
-    env_file: .env
-    environment:
-      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}/${POSTGRES_DB}
-      - DATABASE_DIRECT_URL=${DATABASE_URL}
-    depends_on:
-      - database
-    command:
-      - npx
-      - prisma
-      - studio
+    # Optional use of Prisma Studio. In production, comment out or remove the section below to prevent unwanted access to your database.
+    studio:
+      image: calcom.docker.scarf.sh/calcom/cal.com
+      restart: unless-stopped
+      ports:
+        - 5555:5555
+      env_file: .env
+      environment:
+        - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}/${POSTGRES_DB}
+        - DATABASE_DIRECT_URL=${DATABASE_URL}
+      depends_on:
+        - database
+      command:
+        - npx
+        - prisma
+        - studio
 ```
   </details>
 
