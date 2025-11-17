@@ -2,7 +2,7 @@
 title: Beszel
 description: A guide to deploying Beszel
 published: true
-date: 2025-11-17T16:22:45.328Z
+date: 2025-11-17T16:53:36.504Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-17T16:16:46.529Z
@@ -16,7 +16,7 @@ It has a friendly web interface, simple configuration, and is ready to use out o
 
 # 1 · Deploy Beszel
 # {.tabset}
-## <img src="/truenas.png" class="tab-icon"> 1.1 Server
+## <img src="/truenas.png" class="tab-icon"> Server
 ```yaml
 services:
   beszel:
@@ -29,7 +29,7 @@ services:
       - /mnt/tank/configs/beszel:/beszel_data
 ```
 
-## <img src="/linux.png" class="tab-icon"> 1.2 Linux Client
+## <img src="/linux.png" class="tab-icon"> Linux Client
 ```yaml
 services:
   beszel-agent:
