@@ -2,7 +2,7 @@
 title: wg-easy
 description: Configuring the wg-easy container to manage wireguard
 published: true
-date: 2025-11-19T10:58:03.814Z
+date: 2025-11-19T11:06:30.190Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:39:17.982Z
@@ -25,7 +25,6 @@ services:
     #  - PORT=51821
     #  - HOST=0.0.0.0
       - INSECURE=true
-      - INIT_DNS=1.1.1.1
 
     image: ghcr.io/wg-easy/wg-easy:15
     container_name: wg-easy
@@ -67,6 +66,10 @@ networks:
 ![](https://wiki.hydrology.cc/screen_shot_2023-12-09_at_7.58.29_am.png)
 
 1. Change the **WG Easy Config Storage** to *Host Path*
+
+# 2 · Settings
+
+## 2.1 
 
 # <img src="/youtube.png" class="tab-icon"> 2 · Video
 
