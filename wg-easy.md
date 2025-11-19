@@ -2,7 +2,7 @@
 title: wg-easy
 description: Configuring the wg-easy container to manage wireguard
 published: true
-date: 2025-11-19T11:13:16.127Z
+date: 2025-11-19T11:19:29.343Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:39:17.982Z
@@ -73,8 +73,12 @@ Click **Administrator** in the top right, then select **Admin Panel**.
 ## 2.1 Config
 
 1. Change the **Allowed IPs** if you would like to run a split tunnel. This field should accept a comma-separated list.
-1. Change the **DNS** fot IPv4 to `1.1.1.1`
 
+> A value of `0.0.0.0/0` which = all IPs is a *full tunnel*. A full tunnel means when you connect to Wireguard all of your traffic, no matter where it is going, will be routed through your TrueNAS server first, then go out to the greater internet. I don't use this, I have a full VPN to do that. Instead, I do a *split tunnel*. A split tunnel means only part of the traffic is routed through Wireguard; the rest skips it and goes out to the web as if the VPN wasn't connected. To do this, we need to tell wg-easy which IP addresses we want to go through the tunnel. Since my home network is a 192.168.1.x net, my entry for this line is `192.168.1.0/24,10.8.0.0/24`. This tells wg-easy if I type in a 192.168.1.x address, or try to connect to another PC on the wg-easy VPN (which are the 10.8.0.x addresses) to route those through the VPN. Everything else skips the VPN and just exits to the internet.
+{.is-info}
+
+
+2. Change the **DNS** fot IPv4 to `1.1.1.1`
 
 ## 2.2 Interface
 
