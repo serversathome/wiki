@@ -2,7 +2,7 @@
 title: wg-easy
 description: Configuring the wg-easy container to manage wireguard
 published: true
-date: 2025-11-19T11:19:29.343Z
+date: 2025-11-19T11:46:33.601Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:39:17.982Z
@@ -62,8 +62,6 @@ networks:
 
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
-![](https://wiki.hydrology.cc/screen_shot_2023-12-09_at_7.58.29_am.png)
 
 1. Change the **WG Easy Config Storage** to *Host Path*
 
