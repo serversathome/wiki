@@ -2,13 +2,11 @@
 title: wg-easy
 description: Configuring the wg-easy container to manage wireguard
 published: true
-date: 2025-07-11T10:41:03.583Z
+date: 2025-11-19T10:48:50.817Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:39:17.982Z
 ---
-
-![](/screenshot_from_2024-02-23_11-04-33.png)
 
 # ![](/wireguard.png){class="tab-icon"} What is wg-easy?
 
@@ -19,66 +17,48 @@ wg-easy is the easiest way to run WireGuard VPN + Web-based Admin UI.
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
-> wg-easy has recently been overhauled and this page does not reflect the new changes yet!
-{.is-danger}
-
-
 ```yaml
 services:
   wg-easy:
-    image: ghcr.io/wg-easy/wg-easy
+    environment:
+    #  Optional:
+    #  - PORT=51821
+    #  - HOST=0.0.0.0
+      - INSECURE=true
+
+    image: ghcr.io/wg-easy/wg-easy:15
+    container_name: wg-easy
+    networks:
+      wg:
+        ipv4_address: 10.42.42.42
+        ipv6_address: fdcc:ad94:bacf:61a3::2a
+    volumes:
+      - /mnt/tank/configs/wgeasy/:/etc/wireguard
+      - /lib/modules:/lib/modules:ro
+    ports:
+      - "51820:51820/udp"
+      - "51821:51821/tcp"
     restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
     sysctls:
       - net.ipv4.ip_forward=1
       - net.ipv4.conf.all.src_valid_mark=1
-    cap_add:
-      - SYS_MODULE
-      - NET_ADMIN
-    ports:
-      - '51821:51821/tcp'
-      - '51820:51820/udp'
-    volumes:
-      - './wg-easy:/etc/wireguard'
-    environment:
-      - WG_PORT=51820
-      - PORT=51821
-      - PASSWORD_HASH=<🚨YOUR_ADMIN_PASSWORD_HASH>
-      - WG_HOST=<🚨YOUR_SERVER_IP>
-      - LANG=en
-      - WG_DEFAULT_ADDRESS=10.8.0.x
-      - WG_DEFAULT_DNS=9.9.9.9
-      - WG_MTU=1420
-      - WG_PERSISTENT_KEEPALIVE=120
-      - WG_ALLOWED_IPS=0.0.0.0/0
-      - UI_TRAFFIC_STATS=true
-      - UI_CHART_TYPE=1
-     
-    container_name: wg-easy
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.default.forwarding=1
+
+networks:
+  wg:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.42.42.0/24
+        - subnet: fdcc:ad94:bacf:61a3::/64
 ```
-
-### Options
-
-| Env | Default | Example | Description |
-| --- | --- | --- | --- |
-| `PORT` | `51821` | `6789` | TCP port for Web UI. |
-| `WEBUI_HOST` | `0.0.0.0` | `localhost` | IP address web UI binds to. |
-| `PASSWORD_HASH` | \-  | `$2y$05$Ci...` | When set, requires a password when logging in to the Web UI. See [How to generate an bcrypt hash.md](https://github.com/wg-easy/wg-easy/blob/master/How_to_generate_an_bcrypt_hash.md) to learn how to generate the hash.<br><br>(The easier way is to to go to [https://it-tools.tech/bcrypt](https://it-tools.tech/bcrypt) and create the hash there and replace any $ symbols with $$) |
-| `WG_HOST` | \-  | `vpn.myserver.com` | The public hostname of your VPN server. |
-| `WG_DEVICE` | `eth0` | `ens6f0` | Ethernet device the wireguard traffic should be forwarded through. |
-| `WG_PORT` | `51820` | `12345` | The public UDP port of your VPN server. WireGuard will listen on that (othwise default) inside the Docker container. |
-| `WG_CONFIG_PORT` | `51820` | `12345` | The UDP port used on [Home Assistant Plugin](https://github.com/adriy-be/homeassistant-addons-jdeath/tree/main/wgeasy) |
-| `WG_MTU` | `null` | `1420` | The MTU the clients will use. Server uses default WG MTU. |
-| `WG_PERSISTENT_KEEPALIVE` | `0` | `25` | Value in seconds to keep the "connection" open. If this value is 0, then connections won't be kept alive. |
-| `WG_DEFAULT_ADDRESS` | `10.8.0.x` | `10.6.0.x` | Clients IP address range. |
-| `WG_DEFAULT_DNS` | `1.1.1.1` | `8.8.8.8, 8.8.4.4` | DNS server clients will use. If set to blank value, clients will not use any DNS. |
-| `WG_ALLOWED_IPS` | `0.0.0.0/0, ::/0` | `192.168.15.0/24, 10.0.1.0/24` | Allowed IPs clients will use. |
-| `WG_PRE_UP` | `...` | \-  | See [config.js](https://github.com/wg-easy/wg-easy/blob/master/src/config.js#L19) for the default value. |
-| `WG_POST_UP` | `...` | `iptables ...` | See [config.js](https://github.com/wg-easy/wg-easy/blob/master/src/config.js#L20) for the default value. |
-| `WG_PRE_DOWN` | `...` | \-  | See [config.js](https://github.com/wg-easy/wg-easy/blob/master/src/config.js#L27) for the default value. |
-| `WG_POST_DOWN` | `...` | `iptables ...` | See [config.js](https://github.com/wg-easy/wg-easy/blob/master/src/config.js#L28) for the default value. |
-| `LANG` | `en` | `de` | Web UI language (Supports: en, ua, ru, tr, no, pl, fr, de, ca, es, ko, vi, nl, is, pt, chs, cht, it, th, hi). |
-| `UI_TRAFFIC_STATS` | `false` | `true` | Enable detailed RX / TX client stats in Web UI |
-| `UI_CHART_TYPE` | `0` | `1` | UI\_CHART\_TYPE=0 # Charts disabled, UI\_CHART\_TYPE=1 # Line chart, UI\_CHART\_TYPE=2 # Area chart, UI\_CHART\_TYPE=3 # Bar chart |
 
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
