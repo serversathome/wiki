@@ -2,7 +2,7 @@
 title: wg-easy
 description: Configuring the wg-easy container to manage wireguard
 published: true
-date: 2025-11-19T11:06:30.190Z
+date: 2025-11-19T11:13:16.127Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:39:17.982Z
@@ -68,8 +68,22 @@ networks:
 1. Change the **WG Easy Config Storage** to *Host Path*
 
 # 2 · Settings
+Click **Administrator** in the top right, then select **Admin Panel**.
 
-## 2.1 
+## 2.1 Config
 
-# <img src="/youtube.png" class="tab-icon"> 2 · Video
+1. Change the **Allowed IPs** if you would like to run a split tunnel. This field should accept a comma-separated list.
+1. Change the **DNS** fot IPv4 to `1.1.1.1`
+
+
+## 2.2 Interface
+
+1. Click the **Change CIDR** button at the bottom if you want to use something other than the `10.8.0.0/24` range.
+
+
+
+## 2.3 Hooks
+If you need to adjust the **Preup, Postup, Predown, or Postdown** this is where those options are. 
+
+# <img src="/youtube.png" class="tab-icon"> 3 · Video
 
