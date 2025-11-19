@@ -2,7 +2,7 @@
 title: wg-easy
 description: Configuring the wg-easy container to manage wireguard
 published: true
-date: 2025-11-19T11:46:33.601Z
+date: 2025-11-19T11:49:52.937Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:39:17.982Z
@@ -63,6 +63,7 @@ networks:
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
+1. Check the box for **Allow insecure connections**
 1. Change the **WG Easy Config Storage** to *Host Path*
 
 # 2 · Settings
