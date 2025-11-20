@@ -2,7 +2,7 @@
 title: Racknerd VPS
 description: A guide to deploying a Racknerd VPS
 published: true
-date: 2025-11-06T10:32:16.088Z
+date: 2025-11-20T11:10:36.518Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-14T13:12:23.435Z
@@ -17,10 +17,11 @@ RackNerd is a global provider of Infrastructure as a Service (IaaS) solutions, o
 1. Create an account on [Racknerd](https://www.racknerd.com/)
 1. Use one of the affilate links to get a discount on a VPS:
 
-    - [1 vCPU | 1GB RAM | 20GB SSD | 2TB bandwidth | $10.96/yr](https://my.racknerd.com/aff.php?aff=15328&pid=917)
-    - [2 vCPU | 2GB RAM | 30GB SSD | 3.5TB bandwidth | $17.66/yr](https://my.racknerd.com/aff.php?aff=15328&pid=918)
-    - [3 vCPU | 3GB RAM | 55GB SSD | 6TB bandwidth | $26.99/yr](https://my.racknerd.com/aff.php?aff=15328&pid=919)
-    - [4 vCPU | 4GB RAM | 80GB SSD | 8TB bandwidth | $39.99/yr](https://my.racknerd.com/aff.php?aff=15328&pid=920)
+    - [1 vCPU | 1GB RAM | 25GB SSD | 2TB bandwidth | $10.60/yr](https://my.racknerd.com/aff.php?aff=15328&pid=923)
+    - [2 vCPU | 2.5GB RAM | 45GB SSD | 3TB bandwidth | $18.66/yr](https://my.racknerd.com/aff.php?aff=15328&pid=924)
+    - [3 vCPU | 4GB RAM | 65GB SSD | 6.5TB bandwidth | $29.98/yr](https://my.racknerd.com/aff.php?aff=15328&pid=925)
+    - [5 vCPU | 6GB RAM | 100B SSD | 10TB bandwidth | $44.98/yr](https://my.racknerd.com/aff.php?aff=15328&pid=926)
+    - [6 vCPU | 8GB RAM | 150B SSD | 20TB bandwidth | $62.49/yr](https://my.racknerd.com/aff.php?aff=15328&pid=927)
     {.links-list}
 
 1. Set a **Server Label**
