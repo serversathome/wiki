@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure to allow for hardlinks within the arr stack
 published: true
-date: 2025-11-15T13:06:17.027Z
+date: 2025-11-20T10:43:15.219Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:27:24.035Z
@@ -89,7 +89,7 @@ To view the script, [look here](https://raw.githubusercontent.com/imjustleaving/
 To run the script, execute this one-liner in the TrueNAS shell:
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/serversathome/ServersatHome/main/truenas-file-structure.sh)
+sudo su -c "wget https://raw.githubusercontent.com/serversathome/ServersatHome/refs/heads/main/truenas-file-structure.sh && chmod +x truenas-file-structure.sh && bash truenas-file-structure.sh"
 ```
 
 The script will then ask you to choose a pool to install the configs and the media datasets to. 
