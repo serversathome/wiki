@@ -2,7 +2,7 @@
 title: PeerTube
 description: A guide to deploying PeerTube
 published: true
-date: 2025-11-21T11:46:33.035Z
+date: 2025-11-21T11:52:40.532Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-21T11:44:57.476Z
@@ -111,3 +111,9 @@ PEERTUBE_OBJECT_STORAGE_UPLOAD_ACL_PRIVATE="private"
 
 #PEERTUBE_LOG_LEVEL=info
 ```
+
+# 2 · Logging In
+1. Navigate to the FQDN of your instance
+1. Click the **Login** button in the top right
+1. Search the logs for the auto generated first time password
+1. The default user name is `root`
