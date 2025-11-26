@@ -1,8 +1,8 @@
 ---
-title: nextExolorer
+title: nextExplorer
 description: A guide to deploying nextExplorer
 published: true
-date: 2025-11-03T14:41:55.290Z
+date: 2025-11-26T11:20:18.417Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-03T14:41:55.290Z
