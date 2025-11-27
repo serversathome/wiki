@@ -2,7 +2,7 @@
 title: Proxmox
 description: An overview of the Proxmox hypervisor
 published: true
-date: 2025-07-09T14:49:56.516Z
+date: 2025-11-27T22:26:23.857Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:26:36.274Z
@@ -10,7 +10,6 @@ dateCreated: 2024-02-23T13:26:36.274Z
 
 
 
-![](https://wiki.hydrology.cc/proxmox-ve-8-1-host-summary-secure-boot.png)
 # ![](/proxmox.png){class="tab-icon"} 1 · What Is Proxmox?
 
 Proxmox Virtual Environment is a complete, open-source server management platform for enterprise virtualization. It tightly integrates the KVM hypervisor and Linux Containers (LXC), software-defined storage and networking functionality, on a single platform. With the integrated web-based user interface you can manage VMs and containers, high availability for clusters, or the integrated disaster recovery tools with ease.
