@@ -2,7 +2,7 @@
 title: Cloudreve
 description: A guide to deploying Cloudreve
 published: true
-date: 2025-12-01T12:42:16.544Z
+date: 2025-12-01T12:43:49.416Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-01T12:42:04.280Z
@@ -56,3 +56,11 @@ services:
     restart: unless-stopped
     volumes:
       - /mnt/tank/configs/cloudreve/redis:/data
+```
+
+# 2 · Logging In
+1. Navigate to `http://{IP}:5212`
+1. Click **Register**
+
+
+# <img src="/youtube.png" class="tab-icon"> 3 · Video 
