@@ -2,7 +2,7 @@
 title: Cloudreve
 description: A guide to deploying Cloudreve
 published: true
-date: 2025-12-01T12:43:49.416Z
+date: 2025-12-01T12:44:09.094Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-01T12:42:04.280Z
@@ -37,9 +37,6 @@ services:
       - /mnt/tank/configs/cloudreve/data:/cloudreve/data
 
   postgresql:
-    # Best practice: Pin to major version. 
-    # NOTE: For major version jumps:
-    # backup & consult https://www.postgresql.org/docs/current/pgupgrade.html 
     image: postgres:17    
     container_name: postgresql
     restart: unless-stopped
