@@ -2,7 +2,7 @@
 title: Cloudreve
 description: A guide to deploying Cloudreve
 published: true
-date: 2025-12-01T12:42:04.280Z
+date: 2025-12-01T12:42:16.544Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-01T12:42:04.280Z
@@ -12,7 +12,7 @@ dateCreated: 2025-12-01T12:42:04.280Z
 
 Cloudreve can help you build a self-hosted file management service that is both suitable for private and public use, with support for multiple storage providers and virtual file systems to provide a flexible file management experience.
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Dockpeek
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Cloudreve
 ```yaml
 services:
   cloudreve:
