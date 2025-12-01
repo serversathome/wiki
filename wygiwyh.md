@@ -2,14 +2,14 @@
 title: WYGIWYH
 description: A guide to deploying WYGIWYH
 published: true
-date: 2025-12-01T21:18:41.991Z
+date: 2025-12-01T21:19:02.025Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-01T21:18:41.991Z
 ---
 
 # <img src="/dockpeek.png" class="tab-icon"> What is WYGIWYH?
-
+WYGIWYH (What You Get Is What You Have) is a powerful, principles-first finance tracker designed for people who prefer a no-budget, straightforward approach to managing their money. With features like multi-currency support, customizable transactions, and a built-in dollar-cost averaging tracker, WYGIWYH helps you take control of your finances with simplicity and flexibility.
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy WYGIWYH
 ```yaml
