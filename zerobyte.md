@@ -2,7 +2,7 @@
 title: Zero Byte
 description: A guide to deploying Zerobyte
 published: true
-date: 2025-12-02T00:17:47.566Z
+date: 2025-12-02T00:20:17.201Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-02T00:17:47.566Z
@@ -38,4 +38,10 @@ services:
       - ./zerobyte:/var/lib/zerobyte
       - /mnt/tank:/mydata
       - ~/.config/rclone:/root/.config/rclone
+```
+
+# Setting Up rclone
+1. To set a new backup target via rclone, run this command as root in the TrueNAS shell and follow the prompts:
+```bash
+rclone config
 ```
