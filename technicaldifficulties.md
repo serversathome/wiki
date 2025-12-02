@@ -2,7 +2,7 @@
 title: Technical Difficulties
 description: Some common technical issues reported by the community
 published: true
-date: 2025-12-02T17:57:50.788Z
+date: 2025-12-02T18:01:33.764Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-02T17:10:47.700Z
@@ -33,6 +33,8 @@ Make sure your directory structure follows the instructions [here](/Folder-Struc
 ```bash
 chown root:apps /mnt/tank/media -R
 ```
+## I fixed my permissions and my torrent still won't download
+Try removing and re-adding your torrent. If you change permissions with existing torrents they don't always respect the change and need to be re-added to account for the new permissions.
 
 ## Unable to add root folder. Folder `/media/movies/` is not writable by user `abc`
 This is also a permissions issue. See the solution above.
