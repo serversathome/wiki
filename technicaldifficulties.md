@@ -2,7 +2,7 @@
 title: Technical Difficulties
 description: Some common technical issues reported by the community
 published: true
-date: 2025-12-02T18:01:33.764Z
+date: 2025-12-02T18:04:40.228Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-02T17:10:47.700Z
@@ -52,3 +52,6 @@ If set up correctly, hardlinking should be creating "shortcuts" to your media in
 
 ## My qBittorrent downloads are slow
 This is usually due to a small number of seeders. Try downloading the [Ubuntu torrent](https://ubuntu.com/download/alternative-downloads) and see if its still slow. If its not, its a shortage of seeders - try picking a different torrent. If the Ubuntu torrent is still slow, try a different VPN server with more bandwidth.
+
+## Download client qBittorrent places downloads in ... but this directory does not appear to exist inside the container
+The default save path for qBittorrent needs to be changed to `/media/downloads`.
