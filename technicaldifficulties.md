@@ -2,7 +2,7 @@
 title: Technical Difficulties
 description: Some common technical issues reported by the community
 published: true
-date: 2025-12-02T18:06:26.151Z
+date: 2025-12-02T18:08:16.043Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-02T17:10:47.700Z
@@ -58,3 +58,6 @@ The default save path for qBittorrent needs to be changed to `/media/downloads`.
 
 ## I want my apps on one pool and my media on another. Is this a problem?
 No, this is how many people do it. Make sure the volume mounts for media point to your pool with media and your apps' configs are pointed to the apps pool and you will be fine.
+
+## Cant communicate with the nvidia driver. Make sure the latesr nvidia driver is installed and running
+Go to **Apps → Configuration → Settings** and check the box for *Install NVIDIA Drivers*
