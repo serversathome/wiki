@@ -2,7 +2,7 @@
 title: Technical Difficulties
 description: Some common technical issues reported by the community
 published: true
-date: 2025-12-02T17:18:45.756Z
+date: 2025-12-02T17:22:15.819Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-02T17:10:47.700Z
@@ -19,4 +19,6 @@ For example if you are using tailscale, you need to add `100.64.0.0/10` to your 
 ## I get `Unauthorized` when visiting the qBittorrent web UI
 This generally a good thing! Try clicking on the URL in the browser bar and hit <kbd>ENTER</kbd> and the interface should load.
 
-##
+## My qBittorrent won't start
+
+99% of the time this is due to a bad `wg0.conf` file. Make sure to remove any IPv6 information from your wireguard file. See [this section](https://wiki.serversatho.me/qBittorrent#h-2-example-wireguard-wg0conf-file) for an example of a correct wireguard configuration file.
