@@ -2,7 +2,7 @@
 title: Technical Difficulties
 description: Some common technical issues reported by the community
 published: true
-date: 2025-12-02T17:51:34.015Z
+date: 2025-12-02T17:55:12.993Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-02T17:10:47.700Z
@@ -25,6 +25,9 @@ This generally a good thing! Try clicking on the URL in the browser bar and hit 
 ## I do not see a password in the qBittorrent logs
 This is usually due to the same issue above. Try to get your wireguard file fixed then check the logs again.
 
+## curl: (6) Could not resolve host: ip.me
+This means your wireguard file is not working. Use the method above to troubleshoot.
+
 ## I get a permissions issue when trying to download a torrent
 Make sure your directory structure follows the instructions [here](/Folder-Structure). If it does, click your media folder and apply root:apps 770 permissions recursively. You can also execute this in the shell by running (as root) assuming your pool is named `tank`:
 ```bash
@@ -45,4 +48,3 @@ The simplest way to see what is going on is to click the icon for **Interactive 
 ## My movie or show is not being moved from the `downloads` folder
 If set up correctly, hardlinking should be creating "shortcuts" to your media in its respective folder. Check [this guide](https://trash-guides.info/File-and-Folder-Structure/Check-if-hardlinks-are-working/) from TRaSH to see if your hardlinks are working. Also check the [Folder Structure](/Folder-Structure) article to make sure your datasets/directories are set up correctly. 
 
-##
