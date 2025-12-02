@@ -2,7 +2,7 @@
 title: Technical Difficulties
 description: Some common technical issues reported by the community
 published: true
-date: 2025-12-02T17:55:12.993Z
+date: 2025-12-02T17:57:50.788Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-02T17:10:47.700Z
@@ -48,3 +48,5 @@ The simplest way to see what is going on is to click the icon for **Interactive 
 ## My movie or show is not being moved from the `downloads` folder
 If set up correctly, hardlinking should be creating "shortcuts" to your media in its respective folder. Check [this guide](https://trash-guides.info/File-and-Folder-Structure/Check-if-hardlinks-are-working/) from TRaSH to see if your hardlinks are working. Also check the [Folder Structure](/Folder-Structure) article to make sure your datasets/directories are set up correctly. 
 
+## My qBittorrent downloads are slow
+This is usually due to a small number of seeders. Try downloading the [Ubuntu torrent](https://ubuntu.com/download/alternative-downloads) and see if its still slow. If its not, its a shortage of seeders - try picking a different torrent. If the Ubuntu torrent is still slow, try a different VPN server with more bandwidth.
