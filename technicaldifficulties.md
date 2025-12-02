@@ -2,7 +2,7 @@
 title: Technical Difficulties
 description: Some common technical issues reported by the community
 published: true
-date: 2025-12-02T17:26:29.759Z
+date: 2025-12-02T17:37:56.107Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-02T17:10:47.700Z
@@ -27,3 +27,7 @@ Make sure your directory structure follows the instructions [here](/Folder-Struc
 ```bash
 chown root:apps /mnt/tank/media -R
 ```
+
+## Unable to add root folder. Folder `/media/movies/` is not writable by user `abc`
+This is also a permissions issue. See the solution above.
+
