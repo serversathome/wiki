@@ -2,7 +2,7 @@
 title: Technical Difficulties
 description: Some common technical issues reported by the community
 published: true
-date: 2025-12-02T17:46:51.326Z
+date: 2025-12-02T17:51:34.015Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-02T17:10:47.700Z
@@ -21,6 +21,9 @@ This generally a good thing! Try clicking on the URL in the browser bar and hit 
 
 ## My qBittorrent won't start
 99% of the time this is due to a bad `wg0.conf` file. Make sure to remove any IPv6 information from your wireguard file. See [this section](https://wiki.serversatho.me/qBittorrent#h-2-example-wireguard-wg0conf-file) for an example of a correct wireguard configuration file.
+
+## I do not see a password in the qBittorrent logs
+This is usually due to the same issue above. Try to get your wireguard file fixed then check the logs again.
 
 ## I get a permissions issue when trying to download a torrent
 Make sure your directory structure follows the instructions [here](/Folder-Structure). If it does, click your media folder and apply root:apps 770 permissions recursively. You can also execute this in the shell by running (as root) assuming your pool is named `tank`:
