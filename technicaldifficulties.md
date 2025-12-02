@@ -2,7 +2,7 @@
 title: Technical Difficulties
 description: Some common technical issues reported by the community
 published: true
-date: 2025-12-02T17:45:30.259Z
+date: 2025-12-02T17:45:39.416Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-02T17:10:47.700Z
@@ -41,3 +41,5 @@ The simplest way to see what is going on is to click the icon for **Interactive 
 
 ## My movie or show is not being moved from the `downloads` folder
 If set up correctly, hardlinking should be creating "shortcuts" to your media in its respective folder. Check [this guide](https://trash-guides.info/File-and-Folder-Structure/Check-if-hardlinks-are-working/) from TRaSH to see if your hardlinks are working.
+
+##
