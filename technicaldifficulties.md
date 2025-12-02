@@ -2,7 +2,7 @@
 title: Technical Difficulties
 description: Some common technical issues reported by the community
 published: true
-date: 2025-12-02T17:42:43.934Z
+date: 2025-12-02T17:45:30.259Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-02T17:10:47.700Z
@@ -38,3 +38,6 @@ This can be caused by many things.
 1. Your indexer may not be synced to Radarr/Sonarr.
 
 The simplest way to see what is going on is to click the icon for **Interactive Search** (looks like a little man) and see what the results are. If you see no results it may be #2 or #3. If all you see is results with a red exclamtion mark it is #1.
+
+## My movie or show is not being moved from the `downloads` folder
+If set up correctly, hardlinking should be creating "shortcuts" to your media in its respective folder. Check [this guide](https://trash-guides.info/File-and-Folder-Structure/Check-if-hardlinks-are-working/) from TRaSH to see if your hardlinks are working.
