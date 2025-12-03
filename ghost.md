@@ -2,7 +2,7 @@
 title: Ghost
 description: A guide to installing Ghost in docker via compose
 published: true
-date: 2025-12-03T10:55:15.579Z
+date: 2025-12-03T10:59:52.510Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-11T11:43:39.558Z
@@ -25,7 +25,6 @@ services:
    ports:
      - 8085:2368
    environment:
-     # see https://ghost.org/docs/config/#configuration-options
      database__client: mysql
      database__connection__host: db
      database__connection__user: root
@@ -35,6 +34,14 @@ services:
      TZ: America/New_York
      security__staffDeviceVerification: false
      privacy_useTinfoil: true
+     mail__options__auth__pass: 
+     mail__options__auth__user: 
+     mail__options__host: 
+     mail__options__port: 587
+     mail__options__secure: false
+     mail__options__service: 
+     mail__transport: SMTP
+     mail__from: 
    volumes:
      - /mnt/tank/configs/ghost:/var/lib/ghost/content
 
@@ -68,6 +75,10 @@ In order to enable monitoring, go to the **Settings** gear icon in the lower lef
 You don't need mail to work to host content on Ghost. If you want to have subscribers sign up and get emails when you update content however, you will need email set up. You will also need email configured if you want to have multiple contributors with individual accounts on your platform. Mailgun is free as long as you send less than 1000 emails per month.
 
 ## 4.1 Mailgun
+> 
+> If you go this route remove any lines in the docker compose file which start with `mail`
+{.is-danger}
+
 
 Navigate to [mailgun](https://signup.mailgun.com/new/signup). Enter all the information keeping the default **Foundation** **50k Trial** selected. Once you have an account, login to your account on mailgun and follow the steps in [this video](https://youtu.be/YnjYWhceepU?feature=shared&t=227) on the correct way to get email configured.
 
