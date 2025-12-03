@@ -2,19 +2,18 @@
 title: Ghost
 description: A guide to installing Ghost in docker via compose
 published: true
-date: 2025-07-06T10:27:46.357Z
+date: 2025-12-03T10:55:15.579Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-11T11:43:39.558Z
 ---
 
-![ghost-light.png](/ghost-light.png)
-
-# What is Ghost?
+# <img src="/ghost-light.png" class="tab-icon"> What is Ghost?
 
 Ghost is a powerful app for professional publishers to create, share, and grow a business around their content. It comes with modern tools to build a website, publish content, send newsletters & offer paid subscriptions to members.
 
-# Docker Compose
+
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Ghost
 
 ```yaml
 services:
@@ -56,23 +55,23 @@ services:
 {.is-info}
 
 
-# Logging In
+# 2 · Logging In
 
 Once you have deployed this container go to https://example.com/ghost to login and create your account.
 
-# Monitoring With Umami
+# 3 · Monitoring With Umami
 
 In order to enable monitoring, go to the **Settings** gear icon in the lower left corner, then select **Code Injection** section (under **Advanced**), and in the **Site Header** section paste the Tracking Code from the website you created in Umami.
 
-# Getting Mail Working
+# 4 · Getting Mail Working
 
 You don't need mail to work to host content on Ghost. If you want to have subscribers sign up and get emails when you update content however, you will need email set up. You will also need email configured if you want to have multiple contributors with individual accounts on your platform. Mailgun is free as long as you send less than 1000 emails per month.
 
-## Mailgun
+## 4.1 Mailgun
 
 Navigate to [mailgun](https://signup.mailgun.com/new/signup). Enter all the information keeping the default **Foundation** **50k Trial** selected. Once you have an account, login to your account on mailgun and follow the steps in [this video](https://youtu.be/YnjYWhceepU?feature=shared&t=227) on the correct way to get email configured.
 
-## Transactional Email
+## 4.2 Transactional Email
 
 Once you get to the 10 min mark in the video, he switches gears from bulk email to transactional email. Because we deployed in docker, we need to get access to our container a different way than in the video. *(If you can get to the console of the container, skip to step #3)* First we need to ssh into our server with sudo privileges. Once there, follow these steps to get the container ID and then execute the command shown:
 
@@ -97,17 +96,17 @@ Once you get to the 10 min mark in the video, he switches gears from bulk email 
 
   4. Now restart your container and you're done!
 
-# Migrating From Wordpress
+# 5 · Migrating From Wordpress
 
 > In the event you want to move all your content from Wordpress, there are a few steps to take. Official instructions can be found [here](https://ghost.org/docs/migration/wordpress/). 
 {.is-info}
 
 
-## Posts and Pages
+## 5.1 Posts and Pages
 
 Install the [Ghost Export Plugin](https://wordpress.org/plugins/ghost/) to your WP instance. I could not get the full .zip with all the images and such to work, but if you can, all you need to do is export your site as a zip file and upload it to Ghost (Ghost > Settings > Import/Export > Universal Import). For those who can't get the full .zip working, use the JSON instead, knowing it won't contain any of your pictures/media.
 
-## Redirects
+## 5.2 Redirects
 
 If you left the WP settings for the posts default, it uses a directory tree which includes the /year/month/date/post-name format. Ghost does not use that, so you need to set up 301 redirects in Ghost. Create a .yaml file with these contents *keeping the spacing exactly as you see it*:
 
