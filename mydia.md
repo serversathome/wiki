@@ -2,7 +2,7 @@
 title: Mydia
 description: A guide to deploying Mydia
 published: true
-date: 2025-11-16T13:15:26.713Z
+date: 2025-12-04T14:38:57.693Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-16T13:15:26.713Z
@@ -34,3 +34,6 @@ services:
       - 4000:4000
     restart: unless-stopped
 ```
+
+# <img src="/patreon-light.png" class="tab-icon"> 2 · Video
+[![](/2025-11-24-mydia-a-modern-self-hosted-medi-promo-card.png)](https://www.patreon.com/posts/mydia-modern-143868943)
