@@ -2,7 +2,7 @@
 title: Backvault
 description: A guide to deploying Backvault
 published: true
-date: 2025-12-04T16:54:37.078Z
+date: 2025-12-04T17:02:44.134Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-04T16:38:53.485Z
@@ -36,6 +36,8 @@ Backvault needs your folders to be owned by user:group `1000`. Assuming you used
 ```bash
 chown 1000:1000 /mnt/tank/configs/backvault -R
 ```
+
+Now restart your container.
 
 # 3 · View API Keys
 If you are using Vaultwarden, navigate to **Settings → Security → API Key** and click **View API Key** to see your **Client ID** and **Client Secret**
