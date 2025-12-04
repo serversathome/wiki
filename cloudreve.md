@@ -2,7 +2,7 @@
 title: Cloudreve
 description: A guide to deploying Cloudreve
 published: true
-date: 2025-12-01T12:44:09.094Z
+date: 2025-12-04T11:20:09.298Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-01T12:42:04.280Z
@@ -61,3 +61,4 @@ services:
 
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video 
+https://youtu.be/5zWL_cIdmIU
