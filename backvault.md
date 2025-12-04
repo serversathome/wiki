@@ -2,7 +2,7 @@
 title: Backvault
 description: A guide to deploying Backvault
 published: true
-date: 2025-12-04T16:38:53.485Z
+date: 2025-12-04T16:54:37.078Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-04T16:38:53.485Z
@@ -30,3 +30,13 @@ services:
     ports:
       - "8080:8080"
 ```
+
+# 2 · Correcting Permissions
+Backvault needs your folders to be owned by user:group `1000`. Assuming you used the file structure above run this command as root in the TrueNAS shell:
+```bash
+chown 1000:1000 /mnt/tank/configs/backvault -R
+```
+
+# 3 · View API Keys
+If you are using Vaultwarden, navigate to **Settings → Security → API Key** and click **View API Key** to see your **Client ID** and **Client Secret**
+
