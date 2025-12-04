@@ -2,7 +2,7 @@
 title: Jellyswarrm
 description: A guide to deploy Jellyswarrm
 published: true
-date: 2025-12-04T12:13:06.747Z
+date: 2025-12-04T12:13:58.950Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-01T21:52:11.992Z
@@ -10,6 +10,11 @@ dateCreated: 2025-12-01T21:52:11.992Z
 
 # <img src="/jellyswarrm.png" class="tab-icon"> What is Jellyswarrm?
 Jellyswarrm is a reverse proxy that lets you combine multiple Jellyfin servers into one place. If you’ve got libraries spread across different locations or just want everything together, Jellyswarrm makes it easy to access all your media from a single interface.
+
+> For this to work every server must be accessible from Jellyswarrm via LAN, VPN, or FQDN
+{.is-warning}
+
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Jellyswarrm
 ```yaml
 services:
