@@ -2,7 +2,7 @@
 title: Jellyswarrm
 description: A guide to deploy Jellyswarrm
 published: true
-date: 2025-12-01T21:52:11.992Z
+date: 2025-12-04T12:13:06.747Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-01T21:52:11.992Z
@@ -25,3 +25,10 @@ services:
       - JELLYSWARRM_USERNAME=admin
       - JELLYSWARRM_PASSWORD=jellyswarrm # ⚠️ Change this in production!
 ```
+
+# 2 · Setup
+1. In every Jellyfin server, add all users you wish to have access
+1. Navigate to `http://IP:3000/ui` to login to Jellyswarrm
+1. Add all of your servers
+1. Click **Users** and map your users to every server you want to give them access to
+1. Point your Jellyfin client at `http://IP:3000` to access the unifieed webUI
