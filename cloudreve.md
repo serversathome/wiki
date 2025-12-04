@@ -2,7 +2,7 @@
 title: Cloudreve
 description: A guide to deploying Cloudreve
 published: true
-date: 2025-12-04T11:20:53.928Z
+date: 2025-12-04T11:21:30.081Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-01T12:42:04.280Z
@@ -38,7 +38,7 @@ services:
 
   postgresql:
     image: postgres:17    
-    container_name: postgresql
+    container_name: cloudreve-postgresql
     restart: unless-stopped
     environment:
       - POSTGRES_USER=cloudreve
@@ -49,7 +49,7 @@ services:
 
   redis:
     image: redis:latest
-    container_name: redis
+    container_name: cloudreve-redis
     restart: unless-stopped
     volumes:
       - /mnt/tank/configs/cloudreve/redis:/data
