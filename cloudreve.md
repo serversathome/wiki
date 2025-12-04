@@ -2,7 +2,7 @@
 title: Cloudreve
 description: A guide to deploying Cloudreve
 published: true
-date: 2025-12-04T11:20:09.298Z
+date: 2025-12-04T11:20:30.162Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-01T12:42:04.280Z
@@ -34,7 +34,7 @@ services:
       - CR_CONF_Database.Port=5432
       - CR_CONF_Redis.Server=redis:6379
     volumes:
-      - /mnt/tank/configs/cloudreve/data:/cloudreve/data
+      - /mnt/tank/configs/cloudreve:/cloudreve/data
 
   postgresql:
     image: postgres:17    
