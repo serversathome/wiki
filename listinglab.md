@@ -2,7 +2,7 @@
 title: Listing Lab
 description: A guide to deploy Listing Lab
 published: true
-date: 2025-12-04T17:56:39.627Z
+date: 2025-12-04T17:59:49.183Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-04T17:56:39.626Z
@@ -86,6 +86,15 @@ services:
       rabbitmq:
         condition: service_healthy
 ```
+# 2 · Logging In
+1. Navigate to `http://IP:8069`
+1. The default username and password are both `admin`
 
-# 2 · Setting Up the Scraper
-1. 
+
+# 3 · Setting Up the Scraper
+1. Log in to the home page
+1. Select your user profile in the top right corner, and select My Preferences
+1. Click the **Security** tab, and generate a new API key
+1. If you are prompted for a password, enter the password you used to login (`admin` by default)
+1. Add a persisistent key, and click **Save**
+1. Paste the key into the docker compose line 59 `ODOO_API_KEY:`
