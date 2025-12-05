@@ -2,7 +2,7 @@
 title: Uptime Kit
 description: A guide to deploying Uptime Kit
 published: true
-date: 2025-12-05T21:05:34.997Z
+date: 2025-12-05T21:07:31.890Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T21:05:34.997Z
@@ -15,9 +15,9 @@ A simple uptime monitoring dashboard to keep track of your websites and APIs. Ge
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Uptime Kit
 1. Navigate to your `stacks` directory in the TrueNAS shell
 1. Run these commands as root:
-```bash
-git clone https://github.com/abhixdd/UptimeKit
-mv UptimeKit uptimekit
-```
+    ```bash
+    git clone https://github.com/abhixdd/UptimeKit
+    mv UptimeKit uptimekit
+    ```
 1. Refresh your Dockge window
 1. Start the stack
