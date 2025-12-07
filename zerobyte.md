@@ -35,7 +35,7 @@ services:
       - TZ=America/New_York # Set your timezone here
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./zerobyte:/var/lib/zerobyte
+      - /mnt/tank/configs/zerobyte:/var/lib/zerobyte
       - /mnt/tank:/mydata
       - ~/.config/rclone:/root/.config/rclone
 ```
