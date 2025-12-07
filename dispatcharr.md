@@ -28,6 +28,7 @@ services:
     volumes:
       - /mnt/tank/configs/dispatcharr/data:/data
     environment:
+      - DJANGO_SECRET_KEY=            #must be 50 charaters and no syntax charaters
       - DISPATCHARR_ENV=aio
       - REDIS_HOST=localhost
       - CELERY_BROKER_URL=redis://localhost:6379/0
@@ -44,6 +45,7 @@ services:
     volumes:
       - /mnt/tank/configs/dispatcharr/data:/data
     environment:
+      - DJANGO_SECRET_KEY=            #must be 50 charaters and no syntax charaters
       - DISPATCHARR_ENV=aio
       - REDIS_HOST=localhost
       - CELERY_BROKER_URL=redis://localhost:6379/0
