@@ -2,7 +2,7 @@
 title: nextExplorer
 description: A guide to deploying nextExplorer
 published: true
-date: 2025-11-26T11:20:18.417Z
+date: 2025-12-08T10:57:35.277Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-03T14:41:55.290Z
@@ -22,10 +22,10 @@ services:
       - 3000:3000
     environment:
       - NODE_ENV=production
-      # Optional: match the container user/group to your host IDs
-      # - PUID=1000
-      # - PGID=1000
+      - PUID=568
+      - PGID=568
     volumes:
-      - /mnt/tank/configs/nextexplorer:/cache
+    	- /mnt/tank/configs/nextexplorer/config:/config
+      - /mnt/tank/configs/nextexplorer/cache:/cache
       - /mnt/tank:/mnt/Tank
 ```
