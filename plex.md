@@ -23,6 +23,8 @@ services:
     container_name: plex
     image: plexinc/pms-docker
     restart: unless-stopped
+	# devices:
+      # - /dev/dri:/dev/dri
     #runtime: nvidia
     #deploy:
     #  resources:
@@ -66,7 +68,10 @@ services:
 > Follow the steps [in this Github page](https://github.com/NVIDIA/nvidia-container-toolkit) to allow passing an nVidia GPU into a container
 {.is-info}
 ### GPU Transcode
+**NVIDIA**
 To enable transcoding from your nVidia GPU, uncomment out the lines in the compose file above.
+**Intel iGPU**
+To enable transcoding from your Intel iGPU, uncomment out the devices lines (under retstart) in the compose file above.
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 ![screenshot_from_2025-03-13_06-45-49.png](/screenshot_from_2025-03-13_06-45-49.png)
