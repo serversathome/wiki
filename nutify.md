@@ -2,7 +2,7 @@
 title: Nutify
 description: A guide to deploying Nutify
 published: true
-date: 2025-12-08T15:42:03.053Z
+date: 2025-12-08T15:43:33.374Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-08T15:38:24.907Z
@@ -19,7 +19,7 @@ Nutify is a comprehensive monitoring system designed to track the health and per
 ```yaml
 services:
   nut:
-    image: dartsteven/nutify:arm64-latest  # Use amd64-latest or armv7-latest based on your architecture
+    image: dartsteven/nutify:amd64-latest
     container_name: Nutify
     privileged: true
     cap_add:
