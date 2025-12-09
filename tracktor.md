@@ -2,7 +2,7 @@
 title: Tracktor
 description: A guide to deploying Tracktor
 published: true
-date: 2025-08-28T18:34:56.491Z
+date: 2025-12-09T17:44:29.902Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-28T18:34:56.490Z
@@ -20,13 +20,16 @@ Easily track:
 ```yaml
 services:
   app:
-    image: ghcr.io/javedh-dev/tracktor:dev
+    image: ghcr.io/javedh-dev/tracktor:latest
     container_name: tracktor-app
     restart: unless-stopped
     ports:
-      - 3333:3000
+      - "3333:3000"
     volumes:
-      - /mnt/tank/configs/tracktor:/config
+      - /mnt/tank/configs/tracktor:/data
     environment:
-      - PUBLIC_API_BASE_URL=http://[enter-your-ip]:3333
+      - TRACKTOR_DEMO_MODE=false
+      - FORCE_DATA_SEED=false
+      - CORS_ORIGINS=http://10.99.0.242:3333
+
 ```
