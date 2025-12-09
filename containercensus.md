@@ -2,7 +2,7 @@
 title: Container Census
 description: A guide to deploy Container Census
 published: true
-date: 2025-11-04T21:13:50.330Z
+date: 2025-12-09T19:50:54.949Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-04T21:13:50.330Z
@@ -15,6 +15,7 @@ Container Census is a lightweight, Go-powered tool that automatically scans your
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Container Census
 
 ```yaml
+services:
   census-server:
     image: ghcr.io/selfhosters-cc/container-census:latest
     container_name: census-server
