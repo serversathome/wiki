@@ -2,7 +2,7 @@
 title: Tracktor
 description: A guide to deploying Tracktor
 published: true
-date: 2025-12-09T17:44:29.902Z
+date: 2025-12-09T19:47:19.027Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-28T18:34:56.490Z
@@ -33,3 +33,7 @@ services:
       - CORS_ORIGINS=http://10.99.0.242:3333
 
 ```
+
+# 2 · Logging In
+1. Navigate to `http://IP:3333`
+1. The default pin is `123456`
