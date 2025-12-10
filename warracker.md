@@ -2,7 +2,7 @@
 title: Warracker
 description: A guide to deploying Warracker
 published: true
-date: 2025-12-10T19:00:09.934Z
+date: 2025-12-10T19:03:48.898Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-10T18:58:22.402Z
@@ -11,7 +11,16 @@ dateCreated: 2025-12-10T18:58:22.402Z
 # <img src="/warracker.png" class="tab-icon"> What is Warracker?
 Warracker is an open source, self-hostable warranty tracker to monitor expirations, store receipts, files. You own the data, your rules!
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Warracker
+
+# 1 · Deploy Warracker
+# tabs {.tabset}
+
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
+1. Set a **Database Password**
+1. Set the **Warracker Uploads Storage** and **Postgres Data Storage** to *Host Path*
+1. Check the box for **Automatic Permissions** under the **Postgres Data Storage** section
+
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 ```yaml
 services:
   warracker:
@@ -41,7 +50,7 @@ services:
       retries: 5
 ```
 
-## 1.1 env File
+### 1.1 env File
 
 ```yaml
 # Warracker Environment Variables Configuration
