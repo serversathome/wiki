@@ -2,7 +2,7 @@
 title: Warracker
 description: A guide to deploying Warracker
 published: true
-date: 2025-12-10T18:58:22.402Z
+date: 2025-12-10T19:00:09.934Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-10T18:58:22.402Z
@@ -19,7 +19,7 @@ services:
     ports:
       - "8005:80"
     volumes:
-      - /mnt/tank/configs/warracker_uploads:/data/uploads
+      - /mnt/tank/configs/uploads:/data/uploads
     env_file:
       - .env
     depends_on:
@@ -30,7 +30,7 @@ services:
   warrackerdb:
     image: postgres:15-alpine
     volumes:
-      - /mnt/tank/configs/postgres_data:/var/lib/postgresql/data
+      - /mnt/tank/configs/db:/var/lib/postgresql/data
     env_file:
       - .env
     restart: unless-stopped
