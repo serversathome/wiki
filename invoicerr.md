@@ -2,7 +2,7 @@
 title: Invoicerr
 description: A guide to deploying Invoicerr
 published: true
-date: 2025-12-11T16:48:55.711Z
+date: 2025-12-11T16:59:04.444Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-11T16:48:55.711Z
@@ -77,5 +77,5 @@ services:
       POSTGRES_PASSWORD: invoicerr
       POSTGRES_DB: invoicerr_db
     volumes:
-      - /mnt/tank/configs/db:/var/lib/postgresql/data
+      - /mnt/tank/configs/invoicerr:/var/lib/postgresql/data
 ```
