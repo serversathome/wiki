@@ -2,7 +2,7 @@
 title: Invoicerr
 description: A guide to deploying Invoicerr
 published: true
-date: 2025-12-11T16:59:04.444Z
+date: 2025-12-11T17:06:54.864Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-11T16:48:55.711Z
@@ -34,7 +34,7 @@ Invoicerr is a simple, open-source invoicing application designed to help freela
 ```yaml
 services:
   invoicerr:
-    image: ghcr.io/impre-visible/invoicerr:latest
+    image: ghcr.io/impre-visible/invoicerr:v1.4.0i
     ports:
       - "8001:80"
     environment:
