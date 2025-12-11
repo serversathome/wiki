@@ -2,7 +2,7 @@
 title: Invoicerr
 description: A guide to deploying Invoicerr
 published: true
-date: 2025-12-11T17:06:54.864Z
+date: 2025-12-11T17:14:47.625Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-11T16:48:55.711Z
@@ -36,13 +36,11 @@ services:
   invoicerr:
     image: ghcr.io/impre-visible/invoicerr:v1.4.0i
     ports:
-      - "8001:80"
+      - 8001:80
     environment:
       - DATABASE_URL=postgresql://invoicerr:invoicerr@invoicerr_db:5432/invoicerr_db
-
-      - APP_URL=https://invoicerr.example.com
-      - CORS_ORIGINS=http://localhost:5173,https://invoicerr.example.com
-
+      - APP_URL=http://10.99.0.242:8001
+      - CORS_ORIGINS=http://10.99.0.242:8001,https://invoicerr.example.com
       # Required for email features
       - SMTP_HOST=smtp-relay.example.com
       - SMTP_USER="username@example.com"
@@ -50,7 +48,6 @@ services:
       - SMTP_PASSWORD="your_smtp_password"
       - SMTP_PORT=587 # Change this to your SMTP port (default is 587 for TLS)
       - SMTP_SECURE=false # Set to true if your SMTP server requires a secure connection (default is false)
-
       # OIDC Configuration (example for Authentik)
       - OIDC_ISSUER="https://auth.chevrier.dev"
       - OIDC_NAME="Pocket ID"
@@ -64,12 +61,10 @@ services:
       # Client ID and Secret for OIDC
       - OIDC_CLIENT_ID="your-client-id"
       - OIDC_CLIENT_SECRET="your-client-secret"
-
       # Optional, but recommended for docker deployments
       - JWT_SECRET="your_jwt_secret"
     depends_on:
       - invoicerr_db
-
   invoicerr_db:
     image: postgres:17
     environment:
