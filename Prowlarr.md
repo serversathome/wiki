@@ -26,7 +26,7 @@ services:
       - TZ=America/New_York
     volumes:
       - /mnt/tank/configs/prowlarr:/config
-      - /mnt/tank/media/:/media/
+      - /mnt/tank/media/:/media
     ports:
       - 9696:9696
     restart: unless-stopped
