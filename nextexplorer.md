@@ -2,7 +2,7 @@
 title: nextExplorer
 description: A guide to deploying nextExplorer
 published: true
-date: 2025-12-08T10:57:35.277Z
+date: 2025-12-12T11:34:20.761Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-03T14:41:55.290Z
@@ -26,6 +26,6 @@ services:
       - PGID=568
     volumes:
     	- /mnt/tank/configs/nextexplorer/config:/config
-      - /mnt/tank/configs/nextexplorer/cache:/cache
-      - /mnt/tank:/mnt/Tank
+      - ./cache:/cache
+      - /mnt/tank:/mnt/tank
 ```
