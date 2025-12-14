@@ -20,8 +20,8 @@ services:
     environment:
       - ENABLE_S3=false
       - ENCRYPTION_KEY=changemechangemechangemechangeme
-      - PALMR_UID=568
-      - PALMR_GID=568
+      - PUID=568
+      - PGID=568
     ports:
       - 5487:5487 # Web port
     volumes:
