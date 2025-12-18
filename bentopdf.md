@@ -2,7 +2,7 @@
 title: BentoPDF
 description: A guide to deploying BentoPDF via docker
 published: true
-date: 2025-12-18T14:51:00.931Z
+date: 2025-12-18T14:51:14.899Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-18T07:15:11.407Z
@@ -25,5 +25,5 @@ services:
     restart: unless-stopped
 ```
 
-> After deploying the container, simply go to http://<IP>:3060 and start using the software.
+> After deploying the container, simply go to http://IP:3060 and start using the software.
 {.is-success}
