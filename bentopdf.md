@@ -1,14 +1,14 @@
 ---
 title: BentoPDF
 description: A guide to deploying BentoPDF via docker
-published: false
-date: 2025-12-16
+published: true
+date: 2025-12-18T14:50:39.179Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-16
+dateCreated: 2025-12-18T07:15:11.407Z
 ---
 
-# <img width="263" height="512" alt="bentopdf" src="https://github.com/user-attachments/assets/f1a69d56-5850-4d83-95e8-052e25263fc8" /> {class="tab-icon"} What is BentoPDF? 
+# <img src="https://github.com/user-attachments/assets/f1a69d56-5850-4d83-95e8-052e25263fc8" class="tab-icon"> " What is BentoPDF? 
 BentoPDF is a powerful suite of tools that allow you to do all kinds of cool things with PDF files. Some examples are: siging PDF's, create or fill in forms, extract images and so much more.
 
 > No datasets need to be created
