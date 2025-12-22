@@ -2,7 +2,7 @@
 title: Tracearr
 description: A guide to deploying Tracearr
 published: true
-date: 2025-12-22T13:48:45.009Z
+date: 2025-12-22T18:17:33.138Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-22T13:48:45.008Z
@@ -39,6 +39,7 @@ Unlike monitoring tools that just show you data, Tracearr is built to detect acc
 services:
   tracearr:
     image: ghcr.io/connorgallopo/tracearr:supervised
+    container_name: tracearr
     shm_size: 256mb
     ports:
       - 3020:3000
