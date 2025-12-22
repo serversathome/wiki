@@ -2,7 +2,7 @@
 title: Tracearr
 description: A guide to deploying Tracearr
 published: true
-date: 2025-12-22T18:17:33.138Z
+date: 2025-12-22T19:08:32.516Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-22T13:48:45.008Z
@@ -58,3 +58,6 @@ services:
       start_period: 60s
       retries: 3
 ```
+
+# <img src="/patreon-light.png" class="tab-icon"> 2 · Video
+[![](/2025-12-22-track-user-violations-with-trace-promo-card.png)](https://www.patreon.com/posts/track-user-with-146451791)
