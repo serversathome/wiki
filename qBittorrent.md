@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-14T23:09:11.936Z
+date: 2025-12-28T21:47:20.711Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -19,7 +19,7 @@ qBittorrent is a free and open-source software that aims to provide the same fea
 services:
   qbittorrent:
     container_name: qbittorrent
-    image: ghcr.io/hotio/qbittorrent
+    image: ghcr.io/hotio/qbittorrent:release-5.1.2
     restart: unless-stopped
     ports:
       - 8080:8080
