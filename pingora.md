@@ -2,7 +2,7 @@
 title: Pingora Proxy Manager
 description: A guide to deploying Pingora Proxy Manager
 published: true
-date: 2025-12-29T14:37:10.871Z
+date: 2025-12-29T14:37:57.649Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-29T14:37:00.922Z
@@ -42,3 +42,7 @@ services:
       - JWT_SECRET=changeme_in_production_please
       - RUST_LOG=info
 ```
+
+# 2 · Logging In
+1. Navigate to `http://IP:81` to get to the dashboard
+1. The default user is `admin` and the password is `changeme`
