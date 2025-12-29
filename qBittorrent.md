@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-29T14:14:11.594Z
+date: 2025-12-29T14:17:38.674Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -287,7 +287,12 @@ This firewall-based approach means qBittorrent is protected **even if you forget
 In whatever wireguard file your VPN provider gives you, you must:
 1. Change the DNS to something like `1.1.1.1`
 1. Remove any IPv6 information
-1. **Do not use** the VPNs DNS (*the reason for this is all of the LAN traffic bypasses the VPN to allow the webUI to work and that will confuse the DNS of the wireguard container*)
+1. Change DNS to public resolver (like `1.1.1.1` or `8.8.8.8`)
+     - Many VPN provider DNS servers use IP addresses in the 10.0.0.0/8 range
+     - The LAN bypass routes 10.0.0.0/8 to your local network
+     - This causes DNS queries to route incorrectly
+     - Solution: Use public DNS (1.1.1.1, 8.8.8.8) instead of VPN provider DNS
+
 1. Change the Network Interface to `wg0` in the Advanced tab [from this section](https://wiki.serversatho.me/en/qBittorrent#h-62-configuration-options)
 1. Add this line to the `[Interface]` section of your `wg0.conf` file to allow the webUI to be accessible:
     ```
@@ -313,7 +318,12 @@ PersistentKeepalive = 15
 ```
 
 ## More Info
-For more information about what the `PostUp` section does:
+The PostUp command is a single line executed when WireGuard starts. It:
+1. Dynamically detects your network gateway and interface (works on any network)
+1. Adds routing rules so LAN traffic bypasses the VPN
+1. Adds firewall rules to **block all non-VPN traffic** on the physical interface
+
+**This firewall is what prevents IP leaks** - even if qBittorrent is misconfigured!
 
 Detect gateway and interface:
 ```
@@ -340,6 +350,13 @@ iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT;
 iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT;
 iptables -A OUTPUT -o $IF -j DROP
 ```
+**Why the firewall blocks eth0:**
+  - The final rule `iptables -A OUTPUT -o $IF -j DROP` blocks ALL traffic on the physical interface ($IF, usually eth0)
+  - The rules above it create exceptions for:
+    - Established/related connections (responses to WebUI requests)
+    - Traffic to LAN destinations (192.168.x.x, 10.x.x.x, etc.)
+  - Result: WebUI works from LAN, but **torrents cannot leak through eth0**
+
 
 > This file needs to be added to `/mnt/tank/configs/wireguard/` (assuming your pool is named *tank*) before the container can run
 {.is-warning}
