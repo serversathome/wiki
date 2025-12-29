@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-29T12:48:04.205Z
+date: 2025-12-29T12:48:54.244Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -70,7 +70,7 @@ services:
 > The `wg0.conf` file has to be modified as shown below to allow the webUI to work
 {.is-warning}
 
-In whatever wireguard file your VPN provider gives you, you must change the DNS to something like `1.1.1.1` and **do not use** the VPNs DNS (*the reason for this is all of the LAN traffic bypasses the VPN to allow the webUI to work and that will confuse the DNS of the wireguard container*).
+In whatever wireguard file your VPN provider gives you, you must change the DNS to something like `1.1.1.1`, remove any IPv6 information, and **do not use** the VPNs DNS (*the reason for this is all of the LAN traffic bypasses the VPN to allow the webUI to work and that will confuse the DNS of the wireguard container*).
 
 You also must add this line to the `[Interface]` section of your `wg0.conf` file to allow the webUI to be accessible:
 ```
