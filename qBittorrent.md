@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-29T12:52:25.499Z
+date: 2025-12-29T12:57:26.330Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -38,18 +38,10 @@ services:
       - 8080:8080 # qBittorrent WebUI
     restart: unless-stopped
     healthcheck:
-      test:
-        - CMD
-        - ping
-        - -c
-        - "1"
-        - -W
-        - "2"
-        - 1.1.1.1
-      interval: 60s
-      timeout: 5s
-      retries: 3
-      start_period: 30s
+      test: ["CMD", "ping", "-c", "1", "1.1.1.1"]
+      interval: 30s
+      start_period: 20s
+      
   qbittorrent:
     image: linuxserver/qbittorrent:latest
     container_name: qbittorrent
