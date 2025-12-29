@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-29T13:43:52.685Z
+date: 2025-12-29T13:44:13.109Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -13,7 +13,7 @@ qBittorrent is a free and open-source software that aims to provide the same fea
 
 # 1 · Deploy qBittorrent
 # {.tabset}
-## <img src="/docker.png" class="tab-icon"><span class="badge">NEW</span> Linuxserver Wireguard
+## <img src="/docker.png" class="tab-icon"> Linuxserver Wireguard
 This will be the new approach going forward for Servers@Home. It is two containers working together to route traffic. The qBit container is an unmodified Linuxserver.io container which routes 100% of its traffic (except the webUI) through an unmodified Linuxserver.io wireguard container. 
 
 ```yaml
