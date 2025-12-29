@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-29T13:04:37.463Z
+date: 2025-12-29T13:11:23.881Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -62,62 +62,7 @@ services:
 > The `wg0.conf` file has to be modified as shown below to allow the webUI to work
 {.is-warning}
 
-In whatever wireguard file your VPN provider gives you, you must:
-1. Change the DNS to something like `1.1.1.1`
-1. Remove any IPv6 information
-1. **Do not use** the VPNs DNS (*the reason for this is all of the LAN traffic bypasses the VPN to allow the webUI to work and that will confuse the DNS of the wireguard container*)
-1. Change the Network Interface to `wg0` in the Advanced tab [from this section](https://wiki.serversatho.me/en/qBittorrent#h-62-configuration-options)
-1. Add this line to the `[Interface]` section of your `wg0.conf` file to allow the webUI to be accessible:
-    ```
-    PostUp = GW=$(ip route | grep default | awk '{print $3}' | head -1); IF=$(ip route | grep default | awk '{print $5}' | head -1); ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true; ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true; ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true; ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true; ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true; iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT; iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -j DROP
-    ```
 
-### Example `wg0.conf`
-
-```
-[Interface]
-Address = 10.162.71.91/32
-PrivateKey = redacted
-MTU = 1320
-DNS = 1.1.1.1
-PostUp = GW=$(ip route | grep default | awk '{print $3}' | head -1); IF=$(ip route | grep default | awk '{print $5}' | head -1); ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true; ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true; ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true; ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true; ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true; iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT; iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -j DROP
-
-[Peer]
-PublicKey = redacted
-PresharedKey = redacted
-Endpoint = 86.106.84.164:1637
-AllowedIPs = 0.0.0.0/0
-PersistentKeepalive = 15
-```
-
-### More Info
-For more information about what the `PostUp` section does:
-
-Detect gateway and interface:
-```
-GW=$(ip route | grep default | awk '{print $3}' | head -1);
-IF=$(ip route | grep default | awk '{print $5}' | head -1);
-```
-
-Add LAN bypass routes:
-```
-ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true;
-ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true;
-ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true;
-ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true;
-ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true;
-```
-
-Block non-LAN traffic on physical interface ($IF):
-```
-iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT;
-iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT;
-iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT;
-iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT;
-iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT;
-iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT;
-iptables -A OUTPUT -o $IF -j DROP
-```
 
 ## <img src="/docker.png" class="tab-icon"> Hotio + VPN
 
@@ -309,28 +254,64 @@ docker run --rm --cap-add=NET_ADMIN -e TOKEN={{{TOKEN}}} ghcr.io/bubuntux/nordvp
 {.is-info}
 
 # 2 · Example Wireguard wg0.conf File
+In whatever wireguard file your VPN provider gives you, you must:
+1. Change the DNS to something like `1.1.1.1`
+1. Remove any IPv6 information
+1. **Do not use** the VPNs DNS (*the reason for this is all of the LAN traffic bypasses the VPN to allow the webUI to work and that will confuse the DNS of the wireguard container*)
+1. Change the Network Interface to `wg0` in the Advanced tab [from this section](https://wiki.serversatho.me/en/qBittorrent#h-62-configuration-options)
+1. Add this line to the `[Interface]` section of your `wg0.conf` file to allow the webUI to be accessible:
+    ```
+    PostUp = GW=$(ip route | grep default | awk '{print $3}' | head -1); IF=$(ip route | grep default | awk '{print $5}' | head -1); ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true; ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true; ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true; ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true; ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true; iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT; iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -j DROP
+    ```
 
-This is an example of how your `wg0.conf` file should look like. If there's a lot of extra stuff, remove it unless you know what it's there for.
+## Example `wg0.conf`
 
-```yaml
+```
 [Interface]
-Address = 10.171.142.169
-PrivateKey = supersecretkey
+Address = 10.162.71.91/32
+PrivateKey = redacted
 MTU = 1320
-DNS = 10.128.0.1
+DNS = 1.1.1.1
+PostUp = GW=$(ip route | grep default | awk '{print $3}' | head -1); IF=$(ip route | grep default | awk '{print $5}' | head -1); ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true; ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true; ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true; ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true; ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true; iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT; iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -j DROP
 
 [Peer]
-PublicKey = supersecretkey
-PresharedKey = supersecretkey
-Endpoint = 1.2.3.4:51820
+PublicKey = redacted
+PresharedKey = redacted
+Endpoint = 86.106.84.164:1637
 AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 15
 ```
 
-> For more clarification on these values, [look here](https://hotio.dev/containers/qbittorrent/#__tabbed_2_1)
-{.is-info}
+## More Info
+For more information about what the `PostUp` section does:
 
-> If you are using the hotio container for qBit with a VPN this file needs to be added to `/config/wireguard` (in the folder holding the qBit configuration files) before the container can run
+Detect gateway and interface:
+```
+GW=$(ip route | grep default | awk '{print $3}' | head -1);
+IF=$(ip route | grep default | awk '{print $5}' | head -1);
+```
+
+Add LAN bypass routes:
+```
+ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true;
+ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true;
+ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true;
+ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true;
+ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true;
+```
+
+Block non-LAN traffic on physical interface ($IF):
+```
+iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT;
+iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT;
+iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT;
+iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT;
+iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT;
+iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT;
+iptables -A OUTPUT -o $IF -j DROP
+```
+
+> This file needs to be added to `/mnt/tank/configs/wireguard/wg_confs` (assuming your pool is named *tank*) before the container can run
 {.is-warning}
 
 
