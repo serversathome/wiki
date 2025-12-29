@@ -465,6 +465,11 @@ Change the **Network Interface** to **VPN** (yours might also say **wg0** or **t
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-40-12.png)
 
+If you're experiencing high memory usage when using Qbittorrent, change these settings and restart the container
+
+<img width="536" height="84" alt="image" src="https://github.com/user-attachments/assets/ee770a76-19c4-4b0b-bece-8b2fe2ed1a85" />
+
+
 # <img src="/youtube.png" class="tab-icon"> 8 · Troubleshooting Video
 
 [https://youtu.be/v3cv-LO9Ufo](https://youtu.be/v3cv-LO9Ufo)
