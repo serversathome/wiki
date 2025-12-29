@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-29T14:18:34.892Z
+date: 2025-12-29T15:59:45.186Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -74,6 +74,23 @@ services:
 ```
 > **CRITICAL SECURITY REQUIREMENT:** Your `wg0.conf` MUST include the PostUp line shown in Section 2 below. Without it, your real IP will be exposed! The PostUp line does two things: (1) allows WebUI access from your LAN, and (2) blocks all non-VPN traffic with a firewall.
 {.is-danger}
+
+### Changing the Port
+
+In the event you cannot use `8080` follow these changes to use `8070` for example:
+
+```yaml
+  services:
+    wireguard:
+      ports:
+        - "8070:8070"  # Changed BOTH sides
+      # ... rest of config
+
+    qbittorrent:
+      environment:
+        - WEBUI_PORT=8070  # Tell qBittorrent to run on 8070 internally
+      # ... rest of config
+```
 
 
 
