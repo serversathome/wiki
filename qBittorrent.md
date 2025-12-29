@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-29T13:44:13.109Z
+date: 2025-12-29T14:14:11.594Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -14,7 +14,20 @@ qBittorrent is a free and open-source software that aims to provide the same fea
 # 1 · Deploy qBittorrent
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Linuxserver Wireguard
-This will be the new approach going forward for Servers@Home. It is two containers working together to route traffic. The qBit container is an unmodified Linuxserver.io container which routes 100% of its traffic (except the webUI) through an unmodified Linuxserver.io wireguard container. 
+This is the recommended approach for Servers@Home. It uses **100% stock linuxserver.io containers** (no custom images to maintain!) with automatic killswitch protection.
+
+**How it works:**
+- qBittorrent shares WireGuard's network namespace using `network_mode: "service:wireguard"`
+- All torrent traffic routes through the VPN tunnel (wg0 interface)
+- WebUI remains accessible from your local network via LAN bypass
+- Firewall rules in wg0.conf prevent IP leaks even if qBittorrent is misconfigured
+
+**Why two containers?**
+- **Natural killswitch**: qBittorrent literally cannot access any network except through wg0
+- **No custom images**: Uses 100% stock linuxserver containers - just add PostUp to your wg0.conf
+- **Easier maintenance**: Update qBittorrent without rebuilding VPN container
+- **Better isolation**: VPN and torrent client are independent
+
 
 ```yaml
 services:
@@ -45,7 +58,7 @@ services:
   qbittorrent:
     image: linuxserver/qbittorrent:latest
     container_name: qbittorrent
-    network_mode: service:wireguard # Use WireGuard container's network namespace
+    network_mode: "service:wireguard"
     environment:
       - PUID=568
       - PGID=568
@@ -59,8 +72,8 @@ services:
         condition: service_healthy
     restart: unless-stopped
 ```
-> The `wg0.conf` file has to be modified as shown below to allow the webUI to work
-{.is-warning}
+> **CRITICAL SECURITY REQUIREMENT:** Your `wg0.conf` MUST include the PostUp line shown in Section 2 below. Without it, your real IP will be exposed! The PostUp line does two things: (1) allows WebUI access from your LAN, and (2) blocks all non-VPN traffic with a firewall.
+{.is-danger}
 
 
 
@@ -254,6 +267,23 @@ docker run --rm --cap-add=NET_ADMIN -e TOKEN={{{TOKEN}}} ghcr.io/bubuntux/nordvp
 {.is-info}
 
 # 2 · Example Wireguard wg0.conf File
+
+<details>
+<summary><strong>⚠️ Why the PostUp line is critical</strong></summary>
+  
+When using `network_mode: "service:wireguard"`, qBittorrent shares the WireGuard container's network namespace. This means qBittorrent can see BOTH interfaces:
+- **wg0** (VPN tunnel) - SAFE
+- **eth0** (physical network) - EXPOSES YOUR REAL IP
+
+**Without the PostUp firewall rules, qBittorrent can leak traffic through eth0!**
+
+The PostUp line below does two things:
+1. **LAN bypass routing**: Allows WebUI access from local networks (192.168.x.x, 10.x.x.x, etc.)
+1. **Firewall protection**: Blocks ALL traffic on eth0 except LAN traffic (prevents IP leaks)
+
+This firewall-based approach means qBittorrent is protected **even if you forget to bind it to wg0 interface** in the settings. It's enforced at the network layer, not the application layer.
+</details>
+  
 In whatever wireguard file your VPN provider gives you, you must:
 1. Change the DNS to something like `1.1.1.1`
 1. Remove any IPv6 information
@@ -311,7 +341,7 @@ iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT;
 iptables -A OUTPUT -o $IF -j DROP
 ```
 
-> This file needs to be added to `/mnt/tank/configs/wireguard/wg_confs` (assuming your pool is named *tank*) before the container can run
+> This file needs to be added to `/mnt/tank/configs/wireguard/` (assuming your pool is named *tank*) before the container can run
 {.is-warning}
 
 
