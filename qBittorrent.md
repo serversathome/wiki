@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-29T14:17:38.674Z
+date: 2025-12-29T14:18:34.892Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -268,6 +268,20 @@ docker run --rm --cap-add=NET_ADMIN -e TOKEN={{{TOKEN}}} ghcr.io/bubuntux/nordvp
 
 # 2 · Example Wireguard wg0.conf File
 
+In whatever wireguard file your VPN provider gives you, you must:
+1. Change the DNS to something like `1.1.1.1`
+1. Remove any IPv6 information
+1. Change DNS to public resolver (like `1.1.1.1` or `8.8.8.8`)
+     - Many VPN provider DNS servers use IP addresses in the 10.0.0.0/8 range
+     - The LAN bypass routes 10.0.0.0/8 to your local network
+     - This causes DNS queries to route incorrectly
+     - Solution: Use public DNS (1.1.1.1, 8.8.8.8) instead of VPN provider DNS
+
+1. Change the Network Interface to `wg0` in the Advanced tab [from this section](https://wiki.serversatho.me/en/qBittorrent#h-62-configuration-options)
+1. Add this line to the `[Interface]` section of your `wg0.conf` file to allow the webUI to be accessible:
+    ```
+    PostUp = GW=$(ip route | grep default | awk '{print $3}' | head -1); IF=$(ip route | grep default | awk '{print $5}' | head -1); ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true; ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true; ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true; ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true; ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true; iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT; iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -j DROP
+    ```
 <details>
 <summary><strong>⚠️ Why the PostUp line is critical</strong></summary>
   
@@ -283,22 +297,6 @@ The PostUp line below does two things:
 
 This firewall-based approach means qBittorrent is protected **even if you forget to bind it to wg0 interface** in the settings. It's enforced at the network layer, not the application layer.
 </details>
-  
-In whatever wireguard file your VPN provider gives you, you must:
-1. Change the DNS to something like `1.1.1.1`
-1. Remove any IPv6 information
-1. Change DNS to public resolver (like `1.1.1.1` or `8.8.8.8`)
-     - Many VPN provider DNS servers use IP addresses in the 10.0.0.0/8 range
-     - The LAN bypass routes 10.0.0.0/8 to your local network
-     - This causes DNS queries to route incorrectly
-     - Solution: Use public DNS (1.1.1.1, 8.8.8.8) instead of VPN provider DNS
-
-1. Change the Network Interface to `wg0` in the Advanced tab [from this section](https://wiki.serversatho.me/en/qBittorrent#h-62-configuration-options)
-1. Add this line to the `[Interface]` section of your `wg0.conf` file to allow the webUI to be accessible:
-    ```
-    PostUp = GW=$(ip route | grep default | awk '{print $3}' | head -1); IF=$(ip route | grep default | awk '{print $5}' | head -1); ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true; ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true; ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true; ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true; ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true; iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT; iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -j DROP
-    ```
-
 ## Example `wg0.conf`
 
 ```
