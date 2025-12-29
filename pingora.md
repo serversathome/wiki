@@ -2,7 +2,7 @@
 title: Pingora Proxy Manager
 description: A guide to deploying Pingora Proxy Manager
 published: true
-date: 2025-12-29T14:37:00.922Z
+date: 2025-12-29T14:37:10.871Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-29T14:37:00.922Z
@@ -23,7 +23,7 @@ Simple, Modern, and Fast. Now supports Wildcard SSL & TCP/UDP Streams!
 🐳 Docker Ready: Single container deployment for easy setup and maintenance.
 
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Pingora Proxy Manager?
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Pingora Proxy Manager
 ```yaml
 services:
   pingora-proxy:
