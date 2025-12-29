@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-29T15:59:45.186Z
+date: 2025-12-29T22:49:16.205Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -283,7 +283,7 @@ docker run --rm --cap-add=NET_ADMIN -e TOKEN={{{TOKEN}}} ghcr.io/bubuntux/nordvp
 >For more info on this container, look [here](https://github.com/bubuntux/nordlynx)
 {.is-info}
 
-# 2 · Example Wireguard wg0.conf File
+# 2 · The Wireguard wg0.conf File
 
 In whatever wireguard file your VPN provider gives you, you must:
 1. Change the DNS to something like `1.1.1.1`
@@ -314,6 +314,7 @@ The PostUp line below does two things:
 
 This firewall-based approach means qBittorrent is protected **even if you forget to bind it to wg0 interface** in the settings. It's enforced at the network layer, not the application layer.
 </details>
+
 ## Example `wg0.conf`
 
 ```
