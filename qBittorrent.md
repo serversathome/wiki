@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-29T12:57:26.330Z
+date: 2025-12-29T13:04:37.463Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -342,19 +342,23 @@ curl ip.me
 ```
 to get the IP address you are using. Then plug that IP + your port into [this tool](https://www.yougetsignal.com/tools/open-ports/).
 
-# 4 · Testing Functionality
+# 4 · Leak Test
+
+If you are worried about your public IP being visible conduct a **leak test** by uploading a test .torrent to your qBit and reading the IP results from [Bash.ws](https://bash.ws/torrent-leak-test)
+
+# 5 · Testing Functionality
 
 To test everything is working, try downloading [this Ubuntu torrent](https://releases.ubuntu.com/24.04/ubuntu-24.04.2-live-server-amd64.iso.torrent). Once you have it downloaded, upload it into qBit by using the ➕ button in the upper left corner.
 
 A result of `downloading` at *any* speed indicates a success. If it stalls or errors something is wrong with permissions or dataset structure.
 
-# <img src="/youtube.png" class="tab-icon"> 5 · YouTube Walkthrough
+# <img src="/youtube.png" class="tab-icon"> 6 · YouTube Walkthrough
 
 [https://www.youtube.com/watch?v=WVM3Wgb290g](https://youtu.be/I4SRwmKLfQQ)
 
-# 6 · qBittorrent Configuration
+# 7 · qBittorrent Configuration
 
-## 6.1 Logging In
+## 7.1 Logging In
 
 To login to the webUI, navigate to http://{serverIP}:8080. If when you first try to open the app and you receive a blank page which just says “Unauthorized”, don't worry, you did everything correctly. Click the URL bar and hit <kbd>Enter</kbd> and you should be forwarded to the login screen. The default username is *admin* and the password is set randomly. To see it, go into the logs and look for this line:
 
@@ -364,7 +368,7 @@ To login to the webUI, navigate to http://{serverIP}:8080. If when you first try
 {.is-info}
 
 
-## 6.2 Configuration Options
+## 7.2 Configuration Options
 
 Click on the cog icon :gear: in the bar or select **Tools** > **Options** in the tool bar. I will tell you what to change tab by tab. If it is not mentioned, it is left as the default value
 
@@ -418,6 +422,6 @@ Change the **Network Interface** to **VPN** (yours might also say **wg0** or **t
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-40-12.png)
 
-# <img src="/youtube.png" class="tab-icon"> 7 · Troubleshooting Video
+# <img src="/youtube.png" class="tab-icon"> 8 · Troubleshooting Video
 
 [https://youtu.be/v3cv-LO9Ufo](https://youtu.be/v3cv-LO9Ufo)
