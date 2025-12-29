@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-29T12:40:09.611Z
+date: 2025-12-29T12:43:21.452Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -13,7 +13,7 @@ qBittorrent is a free and open-source software that aims to provide the same fea
 
 # 1 · Deploy qBittorrent
 # {.tabset}
-## <img src="/docker.png" class="tab-icon"> Linuxserver.io Wireguard
+## <img src="/docker.png" class="tab-icon"> Linuxserver Wireguard
 This will be the new approach going forward for Servers@Home. It is two containers working together to route traffic. The qBit container is an unmodified Linuxserver.io container which routes 100% of its traffic (except the webUI) through an unmodified Linuxserver.io wireguard container. 
 
 ```yaml
@@ -97,6 +97,34 @@ AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 15
 ```
 
+### More Info
+For more information about what the `PostUp` section does:
+
+Detect gateway and interface
+```
+  GW=$(ip route | grep default | awk '{print $3}' | head -1);
+  IF=$(ip route | grep default | awk '{print $5}' | head -1);
+```
+
+Add LAN bypass routes
+```
+  ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true;
+  ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true;
+  ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true;
+  ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true;
+  ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true;
+```
+
+Block non-LAN traffic on physical interface ($IF)
+```
+  iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT;
+  iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT;
+  iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT;
+  iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT;
+  iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT;
+  iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT;
+  iptables -A OUTPUT -o $IF -j DROP
+```
 
 ## <img src="/docker.png" class="tab-icon"> Hotio + VPN
 
