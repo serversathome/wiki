@@ -2,7 +2,7 @@
 title: Emby Wrapped
 description: A guide to deploying Emby Wrapped
 published: true
-date: 2025-12-29T22:03:20.041Z
+date: 2025-12-29T22:28:09.977Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-29T22:03:20.041Z
@@ -22,5 +22,6 @@ services:
     environment:
       - EMBY_URL=http://your-emby-server:8096
       - EMBY_API_KEY=your-api-key-here
+      - TMDB_API_KEY=
     restart: unless-stopped
 ```
