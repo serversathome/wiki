@@ -1,0 +1,229 @@
+---
+title: Colanode
+description: A guide to deploying Colanode
+published: true
+date: 2025-12-30T01:46:10.392Z
+tags: 
+editor: markdown
+dateCreated: 2025-12-30T01:46:10.392Z
+---
+
+# <img src="/colanode.png" class="tab-icon"> What is Colanode?
+
+Open-source and local-first Slack and Notion alternative that puts you in control of your data. 
+
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Colanode
+```yaml
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    container_name: colanode_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: colanode_user
+      POSTGRES_PASSWORD: postgrespass123
+      POSTGRES_DB: colanode_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  valkey:
+    image: valkey/valkey:8.1
+    container_name: colanode_valkey
+    restart: always
+    command: ['valkey-server', '--requirepass', 'your_valkey_password']
+    volumes:
+      - valkey_data:/data
+    ports:
+      - '6379:6379'
+
+
+  # ---------------------------------------------------------------
+  # Optional MinIO Object Storage (Enable when using S3 storage)
+  # ---------------------------------------------------------------
+  minio:
+    profiles:
+      - s3
+    image: minio/minio:RELEASE.2025-04-08T15-41-24Z
+    container_name: colanode_minio
+    restart: always
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: your_minio_password
+      MINIO_BROWSER: 'on'
+      MINIO_DOMAIN: minio
+      MINIO_ADDRESS: ':9000'
+      MINIO_CONSOLE_ADDRESS: ':9001'
+    volumes:
+      - minio_data:/data
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    entrypoint: sh
+    command: -c 'mkdir -p /data/colanode && minio server /data --address ":9000" --console-address ":9001"'
+    networks:
+      - colanode_network
+
+  # ---------------------------------------------------------------
+  # Optional SMTP Server (Mailpit) for Local Email Testing
+  # ---------------------------------------------------------------
+  # This service runs Mailpit, a local SMTP testing tool.
+  # If you want to test how emails are sent in the 'server' service,
+  # you can uncomment the 'smtp' service block and configure the
+  # SMTP_ENABLED variable to 'true' in the 'server' service environment
+  # variables.
+  #
+  # Access the Mailpit UI at http://localhost:8025
+  # ---------------------------------------------------------------
+  # smtp:
+  #  image: axllent/mailpit:v1.24.1
+  #  container_name: colanode_smtp
+  #  restart: always
+  #  ports:
+  #    - '1025:1025' # SMTP IN (Connect server service to this port)
+  #    - '8025:8025' # Web UI
+  #  networks:
+  #    - colanode_network
+
+  server:
+    image: ghcr.io/colanode/server:latest
+    container_name: colanode_server
+    restart: always
+    depends_on:
+      - postgres
+      - valkey
+      # - smtp # Optional
+    environment:
+      # ───────────────────────────────────────────────────────────────
+      # General Node/Server Config
+      # ───────────────────────────────────────────────────────────────
+      NODE_ENV: production
+
+      # The server requires a name and avatar URL which will be displayed in the desktop app login screen.
+      SERVER_NAME: 'Colanode Local'
+      SERVER_AVATAR: ''
+      # Possible values for SERVER_MODE: 'standalone', 'cluster'
+      SERVER_MODE: 'standalone'
+
+      # Optional custom path prefix for the server.
+      # Add a plain text without any slashes. For example if you set 'colanode'
+      # the URL 'https://localhost:3000/config' will be: 'https://localhost:3000/colanode/config'
+      # SERVER_PATH_PREFIX: 'colanode'
+
+      # Optional CORS Configuration. By default the server is accessible from 'http://localhost:4000'.
+      # You can change this to allow custom origins (use comma to separate multiple origins) or '*' to allow all origins.
+      # SERVER_CORS_ORIGIN: 'http://localhost:4000'
+      # SERVER_CORS_MAX_AGE: '7200'
+
+      # ───────────────────────────────────────────────────────────────
+      # Logging Configuration
+      # ───────────────────────────────────────────────────────────────
+      # Possible values for LOGGING_LEVEL: 'trace', 'debug', 'info', 'warn', 'error', 'fatal', 'silent'
+      # Default: 'info'
+      # LOGGING_LEVEL: 'debug'
+
+      # ───────────────────────────────────────────────────────────────
+      # Account Configuration
+      # ───────────────────────────────────────────────────────────────
+      # Possible values for ACCOUNT_VERIFICATION_TYPE: 'automatic', 'manual', 'email'
+      ACCOUNT_VERIFICATION_TYPE: 'automatic'
+      ACCOUNT_OTP_TIMEOUT: '600' # in seconds
+
+      # If you want to enable Google login, you need to set the following variables:
+      # ACCOUNT_GOOGLE_ENABLED: 'true'
+      # ACCOUNT_GOOGLE_CLIENT_ID: 'your_google_client_id'
+      # ACCOUNT_GOOGLE_CLIENT_SECRET: 'your_google_client_secret'
+
+      # ───────────────────────────────────────────────────────────────
+      # Workspace Configuration
+      # ───────────────────────────────────────────────────────────────
+      # Optional, leave empty for no limits
+      # WORKSPACE_STORAGE_LIMIT: '10737418240' # 10 GB
+      # WORKSPACE_MAX_FILE_SIZE: '104857600' # 100 MB
+
+      # ───────────────────────────────────────────────────────────────
+      # User Configuration
+      # ───────────────────────────────────────────────────────────────
+      USER_STORAGE_LIMIT: '10737418240' # 10 GB
+      USER_MAX_FILE_SIZE: '104857600' # 100 MB
+
+      # ───────────────────────────────────────────────────────────────
+      # PostgreSQL Configuration
+      # ───────────────────────────────────────────────────────────────
+      # The server expects a PostgreSQL database with the pgvector extension installed.
+      POSTGRES_URL: 'postgres://colanode_user:postgrespass123@postgres:5432/colanode_db'
+
+      # Optional variables for SSL connection to the database
+      # POSTGRES_SSL_REJECT_UNAUTHORIZED: 'false'
+      # POSTGRES_SSL_CA: ''
+      # POSTGRES_SSL_KEY: ''
+      # POSTGRES_SSL_CERT: ''
+
+      # ───────────────────────────────────────────────────────────────
+      # Redis Configuration
+      # ───────────────────────────────────────────────────────────────
+      REDIS_URL: 'redis://:your_valkey_password@valkey:6379/0'
+      REDIS_DB: '0'
+      # Optional variables:
+      # REDIS_JOBS_QUEUE_NAME: 'jobs'
+      # REDIS_JOBS_QUEUE_PREFIX: 'colanode'
+      # REDIS_TUS_LOCK_PREFIX: 'colanode:tus:lock'
+      # REDIS_TUS_KV_PREFIX: 'colanode:tus:kv'
+      # REDIS_EVENTS_CHANNEL: 'events'
+
+      # ───────────────────────────────────────────────────────────────
+      # Storage configuration
+      # Supported storage types: 'file', 's3', 'gcs', 'azure'
+      # By default we store files on the local filesystem.
+      # ───────────────────────────────────────────────────────────────
+      STORAGE_TYPE: 'file'
+      STORAGE_FILE_DIRECTORY: '/var/lib/colanode/storage'
+      # To use the optional MinIO service (or any S3-compatible storage):
+      # STORAGE_TYPE: 's3'
+      # STORAGE_S3_ENDPOINT: 'http://minio:9000'
+      # STORAGE_S3_ACCESS_KEY: 'minioadmin'
+      # STORAGE_S3_SECRET_KEY: 'your_minio_password'
+      # STORAGE_S3_BUCKET: 'colanode'
+      # STORAGE_S3_REGION: 'us-east-1'
+      # STORAGE_S3_FORCE_PATH_STYLE: 'true'
+
+      # ───────────────────────────────────────────────────────────────
+      # SMTP configuration
+      # ---------------------------------------------------------------
+      # We leave the SMTP configuration disabled by default.
+      # ---------------------------------------------------------------
+      SMTP_ENABLED: 'false'
+      # ---------------------------------------------------------------
+      # If using the local Mailpit service (defined above), use:
+      # SMTP_ENABLED: 'true'
+      # SMTP_HOST: 'smtp'
+      # SMTP_PORT: '1025'
+      # SMTP_USER: ''
+      # SMTP_PASSWORD: ''
+      # SMTP_EMAIL_FROM: 'your_email@example.com'
+      # SMTP_EMAIL_FROM_NAME: 'Colanode'
+      # ---------------------------------------------------------------
+      # If using a real SMTP provider, update these:
+      # SMTP_ENABLED: 'true'
+      # SMTP_HOST: 'your_smtp_provider_host'
+      # SMTP_PORT: '587' # Or 465, etc.
+      # SMTP_USER: 'your_smtp_username'
+      # SMTP_PASSWORD: 'your_smtp_password'
+      # SMTP_EMAIL_FROM: 'your_email@example.com'
+      # SMTP_EMAIL_FROM_NAME: 'Colanode'
+      # ---------------------------------------------------------------
+
+    ports:
+      - '3000:3000'
+    volumes:
+      - server_storage:/var/lib/colanode/storage
+
+
+  web:
+    image: ghcr.io/colanode/web:latest
+    container_name: colanode_web
+    restart: always
+    ports:
+      - '4000:80'
+```
