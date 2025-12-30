@@ -2,7 +2,7 @@
 title: Colanode
 description: A guide to deploying Colanode
 published: true
-date: 2025-12-30T17:53:40.571Z
+date: 2025-12-30T17:55:03.448Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-30T01:46:10.392Z
@@ -30,7 +30,7 @@ services:
   valkey:
     image: valkey/valkey:8.1
     container_name: colanode_valkey
-    restart: always
+    restart: unless-stopped
     command:
       - valkey-server
       - --requirepass
