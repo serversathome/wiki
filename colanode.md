@@ -2,7 +2,7 @@
 title: Colanode
 description: A guide to deploying Colanode
 published: true
-date: 2025-12-30T15:01:18.328Z
+date: 2025-12-30T17:53:40.571Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-30T01:46:10.392Z
@@ -24,7 +24,7 @@ services:
       POSTGRES_PASSWORD: postgrespass123
       POSTGRES_DB: colanode_db
     volumes:
-      - /mnt/tank/colanode/postgres_data:/var/lib/postgresql/data
+      - /mnt/tank/configs/colanode/postgres_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
   valkey:
@@ -36,7 +36,7 @@ services:
       - --requirepass
       - your_valkey_password
     volumes:
-      - /mnt/tank/colanode/valkey_data:/data
+      - /mnt/tank/configs/colanode/valkey_data:/data
     ports:
       - 6379:6379
   server:
@@ -67,7 +67,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - /mnt/tank/colanode/server_storage:/var/lib/colanode/storage
+      - /mnt/tank/configs/colanode/server_storage:/var/lib/colanode/storage
   web:
     image: ghcr.io/colanode/web:latest
     container_name: colanode_web
