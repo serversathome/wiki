@@ -2,7 +2,7 @@
 title: Blockbusterr
 description: A guide to deploying Blockbusterr
 published: true
-date: 2025-12-22T13:43:10.132Z
+date: 2025-12-31T21:58:38.500Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-22T13:43:10.132Z
@@ -43,18 +43,6 @@ services:
       - 9090:9090
     volumes:
       - /mnt/tank/configs/blockbusterr:/app/data
-      
     environment:
-      # Optional: Specify custom config file location
-      # CONFIG_PATH: /app/config
-      
-      # Optional: Override config values with environment variables
-      # TRAKT_CLIENT_ID: your_client_id
-      # TRAKT_CLIENT_SECRET: your_client_secret
-      # RADARR_URL: http://radarr:7878
-      # RADARR_API_KEY: your_radarr_key
-      # SONARR_URL: http://sonarr:8989
-      # SONARR_API_KEY: your_sonarr_key
-      # DISABLE_UI: true  # Set to disable Web UI (enabled by default)
       - TZ=America/New_York  # Set your timezone
 ```
