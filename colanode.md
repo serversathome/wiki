@@ -2,7 +2,7 @@
 title: Colanode
 description: A guide to deploying Colanode
 published: true
-date: 2025-12-30T17:55:03.448Z
+date: 2025-12-31T15:56:39.746Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-30T01:46:10.392Z
@@ -25,8 +25,7 @@ services:
       POSTGRES_DB: colanode_db
     volumes:
       - /mnt/tank/configs/colanode/postgres_data:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
+
   valkey:
     image: valkey/valkey:8.1
     container_name: colanode_valkey
@@ -37,8 +36,7 @@ services:
       - your_valkey_password
     volumes:
       - /mnt/tank/configs/colanode/valkey_data:/data
-    ports:
-      - 6379:6379
+
   server:
     image: ghcr.io/colanode/server:latest
     container_name: colanode_server
@@ -50,20 +48,19 @@ services:
       NODE_ENV: production
       SERVER_NAME: Colanode Local
       SERVER_AVATAR: ""
-      # Possible values for SERVER_MODE: 'standalone', 'cluster'
       SERVER_MODE: standalone
-      # Possible values for ACCOUNT_VERIFICATION_TYPE: 'automatic', 'manual', 'email'
       ACCOUNT_VERIFICATION_TYPE: automatic
       ACCOUNT_OTP_TIMEOUT: "600"
-      USER_STORAGE_LIMIT: "10737418240" # 10 GB
-      USER_MAX_FILE_SIZE: "104857600" # 100 MB
+      USER_STORAGE_LIMIT: "10737418240"
+      USER_MAX_FILE_SIZE: "104857600"
       POSTGRES_URL: postgres://colanode_user:postgrespass123@postgres:5432/colanode_db
       REDIS_URL: redis://:your_valkey_password@valkey:6379/0
       REDIS_DB: "0"
       STORAGE_TYPE: file
       STORAGE_FILE_DIRECTORY: /var/lib/colanode/storage
       SMTP_ENABLED: "false"
-      SERVER_CORS_ORIGIN: https://colanode.serversatho.me
+      # For local-only, CORS can be your web UI origin:
+      SERVER_CORS_ORIGIN: http://<nas-ip>:4000
     ports:
       - 3000:3000
     volumes:
