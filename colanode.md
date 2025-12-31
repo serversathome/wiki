@@ -2,7 +2,7 @@
 title: Colanode
 description: A guide to deploying Colanode
 published: true
-date: 2025-12-31T15:56:39.746Z
+date: 2025-12-31T15:58:05.362Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-30T01:46:10.392Z
@@ -75,6 +75,6 @@ services:
 ```
 
 # 2 · Setting Up
-You will need to have a reverse proxy for this to work since it requires `https` to function.
 
-Once you have the `4000` port proxied select **Add Sever** in the **Registration** section. To know what to enter for the address, click the `3000` pill in dockge to get the server address.
+1. Navigate to `http://IP:4000`
+1. Select **Add Sever** in the **Registration** section. To know what to enter for the address, click the `3000` pill in dockge to get the server address.
