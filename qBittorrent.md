@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-29T22:49:16.205Z
+date: 2025-12-31T09:31:54.829Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -286,7 +286,6 @@ docker run --rm --cap-add=NET_ADMIN -e TOKEN={{{TOKEN}}} ghcr.io/bubuntux/nordvp
 # 2 · The Wireguard wg0.conf File
 
 In whatever wireguard file your VPN provider gives you, you must:
-1. Change the DNS to something like `1.1.1.1`
 1. Remove any IPv6 information
 1. Change DNS to public resolver (like `1.1.1.1` or `8.8.8.8`)
      - Many VPN provider DNS servers use IP addresses in the 10.0.0.0/8 range
