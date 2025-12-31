@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-31T09:31:54.829Z
+date: 2025-12-31T09:35:15.537Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -116,8 +116,8 @@ services:
       - VPN_LAN_NETWORK=10.99.0.0/24
       - VPN_LAN_LEAK_ENABLED=false
       - VPN_EXPOSE_PORTS_ON_LAN=
-      - VPN_AUTO_PORT_FORWARD=true
-      - VPN_PORT_REDIRECTS=
+      - VPN_AUTO_PORT_FORWARD= # enter port number here
+      - VPN_PORT_REDIRECTS= # enter port number here
       - VPN_FIREWALL_TYPE=auto
       - VPN_HEALTHCHECK_ENABLED=false
       - VPN_NAMESERVERS=wg
