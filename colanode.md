@@ -2,7 +2,7 @@
 title: Colanode
 description: A guide to deploying Colanode
 published: true
-date: 2025-12-31T15:58:05.362Z
+date: 2025-12-31T17:07:41.557Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-30T01:46:10.392Z
@@ -60,7 +60,7 @@ services:
       STORAGE_FILE_DIRECTORY: /var/lib/colanode/storage
       SMTP_ENABLED: "false"
       # For local-only, CORS can be your web UI origin:
-      SERVER_CORS_ORIGIN: http://<nas-ip>:4000
+      SERVER_CORS_ORIGIN: http://localhost:4000 #add your server IP
     ports:
       - 3000:3000
     volumes:
