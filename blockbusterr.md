@@ -2,7 +2,7 @@
 title: Blockbusterr
 description: A guide to deploying Blockbusterr
 published: true
-date: 2025-12-31T21:58:38.500Z
+date: 2026-01-01T13:12:52.283Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-22T13:43:10.132Z
@@ -46,3 +46,6 @@ services:
     environment:
       - TZ=America/New_York  # Set your timezone
 ```
+# <img src="/patreon-light.png" class="tab-icon"> 2 · Video
+
+[![](/2026-01-01-auto-add-content-with-blockbuste-promo-card.png)](https://www.patreon.com/posts/auto-add-content-147151544)
