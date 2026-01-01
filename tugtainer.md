@@ -15,7 +15,7 @@ An application for automating docker container updates with a web UI.
 
 ```yaml
 services:
-  app:
+  tugtainer:
     container_name: tugtainer
     image: quenary/tugtainer:latest
     restart: unless-stopped
