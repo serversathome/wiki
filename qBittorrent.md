@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-01-03T11:37:41.118Z
+date: 2026-01-03T11:44:19.741Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -48,7 +48,7 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
       - net.ipv6.conf.all.disable_ipv6=1
     ports:
-      - 8082:8082 # qBittorrent WebUI
+      - 8080:8080 # qBittorrent WebUI
     restart: unless-stopped
     healthcheck:
       test:
@@ -67,9 +67,8 @@ services:
     environment:
       - PUID=568
       - PGID=568
-      - TZ=Europe/Amsterdam
-      - WEBUI_PORT=8082
-      - TORRENTING_PORT=45448
+      - TZ=America/New_York
+      - WEBUI_PORT=8080
     volumes:
       - /mnt/apps/configs/qbittorrent:/config
       - /mnt/tank/media:/media
