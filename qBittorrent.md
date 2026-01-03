@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-01-03T11:54:17.602Z
+date: 2026-01-03T11:56:52.438Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -51,7 +51,7 @@ services:
       - 8080:8080 # qBittorrent WebUI
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "ts=$(wg show wg0 latest-handshakes 2>/dev/null | awk '{print $2}') && [ -n \"$ts\" ] && [ \"$ts\" -gt 0 ] && [ $(( $(date +%s) - ts )) -lt 120 ]"]
+      test: ["CMD-SHELL", "ts=$$(wg show wg0 latest-handshakes 2>/dev/null | awk '{print $$2}') && [ -n \"$$ts\" ] && [ \"$$ts\" -gt 0 ] && [ $$(( $$(date +%s) - $$ts )) -lt 120 ]"]
       interval: 15s
       timeout: 5s
       retries: 3
