@@ -2,7 +2,7 @@
 title: Nutify
 description: A guide to deploying Nutify
 published: true
-date: 2025-12-08T15:43:33.374Z
+date: 2026-01-03T11:45:30.797Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-08T15:38:24.907Z
@@ -38,13 +38,12 @@ services:
       - /dev:/dev:rw              # Full /dev access improves hotplug handling
       - /run/udev:/run/udev:ro    # Access to udev events
     environment:
-
       - SECRET_KEY=test1234567890 # for password encryption and decryption in the database
       - UDEV=1                    # Improve USB detection
     ports:
       - 3493:3493
       - 5050:5050
       - 443:443
-    restart: always
+    restart: unless-stopped
     user: root
 ```
