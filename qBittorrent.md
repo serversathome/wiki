@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2025-12-31T09:35:15.537Z
+date: 2026-01-03T11:37:41.118Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -40,37 +40,43 @@ services:
     environment:
       - PUID=568
       - PGID=568
-      - TZ=America/New_York
+      - TZ=Europe/Amsterdam
     volumes:
-      - /mnt/tank/configs/wireguard:/config
+      - /mnt/apps/configs/wireguard:/config
       - /lib/modules:/lib/modules:ro
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
       - net.ipv6.conf.all.disable_ipv6=1
     ports:
-      - 8080:8080 # qBittorrent WebUI
+      - 8082:8082 # qBittorrent WebUI
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "ping", "-c", "1", "1.1.1.1"]
-      interval: 30s
-      start_period: 20s
-      
+      test:
+        - CMD-SHELL
+        - ""
+        - ts=$(wg show wg0 latest-handshakes 2>/dev/null | awk '{print $2}') [
+          -n "$ts" ] && [ "$ts" -gt 0 ] && [ $(( $(date +%s) - ts )) -lt 120 ]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
   qbittorrent:
     image: linuxserver/qbittorrent:latest
     container_name: qbittorrent
-    network_mode: "service:wireguard"
+    network_mode: service:wireguard
     environment:
       - PUID=568
       - PGID=568
-      - TZ=America/New_York
-      - WEBUI_PORT=8080
+      - TZ=Europe/Amsterdam
+      - WEBUI_PORT=8082
+      - TORRENTING_PORT=45448
     volumes:
-      - /mnt/tank/configs/qbittorrent:/config
+      - /mnt/apps/configs/qbittorrent:/config
       - /mnt/tank/media:/media
     depends_on:
       wireguard:
         condition: service_healthy
-    restart: unless-stopped
+    restart: unless-stoppe
 ```
 > **CRITICAL SECURITY REQUIREMENT:** Your `wg0.conf` MUST include the PostUp line shown in Section 2 below. Without it, your real IP will be exposed! The PostUp line does two things: (1) allows WebUI access from your LAN, and (2) blocks all non-VPN traffic with a firewall.
 {.is-danger}
