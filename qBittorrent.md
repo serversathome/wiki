@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-01-03T11:54:00.642Z
+date: 2026-01-03T11:54:17.602Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -71,7 +71,7 @@ services:
     depends_on:
       wireguard:
         condition: service_healthy
-    restart: unless-stoppe
+    restart: unless-stopped
 ```
 > **CRITICAL SECURITY REQUIREMENT:** Your `wg0.conf` MUST include the PostUp line shown in Section 2 below. Without it, your real IP will be exposed! The PostUp line does two things: (1) allows WebUI access from your LAN, and (2) blocks all non-VPN traffic with a firewall.
 {.is-danger}
