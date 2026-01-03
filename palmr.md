@@ -2,11 +2,15 @@
 title: Palmr
 description: A guide to deploying Palmr on docker
 published: true
-date: 2025-09-30T15:42:02.489Z
+date: 2026-01-03T01:42:42.939Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-07T17:51:37.781Z
 ---
+
+> **DO NOT USE AS CONTAINER HAS BEEN DEPRECATED DUE TO THE CHANGES IN MINIO**
+{.is-danger}
+
 
 # <img src="/palmr.png" class="tab-icon"> What is Palmr?
 Palmr is a flexible and open-source alternative to file transfer services like WeTransfer, SendGB, Send Anywhere, and Files.fm.
