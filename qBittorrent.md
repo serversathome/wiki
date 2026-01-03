@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-01-03T11:53:17.302Z
+date: 2026-01-03T11:54:00.642Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -40,7 +40,7 @@ services:
     environment:
       - PUID=568
       - PGID=568
-      - TZ=Europe/Amsterdam
+      - TZ=America/New_York
     volumes:
       - /mnt/apps/configs/wireguard:/config
       - /lib/modules:/lib/modules:ro
