@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-01-04T22:27:26.344Z
+date: 2026-01-04T22:28:48.747Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -13,6 +13,68 @@ qBittorrent is a free and open-source software that aims to provide the same fea
 
 # 1 · Deploy qBittorrent
 # {.tabset}
+
+## <img src="/docker.png" class="tab-icon"> Hotio + VPN
+
+```yaml
+services:
+  qbittorrent:
+    container_name: qbittorrent
+    image: ghcr.io/hotio/qbittorrent:release-5.1.2
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    environment:
+      - PUID=568
+      - PGID=568
+      - UMASK=002
+      - TZ=America/New_York
+      - WEBUI_PORTS=8080/tcp,8080/udp
+      - VPN_ENABLED=true
+      - VPN_CONF=wg0
+      - VPN_PROVIDER=generic
+      - VPN_LAN_NETWORK=10.99.0.0/24
+      - VPN_LAN_LEAK_ENABLED=false
+      - VPN_EXPOSE_PORTS_ON_LAN=
+      - VPN_AUTO_PORT_FORWARD= # enter port number here
+      - VPN_PORT_REDIRECTS= # enter port number here
+      - VPN_FIREWALL_TYPE=auto
+      - VPN_HEALTHCHECK_ENABLED=false
+      - VPN_NAMESERVERS=wg
+      - PRIVOXY_ENABLED=false
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv6.conf.all.disable_ipv6=1
+    volumes:
+      - /mnt/tank/configs/qbittorrent:/config
+      - /mnt/tank/media:/media
+```
+
+This qBittorrent container is from hotio and uses a Wireguard VPN to protect traffic. 
+
+<details><summary><strong>Environment Variables Explanations</strong> (click to expand)</summary>
+
+|  Variable   | Value    |
+| --- | --- |
+| `VPN_CONF` | With VPN\_CONF you can set the name used for your WireGuard config. There needs to be a file `wg0.conf` located in `/config/wireguard` for the VPN to start. |
+| `VPN_LAN_NETWORK` | The environment variable VPN\_LAN\_NETWORK can be set to for example 192.168.1.0/24, 192.168.1.0/24,192.168.44.0/24, so you can get access to the webui or other additional ports. If for example you were to pick 192.168.0.0/24, every device with an ip in the range 192.168.0.0 - 192.168.0.255 on your LAN is allowed access to the webui. |
+| `VPN_EXPOSE_PORTS_ON_LAN` | If you need to expose ports on your LAN you can use VPN\_EXPOSE\_PORTS\_ON\_LAN. For example VPN\_EXPOSE\_PORTS\_ON\_LAN=7878/tcp,9117/tcp, will block those ports on the vpn interface, so that there's no risk that they might be exposed to the world and allow access to them from your LAN. Some images also have a WEBUI\_PORTS environment variable that does basically the same for the vpn part. For those apps that support it, it'll also change the port on which the app runs. |
+| `VPN_AUTO_PORT_FORWARD` | Auto retrieve a forwarded port and configure the supported app if set to true or if you can manually request/set a forwarded port in the VPN provider's web interface, fill in the port number (just the number). |
+| `VPN_PORT_REDIRECTS` | Adds a redirect for the forwarded port from your vpn provider to the internal port on which the app runs, ports in this list are also not blocked on the wireguard interface, so this var is also useful if you want to expose a port on both your LAN and VPN. Values like 32400/tcp will use the port from VPN\_AUTO\_PORT\_FORWARD to create the redirect or if set to true the forwarded port from pia/proton. Use 3000@3001/tcp,3002@3003/tcp syntax for extra static redirects. The only known usecase as of right now is Plex and exposing it on the VPN with a non configurable forwarded port, because it's not possible to run Plex on anything else but 32400. |
+| `VPN_FIREWALL_TYPE` | Possible values are auto, legacy or nftables. The default is auto, this will try to use the most modern method available. If this doesn't work, you can try forcing it to legacy or nftables. |
+| `VPN_HEALTHCHECK_ENABLED` | This is almost never needed, only in very rare cases (mostly when using PIA). |
+| `VPN_NAMESERVERS` | Possible values are `wg`, `8.8.8.8` or `1.1.1.1@853#cloudflare-dns.com` seperated by a `,`. The value `wg` will use the nameservers from the `wg0.conf` file. The value `8.8.8.8` is to use a plain old nameserver. The value `1.1.1.1@853#cloudflare-dns.com` will add a DNS over TLS nameserver, this will override all other regular nameservers. Leaving the variable empty will allow Unbound to work in recursive mode.   |
+
+> For more info on these values, look [here](https://hotio.dev/containers/qbittorrent/#__tabbed_5_2) 
+{.is-info}
+
+</details>
+  
+> When you start this container it will fail until you add the VPN config file. See the [Example Wireguard](https://wiki.serversatho.me/en/qBittorrent#example-wireguard-wg0conf-file) section below
+{.is-warning}
+
 ## <img src="/docker.png" class="tab-icon"> Linuxserver Wireguard
 This is the recommended approach for Servers@Home. It uses **100% stock linuxserver.io containers** (no custom images to maintain!) with automatic killswitch protection.
 
@@ -183,70 +245,6 @@ iptables -A OUTPUT -o $IF -j DROP
 
 
 > This file needs to be added to `/mnt/tank/configs/wireguard/` (assuming your pool is named *tank*) before the container can run
-{.is-warning}
-
-
-
-
-## <img src="/docker.png" class="tab-icon"> Hotio + VPN
-
-```yaml
-services:
-  qbittorrent:
-    container_name: qbittorrent
-    image: ghcr.io/hotio/qbittorrent:release-5.1.2
-    restart: unless-stopped
-    ports:
-      - 8080:8080
-    environment:
-      - PUID=568
-      - PGID=568
-      - UMASK=002
-      - TZ=America/New_York
-      - WEBUI_PORTS=8080/tcp,8080/udp
-      - VPN_ENABLED=true
-      - VPN_CONF=wg0
-      - VPN_PROVIDER=generic
-      - VPN_LAN_NETWORK=10.99.0.0/24
-      - VPN_LAN_LEAK_ENABLED=false
-      - VPN_EXPOSE_PORTS_ON_LAN=
-      - VPN_AUTO_PORT_FORWARD= # enter port number here
-      - VPN_PORT_REDIRECTS= # enter port number here
-      - VPN_FIREWALL_TYPE=auto
-      - VPN_HEALTHCHECK_ENABLED=false
-      - VPN_NAMESERVERS=wg
-      - PRIVOXY_ENABLED=false
-    cap_add:
-      - NET_ADMIN
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
-      - net.ipv6.conf.all.disable_ipv6=1
-    volumes:
-      - /mnt/tank/configs/qbittorrent:/config
-      - /mnt/tank/media:/media
-```
-
-This qBittorrent container is from hotio and uses a Wireguard VPN to protect traffic. 
-
-<details><summary><strong>Environment Variables Explanations</strong> (click to expand)</summary>
-
-|  Variable   | Value    |
-| --- | --- |
-| `VPN_CONF` | With VPN\_CONF you can set the name used for your WireGuard config. There needs to be a file `wg0.conf` located in `/config/wireguard` for the VPN to start. |
-| `VPN_LAN_NETWORK` | The environment variable VPN\_LAN\_NETWORK can be set to for example 192.168.1.0/24, 192.168.1.0/24,192.168.44.0/24, so you can get access to the webui or other additional ports. If for example you were to pick 192.168.0.0/24, every device with an ip in the range 192.168.0.0 - 192.168.0.255 on your LAN is allowed access to the webui. |
-| `VPN_EXPOSE_PORTS_ON_LAN` | If you need to expose ports on your LAN you can use VPN\_EXPOSE\_PORTS\_ON\_LAN. For example VPN\_EXPOSE\_PORTS\_ON\_LAN=7878/tcp,9117/tcp, will block those ports on the vpn interface, so that there's no risk that they might be exposed to the world and allow access to them from your LAN. Some images also have a WEBUI\_PORTS environment variable that does basically the same for the vpn part. For those apps that support it, it'll also change the port on which the app runs. |
-| `VPN_AUTO_PORT_FORWARD` | Auto retrieve a forwarded port and configure the supported app if set to true or if you can manually request/set a forwarded port in the VPN provider's web interface, fill in the port number (just the number). |
-| `VPN_PORT_REDIRECTS` | Adds a redirect for the forwarded port from your vpn provider to the internal port on which the app runs, ports in this list are also not blocked on the wireguard interface, so this var is also useful if you want to expose a port on both your LAN and VPN. Values like 32400/tcp will use the port from VPN\_AUTO\_PORT\_FORWARD to create the redirect or if set to true the forwarded port from pia/proton. Use 3000@3001/tcp,3002@3003/tcp syntax for extra static redirects. The only known usecase as of right now is Plex and exposing it on the VPN with a non configurable forwarded port, because it's not possible to run Plex on anything else but 32400. |
-| `VPN_FIREWALL_TYPE` | Possible values are auto, legacy or nftables. The default is auto, this will try to use the most modern method available. If this doesn't work, you can try forcing it to legacy or nftables. |
-| `VPN_HEALTHCHECK_ENABLED` | This is almost never needed, only in very rare cases (mostly when using PIA). |
-| `VPN_NAMESERVERS` | Possible values are `wg`, `8.8.8.8` or `1.1.1.1@853#cloudflare-dns.com` seperated by a `,`. The value `wg` will use the nameservers from the `wg0.conf` file. The value `8.8.8.8` is to use a plain old nameserver. The value `1.1.1.1@853#cloudflare-dns.com` will add a DNS over TLS nameserver, this will override all other regular nameservers. Leaving the variable empty will allow Unbound to work in recursive mode.   |
-
-> For more info on these values, look [here](https://hotio.dev/containers/qbittorrent/#__tabbed_5_2) 
-{.is-info}
-
-</details>
-  
-> When you start this container it will fail until you add the VPN config file. See the [Example Wireguard](https://wiki.serversatho.me/en/qBittorrent#example-wireguard-wg0conf-file) section below
 {.is-warning}
 
 
