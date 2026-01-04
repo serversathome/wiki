@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-01-03T11:56:52.438Z
+date: 2026-01-04T22:27:26.344Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -92,6 +92,99 @@ In the event you cannot use `8080` follow these changes to use `8070` for exampl
         - WEBUI_PORT=8070  # Tell qBittorrent to run on 8070 internally
       # ... rest of config
 ```
+### The Wireguard wg0.conf File
+
+In whatever wireguard file your VPN provider gives you, you must:
+1. Remove any IPv6 information
+1. Change DNS to public resolver (like `1.1.1.1` or `8.8.8.8`)
+     - Many VPN provider DNS servers use IP addresses in the 10.0.0.0/8 range
+     - The LAN bypass routes 10.0.0.0/8 to your local network
+     - This causes DNS queries to route incorrectly
+     - Solution: Use public DNS (1.1.1.1, 8.8.8.8) instead of VPN provider DNS
+
+1. Change the Network Interface to `wg0` in the Advanced tab [from this section](https://wiki.serversatho.me/en/qBittorrent#h-62-configuration-options)
+1. Add this line to the `[Interface]` section of your `wg0.conf` file to allow the webUI to be accessible:
+    ```
+    PostUp = GW=$(ip route | grep default | awk '{print $3}' | head -1); IF=$(ip route | grep default | awk '{print $5}' | head -1); ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true; ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true; ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true; ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true; ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true; iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT; iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -j DROP
+    ```
+<details>
+<summary><strong>⚠️ Why the PostUp line is critical</strong></summary>
+  
+When using `network_mode: "service:wireguard"`, qBittorrent shares the WireGuard container's network namespace. This means qBittorrent can see BOTH interfaces:
+- **wg0** (VPN tunnel) - SAFE
+- **eth0** (physical network) - EXPOSES YOUR REAL IP
+
+**Without the PostUp firewall rules, qBittorrent can leak traffic through eth0!**
+
+The PostUp line below does two things:
+1. **LAN bypass routing**: Allows WebUI access from local networks (192.168.x.x, 10.x.x.x, etc.)
+1. **Firewall protection**: Blocks ALL traffic on eth0 except LAN traffic (prevents IP leaks)
+
+This firewall-based approach means qBittorrent is protected **even if you forget to bind it to wg0 interface** in the settings. It's enforced at the network layer, not the application layer.
+</details>
+
+### Example `wg0.conf`
+
+```
+[Interface]
+Address = 10.162.71.91/32
+PrivateKey = redacted
+MTU = 1320
+DNS = 1.1.1.1
+PostUp = GW=$(ip route | grep default | awk '{print $3}' | head -1); IF=$(ip route | grep default | awk '{print $5}' | head -1); ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true; ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true; ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true; ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true; ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true; iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT; iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -j DROP
+
+[Peer]
+PublicKey = redacted
+PresharedKey = redacted
+Endpoint = 86.106.84.164:1637
+AllowedIPs = 0.0.0.0/0
+PersistentKeepalive = 15
+```
+
+### More Info
+The PostUp command is a single line executed when WireGuard starts. It:
+1. Dynamically detects your network gateway and interface (works on any network)
+1. Adds routing rules so LAN traffic bypasses the VPN
+1. Adds firewall rules to **block all non-VPN traffic** on the physical interface
+
+**This firewall is what prevents IP leaks** - even if qBittorrent is misconfigured!
+
+Detect gateway and interface:
+```
+GW=$(ip route | grep default | awk '{print $3}' | head -1);
+IF=$(ip route | grep default | awk '{print $5}' | head -1);
+```
+
+Add LAN bypass routes:
+```
+ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true;
+ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true;
+ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true;
+ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true;
+ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true;
+```
+
+Block non-LAN traffic on physical interface ($IF):
+```
+iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT;
+iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT;
+iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT;
+iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT;
+iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT;
+iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT;
+iptables -A OUTPUT -o $IF -j DROP
+```
+**Why the firewall blocks eth0:**
+  - The final rule `iptables -A OUTPUT -o $IF -j DROP` blocks ALL traffic on the physical interface ($IF, usually eth0)
+  - The rules above it create exceptions for:
+    - Established/related connections (responses to WebUI requests)
+    - Traffic to LAN destinations (192.168.x.x, 10.x.x.x, etc.)
+  - Result: WebUI works from LAN, but **torrents cannot leak through eth0**
+
+
+> This file needs to be added to `/mnt/tank/configs/wireguard/` (assuming your pool is named *tank*) before the container can run
+{.is-warning}
+
 
 
 
@@ -283,99 +376,6 @@ docker run --rm --cap-add=NET_ADMIN -e TOKEN={{{TOKEN}}} ghcr.io/bubuntux/nordvp
 
 >For more info on this container, look [here](https://github.com/bubuntux/nordlynx)
 {.is-info}
-
-# 2 · The Wireguard wg0.conf File
-
-In whatever wireguard file your VPN provider gives you, you must:
-1. Remove any IPv6 information
-1. Change DNS to public resolver (like `1.1.1.1` or `8.8.8.8`)
-     - Many VPN provider DNS servers use IP addresses in the 10.0.0.0/8 range
-     - The LAN bypass routes 10.0.0.0/8 to your local network
-     - This causes DNS queries to route incorrectly
-     - Solution: Use public DNS (1.1.1.1, 8.8.8.8) instead of VPN provider DNS
-
-1. Change the Network Interface to `wg0` in the Advanced tab [from this section](https://wiki.serversatho.me/en/qBittorrent#h-62-configuration-options)
-1. Add this line to the `[Interface]` section of your `wg0.conf` file to allow the webUI to be accessible:
-    ```
-    PostUp = GW=$(ip route | grep default | awk '{print $3}' | head -1); IF=$(ip route | grep default | awk '{print $5}' | head -1); ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true; ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true; ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true; ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true; ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true; iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT; iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -j DROP
-    ```
-<details>
-<summary><strong>⚠️ Why the PostUp line is critical</strong></summary>
-  
-When using `network_mode: "service:wireguard"`, qBittorrent shares the WireGuard container's network namespace. This means qBittorrent can see BOTH interfaces:
-- **wg0** (VPN tunnel) - SAFE
-- **eth0** (physical network) - EXPOSES YOUR REAL IP
-
-**Without the PostUp firewall rules, qBittorrent can leak traffic through eth0!**
-
-The PostUp line below does two things:
-1. **LAN bypass routing**: Allows WebUI access from local networks (192.168.x.x, 10.x.x.x, etc.)
-1. **Firewall protection**: Blocks ALL traffic on eth0 except LAN traffic (prevents IP leaks)
-
-This firewall-based approach means qBittorrent is protected **even if you forget to bind it to wg0 interface** in the settings. It's enforced at the network layer, not the application layer.
-</details>
-
-## Example `wg0.conf`
-
-```
-[Interface]
-Address = 10.162.71.91/32
-PrivateKey = redacted
-MTU = 1320
-DNS = 1.1.1.1
-PostUp = GW=$(ip route | grep default | awk '{print $3}' | head -1); IF=$(ip route | grep default | awk '{print $5}' | head -1); ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true; ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true; ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true; ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true; ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true; iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT; iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -j DROP
-
-[Peer]
-PublicKey = redacted
-PresharedKey = redacted
-Endpoint = 86.106.84.164:1637
-AllowedIPs = 0.0.0.0/0
-PersistentKeepalive = 15
-```
-
-## More Info
-The PostUp command is a single line executed when WireGuard starts. It:
-1. Dynamically detects your network gateway and interface (works on any network)
-1. Adds routing rules so LAN traffic bypasses the VPN
-1. Adds firewall rules to **block all non-VPN traffic** on the physical interface
-
-**This firewall is what prevents IP leaks** - even if qBittorrent is misconfigured!
-
-Detect gateway and interface:
-```
-GW=$(ip route | grep default | awk '{print $3}' | head -1);
-IF=$(ip route | grep default | awk '{print $5}' | head -1);
-```
-
-Add LAN bypass routes:
-```
-ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true;
-ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true;
-ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true;
-ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true;
-ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true;
-```
-
-Block non-LAN traffic on physical interface ($IF):
-```
-iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT;
-iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT;
-iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT;
-iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT;
-iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT;
-iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT;
-iptables -A OUTPUT -o $IF -j DROP
-```
-**Why the firewall blocks eth0:**
-  - The final rule `iptables -A OUTPUT -o $IF -j DROP` blocks ALL traffic on the physical interface ($IF, usually eth0)
-  - The rules above it create exceptions for:
-    - Established/related connections (responses to WebUI requests)
-    - Traffic to LAN destinations (192.168.x.x, 10.x.x.x, etc.)
-  - Result: WebUI works from LAN, but **torrents cannot leak through eth0**
-
-
-> This file needs to be added to `/mnt/tank/configs/wireguard/` (assuming your pool is named *tank*) before the container can run
-{.is-warning}
 
 
 # 3 · Testing Open Ports
