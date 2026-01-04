@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-01-04T22:28:48.747Z
+date: 2026-01-04T22:30:18.869Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -15,6 +15,7 @@ qBittorrent is a free and open-source software that aims to provide the same fea
 # {.tabset}
 
 ## <img src="/docker.png" class="tab-icon"> Hotio + VPN
+
 
 ```yaml
 services:
@@ -72,7 +73,7 @@ This qBittorrent container is from hotio and uses a Wireguard VPN to protect tra
 
 </details>
   
-> When you start this container it will fail until you add the VPN config file. See the [Example Wireguard](https://wiki.serversatho.me/en/qBittorrent#example-wireguard-wg0conf-file) section below
+> When you start this container it will fail until you add the VPN config file. 
 {.is-warning}
 
 ## <img src="/docker.png" class="tab-icon"> Linuxserver Wireguard
