@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-01-04T22:30:18.869Z
+date: 2026-01-04T22:31:22.314Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -377,7 +377,7 @@ docker run --rm --cap-add=NET_ADMIN -e TOKEN={{{TOKEN}}} ghcr.io/bubuntux/nordvp
 {.is-info}
 
 
-# 3 · Testing Open Ports
+# 2 · Testing Open Ports
 
 To test if your port forward is working correctly, shell into qBit and execute:
 ```bash
@@ -385,23 +385,23 @@ curl ip.me
 ```
 to get the IP address you are using. Then plug that IP + your port into [this tool](https://www.yougetsignal.com/tools/open-ports/).
 
-# 4 · Leak Test
+# 3 · Leak Test
 
 If you are worried about your public IP being visible conduct a **leak test** by uploading a test .torrent to your qBit and reading the IP results from [Bash.ws](https://bash.ws/torrent-leak-test)
 
-# 5 · Testing Functionality
+# 4 · Testing Functionality
 
 To test everything is working, try downloading [this Ubuntu torrent](https://releases.ubuntu.com/24.04/ubuntu-24.04.2-live-server-amd64.iso.torrent). Once you have it downloaded, upload it into qBit by using the ➕ button in the upper left corner.
 
 A result of `downloading` at *any* speed indicates a success. If it stalls or errors something is wrong with permissions or dataset structure.
 
-# <img src="/youtube.png" class="tab-icon"> 6 · YouTube Walkthrough
+# <img src="/youtube.png" class="tab-icon"> 5 · YouTube Walkthrough
 
 [https://www.youtube.com/watch?v=WVM3Wgb290g](https://youtu.be/I4SRwmKLfQQ)
 
-# 7 · qBittorrent Configuration
+# 6 · qBittorrent Configuration
 
-## 7.1 Logging In
+## 6.1 Logging In
 
 To login to the webUI, navigate to http://{serverIP}:8080. If when you first try to open the app and you receive a blank page which just says “Unauthorized”, don't worry, you did everything correctly. Click the URL bar and hit <kbd>Enter</kbd> and you should be forwarded to the login screen. The default username is *admin* and the password is set randomly. To see it, go into the logs and look for this line:
 
@@ -411,7 +411,7 @@ To login to the webUI, navigate to http://{serverIP}:8080. If when you first try
 {.is-info}
 
 
-## 7.2 Configuration Options
+## 6.2 Configuration Options
 
 Click on the cog icon :gear: in the bar or select **Tools** > **Options** in the tool bar. I will tell you what to change tab by tab. If it is not mentioned, it is left as the default value
 
@@ -470,6 +470,6 @@ If you're experiencing high memory usage when using Qbittorrent, change these se
 <img width="536" height="84" alt="image" src="https://github.com/user-attachments/assets/ee770a76-19c4-4b0b-bece-8b2fe2ed1a85" />
 
 
-# <img src="/youtube.png" class="tab-icon"> 8 · Troubleshooting Video
+# <img src="/youtube.png" class="tab-icon"> 7 · Troubleshooting Video
 
 [https://youtu.be/v3cv-LO9Ufo](https://youtu.be/v3cv-LO9Ufo)
