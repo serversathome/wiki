@@ -2,7 +2,7 @@
 title: Arcane
 description: A guide to deploying Arcane in docker
 published: true
-date: 2025-11-11T19:06:18.330Z
+date: 2026-01-05T11:41:19.858Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-04T16:58:11.419Z
@@ -22,12 +22,11 @@ services:
       - 3552:3552
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /mnt/tank/stacks:/mnt/tank/stacks
+      - /mnt/tank/stacks:/stacks
       - /mnt/tank/configs/arcane:/app/data
     environment:
       - PUID=568
       - PGID=568
-      - PROJECTS_DIRECTORY=/mnt/tank/stacks
       - APP_URL=http://10.99.0.242:3552
       - ENCRYPTION_KEY=799513078c58a0163eb3cb217b1226aaad243a350043bf130b711d9770b1fc19
       - JWT_SECRET=ed012e40dbfbcad08a59b23a6456496ed353bd1b47e30d391363fa7b4e1d4adf
