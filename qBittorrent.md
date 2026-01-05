@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-01-04T22:31:22.314Z
+date: 2026-01-05T02:21:11.842Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -105,7 +105,7 @@ services:
       - PGID=568
       - TZ=America/New_York
     volumes:
-      - /mnt/apps/configs/wireguard:/config
+      - /mnt/tank/configs/wireguard:/config
       - /lib/modules:/lib/modules:ro
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
@@ -129,7 +129,7 @@ services:
       - TZ=America/New_York
       - WEBUI_PORT=8080
     volumes:
-      - /mnt/apps/configs/qbittorrent:/config
+      - /mnt/tank/configs/qbittorrent:/config
       - /mnt/tank/media:/media
     depends_on:
       wireguard:
