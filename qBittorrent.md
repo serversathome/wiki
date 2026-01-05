@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-01-05T02:21:11.842Z
+date: 2026-01-05T11:33:19.499Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -391,7 +391,7 @@ If you are worried about your public IP being visible conduct a **leak test** by
 
 # 4 · Testing Functionality
 
-To test everything is working, try downloading [this Ubuntu torrent](https://releases.ubuntu.com/24.04/ubuntu-24.04.2-live-server-amd64.iso.torrent). Once you have it downloaded, upload it into qBit by using the ➕ button in the upper left corner.
+To test everything is working, try downloading [this Ubuntu torrent](https://releases.ubuntu.com/24.04/ubuntu-24.04.3-desktop-amd64.iso.torrent). Once you have it downloaded, upload it into qBit by using the ➕ button in the upper left corner.
 
 A result of `downloading` at *any* speed indicates a success. If it stalls or errors something is wrong with permissions or dataset structure.
 
