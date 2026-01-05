@@ -2,7 +2,7 @@
 title: Media Manager
 description: A guide to deploying Media Manager via docker
 published: true
-date: 2026-01-05T15:30:58.855Z
+date: 2026-01-05T15:31:25.192Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T11:59:15.707Z
@@ -58,8 +58,6 @@ services:
 1. Add the qBittorrent URL, username and password and set to `true`
 1. Add the Prowlarr URL and API key and set to `true`
 1. Restart the docker container
-1. Navigate to the IP and port of the container and login with `admin@example.com` and password `admin`
-
 
 # 3 · Logging In
 1. Navigate to `http://IP:8000`
