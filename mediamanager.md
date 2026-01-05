@@ -2,7 +2,7 @@
 title: Media Manager
 description: A guide to deploying Media Manager via docker
 published: true
-date: 2026-01-05T15:04:25.315Z
+date: 2026-01-05T15:29:14.347Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T11:59:15.707Z
@@ -60,6 +60,12 @@ services:
 1. Restart the docker container
 1. Navigate to the IP and port of the container and login with `admin@example.com` and password `admin`
 
-# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
+
+# 3 · Logging In
+1. Navigate to `http://IP:8000`
+1. Click the **Registration** link to sign up
+1. Use the `admin@example.com` email with a strong password
+
+# <img src="/patreon-light.png" class="tab-icon"> 4 · Video
 
 [![](/2025-08-05-mediamanager-one-app-to-replace-promo-card.png)](https://www.patreon.com/posts/mediamanager-one-135812951)
