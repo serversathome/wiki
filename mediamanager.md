@@ -2,7 +2,7 @@
 title: Media Manager
 description: A guide to deploying Media Manager via docker
 published: true
-date: 2025-08-05T21:19:06.087Z
+date: 2026-01-05T15:04:25.315Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T11:59:15.707Z
@@ -28,9 +28,9 @@ services:
       - /mnt/tank/configs/mediamanager/images/:/data/images/
       
   db:
-    image: postgres:latest
+    container_name: mediamanager_postgres
+    image: postgres:17
     restart: unless-stopped
-    container_name: mediamanager-db
     volumes:
       - /mnt/tank/configs/mediamanager/postgres:/var/lib/postgresql/data
     healthcheck:
