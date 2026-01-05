@@ -2,7 +2,7 @@
 title: Arcane
 description: A guide to deploying Arcane in docker
 published: true
-date: 2026-01-05T11:41:19.858Z
+date: 2026-01-05T11:45:14.308Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-04T16:58:11.419Z
