@@ -2,7 +2,7 @@
 title: Dockmon
 description: A guide to deploying Dockmon
 published: true
-date: 2025-11-03T14:18:00.094Z
+date: 2026-01-06T09:58:57.200Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-03T14:18:00.094Z
@@ -25,6 +25,7 @@ services:
       - TZ=America/New_York
     volumes:
       - /mnt/tank/configs/dockmon_data:/app/data
+      - /mnt/tank/stacks:/stacks
       - /var/run/docker.sock:/var/run/docker.sock
     healthcheck:
       test: ["CMD", "curl", "-k", "-f", "https://localhost:443/health"]
