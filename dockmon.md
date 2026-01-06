@@ -2,7 +2,7 @@
 title: Dockmon
 description: A guide to deploying Dockmon
 published: true
-date: 2026-01-06T09:58:57.200Z
+date: 2026-01-06T16:29:40.924Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-03T14:18:00.094Z
@@ -24,7 +24,7 @@ services:
     environment:
       - TZ=America/New_York
     volumes:
-      - /mnt/tank/configs/dockmon_data:/app/data
+      - /mnt/tank/configs/dockmon:/app/data
       - /mnt/tank/stacks:/stacks
       - /var/run/docker.sock:/var/run/docker.sock
     healthcheck:
