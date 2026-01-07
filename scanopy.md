@@ -2,7 +2,7 @@
 title: Scanopy
 description: A guide to deploying Scanopy
 published: true
-date: 2026-01-07T13:55:59.609Z
+date: 2026-01-07T13:56:10.362Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-01T22:02:29.032Z
@@ -10,7 +10,7 @@ dateCreated: 2025-12-01T22:02:29.032Z
 
 # <img src="/scanopy.png" class="tab-icon"> What is Scanopy?
 
-NetVisor scans your network, identifies hosts and services, and generates an interactive visualization showing how everything connects, letting you easily create and maintain network documentation.
+Scanopy scans your network, identifies hosts and services, and generates an interactive visualization showing how everything connects, letting you easily create and maintain network documentation.
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Scanopy
 ```yaml
 x-scanopy-env: &scanopy-env
