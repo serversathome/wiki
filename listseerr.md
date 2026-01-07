@@ -2,13 +2,13 @@
 title: Listseerr
 description: A guide to deploying Listseerr
 published: true
-date: 2026-01-07T20:18:16.861Z
+date: 2026-01-07T20:19:19.003Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-07T20:18:16.861Z
 ---
 
-# <img src="/listseerr-light.png" class="tab-icon"> What is Listseerr?
+# <img src="/listseerr.png" class="tab-icon"> What is Listseerr?
 
 Request movies & shows in Seerr from your favorite lists.
 
