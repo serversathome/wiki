@@ -2,7 +2,7 @@
 title: Zero Byte
 description: A guide to deploying Zerobyte
 published: true
-date: 2025-12-02T00:24:09.999Z
+date: 2026-01-07T18:13:48.269Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-02T00:17:47.566Z
@@ -11,8 +11,6 @@ dateCreated: 2025-12-02T00:17:47.566Z
 # <img src="/zerobyte.png" class="tab-icon"> What is Zerobyte?
 
 Zerobyte is a backup automation tool that helps you save your data across multiple storage backends. Built on top of Restic, it provides an modern web interface to schedule, manage, and monitor encrypted backups of your remote storage.
-Features
-
 - Automated backups with encryption, compression and retention policies powered by Restic
 - Flexible scheduling For automated backup jobs with fine-grained retention policies
 - End-to-end encryption ensuring your data is always protected
