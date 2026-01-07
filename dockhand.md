@@ -23,6 +23,6 @@ services:
       - 3000:3000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /mnt/tank.configs.dockhand:/app/data
+      - /mnt/tank/configs/dockhand:/app/data
       - /mnt/tank/stacks:/app/data/stacks
 ```
