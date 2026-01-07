@@ -1,14 +1,14 @@
 ---
-title: Netvisor
-description: A guide to deploying Netvisor
+title: Scanopy
+description: A guide to deploying Scanopy
 published: true
-date: 2026-01-07T13:54:50.937Z
+date: 2026-01-07T13:55:59.609Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-01T22:02:29.032Z
 ---
 
-# <img src="/netvisor.png" class="tab-icon"> What is Scanopy?
+# <img src="/scanopy.png" class="tab-icon"> What is Scanopy?
 
 NetVisor scans your network, identifies hosts and services, and generates an interactive visualization showing how everything connects, letting you easily create and maintain network documentation.
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Scanopy
