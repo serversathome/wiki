@@ -52,6 +52,13 @@ services:
       - /mnt/tank/configs/qbittorrent:/config
       - /mnt/tank/media:/media
 ```
+> If you want to change the webui ports to something other then 8080, change the ports section to something like:
+> ```
+> ports:
+>   - 8081:8081
+> ```
+> And change the WEBUI_PORTS variable to the same port (both for tcp and udp). 
+{.is-warning}
 
 This qBittorrent container is from hotio and uses a Wireguard VPN to protect traffic. 
 
@@ -335,7 +342,7 @@ services:
       - TECHNOLOGY=NordLynx
       - NETWORK={ENTER YOUR LAN SUBNET HERE;i.e. 192.168.1.0/24} 
     ports:
-      - 8081:8080
+      - 8080:8080
     dns:
       - 1.1.1.1
       - 8.8.8.8
@@ -364,6 +371,13 @@ services:
     restart: unless-stopped
 
 ```
+> If you want to change the webui ports to something other then 8080, change the ports section to something like:
+> ```
+> ports:
+>   - 8081:8081
+> ```
+> And change the WEBUI_PORT variable to the same port. 
+{.is-warning}
 
 To get your Private Key needed to make this container work, you will need to log into your NordVPN account and head to the "NordVPN" service located on the left menu option.  Scroll down until you see the "Access Token" option and click on "Get Access Token".  You will likely need to verify your email address.  Once verified, click on the "Generate a New Token" option and leave set to 30 day period, as the token will not be necessary after being used to generate your Private Key.
 
