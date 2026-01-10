@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-01-05T11:33:19.499Z
+date: 2026-01-10T10:49:05.659Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-23T13:36:26.298Z
@@ -52,13 +52,13 @@ services:
       - /mnt/tank/configs/qbittorrent:/config
       - /mnt/tank/media:/media
 ```
-> If you want to change the webui ports to something other then 8080, change the ports section to something like:
+> If you want to change the webui ports to something other then `8080`, change the ports section to something like:
 > ```
 > ports:
 >   - 8081:8081
 > ```
-> And change the WEBUI_PORTS variable to the same port (both for tcp and udp). 
-{.is-warning}
+> And change the `WEBUI_PORTS` variable to the same port (both for tcp and udp). 
+{.is-success}
 
 This qBittorrent container is from hotio and uses a Wireguard VPN to protect traffic. 
 
