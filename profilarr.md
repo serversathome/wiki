@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2025-11-14T13:37:07.425Z
+date: 2026-01-11T09:04:20.240Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-23T11:41:17.078Z
@@ -22,7 +22,7 @@ Configuration management tool for Radarr/Sonarr that automates importing and ver
 ```yaml
 services:
   profilarr:
-    image: santiagosayshey/profilarr:latest
+    image: santiagosayshey/profilarr:beta
     container_name: profilarr
     ports:
       - 6868:6868
