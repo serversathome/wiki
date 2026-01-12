@@ -2,19 +2,17 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: 2026-01-12T11:40:21.110Z
+date: 2026-01-12T11:43:10.661Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-22T11:00:30.633Z
 ---
 
-![wiki-js.png](/wiki-js.png)
-
-# What is Wiki.js?
+# <img src="/wiki-js.png" class="tab-icon"> What is Wiki.js?
 
 **Wiki.js** is an open source wiki software that works on any platform and database. It offers features such as authentication, media, themes, integrations and more.
 
-# Docker Compose
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Wiki.js
 
 ```yaml
 services:
@@ -52,11 +50,11 @@ services:
 > You can deploy as many of these containers as you want for each wiki you want to host. Be sure to change the external port for each one.
 {.is-info}
 
-# Making it Beautiful
+# 2 · Making it Beautiful
 
 The strength of any editor is the Markdown function. The easiest way to start with Wiki.js is with the WYSIWYG editor, which operates like Microsoft Word. However, all of the most powerful functions are only availble using the markdown editor. 
 
-## Converting Editors
+## 2.1 Converting Editors
 
 To change a page from WYSIWYG to the Markdown editor:
 1. Navigate to the Page Actions button while viewing the page you would like to convert
@@ -69,11 +67,11 @@ To change a page from WYSIWYG to the Markdown editor:
 > All the markdown instructions can be found [here](https://docs.requarks.io/en/editors/markdown)
 {.is-success}
 
-## Navigation Icons
+## 2.2 Navigation Icons
 
 By default, Wiki.js uses the Material Designs icon set for naviagtion. The best way to do navigation in my opinion is to go to **Administration Settings** ⚙️ → **Navigation** ➤ and set the **Navigation Mode** to **Custom Naviagtion** and change the default *mdi-chevron-right* to something from [here](https://pictogrammers.com/library/mdi/).
 
-# Making YouTube Links Work
+# 3 · Making YouTube Links Work
 To show the video player when inserting YouTube links, you must make the following changes:
 1. Navigate to the **Administration Settings** ⚙️
 1. Navigate to the **Theme** tab 🎨
@@ -134,11 +132,11 @@ To show the video player when inserting YouTube links, you must make the followi
 </script>
 ```
 5. In **Settings → Security** make sure the `Same Origin Referrer Policy` is turned **off**!
-# Syncing With GitHub
+# 4 · Syncing With GitHub
 
 [GitHub](https://www.github.com) is the most popular git source control provider.
 
-## Generate a new key
+## 4.1 Generate a new key
 
 1. Open Terminal.
 2. Enter the command:
@@ -151,7 +149,7 @@ To show the video player when inserting YouTube links, you must make the followi
 > On Windows, you can use [Git Bash](https://git-scm.com/download/win) or Windows Subsystem for Linux (WSL) distributions like [Ubuntu for Windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6) to run the commands above. You can also generate keys manually using the [puttygen](https://www.ssh.com/ssh/putty/download) utility.
 {.is-info}
 
-## Add the key to GitHub
+## 4.2 Add the key to GitHub
 
 1. Create a new GitHub repository.
 2. Click on the **Settings** tab.
@@ -161,7 +159,7 @@ To show the video player when inserting YouTube links, you must make the followi
 6. Make sure the **Allow write access** is checked.
 7. Click the **Add key** button.
 
-## Configure Wiki.js
+## 4.3 Configure Wiki.js
 
 1. In the Administration Area, click on **Storage** in the left navigation menu.
 2. Make sure the **Git** storage target is checked.
@@ -182,5 +180,5 @@ To show the video player when inserting YouTube links, you must make the followi
 7. Click the **Apply Changes** button at the top of the page.
 8. Wait for the **Status** panel to update. A new entry for **Git** should appear in green. If the bar is red, it means you have an error in your configuration. Go back to the Git tab, fix the error and try again.
 
-# Video
+# <img src="/youtube.png" class="tab-icon"> 4 · Video
 [](https://youtu.be/hfhP5WBAXmg)
