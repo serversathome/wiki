@@ -2,7 +2,7 @@
 title: Colanode
 description: A guide to deploying Colanode
 published: true
-date: 2025-12-31T17:07:41.557Z
+date: 2026-01-12T10:32:27.710Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-30T01:46:10.392Z
@@ -78,3 +78,6 @@ services:
 
 1. Navigate to `http://IP:4000`
 1. Select **Add Sever** in the **Registration** section. To know what to enter for the address, click the `3000` pill in dockge to get the server address.
+
+# <img src="/youtube.png" class="tab-icon"> 3 · Video
+https://youtu.be/fhdE2zLmkAQ
