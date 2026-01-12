@@ -2,7 +2,7 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: 2025-07-06T10:29:59.629Z
+date: 2026-01-12T11:40:21.110Z
 tags: 
 editor: markdown
 dateCreated: 2024-08-22T11:00:30.633Z
@@ -133,7 +133,7 @@ To show the video player when inserting YouTube links, you must make the followi
   })
 </script>
 ```
-
+5. In **Settings → Security** make sure the `Same Origin Referrer Policy` is turned **off**!
 # Syncing With GitHub
 
 [GitHub](https://www.github.com) is the most popular git source control provider.
