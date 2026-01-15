@@ -2,7 +2,7 @@
 title: Home
 description: This is the official wiki for Servers@Home
 published: true
-date: 2026-01-15T15:36:05.785Z
+date: 2026-01-15T17:12:14.076Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:13.120Z
@@ -84,7 +84,7 @@ New to self-hosting? Start here:
 ## 📢 Important Notices
 
 <img src="/wiki-js.png" width="25" style="vertical-align:middle;margin-right:4px"> **Wiki Comments**  
-This wiki runs on [Wiki.js](https://js.wiki/) which doesn't notify us of comments. For urgent matters, please use Discord.
+For urgent matters, please use Discord.
 
 🚨 **Technical Questions**  
 For complex issues, our [Discord community](https://discord.gg/syvCPcRJnR) provides faster responses.
