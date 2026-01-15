@@ -2,10 +2,10 @@
 title: AdGuard
 description: A guide to deploying AdGuard via TrueNAS or docker compose
 published: true
-date: 2025-10-17T11:07:29.739Z
+date: 2026-01-15T15:27:59.587Z
 tags: 
 editor: markdown
-dateCreated: 2025-07-07T17:31:03.932Z
+dateCreated: 2026-01-15T15:03:05.289Z
 ---
 
 # ![](/adguard-home.png){class="tab-icon"} What is AdGuard?

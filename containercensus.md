@@ -2,10 +2,10 @@
 title: Container Census
 description: A guide to deploy Container Census
 published: true
-date: 2025-12-09T19:50:54.949Z
+date: 2026-01-15T15:28:38.176Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-04T21:13:50.330Z
+dateCreated: 2026-01-15T15:03:56.053Z
 ---
 
 # What is Container Census?

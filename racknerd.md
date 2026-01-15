@@ -2,10 +2,10 @@
 title: Racknerd VPS
 description: A guide to deploying a Racknerd VPS
 published: true
-date: 2025-11-20T11:10:36.518Z
+date: 2026-01-15T15:31:13.315Z
 tags: 
 editor: markdown
-dateCreated: 2025-10-14T13:12:23.435Z
+dateCreated: 2026-01-15T15:07:49.041Z
 ---
 
 # <img src="/racknerd.jpg" class="tab-icon"> What is Racknerd?

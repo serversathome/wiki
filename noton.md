@@ -2,10 +2,10 @@
 title: Noton
 description: A guide to deploying Noton
 published: true
-date: 2025-09-30T14:39:45.384Z
+date: 2026-01-15T15:30:29.454Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-30T14:39:45.384Z
+dateCreated: 2026-01-15T15:06:50.817Z
 ---
 
 # <img src="/noton.png" class="tab-icon"> What is Noton?

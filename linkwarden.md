@@ -2,10 +2,10 @@
 title: Linkwarden
 description: A guide to deploying Linkwarden
 published: true
-date: 2025-10-17T11:17:54.788Z
+date: 2026-01-15T15:29:57.316Z
 tags: 
 editor: markdown
-dateCreated: 2025-10-13T18:46:07.664Z
+dateCreated: 2026-01-15T15:05:57.751Z
 ---
 
 # ![](/linkwarden.png){class="tab-icon"} What is Linkwarden?

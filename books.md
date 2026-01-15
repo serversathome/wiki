@@ -2,10 +2,10 @@
 title: Readarr/Calibre/Kavita
 description: A guide to deploying Readarr/Calibre/Kavita using docker compose
 published: true
-date: 2025-06-08T18:40:00.890Z
+date: 2026-01-15T15:28:20.771Z
 tags: 
 editor: markdown
-dateCreated: 2025-01-04T20:18:26.385Z
+dateCreated: 2026-01-15T15:03:32.669Z
 ---
 
 > **This Page is Under Construction!** 

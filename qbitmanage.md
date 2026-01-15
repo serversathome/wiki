@@ -2,10 +2,10 @@
 title: qBit Manage
 description: A guide to deploying qBit Manage
 published: true
-date: 2025-09-11T13:54:21.300Z
+date: 2026-01-15T15:31:09.976Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-11T09:40:32.816Z
+dateCreated: 2026-01-15T15:07:44.881Z
 ---
 
 > UNDER CONSTRUCTION

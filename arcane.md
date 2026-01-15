@@ -2,10 +2,10 @@
 title: Arcane
 description: A guide to deploying Arcane in docker
 published: true
-date: 2026-01-05T11:45:14.308Z
+date: 2026-01-15T15:28:03.020Z
 tags: 
 editor: markdown
-dateCreated: 2025-06-04T16:58:11.419Z
+dateCreated: 2026-01-15T15:03:09.587Z
 ---
 
 # ![](/arcane.png){class="tab-icon"} What is Arcane?

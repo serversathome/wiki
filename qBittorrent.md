@@ -2,10 +2,10 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-01-10T10:49:05.659Z
+date: 2026-01-15T15:31:08.283Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:36:26.298Z
+dateCreated: 2026-01-15T15:07:42.310Z
 ---
 
 # ![](/qbittorrent.png){class="tab-icon"} What is qBittorrent?

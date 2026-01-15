@@ -2,10 +2,10 @@
 title: Nginx Proxy Manager
 description: 
 published: true
-date: 2025-07-20T20:04:48.691Z
+date: 2026-01-15T15:30:24.739Z
 tags: 
 editor: markdown
-dateCreated: 2024-04-15T18:47:30.212Z
+dateCreated: 2026-01-15T15:06:44.152Z
 ---
 
 # ![](/nginx-proxy-manager.png){class="tab-icon"} What is Nginx Proxy Manager?

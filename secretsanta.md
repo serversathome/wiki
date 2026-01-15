@@ -2,10 +2,10 @@
 title: Secret Santa
 description: A guide to deploying Secret Santa
 published: true
-date: 2025-12-01T22:37:13.974Z
+date: 2026-01-15T15:31:44.712Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-01T22:37:13.974Z
+dateCreated: 2026-01-15T15:08:28.699Z
 ---
 
 # What is Secret Santa?

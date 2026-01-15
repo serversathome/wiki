@@ -2,10 +2,10 @@
 title: Home Assistant
 description: A guide to deploying Home Assistant on TrueNAS
 published: true
-date: 2025-07-11T10:37:32.232Z
+date: 2026-01-15T15:29:33.794Z
 tags: 
 editor: markdown
-dateCreated: 2025-06-12T14:57:25.253Z
+dateCreated: 2026-01-15T15:05:16.650Z
 ---
 
 # ![](/homeassistant.png){class="tab-icon"} What is Home Assistant?

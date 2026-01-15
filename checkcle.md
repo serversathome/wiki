@@ -2,10 +2,10 @@
 title: Checkcle
 description: A guide to deploying Checkle
 published: true
-date: 2025-12-10T20:02:07.332Z
+date: 2026-01-15T15:28:24.075Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-10T19:51:54.490Z
+dateCreated: 2026-01-15T15:03:37.230Z
 ---
 
 # <img src="/checkcle.png" class="tab-icon"> What is Checkcle?

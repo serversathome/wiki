@@ -2,7 +2,7 @@
 title: Home
 description: This is the official wiki for Servers@Home
 published: true
-date: 2026-01-15T15:18:55.293Z
+date: 2026-01-15T15:36:05.785Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:13.120Z

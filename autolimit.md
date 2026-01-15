@@ -2,10 +2,10 @@
 title: Auto-Limit
 description: A guide to deploying Auto-Limit via docker
 published: true
-date: 2025-07-14T16:44:12.612Z
+date: 2026-01-15T15:28:08.017Z
 tags: 
 editor: markdown
-dateCreated: 2025-07-08T15:10:19.276Z
+dateCreated: 2026-01-15T15:03:16.164Z
 ---
 
 # What is Auto-Limit?

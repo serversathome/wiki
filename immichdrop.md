@@ -2,10 +2,10 @@
 title: Immich Drop
 description: A guide to deploying Immich Drop
 published: true
-date: 2025-09-30T14:53:30.134Z
+date: 2026-01-15T15:29:40.336Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-01T11:48:30.786Z
+dateCreated: 2026-01-15T15:05:27.807Z
 ---
 
 # What is Immich Drop?

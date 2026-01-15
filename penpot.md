@@ -2,10 +2,10 @@
 title: Penpot
 description: A guide to deploying Penpot
 published: true
-date: 2025-09-04T23:27:05.793Z
+date: 2026-01-15T15:30:41.906Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-04T16:16:57.343Z
+dateCreated: 2026-01-15T15:07:06.342Z
 ---
 
 # ![](/penpot.png){class="tab-icon"} What is Penpot?

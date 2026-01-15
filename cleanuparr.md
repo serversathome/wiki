@@ -2,10 +2,10 @@
 title: Cleanuparr
 description: A guide to deploying Cleanuparr via docker
 published: true
-date: 2025-07-10T19:15:04.398Z
+date: 2026-01-15T15:28:27.254Z
 tags: 
 editor: markdown
-dateCreated: 2025-06-28T12:56:06.603Z
+dateCreated: 2026-01-15T15:03:41.816Z
 ---
 
 # ![](/cleanuparr.png){class="tab-icon"} What is Cleanuparr?

@@ -2,10 +2,10 @@
 title: Sprout Track
 description: A guide to deploying Sprout Track
 published: true
-date: 2025-09-19T09:34:29.179Z
+date: 2026-01-15T15:31:58.164Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-19T09:07:30.076Z
+dateCreated: 2026-01-15T15:08:46.645Z
 ---
 
 # <img src="/sprout-track.png" class="tab-icon"> What is Sprout Track?

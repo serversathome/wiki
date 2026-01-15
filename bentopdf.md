@@ -2,10 +2,10 @@
 title: BentoPDF
 description: A guide to deploying BentoPDF via docker
 published: true
-date: 2025-12-18T14:51:57.534Z
+date: 2026-01-15T15:28:12.662Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-18T07:15:11.407Z
+dateCreated: 2026-01-15T15:03:22.226Z
 ---
 
 # <img src="https://github.com/user-attachments/assets/f1a69d56-5850-4d83-95e8-052e25263fc8" class="tab-icon"> What is BentoPDF? 

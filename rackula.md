@@ -2,10 +2,10 @@
 title: Rackula
 description: A guide to deploying Rackula
 published: true
-date: 2025-12-29T22:09:54.335Z
+date: 2026-01-15T15:31:14.756Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-29T22:09:54.335Z
+dateCreated: 2026-01-15T15:07:51.532Z
 ---
 
 # <img src="/rackula.png" class="tab-icon"> What is Rackula?

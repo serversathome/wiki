@@ -2,10 +2,10 @@
 title: Mediqux
 description: A guide to deploy Mediqux
 published: true
-date: 2025-09-29T15:11:39.261Z
+date: 2026-01-15T15:30:12.707Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-29T14:47:33.544Z
+dateCreated: 2026-01-15T15:06:26.492Z
 ---
 
 # 🏥 What is Mediqux?

@@ -2,10 +2,10 @@
 title: Bichon
 description: A guide to deploying Bichon
 published: true
-date: 2025-12-01T22:18:36.642Z
+date: 2026-01-15T15:28:17.084Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-01T22:18:36.642Z
+dateCreated: 2026-01-15T15:03:27.886Z
 ---
 
 # <img src="/bichon.png" class="tab-icon"> What is Bichon?

@@ -2,10 +2,10 @@
 title: Colanode
 description: A guide to deploying Colanode
 published: true
-date: 2026-01-12T10:32:27.710Z
+date: 2026-01-15T15:28:35.000Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-30T01:46:10.392Z
+dateCreated: 2026-01-15T15:03:52.103Z
 ---
 
 # <img src="/colanode.png" class="tab-icon"> What is Colanode?

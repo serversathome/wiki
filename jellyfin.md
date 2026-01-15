@@ -2,10 +2,10 @@
 title: Jellyfin
 description: A guide to deploying Jellyfin on TrueNAS as well as Docker
 published: true
-date: 2025-07-09T12:35:17.279Z
+date: 2026-01-15T15:29:45.177Z
 tags: 
 editor: markdown
-dateCreated: 2025-04-14T10:43:38.039Z
+dateCreated: 2026-01-15T15:05:36.259Z
 ---
 
 # ![](/jellyfin.png){class="tab-icon"} What is Jellyfin?

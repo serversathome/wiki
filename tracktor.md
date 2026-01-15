@@ -2,10 +2,10 @@
 title: Tracktor
 description: A guide to deploying Tracktor
 published: true
-date: 2025-12-09T19:47:19.027Z
+date: 2026-01-15T15:32:09.986Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-28T18:34:56.490Z
+dateCreated: 2026-01-15T15:09:03.806Z
 ---
 
 # <img src="/tracktor.png" class="tab-icon"> What is Tracktor?

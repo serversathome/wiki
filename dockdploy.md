@@ -2,10 +2,10 @@
 title: Dock-Dploy
 description: A guide to deploying Dock-Dploy
 published: true
-date: 2025-12-29T15:51:33.015Z
+date: 2026-01-15T15:28:56.278Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-29T15:51:21.396Z
+dateCreated: 2026-01-15T15:04:18.698Z
 ---
 
 # What is Dock-Dploy?

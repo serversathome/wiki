@@ -2,10 +2,10 @@
 title: Whoogle
 description: A guide to deploying Whoogle
 published: true
-date: 2025-11-05T11:08:34.420Z
+date: 2026-01-15T15:32:30.903Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-05T10:58:43.725Z
+dateCreated: 2026-01-15T15:09:32.431Z
 ---
 
 # ![](/whoogle.png){class="tab-icon"} What is Whoogle?

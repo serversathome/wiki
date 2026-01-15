@@ -2,10 +2,10 @@
 title: Dasharr
 description: A guide to deploying Dasharr in docker
 published: true
-date: 2025-08-13T14:58:05.708Z
+date: 2026-01-15T15:28:51.296Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-04T11:22:20.098Z
+dateCreated: 2026-01-15T15:04:12.442Z
 ---
 
 # ![](/dasharr.png){class="tab-icon"} What is Dasharr?

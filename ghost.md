@@ -2,10 +2,10 @@
 title: Ghost
 description: A guide to installing Ghost in docker via compose
 published: true
-date: 2025-12-03T10:59:52.510Z
+date: 2026-01-15T15:29:16.717Z
 tags: 
 editor: markdown
-dateCreated: 2024-08-11T11:43:39.558Z
+dateCreated: 2026-01-15T15:04:44.549Z
 ---
 
 # <img src="/ghost-light.png" class="tab-icon"> What is Ghost?

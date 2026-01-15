@@ -2,10 +2,10 @@
 title: Productivity
 description: 
 published: true
-date: 2025-10-13T18:48:03.035Z
+date: 2026-01-15T15:30:58.157Z
 tags: 
 editor: markdown
-dateCreated: 2025-07-07T18:06:48.269Z
+dateCreated: 2026-01-15T15:07:28.852Z
 ---
 
 - [<img src="/ollama.png"> AI<br>*Run AI locally*](/localai)

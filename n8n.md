@@ -2,10 +2,10 @@
 title: n8n
 description: A guide to deploying n8n on TrueNAS as well as docker compose
 published: true
-date: 2025-08-17T11:22:31.868Z
+date: 2026-01-15T15:30:15.954Z
 tags: 
 editor: markdown
-dateCreated: 2025-07-24T16:54:38.031Z
+dateCreated: 2026-01-15T15:06:32.194Z
 ---
 
 # ![](/n8n.png){class="tab-icon"} What is n8n?

@@ -2,10 +2,10 @@
 title: Plex
 description: A guide to installing Plex in TrueNAS and via docker compose
 published: true
-date: 2025-07-09T14:57:10.987Z
+date: 2026-01-15T15:30:52.797Z
 tags: 
 editor: markdown
-dateCreated: 2025-03-13T10:42:37.917Z
+dateCreated: 2026-01-15T15:07:21.349Z
 ---
 
 > Plex has recently made streaming outside your home network a paid-only feature. [Read about it here](https://www.plex.tv/blog/important-2025-plex-updates/). 

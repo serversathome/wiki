@@ -2,10 +2,10 @@
 title: Tdarr
 description: A guide to installing Tdarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-10T19:43:33.101Z
+date: 2026-01-15T15:32:04.412Z
 tags: 
 editor: markdown
-dateCreated: 2025-01-26T22:41:02.635Z
+dateCreated: 2026-01-15T15:08:55.739Z
 ---
 
 # ![](/tdarr.png){class="tab-icon"} What is Tdarr?

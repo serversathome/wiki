@@ -2,10 +2,10 @@
 title: Pingora Proxy Manager
 description: A guide to deploying Pingora Proxy Manager
 published: true
-date: 2025-12-29T14:37:57.649Z
+date: 2026-01-15T15:30:51.361Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-29T14:37:00.922Z
+dateCreated: 2026-01-15T15:07:19.270Z
 ---
 
 # <img src="/pingora-proxy-manager.png" class="tab-icon"> What is Pingora Proxy Manager?

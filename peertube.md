@@ -2,10 +2,10 @@
 title: PeerTube
 description: A guide to deploying PeerTube
 published: true
-date: 2025-11-21T11:52:40.532Z
+date: 2026-01-15T15:30:40.240Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-21T11:44:57.476Z
+dateCreated: 2026-01-15T15:07:04.139Z
 ---
 
 # <img src="/peertube.png" class="tab-icon"> What is PeerTube?

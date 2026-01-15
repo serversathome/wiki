@@ -2,10 +2,10 @@
 title: CoreControl
 description: A guide to deploying Core Control via docker compose
 published: true
-date: 2025-06-08T18:40:29.249Z
+date: 2026-01-15T15:28:43.051Z
 tags: 
 editor: markdown
-dateCreated: 2025-04-26T11:44:27.175Z
+dateCreated: 2026-01-15T15:04:02.195Z
 ---
 
 ![corecontrol-light.png](/corecontrol-light.png)

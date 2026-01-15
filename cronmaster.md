@@ -2,10 +2,10 @@
 title: Cr*n Master
 description: A guide to deploying Cr*n Master
 published: true
-date: 2025-08-28T18:16:04.141Z
+date: 2026-01-15T15:28:46.096Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-28T18:15:53.169Z
+dateCreated: 2026-01-15T15:04:06.236Z
 ---
 
 # <img src="/cronmaster.png" class="tab-icon"> What is Cr\*nMaster?

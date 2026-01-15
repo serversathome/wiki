@@ -2,12 +2,11 @@
 title: Reactive Resume
 description: A guide to deploying Reactive Resume
 published: true
-date: 2025-08-26T18:23:01.427Z
+date: 2026-01-15T15:31:19.229Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-26T17:42:55.427Z
+dateCreated: 2026-01-15T15:07:58.027Z
 ---
-
 
 # <img src="/reactive-resume.png" class="tab-icon"> What is Reactive Resume?
 A free and open-source resume builder that simplifies the process of creating, updating, and sharing your resume.

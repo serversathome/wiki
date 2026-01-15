@@ -2,10 +2,10 @@
 title: Phylum
 description: A guide to deploying Phylum via docker
 published: true
-date: 2025-08-21T18:44:40.357Z
+date: 2026-01-15T15:30:45.137Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-04T12:25:07.864Z
+dateCreated: 2026-01-15T15:07:10.430Z
 ---
 
 # ![](/phylum.png){class="tab-icon"} What is Phylum?

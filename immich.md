@@ -2,10 +2,10 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: 2025-08-03T19:12:13.282Z
-tags:
+date: 2026-01-15T15:29:38.801Z
+tags: 
 editor: markdown
-dateCreated: 2025-04-30T12:06:15.920Z
+dateCreated: 2026-01-15T15:05:25.101Z
 ---
 
 # ![](/immich.png){class="tab-icon"} What is Immich?

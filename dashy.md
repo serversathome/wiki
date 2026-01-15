@@ -2,10 +2,10 @@
 title: Dashy
 description: A guide to deploying Dashy
 published: true
-date: 2025-11-04T01:18:39.407Z
+date: 2026-01-15T15:28:52.998Z
 tags: 
 editor: markdown
-dateCreated: 2025-10-27T20:57:44.719Z
+dateCreated: 2026-01-15T15:04:14.446Z
 ---
 
 # ![](/dashy.png){class="tab-icon"} What is Dashy?

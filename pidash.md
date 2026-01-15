@@ -2,10 +2,10 @@
 title: Pi-Dash
 description: A guide to deploying Pi-Dash
 published: true
-date: 2025-08-28T14:49:18.020Z
+date: 2026-01-15T15:30:46.740Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-28T14:38:41.759Z
+dateCreated: 2026-01-15T15:07:12.626Z
 ---
 
 # ![](/pi-hole.png){class="tab-icon"} What is Pi-Dash?

@@ -1,11 +1,11 @@
 ---
 title: Notifiarr
-description: A guide to deploy Notifiarr in TrueNAS 
+description: A guide to deploy Notifiarr in TrueNAS
 published: true
-date: 2025-08-04T18:39:31.153Z
+date: 2026-01-15T15:30:27.753Z
 tags: 
 editor: markdown
-dateCreated: 2025-06-20T20:23:44.026Z
+dateCreated: 2026-01-15T15:06:48.473Z
 ---
 
 # ![](/notifiarr.png){class="tab-icon"} What is Notifiarr

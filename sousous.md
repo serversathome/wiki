@@ -2,10 +2,10 @@
 title: Sousous
 description: A guide to deploying Sousous
 published: true
-date: 2025-08-28T19:06:49.347Z
+date: 2026-01-15T15:31:54.576Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-28T19:06:49.347Z
+dateCreated: 2026-01-15T15:08:42.424Z
 ---
 
 # What is Sousous?

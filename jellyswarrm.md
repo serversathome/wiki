@@ -2,10 +2,10 @@
 title: Jellyswarrm
 description: A guide to deploy Jellyswarrm
 published: true
-date: 2025-12-04T14:41:24.958Z
+date: 2026-01-15T15:29:46.943Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-01T21:52:11.992Z
+dateCreated: 2026-01-15T15:05:40.108Z
 ---
 
 # <img src="/jellyswarrm.png" class="tab-icon"> What is Jellyswarrm?

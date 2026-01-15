@@ -2,10 +2,10 @@
 title: PuniPuni
 description: A guide to deploying PuniPuni
 published: true
-date: 2025-08-28T18:55:52.813Z
+date: 2026-01-15T15:31:06.375Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-28T18:49:03.863Z
+dateCreated: 2026-01-15T15:07:40.075Z
 ---
 
 # <img src="/punipuni.png" class="tab-icon"> What is PuniPuni?

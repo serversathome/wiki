@@ -2,10 +2,10 @@
 title: Cloudflare Tunnels
 description: A guide to installing Cloudflare Tunnels in TrueNAS Scale as well as on bare metal
 published: true
-date: 2025-07-11T12:29:15.315Z
+date: 2026-01-15T15:27:24.256Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:39:55.579Z
+dateCreated: 2026-01-15T15:02:18.633Z
 ---
 
 # ![](/cloudflare.png){class="tab-icon"} What are Cloudflare Tunnels?

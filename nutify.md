@@ -2,10 +2,10 @@
 title: Nutify
 description: A guide to deploying Nutify
 published: true
-date: 2026-01-03T11:45:30.797Z
+date: 2026-01-15T15:30:31.166Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-08T15:38:24.907Z
+dateCreated: 2026-01-15T15:06:52.884Z
 ---
 
 # <img src="/nutify.png" class="tab-icon"> What is Nutify?

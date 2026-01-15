@@ -2,10 +2,10 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: 2025-11-20T11:12:37.952Z
+date: 2026-01-15T15:29:27.576Z
 tags: 
 editor: markdown
-dateCreated: 2025-03-24T10:59:55.365Z
+dateCreated: 2026-01-15T15:05:03.838Z
 ---
 
 # ![](/headscale.png){class="tab-icon"} What is Headscale?

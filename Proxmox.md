@@ -2,13 +2,11 @@
 title: Proxmox
 description: An overview of the Proxmox hypervisor
 published: true
-date: 2025-11-27T22:26:23.857Z
+date: 2026-01-15T15:27:46.467Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:26:36.274Z
+dateCreated: 2026-01-15T15:02:47.218Z
 ---
-
-
 
 # ![](/proxmox.png){class="tab-icon"} 1 · What Is Proxmox?
 

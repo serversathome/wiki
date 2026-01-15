@@ -2,10 +2,10 @@
 title: PiMan
 description: A guide to deploying PiMan
 published: true
-date: 2025-11-03T16:35:31.630Z
+date: 2026-01-15T15:30:49.838Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-03T16:35:31.630Z
+dateCreated: 2026-01-15T15:07:17.012Z
 ---
 
 # What is PiMan?

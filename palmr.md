@@ -2,10 +2,10 @@
 title: Palmr
 description: A guide to deploying Palmr on docker
 published: true
-date: 2026-01-03T01:42:42.939Z
+date: 2026-01-15T15:30:34.861Z
 tags: 
 editor: markdown
-dateCreated: 2025-07-07T17:51:37.781Z
+dateCreated: 2026-01-15T15:06:57.505Z
 ---
 
 > **DO NOT USE AS CONTAINER HAS BEEN DEPRECATED DUE TO THE CHANGES IN MINIO**

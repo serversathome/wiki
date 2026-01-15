@@ -2,10 +2,10 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2025-09-03T12:25:26.973Z
+date: 2026-01-15T15:29:03.311Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-27T08:38:39.465Z
+dateCreated: 2026-01-15T15:04:27.463Z
 ---
 
 # <img src="/docusaurus.png" class="tab-icon"> What is Docusaurus?

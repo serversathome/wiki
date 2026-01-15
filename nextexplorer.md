@@ -2,10 +2,10 @@
 title: nextExplorer
 description: A guide to deploying nextExplorer
 published: true
-date: 2025-12-12T11:34:20.761Z
+date: 2026-01-15T15:30:22.986Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-03T14:41:55.290Z
+dateCreated: 2026-01-15T15:06:42.032Z
 ---
 
 # ![](/nextexplorer.png){class="tab-icon"} What is nextExplorer?

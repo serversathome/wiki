@@ -2,10 +2,10 @@
 title: Backvault
 description: A guide to deploying Backvault
 published: true
-date: 2025-12-04T17:02:44.134Z
+date: 2026-01-15T15:28:09.496Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-04T16:38:53.485Z
+dateCreated: 2026-01-15T15:03:18.042Z
 ---
 
 # <img src="/screenshot_from_2025-12-04_11-37-02.png" class="tab-icon"> What is Backvault?

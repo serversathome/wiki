@@ -2,10 +2,10 @@
 title: Nextcloud
 description: A guide to deploying Nextcloud on TrueNAS Scale and via docker compose
 published: true
-date: 2025-10-14T09:58:21.436Z
+date: 2026-01-15T15:30:21.235Z
 tags: 
 editor: markdown
-dateCreated: 2024-11-06T16:25:41.034Z
+dateCreated: 2026-01-15T15:06:39.801Z
 ---
 
 # ![](/nextcloud.png){class="tab-icon"} What is Nextcloud?

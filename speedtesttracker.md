@@ -2,10 +2,10 @@
 title: Speedtest Tracker
 description: A guide to deploy Speed Test Tracker
 published: true
-date: 2025-09-05T10:46:32.966Z
+date: 2026-01-15T15:31:56.091Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-02T14:27:43.594Z
+dateCreated: 2026-01-15T15:08:44.488Z
 ---
 
 # ![](/speedtest-tracker.png){class="tab-icon"} What is Speedtest Tracker?

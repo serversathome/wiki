@@ -2,10 +2,10 @@
 title: Huntarr
 description: A guide to deploying huntarr via docker compose
 published: true
-date: 2025-07-09T12:57:14.942Z
+date: 2026-01-15T15:29:37.041Z
 tags: 
 editor: markdown
-dateCreated: 2025-04-25T17:34:28.189Z
+dateCreated: 2026-01-15T15:05:22.037Z
 ---
 
 # ![](/huntarr.png){class="tab-icon"} What is Huntarr?

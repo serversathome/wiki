@@ -2,10 +2,10 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2025-10-17T11:17:21.569Z
+date: 2026-01-15T15:29:53.832Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-01T21:20:12.233Z
+dateCreated: 2026-01-15T15:05:51.359Z
 ---
 
 # ![](/komodo.png){class="tab-icon"} What is Komodo?

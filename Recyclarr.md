@@ -2,10 +2,10 @@
 title: Recyclarr
 description: A guide to installing Recyclarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-07-09T13:11:40.532Z
+date: 2026-01-15T15:27:48.121Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:34:38.606Z
+dateCreated: 2026-01-15T15:02:49.417Z
 ---
 
 # ![](/recyclarr.png){class="tab-icon"} What is Recyclarr?

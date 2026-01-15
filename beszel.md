@@ -2,10 +2,10 @@
 title: Beszel
 description: A guide to deploying Beszel
 published: true
-date: 2025-11-17T16:53:36.504Z
+date: 2026-01-15T15:28:14.116Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-17T16:16:46.529Z
+dateCreated: 2026-01-15T15:03:24.164Z
 ---
 
 # <img src="/beszel.png" class="tab-icon"> What is Beszel?

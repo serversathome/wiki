@@ -2,10 +2,10 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2025-10-28T20:18:39.973Z
+date: 2026-01-15T15:31:03.294Z
 tags: 
 editor: markdown
-dateCreated: 2025-10-22T18:47:24.209Z
+dateCreated: 2026-01-15T15:07:35.530Z
 ---
 
 > UNDER CONSTRUCTION

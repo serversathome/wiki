@@ -2,10 +2,10 @@
 title: Agregarr
 description: A guide to deploying Agregarr
 published: true
-date: 2025-09-01T12:22:28.908Z
+date: 2026-01-15T15:28:01.203Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-01T12:22:28.908Z
+dateCreated: 2026-01-15T15:03:07.197Z
 ---
 
 # ![](/agregarr.png){class="tab-icon"} What is Agregarr?

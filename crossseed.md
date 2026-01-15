@@ -2,10 +2,10 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2025-07-10T19:37:13.158Z
+date: 2026-01-15T15:28:47.987Z
 tags: 
 editor: markdown
-dateCreated: 2025-06-11T09:31:37.247Z
+dateCreated: 2026-01-15T15:04:08.228Z
 ---
 
 # ![](/cross-seed.png){class="tab-icon"} What is Cross-Seed?

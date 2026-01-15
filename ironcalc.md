@@ -2,10 +2,10 @@
 title: IronCalc
 description: A guide to deploying IronCalc
 published: true
-date: 2025-11-03T15:55:16.422Z
+date: 2026-01-15T15:29:43.343Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-03T15:55:16.422Z
+dateCreated: 2026-01-15T15:05:33.456Z
 ---
 
 # <img src="/ironcalc.png" class="tab-icon"> What is IronCalc?

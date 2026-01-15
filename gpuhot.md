@@ -2,10 +2,10 @@
 title: GPU Hot
 description: A guide to deploying GPU Hot
 published: true
-date: 2025-11-04T22:03:22.672Z
+date: 2026-01-15T15:29:24.364Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-04T21:48:09.183Z
+dateCreated: 2026-01-15T15:04:58.467Z
 ---
 
 # What is GPU Hot?

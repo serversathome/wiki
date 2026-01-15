@@ -2,10 +2,10 @@
 title: Unmanic
 description: A guide to deploying Unmanic
 published: true
-date: 2025-08-19T15:44:04.845Z
+date: 2026-01-15T15:32:16.857Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-14T19:02:47.616Z
+dateCreated: 2026-01-15T15:09:12.679Z
 ---
 
 # ![](/unmanic.png){class="tab-icon"} What is Unmanic?

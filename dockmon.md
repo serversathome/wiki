@@ -2,10 +2,10 @@
 title: Dockmon
 description: A guide to deploying Dockmon
 published: true
-date: 2026-01-06T16:29:40.924Z
+date: 2026-01-15T15:29:00.135Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-03T14:18:00.094Z
+dateCreated: 2026-01-15T15:04:23.225Z
 ---
 
 # ![](/dockmon.png){class="tab-icon"} What is Dockmon?

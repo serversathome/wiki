@@ -2,10 +2,10 @@
 title: Install Instructions
 description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2025-11-05T20:55:43.889Z
+date: 2026-01-15T15:27:33.400Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:29:57.064Z
+dateCreated: 2026-01-15T15:02:31.090Z
 ---
 
 # Steps

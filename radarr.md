@@ -2,10 +2,10 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-11-05T15:47:12.240Z
+date: 2026-01-15T15:31:16.443Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:32:11.647Z
+dateCreated: 2026-01-15T15:07:53.605Z
 ---
 
 # ![Radarr](/radarr.png){class="tab-icon"} What is Radarr?

@@ -2,10 +2,10 @@
 title: Velld
 description: A guide to deploying Velld
 published: true
-date: 2025-11-03T15:19:01.297Z
+date: 2026-01-15T15:32:22.099Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-03T15:19:01.297Z
+dateCreated: 2026-01-15T15:09:19.943Z
 ---
 
 # <img src="/velld.png" class="tab-icon"> What is Velld?

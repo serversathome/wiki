@@ -2,10 +2,10 @@
 title: Gotify
 description: A guide to installing Gotify in docker via compose
 published: true
-date: 2025-07-10T20:11:03.941Z
+date: 2026-01-15T15:29:22.929Z
 tags: 
 editor: markdown
-dateCreated: 2024-08-30T19:46:39.620Z
+dateCreated: 2026-01-15T15:04:55.681Z
 ---
 
 # ![](/gotify.png){class="tab-icon"} What is Gotify?

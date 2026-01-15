@@ -2,10 +2,10 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2025-07-10T17:49:00.804Z
+date: 2026-01-15T15:31:43.026Z
 tags: 
 editor: markdown
-dateCreated: 2025-04-10T09:35:16.453Z
+dateCreated: 2026-01-15T15:08:26.409Z
 ---
 
 # ![](/scrutiny.png){class="tab-icon"}What is Scrutiny?

@@ -2,10 +2,10 @@
 title: Emby
 description: A guide to installing Emby in TrueNAS as well as docker via compose
 published: true
-date: 2025-07-10T18:20:45.823Z
+date: 2026-01-15T15:27:28.749Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:37:12.950Z
+dateCreated: 2026-01-15T15:02:25.173Z
 ---
 
 # ![](/emby2.png){class="tab-icon"} What is  Emby?

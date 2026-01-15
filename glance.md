@@ -2,10 +2,10 @@
 title: Glance
 description: A guide to deploying Glance dashboard
 published: true
-date: 2025-11-04T15:24:28.183Z
+date: 2026-01-15T15:29:19.617Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-04T14:22:18.630Z
+dateCreated: 2026-01-15T15:04:49.727Z
 ---
 
 # <img src="/glance.png" class="tab-icon"> What is Glance?

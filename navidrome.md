@@ -2,10 +2,10 @@
 title: Navidrome
 description: A guide to deploying the Navidrome music player using docker
 published: true
-date: 2025-07-13T22:44:19.213Z
+date: 2026-01-15T15:30:17.709Z
 tags: 
 editor: markdown
-dateCreated: 2025-07-13T10:43:27.715Z
+dateCreated: 2026-01-15T15:06:35.306Z
 ---
 
 # ![Navidrome](/navidrome.png){class="tab-icon"} What is Navidrome?

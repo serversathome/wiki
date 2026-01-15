@@ -2,10 +2,10 @@
 title: Netbird
 description: A guide to installing and using Netbird
 published: true
-date: 2025-08-25T21:00:11.024Z
+date: 2026-01-15T15:30:19.388Z
 tags: 
 editor: markdown
-dateCreated: 2025-04-09T14:00:43.710Z
+dateCreated: 2026-01-15T15:06:37.607Z
 ---
 
 # ![](/netbird.png){class="tab-icon"} What is Netbird?

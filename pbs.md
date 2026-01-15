@@ -2,10 +2,10 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2025-11-13T22:05:33.753Z
+date: 2026-01-15T15:30:38.291Z
 tags: 
 editor: markdown
-dateCreated: 2025-03-08T13:44:29.541Z
+dateCreated: 2026-01-15T15:07:02.183Z
 ---
 
 # ![](/proxmox.png){class="tab-icon"} 1 · What Is Proxmox Backup Server?

@@ -2,10 +2,10 @@
 title: Syncwave
 description: A guide to deploying Syncwave
 published: true
-date: 2025-09-30T16:02:51.680Z
+date: 2026-01-15T15:32:01.146Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-30T16:01:01.577Z
+dateCreated: 2026-01-15T15:08:51.089Z
 ---
 
 # <img src="/syncwave.png" class="tab-icon"> What is Syncwave?

@@ -2,10 +2,10 @@
 title: Containerization
 description: 
 published: true
-date: 2025-11-03T14:18:32.665Z
+date: 2026-01-15T15:28:39.677Z
 tags: 
 editor: markdown
-dateCreated: 2025-07-01T20:43:05.196Z
+dateCreated: 2026-01-15T15:03:57.908Z
 ---
 
 # Container Managers

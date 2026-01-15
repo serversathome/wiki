@@ -2,10 +2,10 @@
 title: Pulsarr
 description: A guide to deploying Pulsarr via docker
 published: true
-date: 2025-11-17T13:44:03.883Z
+date: 2026-01-15T15:31:04.804Z
 tags: 
 editor: markdown
-dateCreated: 2025-07-06T09:47:13.858Z
+dateCreated: 2026-01-15T15:07:37.846Z
 ---
 
 # ![](/pulsarr.png){class="tab-icon"} What is Pulsarr?

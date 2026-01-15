@@ -2,10 +2,10 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2025-10-24T18:38:45.057Z
+date: 2026-01-15T15:28:54.723Z
 tags: 
 editor: markdown
-dateCreated: 2025-10-13T15:42:09.466Z
+dateCreated: 2026-01-15T15:04:16.637Z
 ---
 
 # <img src="/dispatcharr.png" class="tab-icon"> What is Dispatcharr?

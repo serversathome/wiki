@@ -2,10 +2,10 @@
 title: Pi-Hole
 description: A guide to deploying Pi-Hole
 published: true
-date: 2025-08-11T12:55:16.428Z
+date: 2026-01-15T15:30:48.274Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-11T12:00:04.102Z
+dateCreated: 2026-01-15T15:07:14.829Z
 ---
 
 # ![](/pi-hole.png){class="tab-icon"} What is Pi-Hole?

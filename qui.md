@@ -2,10 +2,10 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2025-11-04T16:15:09.345Z
+date: 2026-01-15T15:31:11.669Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-22T15:28:55.036Z
+dateCreated: 2026-01-15T15:07:46.966Z
 ---
 
 # <img src="/autobrr.png" class="tab-icon"> What is Qui?

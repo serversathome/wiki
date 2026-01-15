@@ -2,10 +2,10 @@
 title: MatchExec
 description: A guide to deploying MatchExec
 published: true
-date: 2025-09-30T14:07:12.942Z
+date: 2026-01-15T15:30:05.528Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-30T14:07:12.942Z
+dateCreated: 2026-01-15T15:06:13.236Z
 ---
 
 # <img src="/matchexec.svg" class="tab-icon"> What is MatchExec?

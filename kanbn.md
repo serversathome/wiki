@@ -2,10 +2,10 @@
 title: Kan
 description: A guide to deploying Kan.bn in docker
 published: true
-date: 2025-07-30T18:27:35.379Z
+date: 2026-01-15T15:29:50.749Z
 tags: 
 editor: markdown
-dateCreated: 2025-07-07T17:56:48.924Z
+dateCreated: 2026-01-15T15:05:45.849Z
 ---
 
 # ![](/kan.png){class="tab-icon"} What is Kan?

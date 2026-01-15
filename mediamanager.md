@@ -2,10 +2,10 @@
 title: Media Manager
 description: A guide to deploying Media Manager via docker
 published: true
-date: 2026-01-05T15:31:25.192Z
+date: 2026-01-15T15:30:11.207Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-04T11:59:15.707Z
+dateCreated: 2026-01-15T15:06:23.142Z
 ---
 
 # ![](/mediamanager.png){class="tab-icon"} What is Media Manager?

@@ -2,10 +2,10 @@
 title: Ombi
 description: A guide to deploying Ombi via docker compose
 published: true
-date: 2025-07-23T18:50:09.274Z
+date: 2026-01-15T15:30:33.053Z
 tags: 
 editor: markdown
-dateCreated: 2025-07-23T14:27:14.815Z
+dateCreated: 2026-01-15T15:06:55.304Z
 ---
 
 # ![Ombi](/ombi.png){class="tab-icon"} What is Ombi?

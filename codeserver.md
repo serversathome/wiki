@@ -2,10 +2,10 @@
 title: Code Server
 description: A guide to deploying Code Server
 published: true
-date: 2025-11-17T21:20:45.700Z
+date: 2026-01-15T15:28:33.497Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-17T21:16:14.652Z
+dateCreated: 2026-01-15T15:03:50.157Z
 ---
 
 # ![](/coder.png){class="tab-icon"} What is Code Server?

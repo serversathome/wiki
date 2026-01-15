@@ -2,10 +2,10 @@
 title: Gluetun
 description: Using the Gluetun container to run other containers with a VPN
 published: true
-date: 2025-06-08T18:39:56.653Z
+date: 2026-01-15T15:29:21.165Z
 tags: 
 editor: markdown
-dateCreated: 2024-12-02T15:40:57.685Z
+dateCreated: 2026-01-15T15:04:52.667Z
 ---
 
 > There have been widespread reports of issues with this container. The main one being it will work for awhile then go down, or the port will be open then close on its own after 10 minutes or less. As such, I am not recommending this for the time being. Use at your own risk - no support will be answered for issues with this container.

@@ -2,12 +2,11 @@
 title: Technical Difficulties
 description: Some common technical issues reported by the community
 published: true
-date: 2025-12-02T18:08:16.043Z
+date: 2026-01-15T15:32:06.658Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-02T17:10:47.700Z
+dateCreated: 2026-01-15T15:08:59.035Z
 ---
-
 
 ## I can't reach the qBittorrent WebUI
 qBit needs to know where you are coming from to grant you access. That variable is found on the `- VPN_LAN_NETWORK=` line in the docker compose file. The entry needs to be in CIDR notation. In other words, if your TrueNAS server is at 192.168.1.25 your entry should be `192.168.1.0/24`.

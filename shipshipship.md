@@ -2,10 +2,10 @@
 title: ShipShipShip
 description: A guide to deploying ShipShipShip
 published: true
-date: 2025-08-28T14:26:28.770Z
+date: 2026-01-15T15:31:48.178Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-28T14:26:28.770Z
+dateCreated: 2026-01-15T15:08:33.499Z
 ---
 
 # 🚢 What is ShipShipShip?

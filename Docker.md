@@ -2,10 +2,10 @@
 title: Docker
 description: A guide to install Docker on Ubuntu Server LTS
 published: true
-date: 2025-07-10T20:02:42.572Z
+date: 2026-01-15T15:27:25.739Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:42:40.096Z
+dateCreated: 2026-01-15T15:02:20.673Z
 ---
 
 # ![](/docker.png){class="tab-icon"} What is Docker?

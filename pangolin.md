@@ -2,10 +2,10 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: true
-date: 2025-11-20T11:12:08.561Z
+date: 2026-01-15T15:30:36.540Z
 tags: 
 editor: markdown
-dateCreated: 2025-06-13T13:04:34.352Z
+dateCreated: 2026-01-15T15:06:59.674Z
 ---
 
 # ![](/pangolin.png){class="tab-icon"} What is Pangolin?

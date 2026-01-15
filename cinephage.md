@@ -2,10 +2,10 @@
 title: Cinephage
 description: A guide to deploying Cinephage
 published: true
-date: 2025-12-29T22:07:42.497Z
+date: 2026-01-15T15:28:25.595Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-29T22:07:42.497Z
+dateCreated: 2026-01-15T15:03:39.889Z
 ---
 
 # <img src="/cinephage.png" class="tab-icon"> What is Cinephage?

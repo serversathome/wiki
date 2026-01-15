@@ -2,10 +2,10 @@
 title: ClipCascade
 description: A guide to deploying ClipCascade
 published: true
-date: 2025-12-08T21:10:05.627Z
+date: 2026-01-15T15:28:28.813Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-08T20:55:17.469Z
+dateCreated: 2026-01-15T15:03:43.844Z
 ---
 
 # <img src="/clipcascade.png" class="tab-icon"> What is ClipCascade?

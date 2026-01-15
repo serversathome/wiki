@@ -2,10 +2,10 @@
 title: Webmin
 description: A guide to installing Webmin on Ubuntu Server LTS
 published: true
-date: 2025-07-06T10:16:53.077Z
+date: 2026-01-15T15:32:27.435Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:42:08.618Z
+dateCreated: 2026-01-15T15:09:27.105Z
 ---
 
 ![webmin.png](/webmin.png)

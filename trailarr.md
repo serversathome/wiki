@@ -2,10 +2,10 @@
 title: Trailarr
 description: A guide to deploying Trailarr in docker
 published: true
-date: 2025-07-29T12:17:51.588Z
+date: 2026-01-15T15:32:11.868Z
 tags: 
 editor: markdown
-dateCreated: 2025-07-29T10:31:01.593Z
+dateCreated: 2026-01-15T15:09:05.969Z
 ---
 
 # ![](/trailarr.png){class="tab-icon"} What is Trailarr?

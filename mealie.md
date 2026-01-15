@@ -2,10 +2,10 @@
 title: Mealie
 description: A guide to deploying Mealie
 published: true
-date: 2025-10-17T11:18:55.898Z
+date: 2026-01-15T15:30:07.828Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-24T19:27:24.300Z
+dateCreated: 2026-01-15T15:06:17.048Z
 ---
 
 # ![](/mealie.png){class="tab-icon"} What is Mealie?

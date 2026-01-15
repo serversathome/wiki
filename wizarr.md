@@ -2,10 +2,10 @@
 title: Wizarr
 description: A guide to deploying Wizarr
 published: true
-date: 2025-07-11T12:37:53.280Z
+date: 2026-01-15T15:32:36.340Z
 tags: 
 editor: markdown
-dateCreated: 2025-04-11T10:21:57.578Z
+dateCreated: 2026-01-15T15:09:40.051Z
 ---
 
 # ![](/wizarr.png){class="tab-icon"} What is Wizarr?

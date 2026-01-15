@@ -2,10 +2,10 @@
 title: Bettershift
 description: A guide to deploying Bettershift
 published: true
-date: 2025-12-29T22:23:50.035Z
+date: 2026-01-15T15:28:15.620Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-29T22:23:50.035Z
+dateCreated: 2026-01-15T15:03:26.069Z
 ---
 
 # What is Bettershift?

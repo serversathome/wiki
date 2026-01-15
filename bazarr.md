@@ -2,10 +2,10 @@
 title: Bazarr
 description: A guide to deploying Bazarr via docker compose
 published: true
-date: 2025-07-11T12:31:35.743Z
+date: 2026-01-15T15:28:11.144Z
 tags: 
 editor: markdown
-dateCreated: 2024-09-01T11:48:39.955Z
+dateCreated: 2026-01-15T15:03:20.150Z
 ---
 
 # ![](/bazarr.png){class="tab-icon"} What is Bazarr?

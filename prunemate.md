@@ -2,10 +2,10 @@
 title: PruneMate
 description: A guide to deploying PruneMate
 published: true
-date: 2025-12-02T00:33:57.693Z
+date: 2026-01-15T15:31:01.632Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-02T00:33:57.692Z
+dateCreated: 2026-01-15T15:07:33.318Z
 ---
 
 # <img src="/prunemate.png" class="tab-icon"> What is PruneMate?

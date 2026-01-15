@@ -2,10 +2,10 @@
 title: Scanopy
 description: A guide to deploying Scanopy
 published: true
-date: 2026-01-07T13:56:10.362Z
+date: 2026-01-15T15:31:30.299Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-01T22:02:29.032Z
+dateCreated: 2026-01-15T15:08:14.022Z
 ---
 
 # <img src="/scanopy.png" class="tab-icon"> What is Scanopy?

@@ -2,10 +2,10 @@
 title: Soulseek
 description: A guide to deploying the SLSKD daemon via docker compose
 published: true
-date: 2025-07-13T22:25:05.837Z
+date: 2026-01-15T15:31:53.073Z
 tags: 
 editor: markdown
-dateCreated: 2025-06-17T09:45:56.812Z
+dateCreated: 2026-01-15T15:08:40.062Z
 ---
 
 # ![Soulseek](/slskd.png){class="tab-icon"} What is Soulseek?

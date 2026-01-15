@@ -2,10 +2,10 @@
 title: Mydia
 description: A guide to deploying Mydia
 published: true
-date: 2025-12-04T14:38:57.693Z
+date: 2026-01-15T15:30:14.385Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-16T13:15:26.713Z
+dateCreated: 2026-01-15T15:06:29.542Z
 ---
 
 # What is Mydia?

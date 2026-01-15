@@ -2,10 +2,10 @@
 title: Uptime Kit
 description: A guide to deploying Uptime Kit
 published: true
-date: 2025-12-05T21:07:31.890Z
+date: 2026-01-15T15:32:18.855Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-05T21:05:34.997Z
+dateCreated: 2026-01-15T15:09:15.349Z
 ---
 
 # <img src="/uptimekit.png" class="tab-icon"> What is Uptime Kit?

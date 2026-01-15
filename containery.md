@@ -2,10 +2,10 @@
 title: Containery
 description: A guide to deploying Containery in docker
 published: true
-date: 2025-08-04T11:17:28.215Z
+date: 2026-01-15T15:28:41.284Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-04T11:17:28.215Z
+dateCreated: 2026-01-15T15:04:00.219Z
 ---
 
 # ![](/containery-white.png){class="tab-icon"} What is Containery?

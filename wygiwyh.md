@@ -2,10 +2,10 @@
 title: WYGIWYH
 description: A guide to deploying WYGIWYH
 published: true
-date: 2025-12-01T21:30:39.326Z
+date: 2026-01-15T15:32:39.603Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-01T21:18:41.991Z
+dateCreated: 2026-01-15T15:09:45.123Z
 ---
 
 # <img src="/wygiwyh.png" class="tab-icon"> What is WYGIWYH?

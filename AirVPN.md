@@ -2,10 +2,10 @@
 title: AirVPN
 description: Instructions on how to use AirVPN to create a wireguard config for torrenting
 published: true
-date: 2025-06-08T18:39:20.520Z
+date: 2026-01-15T15:27:22.622Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:38:29.347Z
+dateCreated: 2026-01-15T15:02:16.582Z
 ---
 
 ![](/sky_1010x227.png)

@@ -2,10 +2,10 @@
 title: Notifications
 description: Learn how to setup notifications for all of your services!
 published: true
-date: 2025-07-10T20:05:18.860Z
+date: 2026-01-15T15:27:40.396Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:28:42.117Z
+dateCreated: 2026-01-15T15:02:39.274Z
 ---
 
 # <img src="/gotify.png" class="tab-icon"> Gotify

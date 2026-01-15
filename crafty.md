@@ -2,10 +2,10 @@
 title: Crafty Controller
 description: A guide to deploying Crafty Controller
 published: true
-date: 2025-11-17T21:56:23.536Z
+date: 2026-01-15T15:28:44.631Z
 tags: 
 editor: markdown
-dateCreated: 2025-10-01T17:20:49.848Z
+dateCreated: 2026-01-15T15:04:04.135Z
 ---
 
 # ![](/crafty-controller.png){class="tab-icon"} What is Crafty Controller?

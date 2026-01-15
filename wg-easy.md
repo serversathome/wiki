@@ -2,10 +2,10 @@
 title: wg-easy
 description: Configuring the wg-easy container to manage wireguard
 published: true
-date: 2025-11-19T11:49:52.937Z
+date: 2026-01-15T15:32:29.171Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:39:17.982Z
+dateCreated: 2026-01-15T15:09:29.972Z
 ---
 
 # ![](/wireguard.png){class="tab-icon"} What is wg-easy?

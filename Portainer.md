@@ -2,10 +2,10 @@
 title: Portainer
 description: A guide to installing Portainer on Ubuntu Server LTS
 published: true
-date: 2025-11-09T14:17:07.496Z
+date: 2026-01-15T15:27:43.389Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:41:40.846Z
+dateCreated: 2026-01-15T15:02:43.293Z
 ---
 
 # <img src="/portainer2.png" class="tab-icon"> What is Portainer?

@@ -2,10 +2,10 @@
 title: Watchtower
 description: A guide on how to install Watchtower for container updates
 published: true
-date: 2025-09-04T09:31:19.202Z
+date: 2026-01-15T15:27:56.694Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:43:38.252Z
+dateCreated: 2026-01-15T15:03:01.108Z
 ---
 
 # ![](/watchtower.png){class="tab-icon"} What is Watchtower?

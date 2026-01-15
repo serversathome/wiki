@@ -2,10 +2,10 @@
 title: CrossWatch
 description: A guide to deploying CrossWatch
 published: true
-date: 2025-09-29T17:07:58.918Z
+date: 2026-01-15T15:28:49.743Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-29T17:06:20.606Z
+dateCreated: 2026-01-15T15:04:10.399Z
 ---
 
 # <img src="/crosswatch.png" class="tab-icon"> What is CrossWatch?

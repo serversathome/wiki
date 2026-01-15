@@ -2,10 +2,10 @@
 title: Authentik
 description: A guide to deploying Authentik
 published: true
-date: 2025-09-24T00:29:17.218Z
+date: 2026-01-15T15:28:06.358Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-23T11:23:01.113Z
+dateCreated: 2026-01-15T15:03:13.956Z
 ---
 
 # ![](/authentik.png){class="tab-icon"} What is Authentik?

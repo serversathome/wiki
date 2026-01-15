@@ -2,10 +2,10 @@
 title: File Browser
 description: A guide to deploy the File Browser Quantum replacement in docker
 published: true
-date: 2025-07-16T16:44:24.803Z
+date: 2026-01-15T15:29:13.266Z
 tags: 
 editor: markdown
-dateCreated: 2025-06-11T23:53:09.996Z
+dateCreated: 2026-01-15T15:04:39.442Z
 ---
 
 # ![](/filebrowser-quantum.png){class="tab-icon"} What is File Browser Quantum?

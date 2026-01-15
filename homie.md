@@ -2,10 +2,10 @@
 title: Homie
 description: A guide to deploying Homie
 published: true
-date: 2025-11-04T16:52:41.036Z
+date: 2026-01-15T15:29:35.556Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-04T16:52:41.036Z
+dateCreated: 2026-01-15T15:05:19.606Z
 ---
 
 # 🏠 What is Homie?

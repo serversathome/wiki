@@ -2,10 +2,10 @@
 title: Fitness Logger
 description: A guide to deploying Fitness Logger
 published: true
-date: 2025-10-28T20:49:46.661Z
+date: 2026-01-15T15:29:14.990Z
 tags: 
 editor: markdown
-dateCreated: 2025-10-28T18:17:19.681Z
+dateCreated: 2026-01-15T15:04:41.398Z
 ---
 
 # 💪 What is Fitness Logger?

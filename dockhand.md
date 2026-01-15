@@ -2,10 +2,10 @@
 title: Dockhand
 description: A guide to depoying Dockhand
 published: true
-date: 2025-12-29T19:19:38.460Z
+date: 2026-01-15T15:28:58.594Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-29T19:19:38.460Z
+dateCreated: 2026-01-15T15:04:20.950Z
 ---
 
 # <img src="/dockhand.webp" class="tab-icon"> What is Dockhand?

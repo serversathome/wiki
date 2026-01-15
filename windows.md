@@ -2,10 +2,10 @@
 title: Windows Docker
 description: A guide to deploying a Windows OS in a docker container
 published: true
-date: 2025-10-03T10:37:47.866Z
+date: 2026-01-15T15:32:34.532Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-26T20:38:44.030Z
+dateCreated: 2026-01-15T15:09:37.478Z
 ---
 
 # <img src="/microsoft-windows.png" class="tab-icon"> What is the Windows Docker Container?

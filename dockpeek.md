@@ -2,10 +2,10 @@
 title: Dockpeek
 description: A guide to deploying Dockpeek
 published: true
-date: 2025-08-28T17:58:03.029Z
+date: 2026-01-15T15:29:01.676Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-28T17:58:03.029Z
+dateCreated: 2026-01-15T15:04:25.339Z
 ---
 
 # <img src="/dockpeek.png" class="tab-icon"> What is Dockpeek?

@@ -2,10 +2,10 @@
 title: Posterizarr
 description: A guide to deploying Posterizarr
 published: true
-date: 2025-11-17T14:35:16.722Z
+date: 2026-01-15T15:30:56.593Z
 tags: 
 editor: markdown
-dateCreated: 2025-11-17T13:46:25.136Z
+dateCreated: 2026-01-15T15:07:26.738Z
 ---
 
 # ![](/posterizarr.png){class="tab-icon"} What is Posterizarr?

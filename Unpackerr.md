@@ -2,10 +2,10 @@
 title: Unpackerr
 description: A guide to installing Unpackerr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-11-06T16:44:09.520Z
+date: 2026-01-15T15:27:55.231Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:33:30.432Z
+dateCreated: 2026-01-15T15:02:58.731Z
 ---
 
 # ![](/unpackerr.png){class="tab-icon"} What is Unpackerr?

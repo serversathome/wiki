@@ -2,10 +2,10 @@
 title: Note Discovery
 description: A guide to deploying Note Discovery
 published: true
-date: 2025-12-02T12:13:39.538Z
+date: 2026-01-15T15:30:26.188Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-02T12:13:39.538Z
+dateCreated: 2026-01-15T15:06:46.282Z
 ---
 
 # <img src="/notediscovery.png" class="tab-icon"> What is Note Discovery?

@@ -2,10 +2,10 @@
 title: Linkarr
 description: A guide to deploying Linkarr
 published: true
-date: 2025-08-28T14:07:49.304Z
+date: 2026-01-15T15:29:55.609Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-28T14:00:37.397Z
+dateCreated: 2026-01-15T15:05:54.935Z
 ---
 
 # ![](/linkarr.png){class="tab-icon"} What is Linkarr?

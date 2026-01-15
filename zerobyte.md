@@ -2,10 +2,10 @@
 title: Zero Byte
 description: A guide to deploying Zerobyte
 published: true
-date: 2026-01-07T18:13:48.269Z
+date: 2026-01-15T15:32:41.403Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-02T00:17:47.566Z
+dateCreated: 2026-01-15T15:09:47.387Z
 ---
 
 # <img src="/zerobyte.png" class="tab-icon"> What is Zerobyte?

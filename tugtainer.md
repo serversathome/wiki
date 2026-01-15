@@ -2,10 +2,10 @@
 title: Tugtainer
 description: A guide to deploying Tugtainer
 published: true
-date: 2025-11-11T18:14:03.025Z
+date: 2026-01-15T15:32:13.516Z
 tags: 
 editor: markdown
-dateCreated: 2025-10-07T13:48:19.095Z
+dateCreated: 2026-01-15T15:09:08.384Z
 ---
 
 # What is Tugtainer?

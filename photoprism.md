@@ -2,10 +2,10 @@
 title: PhotoPrism
 description: A guide to deploying PhotoPrism
 published: true
-date: 2025-10-22T21:54:00.773Z
+date: 2026-01-15T15:30:43.462Z
 tags: 
 editor: markdown
-dateCreated: 2025-10-22T21:23:53.786Z
+dateCreated: 2026-01-15T15:07:08.400Z
 ---
 
 # ![](/photoprism.png){class="tab-icon"} What is PhotoPrism?

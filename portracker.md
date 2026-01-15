@@ -2,10 +2,10 @@
 title: Portracker
 description: A guide to deploying Portracker via docker
 published: true
-date: 2025-10-06T23:21:58.251Z
+date: 2026-01-15T15:30:55.039Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-04T12:30:09.026Z
+dateCreated: 2026-01-15T15:07:23.902Z
 ---
 
 # ![](/portracker.png){class="tab-icon"} What is Portracker?

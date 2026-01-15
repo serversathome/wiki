@@ -2,10 +2,10 @@
 title: Heimdall
 description: A guide to deploying Heimdall
 published: true
-date: 2025-10-20T20:23:37.784Z
+date: 2026-01-15T15:29:29.139Z
 tags: 
 editor: markdown
-dateCreated: 2025-10-19T23:59:32.015Z
+dateCreated: 2026-01-15T15:05:07.229Z
 ---
 
 # ![](/heimdall.png){class="tab-icon"} What is Heimdall?

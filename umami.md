@@ -2,10 +2,10 @@
 title: Umami
 description: A guide to installing Umami in docker via compose
 published: true
-date: 2025-11-15T11:58:40.956Z
+date: 2026-01-15T15:32:15.101Z
 tags: 
 editor: markdown
-dateCreated: 2024-06-30T21:47:45.888Z
+dateCreated: 2026-01-15T15:09:10.553Z
 ---
 
 # <img src="/umami.png" class="tab-icon"> What is Umami?

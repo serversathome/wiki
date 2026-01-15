@@ -2,10 +2,10 @@
 title: AI
 description: How to deploy local AI containers on TrueNAS
 published: true
-date: 2025-07-17T17:26:26.871Z
+date: 2026-01-15T15:30:02.343Z
 tags: 
 editor: markdown
-dateCreated: 2025-02-04T22:59:57.204Z
+dateCreated: 2026-01-15T15:06:07.368Z
 ---
 
 # ![](/ollama.png){class="tab-icon"} What is Ollama?

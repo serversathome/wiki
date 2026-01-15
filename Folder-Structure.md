@@ -2,10 +2,10 @@
 title: Folder Structure
 description: Recommended folder structure to allow for hardlinks within the arr stack
 published: true
-date: 2025-11-20T10:43:15.219Z
+date: 2026-01-15T15:27:31.872Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:27:24.035Z
+dateCreated: 2026-01-15T15:02:29.149Z
 ---
 
 # Arr Stack Folder Structure

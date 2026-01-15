@@ -2,10 +2,10 @@
 title: Recommendarr
 description: A guide to deploying Recommendarr via docker compose
 published: true
-date: 2025-07-10T19:15:59.353Z
+date: 2026-01-15T15:31:22.165Z
 tags: 
 editor: markdown
-dateCreated: 2025-05-15T10:52:38.357Z
+dateCreated: 2026-01-15T15:08:02.443Z
 ---
 
 # ![](/recommendarr.png){class="tab-icon"} What is Recommendarr?

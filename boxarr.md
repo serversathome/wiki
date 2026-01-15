@@ -2,10 +2,10 @@
 title: Boxarr
 description: A guide to deploying Boxarr
 published: true
-date: 2025-09-11T18:20:38.657Z
+date: 2026-01-15T15:28:22.354Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-11T14:02:01.158Z
+dateCreated: 2026-01-15T15:03:34.981Z
 ---
 
 # ![](/boxarr.png){class="tab-icon"} What is Boxarr?

@@ -2,10 +2,10 @@
 title: Wordpress
 description: A guide to installing Wordpress on TrueNAS and in docker via compose
 published: true
-date: 2025-06-09T18:15:34.962Z
+date: 2026-01-15T15:32:38.071Z
 tags: 
 editor: markdown
-dateCreated: 2024-06-30T21:34:00.616Z
+dateCreated: 2026-01-15T15:09:42.750Z
 ---
 
 ![](/wordpress.png)

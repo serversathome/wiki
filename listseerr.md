@@ -2,10 +2,10 @@
 title: Listseerr
 description: A guide to deploying Listseerr
 published: true
-date: 2026-01-07T20:19:47.374Z
+date: 2026-01-15T15:30:00.804Z
 tags: 
 editor: markdown
-dateCreated: 2026-01-07T20:18:16.861Z
+dateCreated: 2026-01-15T15:06:04.583Z
 ---
 
 # <img src="/listseerr-light.png" class="tab-icon"> What is Listseerr?

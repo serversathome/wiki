@@ -2,10 +2,10 @@
 title: Journiv
 description: A guide to deploy Journiv
 published: true
-date: 2025-12-02T01:21:26.115Z
+date: 2026-01-15T15:29:48.614Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-02T01:21:26.115Z
+dateCreated: 2026-01-15T15:05:43.311Z
 ---
 
 # What is Journiv?

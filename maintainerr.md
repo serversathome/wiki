@@ -2,10 +2,10 @@
 title: Maintainerr
 description: A guide to deploying Maintainer via docker
 published: true
-date: 2025-07-30T18:28:28.215Z
+date: 2026-01-15T15:30:04.001Z
 tags: 
 editor: markdown
-dateCreated: 2025-07-14T11:50:00.697Z
+dateCreated: 2026-01-15T15:06:10.333Z
 ---
 
 # ![Radarr](/maintainerr.png){class="tab-icon"} What is Maintainerr?

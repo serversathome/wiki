@@ -2,10 +2,10 @@
 title: Compose Toolbox
 description: A guide to deploying Compose Toolbox via docker
 published: true
-date: 2025-09-11T09:13:33.368Z
+date: 2026-01-15T15:28:36.637Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-04T13:11:29.269Z
+dateCreated: 2026-01-15T15:03:54.032Z
 ---
 
 # ![](/composetoolbox.png){class="tab-icon"} What is Compose Toolbox?

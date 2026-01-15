@@ -2,10 +2,10 @@
 title: Uptime Kuma
 description: A guide to installing Uptime Kuma in TrueNAS Scale as well as docker via compose
 published: true
-date: 2025-10-08T08:27:10.274Z
+date: 2026-01-15T15:27:36.806Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-23T13:37:43.656Z
+dateCreated: 2026-01-15T15:02:35.330Z
 ---
 
 ![](https://wiki.hydrology.cc/kumadash.jpg)

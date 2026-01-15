@@ -2,10 +2,10 @@
 title: Tailscale
 description: A guide to deploying Tailscale on TrueNAS Scale and docker compose
 published: true
-date: 2025-07-11T12:27:37.914Z
+date: 2026-01-15T15:32:02.865Z
 tags: 
 editor: markdown
-dateCreated: 2025-02-26T21:48:50.009Z
+dateCreated: 2026-01-15T15:08:53.492Z
 ---
 
 # ![](/tailscale-light.png){class="tab-icon"} What is Tailscale?

@@ -2,10 +2,10 @@
 title: Warracker
 description: A guide to deploying Warracker
 published: true
-date: 2025-12-10T19:03:48.898Z
+date: 2026-01-15T15:32:23.712Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-10T18:58:22.402Z
+dateCreated: 2026-01-15T15:09:22.115Z
 ---
 
 # <img src="/warracker.png" class="tab-icon"> What is Warracker?

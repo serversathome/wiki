@@ -2,10 +2,10 @@
 title: Emby Wrapped
 description: A guide to deploying Emby Wrapped
 published: true
-date: 2025-12-29T22:28:09.977Z
+date: 2026-01-15T15:29:08.184Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-29T22:03:20.041Z
+dateCreated: 2026-01-15T15:04:33.448Z
 ---
 
 # What is Emby Wrapped?

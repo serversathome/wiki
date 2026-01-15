@@ -2,10 +2,10 @@
 title: RSSPub
 description: A guide to deploying RSSPub
 published: true
-date: 2025-12-29T14:58:56.063Z
+date: 2026-01-15T15:31:27.059Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-29T14:58:56.063Z
+dateCreated: 2026-01-15T15:08:09.845Z
 ---
 
 # What is RSSPub?

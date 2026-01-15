@@ -2,10 +2,10 @@
 title: Suggestarr
 description: A guide to deploying the Suggestarr container in docker
 published: true
-date: 2025-07-10T19:09:35.844Z
+date: 2026-01-15T15:31:59.689Z
 tags: 
 editor: markdown
-dateCreated: 2025-05-09T10:33:58.203Z
+dateCreated: 2026-01-15T15:08:48.830Z
 ---
 
 # What is Suggestarr?

@@ -2,10 +2,10 @@
 title: Koffan
 description: A guide to deploying Koffan
 published: true
-date: 2025-12-30T11:56:35.708Z
+date: 2026-01-15T15:29:52.227Z
 tags: 
 editor: markdown
-dateCreated: 2025-12-30T11:56:35.708Z
+dateCreated: 2026-01-15T15:05:48.703Z
 ---
 
 # <img src="/dockpeek.png" class="tab-icon"> What is Koffan?

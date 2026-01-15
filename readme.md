@@ -1,3 +1,13 @@
+---
+title: readme
+description: 
+published: true
+date: 2026-01-15T15:31:20.684Z
+tags: 
+editor: markdown
+dateCreated: 2026-01-15T15:08:00.302Z
+---
+
 # Servers@Home Wiki
 
 Welcome to the **Servers@Home Wiki** — a living knowledge base for homelabbers, self-hosters, and tech enthusiasts!

@@ -2,10 +2,10 @@
 title: Releasarr
 description: A guide to deploying Releasarr via docker
 published: true
-date: 2025-08-04T12:35:17.647Z
+date: 2026-01-15T15:31:23.793Z
 tags: 
 editor: markdown
-dateCreated: 2025-08-04T12:35:17.647Z
+dateCreated: 2026-01-15T15:08:04.916Z
 ---
 
 # 🎧 What is Releasarr?

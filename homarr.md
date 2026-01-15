@@ -2,10 +2,10 @@
 title: Homarr
 description: A guide to deploying Homarr
 published: true
-date: 2025-09-30T18:28:16.641Z
+date: 2026-01-15T15:29:30.696Z
 tags: 
 editor: markdown
-dateCreated: 2025-09-30T18:22:23.612Z
+dateCreated: 2026-01-15T15:05:10.051Z
 ---
 
 # ![](/homarr.png){class="tab-icon"} What is Homarr?
