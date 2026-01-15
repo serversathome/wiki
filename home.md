@@ -1,8 +1,8 @@
 ---
 title: Home
-description: This is a wiki for configurations for common docker applications as well as setting up apps on TrueNAS Scale
+description: This is the official wiki for Servers@Home
 published: true
-date: 2026-01-15T15:11:14.642Z
+date: 2026-01-15T15:18:55.293Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:13.120Z
