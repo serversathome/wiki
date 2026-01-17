@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2026-01-15T15:28:47.987Z
+date: 2026-01-17T16:53:58.651Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:08.228Z
@@ -18,7 +18,7 @@ Cross-seed is an app designed to help you download torrents that you can cross s
 ```yaml
 services:
   cross-seed:
-    image: ghcr.io/cross-seed/cross-seed:6
+    image: ghcr.io/cross-seed/cross-seed:latest
     container_name: cross-seed
     user: 568:568
     ports:
