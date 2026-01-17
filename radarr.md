@@ -2,7 +2,7 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-01-15T15:31:16.443Z
+date: 2026-01-17T20:05:35.687Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:53.605Z
@@ -35,8 +35,8 @@ services:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
     environment:
-      - PUID=568
-      - PGID=568
+      - PUID=0
+      - PGID=0
       - TZ=America/New_York
     volumes:
       - /mnt/tank/configs/radarr:/config
