@@ -2,7 +2,7 @@
 title: AdGuard
 description: A guide to deploying AdGuard via TrueNAS or docker compose
 published: true
-date: 2026-01-15T15:27:59.587Z
+date: 2026-01-17T01:25:52.964Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:05.289Z
@@ -59,4 +59,4 @@ services:
 1. Optionally add additional blocklists besides the default AdGuard DNS filter list
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
-[](https://youtu.be/u9PioLP57-4)
+https://youtu.be/u9PioLP57-4
