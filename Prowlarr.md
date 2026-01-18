@@ -2,8 +2,8 @@
 title: Prowlarr
 description: A guide to installing Prowlarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-01-15T15:27:44.931Z
-tags: 
+date: 2026-01-18T10:59:58.911Z
+tags: media management
 editor: markdown
 dateCreated: 2026-01-15T15:02:45.163Z
 ---
