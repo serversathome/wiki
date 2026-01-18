@@ -2,7 +2,7 @@
 title: Jellyfin
 description: A guide to deploying Jellyfin on TrueNAS as well as Docker
 published: true
-date: 2026-01-15T15:29:45.177Z
+date: 2026-01-18T10:55:31.854Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:36.259Z
@@ -72,7 +72,7 @@ services:
 To watch content on a device in your house on your home network, download the Jellyfin App from wherever your device gets apps from. When you start the Jellyfin app, manually add a server. Type in the IP Address of your server (for me it would look like `http://192.168.1.215`) and use the default port of `8096`. Once its connected you should see the sign-in screen with your name on it. If not, use the manual login and type the username and password you set up earlier.
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
-[](https://youtu.be/VNhsR2lpntc)
+https://youtu.be/VNhsR2lpntc
 
 # 4 · Using NPM
 If you are using [Nginx Proxy Manager](/nginx) to route your traffic use these settings to be sure you're not caching media:
@@ -205,4 +205,4 @@ As an example, here was the response:
 
 # <img src="/youtube.png" class="tab-icon"> 7 · Plug-ins
 
-[](https://youtu.be/6oUOi8-09E8)
+https://youtu.be/6oUOi8-09E8
