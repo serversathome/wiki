@@ -2,13 +2,13 @@
 title: Episeerr
 description: A guide to deploying Episeerr
 published: true
-date: 2026-01-20T20:28:37.752Z
+date: 2026-01-20T21:02:05.204Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-20T20:27:15.149Z
 ---
 
-# <img src="/dockpeek.png" class="tab-icon"> What is Episeerr?
+# What is Episeerr?
 
 Smart episode management for Sonarr - Get episodes as you watch, clean up automatically when storage gets low.
 
