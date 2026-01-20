@@ -2,7 +2,7 @@
 title: Episeerr
 description: A guide to deploying Episeerr
 published: true
-date: 2026-01-20T20:27:15.149Z
+date: 2026-01-20T20:28:37.752Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-20T20:27:15.149Z
@@ -47,14 +47,14 @@ services:
       
       # Optional - Quick links
       - CUSTOMAPP_URL=http://192.168.1.100:8080
-      - CUSTOMAPP_NAME=My Custom App
+      - CUSTOMAPP_NAME=Episeerr
       - CUSTOMAPP_ICON=fas fa-cog
 
     volumes:
-      - ./config:/app/config
-      - ./logs:/app/logs
-      - ./data:/app/data
-      - ./temp:/app/temp
+      - /mnt/tank/configs/episeerr/config:/app/config
+      - /mnt/tank/configs/episeerr/logs:/app/logs
+      - /mnt/tank/configs/episeerr/data:/app/data
+      - /mnt/tank/configs/episeerr/temp:/app/temp
     ports:
       - "5002:5002"
     restart: unless-stopped
