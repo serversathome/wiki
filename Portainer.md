@@ -2,7 +2,7 @@
 title: Portainer
 description: A guide to installing Portainer on Ubuntu Server LTS
 published: true
-date: 2026-01-15T15:27:43.389Z
+date: 2026-01-22T19:21:31.003Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:43.293Z
@@ -60,4 +60,4 @@ services:
 1. To deploy Docker Compose files, go to **Stacks** > **\+ Add Stack** and copy & paste the compose.yaml there.
 
 # Video
-[](https://www.youtube.com/watch?v=wsixvmNPrlU)
+https://www.youtube.com/watch?v=wsixvmNPrlU
