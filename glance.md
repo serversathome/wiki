@@ -2,7 +2,7 @@
 title: Glance
 description: A guide to deploying Glance dashboard
 published: true
-date: 2026-01-15T15:29:19.617Z
+date: 2026-01-22T10:50:30.071Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:49.727Z
@@ -31,3 +31,9 @@ services:
     wget https://raw.githubusercontent.com/glanceapp/glance/refs/heads/main/docs/glance.yml
     ```
 1. Start the container
+
+> When editing the glance.yml file, you don't need to restart the container for the changes to take effect, this happens automatically when saving the file.
+{.is-info}
+
+> If you don't see your changes, check the logs Dockge to see what is wrong with the config file.
+{.is-danger}
