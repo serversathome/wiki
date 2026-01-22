@@ -2,7 +2,7 @@
 title: Whoogle
 description: A guide to deploying Whoogle
 published: true
-date: 2026-01-15T15:32:30.903Z
+date: 2026-01-22T10:50:06.755Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:32.431Z
@@ -11,6 +11,11 @@ dateCreated: 2026-01-15T15:09:32.431Z
 # ![](/whoogle.png){class="tab-icon"} What is Whoogle?
 
 Get Google search results, but without any ads, JavaScript, AMP links, cookies, or IP address tracking. 
+
+> **Update from the official GitHub**:
+> Since 16 January, 2025, Google has been attacking the ability to perform search queries without JavaScript enabled. This is a fundamental part of how Whoogle works -- Whoogle requests the JavaScript-free search results, then filters out garbage from the results page and proxies all external content for the user. This is possibly a breaking change that may mean the end for Whoogle. We'll continue fighting back and releasing workarounds until all workarounds are exhausted or a better method is found. If you know of a better way, please review and comment in our Way Forward Discussion. [GitHub Link](https://github.com/benbusby/whoogle-search)
+{.is-warning}
+
 # 1 · Deploy Whoogle
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
