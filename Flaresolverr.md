@@ -2,7 +2,7 @@
 title: Flaresolverr
 description: A guide to installing Flaresolverr on TrueNAS and Ubuntu Server LTS
 published: true
-date: 2026-01-15T15:27:30.287Z
+date: 2026-01-22T19:16:20.715Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:27.125Z
@@ -42,4 +42,4 @@ services:
 
 # <img src="/youtube.png" class="tab-icon"> 2 · Video
 
-[](https://youtu.be/sUMT0PTll_M)
+https://youtu.be/sUMT0PTll_M
