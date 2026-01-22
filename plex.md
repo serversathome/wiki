@@ -2,7 +2,7 @@
 title: Plex
 description: A guide to installing Plex in TrueNAS and via docker compose
 published: true
-date: 2026-01-15T15:30:52.797Z
+date: 2026-01-22T10:01:54.932Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:21.349Z
@@ -20,40 +20,24 @@ A one-stop destination to stream movies, TV shows, and music, Plex is the most c
 ```yaml
 services:
   plex:
+    image: lscr.io/linuxserver/plex:latest
     container_name: plex
-    image: plexinc/pms-docker
-    restart: unless-stopped
-	# devices:
-      # - /dev/dri:/dev/dri
-    #runtime: nvidia
-    #deploy:
-    #  resources:
-    #    reservations:
-    #      devices:
-    #        - capabilities:
-    #            - gpu
-    ports:
-      - 32400:32400/tcp
-      - 8324:8324/tcp
-      - 32469:32469/tcp
-      - 1900:1900/udp
-      - 32410:32410/udp
-      - 32412:32412/udp
-      - 32413:32413/udp
-      - 32414:32414/udp
+    network_mode: host
+    runtime: nvidia
     environment:
+      - PUID=568
+      - PGID=568
       - TZ=America/New_York
-      - PLEX_CLAIM=
-      - ADVERTISE_IP=http://10.99.0.191:32400/
-      - PLEX_UID=568
-      - PLEX_GID=568
-      # - NVIDIA_VISIBLE_DEVICES=all
-			# - NVIDIA_DRIVER_CAPABILITIES=all
-    hostname: plex
+      - VERSION=docker
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
     volumes:
-      - /mnt/tank/configs/plex:/config
+      - /mnt/tank/configs/plex/configs:/config
+      - /mnt/tank/configs/plex/logs:/logs
       - /mnt/tank/configs/plex/transcode:/transcode
-      - /mnt/tank/media:/data
+      - /mnt/tank/media:/media
+    restart: unless-stopped
+    # http://{TrueNAS IP}:32400/web/index.html#! 
 ```
 > To get your Plex Claim Token, go to https://plex.tv/claim and follow the steps to create an account (or login to an existing one) to claim your token.
 {.is-info}
