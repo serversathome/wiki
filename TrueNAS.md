@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2026-01-15T15:27:53.728Z
+date: 2026-01-22T19:23:32.179Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:56.437Z
@@ -23,11 +23,11 @@ See the playlist here: `https://youtube.com/playlist?list=PL6zQmF2gDqDT7SHyBe7ni
 
 ## Dashboard
 ### Dashboard
-[](https://youtu.be/wbeAWq8WiqE?feature=shared)
+https://youtu.be/wbeAWq8WiqE?feature=shared
 
 ## Storage
 ### Storage
-[](https://youtu.be/YgTFRrwJnwY?feature=shared)
+https://youtu.be/YgTFRrwJnwY?feature=shared
 
 ### Renaming a Pool
 
@@ -61,7 +61,7 @@ See the playlist here: `https://youtube.com/playlist?list=PL6zQmF2gDqDT7SHyBe7ni
 > If you had any apps using hostpath for the old pool they will have to be edited/recreated. Same goes for rsync tasks, shares, snapshots, etc.  
 {.is-warning}
 
-[https://youtu.be/mm3lyPQcseE](https://youtu.be/mm3lyPQcseE)
+https://youtu.be/mm3lyPQcseE
 
 ### Adding a Single Disk
 
@@ -76,12 +76,12 @@ To view progress of the expansion, run this command in the shell:
 zpool status pool_name
 ```
 Watch Lawrence do it:
-[](https://youtu.be/uPCrDmjWV_I)
+https://youtu.be/uPCrDmjWV_I
 
 
 ## Datasets
 ### Datsets
-[](https://youtu.be/27MhvLKBKtQ?feature=shared)
+https://youtu.be/27MhvLKBKtQ?feature=shared
 
 For snapshots and rollbacks at a granular level, datasets should be set up in the pool for each individual app.
 
@@ -90,7 +90,7 @@ For snapshots and rollbacks at a granular level, datasets should be set up in th
 ### Host Path Config Storage
 
 Apps running on Scale should use the Host Path Config option to store their data. You will find this option in the right hand menu under **Storage Configuration** > *Type*. This allows for the rapid redeployment of apps with no loss to their configurations, which can be considerable for some. Each app uses its respective host path from the example above. For a video explanation and example of this:  
-[https://youtu.be/JZ9zbcyLcDo](https://youtu.be/JZ9zbcyLcDo)
+https://youtu.be/JZ9zbcyLcDo
 
 ### Permissions
 
@@ -103,20 +103,20 @@ Once the dataset has been created, you can still modify its permissions like bel
 ![](/screenshot_from_2024-02-23_11-52-29.png)
 
 For a video walkthrough on permissions:  
-[https://youtu.be/qAGN0\_73cV4](https://youtu.be/qAGN0_73cV4)
+https://youtu.be/qAGN0_73cV4
 
 ## Shares
 ### Shares
-[](https://youtu.be/RAlJ3fcktMQ)
+https://youtu.be/RAlJ3fcktMQ
 
 ## Data Protection
 ### Data Protection
-[](https://youtu.be/bV7Y9jQrVPg)
+https://youtu.be/bV7Y9jQrVPg
 
 ## Network
 ### Network
 
-[](https://www.youtube.com/watch?v=0lzFHySymsU)
+https://www.youtube.com/watch?v=0lzFHySymsU
 
 ### Adding a Static IP
 
@@ -147,7 +147,7 @@ We need to change the Nameservers away from our local to something more reliable
 ### Building a Bridge
 
 Before we setup the VM, we have to build a network bridge. This is necessary because without it, our VM won't be able to see anything on our TrueNAS host. Follow the [docs](https://www.truenas.com/docs/scale/scaletutorials/network/interfaces/settingupbridge/) or even better, follow this YouTube video:  
-[](https://youtu.be/XBcAMd_wyI0)
+https://youtu.be/XBcAMd_wyI0
 
 ## Containers
 ## Virtual Machines
@@ -171,7 +171,7 @@ Before we setup the VM, we have to build a network bridge. This is necessary bec
 > Note that the **WebUI** button will not open the correct IP when you click it; you must navigate to the app manually
 {.is-warning}
 
-[](https://youtu.be/n7V5e09w6uw)
+https://youtu.be/n7V5e09w6uw
 
 ### Migrating Apps to Another Pool
 
@@ -201,4 +201,4 @@ After you save the changes you will lose connection to the UI and have to naviga
 # <img src="/youtube.png" class="tab-icon"> Hardening
 
 [Lawrence](https://www.youtube.com/@LAWRENCESYSTEMS) does a great job of going over some basic security hardening tasks. Watch his video for some tips.  
-[https://youtu.be/u0btB6IkkEk?feature=shared](https://youtu.be/u0btB6IkkEk?feature=shared)
+https://youtu.be/u0btB6IkkEk?feature=shared
