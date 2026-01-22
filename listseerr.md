@@ -2,7 +2,7 @@
 title: Listseerr
 description: A guide to deploying Listseerr
 published: true
-date: 2026-01-15T15:30:00.804Z
+date: 2026-01-22T10:55:35.969Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:04.583Z
@@ -31,3 +31,5 @@ services:
 ```
 
 # <img src="/patreon-light.png" class="tab-icon"> 2 · Video
+
+[![](/2026-01-13-add-all-the-lists-with-listseerr-promo-card.png)](https://www.patreon.com/posts/add-all-lists-147714038)
