@@ -2,7 +2,7 @@
 title: Docker
 description: A guide to install Docker on Ubuntu Server LTS
 published: true
-date: 2026-01-15T15:27:25.739Z
+date: 2026-01-23T17:34:30.463Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:20.673Z
@@ -46,4 +46,4 @@ curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 ```
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video Walkthrough
-[](https://youtu.be/KgpbpyxdRw0)
+https://youtu.be/KgpbpyxdRw0
