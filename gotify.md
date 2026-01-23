@@ -2,7 +2,7 @@
 title: Gotify
 description: A guide to installing Gotify in docker via compose
 published: true
-date: 2026-01-15T15:29:22.929Z
+date: 2026-01-23T17:38:46.725Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:55.681Z
@@ -80,4 +80,4 @@ Next, navigate to the **Alert Settings** page and add this alert for Slack:
 |Webhook URL|http://localhost:31662|
 
 # <img src="/youtube.png" class="tab-icon"> 6 · Video
-[](https://youtu.be/CaKs9M2SL3k)
+https://youtu.be/CaKs9M2SL3k
