@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-01-15T15:30:59.719Z
+date: 2026-01-23T17:47:23.624Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -102,6 +102,6 @@ This software is *very* new. As such, there are some changes coming that will im
 - A more fluid way to commit changes with less clicks
 
 # <img src="/youtube.png" class="tab-icon"> 6 · Video
-[](https://youtu.be/u1FQNMsuzFc)
+https://youtu.be/u1FQNMsuzFc
 
 [^1]: Automatically syncs selected files whenever the database receives an update. When combined with Auto Pull, allows Profilarr to work completely autonomously
