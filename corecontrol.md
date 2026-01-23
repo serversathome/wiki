@@ -2,7 +2,7 @@
 title: CoreControl
 description: A guide to deploying Core Control via docker compose
 published: true
-date: 2026-01-15T15:28:43.051Z
+date: 2026-01-23T17:33:46.777Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:02.195Z
@@ -137,4 +137,4 @@ Corecontrol is available on `http://IP:3005`. The default user is `admin@example
 
 # Video
 
-[](https://www.youtube.com/watch?v=wMSmOsZYmg0)
+https://www.youtube.com/watch?v=wMSmOsZYmg0
