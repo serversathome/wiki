@@ -2,7 +2,7 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2026-01-15T15:30:38.291Z
+date: 2026-01-23T17:47:48.906Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:02.183Z
@@ -119,4 +119,4 @@ A note for those using a CF tunnel to connect to your WebUI, make these changes 
 {.is-info}
 
 # <img src="/youtube.png" class="tab-icon"> Video Walkthrough
-[](https://youtu.be/lUWB-Dash9M)
+https://youtu.be/lUWB-Dash9M
