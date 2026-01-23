@@ -2,7 +2,7 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: 2026-01-15T15:32:32.691Z
+date: 2026-01-23T17:51:43.396Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:35.215Z
@@ -181,4 +181,4 @@ To show the video player when inserting YouTube links, you must make the followi
 8. Wait for the **Status** panel to update. A new entry for **Git** should appear in green. If the bar is red, it means you have an error in your configuration. Go back to the Git tab, fix the error and try again.
 
 # <img src="/youtube.png" class="tab-icon"> 4 · Video
-[](https://youtu.be/hfhP5WBAXmg)
+https://youtu.be/hfhP5WBAXmg
