@@ -2,7 +2,7 @@
 title: Tailscale
 description: A guide to deploying Tailscale on TrueNAS Scale and docker compose
 published: true
-date: 2026-01-15T15:32:02.865Z
+date: 2026-01-23T17:54:35.636Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:53.492Z
@@ -69,4 +69,4 @@ services:
 
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
-[](https://youtu.be/lajmJtNycgQ)
+https://youtu.be/lajmJtNycgQ
