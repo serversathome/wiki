@@ -2,7 +2,7 @@
 title: Netbird
 description: A guide to installing and using Netbird
 published: true
-date: 2026-01-15T15:30:19.388Z
+date: 2026-01-23T17:44:20.153Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:37.607Z
@@ -127,4 +127,4 @@ catch {
 ```
 
 # <img src="/youtube.png" class="tab-icon"> 4 · Video
-[](https://youtu.be/skbWnMSwZcE)
+https://youtu.be/skbWnMSwZcE
