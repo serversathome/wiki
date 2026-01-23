@@ -2,7 +2,7 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2026-01-15T15:31:43.026Z
+date: 2026-01-23T17:31:51.367Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:26.409Z
@@ -101,4 +101,4 @@ notify:
 1. Execute `curl -X POST http://localhost:8080/api/health/notify`
 
 # <img src="/youtube.png" class="tab-icon"> Video
-[](https://youtu.be/5Pv2ip_v_2s)
+https://youtu.be/5Pv2ip_v_2s
