@@ -2,7 +2,7 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: 2026-01-15T15:29:27.576Z
+date: 2026-01-23T17:39:12.089Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:03.838Z
@@ -188,4 +188,4 @@ randomize_client_port: false
 1. Input your API key then refresh the page
 
 # <img src="/youtube.png" class="tab-icon"> 5 · Video
-[](https://youtu.be/r-qn6DrJ6IA)
+https://youtu.be/r-qn6DrJ6IA
