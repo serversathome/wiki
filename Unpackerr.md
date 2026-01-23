@@ -2,7 +2,7 @@
 title: Unpackerr
 description: A guide to installing Unpackerr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-01-15T15:27:55.231Z
+date: 2026-01-23T17:53:00.860Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:58.731Z
@@ -138,4 +138,4 @@ Obviously there is a lot here. Most of this can remain unmodified. For the apps 
 
 # <img src="/youtube.png" class="tab-icon"> 2 · Video
 
-[](https://youtu.be/tXTHYMm6_bE)
+https://youtu.be/tXTHYMm6_bE
