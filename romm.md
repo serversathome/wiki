@@ -2,7 +2,7 @@
 title: RomM
 description: A guide to deploying RomM on TrueNAS and Docker
 published: true
-date: 2026-01-15T15:31:25.339Z
+date: 2026-01-23T17:56:40.452Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:07.432Z
@@ -190,4 +190,4 @@ If you're running RomM behind a reverse-proxy (Caddy, Nginx, etc.), ensure that 
 This is likely due to mis-configured environment variables; verify that `CLIENT_ID` and `CLIENT_SECRET` are set correctly, and that both match the values in IGDB.
 
 # <img src="/youtube.png" class="tab-icon"> 5 · Video Walkthrough
-[](https://youtu.be/lQeUq5Pzo1o)
+https://youtu.be/lQeUq5Pzo1o
