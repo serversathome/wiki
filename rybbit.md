@@ -2,7 +2,7 @@
 title: Rybbit
 description: A guide to deploying Rybbit
 published: true
-date: 2026-01-24T19:58:29.331Z
+date: 2026-01-24T20:00:56.833Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-24T19:52:22.810Z
@@ -240,4 +240,3 @@ Once logged in, add a site and copy the tracking script to your website's `<head
 
 > Replace `YOUR_SITE_ID` with the ID shown in your Rybbit dashboard.
 {.is-info}
-```
