@@ -2,13 +2,12 @@
 title: Rybbit
 description: A guide to deploying Rybbit
 published: true
-date: 2026-01-24T19:58:16.437Z
+date: 2026-01-24T19:58:29.331Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-24T19:52:22.810Z
 ---
 
-```markdown
 # <img src="/rybbit.png" class="tab-icon"> What is Rybbit?
 
 **Rybbit** is an open source, privacy-first web analytics platform. It's a self-hosted alternative to Google Analytics that respects user privacy while providing detailed insights about your website traffic.
