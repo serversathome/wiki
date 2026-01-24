@@ -2,21 +2,62 @@
 title: Rybbit
 description: A guide to deploying Rybbit
 published: true
-date: 2026-01-24T19:52:22.810Z
+date: 2026-01-24T19:58:16.437Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-24T19:52:22.810Z
 ---
 
+```markdown
 # <img src="/rybbit.png" class="tab-icon"> What is Rybbit?
 
 **Rybbit** is an open source, privacy-first web analytics platform. It's a self-hosted alternative to Google Analytics that respects user privacy while providing detailed insights about your website traffic.
+
+# <img src="/cloudflare.png" class="tab-icon"> Cloudflare Tunnel Setup
+
+This guide is for deploying Rybbit behind a **Cloudflare Tunnel** reverse proxy. Rybbit requires path-based routing (`/api` goes to the backend, everything else goes to the frontend), which the Cloudflare Zero Trust dashboard doesn't support natively. To work around this, we use an nginx container to handle the routing.
+
+## Network Requirements
+
+This setup assumes you have a Cloudflare Tunnel container already running. You'll need a shared Docker network that both your tunnel container and Rybbit can communicate on.
+
+### Create the Network
+
+If you don't already have a shared network, create one:
+
+```bash
+docker network create cftunnel
+```
+
+### Connect Your Tunnel
+
+Make sure your Cloudflare Tunnel container is on this network by adding it to your tunnel's compose file:
+
+```yaml
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    # ... your existing config
+    networks:
+      - cftunnel
+
+networks:
+  cftunnel:
+    name: cftunnel
+    external: true
+```
+
+Then redeploy your tunnel stack.
+
+> Replace `cftunnel` with whatever network name you prefer. Just make sure to use the same name in the Rybbit compose file below.
+{.is-info}
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Rybbit
 
 ## 1.1 Create the Nginx Config
 
 Before deploying, create the nginx configuration file at `/mnt/tank/configs/rybbit/nginx.conf`:
+
 ```nginx
 events {
     worker_connections 1024;
@@ -46,6 +87,7 @@ http {
 ```
 
 ## 1.2 Deploy the Stack
+
 ```yaml
 services:
   rybbit_clickhouse:
@@ -155,6 +197,9 @@ networks:
 > Replace all `changeme` passwords with secure values. Make sure `CLICKHOUSE_PASSWORD` in the backend matches the one in the clickhouse service, and `POSTGRES_USER`/`POSTGRES_PASSWORD` match between postgres and backend.
 {.is-warning}
 
+> If you named your tunnel network something other than `cftunnel`, update the network name at the bottom of the compose file.
+{.is-info}
+
 ## 1.3 Configuration
 
 | Variable | Description |
@@ -185,6 +230,7 @@ Add a public hostname in Cloudflare Zero Trust:
 # 3 · Adding the Tracking Script
 
 Once logged in, add a site and copy the tracking script to your website's `<head>` tag:
+
 ```html
 <script
   src="https://rybbit.example.com/api/script.js"
@@ -195,3 +241,4 @@ Once logged in, add a site and copy the tracking script to your website's `<head
 
 > Replace `YOUR_SITE_ID` with the ID shown in your Rybbit dashboard.
 {.is-info}
+```
