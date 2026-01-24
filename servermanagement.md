@@ -2,7 +2,7 @@
 title: Server Management
 description: 
 published: true
-date: 2026-01-15T15:31:46.362Z
+date: 2026-01-24T16:56:38.065Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:30.750Z
@@ -10,22 +10,29 @@ dateCreated: 2026-01-15T15:08:30.750Z
 
 # Hypervisors
 
-* [<img src="/truenas-core.png"> TrueNAS<br>*Network attached storage*](/TrueNAS)
-* [<img src="/proxmox.png"> Proxmox Virtual Environment<br>*Virtualization*](/Proxmox)
-* [<img src="/proxmox.png"> Proxmox Backup Server<br>*Manage backups for Proxmox*](/pbs)
-  {.links-list}
+-    [![](/truenas-core.png) TrueNAS  
+    *Network attached storage*](/TrueNAS)
+-    [![](/proxmox.png) Proxmox Virtual Environment  
+    *Virtualization*](/Proxmox)
+-    [![](/proxmox.png) Proxmox Backup Server  
+    *Manage backups for Proxmox*](/pbs)
 
 # Monitoring
 
-* [<img src="/beszel.png"> Beszel<br>*Server Monitoring*](/beszel)
-* [<img src="/corecontrol-light.png"> Core Control<br>*Server dashboard*](/corecontrol)
-* [<img src="/scrutiny-light.png"> Scrutiny<br>*Hard‑drive health monitor*](/scrutiny)
-* [<img src="/uptime-kuma.png"> Uptime Kuma<br>*Uptime monitor*](/Kuma)
-* [<img src="/webmin.png"> Webmin<br>*Server dashboard*](/webmin)
-  {.links-list}
+-    [![](/beszel.png) Beszel  
+    *Server Monitoring*](/beszel)
+-    [![](/corecontrol-light.png) Core Control  
+    *Server dashboard*](/corecontrol)
+-    [![](/scrutiny-light.png) Scrutiny  
+    *Hard‑drive health monitor*](/scrutiny)
+-    [![](/uptime-kuma.png) Uptime Kuma  
+    *Uptime monitor*](/Kuma)
+-    [![](/webmin.png) Webmin  
+    *Server dashboard*](/webmin)
 
 # Notifications
 
-* [🔔 Notifications<br>*Enable notifications for servers & apps*](/Notifications)
-* [<img src="/gotify.png"> Gotify<br>*Notification container*](/gotify)
-  {.links-list}
+-   [🔔 Notifications  
+    *Enable notifications for servers & apps*](/Notifications)
+-    [![](/gotify.png) Gotify  
+    *Notification container*](/gotify)
