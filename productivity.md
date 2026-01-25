@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2026-01-25T18:28:36.404Z
+date: 2026-01-25T18:36:44.055Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:28.852Z
@@ -25,6 +25,7 @@ Tags:
 - [🏥 Mediqux<br>*Locally-hosted medical record system*](/mediqux)
 - [<img src="/n8n.png">n8n<br>*Automated workflow tool*](/n8n)
 - [<img src="/nextcloud.png">Nextcloud<br>*Google suite replacement*](/nextcloud)
+- [<img src="/obsidian.png">Obsidian</br>*Flexible note taking and brainstorming*](/obsidian)
 - [<img src="/palmr.png">Palmr<br>*Secure file sharing and upload*](/palmr)
 - [<img src="/penpot.png">Penpot<br>*Tool for design and code collaboration*](/penpot)
 - [<img src="/phylum.png">Phylum<br>*Google Drive replacement*](/phylum)
