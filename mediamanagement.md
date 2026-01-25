@@ -2,13 +2,18 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2026-01-15T15:30:09.596Z
+date: 2026-01-25T18:25:52.957Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:20.212Z
 ---
 
 # Start Here
+<!-- 
+Tags: 
+<span class="badge">NEW</span>
+<span class="badge">UPDATED</span>
+-->
 - [📖 Install Instructions<br>*A step-by-step list of the arr apps*](/InstallInstructions)
 - [🗂️ Folder Structure<br>*Recommended folder structure from Trash Guides to allow for hardlinks within the arr stack*](/Folder-Structure)
 - [🗺️ Overview Map<br>*Overview map of how all the arr components of a media server fit together*](/OverviewMap)
@@ -16,7 +21,7 @@ dateCreated: 2026-01-15T15:06:20.212Z
 
 # Download Clients
 - [<img src="/qbittorrent.png"> qBittorrent<br>*Torrent client*](/qBittorrent)
-- [<img src="/sabnzbd.png"> SABnzbd <span class="badge">UPDATED</span><br>*Usenet download manager*](/sabnzbd)
+- [<img src="/sabnzbd.png"> SABnzbd <br>*Usenet download manager*](/sabnzbd)
 {.links-list}
 
 # Media Servers
@@ -30,8 +35,8 @@ dateCreated: 2026-01-15T15:06:20.212Z
 ## Core Components
 - [<img src="/mediamanager.png"> Media Manager<br>*Media Manager and requester*](/mediamanager)
 - [<img src="/prowlarr.png"> Prowlarr<br>*Indexer manager / proxy that integrates with the Arr apps*](/Prowlarr)
-- [<img src="/radarr.png"> Radarr <span class="badge">UPDATED</span><br>*Movie organizer / manager for Usenet & Torrent users*](/radarr)
-- [<img src="/sonarr.png"> Sonarr <span class="badge">UPDATED</span><br>*TV-show organizer / manager for Usenet & Torrent users*](/Sonarr)
+- [<img src="/radarr.png"> Radarr <br>*Movie organizer / manager for Usenet & Torrent users*](/radarr)
+- [<img src="/sonarr.png"> Sonarr <br>*TV-show organizer / manager for Usenet & Torrent users*](/Sonarr)
 {.links-list}
 
 ## Media Discovery
@@ -39,7 +44,7 @@ dateCreated: 2026-01-15T15:06:20.212Z
 - [<img src="/boxarr.png"> Boxarr<br>*Monitors weekly box office charts*](/boxarr)
 - [<img src="/huntarr.png"> Huntarr<br>*Automated missing-content discovery & quality upgrades*](/huntarr)
 - [<img src="/jellyseerr.png"> Jellyseerr<br>*Media request & discovery manager*](/Jellyseerr)
-- [<img src="/ombi.png"> Ombi <span class="badge">NEW</span><br>*Media request & discovery manager*](/ombi)
+- [<img src="/ombi.png"> Ombi <br>*Media request & discovery manager*](/ombi)
 - [<img src="/pulsarr.png"> Pulsarr<br>*Plex watch-list monitoring, routing & notifications*](/pulsarr)
 - [<img src="/recommendarr.png"> Recommendarr<br>*Personalized recommendations for existing libraries*](/recommendarr)
 - [🎧 Releasarr<br>*Music discovery platform*](/releasarr)
@@ -62,11 +67,11 @@ dateCreated: 2026-01-15T15:06:20.212Z
 - [<img src="/profilarr.png"> Profilarr<br>*Import, export & sync profiles / custom formats*](/profilarr)
 - [<img src="/recyclarr.png"> Recyclarr<br>*Automatically sync TRaSH Guides*](/Recyclarr)
 - [<img src="/tdarr.png"> Tdarr<br>*Transcode automation*](/tdarr)
-- [<img src="/unmanic.png"> Unmanic <span class="badge">NEW</span><br>*Transcode automation*](/unmanic)
+- [<img src="/unmanic.png"> Unmanic <br>*Transcode automation*](/unmanic)
 {.links-list}
 
 ## Others
-- [🐌 Auto-Limit<span class="badge">NEW</span><br>*Intelligent download speed management*](/autolimit)
+- [🐌 Auto-Limit<br>*Intelligent download speed management*](/autolimit)
 - [<img src="/bazarr.png"> Bazarr<br>*Subtitle management*](/bazarr)
 - [<img src="/crosswatch.png"> CrossWatch<br>*Sync client for Plex and Jellyfin*](/crosswatch)
 - [<img src="/dasharr.png"> Dasharr<br>*Dashboard*](/dasharr)
