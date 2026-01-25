@@ -2,7 +2,7 @@
 title: Reactive Resume
 description: A guide to deploying Reactive Resume
 published: true
-date: 2026-01-25T11:59:19.372Z
+date: 2026-01-25T11:59:52.944Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:58.027Z
@@ -45,13 +45,6 @@ services:
       timeout: 5s
       retries: 10
 
-  # As an alternative to browserless, you can also use a lightweight image like chromedp/headless-shell:latest
-  # See https://docs.rxresu.me/self-hosting/docker#alternative-printer-options for more information.
-  # chrome:
-  #   image: chromedp/headless-shell:latest
-  #   restart: unless-stopped
-  #   ports:
-  #     - "9222:9222"
 
   seaweedfs:
     image: chrislusf/seaweedfs:latest
