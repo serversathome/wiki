@@ -2,19 +2,23 @@
 title: Networking
 description: 
 published: true
-date: 2026-01-15T15:27:38.538Z
+date: 2026-01-25T18:22:01.119Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:37.268Z
 ---
 
 # VPNs
+<!-- 
+Tags: 
+<span class="badge">NEW</span>
+-->
 
 * [<img src="/air_vpn.png"> AirVPN<br>*VPN for hiding qBittorrent traffic*](/AirVPN)
 * [🛡️ Gluetun<br>*Universal VPN for Docker containers*](/gluetun)
 * [<img src="/netbird.png"> Netbird<br>*Zero‑config mesh VPN for secure device connectivity*](/netbird)
 * [<img src="/tailscale-light.png"> Tailscale<br>*Zero‑config mesh VPN for secure device connectivity*](/tailscale)
-* [<img src="/headscale.png"> Headscale <span class="badge">NEW</span><br>*Self‑hosted Tailscale node*](/headscale)
+* [<img src="/headscale.png"> Headscale <br>*Self‑hosted Tailscale node*](/headscale)
 * [<img src="/wireguard.png"> wg‑easy<br>*GUI front‑end for WireGuard*](/wg-easy)
   {.links-list}
 
@@ -27,13 +31,13 @@ dateCreated: 2026-01-15T15:02:37.268Z
   {.links-list}
   
 # Ad Blocking
-- [<img src="/adguard-home.png"> AdGuard <span class="badge">NEW</span><br>*DNS level ad blocker*](/adguard)
-- [<img src="/pi-hole.png"> Pi-Hole <span class="badge">NEW</span><br>*DNS level ad blocker*](/pihole)
-- [<img src="/pi-hole.png"> Pi-Dash <span class="badge">NEW</span><br>*Dashboard for monitoring multiple Pi-holes*](/pidash)
+- [<img src="/adguard-home.png"> AdGuard <br>*DNS level ad blocker*](/adguard)
+- [<img src="/pi-hole.png"> Pi-Hole <br>*DNS level ad blocker*](/pihole)
+- [<img src="/pi-hole.png"> Pi-Dash <br>*Dashboard for monitoring multiple Pi-holes*](/pidash)
 {.links-list}
 
 # Other
 - [<img src="/dockpeek.png"> Dockpeek<br>*View and access exposed container ports*](/dockpeek)
-- [<img src="/portracker.png"> Portracker <span class="badge">NEW</span><br>*Live map of ports in use*](/portracker)
-- [<img src="/speedtest-tracker.png"> Speedtest Tracker <span class="badge">NEW</span><br>*Monitors the performance and uptime of your internet connection*](/speedtesttracker)
+- [<img src="/portracker.png"> Portracker <br>*Live map of ports in use*](/portracker)
+- [<img src="/speedtest-tracker.png"> Speedtest Tracker <br>*Monitors the performance and uptime of your internet connection*](/speedtesttracker)
 {.links-list}
