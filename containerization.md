@@ -2,14 +2,18 @@
 title: Containerization
 description: 
 published: true
-date: 2026-01-15T15:28:39.677Z
+date: 2026-01-25T18:27:49.593Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:57.908Z
 ---
 
 # Container Managers
-
+<!-- 
+Tags: 
+<span class="badge">NEW</span>
+<span class="badge">UPDATED</span>
+-->
 These are GUI front-ends for managing Docker containers.
 
 * [<img src="/arcane.png"> Arcane](/arcane)
