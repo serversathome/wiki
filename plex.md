@@ -2,7 +2,7 @@
 title: Plex
 description: A guide to installing Plex in TrueNAS and via docker compose
 published: true
-date: 2026-01-23T17:46:43.935Z
+date: 2026-01-25T03:56:05.899Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:21.349Z
@@ -37,7 +37,7 @@ services:
       - /mnt/tank/configs/plex/transcode:/transcode
       - /mnt/tank/media:/media
     restart: unless-stopped
-    # http://{TrueNAS IP}:32400/web/index.html#! 
+    # http://{TrueNAS IP}:32400/web/index.html
 ```
 > To get your Plex Claim Token, go to https://plex.tv/claim and follow the steps to create an account (or login to an existing one) to claim your token.
 {.is-info}
