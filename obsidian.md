@@ -2,13 +2,13 @@
 title: Obsidian
 description: A guide to installing containerized Obsidian
 published: true
-date: 2026-01-25T20:26:28.834Z
+date: 2026-01-25T20:27:15.573Z
 tags: productivity, docker
 editor: markdown
 dateCreated: 2026-01-25T18:18:10.690Z
 ---
 
-# What is Obsidian?
+# <img src="/obsidian.png" class="tab-icon"> What is Obsidian?
 
 Obsidian is an application which facilitates note-taking, organization, relational thinking, and brainstorming with an ecosystem of available plugins to extend its utility even further. 
 
