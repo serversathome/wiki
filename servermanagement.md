@@ -2,7 +2,7 @@
 title: Server Management
 description: 
 published: true
-date: 2026-01-25T18:24:46.452Z
+date: 2026-01-25T18:27:22.702Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:30.750Z
@@ -12,6 +12,7 @@ dateCreated: 2026-01-15T15:08:30.750Z
 <!-- 
 Tags: 
 <span class="badge">NEW</span>
+<span class="badge">UPDATED</span>
 -->
 * [<img src="/truenas-core.png"> TrueNAS<br>*Network attached storage*](/TrueNAS)
 * [<img src="/proxmox.png"> Proxmox Virtual Environment<br>*Virtualization*](/Proxmox)
