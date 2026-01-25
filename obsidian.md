@@ -2,7 +2,7 @@
 title: Obsidian
 description: A guide to installing containerized Obsidian
 published: true
-date: 2026-01-25T18:18:10.690Z
+date: 2026-01-25T20:23:25.044Z
 tags: productivity, docker
 editor: markdown
 dateCreated: 2026-01-25T18:18:10.690Z
@@ -16,7 +16,7 @@ Many may elect to use a more "conventional" method of running Obsidian as a loca
 
 # 1 · Deploy Obsidian
 # {.tabset}
-## <img src="/dockge.png" class="tab-icon"> Dockge
+## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 ### Compose Configuration
 
