@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2026-01-25T20:29:32.729Z
+date: 2026-01-25T20:31:22.954Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:28.852Z
@@ -19,7 +19,7 @@ Tags:
 - [<img src="https://github.com/user-attachments/assets/f1a69d56-5850-4d83-95e8-052e25263fc8">BentoPDF<br>*Work with PDF files*](/bentopdf)
 - [<img src="/bettershift.png">Bettershift<br>*Simplify Work Scheduling*](/bettershift)
 - [<img src="/bichon.png">Bichon<br>*Email Archiving System*](/bichon)
-- [<img src="/clipcascade.png">ClipCascade<br>*Clipboard Sync Across Devices*](/clipcascade)
+- [<img src="/clipcascade-light.png">ClipCascade<br>*Clipboard Sync Across Devices*](/clipcascade)
 - [<img src="/coder.png">Code Server<br>*Run VS Code Browser-Accessibly*](/codeserver)
 - [<img src="/colanode.png">Colanode<br>*Collaborative Workspace like Slack/Notion*](/colanode)
 - [<img src="/cronmaster.png"> Cr\*n Master<br>*UI dashboard for cronjobs*](/cronmaster)
