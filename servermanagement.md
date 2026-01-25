@@ -2,14 +2,17 @@
 title: Server Management
 description: 
 published: true
-date: 2026-01-25T18:24:30.917Z
+date: 2026-01-25T18:24:46.452Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:30.750Z
 ---
 
 # Hypervisors
-
+<!-- 
+Tags: 
+<span class="badge">NEW</span>
+-->
 * [<img src="/truenas-core.png"> TrueNAS<br>*Network attached storage*](/TrueNAS)
 * [<img src="/proxmox.png"> Proxmox Virtual Environment<br>*Virtualization*](/Proxmox)
 * [<img src="/proxmox.png"> Proxmox Backup Server<br>*Manage backups for Proxmox*](/pbs)
