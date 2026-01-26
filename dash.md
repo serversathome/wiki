@@ -2,7 +2,7 @@
 title: Dash.
 description: A guide to deploying Dash.
 published: true
-date: 2026-01-26T18:40:56.747Z
+date: 2026-01-26T18:46:33.979Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-26T14:16:20.520Z
@@ -25,7 +25,7 @@ services:
     ports:
       - '3001:3001'
     volumes:
-      - /mnt/tank/configs/dash:/mnt/host:ro
+      - /mnt/tank/configs/dashdot:/mnt/host:ro
 		environment:
       DASHDOT_WIDGET_LIST: 'os,cpu,storage,ram,network'
 ```
@@ -46,7 +46,7 @@ services:
      ports:
       - '3001:3001'
     volumes:
-      - /mnt/tank/configs/dash:/mnt/host:ro
+      - /mnt/tank/configs/dashdot:/mnt/host:ro
     environment:
       DASHDOT_WIDGET_LIST: 'os,cpu,storage,ram,network,gpu'
 ```
