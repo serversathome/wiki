@@ -2,7 +2,7 @@
 title: Dash
 description: A guide to deploying Dash
 published: true
-date: 2026-01-26T18:31:45.852Z
+date: 2026-01-26T18:35:23.269Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-26T14:16:20.520Z
@@ -50,3 +50,6 @@ services:
     environment:
       DASHDOT_WIDGET_LIST: 'os,cpu,storage,ram,network,gpu'
 ```
+
+# 2 · Environment Variables
+See list of all environment variables [here](https://getdashdot.com/docs/configuration/basic).
