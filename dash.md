@@ -1,18 +1,18 @@
 ---
-title: Dash
-description: A guide to deploying Dash
+title: Dash.
+description: A guide to deploying Dash.
 published: true
-date: 2026-01-26T18:35:23.269Z
+date: 2026-01-26T18:40:56.747Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-26T14:16:20.520Z
 ---
 
-# <img src="/dashdot.png" class="tab-icon"> What is Dash?
+# <img src="/dashdot.png" class="tab-icon"> What is Dash.?
 
 A simple, modern server dashboard, primarily used by smaller private servers.
 
-# 1 · Deploy Dash
+# 1 · Deploy Dash.
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Without GPU
 ```yaml
