@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2026-01-25T20:31:22.954Z
+date: 2026-01-26T04:28:02.758Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:28.852Z
@@ -35,7 +35,7 @@ Tags:
 - [<img src="/n8n.png">n8n<br>*Automated workflow tool*](/n8n)
 - [<img src="/nextcloud.png">Nextcloud<br>*Google suite replacement*](/nextcloud)
 - [<img src="/notediscovery.png">NoteDiscovery<br>*Knowledge Base with Math Features*](/notediscovery)
-- [<img src="/noton.png">Notion<br>*AI-Enabled Documentation Platforms*](/noton)
+- [<img src="/noton.png">Noton<br>*AI-Enabled Documentation Platforms*](/noton)
 - [<img src="/obsidian.png">Obsidian</br>*Flexible note taking and brainstorming*](/obsidian)
 - [<img src="/palmr.png">Palmr<br>*Secure file sharing and upload*](/palmr)
 - [<img src="/penpot.png">Penpot<br>*Tool for design and code collaboration*](/penpot)
