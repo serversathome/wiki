@@ -2,7 +2,7 @@
 title: Dash
 description: A guide to deploying Dash
 published: true
-date: 2026-01-26T14:16:20.520Z
+date: 2026-01-26T18:31:45.852Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-26T14:16:20.520Z
@@ -12,7 +12,9 @@ dateCreated: 2026-01-26T14:16:20.520Z
 
 A simple, modern server dashboard, primarily used by smaller private servers.
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Dash
+# 1 · Deploy Dash
+# {.tabset}
+## <img src="/docker.png" class="tab-icon"> Without GPU
 ```yaml
 services:
   dash:
@@ -24,4 +26,27 @@ services:
       - '3001:3001'
     volumes:
       - /mnt/tank/configs/dash:/mnt/host:ro
+		environment:
+      DASHDOT_WIDGET_LIST: 'os,cpu,storage,ram,network'
+```
+
+## <img src="/docker.png" class="tab-icon"> With GPU
+```yaml
+services:
+  dash:
+    image: mauricenino/dashdot:nvidia
+    restart: unless-stopped
+    privileged: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities:
+                - gpu
+     ports:
+      - '3001:3001'
+    volumes:
+      - /mnt/tank/configs/dash:/mnt/host:ro
+    environment:
+      DASHDOT_WIDGET_LIST: 'os,cpu,storage,ram,network,gpu'
 ```
