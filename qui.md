@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2026-01-28T14:49:25.197Z
+date: 2026-01-28T14:55:48.874Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:46.966Z
@@ -98,7 +98,7 @@ This removes torrents that are no longer hardlinked to your media library after 
 1. Navigate to **Automations** and click **Add rule**
 2. Set **Name** to `Remove Unlinked`
 3. Add condition: `Hardlink Scope` **is not** `Outside qBittorrent (library/import)`
-4. Add condition: `Completion On Age` **>=** `15` **days**
+4. Add condition: `Completed Age` **>=** `15` **days**
 5. Set **Action** to **Delete** with mode **Remove with files (include cross-seeds)**
 6. Leave **Include hardlinked copies** unchecked
 7. Click **Create** and enable the rule
@@ -115,7 +115,7 @@ This removes torrents that the tracker no longer recognizes.
 
 1. Click **Add rule**
 2. Set **Name** to `Remove Unregistered`
-3. Add condition: `Is Unregistered` **is** `true`
+3. Add condition: `Unregistered` **is** `true`
 4. Add condition: `Completed Age` **>=** `1` **day**
 5. Set **Action** to **Delete** with mode **Remove with files (include cross-seeds)**
 6. Leave **Include hardlinked copies** unchecked
@@ -132,7 +132,7 @@ This removes downloads that never started — safe for private trackers since yo
 2. Set **Name** to `Remove Stalled (No H&R Risk)`
 3. Add condition: `Progress` **<** `2`
 4. Add condition: `State` **is** `stalled`
-5. Add condition: `Added On Age` **>=** `1` **hour**
+5. Add condition: `Added Age` **>=** `1` **hour**
 6. Set **Action** to **Delete** with mode **Remove with files**
 7. Click **Create** and enable the rule
 
@@ -144,7 +144,7 @@ This tags stuck downloads that have Hit & Run risk for manual review.
 2. Set **Name** to `Tag Stuck (H&R Risk)`
 3. Add condition: `Progress` **>=** `2`
 4. Add condition: `Progress` **<** `100`
-5. Add condition: `Last Activity Age` **>=** `3` **days**
+5. Add condition: `Added Age` **>=** `2` **days**
 6. Set **Action** to **Tag** with tag `stuck-hr-risk`
 7. Click **Create** and enable the rule
 
