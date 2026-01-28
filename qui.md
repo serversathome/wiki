@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2026-01-28T14:55:48.874Z
+date: 2026-01-28T14:56:51.164Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:46.966Z
@@ -156,8 +156,8 @@ This tags stuck downloads that have Hit & Run risk for manual review.
 Orphan scan finds files on disk that have no corresponding torrent in qBittorrent.
 
 1. Navigate to **Automations** and expand **Orphan Scan**
-2. Toggle your instance **On**
-3. Click the settings icon and add any paths to ignore (e.g., `/media/downloads/VueTorrent`)
+1. Toggle your instance **On**
+
 
 > Orphan scan only checks directories where at least one torrent points. If you delete all torrents from a directory, leftover files there won't be detected.
 {.is-info}
