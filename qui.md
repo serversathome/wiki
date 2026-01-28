@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2026-01-28T14:37:26.073Z
+date: 2026-01-28T14:40:11.152Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:46.966Z
@@ -106,8 +106,6 @@ This removes torrents that are no longer hardlinked to your media library after 
 - Radarr upgrades to better quality → old hardlink deleted → scope becomes "None"
 - After 15 days → rule matches → torrent and all cross-seeds deleted
 
-> Leave "Include hardlinked copies" unchecked or it will delete your media library copy!
-{.is-warning}
 
 ## 4.2 Remove Unregistered Torrents
 
