@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2026-01-28T14:40:11.152Z
+date: 2026-01-28T14:48:40.134Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:46.966Z
@@ -27,6 +27,8 @@ services:
       - /mnt/tank/media:/media
 ```
 
+> The media volume mount must match exactly what qBittorrent uses. This is required for orphan scan, hardlink detection, cross-seed reflinks, and automations to work.
+{.is-warning}
 
 # 2 · Initial Setup
 
@@ -95,8 +97,8 @@ This removes torrents that are no longer hardlinked to your media library after 
 
 1. Navigate to **Automations** and click **Add rule**
 2. Set **Name** to `Remove Unlinked`
-3. Add condition: `Hardlink scope` **is not** `Outside qBittorrent (library/import)`
-4. Add condition: `Completed Age` **>=** `15` **days**
+3. Add condition: `Hardlink Scope` **is not** `Outside qBittorrent (library/import)`
+4. Add condition: `Completion On Age` **>=** `15` **days**
 5. Set **Action** to **Delete** with mode **Remove with files (include cross-seeds)**
 6. Leave **Include hardlinked copies** unchecked
 7. Click **Create** and enable the rule
@@ -114,7 +116,7 @@ This removes torrents that the tracker no longer recognizes.
 1. Click **Add rule**
 2. Set **Name** to `Remove Unregistered`
 3. Add condition: `Is Unregistered` **is** `true`
-4. Add condition: `Completed Age` **>=** `1` **day**
+4. Add condition: `Completion On Age` **>=** `1` **day**
 5. Set **Action** to **Delete** with mode **Remove with files (include cross-seeds)**
 6. Leave **Include hardlinked copies** unchecked
 7. Click **Create** and enable the rule
@@ -128,7 +130,7 @@ This removes downloads that never started — safe for private trackers since yo
 
 1. Click **Add rule**
 2. Set **Name** to `Remove Stalled (No H&R Risk)`
-3. Add condition: `Progress` **<** `0.02`
+3. Add condition: `Progress` **<** `2`
 4. Add condition: `State` **is** `stalled`
 5. Add condition: `Added On Age` **>=** `1` **hour**
 6. Set **Action** to **Delete** with mode **Remove with files**
@@ -140,8 +142,8 @@ This tags stuck downloads that have Hit & Run risk for manual review.
 
 1. Click **Add rule**
 2. Set **Name** to `Tag Stuck (H&R Risk)`
-3. Add condition: `Progress` **>=** `0.02`
-4. Add condition: `Progress` **<** `1`
+3. Add condition: `Progress` **>=** `2`
+4. Add condition: `Progress` **<** `100`
 5. Add condition: `Last Activity Age` **>=** `3` **days**
 6. Set **Action** to **Tag** with tag `stuck-hr-risk`
 7. Click **Create** and enable the rule
@@ -167,6 +169,6 @@ Reannounce helps fix torrents that stall right after being added — especially 
 1. Navigate to **Automations** and expand **Reannounce**
 2. Toggle your instance **On**
 
-# <img src="/patreon-light.png" class="tab-icon"> 8 · Video
+# <img src="/patreon-light.png" class="tab-icon"> 7 · Video
 
 [![](/2025-09-29-qui-a-better-qbit-interface-promo-card.png)](https://www.patreon.com/posts/qui-better-qbit-139484651)
