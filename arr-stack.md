@@ -1,8 +1,8 @@
 ---
-title: Arr8 Stack
+title: Arr* Stack
 description: 
 published: true
-date: 2026-01-28T21:30:00.668Z
+date: 2026-01-28T21:30:50.022Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
