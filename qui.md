@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2026-01-28T14:48:40.134Z
+date: 2026-01-28T14:49:25.197Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:46.966Z
@@ -116,7 +116,7 @@ This removes torrents that the tracker no longer recognizes.
 1. Click **Add rule**
 2. Set **Name** to `Remove Unregistered`
 3. Add condition: `Is Unregistered` **is** `true`
-4. Add condition: `Completion On Age` **>=** `1` **day**
+4. Add condition: `Completed Age` **>=** `1` **day**
 5. Set **Action** to **Delete** with mode **Remove with files (include cross-seeds)**
 6. Leave **Include hardlinked copies** unchecked
 7. Click **Create** and enable the rule
