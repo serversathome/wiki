@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2026-01-28T14:28:07.661Z
+date: 2026-01-28T14:37:26.073Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:46.966Z
@@ -40,8 +40,8 @@ services:
 1. Navigate to **Settings → Indexers**
 2. Click **1-click sync** to import from Prowlarr or Jackett
 
-> Only sync your private trackers. Public trackers like The Pirate Bay aren't useful for cross-seeding and will cause rate limit errors.
-{.is-info}
+> **Only sync your private trackers!** Public trackers aren't useful for cross-seeding and will cause rate limit errors.
+{.is-warning}
 
 ## 2.2 Add *arr Integration (Optional)
 
