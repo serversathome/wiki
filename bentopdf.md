@@ -2,7 +2,7 @@
 title: BentoPDF
 description: A guide to deploying BentoPDF via docker
 published: true
-date: 2026-01-15T15:28:12.662Z
+date: 2026-01-30T13:06:42.872Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:22.226Z
@@ -18,7 +18,7 @@ BentoPDF is a powerful suite of tools that allow you to do all kinds of cool thi
 ```yaml
 services:
   bentopdf:
-    image: bentopdf/bentopdf:latest
+    image: ghcr.io/alam00000/bentopdf:latest
     container_name: bentopdf
     ports:
       - 3060:8080
