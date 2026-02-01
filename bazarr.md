@@ -2,7 +2,7 @@
 title: Bazarr
 description: A guide to deploying Bazarr via docker compose
 published: true
-date: 2026-01-15T15:28:11.144Z
+date: 2026-02-01T21:52:25.945Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:20.150Z
@@ -20,6 +20,10 @@ Bazarr is a companion application to Sonarr and Radarr. It can manage and downlo
 
 1. Change the **Timezone**. For east coast time, use **America/New\_York**.
 1. Change the **Storage Configuration**. The **Bazarr Config Storage** *Type* should be set to **Host Path** as described in the [Folder-Structure](/Folder-Structure) guide.
+1. In the **Storage** section, add an additional stoage mount 
+	a. Type = `Host Path`
+  b. Mount Path = `/media`
+  c. Host Path = `/mnt/tank/media`
 1. Change the **WebUI Port** to **6767** as that is the default used in all the documentation. 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
