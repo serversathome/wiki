@@ -2,7 +2,7 @@
 title: Homarr
 description: A guide to deploying Homarr
 published: true
-date: 2026-02-02T11:27:37.421Z
+date: 2026-02-02T11:28:12.021Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:10.051Z
@@ -38,7 +38,7 @@ services:
       - SECRET_ENCRYPTION_KEY=your_64_character_hex_string
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /mnt/tank/configs/homarr/appdata:/appdata
+      - /mnt/tank/configs/homarr:/appdata
 ```
 
 1. Generate a secret encryption key using `openssl rand -hex 32`
