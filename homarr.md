@@ -2,7 +2,7 @@
 title: Homarr
 description: A guide to deploying Homarr
 published: true
-date: 2026-02-02T11:35:13.857Z
+date: 2026-02-02T14:25:22.476Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:10.051Z
@@ -35,18 +35,13 @@ services:
     ports:
       - "7575:7575"
     environment:
-      - SECRET_ENCRYPTION_KEY=your_64_character_hex_string
+      - SECRET_ENCRYPTION_KEY=68fc2abc2a6b7ae94ee0878c00337480dbea497ef383faf34759bf646efd04c0
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /mnt/tank/configs/homarr:/appdata
 ```
 
-1. Generate a secret encryption key using `openssl rand -hex 32`
-2. Replace `your_64_character_hex_string` with your generated key
-3. Deploy the stack with `docker compose up -d`
-4. Access Homarr at `http://your-server-ip:7575`
-
-> 
+ 
 > The Docker socket mount is optional but required for Docker integration features. If you don't need container management from Homarr, you can remove the `/var/run/docker.sock` volume.
 {.is-info}
 
@@ -55,14 +50,14 @@ services:
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 1. Navigate to **Apps** in the TrueNAS UI
-2. Search for "**Homarr**" (Community train)
-3. Click **Install**
-4. Configure the following settings:
+1. Search for "**Homarr**" (Community train)
+1. Click **Install**
+1. Configure the following settings:
    - **Secret Encryption Key**: Generate with `openssl rand -hex 32`
    - **WebUI Port**: `7575` (default)
    - **Host Path for Appdata**: `/mnt/tank/configs/homarr`
    - **Docker Socket**: Enable if you want Docker integration
-5. Click **Save**
+1. Click **Save**
 
 
 
@@ -73,24 +68,25 @@ services:
 On first launch, you'll be guided through the setup wizard:
 
 1. **Select Language** - Choose from 26 available languages
-2. **Choose Theme** - Light or dark mode
-3. **Create User** - Set up your admin username and password
-4. **Privacy Settings** - Configure analytics, crawling, and indexing preferences
-5. **Create Board** - Start building your first dashboard
+1. **Choose Theme** - Light or dark mode
+1. **Create User** - Set up your admin username and password
+1. **Privacy Settings** - Configure analytics, crawling, and indexing preferences
+1. **Create Board** - Start building your first dashboard
 
 ## 2.2 Adding Apps
 
 To add applications to your dashboard:
 
 1. Click the **Edit** icon in the top-right corner
-2. Click the **+** button to add a new item
-3. Select **App** from the widget types
-4. Configure the app details:
+1. Click the **+** button to add a new item
+1. Select **App** from the widget types
+1. Configure the app details:
    - **Name**: Display name for the app
    - **Internal URL**: The URL Homarr uses to communicate with the app (e.g., `http://192.168.1.100:8989` for Sonarr)
    - **External URL**: The URL you use to access the app in your browser
    - **Icon**: Search from 10,000+ built-in icons or provide a custom URL
-5. For apps with integrations (Sonarr, Radarr, etc.), add your API key in the **Integration** section
+   
+1. For apps with integrations (Sonarr, Radarr, etc.), add your API key in the **Integration** section
 
 ## 2.3 Widgets
 
@@ -122,10 +118,10 @@ Homarr supports deep integration with many popular self-hosted applications:
 To configure an integration:
 
 1. Add the app to your dashboard
-2. Click **Edit** on the app tile
-3. Navigate to the **Integration** tab
-4. Enter your API key and any required settings
-5. Save and the widget will display live data
+1. Click **Edit** on the app tile
+1. Navigate to the **Integration** tab
+1. Enter your API key and any required settings
+1. Save and the widget will display live data
 
 > 
 > For integrations to work properly, use the internal IP address of your server rather than Docker internal hostnames, as clients outside the Docker network won't be able to resolve those names.
