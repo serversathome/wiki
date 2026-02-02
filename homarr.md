@@ -2,7 +2,7 @@
 title: Homarr
 description: A guide to deploying Homarr
 published: true
-date: 2026-02-02T11:28:12.021Z
+date: 2026-02-02T11:28:59.638Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:10.051Z
@@ -50,9 +50,7 @@ services:
 > The Docker socket mount is optional but required for Docker integration features. If you don't need container management from Homarr, you can remove the `/var/run/docker.sock` volume.
 {.is-info}
 
-> 
-> **Homarr 1.0 Breaking Change**: If you're upgrading from version 0.15.x, you'll need to export your configuration as a ZIP file from the old version before upgrading, then import it into 1.0. See the [migration guide](https://homarr.dev/blog/2025/01/19/migration-guide-1.0) for details.
-{.is-warning}
+
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
@@ -66,9 +64,7 @@ services:
    - **Docker Socket**: Enable if you want Docker integration
 5. Click **Save**
 
-> 
-> Homarr in TrueNAS runs as root by default. The Docker socket integration works differently since TrueNAS SCALE uses Kubernetes under the hood rather than Docker directly.
-{.is-info}
+
 
 # 2 · Configuration
 
