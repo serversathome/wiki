@@ -2,7 +2,7 @@
 title: Homarr
 description: A guide to deploying Homarr
 published: true
-date: 2026-02-02T11:28:59.638Z
+date: 2026-02-02T11:35:13.857Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:10.051Z
@@ -132,6 +132,6 @@ To configure an integration:
 {.is-warning}
 
 
-# <img src="/patreon-light.png" class="tab-icon"> 4 · Video
+# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
 
 [![](/2025-06-03-build-the-ultimate-homarr-dashbo-promo-card.png)](https://www.patreon.com/posts/build-ultimate-130614993)
