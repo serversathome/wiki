@@ -2,7 +2,7 @@
 title: OptiStack
 description: A guide to deploying OptiStack
 published: true
-date: 2026-02-03T17:40:33.481Z
+date: 2026-02-03T17:41:26.170Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-03T17:40:33.481Z
@@ -35,9 +35,13 @@ services:
       - /mnt/tank/configs/optistack:/app/data
 ```
 
-> 
+
 > Generate secrets with `openssl rand -base64 48` — if not set, random secrets are generated at startup which invalidates sessions on restart.
 {.is-warning}
+
+> Change the `FRONTEND_URL` to your IP address
+{.is-info}
+
 
 # 2 · First Login
 
