@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2026-01-28T15:00:30.715Z
+date: 2026-02-03T11:30:41.802Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:46.966Z
@@ -19,6 +19,7 @@ services:
   qui:
     image: ghcr.io/autobrr/qui:latest
     container_name: qui
+    user: "568:568"
     restart: unless-stopped
     ports:
       - "7476:7476"
