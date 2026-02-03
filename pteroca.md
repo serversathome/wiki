@@ -1,8 +1,8 @@
 ---
-title: Pteroca
+title: PteroCA
 description: A guide to deploying Pteroca
 published: true
-date: 2026-02-03T16:35:03.541Z
+date: 2026-02-03T16:35:15.715Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-03T16:35:03.541Z
