@@ -2,7 +2,7 @@
 title: PteroCA
 description: A guide to deploying Pteroca
 published: true
-date: 2026-02-03T16:35:15.715Z
+date: 2026-02-03T16:35:28.084Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-03T16:35:03.541Z
@@ -12,7 +12,6 @@ dateCreated: 2026-02-03T16:35:03.541Z
 
 A client area and billing panel for Pterodactyl game server hosting. Adds automated billing, credit-based payments, and a customer storefront to your existing Pterodactyl installation.
 
-Live demo: https://demo.pteroca.com (login: `demo@pteroca.com` / `PterocaDemo`)
 
 > 
 > PteroCA is a **companion panel** — it requires an existing Pterodactyl Panel installation to function.
