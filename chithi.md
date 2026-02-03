@@ -2,7 +2,7 @@
 title: Chithi
 description: A guide to deploying Chithi
 published: true
-date: 2026-02-03T16:57:15.577Z
+date: 2026-02-03T16:57:25.096Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-03T16:57:15.577Z
@@ -16,7 +16,7 @@ An end-to-end encrypted file sharing application with temporary links, user mana
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Chithi
 
 > 
-> Chithi does not have pre-built Docker images and must use docker build. The stack builds 4 containers (backend, celery worker, caddy, frontend).
+> Chithi does not have pre-built Docker images and must use docker build
 {.is-info}
 
 1. Run the following command in the `stacks` directory of your TrueNAS shell:
