@@ -2,7 +2,7 @@
 title: Homescreen Hero
 description: A guide to deploying Homescreen Hero
 published: true
-date: 2026-02-03T12:22:46.645Z
+date: 2026-02-03T12:23:06.048Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-03T12:22:46.645Z
@@ -45,7 +45,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - /mnt/tank/configs/homescreen-hero:/data
+      - /mnt/tank/configs/homescreenhero:/data
 ```
 
 1. Replace `YOUR_PLEX_IP` with your Plex server IP address
