@@ -2,7 +2,7 @@
 title: CloveLink
 description: A guide to deploying ClovaLink
 published: true
-date: 2026-02-03T14:11:22.216Z
+date: 2026-02-03T19:30:21.377Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-03T14:11:22.216Z
@@ -21,6 +21,10 @@ services:
   clovalink-backend:
     image: ghcr.io/clovalink/clovalink-backend:latest
     container_name: clovalink-backend
+    networks:
+      default:
+        aliases:
+          - backend
     environment:
       - DATABASE_URL=postgres://clovalink:clovalink@clovalink-db:5432/clovalink
       - REDIS_URL=redis://clovalink-redis:6379
