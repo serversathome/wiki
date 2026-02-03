@@ -2,7 +2,7 @@
 title: Agam Space
 description: A guide to deploying Agam Space
 published: true
-date: 2026-02-03T14:03:10.655Z
+date: 2026-02-03T19:12:40.839Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-03T14:03:10.655Z
@@ -26,7 +26,13 @@ services:
     image: agamspace/agam-space:latest
     container_name: agam-space
     environment:
-      - DATABASE_URL=postgresql://agam:agam@agam-db:5432/agam
+      - DATABASE_HOST=agam-db
+      - DATABASE_PORT=5432
+      - DATABASE_USERNAME=agam
+      - DATABASE_PASSWORD=changeme
+      - DATABASE_NAME=agam
+      - HTTP_PORT=3331
+      - ALLOW_NEW_SIGNUP=true
     restart: unless-stopped
     ports:
       - "3331:3331"
@@ -40,7 +46,7 @@ services:
     container_name: agam-db
     environment:
       - POSTGRES_USER=agam
-      - POSTGRES_PASSWORD=agam
+      - POSTGRES_PASSWORD=changeme
       - POSTGRES_DB=agam
     restart: unless-stopped
     volumes:
