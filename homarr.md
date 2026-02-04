@@ -2,7 +2,7 @@
 title: Homarr
 description: A guide to deploying Homarr
 published: true
-date: 2026-02-02T14:25:22.476Z
+date: 2026-02-04T11:00:33.217Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:10.051Z
@@ -35,12 +35,14 @@ services:
     ports:
       - "7575:7575"
     environment:
-      - SECRET_ENCRYPTION_KEY=68fc2abc2a6b7ae94ee0878c00337480dbea497ef383faf34759bf646efd04c0
+      - SECRET_ENCRYPTION_KEY=your_64_character_hex_string
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /mnt/tank/configs/homarr:/appdata
+      - /mnt/tank/configs/homarr/appdata:/appdata
 ```
 
+1. Generate a secret encryption key using `openssl rand -hex 32`
+2. Replace `your_64_character_hex_string` with your generated key
  
 > The Docker socket mount is optional but required for Docker integration features. If you don't need container management from Homarr, you can remove the `/var/run/docker.sock` volume.
 {.is-info}
