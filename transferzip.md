@@ -2,7 +2,7 @@
 title: Transfer.zip
 description: A guide to deploy Transfer.zip
 published: true
-date: 2026-02-09T16:52:51.051Z
+date: 2026-02-09T16:55:58.472Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T16:52:40.763Z
@@ -24,7 +24,7 @@ Transfer.zip requires two repositories to function: `transfer.zip-web` (the fron
 ## 1.1 Clone the Repositories
 
 ```bash
-cd /mnt/tank/configs
+cd /mnt/tank/stacks
 git clone https://github.com/robinkarlberg/transfer.zip-web.git transfer-zip-web
 git clone https://github.com/robinkarlberg/transfer.zip-node.git transfer-zip-node
 ```
@@ -32,7 +32,7 @@ git clone https://github.com/robinkarlberg/transfer.zip-node.git transfer-zip-no
 ## 1.2 Configure the Web Server
 
 ```bash
-cd /mnt/tank/configs/transfer-zip-web
+cd /mnt/tank/stacks/transfer-zip-web
 cp .env.example .env
 ```
 
@@ -66,19 +66,12 @@ services:
 > The `next` service runs the main web UI and API on port **9001**. The `signaling-server` handles WebRTC peer discovery on port **9002**. Both are required for Quick Transfers to function.
 {.is-info}
 
-Deploy the stack:
-
-```bash
-cd /mnt/tank/configs/transfer-zip-web
-docker compose up -d
-```
-
 ## 1.4 Configure the Node Server (Stored Transfers)
 
 If you want to support **Stored Transfers** (server-side file storage), you also need to deploy the `transfer-zip-node` server:
 
 ```bash
-cd /mnt/tank/configs/transfer-zip-node
+cd /mnt/tank/stacks/transfer-zip-node
 ./createenv.sh
 ```
 
@@ -87,13 +80,6 @@ Edit `server/conf.json` to configure your storage backend:
 - **S3-compatible storage**: Edit `server/conf.json` with your access keys and change the active provider
 
 Generate a key pair for JWT authentication between the web and node servers, then place the public key in `./keys/public.pem` in the node repo. Update `next/conf.json` in the web repo to point to your node server's public URL.
-
-Deploy the node server:
-
-```bash
-cd /mnt/tank/configs/transfer-zip-node
-docker compose up -d
-```
 
 # 2 · Configuration
 
@@ -206,7 +192,7 @@ Add the `/ws` route **first**, then the catch-all:
 |-----------|--------|------|------|-----|
 | transfer | yourdomain.com | /ws | HTTP | localhost:9002 |
 | transfer | yourdomain.com | | HTTP | localhost:9001 |
-{.dense}
+
 
 > 
 > The `/ws` entry **must** be listed above the catch-all entry in your tunnel's public hostname list. Cloudflare evaluates routes top-down and the signaling server needs to match first. Cloudflare handles WebSocket upgrades automatically.
@@ -221,7 +207,7 @@ Add the `/ws` route **first**, then the catch-all:
 | Mode | How It Works | File Size Limit | Requires Both Online |
 |------|-------------|-----------------|---------------------|
 | **Quick Transfer** | WebRTC P2P with AES-256-GCM E2E encryption | No limit | Yes |
-| **Stored Transfer** | Resumable tus uploads to server/S3 | Depends on storage | No |
+| **Stored Transfer** | Resumable uploads to server/S3 | Depends on storage | No |
 {.dense}
 
 **Quick Transfers** stream files directly between browsers. If a direct WebRTC connection cannot be established (due to firewalls), the signaling server acts as a relay. For files larger than 10MB, the relay is forced for performance reasons.
