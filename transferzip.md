@@ -2,7 +2,7 @@
 title: Transfer.zip
 description: A guide to deploy Transfer.zip
 published: true
-date: 2026-02-09T19:33:38.049Z
+date: 2026-02-09T19:37:59.430Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T16:52:40.763Z
@@ -12,7 +12,12 @@ dateCreated: 2026-02-09T16:52:40.763Z
 
 **Transfer.zip** is a self-hostable, open-source file-sharing solution and a privacy-focused alternative to services like WeTransfer and Smash. It supports two transfer modes: **Quick Transfers** using WebRTC peer-to-peer connections with end-to-end AES-256-GCM encryption (files never touch the server), and **Stored Transfers** using the resumable tus upload protocol for reliable, chunked uploads to server or S3-compatible storage. Transfer.zip also supports transfer requests, custom branding, and email notifications.
 
-
+| | |
+|---|---|
+| **GitHub** | [robinkarlberg/transfer.zip-web](https://github.com/robinkarlberg/transfer.zip-web) |
+| **Official Site** | [transfer.zip](https://transfer.zip) |
+| **License** | AGPL-3.0 |
+{.dense}
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Transfer.zip
 
@@ -25,14 +30,14 @@ The `transfer.zip-web` repository contains everything needed to self-host: the N
 ## 1.1 Clone the Repository
 
 ```bash
-cd /mnt/tank/configs
+cd /mnt/tank/stacks
 git clone https://github.com/robinkarlberg/transfer.zip-web.git transfer-zip-web
 ```
 
 ## 1.2 Configure Environment Files
 
 ```bash
-cd /mnt/tank/configs/transfer-zip-web
+cd /mnt/tank/stacks/transfer-zip-web
 cp .env.example .env
 cp next/.env.example next/.env
 ```
@@ -54,7 +59,7 @@ cp next/conf.json.example next/conf.json
 Transfer.zip uses JWT authentication between the API server and the worker. You need to generate a key pair and place the public key where the worker can find it:
 
 ```bash
-cd /mnt/tank/configs/transfer-zip-web
+cd /mnt/tank/stacks/transfer-zip-web
 openssl genrsa -out private.pem 2048
 openssl rsa -in private.pem -pubout -out public.pem
 ```
@@ -129,6 +134,13 @@ volumes:
 > 
 > If your CPU does not support AVX instructions, use `mongo:4.4` instead of `mongo:8.0-noble`.
 {.is-warning}
+
+Deploy the stack:
+
+```bash
+cd /mnt/tank/stacks/transfer-zip-web
+docker compose up -d
+```
 
 # 2 · Configuration
 
@@ -272,8 +284,33 @@ Transfer.zip supports custom branding for transfer pages, including custom icons
 - Sending files via Quick Transfer does not currently work on **Firefox Mobile**
 - Some **Safari** browsers may have issues with WebSocket connections when the window is unfocused
 
+# 3 · Maintenance
 
+## 3.1 Updating
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+```bash
+cd /mnt/tank/stacks/transfer-zip-web
+git pull
+docker compose up -d --build
+```
+
+## 3.2 Viewing Logs
+
+View logs for individual services:
+
+```bash
+docker compose logs next
+docker compose logs signaling-server
+docker compose logs worker
+docker compose logs mongo
+```
+
+Or follow all logs in real time:
+
+```bash
+docker compose logs -f
+```
+
+# <img src="/youtube.png" class="tab-icon"> 4 · Video
 
 *Coming soon*
