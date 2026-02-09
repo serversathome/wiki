@@ -2,7 +2,7 @@
 title: Transfer.zip
 description: A guide to deploy Transfer.zip
 published: true
-date: 2026-02-09T20:29:06.692Z
+date: 2026-02-09T22:05:34.407Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T16:52:40.763Z
@@ -33,9 +33,9 @@ cd /mnt/tank/stacks
 Download and run the script:
 
 ```bash
-curl -fsSL https://wiki.serversatho.me/scripts/deploy-transfer-zip.sh -o deploy-transfer-zip.sh
-chmod +x deploy-transfer-zip.sh
-./deploy-transfer-zip.sh
+curl -fsSL https://raw.githubusercontent.com/serversathome/ServersatHome/main/transfer-zip.sh -o transfer-zip.sh
+chmod +x transfer-zip.sh
+./transfer-zip.sh
 ```
 
 The script will:
