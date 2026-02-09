@@ -2,7 +2,7 @@
 title: Transfer.zip
 description: A guide to deploy Transfer.zip
 published: true
-date: 2026-02-09T16:52:40.763Z
+date: 2026-02-09T16:52:51.051Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T16:52:40.763Z
@@ -12,13 +12,6 @@ dateCreated: 2026-02-09T16:52:40.763Z
 
 **Transfer.zip** is a self-hostable, open-source file-sharing solution and a privacy-focused alternative to services like WeTransfer and Smash. It supports two transfer modes: **Quick Transfers** using WebRTC peer-to-peer connections with end-to-end AES-256-GCM encryption (files never touch the server), and **Stored Transfers** using the resumable tus upload protocol for reliable, chunked uploads to server or S3-compatible storage. Transfer.zip also supports transfer requests, custom branding, and email notifications.
 
-| | |
-|---|---|
-| **GitHub (Web)** | [robinkarlberg/transfer.zip-web](https://github.com/robinkarlberg/transfer.zip-web) |
-| **GitHub (Node)** | [robinkarlberg/transfer.zip-node](https://github.com/robinkarlberg/transfer.zip-node) |
-| **Official Site** | [transfer.zip](https://transfer.zip) |
-| **License** | AGPL-3.0 |
-{.dense}
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Transfer.zip
 
