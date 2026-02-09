@@ -2,7 +2,7 @@
 title: Transfer.zip
 description: A guide to deploy Transfer.zip
 published: true
-date: 2026-02-09T19:10:04.368Z
+date: 2026-02-09T19:31:53.994Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T16:52:40.763Z
@@ -12,31 +12,37 @@ dateCreated: 2026-02-09T16:52:40.763Z
 
 **Transfer.zip** is a self-hostable, open-source file-sharing solution and a privacy-focused alternative to services like WeTransfer and Smash. It supports two transfer modes: **Quick Transfers** using WebRTC peer-to-peer connections with end-to-end AES-256-GCM encryption (files never touch the server), and **Stored Transfers** using the resumable tus upload protocol for reliable, chunked uploads to server or S3-compatible storage. Transfer.zip also supports transfer requests, custom branding, and email notifications.
 
+| | |
+|---|---|
+| **GitHub** | [robinkarlberg/transfer.zip-web](https://github.com/robinkarlberg/transfer.zip-web) |
+| **Official Site** | [transfer.zip](https://transfer.zip) |
+| **License** | AGPL-3.0 |
+{.dense}
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Transfer.zip
 
-Transfer.zip requires two repositories to function: `transfer.zip-web` (the frontend and API server) and `transfer.zip-node` (the file operations server). Both are built from source using Docker Compose.
+The `transfer.zip-web` repository contains everything needed to self-host: the Next.js frontend, signaling server, worker, and MongoDB — all deployed via a single Docker Compose stack.
 
 > 
 > Transfer.zip builds its Docker images from source rather than pulling pre-built images. Make sure you have `git` installed on your system.
 {.is-info}
 
-## 1.1 Clone the Repositories
+## 1.1 Clone the Repository
 
 ```bash
-cd /mnt/tank/stacks
+cd /mnt/tank/configs
 git clone https://github.com/robinkarlberg/transfer.zip-web.git transfer-zip-web
-git clone https://github.com/robinkarlberg/transfer.zip-node.git transfer-zip-node
 ```
 
-## 1.2 Configure the Web Server
+## 1.2 Configure Environment Files
 
 ```bash
-cd /mnt/tank/stacks/transfer-zip-web
+cd /mnt/tank/configs/transfer-zip-web
 cp .env.example .env
+cp next/.env.example next/.env
 ```
 
-Edit the `.env` file and configure your domain and settings. You will also need to configure `next/.env` with any additional environment variables required for the Next.js frontend.
+Edit `.env` and `next/.env` to configure your domain, MongoDB credentials, and other settings.
 
 Next, copy the example configuration file for the Next.js frontend. The Docker build will fail without this:
 
@@ -44,48 +50,97 @@ Next, copy the example configuration file for the Next.js frontend. The Docker b
 cp next/conf.json.example next/conf.json
 ```
 
-## 1.3 Deploy with Docker Compose
+> 
+> The build will fail with a `"/conf.json": not found` error if you skip this step.
+{.is-warning}
 
-The default `docker-compose.yaml` in the `transfer-zip-web` repo deploys two services:
+## 1.3 Generate JWT Keys
+
+Transfer.zip uses JWT authentication between the API server and the worker. You need to generate a key pair and place the public key where the worker can find it:
+
+```bash
+cd /mnt/tank/configs/transfer-zip-web
+openssl genrsa -out private.pem 2048
+openssl rsa -in private.pem -pubout -out public.pem
+```
+
+The private key is used by the `next` service (configure the path in your `.env` or `next/.env`). The public key needs to be placed into the worker's data volume. After the first deploy, copy it in:
+
+```bash
+docker compose up -d
+docker cp public.pem transfer-zip-web-worker-1:/worker_data/public.pem
+docker compose restart worker
+```
+
+> 
+> The worker will crash with `ENOENT: no such file or directory, open '/worker_data/public.pem'` until the public key is in place. This is expected on first deploy.
+{.is-warning}
+
+## 1.4 Docker Compose Overview
+
+The `docker-compose.yaml` deploys four services:
 
 ```yaml
 services:
+  mongo:
+    image: mongo:8.0-noble
+    restart: unless-stopped
+    volumes:
+      - ./_db:/data/db
+    ports:
+      - 127.0.0.1:${MONGODB_FORWARD_PORT:-27017}:27017
+    env_file:
+      - .env
+
   next:
     build: next
-    container_name: transfer-zip-web
     restart: unless-stopped
     env_file:
       - .env
       - next/.env
     ports:
-      - "9001:9001"
+      - 127.0.0.1:${WEB_SERVER_FORWARD_PORT:-9001}:9001
 
   signaling-server:
     build: signaling-server
-    container_name: transfer-zip-signaling
     restart: unless-stopped
     ports:
-      - "9002:9002"
+      - 127.0.0.1:${SIGNALING_SERVER_FORWARD_PORT:-9002}:9002
+
+  worker:
+    build: worker
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - worker_data:/worker_data
+
+volumes:
+  worker_data: {}
 ```
+
+| Service | Purpose | Default Port |
+|---------|---------|-------------|
+| **mongo** | MongoDB database for user data and transfer metadata | 27017 |
+| **next** | Web UI and API server (Next.js) | 9001 |
+| **signaling-server** | WebRTC signaling and relay for Quick Transfers | 9002 |
+| **worker** | Handles file operations for Stored Transfers | — |
+{.dense}
 
 > 
-> The `next` service runs the main web UI and API on port **9001**. The `signaling-server` handles WebRTC peer discovery on port **9002**. Both are required for Quick Transfers to function.
+> All ports bind to `127.0.0.1` by default, meaning they are only accessible locally. You will need a reverse proxy or tunnel (see section 2.1) to expose the service externally.
 {.is-info}
 
-## 1.4 Configure the Node Server (Stored Transfers)
+> 
+> If your CPU does not support AVX instructions, use `mongo:4.4` instead of `mongo:8.0-noble`.
+{.is-warning}
 
-If you want to support **Stored Transfers** (server-side file storage), you also need to deploy the `transfer-zip-node` server:
+Deploy the stack:
 
 ```bash
-cd /mnt/tank/stacks/transfer-zip-node
-./createenv.sh
+cd /mnt/tank/configs/transfer-zip-web
+docker compose up -d
 ```
-
-Edit `server/conf.json` to configure your storage backend:
-- **Disk storage** is enabled by default
-- **S3-compatible storage**: Edit `server/conf.json` with your access keys and change the active provider
-
-Generate a key pair for JWT authentication between the web and node servers, then place the public key in `./keys/public.pem` in the node repo. Update `next/conf.json` in the web repo to point to your node server's public URL.
 
 # 2 · Configuration
 
@@ -198,7 +253,7 @@ Add the `/ws` route **first**, then the catch-all:
 |-----------|--------|------|------|-----|
 | transfer | yourdomain.com | /ws | HTTP | localhost:9002 |
 | transfer | yourdomain.com | | HTTP | localhost:9001 |
-
+{.dense}
 
 > 
 > The `/ws` entry **must** be listed above the catch-all entry in your tunnel's public hostname list. Cloudflare evaluates routes top-down and the signaling server needs to match first. Cloudflare handles WebSocket upgrades automatically.
@@ -213,7 +268,7 @@ Add the `/ws` route **first**, then the catch-all:
 | Mode | How It Works | File Size Limit | Requires Both Online |
 |------|-------------|-----------------|---------------------|
 | **Quick Transfer** | WebRTC P2P with AES-256-GCM E2E encryption | No limit | Yes |
-| **Stored Transfer** | Resumable uploads to server/S3 | Depends on storage | No |
+| **Stored Transfer** | Resumable tus uploads to server/S3 | Depends on storage | No |
 {.dense}
 
 **Quick Transfers** stream files directly between browsers. If a direct WebRTC connection cannot be established (due to firewalls), the signaling server acts as a relay. For files larger than 10MB, the relay is forced for performance reasons.
@@ -229,7 +284,33 @@ Transfer.zip supports custom branding for transfer pages, including custom icons
 - Sending files via Quick Transfer does not currently work on **Firefox Mobile**
 - Some **Safari** browsers may have issues with WebSocket connections when the window is unfocused
 
+# 3 · Maintenance
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+## 3.1 Updating
+
+```bash
+cd /mnt/tank/configs/transfer-zip-web
+git pull
+docker compose up -d --build
+```
+
+## 3.2 Viewing Logs
+
+View logs for individual services:
+
+```bash
+docker compose logs next
+docker compose logs signaling-server
+docker compose logs worker
+docker compose logs mongo
+```
+
+Or follow all logs in real time:
+
+```bash
+docker compose logs -f
+```
+
+# <img src="/youtube.png" class="tab-icon"> 4 · Video
 
 *Coming soon*
