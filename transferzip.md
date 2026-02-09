@@ -2,7 +2,7 @@
 title: Transfer.zip
 description: A guide to deploy Transfer.zip
 published: true
-date: 2026-02-09T16:55:58.472Z
+date: 2026-02-09T19:10:04.368Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T16:52:40.763Z
@@ -37,6 +37,12 @@ cp .env.example .env
 ```
 
 Edit the `.env` file and configure your domain and settings. You will also need to configure `next/.env` with any additional environment variables required for the Next.js frontend.
+
+Next, copy the example configuration file for the Next.js frontend. The Docker build will fail without this:
+
+```bash
+cp next/conf.json.example next/conf.json
+```
 
 ## 1.3 Deploy with Docker Compose
 
