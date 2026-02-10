@@ -2,7 +2,7 @@
 title: Sportarr
 description: A guide to deploying Sportarr
 published: true
-date: 2026-02-10T16:28:45.267Z
+date: 2026-02-10T16:32:45.177Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-10T16:23:09.485Z
@@ -54,12 +54,16 @@ After deployment, navigate to `http://your-server-ip:1867` and configure the fol
 
 ## 2.2 Prowlarr Integration
 
-If you use [Prowlarr](/Prowlarr), you can sync your indexers automatically:
+If you use [Prowlarr](/Prowlarr), you can sync your indexers automatically. Sportarr isn't listed as its own app in Prowlarr yet, but the **Sonarr** option works since Sportarr exposes a compatible API:
 
-1. In Prowlarr, go to **Settings → Apps**
-2. Add Sportarr as a new application
-3. Select **TV (5000)** categories for sync — this includes TV/HD (5040), TV/UHD (5045), and TV/Sport (5060)
-4. Indexers will sync automatically and stay updated
+1. In Sportarr, go to **Settings → General** and copy your **API Key**
+2. In Prowlarr, go to **Settings → Apps → Add Application**
+3. Select **Sonarr** as the application type
+4. Set the Prowlarr Server and Sportarr Server URLs to `http://sportarr:1867` (or your actual IP/hostname)
+5. Paste your Sportarr API key
+6. Select **TV (5000)** categories for sync — this includes TV/HD (5040), TV/UHD (5045), and TV/Sport (5060)
+7. Click **Test**, then **Save**
+8. Indexers will sync automatically and stay updated
 
 ## 2.3 Media Server Integration
 
