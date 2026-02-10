@@ -2,7 +2,7 @@
 title: Sportarr
 description: A guide to deploying Sportarr
 published: true
-date: 2026-02-10T17:31:26.846Z
+date: 2026-02-10T17:55:36.723Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-10T16:23:09.485Z
@@ -49,8 +49,6 @@ After deployment, navigate to `http://your-server-ip:1867` and configure the fol
 **Root Folder** — Go to **Settings → Media Management** and add a root folder. This is where Sportarr will store your sports library. If you followed the compose above, set this to `/data/sports`.
 
 **Download Client** — Go to **Settings → Download Clients** and add your download client.
-
-**Add Content** — Use the search to find leagues or events. Add them to your library and Sportarr will start monitoring for new releases.
 
 ## 2.2 Prowlarr Integration
 
