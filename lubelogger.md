@@ -2,7 +2,7 @@
 title: Lubelogger
 description: A guide to deploying Lubelogger
 published: true
-date: 2026-02-10T11:00:58.064Z
+date: 2026-02-10T11:01:46.468Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-10T11:00:58.064Z
@@ -88,7 +88,7 @@ services:
 > If using PostgreSQL, ensure the `app` schema exists in the database. LubeLogger requires this schema to operate. If you encounter errors on first launch, you may need to create it manually with: `CREATE SCHEMA IF NOT EXISTS app;`
 {.is-info}
 
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 LubeLogger is available in the **Community** train of the TrueNAS App Catalog.
 
