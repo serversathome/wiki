@@ -2,7 +2,7 @@
 title: Sportarr
 description: A guide to deploying Sportarr
 published: true
-date: 2026-02-10T16:38:27.250Z
+date: 2026-02-10T16:55:07.100Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-10T16:23:09.485Z
@@ -90,7 +90,7 @@ For older Plex versions, download the legacy bundle from the Sportarr UI (**Sett
 
 ### Jellyfin
 
-1. Download the plugin DLL from Sportarr releases (or build it yourself with `dotnet build -c Release` from the `agents/jellyfin/Sportarr` directory)
+1. Download the plugin DLL from [Sportarr releases](https://github.com/Sportarr/Sportarr/releases) (or build it yourself with `dotnet build -c Release` from the `agents/jellyfin/Sportarr` directory)
 2. Copy the DLL to your Jellyfin plugins directory:
    - **Docker**: `/config/plugins/Sportarr/`
    - **Windows**: `%APPDATA%\Jellyfin\Server\plugins\Sportarr\`
