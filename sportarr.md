@@ -2,7 +2,7 @@
 title: Sportarr
 description: A guide to deploying Sportarr
 published: true
-date: 2026-02-10T16:32:45.177Z
+date: 2026-02-10T16:38:27.250Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-10T16:23:09.485Z
@@ -67,18 +67,50 @@ If you use [Prowlarr](/Prowlarr), you can sync your indexers automatically. Spor
 
 ## 2.3 Media Server Integration
 
-Sportarr supports metadata integration with Plex, Jellyfin, and Emby so your sports library shows up with proper metadata, artwork, and organization.
+Sportarr provides metadata agents for Plex, Jellyfin, and Emby that fetch posters, banners, descriptions, and episode organization from sportarr.net. Media server connections for library refresh can also be configured under the **Connect** page in Sportarr (similar to how Sonarr/Radarr handles it).
 
-**Plex (1.43.0+)** — Use the new Custom Metadata Provider system. No plugin installation required. Go to Plex Web → Settings → Metadata Agents and configure from there. For older Plex versions, download the legacy agent bundle from **Settings → General → Media Server Agents** in the Sportarr UI.
+### Plex — Custom Metadata Provider (Recommended)
 
-**Jellyfin / Emby** — Configure using the metadata API. See the [Sportarr GitHub](https://github.com/Sportarr/Sportarr) for detailed setup instructions under the `agents/` directory.
+For **Plex 1.43.0+**, use the new Custom Metadata Provider system. No plugin installation required:
 
-Media server connections for library refresh can be configured under the **Connect** page in Sportarr (similar to how Sonarr/Radarr handles it).
+1. Open **Plex Web** and go to **Settings → Metadata Agents**
+2. Click **+ Add Provider**
+3. Enter the URL: `https://sportarr.net/plex`
+4. Click **+ Add Agent** and give it a name (e.g., "Sportarr")
+5. **Restart Plex Media Server**
+6. Create a **TV Shows** library, select your sports folder, and choose the **Sportarr** agent
+
+### Plex — Legacy Bundle Agent
+
+For older Plex versions, download the legacy bundle from the Sportarr UI (**Settings → General → Media Server Agents**) and copy it to your Plex Plug-ins directory.
 
 > 
-> Plex has announced legacy agents will be deprecated in 2026. If you're on Plex 1.43.0+, use the new Custom Metadata Provider method instead.
+> Plex has announced legacy agents will be deprecated in 2026. Use the Custom Metadata Provider method above if you're on Plex 1.43.0+.
 {.is-warning}
 
+### Jellyfin
+
+1. Download the plugin DLL from Sportarr releases (or build it yourself with `dotnet build -c Release` from the `agents/jellyfin/Sportarr` directory)
+2. Copy the DLL to your Jellyfin plugins directory:
+   - **Docker**: `/config/plugins/Sportarr/`
+   - **Windows**: `%APPDATA%\Jellyfin\Server\plugins\Sportarr\`
+   - **Linux**: `~/.local/share/jellyfin/plugins/Sportarr/`
+3. Restart Jellyfin
+4. Create a library → select **Shows** → add your sports folder → enable **Sportarr** under Metadata Downloaders
+
+### Emby
+
+Emby works with the same metadata API as Jellyfin and Plex using Open Media data sources:
+
+1. In Emby, go to **Settings → Server → Metadata**
+2. Under **Open Media**, add a new provider:
+   - **Name**: `Sportarr`
+   - **URL**: `https://sportarr.net`
+3. Create a library for your sports content:
+   - Select **TV Shows** as the content type
+   - Add your sports media folder
+   - Under **Metadata Downloaders**, enable **Open Media** and move Sportarr to the top
+4. Refresh your library metadata to pull in sports event information
 ## 2.4 IPTV DVR (Alpha)
 
 Sportarr includes an experimental IPTV DVR feature that can automatically record live sports events.
