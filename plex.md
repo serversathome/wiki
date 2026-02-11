@@ -2,7 +2,7 @@
 title: Plex
 description: A guide to installing Plex in TrueNAS and via docker compose
 published: true
-date: 2026-01-25T03:56:05.899Z
+date: 2026-02-11T21:31:22.699Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:21.349Z
@@ -16,7 +16,7 @@ A one-stop destination to stream movies, TV shows, and music, Plex is the most c
 
 # 1 · Deploy Plex
 # {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+## <img src="/docker.png" class="tab-icon"> Docker Compose Nvidia
 ```yaml
 services:
   plex:
@@ -56,6 +56,62 @@ services:
 To enable transcoding from your nVidia GPU, uncomment out the lines in the compose file above.
 **Intel iGPU**
 To enable transcoding from your Intel iGPU, uncomment out the devices lines (under retstart) in the compose file above.
+
+## <img src="/docker.png" class="tab-icon"> Docker Compose AMD
+```yaml
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=568
+      - PGID=568
+      - TZ=America/New_York
+      - VERSION=latest
+			- DOCKER_MODS=jefflessard/plex-vaapi-amdgpu-mod
+      - LIBVA_DRIVERS_PATH=/vaapi-amdgpu/lib/dri 
+      - LD_LIBRARY_PATH=/vaapi-amdgpu/lib
+      - PLEX_CLAIM= #optional
+    group_add:
+      - video
+      - render
+    volumes:
+      - /mnt/tank/configs/plex/configs:/config
+      - /mnt/tank/configs/plex/logs:/logs
+      - /mnt/tank/configs/plex/transcode:/transcode
+      - /mnt/tank/media:/media
+    devices:
+      - /dev/dri:/dev/dri
+    restart: unless-stopped
+    # http://{TrueNAS IP}:32400/web/index.html
+```
+
+> To get your Plex Claim Token, go to https://plex.tv/claim and follow the steps to create an account (or login to an existing one) to claim your token.
+{.is-info}
+
+### Permissions & Folder Structure
+- **PLEX_UID / PLEX_GID**: Ensure you use a user/group with the correct permissions for accessing media folders. TrueNAS SCALE defaults to 568:568 for apps.
+- **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/plex
+- 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
+
+### Test Hardware Acceleration
+
+To quickly check if hardware acceleration is working, run the following and check for vaapi errors:
+
+```bash
+docker exec -it -e LIBVA_DRIVERS_PATH=/vaapi-amdgpu/lib/dri -e LD_LIBRARY_PATH=/vaapi-amdgpu/lib plex \
+/lib/plexmediaserver/Plex\ Transcoder -hide_banner -loglevel debug -vaapi_device /dev/dri/renderD128
+```
+
+In case the Plex can't access `/dev/dri/renderD128` add `rwx` permissions to owner and owner group:
+
+```bash
+truenas_admin@truenas:$ sudo chown -R 770 /dev/dri
+```
+
+> **IMPORTANT:** This is not persistent change so after reboot/shutdown you will have to run it `chown` command again!
+{.is-warning}
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 ![screenshot_from_2025-03-13_06-45-49.png](/screenshot_from_2025-03-13_06-45-49.png)
