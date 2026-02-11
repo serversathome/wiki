@@ -2,7 +2,7 @@
 title: Plex
 description: A guide to installing Plex in TrueNAS and via docker compose
 published: true
-date: 2026-02-11T21:34:18.855Z
+date: 2026-02-11T21:34:35.961Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:21.349Z
@@ -69,7 +69,7 @@ services:
       - PGID=568
       - TZ=America/New_York
       - VERSION=latest
-		 - DOCKER_MODS=jefflessard/plex-vaapi-amdgpu-mod
+      - DOCKER_MODS=jefflessard/plex-vaapi-amdgpu-mod
       - LIBVA_DRIVERS_PATH=/vaapi-amdgpu/lib/dri 
       - LD_LIBRARY_PATH=/vaapi-amdgpu/lib
       - PLEX_CLAIM= #optional
