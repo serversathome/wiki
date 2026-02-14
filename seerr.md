@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-02-14T20:27:28.875Z
+date: 2026-02-14T20:29:03.116Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-14T20:08:17.652Z
@@ -79,10 +79,9 @@ chown -R 1000:1000 /mnt/tank/configs/seerr
    {.is-warning}
 
 
-
 1. Set ownership to UID 1000
 
-    Jellyseerr ran as root, so the copied files will be owned by `root:root`. Seerr runs as UID 1000 internally and needs ownership of these files:
+    Jellyseerr ran as root, so the copied files will be owned by `root:root`. Seerr runs as UID 1000 internally and needs ownership of these files. Run this command in the TrueNAS shell:
 
     ```bash
     chown -R 1000:1000 /mnt/tank/configs/seerr
