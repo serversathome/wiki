@@ -2,11 +2,15 @@
 title: Jellyseerr
 description: A guide to installing Jellyseerr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-01-15T15:27:35.153Z
+date: 2026-02-14T20:21:12.716Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:33.085Z
 ---
+
+> **THIS CONTAINER HAS BEEN DEPRECATED IN FAVOR OF [Seerr](/seerr)**
+{.is-danger}
+
 
 # ![](/jellyseerr.png){class="tab-icon"} What is Jellyseerr?
 
