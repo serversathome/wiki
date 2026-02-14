@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-02-14T20:13:36.178Z
+date: 2026-02-14T20:14:06.416Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-14T20:08:17.652Z
@@ -100,7 +100,7 @@ chown -R 1000:1000 /mnt/tank/configs/seerr
 
 **5. Deploy the Seerr stack**
 
-Create a new stack in Dockge using the compose from [Section 1](#), with the volume pointed at your new dataset:
+Create a new stack in Dockge using the compose from [Section 1](https://wiki.serversatho.me/en/seerr#h-1-deploy-seerr), with the volume pointed at your new dataset:
 
 ```yaml
     volumes:
