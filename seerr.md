@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-02-14T20:08:17.652Z
+date: 2026-02-14T20:13:36.178Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-14T20:08:17.652Z
@@ -39,7 +39,7 @@ services:
     restart: unless-stopped
 ```
 
-> 
+>
 > The `init: true` directive is **required**. Seerr no longer provides its own init process inside the container.
 {.is-info}
 
@@ -76,11 +76,7 @@ docker stop jellyseerr
 
 **2. Create a new dataset for Seerr**
 
-In the TrueNAS UI, create a new dataset at `configs/seerr`. You can also do this from the shell:
-
-```bash
-zfs create tank/configs/seerr
-```
+In the TrueNAS UI, create a new dataset for Seerr. 
 
 **3. Copy your Jellyseerr config into the new dataset**
 
