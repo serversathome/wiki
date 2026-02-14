@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-02-14T20:14:06.416Z
+date: 2026-02-14T20:27:28.875Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-14T20:08:17.652Z
@@ -57,61 +57,51 @@ chown -R 1000:1000 /mnt/tank/configs/seerr
 
 # 3 · Migrating from Jellyseerr
 
-If you're coming from Jellyseerr, the migration to Seerr is mostly automatic — but there are a few important differences to be aware of on TrueNAS.
 
-
-## 3.1 Migration Steps
-
-> 
 > Do **not** point Seerr at your existing Jellyseerr dataset. Create a new dataset and copy your data into it. This keeps your Jellyseerr install intact as a rollback option.
 {.is-danger}
 
-**1. Stop the Jellyseerr container**
+1. Stop the Jellyseerr container in Dockge or in the TrueNAS shell run:
 
-Stop the Jellyseerr stack in Dockge or run:
+    ```bash
+    docker stop jellyseerr
+    ```
 
-```bash
-docker stop jellyseerr
-```
+1. Create a new dataset for Seerr
 
-**2. Create a new dataset for Seerr**
+1. Copy your Jellyseerr config into the new dataset with rsync by running this command in the TrueNAS shell:
 
-In the TrueNAS UI, create a new dataset for Seerr. 
+    ```bash
+    rsync -avhz /mnt/tank/configs/jellyseerr/ /mnt/tank/configs/seerr/
+    ```
+		
+    > Note the trailing slash on the source path — this copies the **contents** of the directory, not the directory itself.
+   {.is-warning}
 
-**3. Copy your Jellyseerr config into the new dataset**
 
-Use `rsync` to copy your existing Jellyseerr data into the new Seerr dataset:
 
-```bash
-rsync -avhz /mnt/tank/configs/jellyseerr/ /mnt/tank/configs/seerr/
-```
+1. Set ownership to UID 1000
 
-> 
-> Note the trailing slash on the source path — this copies the **contents** of the directory, not the directory itself.
-{.is-warning}
+    Jellyseerr ran as root, so the copied files will be owned by `root:root`. Seerr runs as UID 1000 internally and needs ownership of these files:
 
-**4. Set ownership to UID 1000**
+    ```bash
+    chown -R 1000:1000 /mnt/tank/configs/seerr
+    ```
 
-Jellyseerr ran as root, so the copied files will be owned by `root:root`. Seerr runs as UID 1000 internally and needs ownership of these files:
+1. Deploy the Seerr stack
 
-```bash
-chown -R 1000:1000 /mnt/tank/configs/seerr
-```
+    Create a new stack in Dockge using the compose from [Section 1](https://wiki.serversatho.me/en/seerr#h-1-deploy-seerr), with the volume pointed at your new dataset:
 
-**5. Deploy the Seerr stack**
+    ```yaml
+        volumes:
+          - /mnt/tank/configs/seerr:/app/config
+    ```
 
-Create a new stack in Dockge using the compose from [Section 1](https://wiki.serversatho.me/en/seerr#h-1-deploy-seerr), with the volume pointed at your new dataset:
+    Seerr will automatically detect and migrate your Jellyseerr database on first boot.
 
-```yaml
-    volumes:
-      - /mnt/tank/configs/seerr:/app/config
-```
+1. Verify the migration
 
-Seerr will automatically detect and migrate your Jellyseerr database on first boot.
-
-**6. Verify the migration**
-
-Navigate to `http://your-server-ip:5055` and confirm your settings, users, and request history carried over. Once you're satisfied everything is working, you can remove the old Jellyseerr container and dataset at your discretion.
+    Navigate to `http://your-server-ip:5055` and confirm your settings, users, and request history carried over. Once you're satisfied everything is working, you can remove the old Jellyseerr container and dataset at your discretion.
 
 # 4 · Configuration
 
