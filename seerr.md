@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-02-14T20:29:03.116Z
+date: 2026-02-14T20:35:35.853Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-14T20:08:17.652Z
@@ -76,7 +76,7 @@ chown -R 1000:1000 /mnt/tank/configs/seerr
     ```
 		
     > Note the trailing slash on the source path — this copies the **contents** of the directory, not the directory itself.
-   {.is-warning}
+   <!-- {blockquote:.is-warning} -->
 
 
 1. Set ownership to UID 1000
