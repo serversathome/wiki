@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-02-15T13:09:09.558Z
+date: 2026-02-15T13:11:33.735Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-14T20:08:17.652Z
@@ -86,7 +86,7 @@ chown -R 1000:1000 /mnt/tank/configs/seerr
     ```bash
     chown -R 1000:1000 /mnt/tank/configs/seerr
     ```
-1. Go into the permissions on TrueNAS. Leave user permissions as is and set the group to read/write/execut, and set other to None.
+1. Go into the permissions on TrueNAS. Leave user permissions as-is and set the **Group** to read/write/execute, and set **Other** to `none`.
 
 1. Deploy the Seerr stack
 
