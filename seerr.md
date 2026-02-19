@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-02-19T12:09:07.346Z
+date: 2026-02-19T12:09:35.223Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-14T20:08:17.652Z
@@ -99,7 +99,7 @@ If you're coming from Jellyseerr or Overseerr, the migration to Seerr is mostly 
 1. Copy your Jellyseerr config into the new dataset with rsync by running this command in the TrueNAS shell:
 
     ```bash
-    rsync -avhz /mnt/tank/configs/jellyseerr/ /mnt/tank/configs/seerr/
+    rsync -avh /mnt/tank/configs/jellyseerr/ /mnt/tank/configs/seerr/
     ```
 		
     > Note the trailing slash on the source path — this copies the **contents** of the directory, not the directory itself.
