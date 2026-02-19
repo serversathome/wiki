@@ -2,7 +2,7 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-01-29T21:59:05.002Z
+date: 2026-02-19T14:52:01.745Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
@@ -28,7 +28,7 @@ Tags:
 - [<img src="/emby.png"> Emby<br>*Your personal media on any device*](/Emby)
 - [<img src="/jellyfin.png"> Jellyfin<br>*Volunteer-built media solution*](/jellyfin)
 - [<img src="/plex.png"> Plex<br>*Media-streaming server for movies, television shows, and music*](/plex)
-- [<img src="/navidrome.png"> Navidrone<br>*Music streaming server in your web browser*](/navidrome)
+- [<img src="/navidrome.png"> Navidrome<br>*Music streaming server in your web browser*](/navidrome)
 {.links-list}
 
 # \*arr Suite
@@ -43,7 +43,8 @@ Tags:
 - [<img src="/agregarr.png"> Agregarr<br>*Keeps your Plex Home and Recommended fresh*](/agregarr)
 - [<img src="/boxarr.png"> Boxarr<br>*Monitors weekly box office charts*](/boxarr)
 - [<img src="/huntarr.png"> Huntarr<br>*Automated missing-content discovery & quality upgrades*](/huntarr)
-- [<img src="/jellyseerr.png"> Jellyseerr<br>*Media request & discovery manager*](/Jellyseerr)
+- [<img src="/jellyseerr.png"> Jellyseerr (DEPRICATED) <br>*Media request & discovery manager*](/Jellyseerr)
+- [<img src="/seerr.png"> Seerr<br>*Media request & discovery manager*](/seerr)
 - [<img src="/ombi.png"> Ombi <br>*Media request & discovery manager*](/ombi)
 - [<img src="/pulsarr.png"> Pulsarr<br>*Plex watch-list monitoring, routing & notifications*](/pulsarr)
 - [<img src="/recommendarr.png"> Recommendarr<br>*Personalized recommendations for existing libraries*](/recommendarr)
