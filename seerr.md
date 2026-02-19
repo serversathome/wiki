@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-02-19T12:06:14.352Z
+date: 2026-02-19T12:06:40.335Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-14T20:08:17.652Z
@@ -49,7 +49,7 @@ services:
 > The Seerr Docker container runs internally as the `node` user (UID **1000**) and does **not** respect the `user:` directive in your compose file. This is different from most containers in the arr stack. See [Section 2 · Permissions](#h-2-permissions-docker-only) for how to handle this on TrueNAS.
 {.is-danger}
 
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for **Seerr**
