@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-02-19T12:08:28.685Z
+date: 2026-02-19T12:09:07.346Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-14T20:08:17.652Z
@@ -164,7 +164,7 @@ If your Jellyseerr/Overseerr TrueNAS app was using **ixVolume** storage, you'll 
     Open **System Settings → Shell** or SSH into your TrueNAS server as root and run:
 
     ```bash
-    rsync -avhz /mnt/.ix-apps/app_mounts/jellyseerr/ /mnt/tank/configs/seerr/
+    rsync -avh /mnt/.ix-apps/app_mounts/jellyseerr/ /mnt/tank/configs/seerr/
     ```
 
     > If you were running **Overseerr** instead of Jellyseerr, replace `jellyseerr` with `overseerr` in the path above.
