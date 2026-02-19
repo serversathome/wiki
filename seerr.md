@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-02-19T12:07:45.759Z
+date: 2026-02-19T12:08:28.685Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-14T20:08:17.652Z
@@ -83,7 +83,7 @@ chown -R 1000:1000 /mnt/tank/configs/seerr
 If you're coming from Jellyseerr or Overseerr, the migration to Seerr is mostly automatic — but the steps differ depending on whether you deployed via Docker or the TrueNAS app.
 
 # {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker (Dockge)
+## <img src="/docker.png" class="tab-icon"> Docker
 
 > Do **not** point Seerr at your existing Jellyseerr/Overseerr dataset. Create a new dataset and copy your data into it. This keeps your Jellyseerr install intact as a rollback option.
 {.is-danger}
@@ -130,7 +130,7 @@ If you're coming from Jellyseerr or Overseerr, the migration to Seerr is mostly 
 
     Navigate to `http://your-server-ip:5055` and confirm your settings, users, and request history carried over. Once you're satisfied everything is working, you can remove the old Jellyseerr container and dataset at your discretion.
 
-## TrueNAS (Host Path)
+## <img src="/truenas.png" class="tab-icon"> TrueNAS (Host Path)
 
 If your Jellyseerr/Overseerr TrueNAS app was configured with a **Host Path**, the migration is straightforward — just point Seerr at the same path.
 
@@ -141,7 +141,7 @@ If your Jellyseerr/Overseerr TrueNAS app was configured with a **Host Path**, th
 5. Verify your settings, users, and request history carried over
 6. Delete the old Jellyseerr app
 
-## TrueNAS (ixVolume)
+## <img src="/truenas.png" class="tab-icon"> TrueNAS (ixVolume)
 
 If your Jellyseerr/Overseerr TrueNAS app was using **ixVolume** storage, you'll need to copy the data out into a Host Path dataset before installing Seerr.
 
