@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-02-19T12:04:37.468Z
+date: 2026-02-19T12:06:14.352Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-14T20:08:17.652Z
@@ -103,7 +103,7 @@ If you're coming from Jellyseerr, the migration to Seerr is mostly automatic —
     ```
 		
     > Note the trailing slash on the source path — this copies the **contents** of the directory, not the directory itself.
-    <!-- {blockquote:.is-warning} -->
+<!-- {blockquote:.is-warning} -->
 
 1. Set ownership to UID 1000
 
@@ -168,7 +168,7 @@ If your Jellyseerr TrueNAS app was using **ixVolume** storage, you'll need to co
     ```
 
     > If you were running **Overseerr** instead of Jellyseerr, replace `jellyseerr` with `overseerr` in the path above.
-    <!-- {blockquote:.is-warning} -->
+<!-- {blockquote:.is-warning} -->
 
 1. Install the **Seerr** app from the TrueNAS app catalog and set the **Host Path** to `/mnt/tank/configs/seerr`
 
