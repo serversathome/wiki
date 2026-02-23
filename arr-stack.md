@@ -2,7 +2,7 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-02-19T14:52:01.745Z
+date: 2026-02-23T17:15:44.078Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
@@ -42,7 +42,6 @@ Tags:
 ## Media Discovery
 - [<img src="/agregarr.png"> Agregarr<br>*Keeps your Plex Home and Recommended fresh*](/agregarr)
 - [<img src="/boxarr.png"> Boxarr<br>*Monitors weekly box office charts*](/boxarr)
-- [<img src="/huntarr.png"> Huntarr<br>*Automated missing-content discovery & quality upgrades*](/huntarr)
 - [<img src="/jellyseerr.png"> Jellyseerr (DEPRICATED) <br>*Media request & discovery manager*](/Jellyseerr)
 - [<img src="/seerr.png"> Seerr<br>*Media request & discovery manager*](/seerr)
 - [<img src="/ombi.png"> Ombi <br>*Media request & discovery manager*](/ombi)
