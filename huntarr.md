@@ -1,8 +1,8 @@
 ---
 title: Huntarr
 description: A guide to deploying huntarr via docker compose
-published: true
-date: 2026-01-15T15:29:37.041Z
+published: false
+date: 2026-02-23T17:15:19.816Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:22.037Z
