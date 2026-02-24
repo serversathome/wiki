@@ -2,7 +2,7 @@
 title: Cloudflare Tunnels
 description: A guide to installing Cloudflare Tunnels in TrueNAS Scale as well as on bare metal
 published: true
-date: 2026-01-15T15:27:24.256Z
+date: 2026-02-24T14:54:47.755Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:18.633Z
@@ -77,8 +77,4 @@ This example entry would create an endpoint in my existing tunnel. Now if I navi
 > Do not, under any circumstances, use tunnels to stream media!
 {.is-danger}
 
-It is against Cloudflare's Terms of Service to stream video through their tunnels. The better way to do this if you want to stream remotely is to use an unproxied DNS entry in Cloudflare for your domain and then port forward from your router to your container. Assuming you are using Emby, this would be a port forward on the router for port 8096 to the IP address of your server to port 8096. See screenshot below as an example:
-
-![](https://wiki.hydrology.cc/screenshot_from_2023-12-19_10-11-31.png)
-
-Example configuration on Verizon FiOS Router
+It is against Cloudflare's Terms of Service to stream video through their tunnels. The better way to do this if you want to stream remotely is to use an unproxied DNS entry in Cloudflare for your domain and then port forward from your router to your container. Assuming you are using Emby, this would be a port forward on the router for port 8096 to the IP address of your server to port 8096.
