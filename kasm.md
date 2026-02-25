@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-25T10:27:22.050Z
+date: 2026-02-25T10:27:40.107Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -27,7 +27,7 @@ This guide covers setting up Kasm with **Proxmox autoscaling**, which automatica
 | **Autoscaled VMs** | 0-N clones spun up/down automatically based on user sessions |
 
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Kasm Server
+# <img src="/ubuntu.png" class="tab-icon"> 1 · Deploy Kasm Server
 
 Create a new Ubuntu VM in Proxmox with these specs:
 
