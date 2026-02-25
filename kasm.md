@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-25T10:27:40.107Z
+date: 2026-02-25T10:27:59.289Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -14,9 +14,7 @@ dateCreated: 2026-02-25T10:19:47.919Z
 
 This guide covers setting up Kasm with **Proxmox autoscaling**, which automatically provisions and destroys Docker agent VMs based on user demand. When users launch workspaces, Kasm communicates with Proxmox to spin up new VMs. When sessions end, VMs are torn down after a configurable backoff period.
 
-> 
-> This guide requires a Proxmox environment. For standalone Docker or TrueNAS deployment, see the basic Kasm setup guide.
-{.is-info}
+
 
 # Architecture Overview
 
