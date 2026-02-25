@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-25T10:25:00.312Z
+date: 2026-02-25T10:25:26.391Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -248,14 +248,6 @@ Once configured, Kasm will automatically provision VMs to meet the standby requi
 4. Close sessions and wait for downscale backoff to see VMs destroyed
 
 
-
-# Resources
-
-- [Kasm Downloads](https://kasmweb.com/downloads)
-- [Proxmox AutoScale Docs](https://docs.kasm.com/docs/how-to/autoscale/autoscale_providers/proxmox)
-- [Startup Scripts GitHub](https://github.com/kasmtech/workspaces-autoscale-startup-scripts)
-- [TrueNAS App](https://apps.truenas.com/catalog/kasm-workspaces/) (standalone deployment only)
-
-# <img src="/youtube.png" class="tab-icon"> 7 · Video
+# <img src="/youtube.png" class="tab-icon"> 6 · Video
 
 *Video coming soon*
