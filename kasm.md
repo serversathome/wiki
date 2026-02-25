@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-25T10:27:59.289Z
+date: 2026-02-25T10:29:05.734Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -53,7 +53,7 @@ sudo bash kasm_release/install.sh
 
 ## 1.1 Configure Upstream Auth Address
 
-After installation, log into the Kasm web UI at `https://<kasm-vm-ip>`:
+After installation, log into the Kasm web UI at `https://<kasm-vm-ip>`
 
 1. Go to **Admin → Infrastructure → Zones**
 2. Click **Edit** on your zone
