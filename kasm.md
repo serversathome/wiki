@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-25T10:26:26.378Z
+date: 2026-02-25T10:27:22.050Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -120,7 +120,7 @@ Navigate to **Permissions → Add → User Permission** and create three entries
 > Adjust `/storage/local-lvm` to match your storage name if different.
 {.is-info}
 
-# 3 · Create Agent Template
+# <img src="/ubuntu.png" class="tab-icon"> 3 · Create Agent Template
 
 This is a **separate VM** from the Kasm server. Kasm will clone this template when it needs more compute capacity.
 
