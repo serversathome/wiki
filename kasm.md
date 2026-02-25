@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-25T14:23:58.349Z
+date: 2026-02-25T14:24:07.632Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -27,7 +27,7 @@ This guide covers setting up Kasm with **Proxmox autoscaling**, which automatica
 | **Autoscaled VMs** | Proxmox | 0-N clones spun up/down automatically based on user sessions |
 
 
-# <img src="/truenas-logo.png" class="tab-icon"> 1 · Deploy Kasm on TrueNAS
+# <img src="/truenas.png" class="tab-icon"> 1 · Deploy Kasm on TrueNAS
 
 ## 1.1 Create Datasets
 
