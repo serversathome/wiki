@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-25T11:36:10.707Z
+date: 2026-02-25T14:17:26.521Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -14,53 +14,40 @@ dateCreated: 2026-02-25T10:19:47.919Z
 
 This guide covers setting up Kasm with **Proxmox autoscaling**, which automatically provisions and destroys Docker agent VMs based on user demand. When users launch workspaces, Kasm communicates with Proxmox to spin up new VMs. When sessions end, VMs are torn down after a configurable backoff period.
 
-
+> 
+> This guide requires both TrueNAS and Proxmox. The Kasm control plane runs on TrueNAS while compute is offloaded to Proxmox VMs.
+{.is-info}
 
 # Architecture Overview
 
-| Component | Description |
-|-----------|-------------|
-| **Kasm Server VM** | Runs Kasm Workspaces application (stays running permanently) |
-| **Agent Template** | Ubuntu VM converted to template (Kasm clones this on demand) |
-| **Autoscaled VMs** | 0-N clones spun up/down automatically based on user sessions |
+| Component | Location | Description |
+|-----------|----------|-------------|
+| **Kasm Server** | TrueNAS | Runs Kasm Workspaces application via Community App |
+| **Agent Template** | Proxmox | Ubuntu VM converted to template (Kasm clones this on demand) |
+| **Autoscaled VMs** | Proxmox | 0-N clones spun up/down automatically based on user sessions |
 
 
-# <img src="/ubuntu.png" class="tab-icon"> 1 · Deploy Kasm Server
+# <img src="/truenas.png" class="tab-icon"> 1 · Deploy Kasm on TrueNAS
 
-Create a new Ubuntu VM in Proxmox with these specs:
-
-| Setting | Value |
-|---------|-------|
-| OS | Ubuntu 22.04 / 24.04 (or Debian 12) |
-| CPU | 4+ cores |
-| Memory | 8GB minimum |
-| Storage | 80GB+ |
-| Network | Port 443 exposed |
-
-> Get the Ubuntu ISO file [here](https://releases.ubuntu.com/24.04.4/ubuntu-24.04.4-live-server-amd64.iso)
-{.is-info}
-
-
-SSH into the VM and run:
-
-```bash
-cd /tmp
-curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_1.18.1.tar.gz
-tar -xf kasm_release_1.18.1.tar.gz
-sudo bash kasm_release/install.sh
-```
+1. Navigate to **Apps** in the TrueNAS UI
+2. Search for "Kasm Workspaces"
+3. Click **Install**
+4. Configure storage paths as needed
+5. Click **Save** and wait for the app to deploy
 
 > 
-> Save the admin credentials output by the installer. You'll need these to log into the Kasm web UI.
-{.is-warning}
+> Note the IP address of your TrueNAS server—you'll need it for the Upstream Auth Address.
+{.is-info}
+
+Once deployed, access the Kasm web UI at `https://<truenas-ip>:443`. Default credentials are shown in the app logs.
 
 ## 1.1 Configure Upstream Auth Address
 
-After installation, log into the Kasm web UI at `https://<kasm-vm-ip>`
+After deployment, log into the Kasm web UI:
 
 1. Go to **Admin → Infrastructure → Zones**
 2. Click **Edit** on your zone
-3. Change **Upstream Auth Address** from `proxy` to your Kasm server's actual IP
+3. Change **Upstream Auth Address** from `proxy` to your TrueNAS server's IP address
 4. Click **Save**
 
 > 
@@ -123,7 +110,7 @@ Navigate to **Permissions → Add → User Permission** and create three entries
 
 # <img src="/ubuntu.png" class="tab-icon"> 3 · Create Agent Template
 
-This is a **separate VM** from the Kasm server. Kasm will clone this template when it needs more compute capacity.
+This VM lives in Proxmox and gets cloned by Kasm when it needs more compute capacity. It's completely separate from TrueNAS.
 
 ## 3.1 Create VM in Proxmox
 
@@ -137,6 +124,8 @@ This is a **separate VM** from the Kasm server. Kasm will clone this template wh
 | Network Model | VirtIO (paravirtualized) |
 | Resource Pool | kasm-autoscale |
 
+> Get the Ubuntu ISO file [here](https://releases.ubuntu.com/24.04.4/ubuntu-24.04.4-live-server-amd64.iso)
+{.is-info}
 
 ## 3.2 Install Ubuntu
 
