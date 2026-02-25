@@ -1,0 +1,261 @@
+---
+title: Kasm Workspaces
+description: A guide to deploying Kasm Workspaces to Proxmox
+published: true
+date: 2026-02-25T10:19:47.919Z
+tags: 
+editor: markdown
+dateCreated: 2026-02-25T10:19:47.919Z
+---
+
+# <img src="/kasm.png" class="tab-icon"> What is Kasm Workspaces?
+
+**Kasm Workspaces** is a container streaming platform that delivers browser-based access to desktops, applications, and web services. It lets you run isolated workspaces like full Linux desktops, web browsers, or development tools—all accessible through your web browser.
+
+This guide covers setting up Kasm with **Proxmox autoscaling**, which automatically provisions and destroys Docker agent VMs based on user demand. When users launch workspaces, Kasm communicates with Proxmox to spin up new VMs. When sessions end, VMs are torn down after a configurable backoff period.
+
+> 
+> This guide requires a Proxmox environment. For standalone Docker or TrueNAS deployment, see the basic Kasm setup guide.
+{.is-info}
+
+# Architecture Overview
+
+| Component | Description |
+|-----------|-------------|
+| **Kasm Server VM** | Runs Kasm Workspaces application (stays running permanently) |
+| **Agent Template** | Ubuntu VM converted to template (Kasm clones this on demand) |
+| **Autoscaled VMs** | 0-N clones spun up/down automatically based on user sessions |
+
+
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Kasm Server
+
+Create a new Ubuntu VM in Proxmox with these specs:
+
+| Setting | Value |
+|---------|-------|
+| OS | Ubuntu 22.04 / 24.04 (or Debian 12) |
+| CPU | 4+ cores |
+| Memory | 8GB minimum |
+| Storage | 80GB+ |
+| Network | Port 443 exposed |
+
+
+SSH into the VM and run:
+
+```bash
+cd /tmp
+curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_1.18.1.tar.gz
+tar -xf kasm_release_1.18.1.tar.gz
+sudo bash kasm_release/install.sh
+```
+
+> 
+> Save the admin credentials output by the installer. You'll need these to log into the Kasm web UI.
+{.is-warning}
+
+## 1.1 Configure Upstream Auth Address
+
+After installation, log into the Kasm web UI at `https://<kasm-vm-ip>`:
+
+1. Go to **Admin → Infrastructure → Zones**
+2. Click **Edit** on your zone
+3. Change **Upstream Auth Address** from `proxy` to your Kasm server's actual IP
+4. Click **Save**
+
+> 
+> This step is critical. Autoscaled VMs need to know where to "phone home." If this remains set to `proxy`, agents cannot find Kasm and autoscaling silently fails.
+{.is-danger}
+
+# <img src="/proxmox.png" class="tab-icon"> 2 · Configure Proxmox
+
+## 2.1 Create Resource Pool
+
+1. Navigate to **Datacenter → Permissions → Pools → Create**
+2. Name: `kasm-autoscale`
+
+## 2.2 Create Dedicated User
+
+1. Navigate to **Permissions → Users → Add**
+2. Username: `kasm-autoscale@pve`
+3. Realm: **Proxmox VE authentication server**
+
+## 2.3 Create API Token
+
+1. Navigate to **Permissions → API Tokens → Add**
+2. User: `kasm-autoscale@pve`
+3. Uncheck **Privilege Separation**
+4. Click **Add**
+
+> 
+> Save the Token ID and Secret immediately—you cannot view them again.
+{.is-warning}
+
+## 2.4 Create Role
+
+Navigate to **Permissions → Roles → Create**:
+- Name: `kasm-autoscale-role`
+- Add these privileges:
+
+
+|---|---|---|
+| Pool.Audit | VM.Allocate | Datastore.AllocateSpace |
+| SDN.Use | VM.Audit | VM.Clone |
+| VM.Config.CDROM | VM.Config.CPU | VM.Config.Disk |
+| VM.Config.HWType | VM.Config.Memory | VM.Config.Network |
+| VM.Config.Options | VM.Monitor | VM.PowerMgmt |
+
+
+## 2.5 Assign Permissions
+
+Navigate to **Permissions → Add → User Permission** and create three entries:
+
+| Path | User | Role |
+|------|------|------|
+| `/sdn/zones/localnetwork` | kasm-autoscale@pve | kasm-autoscale-role |
+| `/storage/local-lvm` | kasm-autoscale@pve | kasm-autoscale-role |
+| `/pool/kasm-autoscale` | kasm-autoscale@pve | kasm-autoscale-role |
+
+
+> 
+> Adjust `/storage/local-lvm` to match your storage name if different.
+{.is-info}
+
+# 3 · Create Agent Template
+
+This is a **separate VM** from the Kasm server. Kasm will clone this template when it needs more compute capacity.
+
+## 3.1 Create VM in Proxmox
+
+| Setting | Value |
+|---------|-------|
+| OS | Ubuntu Server 24.04 |
+| SCSI Controller | VirtIO SCSI Single |
+| QEMU Agent | **Enabled** |
+| Disk Bus | VirtIO Block |
+| CPU Type | host |
+| Network Model | VirtIO (paravirtualized) |
+| Resource Pool | kasm-autoscale |
+
+
+## 3.2 Install Ubuntu
+
+- Enable **OpenSSH server** during installation
+- After install, remove ISO: **Hardware → CD/DVD → "Do not use any media"**
+
+## 3.3 Prepare for Templating
+
+SSH into the VM and run:
+
+```bash
+# Install and enable QEMU guest agent
+sudo apt update
+sudo apt install qemu-guest-agent -y
+sudo systemctl start qemu-guest-agent
+sudo systemctl enable qemu-guest-agent
+
+# Reset machine IDs (required for templating)
+sudo truncate -s 0 /etc/machine-id
+sudo truncate -s 0 /var/lib/dbus/machine-id
+
+# Shutdown
+sudo shutdown now
+```
+
+## 3.4 Convert to Template
+
+In Proxmox: **Right-click VM → Convert to Template**
+
+> 
+> Note the exact template name—you'll need it for Kasm configuration.
+{.is-info}
+
+# 4 · Configure Autoscaling in Kasm
+
+All of the following is done in the **Kasm web UI**.
+
+## 4.1 Create Pool
+
+1. Go to **Admin → Infrastructure → Pools → Add**
+2. Name: `Docker Agent Pool`
+3. Type: **Docker Agent**
+4. Click **Save**
+
+## 4.2 Create AutoScale Config
+
+Go to **Admin → Infrastructure → Pools → All AutoScale Configs → Add**
+
+| Setting | Value |
+|---------|-------|
+| Name | Proxmox Docker Autoscale |
+| AutoScale Type | Docker Agent |
+| Pool | Docker Agent Pool |
+| Downscale Backoff | 300 (or 100 for testing) |
+| Standby Cores | 4 |
+| Standby GPUs | 0 |
+| Standby Memory | 6144 |
+| Agent Cores Override | 4 |
+| Agent Memory Override | 6144 |
+
+
+Click **Next** to configure the VM Provider.
+
+## 4.3 Configure VM Provider
+
+| Setting | Value |
+|---------|-------|
+| Provider | Proxmox |
+| Name | Proxmox Docker Config |
+| Max Instances | 2 |
+| Host | Your Proxmox IP (no `https://`) |
+| Username | kasm-autoscale@pve |
+| Token Name | (your token name) |
+| Token Value | (your token secret) |
+| Verify SSL | Disabled |
+| VMID Range | 1000 to 2000 |
+| Full Clone | Disabled |
+| Template Name | (exact name of your template) |
+| Cluster Node Name | pve |
+| Resource Pool Name | kasm-autoscale |
+| Cores | 4 |
+| Memory | 8192 |
+| Installed OS Type | Linux |
+| Startup Script Path | /tmp |
+
+
+## 4.4 Startup Script
+
+Get the latest startup script from Kasm's GitHub:
+
+```
+https://github.com/kasmtech/workspaces-autoscale-startup-scripts
+```
+
+Use the Linux/Docker agent script. Paste it into the **Startup Script** field.
+
+> 
+> As of Kasm v1.17+, remove the NGINX cert/key lines from the script—they're no longer needed.
+{.is-info}
+
+Click **Finish**.
+
+# 5 · Testing
+
+Once configured, Kasm will automatically provision VMs to meet the standby requirements.
+
+1. Go to **Admin → Infrastructure → Docker Agents**
+2. Watch for new agents appearing with status "Starting" → "Running"
+3. Launch workspaces to trigger additional scaling
+4. Close sessions and wait for downscale backoff to see VMs destroyed
+
+
+
+# Resources
+
+- [Kasm Downloads](https://kasmweb.com/downloads)
+- [Proxmox AutoScale Docs](https://docs.kasm.com/docs/how-to/autoscale/autoscale_providers/proxmox)
+- [Startup Scripts GitHub](https://github.com/kasmtech/workspaces-autoscale-startup-scripts)
+- [TrueNAS App](https://apps.truenas.com/catalog/kasm-workspaces/) (standalone deployment only)
+
+# <img src="/youtube.png" class="tab-icon"> 7 · Video
+
+*Video coming soon*
