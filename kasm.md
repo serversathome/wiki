@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-25T14:24:07.632Z
+date: 2026-02-25T14:51:40.473Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -15,19 +15,19 @@ dateCreated: 2026-02-25T10:19:47.919Z
 This guide covers setting up Kasm with **Proxmox autoscaling**, which automatically provisions and destroys Docker agent VMs based on user demand. When users launch workspaces, Kasm communicates with Proxmox to spin up new VMs. When sessions end, VMs are torn down after a configurable backoff period.
 
 > 
-> This guide requires both TrueNAS and Proxmox. The Kasm control plane runs on TrueNAS while compute is offloaded to Proxmox VMs.
+> This guide requires both TrueNAS (with Dockge) and Proxmox. The Kasm control plane runs on TrueNAS via Dockge while compute is offloaded to Proxmox VMs.
 {.is-info}
 
 # Architecture Overview
 
 | Component | Location | Description |
 |-----------|----------|-------------|
-| **Kasm Server** | TrueNAS | Runs Kasm Workspaces application via Community App |
+| **Kasm Server** | TrueNAS (Dockge) | Runs Kasm Workspaces via LinuxServer.io Docker image |
 | **Agent Template** | Proxmox | Ubuntu VM converted to template (Kasm clones this on demand) |
 | **Autoscaled VMs** | Proxmox | 0-N clones spun up/down automatically based on user sessions |
 
 
-# <img src="/truenas.png" class="tab-icon"> 1 · Deploy Kasm on TrueNAS
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Kasm with Dockge
 
 ## 1.1 Create Datasets
 
@@ -51,46 +51,63 @@ For each dataset (`kasm/opt` and `kasm/profiles`):
 5. Disable all permission checkboxes for Other
 6. Click **Apply Group**, then **Save**
 
-## 1.2 Install the App
-
-1. Navigate to **Apps** in the TrueNAS UI
-2. Search for "Kasm Workspaces"
-3. Click **Install**
-
-### Storage Configuration
-
-Change both storage types from ixVolume to **Host Path**:
-
-| Setting | Host Path |
-|---------|-----------|
-| Kasm Workspaces Opt Storage | `/mnt/tank/configs/kasm/opt` |
-| Kasm Workspaces Profiles Storage | `/mnt/tank/configs/kasm/profiles` |
+## 1.2 Deploy with Dockge
 
 > 
-> If your pool is named something besides `tank`, adjust the paths accordingly.
+> If you've never used Dockge before, check out the Dockge setup guide on the wiki.
 {.is-info}
 
-### Network Configuration
+1. In Dockge, click the **+** button to create a new stack
+2. Name it `kasm`
+3. Paste the following compose file:
 
-Leave the default ports:
-- **WebUI Port**: 30128
-- **Setup Port**: 30129
-
-Click **Save** and wait for the app to deploy.
+```yaml
+services:
+  kasm:
+    image: lscr.io/linuxserver/kasm:latest
+    container_name: kasm
+    privileged: true
+    environment:
+      - KASM_PORT=443
+      - DOCKER_MTU=1500
+      - DOCKER_SUBNET=172.17.0.0/24
+    volumes:
+      - /mnt/tank/configs/kasm/opt:/opt
+      - /mnt/tank/configs/kasm/profiles:/profiles
+      - /dev/input:/dev/input
+      - /run/udev/data:/run/udev/data
+    ports:
+      - 3000:3000
+      - 443:443
+    restart: unless-stopped
+```
 
 > 
-> Note your TrueNAS IP and the WebUI port (30128)—you'll need both for the Upstream Auth Address.
+> If your pool is named something besides `tank`, change the left side of the volume paths.
 {.is-info}
 
-Once deployed, access the Kasm web UI at `https://<truenas-ip>:30128`. Default credentials are shown in the app logs.
+4. Click **Deploy**
+
+### First Run Setup
+
+1. Access the install wizard at `https://<your-ip>:3000`
+2. Accept the EULA
+3. Set your admin password
+4. Wait for installation to complete
+
+After setup, access the Kasm web UI at `https://<your-ip>:443`
+
+> 
+> Port 3000 is only used for initial setup. After installation, you'll use port 443.
+{.is-info}
 
 ## 1.3 Configure Upstream Auth Address
 
-After deployment, log into the Kasm web UI:
+After installation, log into the Kasm web UI:
 
 1. Go to **Admin → Infrastructure → Zones**
 2. Click **Edit** on your zone
-3. Change **Upstream Auth Address** from `proxy` to your TrueNAS server's IP address
+3. Change **Upstream Auth Address** from `proxy` to your server's IP address (just the IP, no port)
 4. Click **Save**
 
 > 
