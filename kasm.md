@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-25T14:17:26.521Z
+date: 2026-02-25T14:23:58.349Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -27,21 +27,64 @@ This guide covers setting up Kasm with **Proxmox autoscaling**, which automatica
 | **Autoscaled VMs** | Proxmox | 0-N clones spun up/down automatically based on user sessions |
 
 
-# <img src="/truenas.png" class="tab-icon"> 1 · Deploy Kasm on TrueNAS
+# <img src="/truenas-logo.png" class="tab-icon"> 1 · Deploy Kasm on TrueNAS
+
+## 1.1 Create Datasets
+
+Before deploying Kasm, create datasets for persistent storage:
+
+1. Click **Datasets** on the left
+2. Select your configs dataset (e.g., `tank/configs`)
+3. Click **Add Dataset**, name it `kasm`, click **Save**
+4. Select the new `kasm` dataset and create two child datasets:
+   - `opt` — Kasm application data, database, certificates
+   - `profiles` — User profile persistence
+
+### Permissions
+
+For each dataset (`kasm/opt` and `kasm/profiles`):
+
+1. Click the dataset, find **Permissions** on the lower left, click **Edit**
+2. Leave User as `root`
+3. Change Group to `apps`
+4. Enable all group permission checkboxes
+5. Disable all permission checkboxes for Other
+6. Click **Apply Group**, then **Save**
+
+## 1.2 Install the App
 
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for "Kasm Workspaces"
 3. Click **Install**
-4. Configure storage paths as needed
-5. Click **Save** and wait for the app to deploy
+
+### Storage Configuration
+
+Change both storage types from ixVolume to **Host Path**:
+
+| Setting | Host Path |
+|---------|-----------|
+| Kasm Workspaces Opt Storage | `/mnt/tank/configs/kasm/opt` |
+| Kasm Workspaces Profiles Storage | `/mnt/tank/configs/kasm/profiles` |
 
 > 
-> Note the IP address of your TrueNAS server—you'll need it for the Upstream Auth Address.
+> If your pool is named something besides `tank`, adjust the paths accordingly.
 {.is-info}
 
-Once deployed, access the Kasm web UI at `https://<truenas-ip>:443`. Default credentials are shown in the app logs.
+### Network Configuration
 
-## 1.1 Configure Upstream Auth Address
+Leave the default ports:
+- **WebUI Port**: 30128
+- **Setup Port**: 30129
+
+Click **Save** and wait for the app to deploy.
+
+> 
+> Note your TrueNAS IP and the WebUI port (30128)—you'll need both for the Upstream Auth Address.
+{.is-info}
+
+Once deployed, access the Kasm web UI at `https://<truenas-ip>:30128`. Default credentials are shown in the app logs.
+
+## 1.3 Configure Upstream Auth Address
 
 After deployment, log into the Kasm web UI:
 
