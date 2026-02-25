@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-25T11:31:51.325Z
+date: 2026-02-25T11:36:10.707Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -37,7 +37,7 @@ Create a new Ubuntu VM in Proxmox with these specs:
 | Storage | 80GB+ |
 | Network | Port 443 exposed |
 
-> Get the Ubuntu ISO file [here](https://github.com/kasmtech/workspaces-autoscale-startup-scripts)
+> Get the Ubuntu ISO file [here](https://releases.ubuntu.com/24.04.4/ubuntu-24.04.4-live-server-amd64.iso)
 {.is-info}
 
 
