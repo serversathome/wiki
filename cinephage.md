@@ -2,7 +2,7 @@
 title: Cinephage
 description: A guide to deploying Cinephage
 published: true
-date: 2026-02-10T14:54:45.774Z
+date: 2026-02-26T16:28:22.385Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:39.889Z
@@ -86,3 +86,4 @@ Cinephage can automatically search for missing content, quality upgrades, new ep
 
 
 # <img src="/patreon-light.png" class="tab-icon"> 4 · Video
+[![](/2026-02-25-cinephage-the-all-in-one-app-promo-card.png)](https://www.patreon.com/posts/cinephage-all-in-150415696)
