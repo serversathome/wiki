@@ -2,13 +2,13 @@
 title: Sportarr
 description: A guide to deploying Sportarr
 published: true
-date: 2026-02-10T17:55:36.723Z
+date: 2026-02-26T16:16:29.876Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-10T16:23:09.485Z
 ---
 
-# <img src="/sportarr-light.png" class="tab-icon"> What is Sportarr?
+# <img src="/sportarr.png" class="tab-icon"> What is Sportarr?
 
 **Sportarr** is a sports PVR (Personal Video Recorder) for Usenet and BitTorrent users. If you've ever used Sonarr or Radarr, you'll feel right at home — Sportarr does the same thing, but for sports events. It monitors sports leagues and events, searches your indexers for releases, and handles file renaming, organization, and metadata integration with Plex, Jellyfin, and Emby.
 
