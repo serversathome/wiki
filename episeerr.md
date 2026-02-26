@@ -2,7 +2,7 @@
 title: Episeerr
 description: A guide to deploying Episeerr
 published: true
-date: 2026-02-26T16:22:05.672Z
+date: 2026-02-26T16:26:50.692Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-20T20:27:15.149Z
@@ -117,5 +117,4 @@ Adding a `watched` tag to a series in Sonarr will remove it from Episeerr's Seri
 
 
 # <img src="/patreon-light.png" class="tab-icon"> 3 · Video
-
-*Coming Soon*
+[![](/2026-02-10-automatic-episode-management-wit-promo-card.png)](https://www.patreon.com/posts/automatic-with-148716503)
