@@ -2,13 +2,13 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-27T16:05:38.397Z
+date: 2026-02-27T16:06:00.603Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
 ---
 
-# <img src="/kasm.png" class="tab-icon"> What is Kasm Workspaces?
+# <img src="/kasm-workspaces.png" class="tab-icon"> What is Kasm Workspaces?
 
 **Kasm Workspaces** is a container streaming platform that delivers browser-based access to desktops, applications, and web services. It lets you run isolated workspaces like full Linux desktops, web browsers, or development tools—all accessible through your web browser.
 
