@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-27T16:11:44.776Z
+date: 2026-02-27T16:13:18.294Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -57,7 +57,7 @@ Choose your preferred deployment method:
 
 # {.tabset}
 
-### Dockge (LinuxServer.io)
+## <img src="/docker.png" class="tab-icon"> Dockge 
 
 > 
 > If you've never used Dockge before, check out the Dockge setup guide on the wiki.
@@ -98,7 +98,7 @@ services:
 
 4. Click **Deploy**
 
-#### First Run Setup
+### First Run Setup
 
 1. Access the install wizard at `https://<your-ip>:3000`
 2. Accept the EULA
@@ -111,13 +111,13 @@ After setup, access the Kasm web UI at `https://<your-ip>:445`
 > Port 3000 is only used for initial setup. After installation, you'll use port 445.
 {.is-info}
 
-### TrueNAS Apps
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for "Kasm Workspaces"
 3. Click **Install**
 
-#### Storage Configuration
+### Storage Configuration
 
 Change both storage types from ixVolume to **Host Path**:
 
