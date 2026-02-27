@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-27T17:27:09.731Z
+date: 2026-02-27T17:27:31.347Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -57,7 +57,7 @@ Choose your preferred deployment method:
 
 # {.tabset}
 
-## <img src="/docker.png" class="tab-icon"> Dockge 
+## <img src="/docker.png" class="tab-icon"> Docker Compose 
 
 > 
 > If you've never used Dockge before, check out the Dockge setup guide on the wiki.
