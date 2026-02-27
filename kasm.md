@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-27T16:13:18.294Z
+date: 2026-02-27T16:17:32.138Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -130,15 +130,18 @@ Change both storage types from ixVolume to **Host Path**:
 > If your pool is named something besides `tank`, adjust the paths accordingly.
 {.is-info}
 
-#### Network Configuration
+### First Run Setup
 
-Leave the default ports:
-- **WebUI Port**: 30128
-- **Setup Port**: 30129
+1. Click the **Setup** button in the TrueNAS UI
+2. Accept the EULA
+3. Set your admin password
+4. Wait for installation to complete
 
-Click **Save** and wait for the app to deploy.
+After setup, access the Kasm web UI by using the WebUI button in the TrueNAS UI.
 
-Once deployed, access the Kasm web UI at `https://<your-ip>:30128`. Default credentials are shown in the app logs.
+> 
+> Port 3000 is only used for initial setup. After installation, you'll use port 445.
+{.is-info}
 
 # 
 
