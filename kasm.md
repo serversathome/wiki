@@ -2,34 +2,40 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-25T14:51:40.473Z
+date: 2026-02-27T16:05:38.397Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
 ---
 
-# <img src="/kasm-workspaces.png" class="tab-icon"> What is Kasm Workspaces?
+# <img src="/kasm.png" class="tab-icon"> What is Kasm Workspaces?
 
 **Kasm Workspaces** is a container streaming platform that delivers browser-based access to desktops, applications, and web services. It lets you run isolated workspaces like full Linux desktops, web browsers, or development tools—all accessible through your web browser.
 
 This guide covers setting up Kasm with **Proxmox autoscaling**, which automatically provisions and destroys Docker agent VMs based on user demand. When users launch workspaces, Kasm communicates with Proxmox to spin up new VMs. When sessions end, VMs are torn down after a configurable backoff period.
 
 > 
-> This guide requires both TrueNAS (with Dockge) and Proxmox. The Kasm control plane runs on TrueNAS via Dockge while compute is offloaded to Proxmox VMs.
+> This guide requires both TrueNAS and Proxmox. The Kasm control plane runs on TrueNAS (via Dockge or the Apps catalog) while compute is offloaded to Proxmox VMs.
 {.is-info}
 
 # Architecture Overview
 
 | Component | Location | Description |
 |-----------|----------|-------------|
-| **Kasm Server** | TrueNAS (Dockge) | Runs Kasm Workspaces via LinuxServer.io Docker image |
+| **Kasm Server** | TrueNAS | Runs Kasm Workspaces (Dockge or TrueNAS App) |
 | **Agent Template** | Proxmox | Ubuntu VM converted to template (Kasm clones this on demand) |
 | **Autoscaled VMs** | Proxmox | 0-N clones spun up/down automatically based on user sessions |
 
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Kasm with Dockge
+# 1 · Deploy Kasm on TrueNAS
 
-## 1.1 Create Datasets
+Choose your preferred deployment method:
+
+# {.tabset}
+
+## Dockge (LinuxServer.io)
+
+### 1.1 Create Datasets
 
 Before deploying Kasm, create datasets for persistent storage:
 
@@ -40,7 +46,7 @@ Before deploying Kasm, create datasets for persistent storage:
    - `opt` — Kasm application data, database, certificates
    - `profiles` — User profile persistence
 
-### Permissions
+#### Permissions
 
 For each dataset (`kasm/opt` and `kasm/profiles`):
 
@@ -51,7 +57,7 @@ For each dataset (`kasm/opt` and `kasm/profiles`):
 5. Disable all permission checkboxes for Other
 6. Click **Apply Group**, then **Save**
 
-## 1.2 Deploy with Dockge
+### 1.2 Deploy with Dockge
 
 > 
 > If you've never used Dockge before, check out the Dockge setup guide on the wiki.
@@ -78,9 +84,13 @@ services:
       - /run/udev/data:/run/udev/data
     ports:
       - 3000:3000
-      - 443:443
+      - 445:443
     restart: unless-stopped
 ```
+
+> 
+> Port 443 is used by the TrueNAS web UI, so we map Kasm to port 445 instead.
+{.is-info}
 
 > 
 > If your pool is named something besides `tank`, change the left side of the volume paths.
@@ -88,22 +98,88 @@ services:
 
 4. Click **Deploy**
 
-### First Run Setup
+#### First Run Setup
 
 1. Access the install wizard at `https://<your-ip>:3000`
 2. Accept the EULA
 3. Set your admin password
 4. Wait for installation to complete
 
-After setup, access the Kasm web UI at `https://<your-ip>:443`
+After setup, access the Kasm web UI at `https://<your-ip>:445`
 
 > 
-> Port 3000 is only used for initial setup. After installation, you'll use port 443.
+> Port 3000 is only used for initial setup. After installation, you'll use port 445.
 {.is-info}
 
-## 1.3 Configure Upstream Auth Address
+### 1.3 Configure Upstream Auth Address
 
 After installation, log into the Kasm web UI:
+
+1. Go to **Admin → Infrastructure → Zones**
+2. Click **Edit** on your zone
+3. Change **Upstream Auth Address** from `proxy` to your server's IP address (just the IP, no port)
+4. Click **Save**
+
+> 
+> This step is critical. Autoscaled VMs need to know where to "phone home." If this remains set to `proxy`, agents cannot find Kasm and autoscaling silently fails.
+{.is-danger}
+
+## TrueNAS Apps
+
+### 1.1 Create Datasets
+
+Before deploying Kasm, create datasets for persistent storage:
+
+1. Click **Datasets** on the left
+2. Select your configs dataset (e.g., `tank/configs`)
+3. Click **Add Dataset**, name it `kasm`, click **Save**
+4. Select the new `kasm` dataset and create two child datasets:
+   - `opt` — Kasm application data, database, certificates
+   - `profiles` — User profile persistence
+
+#### Permissions
+
+For each dataset (`kasm/opt` and `kasm/profiles`):
+
+1. Click the dataset, find **Permissions** on the lower left, click **Edit**
+2. Leave User as `root`
+3. Change Group to `apps`
+4. Enable all group permission checkboxes
+5. Disable all permission checkboxes for Other
+6. Click **Apply Group**, then **Save**
+
+### 1.2 Install the App
+
+1. Navigate to **Apps** in the TrueNAS UI
+2. Search for "Kasm Workspaces"
+3. Click **Install**
+
+#### Storage Configuration
+
+Change both storage types from ixVolume to **Host Path**:
+
+| Setting | Host Path |
+|---------|-----------|
+| Kasm Workspaces Opt Storage | `/mnt/tank/configs/kasm/opt` |
+| Kasm Workspaces Profiles Storage | `/mnt/tank/configs/kasm/profiles` |
+
+> 
+> If your pool is named something besides `tank`, adjust the paths accordingly.
+{.is-info}
+
+#### Network Configuration
+
+Leave the default ports:
+- **WebUI Port**: 30128
+- **Setup Port**: 30129
+
+Click **Save** and wait for the app to deploy.
+
+Once deployed, access the Kasm web UI at `https://<your-ip>:30128`. Default credentials are shown in the app logs.
+
+### 1.3 Configure Upstream Auth Address
+
+After deployment, log into the Kasm web UI:
 
 1. Go to **Admin → Infrastructure → Zones**
 2. Click **Edit** on your zone
