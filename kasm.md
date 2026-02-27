@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-27T16:18:31.881Z
+date: 2026-02-27T17:27:09.731Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -144,7 +144,7 @@ After setup, access the Kasm web UI by using the WebUI button in the TrueNAS UI.
 
 ## 1.3 Configure Upstream Auth Address
 
-After installation, log into the Kasm web UI:
+After installation, log into the Kasm web UI. The user is `admin@kasm.local` and the password you set from the previous step.
 
 1. Go to **Admin → Infrastructure → Zones**
 2. Click **Edit** on your zone
