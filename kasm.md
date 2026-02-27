@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-27T16:06:27.439Z
+date: 2026-02-27T16:11:44.776Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -29,13 +29,7 @@ This guide covers setting up Kasm with **Proxmox autoscaling**, which automatica
 
 # 1 · Deploy Kasm on TrueNAS
 
-Choose your preferred deployment method:
-
-# {.tabset}
-
-## Dockge (LinuxServer.io)
-
-### 1.1 Create Datasets
+## 1.1 Create Datasets
 
 Before deploying Kasm, create datasets for persistent storage:
 
@@ -46,7 +40,7 @@ Before deploying Kasm, create datasets for persistent storage:
    - `opt` — Kasm application data, database, certificates
    - `profiles` — User profile persistence
 
-#### Permissions
+### Permissions
 
 For each dataset (`kasm/opt` and `kasm/profiles`):
 
@@ -57,7 +51,13 @@ For each dataset (`kasm/opt` and `kasm/profiles`):
 5. Disable all permission checkboxes for Other
 6. Click **Apply Group**, then **Save**
 
-### 1.2 Deploy with Dockge
+## 1.2 Deploy Kasm
+
+Choose your preferred deployment method:
+
+# {.tabset}
+
+### Dockge (LinuxServer.io)
 
 > 
 > If you've never used Dockge before, check out the Dockge setup guide on the wiki.
@@ -111,44 +111,7 @@ After setup, access the Kasm web UI at `https://<your-ip>:445`
 > Port 3000 is only used for initial setup. After installation, you'll use port 445.
 {.is-info}
 
-### 1.3 Configure Upstream Auth Address
-
-After installation, log into the Kasm web UI:
-
-1. Go to **Admin → Infrastructure → Zones**
-2. Click **Edit** on your zone
-3. Change **Upstream Auth Address** from `proxy` to your server's IP address (just the IP, no port)
-4. Click **Save**
-
-> 
-> This step is critical. Autoscaled VMs need to know where to "phone home." If this remains set to `proxy`, agents cannot find Kasm and autoscaling silently fails.
-{.is-danger}
-
-## TrueNAS Apps
-
-### 1.1 Create Datasets
-
-Before deploying Kasm, create datasets for persistent storage:
-
-1. Click **Datasets** on the left
-2. Select your configs dataset (e.g., `tank/configs`)
-3. Click **Add Dataset**, name it `kasm`, click **Save**
-4. Select the new `kasm` dataset and create two child datasets:
-   - `opt` — Kasm application data, database, certificates
-   - `profiles` — User profile persistence
-
-#### Permissions
-
-For each dataset (`kasm/opt` and `kasm/profiles`):
-
-1. Click the dataset, find **Permissions** on the lower left, click **Edit**
-2. Leave User as `root`
-3. Change Group to `apps`
-4. Enable all group permission checkboxes
-5. Disable all permission checkboxes for Other
-6. Click **Apply Group**, then **Save**
-
-### 1.2 Install the App
+### TrueNAS Apps
 
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for "Kasm Workspaces"
@@ -177,9 +140,11 @@ Click **Save** and wait for the app to deploy.
 
 Once deployed, access the Kasm web UI at `https://<your-ip>:30128`. Default credentials are shown in the app logs.
 
-### 1.3 Configure Upstream Auth Address
+# 
 
-After deployment, log into the Kasm web UI:
+## 1.3 Configure Upstream Auth Address
+
+After installation, log into the Kasm web UI:
 
 1. Go to **Admin → Infrastructure → Zones**
 2. Click **Edit** on your zone
