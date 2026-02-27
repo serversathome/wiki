@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-27T16:06:00.603Z
+date: 2026-02-27T16:06:27.439Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
