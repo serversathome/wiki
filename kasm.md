@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-28T13:03:21.149Z
+date: 2026-02-28T14:48:45.774Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -330,7 +330,7 @@ Click **Next** to configure the VM Provider.
 1. Get the latest startup script from Kasm's GitHub:
 
     ```
-    https://github.com/kasmtech/workspaces-autoscale-startup-scripts
+    https://github.com/kasmtech/workspaces-autoscale-startup-scripts/blob/release/1.18.1/docker_agents/ubuntu.sh
     ```
 
 1. Use the Linux/Docker agent script. Paste it into the **Startup Script** field.
