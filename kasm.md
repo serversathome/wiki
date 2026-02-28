@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-28T12:10:44.792Z
+date: 2026-02-28T12:14:15.769Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -57,7 +57,7 @@ Choose your preferred deployment method:
 
 # {.tabset}
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose 
+### Dockge (LinuxServer.io)
 
 > 
 > If you've never used Dockge before, check out the Dockge setup guide on the wiki.
@@ -98,7 +98,7 @@ services:
 
 4. Click **Deploy**
 
-### First Run Setup
+#### First Run Setup
 
 1. Access the install wizard at `https://<your-ip>:3000`
 2. Accept the EULA
@@ -111,13 +111,13 @@ After setup, access the Kasm web UI at `https://<your-ip>:445`
 > Port 3000 is only used for initial setup. After installation, you'll use port 445.
 {.is-info}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+### TrueNAS Apps
 
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for "Kasm Workspaces"
 3. Click **Install**
 
-### Storage Configuration
+#### Storage Configuration
 
 Change both storage types from ixVolume to **Host Path**:
 
@@ -130,21 +130,21 @@ Change both storage types from ixVolume to **Host Path**:
 > If your pool is named something besides `tank`, adjust the paths accordingly.
 {.is-info}
 
-### First Run Setup
+#### Network Configuration
 
-1. Click the **Setup** button in the TrueNAS UI
-2. Accept the EULA
-3. Set your admin password
-4. Wait for installation to complete
+Leave the default ports:
+- **WebUI Port**: 30128
+- **Setup Port**: 30129
 
-After setup, access the Kasm web UI by using the WebUI button in the TrueNAS UI.
+Click **Save** and wait for the app to deploy.
 
+Once deployed, access the Kasm web UI at `https://<your-ip>:30128`. Default credentials are shown in the app logs.
 
 # 
 
 ## 1.3 Configure Upstream Auth Address
 
-After installation, log into the Kasm web UI. The user is `admin@kasm.local` and the password you set from the previous step.
+After installation, log into the Kasm web UI:
 
 1. Go to **Admin → Infrastructure → Zones**
 2. Click **Edit** on your zone
@@ -168,15 +168,20 @@ After installation, log into the Kasm web UI. The user is `admin@kasm.local` and
 2. Username: `kasm-autoscale`
 3. Realm: **Proxmox VE authentication server**
 
+> 
+> The realm selection adds `@pve` automatically. Don't include it in the username field.
+{.is-info}
+
 ## 2.3 Create API Token
 
 1. Navigate to **Permissions → API Tokens → Add**
 2. User: `kasm-autoscale@pve`
-3. Uncheck **Privilege Separation**
-4. Click **Add**
+3. Token ID: `kasm` (or any name you choose)
+4. Uncheck **Privilege Separation**
+5. Click **Add**
 
 > 
-> Save the Token ID and Secret immediately—you cannot view them again.
+> Save the Token ID and Secret immediately—you cannot view them again. You'll need just the token name (e.g., `kasm`) for Kasm, not the full ID.
 {.is-warning}
 
 ## 2.4 Create Role
@@ -191,22 +196,25 @@ Navigate to **Permissions → Roles → Create**:
 | SDN.Use | VM.Audit | VM.Clone |
 | VM.Config.CDROM | VM.Config.CPU | VM.Config.Disk |
 | VM.Config.HWType | VM.Config.Memory | VM.Config.Network |
-| VM.Config.Options | VM.PowerMgmt |
+| VM.Config.Options | VM.Monitor | VM.PowerMgmt |
 
 
 ## 2.5 Assign Permissions
 
-Navigate to **Permissions → Add → User Permission** and create three entries:
+Navigate to **Permissions → Add → User Permission** and create entries for each path:
 
 | Path | User | Role |
 |------|------|------|
-| `/sdn/zones/localnetwork` | kasm-autoscale@pve | kasm-autoscale-role |
-| `/storage/local-lvm` | kasm-autoscale@pve | kasm-autoscale-role |
 | `/pool/kasm-autoscale` | kasm-autoscale@pve | kasm-autoscale-role |
-
+| `/storage/local-lvm` | kasm-autoscale@pve | kasm-autoscale-role |
+| `/sdn/zones/localnetwork` | kasm-autoscale@pve | kasm-autoscale-role |
 
 > 
 > Adjust `/storage/local-lvm` to match your storage name if different.
+{.is-info}
+
+> 
+> The SDN zone path (`/sdn/zones/localnetwork`) is only needed if you're using Proxmox SDN. If you're using default bridge networking (vmbr0), you can skip this entry.
 {.is-info}
 
 # <img src="/ubuntu.png" class="tab-icon"> 3 · Create Agent Template
@@ -299,18 +307,22 @@ Click **Next** to configure the VM Provider.
 | Max Instances | 2 |
 | Host | Your Proxmox IP (no `https://`) |
 | Username | kasm-autoscale@pve |
-| Token Name | (your token name) |
-| Token Value | (your token secret) |
+| Token Name | Just the token name (e.g., `kasm`), not the full ID |
+| Token Value | Your token secret (UUID format) |
 | Verify SSL | Disabled |
 | VMID Range | 1000 to 2000 |
 | Full Clone | Disabled |
-| Template Name | (exact name of your template) |
+| Template Name | Exact name of your template (case-sensitive) |
 | Cluster Node Name | pve |
 | Resource Pool Name | kasm-autoscale |
 | Cores | 4 |
 | Memory | 8192 |
 | Installed OS Type | Linux |
 | Startup Script Path | /tmp |
+
+> 
+> The Token Name is just the name you gave the token (e.g., `kasm`), NOT the full token ID like `kasm-autoscale@pve!kasm`.
+{.is-warning}
 
 
 ## 4.4 Startup Script
