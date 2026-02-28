@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-28T13:02:51.711Z
+date: 2026-02-28T13:03:21.149Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -313,7 +313,7 @@ Click **Next** to configure the VM Provider.
 | VMID Range | 1000 to 2000 |
 | Full Clone | Disabled |
 | Template Name | Exact name of your template (case-sensitive) |
-| Cluster Node Name | proxmox |
+| Cluster Node Name | *your cluster name* |
 | Resource Pool Name | kasm-autoscale |
 | Cores | 4 |
 | Memory | 8192 |
