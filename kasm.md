@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-28T11:53:36.128Z
+date: 2026-02-28T12:10:44.792Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -165,7 +165,7 @@ After installation, log into the Kasm web UI. The user is `admin@kasm.local` and
 ## 2.2 Create Dedicated User
 
 1. Navigate to **Permissions → Users → Add**
-2. Username: `kasm-autoscale@pve`
+2. Username: `kasm-autoscale`
 3. Realm: **Proxmox VE authentication server**
 
 ## 2.3 Create API Token
