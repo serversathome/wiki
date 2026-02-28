@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-28T12:20:09.560Z
+date: 2026-02-28T12:33:05.017Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -183,13 +183,20 @@ Navigate to **Permissions → Roles → Create**:
 - Name: `kasm-autoscale-role`
 - Add these privileges:
 
-
-|---|---|---|
-| Pool.Audit | VM.Allocate | Datastore.AllocateSpace |
-| SDN.Use | VM.Audit | VM.Clone |
-| VM.Config.CDROM | VM.Config.CPU | VM.Config.Disk |
-| VM.Config.HWType | VM.Config.Memory | VM.Config.Network |
-| VM.Config.Options | VM.Monitor | VM.PowerMgmt |
+  1. Datastore.AllocateSpace
+  1. Pool.Audit
+  1. SDN.Use
+  1. VM.Allocate
+  1. VM.Audit
+  1. VM.Clone
+  1. VM.Config.CDROM
+  1. VM.Config.CPU
+  1. VM.Config.Disk
+   1. VM.Config.HWType
+  1. VM.Config.Memory
+  1. VM.Config.Network
+  1. VM.Config.Options
+  1. VM.PowerMgmt
 
 
 ## 2.5 Assign Permissions
