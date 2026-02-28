@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-28T12:19:23.051Z
+date: 2026-02-28T12:20:09.560Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -88,7 +88,6 @@ services:
 > If your pool is named something besides `tank`, change the left side of the volume paths.
 {.is-info}
 
-4. Click **Deploy**
 
 ### First Run Setup
 
