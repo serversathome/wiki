@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-02-27T17:27:31.347Z
+date: 2026-02-28T11:53:36.128Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -191,7 +191,7 @@ Navigate to **Permissions → Roles → Create**:
 | SDN.Use | VM.Audit | VM.Clone |
 | VM.Config.CDROM | VM.Config.CPU | VM.Config.Disk |
 | VM.Config.HWType | VM.Config.Memory | VM.Config.Network |
-| VM.Config.Options | VM.Monitor | VM.PowerMgmt |
+| VM.Config.Options | VM.PowerMgmt |
 
 
 ## 2.5 Assign Permissions
