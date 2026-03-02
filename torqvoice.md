@@ -2,7 +2,7 @@
 title: Torqvoice
 description: A guide to deploying Torqvoice
 published: true
-date: 2026-03-02T19:14:29.561Z
+date: 2026-03-02T19:14:52.076Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-02T19:14:06.166Z
@@ -60,16 +60,8 @@ services:
 
 # 2 · Configuration
 
-## 2.1 Environment Variables
 
-| Variable | Required | Description |
-|---|---|---|
-| `DATABASE_URL` | Yes | PostgreSQL connection string |
-| `BETTER_AUTH_SECRET` | Yes | Auth secret — generate with `openssl rand -hex 32` |
-| `NEXT_PUBLIC_APP_URL` | Yes | The full URL where Torqvoice is accessible |
-{.dense}
-
-## 2.2 Initial Setup
+## 2.1 Initial Setup
 
 After logging in for the first time:
 
@@ -79,11 +71,11 @@ After logging in for the first time:
 4. **Add Team Members** — invite staff and assign roles (owner, admin, member)
 5. **Set Up Inventory** — add your parts catalog with supplier info and stock levels
 
-## 2.3 Multi-Company Support
+## 2.2 Multi-Company Support
 
 Torqvoice supports managing multiple workshops from a single login. To add another company, navigate to the company selector and create a new organization. Each company maintains its own separate data for customers, vehicles, work orders, and inventory.
 
-## 2.4 Reverse Proxy
+## 2.3 Reverse Proxy
 
 If placing Torqvoice behind a reverse proxy (e.g. Nginx Proxy Manager, Caddy, or Traefik), make sure to:
 
@@ -95,7 +87,7 @@ If placing Torqvoice behind a reverse proxy (e.g. Nginx Proxy Manager, Caddy, or
 > Torqvoice generates shareable public links for invoices and quotes. The `NEXT_PUBLIC_APP_URL` must be correct for these links to work.
 {.is-info}
 
-## 2.5 Backups
+## 2.4 Backups
 
 The Torqvoice data is stored in two locations:
 
