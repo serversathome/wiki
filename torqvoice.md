@@ -2,7 +2,7 @@
 title: Torqvoice
 description: A guide to deploying Torqvoice
 published: true
-date: 2026-03-02T19:14:06.166Z
+date: 2026-03-02T19:14:29.561Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-02T19:14:06.166Z
@@ -104,12 +104,6 @@ The Torqvoice data is stored in two locations:
 
 Make sure both directories are included in your backup strategy.
 
-> 
-> To back up the database manually, you can run:
-> ```bash
-> docker exec torqvoice-db pg_dump -U torqvoice torqvoice > torqvoice_backup.sql
-> ```
-{.is-success}
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
 
