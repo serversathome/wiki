@@ -2,7 +2,7 @@
 title: Plumio
 description: A guide to deploying Plumio
 published: true
-date: 2026-03-02T21:21:42.589Z
+date: 2026-03-02T21:22:01.624Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-02T21:21:42.589Z
@@ -52,8 +52,8 @@ services:
           memory: 512M
 ```
 
-1. Replace `YOUR_SERVER_IP` in `ALLOWED_ORIGINS` with your actual server IP or hostname
-2. Deploy the stack:
+Replace `YOUR_SERVER_IP` in `ALLOWED_ORIGINS` with your actual server IP or hostname
+
 
 And in the ENV section below the compose window add the following content:
 
