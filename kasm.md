@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-03-04T13:08:48.158Z
+date: 2026-03-04T13:34:21.603Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -141,7 +141,7 @@ After installation, log into the Kasm web UI:
 
 1. Go to **Admin → Infrastructure → Deployment Zones**
 2. Click **Edit** on your zone
-3. Change **Upstream Auth Address** from `proxy` to your server's IP address (just the IP, no port)
+3. Change **Upstream Auth Address** from `proxy` to your Kasm server's IP address (just the IP, no port)
 4. Click **Save**
 
 > 
