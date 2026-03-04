@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-03-04T13:34:21.603Z
+date: 2026-03-04T13:38:17.406Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -337,9 +337,6 @@ Click **Next** to configure the VM Provider.
 
 1. Use the Linux/Docker agent script. Paste it into the **Startup Script** field.
 
-
-    > As of Kasm v1.17+, remove the NGINX cert/key lines from the script—they're no longer needed.
-   <!-- {blockquote:.is-info} -->
 
 1. Click **Finish**.
 
