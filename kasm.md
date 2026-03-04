@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-03-02T16:41:12.004Z
+date: 2026-03-04T12:15:18.103Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -239,7 +239,7 @@ This VM lives in Proxmox and gets cloned by Kasm when it needs more compute capa
 {.is-info}
 
 ## 3.2 Install Ubuntu
-
+- Uncheck **Set up this disk as an LVM group** (under storage configuration)
 - Enable **OpenSSH server** during installation
 - After install, remove ISO: **Hardware → CD/DVD → "Do not use any media"**
 
