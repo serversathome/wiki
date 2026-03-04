@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-03-04T17:13:19.823Z
+date: 2026-03-04T17:14:46.031Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -335,15 +335,14 @@ Click **Next** to configure the VM Provider.
     https://github.com/kasmtech/workspaces-autoscale-startup-scripts/blob/release/1.18.1/docker_agents/ubuntu.sh
     ```
 
-1. Use the Linux/Docker agent script. Paste it into the **Startup Script** field.
-1. If your Kasm instance runs on a port other than 443 (e.g., 445 or 30128), you must add the following lines to the end of the startup script:
+1. If your Kasm instance runs on a port other than 443 (e.g., 8443 or 30128), you must add the following lines to the end of the startup script:
     ```bash
-      # Fix manager port for non-standard Kasm installations
-      sed -i "/^manager:/,\$ s/public_port: 443/public_port: 30128/" /opt/kasm/*/conf/app/agent/agent.app.config.yaml
-
-      # Restart agent containers with corrected config
-      cd /opt/kasm/current && docker compose -f docker/docker-compose.yaml up -d
+    # Fix manager port for non-standard Kasm installations
+    sed -i "/^manager:/,\$ s/public_port: 443/public_port: YOUR_PORT/" /opt/kasm/*/conf/app/agent/agent.app.config.yaml
+    # Restart agent containers with corrected config
+    cd /opt/kasm/current && docker compose -f docker/docker-compose.yaml up -d
     ```
+
 	Replace `YOUR_PORT` with your actual Kasm port (e.g., 445 or 30128).
 
 1. Click **Finish**.
