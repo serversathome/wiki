@@ -2,7 +2,7 @@
 title: Kutt
 description: A guide to deploying Kutt
 published: true
-date: 2026-03-05T18:35:20.228Z
+date: 2026-03-05T18:36:14.958Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-05T18:35:20.228Z
@@ -86,8 +86,8 @@ services:
       - REDIS_ENABLED=true
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - JWT_SECRET=CHANGE_ME_TO_A_LONG_RANDOM_STRING
-      - DEFAULT_DOMAIN=localhost:3000
+      - JWT_SECRET=
+      - DEFAULT_DOMAIN=
       - SITE_NAME=Kutt
       - DISALLOW_REGISTRATION=false
       - DISALLOW_ANONYMOUS_LINKS=true
@@ -110,6 +110,11 @@ services:
     volumes:
       - /mnt/tank/configs/kutt/postgres:/var/lib/postgresql/data
 ```
+> You **must** change `JWT_SECRET` to a long random string before deploying. You can generate one with: `openssl rand -base64 32`
+{.is-danger}
+
+> Change `DEFAULT_DOMAIN` to the domain or IP address you will use to access Kutt. Do not include `http://` or `https://` — just the domain (e.g., `links.yourdomain.com`).
+{.is-info}
 
 > Make sure `DB_USER` / `DB_PASSWORD` / `DB_NAME` match the `POSTGRES_USER` / `POSTGRES_PASSWORD` / `POSTGRES_DB` values.
 {.is-warning}
