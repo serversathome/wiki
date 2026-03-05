@@ -2,7 +2,7 @@
 title: Kutt
 description: A guide to deploying Kutt
 published: true
-date: 2026-03-05T18:36:14.958Z
+date: 2026-03-05T18:38:32.470Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-05T18:35:20.228Z
@@ -207,4 +207,3 @@ This prevents anyone else from signing up or creating short links without an acc
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
 
-`[VIDEO EMBED: Add YouTube link here once video is published]`
