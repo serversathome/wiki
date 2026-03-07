@@ -1,8 +1,8 @@
 ---
 title: Palmr
 description: A guide to deploying Palmr on docker
-published: true
-date: 2026-01-15T15:30:34.861Z
+published: false
+date: 2026-03-07T00:16:27.127Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:57.505Z
