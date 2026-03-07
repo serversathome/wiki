@@ -2,7 +2,7 @@
 title: Cal.com
 description: A guide to deploying Cal.com
 published: true
-date: 2026-03-07T11:21:00.310Z
+date: 2026-03-07T11:26:17.575Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-07T11:20:08.256Z
@@ -17,6 +17,7 @@ dateCreated: 2026-03-07T11:20:08.256Z
 > Cal.com requires several environment variables to function properly. Make sure you generate unique secrets for `NEXTAUTH_SECRET` and `CALENDSO_ENCRYPTION_KEY` before deploying. See section 2.1 for instructions.
 {.is-warning}
 
+
 ```yaml
 services:
   calcom-db:
@@ -24,9 +25,9 @@ services:
     container_name: calcom-db
     restart: unless-stopped
     environment:
-      - POSTGRES_USER=calcom
-      - POSTGRES_PASSWORD=CHANGE_ME_DB_PASSWORD
-      - POSTGRES_DB=calcom
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
     volumes:
       - /mnt/tank/configs/calcom/db:/var/lib/postgresql/data
 
@@ -37,41 +38,82 @@ services:
     depends_on:
       - calcom-db
     ports:
-      - "3000:3000"
+      - "${CALCOM_PORT:-3000}:3000"
     environment:
       # --- Core Settings ---
-      - NEXT_PUBLIC_WEBAPP_URL=https://cal.example.com
-      - NEXTAUTH_URL=https://cal.example.com
-      - NEXTAUTH_SECRET=CHANGE_ME_GENERATE_WITH_OPENSSL
-      - CALENDSO_ENCRYPTION_KEY=CHANGE_ME_GENERATE_WITH_OPENSSL
+      - NEXT_PUBLIC_WEBAPP_URL=${CALCOM_URL}
+      - NEXTAUTH_URL=${CALCOM_URL}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - CALENDSO_ENCRYPTION_KEY=${CALENDSO_ENCRYPTION_KEY}
       - CALCOM_TELEMETRY_DISABLED=1
       # --- Database ---
-      - DATABASE_URL=postgresql://calcom:CHANGE_ME_DB_PASSWORD@calcom-db:5432/calcom
-      - DATABASE_DIRECT_URL=postgresql://calcom:CHANGE_ME_DB_PASSWORD@calcom-db:5432/calcom
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@calcom-db:5432/${POSTGRES_DB}
+      - DATABASE_DIRECT_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@calcom-db:5432/${POSTGRES_DB}
       # --- Email (SMTP) ---
-      - EMAIL_FROM=cal@example.com
-      - EMAIL_SERVER_HOST=smtp.example.com
-      - EMAIL_SERVER_PORT=587
-      - EMAIL_SERVER_USER=your_smtp_user
-      - EMAIL_SERVER_PASSWORD=your_smtp_password
+      - EMAIL_FROM=${EMAIL_FROM}
+      - EMAIL_SERVER_HOST=${EMAIL_SERVER_HOST}
+      - EMAIL_SERVER_PORT=${EMAIL_SERVER_PORT:-587}
+      - EMAIL_SERVER_USER=${EMAIL_SERVER_USER}
+      - EMAIL_SERVER_PASSWORD=${EMAIL_SERVER_PASSWORD}
       # --- Stripe (for paid bookings) ---
-      - NEXT_PUBLIC_STRIPE_PUBLIC_KEY=pk_live_XXXXX
-      - STRIPE_PRIVATE_KEY=sk_live_XXXXX
-      - STRIPE_WEBHOOK_SECRET=whsec_XXXXX
-      - STRIPE_CLIENT_ID=ca_XXXXX
-      - PAYMENT_FEE_FIXED=0
-      - PAYMENT_FEE_PERCENTAGE=0
+      - NEXT_PUBLIC_STRIPE_PUBLIC_KEY=${STRIPE_PUBLIC_KEY}
+      - STRIPE_PRIVATE_KEY=${STRIPE_PRIVATE_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - STRIPE_CLIENT_ID=${STRIPE_CLIENT_ID}
+      - PAYMENT_FEE_FIXED=${PAYMENT_FEE_FIXED:-0}
+      - PAYMENT_FEE_PERCENTAGE=${PAYMENT_FEE_PERCENTAGE:-0}
       # --- Google Calendar OAuth ---
-      - GOOGLE_API_CREDENTIALS={"client_id":"XXXXX.apps.googleusercontent.com","client_secret":"XXXXX","redirect_uris":["https://cal.example.com/api/integrations/googlecalendar/callback"]}
+      - GOOGLE_API_CREDENTIALS=${GOOGLE_API_CREDENTIALS}
       # --- License (optional, for enterprise features) ---
-      # - CALCOM_LICENSE_KEY=
+      # - CALCOM_LICENSE_KEY=${CALCOM_LICENSE_KEY}
     volumes:
       - /mnt/tank/configs/calcom/config:/app/config
 ```
 
+## Environment Variables (.env)
+
+Create a `.env` file in the same directory as your compose file (Dockge handles this automatically in the environment variables section):
+
+```bash
+# --- Database ---
+POSTGRES_USER=calcom
+POSTGRES_PASSWORD=CHANGE_ME_STRONG_PASSWORD
+POSTGRES_DB=calcom
+
+# --- Cal.com Core ---
+CALCOM_URL=https://cal.example.com
+CALCOM_PORT=3000
+NEXTAUTH_SECRET=CHANGE_ME_GENERATE_WITH_OPENSSL
+CALENDSO_ENCRYPTION_KEY=CHANGE_ME_GENERATE_WITH_OPENSSL
+
+# --- Email (SMTP) ---
+EMAIL_FROM=cal@example.com
+EMAIL_SERVER_HOST=smtp.example.com
+EMAIL_SERVER_PORT=587
+EMAIL_SERVER_USER=your_smtp_user
+EMAIL_SERVER_PASSWORD=your_smtp_password
+
+# --- Stripe (for paid bookings) ---
+STRIPE_PUBLIC_KEY=pk_live_XXXXX
+STRIPE_PRIVATE_KEY=sk_live_XXXXX
+STRIPE_WEBHOOK_SECRET=whsec_XXXXX
+STRIPE_CLIENT_ID=ca_XXXXX
+PAYMENT_FEE_FIXED=0
+PAYMENT_FEE_PERCENTAGE=0
+
+# --- Google Calendar OAuth ---
+GOOGLE_API_CREDENTIALS={"client_id":"XXXXX.apps.googleusercontent.com","client_secret":"XXXXX","redirect_uris":["https://cal.example.com/api/integrations/googlecalendar/callback"]}
+
+# --- License (optional) ---
+# CALCOM_LICENSE_KEY=
+```
+
 1. Replace all `CHANGE_ME` values with your own credentials
-2. Replace `cal.example.com` with your actual domain (e.g., `cal.example.com`)
-3. Generate secrets using `openssl rand -base64 32` for `NEXTAUTH_SECRET` and `openssl rand -base64 24` for `CALENDSO_ENCRYPTION_KEY`
+2. Replace `cal.example.com` with your actual domain (e.g., `cal.serversatho.me`)
+3. Generate secrets: run `openssl rand -base64 32` for `NEXTAUTH_SECRET` and `openssl rand -base64 24` for `CALENDSO_ENCRYPTION_KEY`
+
+> In Dockge, paste the compose YAML on the right and fill in the environment variables in the **Environment Variables** section at the bottom. Dockge creates the `.env` file for you.
+{.is-success}
 
 > If your pool is named something besides `tank`, change the left side of the volume paths accordingly.
 {.is-info}
