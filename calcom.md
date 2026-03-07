@@ -2,7 +2,7 @@
 title: Cal.com
 description: A guide to deploying Cal.com
 published: true
-date: 2026-03-07T11:20:08.256Z
+date: 2026-03-07T11:21:00.310Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-07T11:20:08.256Z
@@ -11,15 +11,6 @@ dateCreated: 2026-03-07T11:20:08.256Z
 # <img src="/cal-com.png" class="tab-icon"> What is Cal.com?
 
 **Cal.com** is an open-source scheduling platform that lets you create bookable event types, sync with your existing calendars, and accept payments through Stripe. It's a self-hosted alternative to Calendly with full control over your data, making it ideal for consultants, creators, and freelancers who want a professional booking page without handing their schedule to a third party.
-
-| Detail | Value |
-|--------|-------|
-| **GitHub** | [calcom/cal.com](https://github.com/calcom/cal.com) |
-| **Stars** | ~40,000+ |
-| **License** | AGPLv3 / Commercial |
-| **Default Port** | 3000 |
-| **Official Docs** | [cal.com/docs](https://cal.com/docs) |
-{.dense}
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Cal.com
 
@@ -79,7 +70,7 @@ services:
 ```
 
 1. Replace all `CHANGE_ME` values with your own credentials
-2. Replace `cal.example.com` with your actual domain (e.g., `cal.serversatho.me`)
+2. Replace `cal.example.com` with your actual domain (e.g., `cal.example.com`)
 3. Generate secrets using `openssl rand -base64 32` for `NEXTAUTH_SECRET` and `openssl rand -base64 24` for `CALENDSO_ENCRYPTION_KEY`
 
 > If your pool is named something besides `tank`, change the left side of the volume paths accordingly.
@@ -111,7 +102,6 @@ Cal.com should be accessed over HTTPS. Set up a reverse proxy in **Nginx Proxy M
 | **Forward Hostname** | calcom (or container IP) |
 | **Forward Port** | 3000 |
 | **SSL** | Request a new SSL certificate or use Cloudflare |
-{.dense}
 
 If you're using a **Cloudflare Tunnel**, point the tunnel to `http://calcom:3000` and set your public hostname to your desired subdomain.
 
@@ -198,5 +188,3 @@ Your booking page will be available at `https://cal.example.com/your-username`.
 Full documentation: [cal.com/docs/self-hosting](https://cal.com/docs/self-hosting)
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
-
-`[VIDEO LINK PLACEHOLDER]`
