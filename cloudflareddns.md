@@ -2,7 +2,7 @@
 title: Cloudflare DDNS
 description: A guide to installing Cloudflare DDNS Updater in Docker
 published: true
-date: 2026-01-15T15:28:30.460Z
+date: 2026-03-08T18:56:12.506Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:46.034Z
@@ -18,7 +18,7 @@ A feature-rich and robust Cloudflare DDNS updater with a small footprint. The pr
 ```yaml
 services:
   cloudflare-ddns:
-    image: favonia/cloudflare-ddns:latest
+    image: favonia/cloudflare-ddns:edge
     network_mode: host
     # This bypasses network isolation and makes IPv6 easier (optional; see below)
     restart: unless-stopped
