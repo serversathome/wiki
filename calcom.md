@@ -2,7 +2,7 @@
 title: Cal.com
 description: A guide to deploying Cal.com
 published: true
-date: 2026-03-07T11:26:17.575Z
+date: 2026-03-08T12:05:55.642Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-07T11:20:08.256Z
@@ -13,9 +13,6 @@ dateCreated: 2026-03-07T11:20:08.256Z
 **Cal.com** is an open-source scheduling platform that lets you create bookable event types, sync with your existing calendars, and accept payments through Stripe. It's a self-hosted alternative to Calendly with full control over your data, making it ideal for consultants, creators, and freelancers who want a professional booking page without handing their schedule to a third party.
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Cal.com
-
-> Cal.com requires several environment variables to function properly. Make sure you generate unique secrets for `NEXTAUTH_SECRET` and `CALENDSO_ENCRYPTION_KEY` before deploying. See section 2.1 for instructions.
-{.is-warning}
 
 
 ```yaml
@@ -30,6 +27,13 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
     volumes:
       - /mnt/tank/configs/calcom/db:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   calcom:
     image: calcom.docker.scarf.sh/calcom/cal.com:latest
