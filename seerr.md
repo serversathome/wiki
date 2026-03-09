@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-02-19T12:09:35.223Z
+date: 2026-03-09T18:05:37.094Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-14T20:08:17.652Z
@@ -178,11 +178,48 @@ If your Jellyseerr/Overseerr TrueNAS app was using **ixVolume** storage, you'll 
 
 # 4 · Configuration
 
-## 4.1 PostgreSQL (Optional)
+## 4.1 Signing In
+
+1. Select your media server type — **Jellyfin**, **Emby**, or **Plex**
+1. Enter the IP address and port for your media server and sign in with your credentials
+1. The email address you use doesn't matter — feel free to use a throwaway
+1. Click **Continue**
+1. Click the button to **Sync Libraries** and when you get the option, enable both **TV** and **Movies**, then click **Start Scan** and **Continue**
+
+## 4.2 Adding Radarr / Sonarr
+
+6. Click the area to **Add Radarr Server** (or **Sonarr Server**). Fill in the following fields:
+
+|   Field  | Value    |
+| --- | --- |
+| **Default Server** | check this box if you are only running one instance of Radarr/Sonarr |
+| **4K Server** | for advanced users who run separate servers for 4K and 1080p content |
+| **Server Name** | usually just "Radarr" or "Sonarr" |
+| **Host or IP Address** | IP of the Radarr or Sonarr server |
+| **Port** | port of the Radarr or Sonarr server |
+| **Use SSL** | leave this unchecked |
+| **API Key** | API key for Radarr or Sonarr |
+
+7. After you populate these values, click **Test** at the bottom. Now you should be able to fill in the rest of the fields:
+
+|   Field  |   Value  |
+| --- | --- |
+| **URL Base** | leave this blank |
+| **Quality Profile** | select the quality profile content will be downloaded with by default |
+| **Root Folder** | there should only be one option here — select the folder you set up for Radarr/Sonarr |
+| **Minimum Availability** | change this to **Announced** |
+| **Tags** | leave blank |
+| **External URL** | leave blank |
+| **Enable Scan** | check this box |
+| **Enable Automatic Search** | check this box |
+
+8. Click **Add Server** at the bottom. Repeat the same process for Sonarr.
+
+## 4.3 PostgreSQL (Optional)
 
 Seerr v3.0.0 adds optional PostgreSQL support. By default, Seerr uses SQLite (stored in the config directory). If you want to switch to PostgreSQL, refer to the [official database configuration docs](https://docs.seerr.dev/extending-jellyseerr/database-config#postgresql-options).
 
-## 4.2 DNS Caching (Experimental)
+## 4.4 DNS Caching (Experimental)
 
 If you run Pi-hole or AdGuard, Seerr's new DNS caching feature can help reduce DNS query spam from the container. This is experimental and can be enabled in the Seerr settings.
 
