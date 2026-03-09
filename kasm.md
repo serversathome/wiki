@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-03-04T17:14:46.031Z
+date: 2026-03-09T16:22:20.792Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -18,122 +18,57 @@ This guide covers setting up Kasm with **Proxmox autoscaling**, which automatica
 > This guide requires both TrueNAS and Proxmox. The Kasm control plane runs on TrueNAS (via Dockge or the Apps catalog) while compute is offloaded to Proxmox VMs.
 {.is-info}
 
-# Architecture Overview
+#  Architecture Overview
 
 | Component | Location | Description |
 |-----------|----------|-------------|
-| **Kasm Server** | TrueNAS | Runs Kasm Workspaces (Dockge or TrueNAS App) |
+| **Kasm Server** | Proxmox VM | Runs the Kasm Workspaces control plane |
 | **Agent Template** | Proxmox | Ubuntu VM converted to template (Kasm clones this on demand) |
 | **Autoscaled VMs** | Proxmox | 0-N clones spun up/down automatically based on user sessions |
 
 
-# 1 · Deploy Kasm on TrueNAS
+# 1 · Deploy Kasm in Proxmox VM
 
-## 1.1 Create Datasets
+## 1.1 Create VM in Proxmox
 
-Before deploying Kasm, create datasets for persistent storage:
+Create a new VM for the Kasm control plane:
 
-1. Click **Datasets** on the left
-2. Select your configs dataset (e.g., `tank/configs`)
-3. Click **Add Dataset**, name it `kasm`, click **Save**
-4. Select the new `kasm` dataset and create two child datasets:
-   - `opt` — Kasm application data, database, certificates
-   - `profiles` — User profile persistence
+| Setting | Value |
+|---------|-------|
+| OS | Ubuntu Server 24.04 |
+| SCSI Controller | VirtIO SCSI Single |
+| QEMU Agent | **Enabled** |
+| Disk | 80GB minimum |
+| CPU | 2+ cores |
+| Memory | 4096MB minimum |
+| Network Model | VirtIO (paravirtualized) |
 
-### Permissions
+> Get the Ubuntu ISO file [here](https://releases.ubuntu.com/24.04.4/ubuntu-24.04.4-live-server-amd64.iso)
+{.is-info}
 
-For each dataset (`kasm/opt` and `kasm/profiles`):
+## 1.2 Install Ubuntu & Kasm
 
-1. Click the dataset, find **Permissions** on the lower left, click **Edit**
-2. Leave User as `root`
-3. Change Group to `apps`
-4. Enable all group permission checkboxes
-5. Disable all permission checkboxes for Other
-6. Click **Apply Group**, then **Save**
+1. Install Ubuntu Server with OpenSSH enabled
+2. After install, remove the ISO from the CD/DVD drive
+3. SSH into the VM and install Kasm:
 
-## 1.2 Deploy Kasm
+```bash
+# Download Kasm
+cd /tmp
+curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_1.18.0.077388.tar.gz
 
-Choose your preferred deployment method:
+# Extract
+tar -xf kasm_release_1.18.0.077388.tar.gz
 
-# {.tabset}
-
-## Docker Compose
-
-```yaml
-services:
-  kasm:
-    image: lscr.io/linuxserver/kasm:latest
-    container_name: kasm
-    privileged: true
-    environment:
-      - KASM_PORT=443
-      - DOCKER_MTU=1500
-      - DOCKER_SUBNET=172.17.0.0/24
-    volumes:
-      - /mnt/tank/configs/kasm/opt:/opt
-      - /mnt/tank/configs/kasm/profiles:/profiles
-      - /dev/input:/dev/input
-      - /run/udev/data:/run/udev/data
-    ports:
-      - 3000:3000
-      - 445:443
-    restart: unless-stopped
+# Install (single server mode)
+sudo bash kasm_release/install.sh
 ```
 
-> 
-> Port 443 is used by the TrueNAS web UI, so we map Kasm to port 445 instead.
-{.is-info}
+4. Follow the prompts and note the admin credentials displayed at the end
 
 > 
-> If your pool is named something besides `tank`, change the left side of the volume paths.
+> For the latest version, check [Kasm Downloads](https://www.kasmweb.com/downloads/)
 {.is-info}
-
-
-### First Run Setup
-
-1. Access the install wizard at `https://<your-ip>:3000`
-2. Accept the EULA
-3. Set your admin password
-4. Wait for installation to complete
-
-After setup, access the Kasm web UI at `https://<your-ip>:445`
-
-> 
-> Port 3000 is only used for initial setup. After installation, you'll use port 445.
-{.is-info}
-
-## TrueNAS Apps
-
-1. Navigate to **Apps** in the TrueNAS UI
-2. Search for "Kasm Workspaces"
-3. Click **Install**
-
-### Storage Configuration
-
-Change both storage types from ixVolume to **Host Path**:
-
-| Setting | Host Path |
-|---------|-----------|
-| Kasm Workspaces Opt Storage | `/mnt/tank/configs/kasm/opt` |
-| Kasm Workspaces Profiles Storage | `/mnt/tank/configs/kasm/profiles` |
-
-> 
-> If your pool is named something besides `tank`, adjust the paths accordingly.
-{.is-info}
-
-#### Network Configuration
-
-Leave the default ports:
-- **WebUI Port**: 30128
-- **Setup Port**: 30129
-
-Click **Save** and wait for the app to deploy.
-
-Once deployed, access the Kasm setup by clicking the **Setup** button. 
-
-After that click the **Web UI** button.
-
-# 
 
 ## 1.3 Configure Upstream Auth Address
 
@@ -235,8 +170,6 @@ This VM lives in Proxmox and gets cloned by Kasm when it needs more compute capa
 | Network Model | VirtIO (paravirtualized) |
 | Resource Pool | kasm-autoscale |
 
-> Get the Ubuntu ISO file [here](https://releases.ubuntu.com/24.04.4/ubuntu-24.04.4-live-server-amd64.iso)
-{.is-info}
 
 ## 3.2 Install Ubuntu
 - Uncheck **Set up this disk as an LVM group** (under storage configuration)
