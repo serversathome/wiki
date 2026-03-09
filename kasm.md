@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-03-09T16:29:05.845Z
+date: 2026-03-09T16:29:25.126Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -46,22 +46,22 @@ Create a new VM for the Kasm control plane:
 ## 1.2 Install Ubuntu & Kasm
 
 1. Install Ubuntu Server with OpenSSH enabled
-2. After install, remove the ISO from the CD/DVD drive
-3. SSH into the VM and install Kasm:
+1. After install, remove the ISO from the CD/DVD drive
+1. SSH into the VM and install Kasm:
 
-```bash
-curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh && \
-cd /tmp && \
-curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_1.18.1.tar.gz && \
-curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_service_images_amd64_1.18.1.tar.gz && \
-curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_workspace_images_amd64_1.18.1.tar.gz && \
-curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_network_plugin_images_amd64_1.18.1.tar.gz && \
-curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_logging_plugin_images_amd64_1.18.1.tar.gz && \
-tar -xf kasm_release_1.18.1.tar.gz && \
-sudo bash kasm_release/install.sh --offline-workspaces /tmp/kasm_release_workspace_images_amd64_1.18.1.tar.gz --offline-service /tmp/kasm_release_service_images_amd64_1.18.1.tar.gz --offline-network-plugin /tmp/kasm_release_network_plugin_images_amd64_1.18.1.tar.gz --offline-logger-plugin /tmp/kasm_release_logging_plugin_images_amd64_1.18.1.tar.gz
-```
+    ```bash
+    curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh && \
+    cd /tmp && \
+    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_1.18.1.tar.gz && \
+    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_service_images_amd64_1.18.1.tar.gz && \
+    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_workspace_images_amd64_1.18.1.tar.gz && \
+    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_network_plugin_images_amd64_1.18.1.tar.gz && \
+    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_logging_plugin_images_amd64_1.18.1.tar.gz && \
+    tar -xf kasm_release_1.18.1.tar.gz && \
+    sudo bash kasm_release/install.sh --offline-workspaces /tmp/kasm_release_workspace_images_amd64_1.18.1.tar.gz --offline-service /tmp/kasm_release_service_images_amd64_1.18.1.tar.gz --offline-network-plugin /tmp/kasm_release_network_plugin_images_amd64_1.18.1.tar.gz --offline-logger-plugin /tmp/kasm_release_logging_plugin_images_amd64_1.18.1.tar.gz
+    ```
 
-4. Follow the prompts and note the admin credentials displayed at the end
+1. Follow the prompts and note the admin credentials displayed at the end
 
 
 ## 1.3 Configure Upstream Auth Address
