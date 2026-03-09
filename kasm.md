@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-03-09T16:23:12.034Z
+date: 2026-03-09T16:29:05.845Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -50,22 +50,19 @@ Create a new VM for the Kasm control plane:
 3. SSH into the VM and install Kasm:
 
 ```bash
-# Download Kasm
-cd /tmp
-curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_1.18.0.077388.tar.gz
-
-# Extract
-tar -xf kasm_release_1.18.0.077388.tar.gz
-
-# Install (single server mode)
-sudo bash kasm_release/install.sh
+curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh && \
+cd /tmp && \
+curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_1.18.1.tar.gz && \
+curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_service_images_amd64_1.18.1.tar.gz && \
+curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_workspace_images_amd64_1.18.1.tar.gz && \
+curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_network_plugin_images_amd64_1.18.1.tar.gz && \
+curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_logging_plugin_images_amd64_1.18.1.tar.gz && \
+tar -xf kasm_release_1.18.1.tar.gz && \
+sudo bash kasm_release/install.sh --offline-workspaces /tmp/kasm_release_workspace_images_amd64_1.18.1.tar.gz --offline-service /tmp/kasm_release_service_images_amd64_1.18.1.tar.gz --offline-network-plugin /tmp/kasm_release_network_plugin_images_amd64_1.18.1.tar.gz --offline-logger-plugin /tmp/kasm_release_logging_plugin_images_amd64_1.18.1.tar.gz
 ```
 
 4. Follow the prompts and note the admin credentials displayed at the end
 
-> 
-> For the latest version, check [Kasm Downloads](https://www.kasmweb.com/downloads/)
-{.is-info}
 
 ## 1.3 Configure Upstream Auth Address
 
