@@ -2,7 +2,7 @@
 title: Netbird
 description: A guide to installing and using Netbird
 published: true
-date: 2026-03-11T20:07:08.754Z
+date: 2026-03-11T20:07:27.397Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:37.607Z
@@ -139,5 +139,5 @@ While applications like Jellyfin manage their own users and login screens (meani
 {.is-success}
 
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Video
+# <img src="/youtube.png" class="tab-icon"> 3 · Video
 https://youtu.be/skbWnMSwZcE
