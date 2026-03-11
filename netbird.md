@@ -2,7 +2,7 @@
 title: Netbird
 description: A guide to installing and using Netbird
 published: true
-date: 2026-03-11T19:33:35.236Z
+date: 2026-03-11T19:38:27.636Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:37.607Z
@@ -101,10 +101,10 @@ Once your server is connected to the NetBird mesh, you can expose its local appl
      Enter a memorable subdomain for your service (e.g., `jellyfin` or `media`) and select the domain you wish to use.
    
    * **Targets:**
-     Click **Add Target**. In the new prompt, select the NetBird Peer you set up in `1. Deploy Netbird`. Set the **Port** to the internal port your service uses (for Jellyfin, the default is `8096`). Click **Continue** and **Add Target** to return to the main setup window.
+     Click **Add Target**. In the new prompt, select the NetBird Peer you set up in [Deploy Netbird](https://wiki.serversatho.me/en/netbird#h-1-deploy-netbird). Set the **Port** to the internal port your service uses (for Jellyfin, the default is `8096`). Click **Continue** and **Add Target** to return to the main setup window.
 
    * **Authentication:**
-     If the application you are exposing already has its own secure login screen (like Jellyfin), you can skip this tab. If you are exposing a service with no built-in security, you can enforce route-level authentication here. *(See `2.3. Reverse Proxy - Authentication` for more details).*
+     If the application you are exposing already has its own secure login screen (like Jellyfin), you can skip this tab. If you are exposing a service with no built-in security, you can enforce route-level authentication here. *(See [2.3. Reverse Proxy - Authentication](https://wiki.serversatho.me/en/netbird#h-23-authentication) for more details).*
 
    * **Advanced Settings:**
      It is highly recommended to enable **Pass Host Header**. This ensures that the original URL requested by the user is passed directly to your application, preventing routing errors and keeping your internal IP addresses hidden.
@@ -113,12 +113,14 @@ Once your server is connected to the NetBird mesh, you can expose its local appl
 4. **Wait a few minutes.** NetBird needs a moment to provision the service globally and automatically generate your free SSL (HTTPS) certificate. 
 
 > **Tip:** Once the service status shows as active, you can test it by visiting your new URL (e.g., `https://jellyfin.yourdomain.com`) from a device that is *not* connected to your local network!
+{.is-info}
+
 
 ## 2.3 Authentication
 While applications like Jellyfin manage their own users and login screens (meaning you skip this step), many self-hosted tools (like network dashboards, basic web servers, or admin panels) lack strong built-in security. NetBird allows you to put an identity layer in front of these routes, forcing visitors to authenticate before they can even reach the application.
 
 1. **Access the Authentication Settings:**
-   * You can configure this during the initial `Add Service` wizard, or by clicking **Edit** on an existing route in the **Reverse Proxy > Services** tab.
+   * You can configure this during the initial **Add Service** wizard, or by clicking **Edit** on an existing route in the **Reverse Proxy > Services** tab.
    * Navigate to the **Authentication** tab.
 
 2. **Choose an Authentication Method:**
@@ -133,6 +135,8 @@ While applications like Jellyfin manage their own users and login screens (meani
 
 > **💡 What does the user experience?** 
 > When a user navigates to a protected URL (e.g., `https://admin.yourdomain.com`), they won't see your application right away. Instead, they are stopped by a secure NetBird interception screen asking for the required SSO login, Password, or PIN. Once they successfully authenticate, they are forwarded to your actual backend application.
+{.is-success}
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Video
+
+# <img src="/youtube.png" class="tab-icon"> 3 · Video
 https://youtu.be/skbWnMSwZcE
