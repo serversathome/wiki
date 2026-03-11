@@ -2,7 +2,7 @@
 title: Netbird
 description: A guide to installing and using Netbird
 published: true
-date: 2026-03-11T20:06:22.878Z
+date: 2026-03-11T20:07:08.754Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:37.607Z
@@ -105,7 +105,7 @@ Once your server is connected to the NetBird mesh, you can expose its local appl
      Click **Add Target**. In the new prompt, select the NetBird Peer you set up in [1. Deploy Netbird](https://wiki.serversatho.me/en/netbird#h-1-deploy-netbird) Set the **Port** to the internal port your service uses (for Jellyfin, the default is `8096`). Click **Continue** and **Add Target** to return to the main setup window.
 
    * **Authentication:**
-     If the application you are exposing already has its own secure login screen (like Jellyfin), you can skip this tab. If you are exposing a service with no built-in security, you can enforce route-level authentication here. *(See `2.3. Reverse Proxy - Authentication` for more details).*
+     If the application you are exposing already has its own secure login screen (like Jellyfin), you can skip this tab. If you are exposing a service with no built-in security, you can enforce route-level authentication here. *(See [2.3. Reverse Proxy - Authentication](https://wiki.serversatho.me/en/netbird#h-23-authentication) for more details).*
 
    * **Advanced Settings:**
      It is highly recommended to enable **Pass Host Header**. This ensures that the original URL requested by the user is passed directly to your application, preventing routing errors and keeping your internal IP addresses hidden.
