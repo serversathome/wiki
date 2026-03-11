@@ -2,7 +2,7 @@
 title: Sportarr
 description: A guide to deploying Sportarr
 published: true
-date: 2026-02-26T16:16:29.876Z
+date: 2026-03-11T17:24:53.161Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-10T16:23:09.485Z
@@ -126,4 +126,4 @@ Configure IPTV sources under **Settings → IPTV Sources** and DVR settings unde
 
 # <img src="/patreon-light.png" class="tab-icon"> 3 · Video
 
-*Coming soon — check back for a full deployment walkthrough!*
+[![](/2026-03-11-sportarr-automate-your-sports-l-promo-card.png)](https://www.patreon.com/posts/sportarr-your-150427131)
