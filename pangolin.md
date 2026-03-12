@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: true
-date: 2026-01-23T17:45:49.821Z
+date: 2026-03-12T10:16:24.310Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:59.674Z
@@ -34,7 +34,7 @@ The Pangolin docs recommend [this option from Rack Nerd](https://my.racknerd.com
 # 3 · Installation
 Pangolin is installed on bare metal using this command:
 ```bash 
-curl -fsSL https://digpangolin.com/get-installer.sh | bash 
+curl -fsSL https://static.pangolin.net/get-installer.sh | bash 
 ```
 
 The downloaded files will be named `installer` in the current directory.
