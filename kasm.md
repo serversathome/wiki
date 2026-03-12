@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-03-12T13:05:21.488Z
+date: 2026-03-12T13:41:57.970Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -230,6 +230,10 @@ Go to **Admin → Infrastructure → Pools → All AutoScale Configs → Add**
 
 
 Click **Next** to configure the VM Provider.
+> 
+> To learn more about these values [check the offical documentation](https://docs.kasm.com/docs/develop/how-to/autoscale/infrastructure_components/autoscale_config_docker_agent#autoscale-settings-for-agent-pool)
+{.is-info}
+
 
 ## 4.3 Configure VM Provider
 
