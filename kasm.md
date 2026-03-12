@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-03-09T16:49:34.670Z
+date: 2026-03-12T13:05:21.488Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -62,6 +62,10 @@ Create a new VM for the Kasm control plane:
     ```
 
 1. Follow the prompts and note the admin credentials displayed at the end
+> 
+> For the most up-to-date script be sure to check [the official documentation](https://docs.kasm.com/docs/install/single_server_install)
+{.is-success}
+
 
 
 ## 1.3 Configure Upstream Auth Address
