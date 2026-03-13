@@ -2,7 +2,7 @@
 title: Fetcharr
 description: A guide to deploy Fetcharr
 published: true
-date: 2026-03-13T15:58:13.631Z
+date: 2026-03-13T16:34:17.932Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-13T15:52:59.553Z
