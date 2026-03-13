@@ -2,7 +2,7 @@
 title: Fetcharr
 description: A guide to deploy Fetcharr
 published: true
-date: 2026-03-13T15:57:14.988Z
+date: 2026-03-13T15:58:13.631Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-13T15:52:59.553Z
@@ -54,7 +54,7 @@ These settings apply globally to all connected *arr instances unless overridden 
 | `SKIP_TAGS` | *(none)* | Comma-separated list of tags to exclude from searches |
 | `DRY_RUN` | `false` | Simulate searches without triggering them |
 | `DATA_DIR` | `/data` | Data storage directory inside the container |
-| `VERIFY_CERTS` | `true` | Verify SSL certificates when connecting to *arr apps |
+| `VERIFY_CERTS` | `true` | Verify SSL certificates when connecting to \*arr apps |
 | `USE_CACHE` | `true` | Enable internal caching |
 | `SHORT_CACHE_TIME` | `65minutes` | TTL for short-lived cache entries |
 | `LONG_CACHE_TIME` | `6hours` | TTL for long-lived cache entries |
