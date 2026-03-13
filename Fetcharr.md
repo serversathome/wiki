@@ -2,7 +2,7 @@
 title: Fetcharr
 description: A guide to deploy Fetcharr
 published: true
-date: 2026-03-13T15:52:59.553Z
+date: 2026-03-13T15:56:55.744Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-13T15:52:59.553Z
@@ -20,25 +20,19 @@ services:
     image: egg82/fetcharr:latest
     container_name: fetcharr
     environment:
-      - VERIFY_CERTS=true
-      - SSL_PATH=/etc/ssl/certs/ca-bundle.crt
+      - VERIFY_CERTS=false
       - SEARCH_AMOUNT=5
       - SEARCH_INTERVAL=1hour
       - MONITORED_ONLY=true
-      - USE_CUTOFF=false
-      - RADARR_0_URL=https://radarr.yourdomain.com
-      - RADARR_0_API_KEY=your-radarr-api-key
-      - SONARR_0_URL=https://sonarr.yourdomain.com
-      - SONARR_0_API_KEY=your-sonarr-api-key
+      - USE_CUTOFF=true
+      - RADARR_0_URL=
+      - RADARR_0_API_KEY=
+      - SONARR_0_URL=
+      - SONARR_0_API_KEY=
     volumes:
       - /mnt/tank/configs/fetcharr:/data
     restart: unless-stopped
 ```
-
-1. Replace the `RADARR_0_URL` and `SONARR_0_URL` values with the actual URLs for your *arr instances
-2. Replace the `API_KEY` values with real API keys from each *arr app (found under **Settings → General**)
-3. Adjust `SEARCH_AMOUNT` and `SEARCH_INTERVAL` to control how aggressively Fetcharr hunts for media
-
 
 > Fetcharr is a **CLI-only** container with no web UI. It runs silently in the background and logs output to the container logs. Use `docker logs fetcharr` to monitor its activity.
 {.is-info}
