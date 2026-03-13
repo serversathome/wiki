@@ -2,7 +2,7 @@
 title: Fetcharr
 description: A guide to deploy Fetcharr
 published: true
-date: 2026-03-13T15:56:55.744Z
+date: 2026-03-13T15:57:14.988Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-13T15:52:59.553Z
@@ -25,9 +25,9 @@ services:
       - SEARCH_INTERVAL=1hour
       - MONITORED_ONLY=true
       - USE_CUTOFF=true
-      - RADARR_0_URL=
+      - RADARR_0_URL=http://radarr:7878
       - RADARR_0_API_KEY=
-      - SONARR_0_URL=
+      - SONARR_0_URL=http://sonar:8989
       - SONARR_0_API_KEY=
     volumes:
       - /mnt/tank/configs/fetcharr:/data
