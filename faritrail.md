@@ -2,7 +2,7 @@
 title: Fairtrail
 description: A guide to deploying fairtrail
 published: true
-date: 2026-03-13T17:52:31.676Z
+date: 2026-03-13T17:55:06.798Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-13T17:52:31.676Z
@@ -27,7 +27,7 @@ services:
     volumes:
       - /mnt/tank/configs/fairtrail/pgdata:/var/lib/postgresql/data
     ports:
-      - "127.0.0.1:5433:5432"
+      - "5433:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -40,7 +40,7 @@ services:
     volumes:
       - /mnt/tank/configs/fairtrail/redisdata:/data
     ports:
-      - "127.0.0.1:6380:6379"
+      - "6380:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
