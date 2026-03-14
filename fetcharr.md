@@ -2,7 +2,7 @@
 title: fetcharr
 description: A guide to deploy Fetcharr
 published: true
-date: 2026-03-14T11:10:09.669Z
+date: 2026-03-14T11:18:39.152Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-13T15:52:59.553Z
@@ -34,6 +34,10 @@ services:
       - /mnt/tank/configs/fetcharr/cache:/cache
     restart: unless-stopped
 ```
+
+> Fetcharr runs as UID/GID `1000` inside the container and writes cache data to `/cache`. If you mount this path to a host directory, make sure it's owned by that user: `chown -R 1000:1000 /mnt/tank/configs/fetcharr/cache`. Without this, Sonarr will spam `Could not create parent directory structure` warnings in the logs.
+{.is-danger}
+
 
 > Fetcharr is a **CLI-only** container with no web UI. It runs silently in the background and logs output to the container logs. Use `docker logs fetcharr` to monitor its activity.
 {.is-info}
