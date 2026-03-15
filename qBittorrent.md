@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-03-15T10:21:20.251Z
+date: 2026-03-15T10:25:30.398Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -439,23 +439,15 @@ services:
 PIA does not provide Wireguard configration files. Therefore it is required to use a Third party tool to generate the configration file. The tool pia-wg can be found at the github link here&nbsp;<a href="https://github.com/hsand/pia-wg" target="_blank">https://github.com/hsand/pia-wg</a>
 
 
-### <img src="/windows.png" class="tab-icon"> Windows 
-
-//todo spin up a windows VM and build this
-
-### <img src="/linux-update-dashboard.png" class="tab-icon"> Linux
+## <img src="/linux-update-dashboard.png" class="tab-icon"> Linux
 
 1. Install the following packages from your package manager
- - git
- - python3-venv
- - wireguard
- - openresolv
 
-##### Desbian Based
+### Debian Based
 ```bash
 sudo apt install git python3-venv wireguard openresolv
 ```
-##### Arch Based
+### Arch Based
 ````bash
 sudo pacman -S git python3-venv wireguard openresolv
 ````
@@ -496,7 +488,7 @@ nano /mnt/tank/configs/qbittorrent/wireguard/wg0.conf
 12. Make changes per the The Wireguard wg0.conf File section below
 13. Save and close nano
 
-### The Wireguard wg0.conf File
+# The Wireguard wg0.conf File
 
 In whatever wireguard file your VPN provider gives you, you must:
 1. Remove any IPv6 information
@@ -527,7 +519,7 @@ The PostUp line below does two things:
 This firewall-based approach means qBittorrent is protected **even if you forget to bind it to wg0 interface** in the settings. It's enforced at the network layer, not the application layer.
 </details>
 
-### Example `wg0.conf`
+# Example `wg0.conf`
 
 ```
 [Interface]
