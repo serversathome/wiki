@@ -2,7 +2,7 @@
 title: Sortarr
 description: A guide to deploying Sortarr
 published: true
-date: 2026-03-15T20:51:24.672Z
+date: 2026-03-15T20:52:05.753Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-17T15:46:01.206Z
@@ -69,36 +69,10 @@ To enable playback stats, add your Tautulli URL and API key in the setup page. W
 | `TAUTULLI_METADATA_LOOKUP_LIMIT` | `-1` | Max lookups (`-1` = no limit, `0` = disable) |
 
 
-
 > The first load after startup can take a while for large libraries, especially with Tautulli enabled. Later loads use the persistent cache and are much faster.
 {.is-info}
 
-## 2.4 Basic Auth (Optional)
 
-For deployments exposed beyond your LAN, Sortarr supports basic authentication:
-
-| Variable | Description |
-|---|---|
-| `BASIC_AUTH_USER` | Username for basic auth |
-| `BASIC_AUTH_PASS` | Password for basic auth |
-
-
-## 2.5 Environment Variables
-
-| Variable | Default | Description |
-|---|---|---|
-| `PUID` | — | Container user ID |
-| `PGID` | — | Container group ID |
-| `PORT` | `8787` | Internal port (Docker maps `9595` → `8787`) |
-| `SORTARR_LOG_LEVEL` | `INFO` | Log verbosity |
-| `SONARR_TIMEOUT_SECONDS` | `90` | Per-request timeout for Sonarr API calls |
-| `RADARR_TIMEOUT_SECONDS` | `90` | Per-request timeout for Radarr API calls |
-| `TAUTULLI_TIMEOUT_SECONDS` | `60` | Per-request timeout for Tautulli API calls |
-
-
-> 
-> When `PUID`/`PGID` are set, the container runs as that user and will chown the config/cache paths on startup.
-{.is-info}
 
 # 3 · Using Sortarr
 
