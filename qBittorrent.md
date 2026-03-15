@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-03-15T10:32:00.751Z
+date: 2026-03-15T10:34:54.968Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -441,54 +441,54 @@ PIA does not provide Wireguard configuration files. Therefore it is required to 
 
 ### <img src="/linux-update-dashboard.png" class="tab-icon"> Linux
 
-1. Install the following packages from your package manager
+1. Install the following packages from your package manager:
 
-#### Debian Based
-```bash
-sudo apt install git python3-venv wireguard openresolv
-```
-#### Arch Based
-````bash
-sudo pacman -S git python3-venv wireguard openresolv
-````
-2. Clone the git repository for pia-wg
-````bash
-git clone https://github.com/hsand/pia-wg.git
-````
-3. Enter the new new folder
-````bash
-cd pia-wg
-````
-4. Install the python 3 modulue venv & set venv source
-````bash
-python3 -m venv venv
-source venv/bin/activate
-````
-5. Install pip requerments
-````bash
-pip install -r requirements.txt
-````
+    **For Debian Based:**
+    ```bash
+    sudo apt install git python3-venv wireguard openresolv
+    ```
+    **For Arch Based:**
+    ```bash
+    sudo pacman -S git python3-venv wireguard openresolv
+    ````
+1. Clone the git repository for pia-wg
+    ```bash
+    git clone https://github.com/hsand/pia-wg.git
+    ```
+1. Enter the new new folder
+    ```bash
+    cd pia-wg
+    ```
+1. Install the python 3 modulue venv & set venv source
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate
+    ```
+1. Install pip requerments
+    ```bash
+    pip install -r requirements.txt
+    ```
 6. Run pia-wg
-````bash
-python3 generate-config.py
-````
-7. Use your up and down arrows to select a Region & press enter
+    ```bash
+    python3 generate-config.py
+    ```
+1. Use your up and down arrows to select a Region & press enter
 
-![wip-wg-select_region.png](/wip-wg-select_region.png)
+    ![wip-wg-select_region.png](/wip-wg-select_region.png)
 
-8. Enter username & Password. Press Enter
+1. Enter username & Password. Press Enter
 
-![pia-wg_run.png](/pia-wg_run.png)
-9. Open the genrated file and copy it's contants
+    ![pia-wg_run.png](/pia-wg_run.png)
+1. Open the genrated file and copy it's contants
 
-10. Create your wg0.conf file in TrueNAS
-````bash
-sudo su
-nano /mnt/tank/configs/qbittorrent/wireguard/wg0.conf
-````
-11. Paste your configration into nano with `ctrl`+`shift`+`v`
-12. Make changes per the The Wireguard wg0.conf File section below
-13. Save and close nano
+1. Create your wg0.conf file in TrueNAS
+    ```bash
+    sudo su
+    nano /mnt/tank/configs/qbittorrent/wireguard/wg0.conf
+    ```
+1. Paste your configration into nano with `ctrl`+`shift`+`v`
+1. Make changes per the The Wireguard wg0.conf File section below
+1. Save and close nano
 
 
 # 2 · Testing Open Ports
