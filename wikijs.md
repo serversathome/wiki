@@ -2,7 +2,7 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: 2026-01-23T17:51:43.396Z
+date: 2026-03-15T15:31:54.477Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:35.215Z
@@ -56,12 +56,12 @@ The strength of any editor is the Markdown function. The easiest way to start wi
 
 ## 2.1 Converting Editors
 
-To change a page from WYSIWYG to the Markdown editor:
+To change a page from Visual Editor to the Markdown editor:
 1. Navigate to the Page Actions button while viewing the page you would like to convert
 1. Click **Convert**
 1. Select **Markdown** and hit **Convert**
 > 
-> A note when you do this, if you convert back to WYSIWYG all the formatting will be lost from Markdown
+> A note when you do this, if you convert back to Visual Editor all the formatting will be lost from Markdown
 {.is-warning}
 
 > All the markdown instructions can be found [here](https://docs.requarks.io/en/editors/markdown)
