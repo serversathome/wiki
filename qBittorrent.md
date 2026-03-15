@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-03-15T10:37:19.903Z
+date: 2026-03-15T10:37:28.672Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -487,7 +487,6 @@ PIA does not provide Wireguard configuration files. Therefore it is required to 
     nano /mnt/tank/configs/qbittorrent/wireguard/wg0.conf
     ```
 1. Paste your configration into nano with <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>V</kbd>
-1. Make changes per the The Wireguard wg0.conf File section below
 1. Save and close nano
 
 
