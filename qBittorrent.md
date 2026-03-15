@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-03-15T10:25:30.398Z
+date: 2026-03-15T10:27:44.895Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -439,15 +439,15 @@ services:
 PIA does not provide Wireguard configration files. Therefore it is required to use a Third party tool to generate the configration file. The tool pia-wg can be found at the github link here&nbsp;<a href="https://github.com/hsand/pia-wg" target="_blank">https://github.com/hsand/pia-wg</a>
 
 
-## <img src="/linux-update-dashboard.png" class="tab-icon"> Linux
+### <img src="/linux-update-dashboard.png" class="tab-icon"> Linux
 
 1. Install the following packages from your package manager
 
-### Debian Based
+#### Debian Based
 ```bash
 sudo apt install git python3-venv wireguard openresolv
 ```
-### Arch Based
+#### Arch Based
 ````bash
 sudo pacman -S git python3-venv wireguard openresolv
 ````
@@ -473,13 +473,15 @@ pip install -r requirements.txt
 python3 generate-config.py
 ````
 7. Use your up and down arrows to select a Region & press enter
+
 ![wip-wg-select_region.png](/wip-wg-select_region.png)
 
 8. Enter username & Password. Press Enter
+
 ![pia-wg_run.png](/pia-wg_run.png)
 9. Open the genrated file and copy it's contants
 
-10. Create your wg0.conf file into TrueNas
+10. Create your wg0.conf file in TrueNAS
 ````bash
 sudo su
 nano /mnt/tank/configs/qbittorrent/wireguard/wg0.conf
