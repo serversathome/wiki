@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-01-15T21:45:31.120Z
+date: 2026-03-15T10:21:20.251Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -390,6 +390,158 @@ docker run --rm --cap-add=NET_ADMIN -e TOKEN={{{TOKEN}}} ghcr.io/bubuntux/nordvp
 >For more info on this container, look [here](https://github.com/bubuntux/nordlynx)
 {.is-info}
 
+## <img src="/docker.png" class="tab-icon"> Hotio + Private Internet Access (PIA)
+
+
+```yaml
+services:
+  qbittorrent:
+    container_name: qbittorrent
+    image: ghcr.io/hotio/qbittorrent:release-5.1.2
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    environment:
+      - PUID=568
+      - PGID=568
+      - UMASK=002
+      - TZ=America/New_York
+      - WEBUI_PORTS=8080/tcp,8080/udp
+      - VPN_ENABLED=true
+      - VPN_CONF=wg0
+      - VPN_PROVIDER=generic
+      - VPN_LAN_NETWORK=10.99.0.0/24 #Change to match your local Network
+      - VPN_LAN_LEAK_ENABLED=false
+      - VPN_EXPOSE_PORTS_ON_LAN=
+      - VPN_AUTO_PORT_FORWARD= # enter port number here
+      - VPN_PORT_REDIRECTS= # enter port number here
+      - VPN_FIREWALL_TYPE=auto
+      - VPN_HEALTHCHECK_ENABLED=false
+      - VPN_NAMESERVERS=wg
+      - PRIVOXY_ENABLED=false
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv6.conf.all.disable_ipv6=1
+    volumes:
+      - /mnt/tank/configs/qbittorrent:/config
+      - /mnt/tank/media:/media
+```
+> If you want to change the webui ports to something other then `8080`, change the ports section to something like:
+> ```
+> ports:
+>   - 8081:8081
+> ```
+> And change the `WEBUI_PORTS` variable to the same port (both for tcp and udp). 
+{.is-success}
+
+PIA does not provide Wireguard configration files. Therefore it is required to use a Third party tool to generate the configration file. The tool pia-wg can be found at the github link here&nbsp;<a href="https://github.com/hsand/pia-wg" target="_blank">https://github.com/hsand/pia-wg</a>
+
+
+### <img src="/windows.png" class="tab-icon"> Windows 
+
+//todo spin up a windows VM and build this
+
+### <img src="/linux-update-dashboard.png" class="tab-icon"> Linux
+
+1. Install the following packages from your package manager
+ - git
+ - python3-venv
+ - wireguard
+ - openresolv
+
+##### Desbian Based
+```bash
+sudo apt install git python3-venv wireguard openresolv
+```
+##### Arch Based
+````bash
+sudo pacman -S git python3-venv wireguard openresolv
+````
+2. Clone the git repository for pia-wg
+````bash
+git clone https://github.com/hsand/pia-wg.git
+````
+3. Enter the new new folder
+````bash
+cd pia-wg
+````
+4. Install the python 3 modulue venv & set venv source
+````bash
+python3 -m venv venv
+source venv/bin/activate
+````
+5. Install pip requerments
+````bash
+pip install -r requirements.txt
+````
+6. Run pia-wg
+````bash
+python3 generate-config.py
+````
+7. Use your up and down arrows to select a Region & press enter
+![wip-wg-select_region.png](/wip-wg-select_region.png)
+
+8. Enter username & Password. Press Enter
+![pia-wg_run.png](/pia-wg_run.png)
+9. Open the genrated file and copy it's contants
+
+10. Create your wg0.conf file into TrueNas
+````bash
+sudo su
+nano /mnt/tank/configs/qbittorrent/wireguard/wg0.conf
+````
+11. Paste your configration into nano with `ctrl`+`shift`+`v`
+12. Make changes per the The Wireguard wg0.conf File section below
+13. Save and close nano
+
+### The Wireguard wg0.conf File
+
+In whatever wireguard file your VPN provider gives you, you must:
+1. Remove any IPv6 information
+1. Change DNS to public resolver (like `1.1.1.1` or `8.8.8.8`)
+     - Many VPN provider DNS servers use IP addresses in the 10.0.0.0/8 range
+     - The LAN bypass routes 10.0.0.0/8 to your local network
+     - This causes DNS queries to route incorrectly
+     - Solution: Use public DNS (1.1.1.1, 8.8.8.8) instead of VPN provider DNS
+
+1. Change the Network Interface to `wg0` in the Advanced tab [from this section](https://wiki.serversatho.me/en/qBittorrent#h-62-configuration-options)
+1. Add this line to the `[Interface]` section of your `wg0.conf` file to allow the webUI to be accessible:
+    ```
+    PostUp = GW=$(ip route | grep default | awk '{print $3}' | head -1); IF=$(ip route | grep default | awk '{print $5}' | head -1); ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true; ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true; ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true; ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true; ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true; iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT; iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -j DROP
+    ```
+<details>
+<summary><strong>⚠️ Why the PostUp line is critical</strong></summary>
+  
+When using `network_mode: "service:wireguard"`, qBittorrent shares the WireGuard container's network namespace. This means qBittorrent can see BOTH interfaces:
+- **wg0** (VPN tunnel) - SAFE
+- **eth0** (physical network) - EXPOSES YOUR REAL IP
+
+**Without the PostUp firewall rules, qBittorrent can leak traffic through eth0!**
+
+The PostUp line below does two things:
+1. **LAN bypass routing**: Allows WebUI access from local networks (192.168.x.x, 10.x.x.x, etc.)
+1. **Firewall protection**: Blocks ALL traffic on eth0 except LAN traffic (prevents IP leaks)
+
+This firewall-based approach means qBittorrent is protected **even if you forget to bind it to wg0 interface** in the settings. It's enforced at the network layer, not the application layer.
+</details>
+
+### Example `wg0.conf`
+
+```
+[Interface]
+Address = 10.162.71.91
+PrivateKey = redacted
+DNS = 1.1.1.1
+PostUp = GW=$(ip route | grep default | awk '{print $3}' | head -1); IF=$(ip route | grep default | awk '{print $5}' | head -1); ip route add 192.168.0.0/16 via $GW dev $IF 2>/dev/null || true; ip route add 10.0.0.0/8 via $GW dev $IF 2>/dev/null || true; ip route add 172.16.0.0/12 via $GW dev $IF 2>/dev/null || true; ip route add 100.64.0.0/10 via $GW dev $IF 2>/dev/null || true; ip route add 100.84.0.0/16 via $GW dev $IF 2>/dev/null || true; iptables -A OUTPUT -o $IF -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; iptables -A OUTPUT -o $IF -d 192.168.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -d 10.0.0.0/8 -j ACCEPT; iptables -A OUTPUT -o $IF -d 172.16.0.0/12 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.64.0.0/10 -j ACCEPT; iptables -A OUTPUT -o $IF -d 100.84.0.0/16 -j ACCEPT; iptables -A OUTPUT -o $IF -j DROP
+
+[Peer]
+PublicKey = redacted
+Endpoint = 86.106.84.164:1637
+AllowedIPs = 0.0.0.0/0
+PersistentKeepalive = 15
+```
 
 # 2 · Testing Open Ports
 
