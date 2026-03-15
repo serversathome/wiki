@@ -2,7 +2,7 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: 2026-03-15T15:31:54.477Z
+date: 2026-03-15T15:44:09.372Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:35.215Z
@@ -52,7 +52,7 @@ services:
 
 # 2 · Making it Beautiful
 
-The strength of any editor is the Markdown function. The easiest way to start with Wiki.js is with the WYSIWYG editor, which operates like Microsoft Word. However, all of the most powerful functions are only availble using the markdown editor. 
+The strength of any editor is the Markdown function. The easiest way to start with Wiki.js is with the Visual Editor, which operates like Microsoft Word. However, all of the most powerful functions are only availble using the markdown editor. 
 
 ## 2.1 Converting Editors
 
