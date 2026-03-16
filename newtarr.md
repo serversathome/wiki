@@ -2,7 +2,7 @@
 title: Newtarr
 description: A guide to deploying Newtarr
 published: true
-date: 2026-03-16T15:11:25.035Z
+date: 2026-03-16T15:22:27.155Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-14T00:05:42.713Z
@@ -20,7 +20,7 @@ The original Huntarr project was abandoned after the developer introduced teleme
 ```yaml
 services:
   newtarr:
-    image: ghcr.io/elfhosted/newtarr:latest
+    image: ghcr.io/elfhosted/newtarr:v1.0.0
     container_name: newtarr
     restart: unless-stopped
     ports:
@@ -89,6 +89,6 @@ NewtArr sticks to the original purpose: **hunt missing episodes, movies, and med
 > NewtArr is licensed under GPL-3.0. It is a community-maintained fork — check the [GitHub repo](https://github.com/elfhosted/newtarr) for the latest updates and to report issues.
 {.is-info}
 
-# <img src="/patreon-light.png" class="tab-icon"> 5 · Video
+# <img src="/youtube.png" class="tab-icon"> 5 · Video
 
 Coming soon!
