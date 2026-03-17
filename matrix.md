@@ -2,7 +2,7 @@
 title: Matrix Server
 description: A guide to deploying a Matrix server
 published: false
-date: 2026-03-17T13:27:24.544Z
+date: 2026-03-17T13:33:46.622Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-17T13:27:24.544Z
@@ -54,6 +54,7 @@ graph TB
 | LiveKit SFU | VPS | `livekit/livekit-server:latest` | Voice/video media routing |
 | lk-jwt-service | VPS | `ghcr.io/element-hq/lk-jwt-service:latest` | MatrixRTC auth tokens |
 
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Synapse (TrueNAS)
 
 ## 1.1 Generate Configuration
@@ -69,7 +70,7 @@ services:
       - SYNAPSE_SERVER_NAME=serversatho.me
       - SYNAPSE_REPORT_STATS=no
     volumes:
-      - /mnt/tank/configs/synapse/data:/data
+      - /mnt/bigdeal/configs/synapse/data:/data
     command: generate
 ```
 
@@ -81,7 +82,7 @@ Run the stack — it will generate the config files and exit. Once complete, rem
 
 ## 1.2 Edit homeserver.yaml
 
-After generation, edit `/mnt/tank/configs/synapse/data/homeserver.yaml`:
+After generation, edit `/mnt/bigdeal/configs/synapse/data/homeserver.yaml`:
 
 **Set the public base URL:**
 ```yaml
@@ -131,7 +132,7 @@ services:
     environment:
       - SYNAPSE_CONFIG_PATH=/data/homeserver.yaml
     volumes:
-      - /mnt/tank/configs/synapse/data:/data
+      - /mnt/bigdeal/configs/synapse/data:/data
     ports:
       - 8008:8008
     depends_on:
@@ -153,7 +154,7 @@ services:
       - POSTGRES_DB=synapse
       - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
     volumes:
-      - /mnt/tank/configs/synapse/postgres-data:/var/lib/postgresql/data
+      - /mnt/bigdeal/configs/synapse/postgres-data:/var/lib/postgresql/data
 ```
 
 > 
@@ -215,12 +216,12 @@ services:
     container_name: mautrix-discord
     restart: unless-stopped
     volumes:
-      - /mnt/tank/configs/mautrix-discord:/data
+      - /mnt/bigdeal/configs/mautrix-discord:/data
 ```
 
 ## 2.2 Generate and Edit Config
 
-On first run, the container will generate a `config.yaml` in the data directory and then exit. Edit `/mnt/tank/configs/mautrix-discord/config.yaml`:
+On first run, the container will generate a `config.yaml` in the data directory and then exit. Edit `/mnt/bigdeal/configs/mautrix-discord/config.yaml`:
 
 ```yaml
 homeserver:
@@ -248,7 +249,7 @@ bridge:
 Copy the generated `registration.yaml` from the mautrix-discord data directory into Synapse's appservices directory:
 
 ```bash
-cp /mnt/tank/configs/mautrix-discord/registration.yaml /mnt/tank/configs/synapse/data/appservices/discord-registration.yaml
+cp /mnt/bigdeal/configs/mautrix-discord/registration.yaml /mnt/bigdeal/configs/synapse/data/appservices/discord-registration.yaml
 ```
 
 Add it to `homeserver.yaml`:
@@ -360,7 +361,7 @@ Add two routes to the Cloudflare Tunnel running on the VPS. Because lk-jwt-servi
 |----------|------|---------|---------|
 | `rtc.serversatho.me` | `/sfu/get` | `http://localhost:8081` | lk-jwt-service (MatrixRTC auth) |
 | `rtc.serversatho.me` | `/*` (catch-all) | `http://localhost:7880` | LiveKit WebSocket signaling |
-{.dense}
+
 
 > 
 > In the Cloudflare Zero Trust dashboard, add `rtc.serversatho.me` as a public hostname twice — once with the path `/sfu/get` pointing to `http://localhost:8081`, and once without a path (catch-all) pointing to `http://localhost:7880`. The `/sfu/get` route must be listed **first** so it takes priority. Both services are reachable on localhost because they use `network_mode: host`.
@@ -388,10 +389,10 @@ services:
     ports:
       - 8090:80
     volumes:
-      - /mnt/tank/configs/element-web/config.json:/app/config.json:ro
+      - /mnt/bigdeal/configs/element-web/config.json:/app/config.json:ro
 ```
 
-Create `/mnt/tank/configs/element-web/config.json`:
+Create `/mnt/bigdeal/configs/element-web/config.json`:
 
 ```json
 {
@@ -418,7 +419,7 @@ Add a Cloudflare Tunnel route for `chat.serversatho.me` pointing to `http://loca
 | Voice/Video Media | Client → LiveKit (VPS public IP) | UDP |
 | Discord Bridge | mautrix-discord → Discord API (outbound only) | HTTPS (TCP) |
 | Admin Management | NetBird mesh (private) | WireGuard |
-{.dense}
+
 
 ## 5.2 DNS Records
 
@@ -427,7 +428,6 @@ Add a Cloudflare Tunnel route for `chat.serversatho.me` pointing to `http://loca
 | `matrix.serversatho.me` | CNAME | Cloudflare Tunnel (TrueNAS) |
 | `rtc.serversatho.me` | CNAME | Cloudflare Tunnel (VPS) |
 | `chat.serversatho.me` | CNAME | Cloudflare Tunnel (TrueNAS) |
-{.dense}
 
 ## 5.3 Ports Required
 
@@ -439,7 +439,7 @@ Add a Cloudflare Tunnel route for `chat.serversatho.me` pointing to `http://loca
 |------|----------|---------|
 | 3478 | UDP | LiveKit built-in TURN |
 | 50000-50100 | UDP | LiveKit media relay |
-{.dense}
+
 
 ## 5.4 Federation Testing
 
@@ -448,6 +448,4 @@ Once deployed, verify federation is working:
 1. Visit [Federation Tester](https://federationtester.matrix.org/) and enter `serversatho.me`
 2. Confirm it resolves to `matrix.serversatho.me:443` via `.well-known`
 3. Check that the server responds with valid TLS (handled by Cloudflare)
-
-
 
