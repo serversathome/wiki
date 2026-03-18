@@ -2,7 +2,7 @@
 title: Tracearr
 description: A guide to deploying Tracearr
 published: true
-date: 2026-01-15T15:32:08.240Z
+date: 2026-03-18T20:56:59.424Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:01.316Z
@@ -10,39 +10,29 @@ dateCreated: 2026-01-15T15:09:01.316Z
 
 # <img src="/tracearr.png" class="tab-icon"> What is Tracearr?
 
-Tracearr is a streaming access manager for Plex, Jellyfin, and Emby that answers one question: *Who's actually using my server, and are they sharing their login?*
+**Tracearr** is a real-time monitoring platform for **Plex**, **Jellyfin**, and **Emby** servers. It combines session tracking, playback analytics, library insights, and account sharing detection into a single dashboard — replacing the need to run separate tools like Tautulli and Jellystat for each media server.
 
-Unlike monitoring tools that just show you data, Tracearr is built to detect account abuse. See streams in real-time, flag suspicious activity automatically, and get notified the moment something looks off.
+Key features include stream geolocation mapping, trust scoring, impossible travel detection, concurrent stream limits, Discord webhook alerts, and a public REST API. Tracearr can also import existing watch history from Tautulli and Jellystat so you don't start from scratch.
 
-**Session Tracking** — Full history of who watched what, when, from where, on what device. Every stream logged with geolocation data.
+# 1 · Deploy Tracearr
+# {.tabset}
+## <img src="/docker.png" class="tab-icon"> Docker
 
-**Sharing Detection** — Five rule types catch account sharers:
+The `supervised` image bundles Tracearr, TimescaleDB, and Redis into a single container with zero configuration — secrets are auto-generated on first run.
 
-🚀 Impossible Travel — NYC then London 30 minutes later? That's not one person.
-📍 Simultaneous Locations — Same account streaming from two cities at once.
-🔀 Device Velocity — Too many unique IPs in a short window signals shared credentials.
-📺 Concurrent Streams — Set limits per user. Simple but effective.
-🌍 Geo Restrictions — Block streaming from specific countries entirely.
-
-**Real-Time Alerts** — Discord webhooks and custom notifications fire instantly when rules trigger. No waiting for daily reports.
-
-**Stream Map** — Visualize where your streams originate on an interactive world map. Filter by user, server, or time period to zero in on suspicious patterns.
-
-**Trust Scores** — Users earn (or lose) trust based on their behavior. Violations drop scores automatically.
-
-**Multi-Server** — Connect Plex, Jellyfin, and Emby instances to the same dashboard. Manage everything in one place.
-
-**Tautulli Import** — Already using Tautulli? Import your watch history so you don't start from scratch.
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Tracearr
 ```yaml
 services:
   tracearr:
     image: ghcr.io/connorgallopo/tracearr:supervised
     container_name: tracearr
-    shm_size: 256mb
+    shm_size: 512mb
+    mem_limit: 3g
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
     ports:
-      - 3020:3000
+      - "3000:3000"
     environment:
       - TZ=America/New_York
       - LOG_LEVEL=info
@@ -59,5 +49,94 @@ services:
       retries: 3
 ```
 
-# <img src="/patreon-light.png" class="tab-icon"> 2 · Video
+1. Adjust `TZ` to match your timezone
+2. Deploy the stack and open `http://YOUR_SERVER_IP:3000`
+
+
+> The supervised image requires a minimum of **3 GB of RAM** (`mem_limit`) since it bundles PostgreSQL (TimescaleDB), Redis, and Node.js in one container. The `shm_size` and `ulimits` settings are required for TimescaleDB to function properly.
+{.is-info}
+
+
+### Docker Tags
+
+| Tag | Description |
+|-----|-------------|
+| `supervised` | All-in-one stable release (bundles DB + Redis) |
+| `latest` | Stable release (requires external DB/Redis) |
+| `supervised-next` | All-in-one prerelease |
+| `nightly` | Bleeding edge nightly build |
+
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
+
+Tracearr is available in the **Community** train of the TrueNAS Apps catalog.
+
+1. Navigate to **Apps** in the TrueNAS UI
+2. Click **Discover Apps**
+3. Search for **Tracearr**
+4. Click **Install**
+5. Configure the following settings:
+   - **Timezone**: Set to your local timezone
+   - **Web Port**: `3000` (default)
+6. Click **Save** and wait for the app to deploy
+
+> 
+> Make sure you have the **Community** train enabled under **Apps > Settings > Preferred Trains** to see Tracearr in the catalog.
+{.is-info}
+
+# 2 · Configuration
+
+## 2.1 Initial Setup
+
+When you first open Tracearr at `http://YOUR_SERVER_IP:3000`, you'll be guided through the initial setup wizard to create your admin account.
+
+## 2.2 Connect Your Media Servers
+
+After logging in, navigate to **Settings** and connect your media servers:
+
+1. Click **Add Server**
+2. Select the server type: **Plex**, **Jellyfin**, or **Emby**
+3. Enter the server URL and authentication details
+4. Click **Save**
+
+You can connect multiple servers of different types — Tracearr will display them all in a unified dashboard.
+
+> 
+> For **Plex** servers, Tracearr uses Server-Sent Events (SSE) for real-time session detection with zero polling delay. **Jellyfin** and **Emby** use polling-based updates.
+{.is-success}
+
+## 2.3 Sharing Detection Rules
+
+Tracearr includes six types of account sharing detection rules you can configure under **Settings > Sharing Rules**:
+
+| Rule | Description |
+|------|-------------|
+| Impossible Travel | Flags sessions from two distant locations in an impossibly short time |
+| Simultaneous Locations | Same account streaming from two cities at once |
+| Device Velocity | Too many unique IPs in a short window |
+| Concurrent Streams | Per-user stream limits |
+| Geo Restrictions | Block streaming from specific countries |
+| Account Inactivity | Alerts when accounts go dormant |
+{.dense}
+
+## 2.4 Notifications
+
+Configure these under **Settings > Notifications** to receive real-time alerts when sharing detection rules are triggered.
+
+## 2.5 Data Import
+
+If you're migrating from **Tautulli** or **Jellystat**, you can import your existing watch history under **Settings > Import**. This preserves your historical data so you don't lose any analytics.
+
+
+> Large imports from Tautulli may take some time due to TimescaleDB chunk processing.
+{.is-warning}
+
+## 2.6 Public API
+
+Tracearr exposes a read-only REST API for third-party integrations. Generate an API key under **Settings**, then explore available endpoints at `http://YOUR_SERVER_IP:3000/api-docs` (Swagger UI). This works with Homarr, Home Assistant, or any HTTP-compatible tool.
+
+
+
+
+
+# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
 [![](/2025-12-22-track-user-violations-with-trace-promo-card.png)](https://www.patreon.com/posts/track-user-with-146451791)
