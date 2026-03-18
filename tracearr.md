@@ -2,7 +2,7 @@
 title: Tracearr
 description: A guide to deploying Tracearr
 published: true
-date: 2026-03-18T20:57:45.337Z
+date: 2026-03-18T21:02:19.153Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:01.316Z
@@ -76,7 +76,12 @@ Tracearr is available in the **Community** train of the TrueNAS Apps catalog.
 4. Click **Install**
 5. Configure the following settings:
    - **Timezone**: Set to your local timezone
+   - **Database Password**: Set a strong password
+   - **Redis Password**: Set a strong password
+   - **JWT Secret**: JWT signing key. Generate with: `openssl rand -hex 32`
+   - **Cookie Secret**: Cookie signing key. Generate with: `openssl rand -hex 32`
    - **Web Port**: `3000` (default)
+   - **Postgres Data Storage**: Set to `Host Path` and check the box for **Automatic Permissions**!
 6. Click **Save** and wait for the app to deploy
 
 
