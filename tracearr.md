@@ -2,7 +2,7 @@
 title: Tracearr
 description: A guide to deploying Tracearr
 published: true
-date: 2026-03-18T20:56:59.424Z
+date: 2026-03-18T20:57:45.337Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:01.316Z
@@ -79,7 +79,7 @@ Tracearr is available in the **Community** train of the TrueNAS Apps catalog.
    - **Web Port**: `3000` (default)
 6. Click **Save** and wait for the app to deploy
 
-> 
+
 > Make sure you have the **Community** train enabled under **Apps > Settings > Preferred Trains** to see Tracearr in the catalog.
 {.is-info}
 
@@ -100,9 +100,6 @@ After logging in, navigate to **Settings** and connect your media servers:
 
 You can connect multiple servers of different types — Tracearr will display them all in a unified dashboard.
 
-> 
-> For **Plex** servers, Tracearr uses Server-Sent Events (SSE) for real-time session detection with zero polling delay. **Jellyfin** and **Emby** use polling-based updates.
-{.is-success}
 
 ## 2.3 Sharing Detection Rules
 
@@ -116,7 +113,6 @@ Tracearr includes six types of account sharing detection rules you can configure
 | Concurrent Streams | Per-user stream limits |
 | Geo Restrictions | Block streaming from specific countries |
 | Account Inactivity | Alerts when accounts go dormant |
-{.dense}
 
 ## 2.4 Notifications
 
