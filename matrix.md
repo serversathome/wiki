@@ -2,7 +2,7 @@
 title: Matrix Server
 description: A guide to deploying a Matrix server
 published: false
-date: 2026-03-17T13:33:46.622Z
+date: 2026-03-20T22:02:42.917Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-17T13:27:24.544Z
@@ -10,11 +10,9 @@ dateCreated: 2026-03-17T13:27:24.544Z
 
 # <img src="/matrix.png" class="tab-icon"> What is Matrix?
 
-**Matrix** is an open, federated protocol for real-time communication. It supports text messaging, voice/video calls, file sharing, and bridging to other platforms like Discord. By self-hosting a Matrix homeserver, you own your data and can federate with the broader Matrix network or keep things private.
+**Matrix** is an open, federated protocol for real-time communication. It supports text messaging, voice/video calls, file sharing, and bridging to other platforms. By self-hosting a Matrix homeserver, you own your data and can federate with the broader Matrix network or keep things entirely private.
 
-This guide covers a full Matrix deployment across two hosts: **Synapse** (the homeserver) and supporting services on TrueNAS at home behind a Cloudflare Tunnel, and **LiveKit** (the MatrixRTC voice/video backend) on a remote VPS — ensuring your home IP is never exposed.
-
-# Architecture Overview
+This guide covers a full Matrix deployment across two hosts: **Synapse** (the homeserver) and a web client on TrueNAS at home behind a Cloudflare Tunnel, and **LiveKit** (the MatrixRTC voice/video backend) on a remote VPS — ensuring your home IP is never exposed.
 
 ```mermaid
 graph TB
@@ -24,42 +22,40 @@ graph TB
     end
     subgraph TrueNAS - Home
         Synapse[Synapse + PostgreSQL]
-        Bridge[mautrix-discord]
-        Element[Element Web]
+        Sable[Sable Web Client]
         WK[.well-known]
     end
-    subgraph VPS - RackNerd
+    subgraph VPS
         LK[LiveKit SFU]
         JWT[lk-jwt-service]
-        NB2[NetBird Agent]
     end
     Client -->|HTTPS| CF
     CF -->|TCP| Synapse
-    CF -->|TCP| Element
+    CF -->|TCP| Sable
     CF -->|TCP| WK
-    Synapse --- Bridge
     Client -->|WebSocket/HTTPS| JWT
     Client -->|UDP Media| LK
     JWT -->|OpenID Validation| CF
     LK --- JWT
-    NB2 -.->|Private Management| Synapse
 ```
 
 | Component | Host | Image | Purpose |
 |-----------|------|-------|---------|
 | Synapse | TrueNAS | `matrixdotorg/synapse:latest` | Matrix homeserver |
 | PostgreSQL | TrueNAS | `postgres:16-alpine` | Database for Synapse |
-| mautrix-discord | TrueNAS | `dock.mau.dev/mautrix/discord:latest` | Discord bridge |
-| Element Web | TrueNAS | `vectorim/element-web:latest` | Browser client (optional) |
+| Sable | TrueNAS | `ghcr.io/sableclient/sable:latest` | Browser client (optional) |
 | LiveKit SFU | VPS | `livekit/livekit-server:latest` | Voice/video media routing |
 | lk-jwt-service | VPS | `ghcr.io/element-hq/lk-jwt-service:latest` | MatrixRTC auth tokens |
 
+> 
+> Synapse and Sable run on your NAS at home — no ports need to be opened on your router since all inbound traffic arrives through the Cloudflare Tunnel. LiveKit **requires a VPS with a public IP** and open UDP ports because Cloudflare tunnels only handle HTTP/WebSocket traffic, not UDP media streams.
+{.is-warning}
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Synapse (TrueNAS)
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Synapse + PostgreSQL
 
-## 1.1 Generate Configuration
+## 1.1 Generate Synapse Config
 
-Before deploying the full stack, create a temporary compose file to generate the Synapse config. Create this in Dockge as a one-time stack:
+Before deploying the full stack, create a temporary compose file in Dockge to generate the Synapse config:
 
 ```yaml
 services:
@@ -67,43 +63,38 @@ services:
     image: matrixdotorg/synapse:latest
     container_name: synapse-generate
     environment:
-      - SYNAPSE_SERVER_NAME=serversatho.me
+      - SYNAPSE_SERVER_NAME=yourdomain.com
       - SYNAPSE_REPORT_STATS=no
     volumes:
-      - /mnt/bigdeal/configs/synapse/data:/data
+      - /mnt/tank/configs/synapse/data:/data
     command: generate
 ```
 
 Run the stack — it will generate the config files and exit. Once complete, remove this temporary stack from Dockge.
 
 > 
-> The `SYNAPSE_SERVER_NAME` is your **identity domain** — it appears in user IDs like `@evan:serversatho.me`. This cannot be changed after setup. It does not need to be the same as the URL where Synapse is hosted (that's what `.well-known` delegation handles).
+> The `SYNAPSE_SERVER_NAME` is your **identity domain** — it appears in user IDs like `@you:yourdomain.com`. This cannot be changed after setup. It does not need to be the same as the URL where Synapse is hosted (that's what `.well-known` delegation handles).
 {.is-warning}
 
 ## 1.2 Edit homeserver.yaml
 
-After generation, edit `/mnt/bigdeal/configs/synapse/data/homeserver.yaml`:
+After generation, edit `/mnt/tank/configs/synapse/data/homeserver.yaml`. Find and update the following settings:
 
-**Set the public base URL:**
 ```yaml
-public_baseurl: "https://matrix.serversatho.me/"
-```
+public_baseurl: "https://matrix.yourdomain.com/"
 
-**Switch from SQLite to PostgreSQL:**
-```yaml
+# PostgreSQL (replace the default SQLite block)
 database:
   name: psycopg2
   args:
     user: synapse
-    password: YOUR_SECURE_PASSWORD
+    password: your-secure-password
     database: synapse
     host: synapse-db
     cp_min: 5
     cp_max: 10
-```
 
-**Configure the HTTP listener (behind reverse proxy):**
-```yaml
+# HTTP listener (behind reverse proxy)
 listeners:
   - port: 8008
     tls: false
@@ -112,12 +103,18 @@ listeners:
     resources:
       - names: [client, federation]
         compress: false
+
+# Registration — disable unless you specifically want open signups
+enable_registration: false
+
+# If you DO want open registration, use these instead:
+# enable_registration: true
+# enable_registration_captcha: true
+# recaptcha_public_key: "your-recaptcha-site-key"
+# recaptcha_private_key: "your-recaptcha-secret-key"
 ```
 
-**Disable open registration (recommended):**
-```yaml
-enable_registration: false
-```
+To get reCAPTCHA keys, go to [Google reCAPTCHA Admin](https://www.google.com/recaptcha/admin), create a new site with **Challenge (v2)** — "I'm not a robot" checkbox, and add `matrix.yourdomain.com` as a domain.
 
 ## 1.3 Docker Compose — Synapse Stack
 
@@ -132,7 +129,7 @@ services:
     environment:
       - SYNAPSE_CONFIG_PATH=/data/homeserver.yaml
     volumes:
-      - /mnt/bigdeal/configs/synapse/data:/data
+      - /mnt/tank/configs/synapse/data:/data
     ports:
       - 8008:8008
     depends_on:
@@ -150,49 +147,92 @@ services:
     restart: unless-stopped
     environment:
       - POSTGRES_USER=synapse
-      - POSTGRES_PASSWORD=YOUR_SECURE_PASSWORD
+      - POSTGRES_PASSWORD=your-secure-password
       - POSTGRES_DB=synapse
       - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
     volumes:
-      - /mnt/bigdeal/configs/synapse/postgres-data:/var/lib/postgresql/data
+      - /mnt/tank/configs/synapse/db:/var/lib/postgresql/data
 ```
 
 > 
-> Add a Cloudflare Tunnel route for `matrix.serversatho.me` pointing to `http://localhost:8008`.
-{.is-info}
+> Replace `your-secure-password` with a strong, unique password — make sure it matches what you put in `homeserver.yaml`.
+{.is-danger}
 
-## 1.4 Create an Admin User
+## 1.4 Reverse Proxy
+
+Add a Cloudflare Tunnel route for `matrix.yourdomain.com` pointing to `http://YOUR_HOST_IP:8008`. Since the tunnel and Synapse are not on the same Docker network, use your host's LAN IP (e.g., `192.168.1.x`) with the mapped port rather than the container name.
+
+## 1.5 Create Your First User
 
 After the stack is running:
 
 ```bash
-docker exec -it synapse register_new_matrix_user -c /data/homeserver.yaml http://localhost:8008
+docker exec -it synapse register_new_matrix_user \
+  -c /data/homeserver.yaml http://localhost:8008
 ```
 
-Follow the prompts to create your first admin account.
+Follow the prompts to create your admin account.
 
-## 1.5 .well-known Delegation
+## 1.6 Well-Known Delegation
 
-Your main domain `serversatho.me` needs to serve `.well-known` files so that Matrix clients and other federated servers can find your homeserver and LiveKit instance. These can be served by Synapse itself, a static web server, or configured in Cloudflare.
+Matrix clients need a way to discover where your homeserver actually lives. When a user signs in with `@username:yourdomain.com`, the client makes a request to `https://yourdomain.com/.well-known/matrix/client` to find out which server to talk to. Without these files, clients won't know to connect to `matrix.yourdomain.com`.
 
-**`/.well-known/matrix/server`** (federation):
-```json
-{
-  "m.server": "matrix.serversatho.me:443"
+These files must be served from your **root domain** (`yourdomain.com`), **not** from `matrix.yourdomain.com`. Two JSON responses are needed:
+
+- `https://yourdomain.com/.well-known/matrix/client` — tells clients where the homeserver API is
+- `https://yourdomain.com/.well-known/matrix/server` — tells other Matrix servers where to federate
+
+> 
+> If you're not already hosting a website on your root domain, you'll need a lightweight web server (like nginx) or a Cloudflare Worker to serve these two responses. If you already have a site on your root domain, just add the locations to your existing web server config.
+{.is-info}
+
+**Option A: Nginx** — If you have nginx serving your root domain, add these location blocks to your server config:
+
+```nginx
+location /.well-known/matrix/client {
+    default_type application/json;
+    add_header Access-Control-Allow-Origin *;
+    add_header Access-Control-Allow-Methods 'GET, OPTIONS';
+    add_header Access-Control-Allow-Headers 'Content-Type';
+    return 200 '{"m.homeserver":{"base_url":"https://matrix.yourdomain.com"}}';
+}
+
+location /.well-known/matrix/server {
+    default_type application/json;
+    add_header Access-Control-Allow-Origin *;
+    return 200 '{"m.server":"matrix.yourdomain.com:443"}';
 }
 ```
 
-**`/.well-known/matrix/client`** (client discovery + MatrixRTC):
+**Option B: Static files** — If your root domain points to a simple web server or file host, create two files in a `.well-known/matrix/` directory:
+
+`.well-known/matrix/client`:
 ```json
 {
-  "m.homeserver": {
-    "base_url": "https://matrix.serversatho.me"
-  },
+  "m.homeserver": {"base_url": "https://matrix.yourdomain.com"}
+}
+```
+
+`.well-known/matrix/server`:
+```json
+{
+  "m.server": "matrix.yourdomain.com:443"
+}
+```
+
+Make sure CORS headers are set — the `client` file **must** return `Access-Control-Allow-Origin: *` or Matrix web clients will be blocked by the browser.
+
+**Option C: Cloudflare Worker** — If your root domain is on Cloudflare and you don't have a web server behind it, you can create a Worker that intercepts requests to `/.well-known/matrix/*` and returns the JSON responses directly from the edge.
+
+> 
+> If you plan to use LiveKit for voice/video calling (section 3), add the `rtc_foci` entry to your client well-known now so you don't have to come back later:
+{.is-success}
+
+```json
+{
+  "m.homeserver": {"base_url": "https://matrix.yourdomain.com"},
   "org.matrix.msc4143.rtc_foci": [
-    {
-      "type": "livekit",
-      "livekit_service_url": "https://rtc.serversatho.me"
-    }
+    {"type": "livekit", "livekit_service_url": "https://rtc.yourdomain.com"}
   ]
 }
 ```
@@ -201,96 +241,72 @@ Your main domain `serversatho.me` needs to serve `.well-known` files so that Mat
 > The `rtc_foci` entry is what tells Matrix clients where to find the LiveKit SFU for voice/video calls. Without this, calls will not work.
 {.is-warning}
 
-# 2 · Deploy mautrix-discord Bridge (TrueNAS)
+You can verify everything works by visiting `https://yourdomain.com/.well-known/matrix/client` in your browser — you should see the JSON response.
 
-The [mautrix-discord](https://github.com/mautrix/discord) bridge enables bidirectional message syncing between Discord and Matrix.
+# 2 · Deploy Sable Web Client (Optional)
 
-## 2.1 Docker Compose
+If you want a browser-based client hosted on your own infrastructure, deploy Sable. You can also just use [Element](https://app.element.io) or any other Matrix client and skip this section entirely.
 
-Add this as a separate stack in Dockge, or add it to the Synapse stack:
+Create a new Dockge stack called `sable`:
 
 ```yaml
 services:
-  mautrix-discord:
-    image: dock.mau.dev/mautrix/discord:latest
-    container_name: mautrix-discord
+  sable:
+    image: ghcr.io/sableclient/sable:latest
+    container_name: sable
     restart: unless-stopped
+    ports:
+      - 8085:8080
     volumes:
-      - /mnt/bigdeal/configs/mautrix-discord:/data
+      - /mnt/tank/configs/sable/config.json:/app/config.json:ro
 ```
 
-## 2.2 Generate and Edit Config
+## 2.1 Client Config
 
-On first run, the container will generate a `config.yaml` in the data directory and then exit. Edit `/mnt/bigdeal/configs/mautrix-discord/config.yaml`:
+Create `/mnt/tank/configs/sable/config.json`:
 
-```yaml
-homeserver:
-  address: http://synapse:8008
-  domain: serversatho.me
-
-appservice:
-  address: http://mautrix-discord:29334
-  database:
-    type: sqlite3-fk-wal
-    uri: /data/mautrix-discord.db
-
-bridge:
-  permissions:
-    "serversatho.me": user
-    "@evan:serversatho.me": admin
+```json
+{
+  "defaultHomeserver": 0,
+  "homeserverList": ["yourdomain.com"],
+  "allowCustomHomeservers": true,
+  "disableAccountSwitcher": false,
+  "slidingSync": { "enabled": true },
+  "featuredCommunities": {
+    "openAsDefault": true,
+    "spaces": ["#your-space:yourdomain.com"],
+    "rooms": [],
+    "servers": ["yourdomain.com"]
+  }
+}
 ```
 
-> 
-> If mautrix-discord is in a separate Dockge stack from Synapse, you'll need a shared Docker network between them so `http://synapse:8008` resolves. Alternatively, use the Cloudflare Tunnel URL `https://matrix.serversatho.me` as the homeserver address.
-{.is-info}
-
-## 2.3 Register the Appservice
-
-Copy the generated `registration.yaml` from the mautrix-discord data directory into Synapse's appservices directory:
-
-```bash
-cp /mnt/bigdeal/configs/mautrix-discord/registration.yaml /mnt/bigdeal/configs/synapse/data/appservices/discord-registration.yaml
-```
-
-Add it to `homeserver.yaml`:
-
-```yaml
-app_service_config_files:
-  - /data/appservices/discord-registration.yaml
-```
-
-Restart both Synapse and mautrix-discord after this change.
-
-## 2.4 Link Your Discord Account
-
-From your Matrix client, start a chat with `@discordbot:serversatho.me` and send:
-
-```
-login
-```
-
-Follow the instructions to authenticate with Discord. Once linked, the bridge will sync your Discord servers into Matrix rooms.
+Add a Cloudflare Tunnel route for `chat.yourdomain.com` pointing to `http://YOUR_HOST_IP:8085`.
 
 # 3 · Deploy LiveKit MatrixRTC (VPS)
 
-LiveKit replaces the old coturn-based calling model entirely. It acts as an SFU (Selective Forwarding Unit) that routes voice/video streams between participants with end-to-end encryption. Its built-in TURN server handles firewall traversal — no separate coturn needed.
+LiveKit acts as an SFU (Selective Forwarding Unit) that routes voice/video streams between participants. Its built-in TURN server handles firewall traversal — no separate coturn needed.
 
-## 3.1 Firewall (UFW)
+> 
+> LiveKit needs direct UDP access for media traffic. You **must** deploy this on a VPS with a public IP and open UDP ports — it cannot run behind a Cloudflare tunnel for media.
+{.is-danger}
+
+## 3.1 Firewall
 
 On the VPS, open the required UDP ports:
 
 ```bash
 sudo ufw allow 3478/udp         # LiveKit built-in TURN
-sudo ufw allow 50000:50100/udp  # LiveKit media relay range
+sudo ufw allow 50000:50100/udp   # LiveKit media relay range
 ```
 
 > 
-> No TCP ports need to be opened — all HTTPS signaling goes through the Cloudflare Tunnel on the VPS. Docker is not bypassing UFW here because the Cloudflare Tunnel connector handles ingress without port mappings.
+> No TCP ports need to be opened — all HTTPS signaling goes through the Cloudflare Tunnel on the VPS. Docker is not bypassing UFW here because we use `network_mode: host` and the Tunnel connector handles ingress without port mappings.
 {.is-info}
 
-## 3.2 LiveKit Configuration
+## 3.2 LiveKit Config
 
-Create the LiveKit config file on the VPS at the path you'll mount into the container (e.g., `/home/user/stacks/livekit/livekit.yaml`):
+Create `livekit.yaml` on the VPS at the path you'll mount into the container:
 
 ```yaml
 port: 7880
@@ -304,7 +320,7 @@ turn:
   enabled: true
   udp_port: 3478
 keys:
-  YOUR_LIVEKIT_API_KEY: YOUR_LIVEKIT_API_SECRET
+  your-api-key: your-api-secret
 logging:
   level: info
 ```
@@ -313,9 +329,11 @@ logging:
 > Replace `YOUR_VPS_PUBLIC_IP` with the actual public IP of your VPS. LiveKit cannot auto-discover its public IP when behind a Cloudflare Tunnel, so this must be set manually. Without it, clients won't know where to send UDP media packets.
 {.is-danger}
 
-> 
-> Generate secure random strings for the API key (20 characters) and secret (64 characters). These same values are used in the lk-jwt-service configuration.
-{.is-warning}
+Generate your API key and secret:
+
+```bash
+docker run --rm livekit/livekit-server generate-keys
+```
 
 ## 3.3 Docker Compose — LiveKit Stack
 
@@ -339,97 +357,66 @@ services:
     network_mode: host
     environment:
       - LIVEKIT_JWT_BIND=:8081
-      - LIVEKIT_URL=wss://rtc.serversatho.me
-      - LIVEKIT_KEY=YOUR_LIVEKIT_API_KEY
-      - LIVEKIT_SECRET=YOUR_LIVEKIT_API_SECRET
-      - LIVEKIT_FULL_ACCESS_HOMESERVERS=serversatho.me
+      - LIVEKIT_URL=wss://rtc.yourdomain.com
+      - LIVEKIT_KEY=your-api-key
+      - LIVEKIT_SECRET=your-api-secret
+      - LIVEKIT_FULL_ACCESS_HOMESERVERS=yourdomain.com
 ```
 
 > 
-> Both services use `network_mode: host` — no `ports:` mappings are used on the VPS. This avoids Docker's iptables rules bypassing UFW. LiveKit binds directly for UDP media performance, and lk-jwt-service binds to `localhost:8081` where the Cloudflare Tunnel can reach it. Since port 8081 is not opened in UFW, it is not exposed to the internet.
+> Both services use `network_mode: host` — no `ports:` mappings are needed. This avoids Docker's iptables rules bypassing UFW. LiveKit binds directly for UDP media performance, and lk-jwt-service binds to `localhost:8081` where the Cloudflare Tunnel can reach it. Since port 8081 is not opened in UFW, it is not exposed to the internet.
 {.is-info}
 
-> 
-> The `LIVEKIT_FULL_ACCESS_HOMESERVERS` setting controls which homeservers can create new LiveKit rooms. Users from other federated servers can join existing calls but won't be able to initiate them.
-{.is-info}
+## 3.4 Cloudflare Tunnel Routes
 
-## 3.4 Cloudflare Tunnel Routes (VPS)
-
-Add two routes to the Cloudflare Tunnel running on the VPS. Because lk-jwt-service and LiveKit listen on different ports, you need separate tunnel entries with path-based routing:
+Add two routes to the Cloudflare Tunnel running on the VPS. Because lk-jwt-service and LiveKit listen on different ports, you need path-based routing:
 
 | Hostname | Path | Service | Purpose |
 |----------|------|---------|---------|
-| `rtc.serversatho.me` | `/sfu/get` | `http://localhost:8081` | lk-jwt-service (MatrixRTC auth) |
-| `rtc.serversatho.me` | `/*` (catch-all) | `http://localhost:7880` | LiveKit WebSocket signaling |
-
+| `rtc.yourdomain.com` | `/sfu/get` | `http://localhost:8081` | lk-jwt-service (MatrixRTC auth) |
+| `rtc.yourdomain.com` | `/*` (catch-all) | `http://localhost:7880` | LiveKit WebSocket signaling |
 
 > 
-> In the Cloudflare Zero Trust dashboard, add `rtc.serversatho.me` as a public hostname twice — once with the path `/sfu/get` pointing to `http://localhost:8081`, and once without a path (catch-all) pointing to `http://localhost:7880`. The `/sfu/get` route must be listed **first** so it takes priority. Both services are reachable on localhost because they use `network_mode: host`.
+> In the Cloudflare Zero Trust dashboard, add `rtc.yourdomain.com` as a public hostname twice — once with the path `/sfu/get` pointing to `http://localhost:8081`, and once without a path (catch-all) pointing to `http://localhost:7880`. The `/sfu/get` route must be listed **first** so it takes priority. Both services are reachable on localhost because they use `network_mode: host`.
 {.is-warning}
 
 ## 3.5 How Calls Work
 
-1. Client reads `/.well-known/matrix/client` from `serversatho.me` and discovers the LiveKit URL (`rtc.serversatho.me`)
-2. Client requests a JWT from lk-jwt-service at `https://rtc.serversatho.me/sfu/get`, providing an OpenID token from Synapse
+1. Client reads `/.well-known/matrix/client` from `yourdomain.com` and discovers the LiveKit URL (`rtc.yourdomain.com`)
+2. Client requests a JWT from lk-jwt-service at `https://rtc.yourdomain.com/sfu/get`, providing an OpenID token from Synapse
 3. lk-jwt-service validates the token against Synapse and returns a signed LiveKit JWT
 4. Client connects to the LiveKit SFU using the JWT over WebSocket (through the Cloudflare Tunnel)
 5. Voice/video media flows directly over UDP between the client and LiveKit on the VPS public IP
-6. Home IP is never exposed — all signaling goes through tunnels, all media goes through the VPS
+6. Your home IP is never exposed — all signaling goes through tunnels, all media goes through the VPS
 
-# 4 · Deploy Element Web (TrueNAS, Optional)
+## 3.6 Verify
 
-If you want a browser-based client:
+Test signaling:
 
-```yaml
-services:
-  element-web:
-    image: vectorim/element-web:latest
-    container_name: element-web
-    restart: unless-stopped
-    ports:
-      - 8090:80
-    volumes:
-      - /mnt/bigdeal/configs/element-web/config.json:/app/config.json:ro
+```bash
+curl https://rtc.yourdomain.com
+# Should return: OK
 ```
 
-Create `/mnt/bigdeal/configs/element-web/config.json`:
+# 4 · Configuration Reference
 
-```json
-{
-  "default_server_config": {
-    "m.homeserver": {
-      "base_url": "https://matrix.serversatho.me",
-      "server_name": "serversatho.me"
-    }
-  },
-  "brand": "Servers@Home Chat"
-}
-```
-
-Add a Cloudflare Tunnel route for `chat.serversatho.me` pointing to `http://localhost:8090`.
-
-# 5 · Configuration
-
-## 5.1 Network Summary
+## 4.1 Network Summary
 
 | Traffic Type | Path | Protocol |
 |-------------|------|----------|
 | Client API / Federation | Client → Cloudflare Tunnel → Synapse (TrueNAS) | HTTPS (TCP) |
 | Voice/Video Signaling | Client → Cloudflare Tunnel → LiveKit (VPS) | WSS (TCP) |
 | Voice/Video Media | Client → LiveKit (VPS public IP) | UDP |
-| Discord Bridge | mautrix-discord → Discord API (outbound only) | HTTPS (TCP) |
-| Admin Management | NetBird mesh (private) | WireGuard |
 
-
-## 5.2 DNS Records
+## 4.2 DNS Records
 
 | Record | Type | Value |
 |--------|------|-------|
-| `matrix.serversatho.me` | CNAME | Cloudflare Tunnel (TrueNAS) |
-| `rtc.serversatho.me` | CNAME | Cloudflare Tunnel (VPS) |
-| `chat.serversatho.me` | CNAME | Cloudflare Tunnel (TrueNAS) |
+| `matrix.yourdomain.com` | CNAME | Cloudflare Tunnel (TrueNAS) |
+| `rtc.yourdomain.com` | CNAME | Cloudflare Tunnel (VPS) |
+| `chat.yourdomain.com` | CNAME | Cloudflare Tunnel (TrueNAS) |
 
-## 5.3 Ports Required
+## 4.3 Ports Required
 
 **TrueNAS (firewall/router):** None — all inbound traffic arrives through the Cloudflare Tunnel. Docker ports are bound to the host for the tunnel connector to reach, but no router port forwarding is needed.
 
@@ -440,12 +427,14 @@ Add a Cloudflare Tunnel route for `chat.serversatho.me` pointing to `http://loca
 | 3478 | UDP | LiveKit built-in TURN |
 | 50000-50100 | UDP | LiveKit media relay |
 
-
-## 5.4 Federation Testing
+## 4.4 Federation Testing
 
 Once deployed, verify federation is working:
 
-1. Visit [Federation Tester](https://federationtester.matrix.org/) and enter `serversatho.me`
-2. Confirm it resolves to `matrix.serversatho.me:443` via `.well-known`
+1. Visit the [Matrix Federation Tester](https://federationtester.matrix.org/) and enter `yourdomain.com`
+2. Confirm it resolves to `matrix.yourdomain.com:443` via `.well-known`
 3. Check that the server responds with valid TLS (handled by Cloudflare)
 
+# <img src="/youtube.png" class="tab-icon"> 5 · Video
+
+Coming soon!
