@@ -1,8 +1,8 @@
 ---
 title: Matrix Server
 description: A guide to deploying a Matrix server
-published: false
-date: 2026-03-20T22:02:42.917Z
+published: true
+date: 2026-03-20T22:02:48.358Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-17T13:27:24.544Z
