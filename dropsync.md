@@ -2,7 +2,7 @@
 title: DropSync
 description: A guide to deploying DropSync
 published: true
-date: 2026-03-21T11:26:27.867Z
+date: 2026-03-21T11:26:45.121Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-21T11:26:27.867Z
@@ -31,13 +31,7 @@ services:
       - "3000:3000"
 ```
 
-1. Open **Dockge** and click **Compose**
-2. Name the stack `dropsync`
-3. Paste the compose file above
-4. Click **Deploy**
-5. Access the UI at `http://your-server-ip:3000`
 
-> 
 > DropSync uses WebRTC for direct peer-to-peer transfers. This works well between desktop browsers on standard home/broadband networks, but **does not reliably work on mobile networks (5G/LTE)** due to Carrier-Grade NAT (CGNAT).
 {.is-warning}
 
