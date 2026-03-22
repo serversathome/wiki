@@ -1,8 +1,8 @@
 ---
-title: Searxng
+title: SearXNG
 description: A guide to deploying Searxng
 published: true
-date: 2026-03-22T12:10:15.320Z
+date: 2026-03-22T12:11:26.016Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-22T12:08:48.277Z
