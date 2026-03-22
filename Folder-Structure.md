@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure to allow for hardlinks within the arr stack
 published: true
-date: 2026-02-17T11:05:57.651Z
+date: 2026-03-22T11:44:12.387Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:29.149Z
@@ -65,7 +65,7 @@ tank
 
 # 2 · Auto Folder Creation for TrueNAS
 
-I have written a script which will create the datasets necessary for the \*arr stack as well as build a docker compose yaml with all apps configured for use with those datasets. All permissions are configured to work out-of-the-box.
+I have written a script which will create the datasets necessary for the \*arr stack as well as build a docker compose yaml with all apps configured for use with those datasets. All permissions are configured to work out-of-the-box. The script allows split pool installation, for example, if your apps are on an SSD pool and your media is on a HDD pool.
 
 The two datasets it will create are:
 1. **configs**
