@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure to allow for hardlinks within the arr stack
 published: true
-date: 2026-03-22T11:44:12.387Z
+date: 2026-03-22T11:45:20.784Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:29.149Z
@@ -71,7 +71,9 @@ The two datasets it will create are:
 1. **configs**
 1. **media**
 
-`media` has the subdirectories `movies`, `tv`, and `downloads` instead of datasets for proper hardlinking.
+`confgis` will have **subdatasets** for each app the script installs.
+
+`media` has the **subdirectories** `movies`, `tv`, and `downloads` instead of datasets for proper hardlinking.
 
 All permissions are set to the following:
 
