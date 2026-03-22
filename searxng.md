@@ -2,7 +2,7 @@
 title: Searxng
 description: A guide to deploying Searxng
 published: true
-date: 2026-03-22T12:08:48.277Z
+date: 2026-03-22T12:09:13.934Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-22T12:08:48.277Z
@@ -14,9 +14,9 @@ dateCreated: 2026-03-22T12:08:48.277Z
 
 SearXNG is a community-driven fork of the original SearX project, started in 2021, and is under very active development with 26,900+ GitHub stars.
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy SearXNG
+# 1 · Deploy SearXNG
 # {.tabset}
-## Docker
+## <img src="/docker.png" class="tab-icon"> Docker
 
 ```yaml
 services:
@@ -74,7 +74,7 @@ openssl rand -hex 32
 > If your pool is named something other than `tank`, change the left side of the volume path to match your pool name, e.g., `/mnt/yourpool/configs/searxng`.
 {.is-warning}
 
-## Docker + VPN (Gluetun)
+## <img src="/docker.png" class="tab-icon"> Docker + VPN (Gluetun)
 
 This deployment routes all of SearXNG's outbound search traffic through a VPN using [Gluetun](https://github.com/qdm12/gluetun), so search engines see a shared VPN IP instead of your home IP. This is the **recommended setup** for single-user instances.
 
@@ -161,7 +161,7 @@ openssl rand -hex 32
 > Change `VPN_SERVICE_PROVIDER`, `VPN_TYPE`, and the credential variables to match your VPN provider. Gluetun supports 30+ providers including Mullvad, ProtonVPN, Surfshark, NordVPN, and more.
 {.is-info}
 
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 1. Navigate to **Apps** in the TrueNAS UI
 2. Click **Discover** and search for "**SearXNG**"
