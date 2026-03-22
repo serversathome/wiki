@@ -2,7 +2,7 @@
 title: OpenCloud
 description: A guide to deploying OpenCloud
 published: true
-date: 2026-03-22T11:56:59.012Z
+date: 2026-03-22T11:57:39.372Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-22T11:56:59.012Z
@@ -16,9 +16,9 @@ dateCreated: 2026-03-22T11:56:59.012Z
 > OpenCloud was created by members of the former ownCloud team and is developed by the Heinlein Gruppe in Germany.
 {.is-info}
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy OpenCloud
+# 1 · Deploy OpenCloud
 # {.tabset}
-## Docker
+## <img src="/docker.png" class="tab-icon"> Docker
 
 ```yaml
 services:
@@ -58,7 +58,7 @@ The default admin password is set to `admin` in the compose file. **Change this 
 {.is-warning}
 
 
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for **OpenCloud**
