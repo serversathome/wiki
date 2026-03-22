@@ -2,7 +2,7 @@
 title: Searxng
 description: A guide to deploying Searxng
 published: true
-date: 2026-03-22T12:09:13.934Z
+date: 2026-03-22T12:10:15.320Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-22T12:08:48.277Z
@@ -283,4 +283,3 @@ You can add SearXNG as your default search engine in most browsers:
 
 # <img src="/youtube.png" class="tab-icon"> 4 · Video
 
-https://youtu.be/VIDEO_ID_HERE
