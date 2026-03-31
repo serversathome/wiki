@@ -2,7 +2,7 @@
 title: Capacitarr
 description: A guide to deploying Capacitarr
 published: true
-date: 2026-03-21T11:32:55.609Z
+date: 2026-03-31T17:40:28.790Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-21T11:32:55.609Z
@@ -17,7 +17,7 @@ dateCreated: 2026-03-21T11:32:55.609Z
 ```yaml
 services:
   capacitarr:
-    image: ghentstarshadow/capacitarr:stable
+    image: ghcr.io/ghent/capacitarr:stable
     container_name: capacitarr
     environment:
       - PUID=568
