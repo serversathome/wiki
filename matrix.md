@@ -2,7 +2,7 @@
 title: Matrix Server
 description: A guide to deploying a Matrix server
 published: true
-date: 2026-03-20T22:02:48.358Z
+date: 2026-04-02T17:35:48.318Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-17T13:27:24.544Z
@@ -435,6 +435,3 @@ Once deployed, verify federation is working:
 2. Confirm it resolves to `matrix.yourdomain.com:443` via `.well-known`
 3. Check that the server responds with valid TLS (handled by Cloudflare)
 
-# <img src="/youtube.png" class="tab-icon"> 5 · Video
-
-Coming soon!
