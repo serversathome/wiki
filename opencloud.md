@@ -2,7 +2,7 @@
 title: OpenCloud
 description: A guide to deploying OpenCloud
 published: true
-date: 2026-03-22T11:57:39.372Z
+date: 2026-04-06T21:20:55.278Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-22T11:56:59.012Z
@@ -68,6 +68,7 @@ The default admin password is set to `admin` in the compose file. **Change this 
    - **OpenCloud URL**: `https://cloud.yourdomain.com`
    - **Host Path (Config)**: `/mnt/tank/configs/opencloud/config`
    - **Host Path (Data)**: `/mnt/tank/configs/opencloud/data`
+   - **Host Path (Radicale Data)**: `/mnt/tank/configs/opencloud/radicale`
 5. Click **Save**
 
 > 
