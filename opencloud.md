@@ -2,7 +2,7 @@
 title: OpenCloud
 description: A guide to deploying OpenCloud
 published: true
-date: 2026-04-06T21:20:55.278Z
+date: 2026-04-07T11:23:00.932Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-22T11:56:59.012Z
@@ -36,7 +36,6 @@ services:
     command: ["-c", "opencloud init --insecure true || true; opencloud server"]
     environment:
       - OC_URL=https://cloud.yourdomain.com
-      - INITIAL_ADMIN_PASSWORD=admin
       - IDM_CREATE_DEMO_USERS=false
     restart: unless-stopped
 ```
