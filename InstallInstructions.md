@@ -2,7 +2,7 @@
 title: Install Instructions
 description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2026-04-07T09:40:38.247Z
+date: 2026-04-07T09:41:00.976Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:31.090Z
@@ -25,7 +25,7 @@ Follow the steps in this order to make the install go as smoothly as possible.
 | 9   | Install Recyclarr or Profilarr | [Recyclarr](/Recyclarr) / [Profilarr](/profilarr) |
 | 10  | Install Emby/Jellyfin | [Emby](/Emby)/[Jellyfin](/jellyfin) |
 | 11  | Install Unpackerr | [Unpackerr](/Unpackerr) |
-| 12  | Install Seer | [Seer](/seer) |
+| 12  | Install Seer | [Seerr](/seerr) |
 | 13  | Install Bazarr | [Bazarr](/bazarr) |
 | 14  | Install Tdarr | [Tdarr](/tdarr) |
 | 15  | If you want remote access, configure a VPN | [Cloudflare Tunnels](/CloudflareTunnels) / [wg-easy](/wg-easy) / [Tailscale](/tailscale) / [Netbird](/netbird) |
