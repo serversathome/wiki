@@ -2,7 +2,7 @@
 title: Rustdesk
 description: A guide to deploying Rustdesk
 published: true
-date: 2026-04-08T16:17:53.429Z
+date: 2026-04-08T16:18:51.338Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-08T13:36:58.555Z
@@ -108,27 +108,7 @@ After creating each service, NetBird will assign an **external port** and displa
 > L4 services do not support browser-based authentication (SSO, password, PIN) because there is no HTTP layer. Use **IP CIDR access restrictions** and **country-based geo-restrictions** in the NetBird dashboard to lock down who can connect.
 {.is-info}
 
-## 2.4 Custom Domain (Optional)
 
-Instead of using the NetBird-assigned proxy domain, you can point your own domain at the cloud proxy cluster:
-
-1. In the NetBird dashboard, go to **Reverse Proxy → Domains → Add Domain**
-2. Enter your domain (e.g., `remote.serversatho.me`)
-3. Add a **CNAME record** in your DNS pointing to the NetBird proxy cluster address
-4. NetBird will automatically provision a TLS certificate
-
-## 2.5 Alternative: Expose via CLI (Temporary)
-
-For testing, you can use `netbird expose` directly from TrueNAS:
-
-```bash
-netbird expose --protocol tcp 21116
-netbird expose --protocol tcp 21117
-netbird expose --protocol udp 21116
-```
-
-> CLI-exposed services are **ephemeral** — they disappear when you press <kbd>Ctrl</kbd>+<kbd>C</kbd> or the process stops. Use the dashboard method (Section 2.3) for persistent services.
-{.is-warning}
 
 # 3 · Configure RustDesk Clients
 
