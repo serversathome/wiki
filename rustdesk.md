@@ -2,7 +2,7 @@
 title: Rustdesk
 description: A guide to deploying Rustdesk
 published: true
-date: 2026-04-08T14:01:49.506Z
+date: 2026-04-08T16:17:53.429Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-08T13:36:58.555Z
@@ -12,16 +12,7 @@ dateCreated: 2026-04-08T13:36:58.555Z
 
 **RustDesk** is an open-source remote desktop application and self-hostable alternative to TeamViewer, AnyDesk, and similar commercial tools. It provides full remote control of another computer's mouse and keyboard, file transfer, screen sharing, and clipboard sync — all with end-to-end encryption. By self-hosting the RustDesk server, you maintain complete control over your relay infrastructure with no dependency on third-party cloud services.
 
-RustDesk consists of two server components:
 
-| Component | Purpose | Ports |
-|-----------|---------|-------|
-| **hbbs** | ID/Rendezvous server — clients register here so other peers can find them | 21115 (TCP), 21116 (TCP+UDP), 21118 (TCP) |
-| **hbbr** | Relay server — used as fallback when direct hole-punching between peers fails | 21117 (TCP), 21119 (TCP) |
-{.dense}
-
-> RustDesk clients constantly ping hbbs to register their current IP. When you connect from computer A to computer B, hbbs attempts direct hole-punching first. The relay server (hbbr) is only used if hole-punching fails, which means most connections are peer-to-peer.
-{.is-info}
 
 # 1 · Deploy RustDesk
 # {.tabset}
