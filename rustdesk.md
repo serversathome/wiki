@@ -2,7 +2,7 @@
 title: Rustdesk
 description: A guide to deploying Rustdesk
 published: true
-date: 2026-04-08T16:20:30.045Z
+date: 2026-04-08T16:32:02.280Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-08T13:36:58.555Z
@@ -125,15 +125,15 @@ Download the RustDesk client from [rustdesk.com](https://rustdesk.com) for Windo
 
     | Field | Value |
     |-------|-------|
-    | **ID Server** | `remote.serversatho.me:PORT` (or NetBird proxy domain:port) |
-    | **Relay Server** | `remote.serversatho.me:PORT` (relay port from Section 2.3) |
+    | **ID Server** | `rustdesk-id.example.com:PORT`  |
+    | **Relay Server** | `rustdesk-relay.example.com:PORT` |
     | **Key** | Contents of `id_ed25519.pub` from Section 1 |
 
 
 1. Click **Apply** or **OK**
 1. The client should show a green **Ready** indicator at the bottom
 
-> If NetBird auto-assigned non-standard ports, you **must** include the port number after the domain (e.g., `remote.serversatho.me:38721`). Without it, RustDesk will try the default ports and fail to connect.
+> When using NetBird's cloud reverse proxy, each service gets an auto-assigned external port that differs from RustDesk's defaults. Your server administrator will provide the correct ports after creating the L4 services in the NetBird dashboard. You must include the port number after the domain (e.g., rust.serversatho.me:38721) or the connection will fail.
 {.is-warning}
 
 
