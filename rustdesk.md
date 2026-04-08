@@ -2,7 +2,7 @@
 title: Rustdesk
 description: A guide to deploying Rustdesk
 published: true
-date: 2026-04-08T16:18:51.338Z
+date: 2026-04-08T16:20:30.045Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-08T13:36:58.555Z
@@ -119,19 +119,19 @@ Download the RustDesk client from [rustdesk.com](https://rustdesk.com) for Windo
 ## 3.2 Point to Your Server
 
 1. Open the RustDesk client
-2. Click the **three-dot menu** (⋮) next to your ID
-3. Go to **Settings → Network → ID/Relay Server**
-4. Configure using the domain and ports from Section 2.3:
+1. Click the **three-dot menu** (⋮) next to your ID
+1. Go to **Settings → Network → ID/Relay Server**
+1. Configure using the domain and ports from Section 2.3:
 
-| Field | Value |
-|-------|-------|
-| **ID Server** | `remote.serversatho.me:PORT` (or NetBird proxy domain:port) |
-| **Relay Server** | `remote.serversatho.me:PORT` (relay port from Section 2.3) |
-| **Key** | Contents of `id_ed25519.pub` from Section 1 |
-{.dense}
+    | Field | Value |
+    |-------|-------|
+    | **ID Server** | `remote.serversatho.me:PORT` (or NetBird proxy domain:port) |
+    | **Relay Server** | `remote.serversatho.me:PORT` (relay port from Section 2.3) |
+    | **Key** | Contents of `id_ed25519.pub` from Section 1 |
 
-5. Click **Apply** or **OK**
-6. The client should show a green **Ready** indicator at the bottom
+
+1. Click **Apply** or **OK**
+1. The client should show a green **Ready** indicator at the bottom
 
 > If NetBird auto-assigned non-standard ports, you **must** include the port number after the domain (e.g., `remote.serversatho.me:38721`). Without it, RustDesk will try the default ports and fail to connect.
 {.is-warning}
