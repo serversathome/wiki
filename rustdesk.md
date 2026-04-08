@@ -2,7 +2,7 @@
 title: Rustdesk
 description: A guide to deploying Rustdesk
 published: true
-date: 2026-04-08T13:38:40.884Z
+date: 2026-04-08T14:01:49.506Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-08T13:36:58.555Z
@@ -104,11 +104,10 @@ In the NetBird dashboard, navigate to **Reverse Proxy → Services → Add Servi
 
 | Service Name | Mode | Target Peer | Target Port | Protocol |
 |-------------|------|-------------|-------------|----------|
-| rustdesk-signal | TCP | TrueNAS | 21115 | TCP |
 | rustdesk-id-tcp | TCP | TrueNAS | 21116 | TCP |
 | rustdesk-id-udp | UDP | TrueNAS | 21116 | UDP |
 | rustdesk-relay | TCP | TrueNAS | 21117 | TCP |
-{.dense}
+
 
 After creating each service, NetBird will assign an **external port** and display the **proxy cluster domain** in the service details. Note these down — you'll need them to configure RustDesk clients.
 
