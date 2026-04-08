@@ -2,7 +2,7 @@
 title: Rustdesk
 description: A guide to deploying Rustdesk
 published: true
-date: 2026-04-08T13:36:58.555Z
+date: 2026-04-08T13:37:32.710Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-08T13:36:58.555Z
@@ -23,9 +23,9 @@ RustDesk consists of two server components:
 > RustDesk clients constantly ping hbbs to register their current IP. When you connect from computer A to computer B, hbbs attempts direct hole-punching first. The relay server (hbbr) is only used if hole-punching fails, which means most connections are peer-to-peer.
 {.is-info}
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy RustDesk Server on TrueNAS
+# 1 · Deploy RustDesk
 # {.tabset}
-## Docker (Dockge)
+## <img src="/docker.png" class="tab-icon"> Docker (Dockge)
 
 Deploy this stack via Dockge on TrueNAS. Since RustDesk will be exposed through NetBird's cloud reverse proxy, we do **not** need `network_mode: "host"` — standard bridge networking with published ports is fine.
 
@@ -67,7 +67,7 @@ cat /mnt/tank/configs/rustdesk/data/id_ed25519.pub
 > No firewall changes or port forwarding are needed on TrueNAS or your router. RustDesk only needs to be reachable within your NetBird mesh — the NetBird cloud reverse proxy handles all public-facing traffic.
 {.is-success}
 
-## TrueNAS App
+## <img src="/truenas.png" class="tab-icon"> TrueNAS App
 
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for "**Rust Desk**" (Community train)
