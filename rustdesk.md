@@ -2,7 +2,7 @@
 title: Rustdesk
 description: A guide to deploying Rustdesk
 published: true
-date: 2026-04-08T13:37:41.119Z
+date: 2026-04-08T13:37:52.089Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-08T13:36:58.555Z
@@ -67,7 +67,7 @@ cat /mnt/tank/configs/rustdesk/data/id_ed25519.pub
 > No firewall changes or port forwarding are needed on TrueNAS or your router. RustDesk only needs to be reachable within your NetBird mesh — the NetBird cloud reverse proxy handles all public-facing traffic.
 {.is-success}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS App
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for "**Rust Desk**" (Community train)
