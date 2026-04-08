@@ -2,7 +2,7 @@
 title: Rustdesk
 description: A guide to deploying Rustdesk
 published: true
-date: 2026-04-08T13:37:32.710Z
+date: 2026-04-08T13:37:41.119Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-08T13:36:58.555Z
@@ -25,7 +25,7 @@ RustDesk consists of two server components:
 
 # 1 · Deploy RustDesk
 # {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker (Dockge)
+## <img src="/docker.png" class="tab-icon"> Docker
 
 Deploy this stack via Dockge on TrueNAS. Since RustDesk will be exposed through NetBird's cloud reverse proxy, we do **not** need `network_mode: "host"` — standard bridge networking with published ports is fine.
 
