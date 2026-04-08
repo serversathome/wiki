@@ -2,7 +2,7 @@
 title: Rustdesk
 description: A guide to deploying Rustdesk
 published: true
-date: 2026-04-08T13:38:10.679Z
+date: 2026-04-08T13:38:40.884Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-08T13:36:58.555Z
@@ -56,11 +56,11 @@ services:
 ```
 
 1. Deploy the stack via Dockge
-2. After the containers start, retrieve your public key:
-```bash
-cat /mnt/tank/configs/rustdesk/data/id_ed25519.pub
-```
-3. Copy this key — you'll need it when configuring clients
+1. After the containers start, retrieve your public key:
+    ```bash
+    cat /mnt/tank/configs/rustdesk/data/id_ed25519.pub
+    ```
+1. Copy this key — you'll need it when configuring clients
 
 > No firewall changes or port forwarding are needed on TrueNAS or your router. RustDesk only needs to be reachable within your NetBird mesh — the NetBird cloud reverse proxy handles all public-facing traffic.
 {.is-success}
