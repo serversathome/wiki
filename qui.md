@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2026-02-03T11:30:41.802Z
+date: 2026-04-14T17:33:51.875Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:46.966Z
@@ -65,6 +65,8 @@ Cross-seeding allows you to seed the same content on multiple trackers automatic
 1. Set **Base directory** to a folder on the same filesystem as your downloads (e.g., `/media/downloads/crossseed`)
 1. Set **Directory organization** to **Flat**
 1. Under **Categories**, select **Category affix** with Suffix: `.cross`
+1. Size Mismatch Tolerance → 0 (or 0.1%)
+1. Piece Boundary Safety Check → ENABLE it (toggle ON)
 
 > Reflink mode is safer if your filesystem supports it (ZFS, Btrfs). It creates copy-on-write clones so any writes don't affect your original files.
 {.is-info}
