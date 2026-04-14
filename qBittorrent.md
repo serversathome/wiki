@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-03-15T10:37:28.672Z
+date: 2026-04-14T16:58:58.409Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -60,8 +60,6 @@ services:
 > And change the `WEBUI_PORTS` variable to the same port (both for tcp and udp). 
 {.is-success}
 
-This qBittorrent container is from hotio and uses a Wireguard VPN to protect traffic. 
-
 <details><summary><strong>Environment Variables Explanations</strong> (click to expand)</summary>
 
 |  Variable   | Value    |
@@ -82,6 +80,12 @@ This qBittorrent container is from hotio and uses a Wireguard VPN to protect tra
   
 > When you start this container it will fail until you add the VPN config file. 
 {.is-warning}
+
+### The Wireguard wg0.conf File
+
+In whatever wireguard file your VPN provider gives you, you must:
+1. Remove any IPv6 information
+1. Place the file in the `/mnt/tank/configs/qbittorrent/config/wireguard` folder
 
 ## <img src="/docker.png" class="tab-icon"> Linuxserver Wireguard
 This is the recommended approach for Servers@Home. It uses **100% stock linuxserver.io containers** (no custom images to maintain!) with automatic killswitch protection.
