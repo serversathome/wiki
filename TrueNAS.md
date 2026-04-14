@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2026-03-17T20:25:00.887Z
+date: 2026-04-14T10:37:08.358Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:56.437Z
@@ -151,7 +151,7 @@ https://youtu.be/XBcAMd_wyI0
 
 ## Containers
 ## Virtual Machines
-
+https://youtu.be/l1ISBq7cWkU
 
 ## Apps
 ### Apps
