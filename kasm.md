@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-03-12T13:41:57.970Z
+date: 2026-04-14T10:36:37.981Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -283,5 +283,5 @@ Once configured, Kasm will automatically provision VMs to meet the standby requi
 
 
 # <img src="/youtube.png" class="tab-icon"> 6 · Video
+https://youtu.be/sVe3LV6XoFI
 
-*Video coming soon*
