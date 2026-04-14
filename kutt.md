@@ -2,7 +2,7 @@
 title: Kutt
 description: A guide to deploying Kutt
 published: true
-date: 2026-03-05T18:38:32.470Z
+date: 2026-04-14T10:36:10.936Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-05T18:35:20.228Z
@@ -206,4 +206,5 @@ To lock down your Kutt instance for personal use, set these two environment vari
 This prevents anyone else from signing up or creating short links without an account.
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
+https://youtu.be/jJ-cydT3wB0
 
