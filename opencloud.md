@@ -2,7 +2,7 @@
 title: OpenCloud
 description: A guide to deploying OpenCloud
 published: true
-date: 2026-04-07T11:23:00.932Z
+date: 2026-04-14T10:37:50.621Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-22T11:56:59.012Z
@@ -77,5 +77,4 @@ The default admin password is set to `admin` in the compose file. **Change this 
 
 
 # <img src="/youtube.png" class="tab-icon"> 2 · Video
-
-*Video coming soon! Check back later.*
+https://youtu.be/CfGRm6QtEjE
