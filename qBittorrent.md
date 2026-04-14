@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-04-14T16:58:58.409Z
+date: 2026-04-14T16:59:28.834Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -86,6 +86,7 @@ services:
 In whatever wireguard file your VPN provider gives you, you must:
 1. Remove any IPv6 information
 1. Place the file in the `/mnt/tank/configs/qbittorrent/config/wireguard` folder
+1. Name it `wg0.conf`
 
 ## <img src="/docker.png" class="tab-icon"> Linuxserver Wireguard
 This is the recommended approach for Servers@Home. It uses **100% stock linuxserver.io containers** (no custom images to maintain!) with automatic killswitch protection.
