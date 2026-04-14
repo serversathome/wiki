@@ -2,7 +2,7 @@
 title: SearXNG
 description: A guide to deploying Searxng
 published: true
-date: 2026-03-22T12:11:26.016Z
+date: 2026-04-14T10:35:00.129Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-22T12:08:48.277Z
@@ -282,4 +282,5 @@ You can add SearXNG as your default search engine in most browsers:
 - **Safari**: Use an extension like "xSearch" to set a custom search URL
 
 # <img src="/youtube.png" class="tab-icon"> 4 · Video
+https://youtu.be/5vNegD0Lgt4
 
