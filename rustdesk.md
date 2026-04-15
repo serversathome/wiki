@@ -2,7 +2,7 @@
 title: Rustdesk
 description: A guide to deploying Rustdesk
 published: true
-date: 2026-04-08T16:32:02.280Z
+date: 2026-04-15T17:59:08.018Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-08T13:36:58.555Z
@@ -136,5 +136,6 @@ Download the RustDesk client from [rustdesk.com](https://rustdesk.com) for Windo
 > When using NetBird's cloud reverse proxy, each service gets an auto-assigned external port that differs from RustDesk's defaults. Your server administrator will provide the correct ports after creating the L4 services in the NetBird dashboard. You must include the port number after the domain (e.g., rust.serversatho.me:38721) or the connection will fail.
 {.is-warning}
 
-
+# <img src="/youtube.png" class="tab-icon"> 4 · Video
+https://youtu.be/aV4dDYc27gk
 
