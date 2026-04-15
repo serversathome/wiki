@@ -2,7 +2,7 @@
 title: Cal.com
 description: A guide to deploying Cal.com
 published: true
-date: 2026-04-15T17:41:45.728Z
+date: 2026-04-15T17:45:49.503Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-07T11:20:08.256Z
@@ -117,16 +117,6 @@ VAPID_PUBLIC_KEY=CHANGE_ME_GENERATE_WITH_WEB_PUSH
 VAPID_PRIVATE_KEY=CHANGE_ME_GENERATE_WITH_WEB_PUSH
 ```
 
-1. Replace all `CHANGE_ME` values with your own credentials
-2. Replace `cal.example.com` with your actual domain (e.g., `cal.serversatho.me`)
-3. Generate secrets: run `openssl rand -base64 32` for `NEXTAUTH_SECRET` and `openssl rand -base64 24` for `CALENDSO_ENCRYPTION_KEY`
-4. Generate VAPID keys: run `npx web-push generate-vapid-keys` and copy the public/private key pair
-
-> In Dockge, paste the compose YAML on the right and fill in the environment variables in the **Environment Variables** section at the bottom. Dockge creates the `.env` file for you.
-{.is-success}
-
-> If your pool is named something besides `tank`, change the left side of the volume paths accordingly.
-{.is-info}
 
 > Cal.diy uses `latest` here for simplicity, but consider pinning to a specific version tag (e.g., `calcom/cal.diy:v6.2.0`) for more predictable updates. Check available tags at [DockerHub](https://hub.docker.com/r/calcom/cal.diy/tags).
 {.is-info}
@@ -150,23 +140,8 @@ npx web-push generate-vapid-keys
 
 Copy each output and paste it into the corresponding environment variable in your compose file.
 
-## 2.2 Reverse Proxy Setup
 
-Cal.diy should be accessed over HTTPS. Set up a reverse proxy in **Nginx Proxy Manager** or your preferred reverse proxy:
-
-| Setting | Value |
-|---------|-------|
-| **Scheme** | http |
-| **Forward Hostname** | calcom (or container IP) |
-| **Forward Port** | 3000 |
-| **SSL** | Request a new SSL certificate or use Cloudflare |
-
-If you're using a **Cloudflare Tunnel**, point the tunnel to `http://calcom:3000` and set your public hostname to your desired subdomain.
-
-> Make sure `NEXT_PUBLIC_WEBAPP_URL` and `NEXTAUTH_URL` both match your final public URL exactly (including `https://`). Mismatches here will cause login and callback failures.
-{.is-danger}
-
-## 2.3 Google Calendar Integration
+## 2.2 Google Calendar Integration
 
 To sync Cal.diy with your Google Calendar:
 
@@ -187,7 +162,7 @@ To sync Cal.diy with your Google Calendar:
 
 Once deployed, go to **Settings → Integrations** in Cal.diy and click **Connect** next to Google Calendar to complete the OAuth flow.
 
-## 2.4 Stripe Integration (Paid Bookings)
+## 2.3 Stripe Integration (Paid Bookings)
 
 To accept payments when someone books your time:
 
@@ -206,7 +181,7 @@ To accept payments when someone books your time:
 > Stripe also supports Apple Pay and Google Pay. Enable these in your Stripe Dashboard under **Settings → Payments → Payment Methods** for additional checkout options.
 {.is-success}
 
-## 2.5 Creating Consultation Event Types
+## 2.4 Creating Consultation Event Types
 
 After initial setup, create your bookable event types:
 
@@ -224,7 +199,7 @@ After initial setup, create your bookable event types:
 
 Your booking page will be available at `https://cal.example.com/your-username`.
 
-## 2.6 Environment Variables Reference
+## 2.5 Environment Variables Reference
 
 | Variable | Description |
 |----------|-------------|
@@ -247,4 +222,3 @@ Your booking page will be available at `https://cal.example.com/your-username`.
 
 GitHub repository: [github.com/calcom/cal.diy](https://github.com/calcom/cal.diy)
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
