@@ -1,8 +1,8 @@
 ---
-title: Cal.com
-description: A guide to deploying Cal.com
+title: Cal.diy
+description: A guide to deploying Cal.diy
 published: true
-date: 2026-04-15T17:45:49.503Z
+date: 2026-04-15T17:46:19.263Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-07T11:20:08.256Z
