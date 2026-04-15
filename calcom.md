@@ -2,17 +2,20 @@
 title: Cal.com
 description: A guide to deploying Cal.com
 published: true
-date: 2026-03-08T12:05:55.642Z
+date: 2026-04-15T17:41:45.728Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-07T11:20:08.256Z
 ---
 
-# <img src="/cal-com.png" class="tab-icon"> What is Cal.com?
+# <img src="/cal-com.png" class="tab-icon"> What is Cal.diy (formerly Cal.com)?
 
-**Cal.com** is an open-source scheduling platform that lets you create bookable event types, sync with your existing calendars, and accept payments through Stripe. It's a self-hosted alternative to Calendly with full control over your data, making it ideal for consultants, creators, and freelancers who want a professional booking page without handing their schedule to a third party.
+**Cal.diy** is the open-source community edition of Cal.com, a scheduling platform that lets you create bookable event types, sync with your existing calendars, and accept payments through Stripe. In April 2026, Cal.com moved its commercial product to closed source and released Cal.diy under the MIT license as the self-hostable fork for the community. It's a self-hosted alternative to Calendly with full control over your data, making it ideal for consultants, creators, and freelancers who want a professional booking page without handing their schedule to a third party.
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Cal.com
+> **Migrating from the old `calcom/cal.com` image?** Back up your database directory first, then swap the image to `calcom/cal.diy:latest`. Your environment variables and data are compatible. Enterprise-only features (Teams, Organizations, Workflows, SSO/SAML, Insights) are no longer available in Cal.diy. See [Cal.com's announcement](https://cal.com/blog/calcom-v6-4) for full details.
+{.is-warning}
+
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Cal.diy
 
 
 ```yaml
@@ -36,7 +39,7 @@ services:
       retries: 10
 
   calcom:
-    image: calcom.docker.scarf.sh/calcom/cal.com:latest
+    image: calcom/cal.diy:latest
     container_name: calcom
     restart: unless-stopped
     depends_on:
@@ -68,8 +71,9 @@ services:
       - PAYMENT_FEE_PERCENTAGE=${PAYMENT_FEE_PERCENTAGE:-0}
       # --- Google Calendar OAuth ---
       - GOOGLE_API_CREDENTIALS=${GOOGLE_API_CREDENTIALS}
-      # --- License (optional, for enterprise features) ---
-      # - CALCOM_LICENSE_KEY=${CALCOM_LICENSE_KEY}
+      # --- Push Notifications (VAPID) ---
+      - NEXT_PUBLIC_VAPID_PUBLIC_KEY=${VAPID_PUBLIC_KEY}
+      - VAPID_PRIVATE_KEY=${VAPID_PRIVATE_KEY}
     volumes:
       - /mnt/tank/configs/calcom/config:/app/config
 ```
@@ -84,7 +88,7 @@ POSTGRES_USER=calcom
 POSTGRES_PASSWORD=CHANGE_ME_STRONG_PASSWORD
 POSTGRES_DB=calcom
 
-# --- Cal.com Core ---
+# --- Cal.diy Core ---
 CALCOM_URL=https://cal.example.com
 CALCOM_PORT=3000
 NEXTAUTH_SECRET=CHANGE_ME_GENERATE_WITH_OPENSSL
@@ -108,13 +112,15 @@ PAYMENT_FEE_PERCENTAGE=0
 # --- Google Calendar OAuth ---
 GOOGLE_API_CREDENTIALS={"client_id":"XXXXX.apps.googleusercontent.com","client_secret":"XXXXX","redirect_uris":["https://cal.example.com/api/integrations/googlecalendar/callback"]}
 
-# --- License (optional) ---
-# CALCOM_LICENSE_KEY=
+# --- Push Notifications (VAPID) ---
+VAPID_PUBLIC_KEY=CHANGE_ME_GENERATE_WITH_WEB_PUSH
+VAPID_PRIVATE_KEY=CHANGE_ME_GENERATE_WITH_WEB_PUSH
 ```
 
 1. Replace all `CHANGE_ME` values with your own credentials
 2. Replace `cal.example.com` with your actual domain (e.g., `cal.serversatho.me`)
 3. Generate secrets: run `openssl rand -base64 32` for `NEXTAUTH_SECRET` and `openssl rand -base64 24` for `CALENDSO_ENCRYPTION_KEY`
+4. Generate VAPID keys: run `npx web-push generate-vapid-keys` and copy the public/private key pair
 
 > In Dockge, paste the compose YAML on the right and fill in the environment variables in the **Environment Variables** section at the bottom. Dockge creates the `.env` file for you.
 {.is-success}
@@ -122,11 +128,14 @@ GOOGLE_API_CREDENTIALS={"client_id":"XXXXX.apps.googleusercontent.com","client_s
 > If your pool is named something besides `tank`, change the left side of the volume paths accordingly.
 {.is-info}
 
+> Cal.diy uses `latest` here for simplicity, but consider pinning to a specific version tag (e.g., `calcom/cal.diy:v6.2.0`) for more predictable updates. Check available tags at [DockerHub](https://hub.docker.com/r/calcom/cal.diy/tags).
+{.is-info}
+
 # 2 · Configuration
 
 ## 2.1 Generating Secrets
 
-Before deploying, generate your two required secret keys from a terminal:
+Before deploying, generate your required secret keys from a terminal:
 
 ```bash
 # Generate NEXTAUTH_SECRET
@@ -134,13 +143,16 @@ openssl rand -base64 32
 
 # Generate CALENDSO_ENCRYPTION_KEY
 openssl rand -base64 24
+
+# Generate VAPID keys for push notifications
+npx web-push generate-vapid-keys
 ```
 
 Copy each output and paste it into the corresponding environment variable in your compose file.
 
 ## 2.2 Reverse Proxy Setup
 
-Cal.com should be accessed over HTTPS. Set up a reverse proxy in **Nginx Proxy Manager** or your preferred reverse proxy:
+Cal.diy should be accessed over HTTPS. Set up a reverse proxy in **Nginx Proxy Manager** or your preferred reverse proxy:
 
 | Setting | Value |
 |---------|-------|
@@ -156,7 +168,7 @@ If you're using a **Cloudflare Tunnel**, point the tunnel to `http://calcom:3000
 
 ## 2.3 Google Calendar Integration
 
-To sync Cal.com with your Google Calendar:
+To sync Cal.diy with your Google Calendar:
 
 1. Go to the [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project or select an existing one
@@ -173,7 +185,7 @@ To sync Cal.com with your Google Calendar:
 > The `GOOGLE_API_CREDENTIALS` value must be valid JSON on a single line. Double-check your quotes and escaping.
 {.is-warning}
 
-Once deployed, go to **Settings → Integrations** in Cal.com and click **Connect** next to Google Calendar to complete the OAuth flow.
+Once deployed, go to **Settings → Integrations** in Cal.diy and click **Connect** next to Google Calendar to complete the OAuth flow.
 
 ## 2.4 Stripe Integration (Paid Bookings)
 
@@ -188,7 +200,7 @@ To accept payments when someone books your time:
 4. For `STRIPE_CLIENT_ID`, go to **Settings → Connect** in Stripe and copy your Platform Client ID (`ca_...`)
 5. Add all four values to your compose environment variables
 6. Deploy/redeploy your stack
-7. In Cal.com, go to **Apps → App Store** → search for **Stripe** → Install
+7. In Cal.diy, go to **Apps → App Store** → search for **Stripe** → Install
 8. Create or edit an event type → under **Apps**, enable Stripe and set your price
 
 > Stripe also supports Apple Pay and Google Pay. Enable these in your Stripe Dashboard under **Settings → Payments → Payment Methods** for additional checkout options.
@@ -198,7 +210,7 @@ To accept payments when someone books your time:
 
 After initial setup, create your bookable event types:
 
-1. Go to **Event Types** in Cal.com
+1. Go to **Event Types** in Cal.diy
 2. Click **New Event Type**
 3. Configure:
    - **Title**: e.g., "Homelab Consultation"
@@ -216,7 +228,7 @@ Your booking page will be available at `https://cal.example.com/your-username`.
 
 | Variable | Description |
 |----------|-------------|
-| `NEXT_PUBLIC_WEBAPP_URL` | Public URL of your Cal.com instance |
+| `NEXT_PUBLIC_WEBAPP_URL` | Public URL of your Cal.diy instance |
 | `NEXTAUTH_URL` | Should match `NEXT_PUBLIC_WEBAPP_URL` |
 | `NEXTAUTH_SECRET` | Random secret for session encryption |
 | `CALENDSO_ENCRYPTION_KEY` | Random key for data encryption |
@@ -229,8 +241,10 @@ Your booking page will be available at `https://cal.example.com/your-username`.
 | `STRIPE_WEBHOOK_SECRET` | Stripe webhook signing secret (`whsec_...`) |
 | `STRIPE_CLIENT_ID` | Stripe Connect client ID (`ca_...`) |
 | `GOOGLE_API_CREDENTIALS` | JSON string with Google OAuth credentials |
+| `NEXT_PUBLIC_VAPID_PUBLIC_KEY` | VAPID public key for push notifications |
+| `VAPID_PRIVATE_KEY` | VAPID private key for push notifications |
 {.dense}
 
-Full documentation: [cal.com/docs/self-hosting](https://cal.com/docs/self-hosting)
+GitHub repository: [github.com/calcom/cal.diy](https://github.com/calcom/cal.diy)
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
