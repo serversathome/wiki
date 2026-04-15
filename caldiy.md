@@ -2,7 +2,7 @@
 title: Cal.diy
 description: A guide to deploying Cal.diy
 published: true
-date: 2026-04-15T17:46:19.263Z
+date: 2026-04-15T17:47:50.625Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-07T11:20:08.256Z
@@ -199,7 +199,25 @@ After initial setup, create your bookable event types:
 
 Your booking page will be available at `https://cal.example.com/your-username`.
 
-## 2.5 Environment Variables Reference
+
+## 2.5 Daily.co Video Integration (Cal Video)
+ 
+Cal Video is Cal.diy's built-in video conferencing, powered by [Daily.co](https://daily.co). Without a Daily API key, Cal Video won't be available as a meeting location — you'd be limited to external options like Zoom or Google Meet.
+ 
+1. Go to [Daily.co](https://daily.co/) and create a free account
+2. From your Daily dashboard, navigate to **Developers** → [API Keys](https://dashboard.daily.co/developers)
+3. Copy your API key
+4. Paste it into the `DAILY_API_KEY` environment variable in your `.env` file
+5. If you have the [Daily Scale Plan](https://daily.co/pricing), set `DAILY_SCALE_PLAN=true` to enable features like cloud recording
+6. Redeploy your stack
+
+After redeploying, Cal Video will appear as a location option when creating or editing event types. Select **Cal Video** under the **Location** dropdown to use the built-in video conferencing for your bookings.
+ 
+> The free Daily.co tier is generous and more than sufficient for 1-on-1 consultations. You only need the Scale Plan if you want video recording or larger group calls.
+{.is-info}
+
+
+## 2.6 Environment Variables Reference
 
 | Variable | Description |
 |----------|-------------|
