@@ -2,7 +2,7 @@
 title: Seafile
 description: A guide to deploying Seafile
 published: true
-date: 2026-04-18T12:54:33.462Z
+date: 2026-04-18T13:39:04.753Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-18T12:46:01.658Z
@@ -18,22 +18,57 @@ The Community Edition (CE) is fully free and open source. The Professional Editi
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Seafile
-
-Before deploying, generate a JWT private key. Seafile 13 requires this for internal service authentication:
-
+To keep passwords and hostnames in a single place — so changing the root password doesn't mean editing three different lines — we'll use a `.env` file alongside the compose file. In Dockge, each stack has both a Compose and an Environment tab; paste the compose into the first and the env vars into the second.
+ 
+## 1.1 Generate a JWT Key
+ 
+Seafile 13 requires a JWT private key for internal service authentication. Run this on any Linux box (or in the TrueNAS shell) to generate one:
+ 
 ```bash
 openssl rand -base64 40
 ```
+ 
+Copy the output. You'll paste it into the `JWT_PRIVATE_KEY` value in the `.env` file below.
 
-Copy the output — you'll paste it into the compose file below as `JWT_PRIVATE_KEY`.
-
+## 1.2 Environment File
+ 
+```bash
+# ==== Hostname ====
+# Bake-in on first run - the domain or IP:port you will actually use to reach Seafile.
+# Do NOT change after first boot without also editing conf/seahub_settings.py.
+SEAFILE_SERVER_HOSTNAME=seafile.example.com
+SEAFILE_SERVER_PROTOCOL=https
+TIME_ZONE=America/New_York
+ 
+# ==== Secrets ====
+# Paste the output of: openssl rand -base64 40
+JWT_PRIVATE_KEY=paste_your_generated_key_here
+ 
+# ONE password used for everything: MariaDB root, Seafile's DB user, and the Seafile web admin.
+# Pick a strong unique value.
+SEAFILE_PASSWORD=change_this_password
+ 
+# Admin email for the first-boot web UI login (only used on first startup).
+SEAFILE_ADMIN_EMAIL=admin@example.com
+```
+ 
+> 
+> Change `SEAFILE_PASSWORD` to something strong and unique — ideally from a password manager. This one value is reused in four places in the compose file, so changing it here updates all of them automatically.
+{.is-warning}
+ 
+> 
+> **Reusing one password across DB root, DB user, and web admin is fine for a homelab or personal deployment.** For a multi-user or business deployment, you should split this into three separate values — an attacker who compromises one surface shouldn't get the others for free. If you need that split, replace `${SEAFILE_PASSWORD}` in the compose file with three distinct variables (`DB_ROOT_PASSWORD`, `DB_USER_PASSWORD`, `ADMIN_PASSWORD`) and set each one independently.
+{.is-info}
+ 
+## 1.3 Docker Compose
+ 
 ```yaml
 services:
   db:
     image: mariadb:10.11
     container_name: seafile-db
     environment:
-      - MYSQL_ROOT_PASSWORD=change_this_root_password
+      - MYSQL_ROOT_PASSWORD=${SEAFILE_PASSWORD}
       - MYSQL_LOG_CONSOLE=true
       - MARIADB_AUTO_UPGRADE=1
     volumes:
@@ -45,7 +80,7 @@ services:
       start_period: 30s
       timeout: 5s
       retries: 10
-
+ 
   redis:
     image: redis:7
     container_name: seafile-redis
@@ -55,7 +90,7 @@ services:
       interval: 20s
       timeout: 5s
       retries: 5
-
+ 
   seafile:
     image: seafileltd/seafile-mc:13.0-latest
     container_name: seafile
@@ -65,30 +100,30 @@ services:
       - /mnt/tank/configs/seafile/data:/shared
     environment:
       # Core
-      - SEAFILE_SERVER_HOSTNAME=seafile.example.com
-      - SEAFILE_SERVER_PROTOCOL=https
-      - TIME_ZONE=America/New_York
-      - JWT_PRIVATE_KEY=paste_your_generated_key_here
-
+      - SEAFILE_SERVER_HOSTNAME=${SEAFILE_SERVER_HOSTNAME}
+      - SEAFILE_SERVER_PROTOCOL=${SEAFILE_SERVER_PROTOCOL}
+      - TIME_ZONE=${TIME_ZONE}
+      - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY}
+ 
       # Database
       - DB_HOST=db
-      - DB_ROOT_PASSWD=change_this_root_password
+      - DB_ROOT_PASSWD=${SEAFILE_PASSWORD}
       - SEAFILE_MYSQL_DB_HOST=db
       - SEAFILE_MYSQL_DB_USER=seafile
-      - SEAFILE_MYSQL_DB_PASSWORD=change_this_db_password
+      - SEAFILE_MYSQL_DB_PASSWORD=${SEAFILE_PASSWORD}
       - SEAFILE_MYSQL_DB_CCNET_DB_NAME=ccnet_db
       - SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
       - SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
-
+ 
       # Cache
       - CACHE_PROVIDER=redis
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-
+ 
       # First-run admin bootstrap (ignored on subsequent starts)
-      - INIT_SEAFILE_ADMIN_EMAIL=admin@example.com
-      - INIT_SEAFILE_ADMIN_PASSWORD=change_this_admin_password
-      - INIT_SEAFILE_MYSQL_ROOT_PASSWORD=change_this_root_password
+      - INIT_SEAFILE_ADMIN_EMAIL=${SEAFILE_ADMIN_EMAIL}
+      - INIT_SEAFILE_ADMIN_PASSWORD=${SEAFILE_PASSWORD}
+      - INIT_SEAFILE_MYSQL_ROOT_PASSWORD=${SEAFILE_PASSWORD}
     depends_on:
       db:
         condition: service_healthy
@@ -96,7 +131,6 @@ services:
         condition: service_healthy
     restart: unless-stopped
 ```
-
 
 > The `INIT_*` variables are **only used once** — at first startup to create the admin user and seed the database. Changing them later has no effect. Password changes after setup are done inside the Seafile web UI.
 {.is-warning}
