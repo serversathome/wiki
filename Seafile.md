@@ -2,7 +2,7 @@
 title: Seafile
 description: A guide to deploying Seafile
 published: true
-date: 2026-04-18T12:46:01.658Z
+date: 2026-04-18T12:54:07.737Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-18T12:46:01.658Z
@@ -16,9 +16,6 @@ Seafile organizes files into **libraries** (repositories) that can be shared, en
 
 The Community Edition (CE) is fully free and open source. The Professional Edition adds features like online garbage collection, S3/OpenStack storage backends, SAML SSO, audit logs, and full-text search via ElasticSearch — free for up to 3 users.
 
-> 
-> Starting with version 13, Seafile CE is **Docker-only**. The traditional binary install method was dropped. Deployment is now simpler but uses multiple compose layers under the hood (Seafile + MariaDB + Redis + optional Caddy and SeaDoc).
-{.is-info}
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Seafile
 
@@ -100,15 +97,7 @@ services:
     restart: unless-stopped
 ```
 
-1. Replace all `change_this_*` passwords with strong, unique values — ideally from a password manager.
-2. Paste the output of the `openssl` command into `JWT_PRIVATE_KEY`.
-3. Set `SEAFILE_SERVER_HOSTNAME` to the domain you'll actually use (e.g. `seafile.yourdomain.com`). This value is baked into configuration files on first run.
-4. Adjust `TIME_ZONE` to your local timezone.
-5. Deploy the stack in Dockge.
-6. Wait 1–2 minutes on first boot for the database to initialize. A `502 Bad Gateway` during this window is normal.
-7. Visit `http://your-server-ip:8000` and log in with the admin email and password you set.
 
-> 
 > The `INIT_*` variables are **only used once** — at first startup to create the admin user and seed the database. Changing them later has no effect. Password changes after setup are done inside the Seafile web UI.
 {.is-warning}
 
@@ -122,7 +111,7 @@ Because Seafile uses long-lived WebSocket connections (for notifications and Sea
 
 ## 2.1 Cloudflare Tunnel
 
-For a Cloudflare Tunnel, create a public hostname pointing to `http://seafile:80` and in the tunnel's application settings enable:
+For a Cloudflare Tunnel, create a public hostname pointing to `http://[SERVERIP]:8000` and in the tunnel's application settings enable:
 
 - **HTTP/2 connection** — On
 - **No TLS Verify** — On (if using self-signed upstream)
@@ -132,7 +121,7 @@ Cloudflare's free plan caps uploads at **100 MB per request**. For larger files,
 
 ## 2.2 Nginx Proxy Manager / Traefik
 
-Point your proxy host to `http://seafile:80` and make sure **WebSockets** are enabled. Seafile's internal Nginx already handles the `/seafhttp` and `/notification` routing internally, so you only need to expose the single upstream.
+Point your proxy host to `http://[SERVERIP]:80` and make sure **WebSockets** are enabled. Seafile's internal Nginx already handles the `/seafhttp` and `/notification` routing internally, so you only need to expose the single upstream.
 
 In NPM, under the **Advanced** tab, add:
 
@@ -149,14 +138,6 @@ Setting `client_max_body_size 0` disables the upload size limit entirely — ess
 ## 3.1 First Login
 
 Log in at your Seafile URL with the `INIT_SEAFILE_ADMIN_EMAIL` and `INIT_SEAFILE_ADMIN_PASSWORD` values from the compose file. You'll land on the **My Libraries** view.
-
-From the top-right avatar menu, choose **System Admin** to access the administrative dashboard. From here you can:
-
-- Create and manage users
-- View system info and statistics
-- Configure LDAP, SAML, OAuth (PE only), or standard email/password auth
-- Set storage quotas per user
-- Manage share links and audit activity
 
 ## 3.2 Create Your First Library
 
@@ -190,7 +171,7 @@ Add your server URL (with `https://`), email, and password. Seafile's sync engin
 | **Wikis** | Built-in hierarchical wiki with nested pages, access controls, and version tracking |
 | **Share Links** | Password-protected, time-limited, permission-scoped share links for files and folders |
 | **Snapshots** | Every library keeps version history automatically; restore any file to any point in time |
-{.dense}
+
 
 # 5 · Maintenance
 
@@ -212,14 +193,7 @@ docker exec seafile /scripts/gc.sh
 
 Seafile will stop, clean unreferenced blocks, and restart automatically. Run this monthly or after large deletions. Professional Edition supports online GC without downtime.
 
-## 5.3 Backups
 
-Back up two things:
-
-1. **The MariaDB database** — contains user accounts, library metadata, share links, permissions
-2. **The Seafile data volume** — contains the actual file blocks at `/mnt/tank/configs/seafile/data/seafile-data/storage`
-
-A ZFS replication task covering `/mnt/tank/configs/seafile` handles both in one shot. For offsite backup, consider rclone or restic pointing at B2, S3, or a second TrueNAS.
 
 # <img src="/youtube.png" class="tab-icon"> 6 · Video
 
