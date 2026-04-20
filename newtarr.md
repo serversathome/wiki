@@ -2,7 +2,7 @@
 title: Newtarr
 description: A guide to deploying Newtarr
 published: true
-date: 2026-03-16T15:22:27.155Z
+date: 2026-04-20T13:08:40.526Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-14T00:05:42.713Z
@@ -91,4 +91,5 @@ NewtArr sticks to the original purpose: **hunt missing episodes, movies, and med
 
 # <img src="/youtube.png" class="tab-icon"> 5 · Video
 
-Coming soon!
+[![](/2026-03-24-replacing-huntarr-with-newtarr--promo-card.png)](
+https://www.patreon.com/posts/replacing-with-153191561)
