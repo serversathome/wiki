@@ -2,7 +2,7 @@
 title: Fetcharr
 description: A guide to deploy Fetcharr
 published: true
-date: 2026-03-21T11:11:26.093Z
+date: 2026-04-20T13:08:21.018Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-13T15:52:59.553Z
@@ -98,4 +98,5 @@ For most homelabs, the defaults are a solid starting point:
 
 # <img src="/patreon-light.png" class="tab-icon"> 3 · Video
 
-*Video coming soon — check back later!*
+[![](/2026-03-24-replacing-huntarr-with-newtarr--promo-card.png)](
+https://www.patreon.com/posts/replacing-with-153191561)
