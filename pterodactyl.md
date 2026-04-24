@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-04-24T17:02:53.305Z
+date: 2026-04-24T17:15:45.350Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
@@ -51,16 +51,25 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
     apt install -y curl ca-certificates
     EOF
     ```
-1. Then run the Pterodactyl installer as a **separate** paste (it's interactive and eats stdin if you chain anything after it):
+1. Then run the Pterodactyl installer:
     ```bash
-    bash <(curl -s https://pterodactyl-installer.se)
+      curl -o /tmp/ptero-install.sh https://pterodactyl-installer.se && bash /tmp/ptero-install.sh   
     ```
-1. In the menu, pick **Install both [0]**. Answer its prompts:
-    - **Domain**: your domain, or just the container's LAN IP if you're LAN-only (check with `ip -4 -o addr show scope global`)
-    - **Admin email / username / password**: whatever you want for the Panel root login
+1. In the menu, pick **Install both [2]**. Answer its prompts:
+		
+    - **Database name**: `panel` (use default)
+    - **Database username**: `pterodactyl` (use default)
+    - **Password**: set a strong password
     - **Timezone**: yours
-    - **SSL**: *no* if you're going LAN-only; *yes* if you gave it a real public-facing domain (uses Let's Encrypt, needs port 80 reachable from the internet)
-    - **MariaDB / Redis**: let the installer set them up locally — defaults are fine
+    - **Email (Let's Encrypt & Pterodactyl)**: enter any email
+    - **Email (initial admin account)**: enter any email
+    - **Username**: enter a username
+    - **Frist name**: the first name of the admin user
+    - **Last name**: last name of the admin user
+    - **Password**: password for the admin user
+    - **FQDN**: your domain, or just the container's LAN IP if you're LAN-only
+    - **Configure UFW**: `no` (default)
+
 1. When it finishes it prints the URL for the Panel. Log in as the admin user you just created.
 
 # 3 · Add Your Node in the Panel
