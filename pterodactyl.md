@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-01-15T15:31:03.294Z
+date: 2026-04-24T15:20:31.956Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
@@ -10,160 +10,110 @@ dateCreated: 2026-01-15T15:07:35.530Z
 
 > UNDER CONSTRUCTION
 {.is-danger}
+# ![](/pterodactyl.png){class="tab-icon"} 1 · What Is Pterodactyl?
+Pterodactyl is a free, open-source game server management panel. It gives you a web UI to deploy, start/stop, monitor, and manage game servers — Minecraft, Rust, ARK, Valheim, whatever — with per-server resource limits, a clean file manager, SFTP access, and user/subuser accounts so you can hand a server off to a friend without handing them root.
 
+## 1.1 Why Use This?
 
+Running a handful of game servers on a bare box works until you want more than one person managing them, or you want to cap how much CPU/RAM each one gets, or you want your kid to be able to stop and start the Minecraft server without you touching it. Pterodactyl solves all of that in one web UI.
 
+Under the hood, **Wings** (the daemon) runs each game server inside its own Docker container with CPU/RAM/disk limits and isolated storage. The **Panel** is the web UI you actually interact with. On a homelab, running both on the same box (all-in-one) is the simplest setup and what this guide covers.
 
-# ![](/pterodactyl.png){class="tab-icon"} What is Pterodactyl?
+# <img src="/linuxcontainers.png" class="tab-icon"> 2 · TrueNAS 26 LXC Installation
 
-Pterodactyl® is a free, open-source game server management panel built with PHP, React, and Go. Designed with security in mind, Pterodactyl runs all game servers in isolated Docker containers while exposing a beautiful and intuitive UI to end users. 
+Wings runs game servers inside Docker containers, and Docker inside an *unprivileged* LXC is a configuration mess. For an all-in-one box the simplest path is a **privileged** container — same trade-off as the old Incus `shift=true` workflow. The installer then treats the container exactly like a fresh VM and Does The Right Thing.
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Pterodactyl
-```yaml
-services:
-  db:
-    image: "mariadb:latest"
-    container_name: pterodactyl_mariadb
-    restart: unless-stopped
-    command: "--default-authentication-plugin=mysql_native_password"
-    volumes:
-      - "${CONFIG_VOLUME}/panel/db:/var/lib/mysql"
-    environment:
-      MYSQL_DATABASE: panel
-      MYSQL_USER: pterodactyl 
-      MYSQL_PASSWORD: pterodactyl! 
-      MYSQL_ROOT_PASSWORD: pterodactyl!!
-    networks:
-      - pterodactyl
-  
-  cache:
-    image: "redis:alpine"
-    container_name: pterodactyl_redis
-    restart: unless-stopped
-    networks:
-      - pterodactyl
+1. **First time only**: go to **Virtualization → Containers → Global Configuration** and set:
+    - **Preferred Pool** = the pool you want container rootfs on
+    - **Bridge** = the bridge your LAN is on (e.g. `br1`). If you don't have one yet, make one in **Network → Interfaces** first.
+1. Create a dataset for game server volumes: **Datasets → Add Dataset**, parent = your pool, name = `pterodactyl`, preset = **Generic**, save. No permission changes needed — the container runs privileged and Wings will manage ownership itself.
+1. Create the container: **Virtualization → Containers → Add**
+    - **Name**: `pterodactyl`
+    - **Image**: browse catalog → **debian / trixie / amd64 / default**
+    - **Pool**: your pool
+    - **Idmap**: *None* (privileged — required so Docker/Wings works without namespace fights)
+    - **Capabilities Policy**: *Allow* (so Docker gets `mknod` etc.)
+    - **Autostart**: on
+    - Under **Devices**, click **Add → Filesystem** and fill in:
 
-  panel:
-    image: "ghcr.io/pterodactyl/panel:latest"
-    container_name: pterodactyl_panel
-    restart: unless-stopped
-    stdin_open: true
-    tty: true
-    ports:
-      - "${PANEL_PORT}:80"
-    volumes:
-      - "${CONFIG_VOLUME}/panel/var/:/app/var/"
-      - "${CONFIG_VOLUME}/panel/logs/:/app/storage/logs"
-      - "${CONFIG_VOLUME}/panel/nginx/:/etc/nginx/conf.d/"
-    environment:
-      RECAPTCHA_ENABLED: false
-      TZ: ${TZ}
-      APP_TIMEZONE: ${TZ}
-      APP_ENV: production
-      APP_ENVIRONMENT_ONLY: false
-      APP_URL: "${FQDN}"
-      APP_SERVICE_AUTHOR: example@gmail.com # Replace with your email
-      TRUSTED_PROXIES: "*"
-      PTERODACTYL_TELEMETRY_ENABLED: false
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_USERNAME: pterodactyl 
-      DB_PASSWORD: pterodactyl!
-      CACHE_DRIVER: redis
-      SESSION_DRIVER: redis
-      QUEUE_DRIVER: redis
-      REDIS_HOST: cache
-    networks:
-      - pterodactyl
+        | Field | Value |
+        | --- | --- |
+        | `Source` | `/mnt/<pool>/pterodactyl` (the host path) |
+        | `Target` | `/var/lib/pterodactyl/volumes` (where Wings stores game-server data) |
 
-  wings:
-    image: "ghcr.io/pterodactyl/wings:latest"
-    container_name: pterodactyl_wings
-    restart: unless-stopped
-    ports:
-      - "2022:2022"
-      - "8443:443"
-    stdin_open: true
-    tty: true
-    environment:
-      TZ: ${TZ}
-      APP_TIMEZONE: ${TZ}
-      WINGS_UID: 1000
-      WINGS_GID: 1000
-      WINGS_USERNAME: pterodactyl
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      - "${CONFIG_VOLUME}/var/lib/docker/containers/:/var/lib/docker/containers/"
-      - "${CONFIG_VOLUME}/etc/pterodactyl/:/etc/pterodactyl/"
-      - "${CONFIG_VOLUME}/var/lib/pterodactyl/:/var/lib/pterodactyl/"
-      - "${CONFIG_VOLUME}/var/log/pterodactyl/:/var/log/pterodactyl/"
-      - "${CONFIG_VOLUME}/tmp/pterodactyl/:/tmp/pterodactyl/"
-      - "${CONFIG_VOLUME}/etc/ssl/certs:/etc/ssl/certs:ro"
-    networks:
-      - wings0
+    - **Save**. The container starts automatically on your bridge.
+    > Running privileged means container root == host root. It's the same security posture the old incus all-in-one had, and it's what keeps Docker happy. If you want to isolate it further later, run Panel in the LXC and Wings in a VM instead.
+    {.is-info}
+1. Click your container → **Shell** and paste this to prep it:
+    ```bash
+    bash <<'EOF'
+    until getent hosts deb.debian.org >/dev/null 2>&1; do sleep 1; done
+    export DEBIAN_FRONTEND=noninteractive
+    apt update
+    apt install -y curl ca-certificates
+    EOF
+    ```
+1. Then run the Pterodactyl installer as a **separate** paste (it's interactive and eats stdin if you chain anything after it):
+    ```bash
+    bash <(curl -s https://pterodactyl-installer.se)
+    ```
+1. In the menu, pick **Install both [0]**. Answer its prompts:
+    - **Domain**: your domain, or just the container's LAN IP if you're LAN-only (check with `ip -4 -o addr show scope global`)
+    - **Admin email / username / password**: whatever you want for the Panel root login
+    - **Timezone**: yours
+    - **SSL**: *no* if you're going LAN-only; *yes* if you gave it a real public-facing domain (uses Let's Encrypt, needs port 80 reachable from the internet)
+    - **MariaDB / Redis**: let the installer set them up locally — defaults are fine
+1. When it finishes it prints the URL for the Panel. Log in as the admin user you just created.
 
-networks:
-  pterodactyl:
-    name: pterodactyl
-  wings0:
-    name: wings0
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.50.0.0/16
-    driver_opts:
-      com.docker.network.bridge.name: wings0
-```
+# 3 · Add Your Node in the Panel
+This tells the Panel that Wings (on the same container) is the place to run game servers.
 
-## 1.1 env Variables
+1. Panel → **Admin** (wrench icon) → **Nodes** → **Create New**
+1. Fill in:
 
-```yaml
-CONFIG_VOLUME=/mnt/tank/configs/pterodactyl
-PANEL_PORT=8080
-TZ=America/New_York
-FQDN=
-```
+    | Field | Value |
+    | --- | --- |
+    | Name | anything, e.g. `local` |
+    | Description | optional |
+    | Location | create one first if the dropdown is empty |
+    | FQDN | the container's hostname or IP (same as Panel URL usually) |
+    | Communicate Over SSL | match whatever you picked during install |
+    | Memory | how much RAM you'll let game servers eat (in MB) |
+    | Disk | how much disk, in MB |
+    | Daemon Port | `8080` (default) |
+    | Daemon SFTP Port | `2022` (default) |
+    | Daemon Server File Directory | `/var/lib/pterodactyl/volumes` |
 
-# 2 · Creating TrueNAS Groups and Datasets
-## 2.1 Adding a Group
-1. Navigate to **Credentials → Groups → Add**
-1. Use the **GID** of `1000`
-1. Give it a **Name**
-1. Click **Save**
+1. **Create Node**
+1. Click the node → **Configuration** tab. Copy the YAML it shows you.
+1. Back in the container shell, paste it to `/etc/pterodactyl/config.yml`:
+    ```bash
+    nano /etc/pterodactyl/config.yml
+    ```
+    Paste, `Ctrl-O`, `Enter`, `Ctrl-X`.
+1. Start and enable Wings:
+    ```bash
+    systemctl enable --now wings
+    systemctl status wings --no-pager | head
+    ```
+    The status should show `active (running)` and the last log lines should say it connected to the panel. If you refresh the Nodes page in the Panel, the node now has a green heart.
 
-## 2.2 Adding a Dataset
-1. Navigate to **Datasets**
-1. Click **Add Dataset**
-1. Give it a **Name**
-1. Edit the permissions on the dataset you just created
-1. Change the **Group** to the name of the group you created from step 2.1
-1. Check the box to **Apply Group**
-1. Check all the boxes under **Access** in the **Group** row to give full permissions
-1. Uncheck all the boxes in the **Other** row to remove permissions
+# 4 · Add Allocations (IP:Port pairs for game servers)
+Each game server needs at least one IP:port allocation.
 
-# 3 · Creating an Admin User
-To create an admin user run this command in the TrueNAS shell **as root**:
+1. Node → **Allocation** tab → **Assign New Allocations**
+1. **IP Address**: the container's LAN IP
+1. **Ports**: a range for game servers (e.g. `25565-25575` for Minecraft, or a wider range). You can add more later.
+1. **Submit**
 
-```bash
-docker exec -it pterodactyl_panel php artisan p:user:make
-```
+# 5 · Create Your First Server
+1. Panel → **Servers** → **Create New**
+1. Pick an owner, a Node, an Allocation, and a game Egg (Minecraft Java Vanilla is a safe first test — Pterodactyl ships with it by default).
+1. Give it RAM/CPU/disk limits, hit **Create**.
+1. Watch Wings pull the Docker image, install the server files, and start it up.
 
-# 4 · Reverse Proxy
-1. Using whichever reverse proxy you want, create an entry for the Panel
-1. Edit the `.env` variables in the docker compose file and use the new FQDN you created
-1. Create a second entry for `wings` pointed at the IP of your server and port `8443`
+# 6 · Router / Firewall
+Because the container is on your LAN bridge (not NATed), its IP is reachable from your LAN directly. To expose game servers to the internet, forward the allocation ports on your router to the container's IP (no port-forward magic needed on TrueNAS itself). Static-lease the container's MAC on your DHCP server so its IP doesn't drift.
 
-# 5 · Creating a Node (Wings)
-1. Navigate to the **Locations** tab in the left pane and click **Create New** in the top right
-1. Navigate to **Nodes** and click **Create New** in the top right
- ## Basic Details
-1. Give it a name
-1. Set the FQDN to the second FQDN you created in step 4
-1. Set **Behind Proxy** to **Behind Proxy**
-## Configuration
-1. Give it a **Total Memory**
-1. Set the **Memory Over-Allocation** to `0`
-1. Set **Total Disk Space**
-1. Set the **Disk Over-Allocation** to `0`
-1. Set the **Daemon Port** to `443`
-1. Click **Create Node**
+# <img src="/cloudflare.png" class="tab-icon"> 7 · Connecting With Cloudflare Tunnels
+If you're exposing the Panel via a Cloudflare tunnel, point the tunnel at `http://{container-ip}` (or `https://` if you set up SSL locally). For Wings' daemon port (`8080`) and SFTP (`2022`), Cloudflare tunnels aren't the right tool — those need direct TCP exposure. Use tailscale or a plain port forward for those if you need them off-LAN.
