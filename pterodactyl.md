@@ -2,14 +2,13 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-04-24T17:38:04.325Z
+date: 2026-04-24T17:38:18.113Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
 ---
 
-> UNDER CONSTRUCTION
-{.is-danger}
+
 # ![](/pterodactyl.png){class="tab-icon"} 1 · What Is Pterodactyl?
 Pterodactyl is a free, open-source game server management panel. It gives you a web UI to deploy, start/stop, monitor, and manage game servers — Minecraft, Rust, ARK, Valheim, whatever — with per-server resource limits, a clean file manager, SFTP access, and user/subuser accounts so you can hand a server off to a friend without handing them root.
 
