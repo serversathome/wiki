@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-04-24T17:24:26.329Z
+date: 2026-04-24T17:26:55.328Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
@@ -87,7 +87,7 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
 # 3 · Add Your Node in the Panel
 This tells the Panel that Wings (on the same container) is the place to run game servers.
 
-1. Panel → **Admin** (wrench icon) → **Nodes** → **Create New**
+1. Panel → **Admin** (gear icon) → **Nodes** → **Create New**
 1. Fill in:
 
     | Field | Value |
