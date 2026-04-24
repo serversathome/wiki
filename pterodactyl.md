@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-04-24T17:26:55.328Z
+date: 2026-04-24T17:38:04.325Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
@@ -87,35 +87,35 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
 # 3 · Add Your Node in the Panel
 This tells the Panel that Wings (on the same container) is the place to run game servers.
 
+1. Navigate to **Locations** in the left sidebar and create a location with and short code
 1. Panel → **Admin** (gear icon) → **Nodes** → **Create New**
+
 1. Fill in:
 
     | Field | Value |
     | --- | --- |
     | Name | anything, e.g. `local` |
     | Description | optional |
-    | Location | create one first if the dropdown is empty |
+    | Location | the one you just made |
     | FQDN | the container's hostname or IP (same as Panel URL usually) |
     | Communicate Over SSL | match whatever you picked during install |
+    | Daemon Server File Directory | `/var/lib/pterodactyl/volumes` (default)|
     | Memory | how much RAM you'll let game servers eat (in MB) |
     | Disk | how much disk, in MB |
     | Daemon Port | `8080` (default) |
     | Daemon SFTP Port | `2022` (default) |
-    | Daemon Server File Directory | `/var/lib/pterodactyl/volumes` |
+
 
 1. **Create Node**
-1. Click the node → **Configuration** tab. Copy the YAML it shows you.
-1. Back in the container shell, paste it to `/etc/pterodactyl/config.yml`:
-    ```bash
-    nano /etc/pterodactyl/config.yml
-    ```
-    Paste, `Ctrl-O`, `Enter`, `Ctrl-X`.
+1. Click the node → **Configuration** tab
+1. Click the **Generate Token** button in the **Auto-Deploy** box
+1. Back in the container shell, paste the command
 1. Start and enable Wings:
     ```bash
-    systemctl enable --now wings
-    systemctl status wings --no-pager | head
+		systemctl enable --now wings && systemctl status wings --no-pager | head
     ```
-    The status should show `active (running)` and the last log lines should say it connected to the panel. If you refresh the Nodes page in the Panel, the node now has a green heart.
+
+If you refresh the Nodes page in the Panel, the node now has a green heart.
 
 # 4 · Add Allocations (IP:Port pairs for game servers)
 Each game server needs at least one IP:port allocation.
