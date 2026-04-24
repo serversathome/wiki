@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-04-24T17:38:18.113Z
+date: 2026-04-24T17:39:21.343Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
@@ -109,7 +109,7 @@ This tells the Panel that Wings (on the same container) is the place to run game
 1. Click the node → **Configuration** tab
 1. Click the **Generate Token** button in the **Auto-Deploy** box
 1. Back in the container shell, paste the command
-1. Start and enable Wings:
+1. Next paste this to start and enable Wings:
     ```bash
 		systemctl enable --now wings && systemctl status wings --no-pager | head
     ```
