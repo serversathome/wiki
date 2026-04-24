@@ -2,7 +2,7 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2026-04-24T10:02:47.885Z
+date: 2026-04-24T10:13:20.179Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:02.183Z
@@ -39,21 +39,23 @@ TrueNAS 26 swapped the old Incus stack for **libvirt-LXC**. `shift=true` is gone
     ```bash
     sudo chown 2147000035:2147000035 /mnt/<pool>/pbs && sudo chmod 770 /mnt/<pool>/pbs
     ```
-    > That UID isn't random. TrueNAS 26 runs containers with a default idmap offset of `2147000001`, so the container's `backup` user (UID 34 inside) lands at `34 + 2147000001 = 2147000035` on the host. Chowning to that lets PBS write to the dataset without the container ever getting host-root.
-    {.is-info}
+
 1. Create the container: **Virtualization → Containers → Add**
     - **Name**: `pbs`
     - **Image**: browse catalog → **debian / trixie / amd64 / default**
-    - **Pool**: your pool
-    - Leave **Idmap** on *Default* (this is what keeps it unprivileged) and **Autostart** on
-    - Under **Devices**, click **Add → Filesystem** and fill in:
+    - Set **Autostart** to `off`
+    - **Save**. 
+    - Under **Filesystem Devices**, click **Add → Filesystem** and fill in:
 
         | Field | Value |
         | --- | --- |
-        | `Source` | `/mnt/<pool>/pbs` (the host path) |
+        | `Host Directory Source` | `/mnt/<pool>/pbs` (the host path) |
         | `Target` | `/backup` (the path inside the container) |
+    
+    - **Edit** the container and turn **Autostart** to `on`
+		
+    - **Start** the container
 
-    - **Save**. The container starts automatically, on your bridge, with `/backup` already mounted.
 1. Click your container → **Shell**, and paste:
     ```bash
     export DEBIAN_FRONTEND=noninteractive
