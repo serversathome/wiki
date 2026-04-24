@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-04-24T17:15:45.350Z
+date: 2026-04-24T17:24:26.329Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
@@ -69,7 +69,19 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
     - **Password**: password for the admin user
     - **FQDN**: your domain, or just the container's LAN IP if you're LAN-only
     - **Configure UFW**: `no` (default)
+    
+		
+1. After Panel is installed it will ask if you would like to proceed and install Wings. Say `yes` then answer:
 
+     - **Are you sure you want to proceed?**: `yes` 
+     - **Configure UFW**: `no` (default)
+     - **Configure a user for database hosts?**: `yes`
+     - **Configure MySQL to be accessed externally?**: `yes`
+     - **Enter the panel address**: leave blank (default)
+     - **Database host username**: `pterodactyluser` (default)
+     - **Database host password**: enter a strong password
+     - **Configure HTTPS**: `no` (default)
+     
 1. When it finishes it prints the URL for the Panel. Log in as the admin user you just created.
 
 # 3 · Add Your Node in the Panel
