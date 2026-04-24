@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-04-24T17:39:21.343Z
+date: 2026-04-24T17:39:37.062Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
@@ -114,7 +114,7 @@ This tells the Panel that Wings (on the same container) is the place to run game
 		systemctl enable --now wings && systemctl status wings --no-pager | head
     ```
 
-If you refresh the Nodes page in the Panel, the node now has a green heart.
+If you refresh the Nodes page in the Panel, the node should now have a green heart.
 
 # 4 · Add Allocations (IP:Port pairs for game servers)
 Each game server needs at least one IP:port allocation.
