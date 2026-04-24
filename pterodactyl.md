@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-04-24T17:01:46.820Z
+date: 2026-04-24T17:02:03.498Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
@@ -33,7 +33,7 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
     - **Idmap**: `Privileged`
     - **Capabilities**: `Allow All`
     - **Save**
-    - Under **Devices**, click **Add → Filesystem** and fill in:
+    - Under **Filesystem Devices**, click **Add → Filesystem** and fill in:
 
         | Field | Value |
         | --- | --- |
