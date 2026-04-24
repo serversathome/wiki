@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-04-24T15:20:31.956Z
+date: 2026-04-24T15:20:51.281Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
@@ -20,8 +20,6 @@ Running a handful of game servers on a bare box works until you want more than o
 Under the hood, **Wings** (the daemon) runs each game server inside its own Docker container with CPU/RAM/disk limits and isolated storage. The **Panel** is the web UI you actually interact with. On a homelab, running both on the same box (all-in-one) is the simplest setup and what this guide covers.
 
 # <img src="/linuxcontainers.png" class="tab-icon"> 2 · TrueNAS 26 LXC Installation
-
-Wings runs game servers inside Docker containers, and Docker inside an *unprivileged* LXC is a configuration mess. For an all-in-one box the simplest path is a **privileged** container — same trade-off as the old Incus `shift=true` workflow. The installer then treats the container exactly like a fresh VM and Does The Right Thing.
 
 1. **First time only**: go to **Virtualization → Containers → Global Configuration** and set:
     - **Preferred Pool** = the pool you want container rootfs on
