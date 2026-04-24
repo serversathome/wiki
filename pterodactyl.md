@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-04-24T15:20:51.281Z
+date: 2026-04-24T15:22:19.944Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
@@ -40,8 +40,7 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
         | `Target` | `/var/lib/pterodactyl/volumes` (where Wings stores game-server data) |
 
     - **Save**. The container starts automatically on your bridge.
-    > Running privileged means container root == host root. It's the same security posture the old incus all-in-one had, and it's what keeps Docker happy. If you want to isolate it further later, run Panel in the LXC and Wings in a VM instead.
-    {.is-info}
+
 1. Click your container → **Shell** and paste this to prep it:
     ```bash
     bash <<'EOF'
@@ -111,7 +110,5 @@ Each game server needs at least one IP:port allocation.
 1. Watch Wings pull the Docker image, install the server files, and start it up.
 
 # 6 · Router / Firewall
-Because the container is on your LAN bridge (not NATed), its IP is reachable from your LAN directly. To expose game servers to the internet, forward the allocation ports on your router to the container's IP (no port-forward magic needed on TrueNAS itself). Static-lease the container's MAC on your DHCP server so its IP doesn't drift.
+Because the container is on your LAN bridge (not NATed), its IP is reachable from your LAN directly. To expose game servers to the internet, forward the allocation ports on your router to the container's IP (no port-forward magic needed on TrueNAS itself). 
 
-# <img src="/cloudflare.png" class="tab-icon"> 7 · Connecting With Cloudflare Tunnels
-If you're exposing the Panel via a Cloudflare tunnel, point the tunnel at `http://{container-ip}` (or `https://` if you set up SSL locally). For Wings' daemon port (`8080`) and SFTP (`2022`), Cloudflare tunnels aren't the right tool — those need direct TCP exposure. Use tailscale or a plain port forward for those if you need them off-LAN.
