@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-04-24T15:22:19.944Z
+date: 2026-04-24T17:01:46.820Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
@@ -27,11 +27,12 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
 1. Create a dataset for game server volumes: **Datasets → Add Dataset**, parent = your pool, name = `pterodactyl`, preset = **Generic**, save. No permission changes needed — the container runs privileged and Wings will manage ownership itself.
 1. Create the container: **Virtualization → Containers → Add**
     - **Name**: `pterodactyl`
-    - **Image**: browse catalog → **debian / trixie / amd64 / default**
-    - **Pool**: your pool
-    - **Idmap**: *None* (privileged — required so Docker/Wings works without namespace fights)
-    - **Capabilities Policy**: *Allow* (so Docker gets `mknod` etc.)
     - **Autostart**: on
+    - **Image**: browse catalog → **debian / trixie / amd64 / default**
+    - Click the **Advanced Options** button
+    - **Idmap**: `Privileged`
+    - **Capabilities**: `Allow All`
+    - **Save**
     - Under **Devices**, click **Add → Filesystem** and fill in:
 
         | Field | Value |
@@ -39,7 +40,6 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
         | `Source` | `/mnt/<pool>/pterodactyl` (the host path) |
         | `Target` | `/var/lib/pterodactyl/volumes` (where Wings stores game-server data) |
 
-    - **Save**. The container starts automatically on your bridge.
 
 1. Click your container → **Shell** and paste this to prep it:
     ```bash
