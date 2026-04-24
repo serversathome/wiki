@@ -2,7 +2,7 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2026-01-23T17:47:48.906Z
+date: 2026-04-24T10:02:47.885Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:02.183Z
@@ -24,24 +24,46 @@ Finally, PBS integrates directly into the Proxmox interface and supports fast, g
 # {.tabset}
 ## VM
 1. Go to the [official Proxmox Download Page](https://www.proxmox.com/en/downloads/proxmox-backup-server/iso) to grab the latest ISO of Proxmox Backup Server
-1. Install the ISO. PBS uses very little resources - on my machine I give it 1 CPU threads, 2 GB of memory and a 10 GB hard drive. 
+1. Install the ISO. PBS uses very little resources - on my machine I give it 1 CPU threads, 2 GB of memory and a 10 GB hard drive.
 1. Boot into the webUI using `https://{IP}:8007`, **root** as the user name and the password you selected during install
 
-## <img src="/linuxcontainers.png" class="tab-icon"> Fangtooth LXC
+## <img src="/linuxcontainers.png" class="tab-icon"> TrueNAS 26 LXC
 
-1. Create a new Instance from the **Debian trixie (amd64, default)** image with all default settings
-1. Once its running, shell into the container and run these commands:
+TrueNAS 26 swapped the old Incus stack for **libvirt-LXC**. `shift=true` is gone, but in exchange containers now run **unprivileged by default**, which is a nice security upgrade. Trade off is one extra `chown` up front — that's it.
+
+1. **First time only**: go to **Virtualization → Containers → Global Configuration** and set:
+    - **Preferred Pool** = the pool you want container rootfs on
+    - **Bridge** = the bridge your LAN is on (e.g. `br1`). If you don't have one yet, make one in **Network → Interfaces** first.
+1. Create the dataset for PBS backups: **Datasets → Add Dataset**, parent = your pool, name = `pbs`, preset = **Generic**, save. Leave the default permissions — the next step fixes them.
+1. Open **System Settings → Shell** and run (sub in your pool):
     ```bash
-    echo "deb http://download.proxmox.com/debian/pbs trixie pbs-no-subscription" | sudo tee -a /etc/apt/sources.list
-    sudo apt install wget -y
-    wget https://enterprise.proxmox.com/debian/proxmox-release-trixie.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-trixie.gpg
-    sudo apt update && apt upgrade -y
-    sudo apt install -y whiptail apt-utils coreutils bash proxmox-widget-toolkit nano nfs-common cron
-    sudo apt update && apt install proxmox-backup-server -y
-    echo "https://$(ip -4 addr show $(ip route | grep default | awk '{print $5}') | grep inet | awk '{print $2}' | cut -d/ -f1):8007"
+    sudo chown 2147000035:2147000035 /mnt/<pool>/pbs && sudo chmod 770 /mnt/<pool>/pbs
+    ```
+    > That UID isn't random. TrueNAS 26 runs containers with a default idmap offset of `2147000001`, so the container's `backup` user (UID 34 inside) lands at `34 + 2147000001 = 2147000035` on the host. Chowning to that lets PBS write to the dataset without the container ever getting host-root.
+    {.is-info}
+1. Create the container: **Virtualization → Containers → Add**
+    - **Name**: `pbs`
+    - **Image**: browse catalog → **debian / trixie / amd64 / default**
+    - **Pool**: your pool
+    - Leave **Idmap** on *Default* (this is what keeps it unprivileged) and **Autostart** on
+    - Under **Devices**, click **Add → Filesystem** and fill in:
+
+        | Field | Value |
+        | --- | --- |
+        | `Source` | `/mnt/<pool>/pbs` (the host path) |
+        | `Target` | `/backup` (the path inside the container) |
+
+    - **Save**. The container starts automatically, on your bridge, with `/backup` already mounted.
+1. Click your container → **Shell**, and paste:
+    ```bash
+    export DEBIAN_FRONTEND=noninteractive
+    sudo apt update && sudo apt install -y ca-certificates wget gnupg
+    wget -qO /etc/apt/trusted.gpg.d/proxmox-release-trixie.gpg https://enterprise.proxmox.com/debian/proxmox-release-trixie.gpg
+    echo "deb http://download.proxmox.com/debian/pbs trixie pbs-no-subscription" | sudo tee /etc/apt/sources.list.d/pbs.list
+    sudo apt update && sudo apt install -y whiptail apt-utils coreutils bash proxmox-widget-toolkit nano nfs-common cron proxmox-backup-server
+    echo "https://$(ip -4 -o addr show scope global | awk '{print $4}' | cut -d/ -f1):8007"
     passwd root
     ```
-
 1. Once the commands have completed, **enter a root password**
 1. The commands will print the IP address just before asking you to create a root password
 1. Go to the printed IP address to access the webui
@@ -53,14 +75,13 @@ It is recommended you run the [Proxmox Backup Server Post Install Script](https:
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/post-pbs-install.sh)"
 ```
 # 4 · Adding a TrueNAS Dataset to PBS
+# {.tabset}
+## VM
 1. Create a dataset on TrueNAS with generic permissions
 1. Change the permissions to user:group = `backup:backup 770` as shown below:
 ![screenshot_from_2025-06-12_23-28-32.png](/screenshot_from_2025-06-12_23-28-32.png)
-
-# {.tabset}
-## VM
-3. Create an NFS share from the dataset
-a. Use the **Advanced Options** to set the **Maproot User** to `root`
+1. Create an NFS share from the dataset
+    - Use the **Advanced Options** to set the **Maproot User** to `root`
 1. Run this command inside the PBS shell changing the IP, path, and mount point for your server:
     ```bash
     echo "10.99.0.191:/mnt/tank/pbs /backup nfs vers=3,nouser,atime,auto,retrans=2,rw,dev,exec 0 0" >> /etc/fstab
@@ -68,21 +89,11 @@ a. Use the **Advanced Options** to set the **Maproot User** to `root`
 1. Reboot PBS
 
 ## LXC
-3. Mount the dataset inside the LXC by running the following command in the TrueNAS Shell:
-```bash
-sudo incus exec <container-name> -- mkdir -p /backup && sudo incus config device add <container-name> mydataset disk source=/mnt/tank/pbs path=/backup shift=true
-
-```
-|Field | Value|
-| ---| ----|
-| `container-name` | name of the LXC |
-| `mkdir` | the name of the mount point to create inside the container|
-| `source=` | path on the TrueNAS host|
-| `path=` | the mount point from the mkdir above |
+Already done — the dataset was created and bind-mounted into the container during section 2. Skip to section 5.
 
 # 5 · Add the Datastore to PBS
-1. Navigate in the PBS panel on the left and click **Add Datastore** 
-1. Give the datastore a name and use the path you mounted from the previous steps as the **Backing Path**
+1. Navigate in the PBS panel on the left and click **Add Datastore**
+1. Give the datastore a name and use the path you mounted from the previous steps as the **Backing Path** (for LXC this is `/backup`)
 1. Click **Add**
 
 # 6 · Adjust User Permissions
@@ -96,17 +107,17 @@ sudo incus exec <container-name> -- mkdir -p /backup && sudo incus config device
 
 # 7 · Add your PBS Server to Proxmox
 
-1. Navigate to your Proxmox VE machine 
+1. Navigate to your Proxmox VE machine
 1. Click **Datacenter** then **Storage** in the left pane
 1. Click **Add** and select **Proxmox Backup Server**
 1. Use the values in the below table to fll in the fields:
 
 | Field | Value |
 | --- | --- |
-| ID | Any name you choose | 
-| Server | the IP of the PBS server (no port number needed) | 
+| ID | Any name you choose |
+| Server | the IP of the PBS server (no port number needed) |
 | Username | the user you created (example: user@pbs) |
-| Password | the password you chose | 
+| Password | the password you chose |
 | Datastore| the name of the Datastore you picked on PBS |
 | Fingerprint | to get this, go to PBS Dashboard and at the top look for the blue button that says **Show Fingerprint** |
 
