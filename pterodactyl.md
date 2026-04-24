@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-04-24T17:02:03.498Z
+date: 2026-04-24T17:02:53.305Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
@@ -39,7 +39,8 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
         | --- | --- |
         | `Source` | `/mnt/<pool>/pterodactyl` (the host path) |
         | `Target` | `/var/lib/pterodactyl/volumes` (where Wings stores game-server data) |
-
+		
+    - **Start** the container
 
 1. Click your container → **Shell** and paste this to prep it:
     ```bash
