@@ -2,7 +2,7 @@
 title: Meridian
 description: A guide to deploying Meridian
 published: true
-date: 2026-04-22T21:18:58.613Z
+date: 2026-04-27T10:39:11.325Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-22T21:18:58.613Z
@@ -21,7 +21,7 @@ Meridian does not publish a prebuilt image, so you build it once from source. Au
 
 ## 1.1 Build the image
 
-SSH into your host and clone the repo somewhere outside your Dockge stack directory:
+SSH into your host and clone the repo:
 
 ```bash
 cd /mnt/tank/stacks
