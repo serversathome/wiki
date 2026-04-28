@@ -2,7 +2,7 @@
 title: Prismarr
 description: A guide to deploying Prismarr
 published: true
-date: 2026-04-28T00:21:28.596Z
+date: 2026-04-28T11:16:03.904Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-28T00:21:28.596Z
@@ -14,7 +14,7 @@ dateCreated: 2026-04-28T00:21:28.596Z
 
 It's not a replacement for your existing \*arr stack — Radarr and Sonarr keep doing what they do best. Prismarr sits on top as the unified control surface, consuming the APIs of services you already run. The whole thing ships as a single Docker container with embedded SQLite (no external database, no Redis, no per-service `.env` files), is multi-arch (amd64 + arm64), and is licensed AGPL-3.0.
 
-# 1 · Deploy Prismarr
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Prismarr
 
 ```yaml
 services:
