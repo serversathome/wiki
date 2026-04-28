@@ -2,7 +2,7 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2026-04-28T12:36:33.112Z
+date: 2026-04-28T13:14:17.578Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:02.183Z
@@ -57,7 +57,7 @@ Using PBS is almost always better than backing up Proxmox VMs directly to a True
     until getent hosts deb.debian.org >/dev/null 2>&1; do sleep 1; done
     export DEBIAN_FRONTEND=noninteractive
     apt update
-    apt install -y ca-certificates wget gnupg curl
+    apt install -y ca-certificates wget gnupg curl whiptail
     KEY=/etc/apt/trusted.gpg.d/proxmox-release-trixie.gpg
     URL=https://enterprise.proxmox.com/debian/proxmox-release-trixie.gpg
     wget -qO "$KEY" "$URL"
