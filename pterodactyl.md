@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-04-24T17:39:37.062Z
+date: 2026-04-29T16:30:17.945Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
@@ -20,9 +20,13 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
 
 # <img src="/linuxcontainers.png" class="tab-icon"> 2 · TrueNAS 26 LXC Installation
 
-1. **First time only**: go to **Virtualization → Containers → Global Configuration** and set:
+## 2.1 Prerequisites
+
+1. Go to **Virtualization → Containers → Global Configuration** and set:
     - **Preferred Pool** = the pool you want container rootfs on
     - **Bridge** = the bridge your LAN is on (e.g. `br1`). If you don't have one yet, make one in **Network → Interfaces** first.
+    
+## 2.2 Create Dataset & Container
 1. Create a dataset for game server volumes: **Datasets → Add Dataset**, parent = your pool, name = `pterodactyl`, preset = **Generic**, save. No permission changes needed — the container runs privileged and Wings will manage ownership itself.
 1. Create the container: **Virtualization → Containers → Add**
     - **Name**: `pterodactyl`
@@ -50,6 +54,8 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
     apt install -y curl ca-certificates
     EOF
     ```
+
+## 2.3 Install Pterodactyl & Wings
 1. Then run the Pterodactyl installer:
     ```bash
       curl -o /tmp/ptero-install.sh https://pterodactyl-installer.se && bash /tmp/ptero-install.sh   
