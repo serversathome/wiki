@@ -2,7 +2,7 @@
 title: Capacitarr
 description: A guide to deploying Capacitarr
 published: true
-date: 2026-03-31T17:40:28.790Z
+date: 2026-05-05T19:29:32.558Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-21T11:32:55.609Z
@@ -95,4 +95,4 @@ The dashboard uses Server-Sent Events (SSE) to push engine state, deletions, and
 
 # <img src="/patreon-light.png" class="tab-icon"> 3 · Video
 
-*Coming soon — check back for the full video walkthrough!*
+[![](/2026-04-07-capacitarr--let-your-arr-stack-promo-card.png)](https://www.patreon.com/posts/capacitarr-let-153757406)
