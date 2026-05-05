@@ -2,18 +2,17 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-03-22T10:31:37.102Z
+date: 2026-05-05T22:09:01.809Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
 ---
 
+> Having a tough time? Book time with me 1-on-1 for some help!
+{.is-success}
+
+
 # Start Here
-<!-- 
-Tags: 
-<span class="badge">NEW</span>
-<span class="badge">UPDATED</span>
--->
 - [📖 Install Instructions<br>*A step-by-step list of the arr apps*](/InstallInstructions)
 - [🗂️ Folder Structure<br>*Recommended folder structure from Trash Guides to allow for hardlinks within the arr stack*](/Folder-Structure)
 - [🗺️ Overview Map<br>*Overview map of how all the arr components of a media server fit together*](/OverviewMap)
