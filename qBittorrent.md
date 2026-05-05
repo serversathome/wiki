@@ -2,11 +2,14 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-04-14T16:59:28.834Z
+date: 2026-05-05T22:11:16.884Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
 ---
+
+> Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help!
+{.is-success}
 
 # ![](/qbittorrent.png){class="tab-icon"} What is qBittorrent?
 qBittorrent is a free and open-source software that aims to provide the same features as µTorrent, such as polished user interface, no ads, search engine, torrent creation tool and more. It runs on all major platforms (Windows, Linux, macOS, FreeBSD, OS/2) and supports many Bittorrent extensions.
