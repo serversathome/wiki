@@ -1,8 +1,8 @@
 ---
-title: Seafile
+title: seafile
 description: A guide to deploying Seafile
 published: true
-date: 2026-05-05T19:23:10.718Z
+date: 2026-05-05T19:23:43.311Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-18T12:46:01.658Z
@@ -231,3 +231,4 @@ Seafile will stop, clean unreferenced blocks, and restart automatically. Run thi
 
 # <img src="/youtube.png" class="tab-icon"> 6 · Video
 
+https://youtu.be/ZaLfJnNWpg8
