@@ -2,13 +2,13 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-05-05T22:09:01.809Z
+date: 2026-05-05T22:09:35.034Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
 ---
 
-> Having a tough time? Book time with me 1-on-1 for some help!
+> Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help!
 {.is-success}
 
 
