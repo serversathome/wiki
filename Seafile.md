@@ -2,7 +2,7 @@
 title: Seafile
 description: A guide to deploying Seafile
 published: true
-date: 2026-04-18T13:39:04.753Z
+date: 2026-05-05T19:23:10.718Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-18T12:46:01.658Z
