@@ -2,7 +2,7 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: 2026-01-23T17:40:30.955Z
+date: 2026-05-05T19:24:23.587Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:25.101Z
@@ -651,4 +651,4 @@ Immich team also provided a list of languages that are supported by the Multilin
 * `xlm` and `siglip2` models understand search text regardless of the current language setting
 
 # <img src="/youtube.png" class="tab-icon"> 4 · Video
-https://youtu.be/TqjlUocu6ZI
+https://youtu.be/Kxg0JpWTDNQ
