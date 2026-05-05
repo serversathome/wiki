@@ -2,7 +2,7 @@
 title: Reclaimerr
 description: A guide to deploying Reclaimerr
 published: true
-date: 2026-04-16T20:23:27.413Z
+date: 2026-05-05T19:28:02.393Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-16T20:23:27.413Z
@@ -149,4 +149,6 @@ Reclaimerr supports multi-user setups with a permission system. Add users under 
 {.is-warning}
 
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Video
+# <img src="/patreon-light.png" class="tab-icon"> 4 · Video
+
+[![](/2026-04-21-reclaimerr-automatically-clean--promo-card.png)](https://www.patreon.com/posts/reclaimerr-clean-155808712)
