@@ -2,7 +2,7 @@
 title: Dockflare
 description: A guide to deploying Dockflare
 published: true
-date: 2026-05-06T11:55:30.720Z
+date: 2026-05-06T11:57:05.058Z
 tags: 
 editor: markdown
 dateCreated: 2026-05-01T19:51:02.015Z
@@ -133,7 +133,7 @@ If you skip this step, the **Email Management** page in DockFlare will show R2 S
 
 # <img src="/docker.png" class="tab-icon"> 2 · Deploy DockFlare
 
-In Dockge, create a new stack at `/mnt/tank/stacks/dockflare/`. Paste this compose and set `DOMAIN=yourdomain.com` in the stack's environment variables. The `${DOMAIN}` variable feeds three places.
+
 
 ```yaml
 services:
@@ -247,6 +247,9 @@ networks:
 > 
 > Both the DockFlare admin UI (`dockflare.yourdomain.com`) and the webmail (`mail.yourdomain.com`) get exposed via Cloudflare Tunnel automatically because of the `dockflare.enable=true` labels. **Add a Cloudflare Access policy to the admin hostname before going live** — without one it would be publicly reachable on the internet.
 {.is-danger}
+
+## 2.1 env Variables
+Set `DOMAIN=yourdomain.com` in the stack's environment variables.
 
 # 3 · Initial Setup Wizard
 
