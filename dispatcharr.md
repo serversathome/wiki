@@ -2,7 +2,7 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2026-01-15T15:28:54.723Z
+date: 2026-05-11T16:11:13.404Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:16.637Z
@@ -108,4 +108,4 @@ services:
 1. Click **Save**
 
 ## 4.3 Plex
-I do not have Plex, but if any of *you* do and you have these linked please [edit this page](https://github.com/serversathome/wiki/blob/main/dispatcharr.md) and add those instructions here!
+I do not have Plex, but if any of *you* do and you have these linked please edit this page and add those instructions here!
