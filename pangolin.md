@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: true
-date: 2026-03-12T10:16:24.310Z
+date: 2026-05-13T11:55:02.473Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:59.674Z
@@ -25,7 +25,7 @@ Pangolin is best run from somewhere outside your network, ideally in the cloud. 
 
 A minimal VPS instance with 1 vCPU, 1GB RAM, and 8GB SSD will perform perfectly well for most use cases. In some cases, you may be able to get away with even less.
 
-The Pangolin docs recommend [this option from Rack Nerd](https://my.racknerd.com/aff.php?aff=15328&pid=923) and honestly it's a great choice, but any VPS will do. *Note this is an affiliate link*
+The Pangolin docs recommend [Racknerd](/racknerd) and honestly it's a great choice, but any VPS will do. *Note this is an affiliate link*
 
 > Check out my guide for [Racknerd](/racknerd)
 {.is-info}
