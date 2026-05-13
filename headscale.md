@@ -2,7 +2,7 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: 2026-03-01T11:49:38.148Z
+date: 2026-05-13T11:55:47.891Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:03.838Z
@@ -26,7 +26,7 @@ Headscale is best run from somewhere outside your network, ideally in the cloud.
 
 A minimal VPS instance with 1 vCPU, 1GB RAM, and 8GB SSD will perform perfectly well for most use cases. In some cases, you may be able to get away with even less.
 
-One option is [this option from Rack Nerd](https://my.racknerd.com/aff.php?aff=15328&pid=923) and honestly it's a great choice, but any VPS will do. *Note this is an affiliate link*
+One option is [Racknerd](/racknerd) and honestly it's a great choice, but any VPS will do. *Note this is an affiliate link*
 
 > Check out my guide for [Racknerd](/racknerd)
 {.is-info}
