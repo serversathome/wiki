@@ -2,7 +2,7 @@
 title: Netbird
 description: A guide to installing and using Netbird
 published: true
-date: 2026-04-14T10:35:32.045Z
+date: 2026-05-16T14:06:08.677Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:37.607Z
@@ -45,7 +45,7 @@ services:
     network_mode: host
     restart: unless-stopped
     volumes:
-      - ./netbird-client:/etc/netbird
+      - ./netbird-client:/var/lib/netbird
 ```
 Paste your Setup Key created from above in the `- NB_SETUP_KEY=` line.
 
