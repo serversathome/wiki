@@ -2,13 +2,13 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-03-19T00:38:36.163Z
+date: 2026-05-22T06:36:00.029Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
 ---
 
-# <img src="/profilarr.png" class="tab-icon"> What is Profilarr?
+# <img src="/profilarr.png" class="tab-icon"> What is Profilarr V2?
 Configuration management tool for Radarr/Sonarr that automates importing and version control of custom formats and quality profiles.
 
 🔄 Automatic synchronization with remote configuration databases
@@ -17,20 +17,24 @@ Configuration management tool for Radarr/Sonarr that automates importing and ver
 ⚡ Preserve local customizations during updates
 🛠️ Built-in conflict resolution
 
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Profilarr
+>  v2 is not compatible with v1. The underlying database and customization systems changed significantly, so existing v1 databases/configs/appdata won't work directly in v2
+{.is-danger}
+# <img src="/docker.png" class="tab-icon"> 1 · Deploy Profilarr V2
 ```yaml
 services:
   profilarr:
-    image: santiagosayshey/profilarr:latest
+    image: ghcr.io/dictionarry-hub/profilarr:latest
     container_name: profilarr
-    ports:
-      - 6868:6868
-    volumes:
-      - /mnt/tank/configs/profilarr:/config
-    environment:
-      - TZ=America/New_York
     restart: unless-stopped
+    ports:
+      - "6868:6868"
+    volumes:
+      - ./profilarr/config:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=022
+      - TZ=America/New_York
 ```
 
 # 2 · Configuration
@@ -39,24 +43,32 @@ services:
 
 ## 2.1 Initial Setup
 1. When logging in the first time set a username and password
-1. Navigate to **Settings** → **Database** and click the button to **Link Repository**
-	a. Enter `https://github.com/Dictionarry-Hub/database`
+2. Navigate to **Databases** and click the "**+**" button to **Link Repository**. Dictionary-Hub repo is added by default.
+	a. Enter the name of the database
+  b. The repository URL. {**The database must include a pcd.json file.}**
+  c. Enter the branch if you know it. "Main, Dev, etc."     * *Not a requirement*
+  d. Enter a "Personal Access Token" if required.     * *Not a requirement*
+![profilarr-v2-databases.png](/profilarr-v2-databases.png)
+3. Select **Save** at the top right of the page. 
 > A list of other repos can be found [here](https://github.com/Dictionarry-Hub/database/forks?include=active&page=1&period=&sort_by=stargazer_counts_)
 {.is-info}
 
 >   Currently Profilarr does not sync directly with Trash Guides
 {.is-warning}
 
-> If you are downloading anime, use the repo from the [Anime Section](https://wiki.serversatho.me/en/profilarr#h-4-anime) below
+> If you are downloading anime, use the repo from the [Dumpstarr repo](https://github.com/Dumpstarr/Database).
 {.is-success}
 
+> The serversathome/profilarr repo will be archived. Recommend updating to V2 and use recommended anime repo.
+{.is-danger}
 
-3. Move to slider to **Enable Auto Sync**
 
-## 2.2 Adding Radarr/Sonarr
-1. Navigate to **Settings** → **External Apps**
-1. Click **Add**
-![screenshot_from_2025-03-23_17-18-36.png](/screenshot_from_2025-03-23_17-18-36.png)
+
+
+# 3 ARRS - Adding Radarr/Sonarr
+1. Navigate to **Arrs** on the left side of the screen.
+2. Click **Add Instance**
+![profilarr-v2-arrs.png](/profilarr-v2-arrs.png)
 
 | Field | Value |
 | --- | --- |
@@ -64,44 +76,62 @@ services:
 | Type | Select type as Radarr or Sonarr |
 | Arr Server | Enter the IP of your server using http://|
 | API Key | Paste the API key from **Settings** → **General**| 
-| Sync Method | Set sync to **On Pull** for full automation [^1]|
-| Import as Unique | Use if you have quality profiles from another place like Trash Guides |
+| Tags | Connects Profilarr to your Radarr and Sonarr instances. [^1]|
+3. Test your connection.
+4. Click save at the top right of the page.
 
-> Before sycing your apps change **Propers and Repacks** to **Do not Prefer** in  *advanced* **Settings** → **Media Management** in Radarr in Sonarr
+
+## 3.1 Radarr/Sonarr Settings
+> Any changes you make will not persist unless you Save the selection
+{.is-warning}
+1. Sync: Media management settings, Delay Profiles, Quality Profiles [^2]
+		* Trigger - for how you want to sync to your Radarr/Sonarr "*Manual, On Pull, Schedule*"
+2. Library: List of Movies/TV Shows for that app
+3. Drift: Shows differences between app to profilarr
+4. Upgrades: Upgrade on a schedule
+5. Renames: Rename files/folders
+> Suggest doing a dry run, may have unforeseen actions.
+{.is-warning}
+
+6. Logs: Shows for each arr application actions taken
+
+
+# 4 · Extras
+1. Quality Profiles: Quality definitions and scoring.
+2. Custom Formats: Specifies release characteristics then add scoring.
+3. Regular Expressions: Definitions for formats added to a file structure such as "**amzn**" for **Amazon Prime** as a streaming service tag for scoring. "Formerly known as Regex Patterns in V1"
+> Can adjust for each repo added
+{.is-info}
+
+
+# 4 · Media Management
+There are some other tweaks which need to be done in Sonarr and Radarr. You can find these in the Advanced section of their respective pages, however, Profilarr can automate that for us.
+1. Naming Settings: Naming file/folder, Character replacement
+2. Quality Definitions: Adjust quality scoring
+3. Media Settings: Rename config, set Propers and Repacks, enable media info scan
+> Can adjust for each repo added
+{.is-info}
+
+> Before sycing your apps change Propers and Repacks to Do not Prefer
 {.is-danger}
 
 
-## 2.3 Permanently Modifying Profiles
-> Any changes you make to the auto-populated definitions will not persist unless you make a commit
-{.is-warning}
-1. Once your changes are made navigate to **Settings** → **Database** and click the action button to select your modifications
-1. Click the ➕ button to Stage your changes
-1. Enter the information about your change
-1. Click the **Commit** button
+# 5 · Anime
 
-# 3 · Media Management
-
-There are some other tweaks which need to be done in Sonarr and Radarr. You can find these in the Advanced section of their respective pages, however, Profilarr can automate that for us.
-
-1. Navigate to the **Media Management** tab
-1. Click the **Radarr** subtab
-1. Click the **Sync All** button in the top right
-1. Repeat this process for Sonarr
-
-# 4 · Anime
-
-To get an anime profile you could either build one yourself through the UI or link to the Servers@Home Profilarr repo. To link, instead of using the Dictionarry link from step 2.1.2.a, use the link below:
+To get an anime profile you could either build one yourself through the UI or link to the Dumpstarr repo. To link, instead of using the Dictionarry link from step 2.1, use the link below:
 ```bash
-https://github.com/serversathome/profilarr
+https://github.com/Dumpstarr/Database
 ```
+> Only one repo can be used per arr. It is recommended to separate your anime into a different instances.
+{.is-warning}
 
-# 5 · Future Development
+# 6 · Future Development
 This software is *very* new. As such, there are some changes coming that will improve its usage: 
-- The ability to add multiple repos at the same time
-- A setting to overwrite external changes with local changes when using auto-pull
-- A more fluid way to commit changes with less clicks
+[Road Map](https://github.com/Dictionarry-Hub/profilarr/milestone/2)
 
 # <img src="/youtube.png" class="tab-icon"> 6 · Video
-https://youtu.be/u1FQNMsuzFc
+* **Coming Soon**
 
-[^1]: Automatically syncs selected files whenever the database receives an update. When combined with Auto Pull, allows Profilarr to work completely autonomously
+
+[^1]: Leave blank unless you are using tags already. If using tags, assign here for instance bridging.
+[^2]: Every selection will need to be filled.
