@@ -2,7 +2,7 @@
 title: Media Manager
 description: A guide to deploying Media Manager via docker
 published: true
-date: 2026-01-15T15:30:11.207Z
+date: 2026-05-22T06:35:03.001Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:23.142Z
@@ -45,7 +45,7 @@ services:
 
 ```
 
-> Read the [official documentation!](https://maxdorninger.github.io/MediaManager/introduction.html)
+> Read the [official documentation!](https://maxdorninger.github.io/MediaManager/latest/)
 {.is-success}
 
 # 2 · Media Manager Configuration
