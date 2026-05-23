@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-05-23T10:44:45.180Z
+date: 2026-05-23T11:58:04.802Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -43,13 +43,13 @@ services:
 
 ## 2.1 Initial Setup
 1. When logging in the first time set a username and password
-2. Navigate to **Databases** and click the "**+**" button to **Link Repository**. Dictionary-Hub repo is added by default.
+1. Navigate to **Databases** and click the "**+**" button to **Link Repository**. Dictionary-Hub repo is added by default.
 	a. Enter the name of the database
-  b. The repository URL. {**The database must include a pcd.json file.}**
-  c. Enter the branch if you know it. "Main, Dev, etc."     * *Not a requirement*
-  d. Enter a "Personal Access Token" if required.     * *Not a requirement*
-![profilarr-v2-databases.png](/profilarr-v2-databases.png)
-3. Select **Save** at the top right of the page. 
+  b. The repository URL
+  c. Enter the branch (Main, Dev, etc.) *optional*
+  d. Enter a "Personal Access Token" if required
+1. Select **Save** at the top right of the page. 
+
 > A list of other repos can be found [here](https://github.com/Dictionarry-Hub/database/forks?include=active&page=1&period=&sort_by=stargazer_counts_)
 {.is-info}
 
@@ -65,55 +65,66 @@ services:
 
 
 
-# 3 ARRS - Adding Radarr/Sonarr
+# 3 · Arrs: Adding Radarr/Sonarr
 1. Navigate to **Arrs** on the left side of the screen.
-2. Click **Add Instance**
-![profilarr-v2-arrs.png](/profilarr-v2-arrs.png)
-
-| Field | Value |
-| --- | --- |
-| Name | Name your instance |
-| Type | Select type as Radarr or Sonarr |
-| Arr Server | Enter the IP of your server using http://|
-| API Key | Paste the API key from **Settings** → **General**| 
-| Tags | Connects Profilarr to your Radarr and Sonarr instances. [^1]|
-3. Test your connection.
-4. Click save at the top right of the page.
+1. Click **Add Instance**
+1. Enter Name
+1. Enter URL
+1. Enter API Key
+1. Set **Library Refresh** to `Every 24 hours`
+1. Enable **Cleanup** on a `Weekly` schedule
+1. Click save at the top right of the page.
 
 
-## 3.1 Radarr/Sonarr Settings
-> Any changes you make will not persist unless you Save the selection
-{.is-warning}
-1. Sync: Media management settings, Delay Profiles, Quality Profiles [^2]
-		* Trigger - for how you want to sync to your Radarr/Sonarr "*Manual, On Pull, Schedule*"
-2. Library: List of Movies/TV Shows for that app
-3. Drift: Shows differences between app to profilarr
-4. Upgrades: Upgrade on a schedule
-5. Renames: Rename files/folders
-> Suggest doing a dry run, may have unforeseen actions.
-{.is-warning}
+## 3.1 Sync
+### 3.1.1 Media Management
+1. Set **Naming**, **Quality Definitions**, and **Media Settings** to your database of choice
+1. Set **Trigger** to `on pull`
+1. **Save** and then **Sync**
 
-6. Logs: Shows for each arr application actions taken
+### 3.1.2 Delay Profiles
+1. Select your delay profile
+1. Set **Trigger** to `on pull`
+1. **Save** and then **Sync**
+
+### 3.1.3 Quality Profiles
+1. Select your desired **Quality Profiles**
+1. Set **Trigger** to `on pull`
+1. **Save** and then **Sync**
+
+## 3.2 Drift
+1. Set **Detection** to `Enabled`
+1. Set **Schedule** to `Daily`
+1. **Save** and then **Run Now**
+
+## 3.3 Upgrades
+**Upgrades** is the replacement to the functionality that *Huntarr* used to provide, so use it the same way and do not have two different services doing upgrades simultaneously. Note that this feature is optional if you already use a replacement service which you like.
+
+1. Set **Status** to `Enabled`
+1. Set **Schedule** to `Hourly`
+1. Click <kbd>+</kbd> at the end of the **Search Filters** row to add the **Default** filter
+1. Click **Save**
+1. Optionally increase your **Count** or the **Match Filters** if you want to get more specific, but the defaults work well.
 
 
-# 4 · Extras
-1. Quality Profiles: Quality definitions and scoring.
-2. Custom Formats: Specifies release characteristics then add scoring.
-3. Regular Expressions: Definitions for formats added to a file structure such as "**amzn**" for **Amazon Prime** as a streaming service tag for scoring. "Formerly known as Regex Patterns in V1"
-> Can adjust for each repo added
-{.is-info}
+## 3.4 Renames
+1. Set **Status** to `Enabled`
+1. Set **Schedule** to `Daily`
+1. **Save** and then **Run Now**
+
+
+
 
 
 # 4 · Media Management
-There are some other tweaks which need to be done in Sonarr and Radarr. You can find these in the Advanced section of their respective pages, however, Profilarr can automate that for us.
-1. Naming Settings: Naming file/folder, Character replacement
-2. Quality Definitions: Adjust quality scoring
-3. Media Settings: Rename config, set Propers and Repacks, enable media info scan
-> Can adjust for each repo added
-{.is-info}
+Profilarr allows us to change the defaults for other catagories in Radarr/Sonarr on a per repo basis:
 
-> Before sycing your apps change Propers and Repacks to Do not Prefer
-{.is-danger}
+- Naming Settings: Naming file/folder, Character replacement
+- Quality Definitions: Adjust quality scoring
+- Media Settings: Rename config, set Propers and Repacks, enable media info scan
+
+The defaults are good and do not need to be adjusted but are exposed for users with specific use-cases.
+
 
 
 # 5 · Anime
@@ -122,8 +133,6 @@ To get an anime profile you could either build one yourself through the UI or li
 ```bash
 https://github.com/Dumpstarr/Database
 ```
-> Only one repo can be used per arr. It is recommended to separate your anime into a different instances.
-{.is-warning}
 
 # 6 · Future Development
 This software is *very* new. As such, there are some changes coming that will improve its usage: 
@@ -131,7 +140,3 @@ This software is *very* new. As such, there are some changes coming that will im
 
 # <img src="/patreon-light.png" class="tab-icon"> 6 · Video
 
-
-
-[^1]: Leave blank unless you are using tags already. If using tags, assign here for instance bridging.
-[^2]: Every selection will need to be filled.
