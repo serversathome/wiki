@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-05-23T12:01:22.558Z
+date: 2026-05-23T12:02:11.297Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -126,9 +126,6 @@ Profilarr allows us to change the defaults for other catagories in Radarr/Sonarr
 The defaults are good and do not need to be adjusted but are exposed for users with specific use-cases.
 
 
-# 5 · Future Development
-This software is *very* new. As such, there are some changes coming that will improve its usage: 
-[Road Map](https://github.com/Dictionarry-Hub/profilarr/milestone/2)
 
-# <img src="/patreon-light.png" class="tab-icon"> 6 · Video
+# <img src="/patreon-light.png" class="tab-icon"> 5 · Video
 
