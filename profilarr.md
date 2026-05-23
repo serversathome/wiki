@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-05-23T10:42:49.471Z
+date: 2026-05-23T10:44:45.180Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -129,8 +129,8 @@ https://github.com/Dumpstarr/Database
 This software is *very* new. As such, there are some changes coming that will improve its usage: 
 [Road Map](https://github.com/Dictionarry-Hub/profilarr/milestone/2)
 
-# <img src="/youtube.png" class="tab-icon"> 6 · Video
-* **Coming Soon**
+# <img src="/patreon-light.png" class="tab-icon"> 6 · Video
+
 
 
 [^1]: Leave blank unless you are using tags already. If using tags, assign here for instance bridging.
