@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-05-22T06:36:00.029Z
+date: 2026-05-23T10:42:49.471Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -29,10 +29,10 @@ services:
     ports:
       - "6868:6868"
     volumes:
-      - ./profilarr/config:/config
+      - /mnt/tank/configs/profilarr:/config
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=568
+      - PGID=568
       - UMASK=022
       - TZ=America/New_York
 ```
