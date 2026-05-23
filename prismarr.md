@@ -2,7 +2,7 @@
 title: Prismarr
 description: A guide to deploying Prismarr
 published: true
-date: 2026-04-28T11:16:03.904Z
+date: 2026-05-23T18:03:30.423Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-28T00:21:28.596Z
@@ -59,5 +59,4 @@ environment:
 
 
 # <img src="/patreon-light.png" class="tab-icon"> 3 · Video
-
-*Video coming soon — check back later!*
+[![](/prismarr-thumbnail-a.png)](https://www.patreon.com/posts/156754191)
