@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-05-23T12:02:11.297Z
+date: 2026-05-23T12:05:05.419Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -126,6 +126,11 @@ Profilarr allows us to change the defaults for other catagories in Radarr/Sonarr
 The defaults are good and do not need to be adjusted but are exposed for users with specific use-cases.
 
 
+# 5 · Delay Profiles
+1. For Radarr/Sonarr lower your **Delay** to a wait time your prefer (I use 180 minutes)
+1. In the **Bypass Conditions** enable both *Bypass if Highest Quality* and *Bypass if Above Custom Format Score (0)*
 
-# <img src="/patreon-light.png" class="tab-icon"> 5 · Video
+
+
+# <img src="/patreon-light.png" class="tab-icon"> 6 · Video
 
