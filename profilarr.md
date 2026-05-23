@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-05-23T11:58:04.802Z
+date: 2026-05-23T11:59:49.783Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -56,7 +56,7 @@ services:
 >   Currently Profilarr does not sync directly with Trash Guides
 {.is-warning}
 
-> If you are downloading anime, use the repo from the [Dumpstarr repo](https://github.com/Dumpstarr/Database).
+> If you are downloading anime, use the repo from the [Dumpstarr repo](https://github.com/Dumpstarr/Database): `https://github.com/Dumpstarr/Database`
 {.is-success}
 
 > The serversathome/profilarr repo will be archived. Recommend updating to V2 and use recommended anime repo.
@@ -126,15 +126,7 @@ Profilarr allows us to change the defaults for other catagories in Radarr/Sonarr
 The defaults are good and do not need to be adjusted but are exposed for users with specific use-cases.
 
 
-
-# 5 · Anime
-
-To get an anime profile you could either build one yourself through the UI or link to the Dumpstarr repo. To link, instead of using the Dictionarry link from step 2.1, use the link below:
-```bash
-https://github.com/Dumpstarr/Database
-```
-
-# 6 · Future Development
+# 5 · Future Development
 This software is *very* new. As such, there are some changes coming that will improve its usage: 
 [Road Map](https://github.com/Dictionarry-Hub/profilarr/milestone/2)
 
