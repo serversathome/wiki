@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-05-23T11:59:49.783Z
+date: 2026-05-23T12:00:27.341Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -56,7 +56,7 @@ services:
 >   Currently Profilarr does not sync directly with Trash Guides
 {.is-warning}
 
-> If you are downloading anime, use the repo from the [Dumpstarr repo](https://github.com/Dumpstarr/Database): `https://github.com/Dumpstarr/Database`
+> If you are downloading anime, add the repo from the [Dumpstarr repo](https://github.com/Dumpstarr/Database): `https://github.com/Dumpstarr/Database`
 {.is-success}
 
 > The serversathome/profilarr repo will be archived. Recommend updating to V2 and use recommended anime repo.
