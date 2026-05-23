@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-05-23T12:00:27.341Z
+date: 2026-05-23T12:01:22.558Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -59,7 +59,7 @@ services:
 > If you are downloading anime, add the repo from the [Dumpstarr repo](https://github.com/Dumpstarr/Database): `https://github.com/Dumpstarr/Database`
 {.is-success}
 
-> The serversathome/profilarr repo will be archived. Recommend updating to V2 and use recommended anime repo.
+> The `serversathome/profilarr` repo is now deprecated and **will be removed** before July 1, 2026
 {.is-danger}
 
 
