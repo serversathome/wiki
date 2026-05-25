@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-05-25T07:21:55.779Z
+date: 2026-05-25T07:24:40.915Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -122,11 +122,11 @@ After syncing, head into Radarr/Sonarr and:
 
 ## 4.3 Arr Drift Detection
 
-A v2 feature: Profilarr periodically checks each linked Arr against the configuration Profilarr last synced to it. If something has drifted — a custom format edited directly in Radarr, a score changed in Sonarr's UI, a quality profile renamed by hand, a delay profile or media management setting nudged — Profilarr surfaces it as a **drift event**.
+Profilarr periodically checks each linked Arr against the configuration Profilarr last synced to it. If something has drifted — a custom format edited directly in Radarr, a score changed in Sonarr's UI, a quality profile renamed by hand, a delay profile or media management setting nudged — Profilarr surfaces it as a **drift event**.
 
-This catches the silent failure mode where your 4K Radarr instance slowly diverges from your 1080p one because someone (you, three weeks ago) tweaked a score in the Radarr UI and forgot.
+This catches the silent failure mode where your 4K Radarr instance slowly diverges from your 1080p one because someone tweaked a score in the Radarr UI and forgot.
 
-Drift events fire notifications (see section 13) and can be reconciled by re-syncing from Profilarr.
+Drift events fire notifications and can be reconciled by re-syncing from Profilarr.
 
 ## 4.4 Upgrades
 
@@ -136,7 +136,7 @@ The Arrs react well to new releases via RSS, but they don't continuously revisit
 - Filters support **nested AND/OR** logic
 - **Selectors** let you prioritise what gets searched first
 - **Cooldowns** prevent the same item from being repeatedly hammered
-- The whole thing runs on a schedule
+- Runs on a schedule
 
 Tune **Count** (how many items to process per run) and the match filters if you want to be more specific — defaults work well.
 
