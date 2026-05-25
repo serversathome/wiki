@@ -2,7 +2,7 @@
 title: Prowlarr
 description: A guide to installing Prowlarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-05-25T08:05:14.282Z
+date: 2026-05-25T08:06:07.554Z
 tags: media management
 editor: markdown
 dateCreated: 2026-01-15T15:02:45.163Z
@@ -77,7 +77,7 @@ See [this section](https://wiki.serversatho.me/en/Notifications#radarrsonarrprow
 
 1. Navigate to the bottom to the **Backups** section
 1. Change the folder to `/media`
-1. Set the **Interval** to 1 and the **Retention** to your preference (default: 7 days).
+1. Set the **Interval** to `1` and the **Retention** to your preference (default: 7 days).
 
 # 3 · Routing Indexers Through a VPN
 
