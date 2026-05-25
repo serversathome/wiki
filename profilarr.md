@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-05-25T12:20:52.724Z
+date: 2026-05-25T15:33:58.463Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -235,3 +235,4 @@ The **All / Success / Failed** toggles at the top of the picker let you bulk-ena
 
 
 # <img src="/youtube.png" class="tab-icon"> 9 · Video
+https://youtu.be/jvir2SmnwWs
