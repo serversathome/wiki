@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-05-25T07:24:40.915Z
+date: 2026-05-25T12:20:52.724Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -76,10 +76,10 @@ v2 supports **multiple databases at once**, so you can mix profiles from differe
 
 | Database | Repo | Notes |
 |----------|------|-------|
-| Dictionarry | `github.com/Dictionarry-Hub/database` | The default. Connected automatically. Covers 720p through 2160p, from compact x265 encodes to UHD remuxes |
-| TRaSH PCD | `github.com/Dictionarry-Hub/trash-pcd` | A port of the TRaSH Guides in PCD format. Maintained by the Dictionarry team (not the TRaSH team) — report any issues to Dictionarry first. French and German profiles still in progress |
-| Dumpstarr | `github.com/Dumpstarr/Database` | Community fork built on top of Dictionarry and TRaSH formats |
-| Servers@Home | `github.com/serversathome/profilarr` | Combination of Dictionarry and Dumpstarr |
+| Dictionarry | `https://github.com/Dictionarry-Hub/database` | The default. Connected automatically. Covers 720p through 2160p, from compact x265 encodes to UHD remuxes |
+| TRaSH PCD | `https://github.com/Dictionarry-Hub/trash-pcd` | A port of the TRaSH Guides in PCD format. Maintained by the Dictionarry team (not the TRaSH team) — report any issues to Dictionarry first. French and German profiles still in progress |
+| Dumpstarr | `https://github.com/Dumpstarr/Database` | Community fork built on top of Dictionarry and TRaSH formats |
+| Servers@Home | `https://github.com/serversathome/profilarr` | Combination of Dictionarry and Dumpstarr |
 
 
 # 4 · Link Your Arrs
