@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-05-25T07:15:46.963Z
+date: 2026-05-25T07:16:39.821Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -81,14 +81,6 @@ v2 supports **multiple databases at once**, so you can mix profiles from differe
 | Dumpstarr | `github.com/Dumpstarr/Database` | Community fork built on top of Dictionarry and TRaSH formats |
 | Servers@Home | `github.com/serversathome/profilarr` | Combination of Dictionarry and Dumpstarr |
 
-
-> 
-> As of Profilarr v2.0.2, default links to the official Dictionarry database use the `v2` branch automatically when no branch is specified.
-{.is-info}
-
-> 
-> The old `serversathome/profilarr` fork (which existed in v1 to add an anime profile) is **deprecated** and will be removed before July 1, 2026. In v2 you don't need it — link the official Dictionarry database alongside any community anime database you want. The TRaSH PCD anime profile is the most established option until Dictionarry ships its own (per-series anime profiling, SeaDex-style, is on the v2.x roadmap).
-{.is-warning}
 
 # 4 · Link Your Arrs
 
