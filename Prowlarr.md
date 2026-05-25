@@ -2,7 +2,7 @@
 title: Prowlarr
 description: A guide to installing Prowlarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-05-25T08:06:07.554Z
+date: 2026-05-25T08:10:04.697Z
 tags: media management
 editor: markdown
 dateCreated: 2026-01-15T15:02:45.163Z
@@ -27,7 +27,6 @@ services:
       - TZ=America/New_York
     volumes:
       - /mnt/tank/configs/prowlarr:/config
-      - /mnt/tank/media/:/media
     ports:
       - 9696:9696
     restart: unless-stopped
@@ -44,7 +43,6 @@ services:
 - Install Prowlarr from the TrueNAS Community Apps catalog.
 - Use the Community version when available.
 - Change the **Config Storage Type** to **Host Path** as per the [Folder-Structure](/Folder-Structure) guide.
-- Click **Add** under **Additional Storage** to mount the media directory inside the container.
 
 # 2 · Prowlarr Configuration
 
@@ -57,23 +55,18 @@ This is where you will add public or private trackers you are a part of. In the 
 In the menu on the left, navigate to **Settings** > **Apps** and click the ➕ icon. Select the app you would like to link. Leave all the options set to their defaults except the **Prowlarr Server** and **{App Name} Server**. The server line needs to be the IP and port Prowlarr and the IP and port of the app you want to link. The **API Key** is copied from the app itself (in the app, navigate to **Settings** > **General** and copy the API Key from the Security section). Click **Test** then **Save**.
 
 
-## 2.3 Download Client
-
-Navigate in Prowlarr to **Settings** > **Download Client** and click the ➕ icon. Click the box for **qBittorrent**. Change the host to the IP of the server and the port to the correct port which qbit is running on. Use the credentials you set up when you installed qBit. Leave all other options as default and click **Test**, then **Save** at the bottom.
-
-
-## 2.4 Flaresolverr
+## 2.3 Flaresolverr
 
 Usually this is only necessary if you use private trackers, but it won't hurt to set it up. Navigate to **Settings** > **Indexers** and then click the "**+**" box. Click the box for **Flaresolverr**. Enter **flaresolverr** for the **Tags** line and the IP of the server and use port 8191 for the **Host** line.
 
 To apply Flaresolverr to an indexer which utilizes Cloudflare, when adding/editing the indexer, enter **flaresolverr** in the **Tags** line.
 
 
-## 2.5 Notifications
+## 2.4 Notifications
 
 See [this section](https://wiki.serversatho.me/en/Notifications#radarrsonarrprowlarr) of the [Notifications](https://wiki.serversatho.me/Notifications) page.
 
-## 2.6 General > Backups
+## 2.5 General > Backups
 
 1. Navigate to the bottom to the **Backups** section
 1. Change the folder to `/media`
@@ -115,7 +108,6 @@ services:
       - TZ=America/New_York
     volumes:
       - /mnt/tank/configs/prowlarr:/config
-      - /mnt/tank/media/:/media
     ports:
       - 9696:9696
     restart: unless-stopped
