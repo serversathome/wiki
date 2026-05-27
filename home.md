@@ -2,7 +2,7 @@
 title: Home
 description: This is the official wiki for Servers@Home
 published: true
-date: 2026-05-27T08:11:26.288Z
+date: 2026-05-27T08:12:03.894Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:13.120Z
@@ -15,7 +15,7 @@ dateCreated: 2026-01-15T15:05:13.120Z
 > 💡 Use the sidebar or the search bar at the top to find guides. On mobile, tap the blue ☰ icon at the bottom-left.
 {.is-info}
 
----
+
 
 ## 🚀 Start Here
 
@@ -27,7 +27,6 @@ New to self-hosting? These three will get you running:
 | [TrueNAS Scale Walkthrough](/TrueNAS) | Set up your storage OS |
 | [Docker for Home Servers](/Docker) | Run your first containers |
 
----
 
 ## 📚 Knowledge Areas
 
@@ -55,7 +54,7 @@ New to self-hosting? These three will get you running:
 - [<img src="/cloudflare.png" width="25" style="vertical-align:middle;margin-right:4px"> Cloudflare Tunnels](/CloudflareTunnels)
 - [<img src="/netbird.png" width="25" style="vertical-align:middle;margin-right:4px"> NetBird Mesh VPN](/netbird)
 
----
+
 
 ## 🌟 Reader Favorites
 
@@ -63,7 +62,7 @@ New to self-hosting? These three will get you running:
 - 🛡️ [The Best VPN Setup, Period](https://blog.serversatho.me/best-vpn-ever/) — AirVPN + WireGuard for your homelab
 - 📦 [Ravencentric: The All-in-One *arr Stack](/ravencentric) — One container, full media automation
 
----
+
 
 ## 🏆 About the Community
 
@@ -71,7 +70,7 @@ New to self-hosting? These three will get you running:
 
 Maintained by Evan and contributors like you.
 
----
+
 
 ## 💬 Connect & Contribute
 
