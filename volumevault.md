@@ -2,7 +2,7 @@
 title: VolumeVault
 description: A guide to deploying VolumeVault
 published: true
-date: 2026-05-30T11:20:56.597Z
+date: 2026-06-02T20:33:22.276Z
 tags: 
 editor: markdown
 dateCreated: 2026-05-30T11:20:56.597Z
@@ -35,7 +35,7 @@ What you get:
 VolumeVault encrypts your stored credentials with a Laravel `APP_KEY`, so you generate one first and paste it into your compose file. Run this one-off command (it just prints a key, runs nothing persistent):
 
 ```bash
-docker run --rm ghcr.io/darkdragon14/volumevault:latest php artisan key:generate --show
+docker run --rm ghcr.io/darkdragon14/volumevault:v1.6.0 php artisan key:generate --show
 ```
 
 Copy the full output, including the `base64:` prefix.
