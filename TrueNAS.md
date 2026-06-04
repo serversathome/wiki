@@ -2,13 +2,13 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2026-04-14T10:37:08.358Z
+date: 2026-06-04T15:34:23.479Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:56.437Z
 ---
 
-> This page was built to describe TrueNAS CE Goldeye 25.10.2.1
+> This page was built to describe TrueNAS CE Goldeye 25.10.4
 {.is-info}
 
 # <img src="/truenas.png" class="tab-icon"> Installation
