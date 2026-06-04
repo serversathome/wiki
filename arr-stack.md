@@ -2,7 +2,7 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-05-27T15:56:53.122Z
+date: 2026-06-04T21:32:18.808Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
@@ -68,7 +68,6 @@ dateCreated: 2026-01-28T21:27:05.188Z
 {.links-list}
 
 ## Others
-- [🐌 Auto-Limit<br>*Intelligent download speed management*](/autolimit)
 - [<img src="/bazarr.png"> Bazarr<br>*Subtitle management*](/bazarr)
 - [<img src="/crosswatch.png"> CrossWatch<br>*Sync client for Plex and Jellyfin*](/crosswatch)
 - [<img src="/dasharr.png"> Dasharr<br>*Dashboard*](/dasharr)
