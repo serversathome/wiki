@@ -2,13 +2,13 @@
 title: Odysseus
 description: A guide to deploying Odysseus
 published: true
-date: 2026-06-05T20:38:01.780Z
+date: 2026-06-05T20:39:49.945Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-05T20:38:01.780Z
 ---
 
-# <img src="/odysseus.png" class="tab-icon"> What is Odysseus?
+# What is Odysseus?
 
 **Odysseus** is a free, self-hosted AI workspace created by PewDiePie. Think of it as the ChatGPT or Claude website, but running on hardware you own. On top of chat it bundles a research agent, a model-picker called Cookbook, blind model comparison, persistent memory, plus email, notes, tasks, and a calendar — all in one app.
 
