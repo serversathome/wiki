@@ -2,7 +2,7 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-06-07T14:35:51.102Z
+date: 2026-06-07T14:40:42.423Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:53.605Z
@@ -39,13 +39,7 @@ services:
     restart: unless-stopped
 ```
 
-1. Deploy the stack in **Dockge**.
-2. Browse to `http://<your-server-ip>:7878` to load the Radarr UI.
-3. Set up authentication immediately under **Settings → General** (see section 2.1).
 
-> 
-> The `/mnt/tank/media:/data` mount gives Radarr a single unified view of your downloads and movie library. This enables **hardlinks** and **atomic moves** instead of slow copy-and-delete operations — keep downloads and media under the same mount point.
-{.is-success}
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
@@ -93,7 +87,7 @@ Rather than adding indexers manually, let Prowlarr manage them:
 
 1. Go to **Settings → Media Management** and add a **Root Folder** pointing to `/data/media/movies`.
 2. Under **Settings → Profiles**, configure quality profiles to match your storage and bandwidth.
-3. For curated custom formats and quality scoring, consider **Profilarr** to manage profiles across Radarr and Sonarr.
+3. For curated custom formats and quality scoring, consider [Profilarr](/profilarr) to manage profiles across Radarr and Sonarr.
 
 
 
