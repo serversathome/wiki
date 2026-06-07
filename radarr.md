@@ -2,32 +2,25 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-01-19T00:56:52.792Z
+date: 2026-06-07T14:35:14.113Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:53.605Z
 ---
 
-# ![Radarr](/radarr.png){class="tab-icon"} What is Radarr?
+# <img src="/radarr.png" class="tab-icon"> What is Radarr?
 
-Radarr is a **movie collection manager** for Usenet and BitTorrent. It monitors RSS feeds for new releases, interfaces with clients/indexers to grab, sort, and rename movies, and can upgrade quality automatically when better releases appear.
+**Radarr** is a movie collection manager for Usenet and BitTorrent users. It automatically monitors multiple RSS feeds and indexers for new and upgraded releases of your wanted movies, grabs them through your download client, then renames and organizes them into your library. Think of it as the movie-focused sibling of Sonarr — part of the broader *arr stack alongside Prowlarr, Sonarr, and Bazarr.
 
-<details class="quickstart" open>
-<summary><strong>🚀 Quick‑Start Checklist</strong></summary>
+Radarr handles quality profiles, custom formats, automatic upgrades (e.g. replacing a 720p copy when a 1080p release appears), and list-based imports from sources like Trakt, IMDb, and TMDb.
 
-1. **Deploy container** (Docker Compose *or* TrueNAS Apps)
-2. **Create** `/media/movies` **root folder** in Radarr
-3. **Add qBittorrent** as Download Client
-4. **Add Indexers via Prowlarr** so Radarr can actually find releases
-5. *(Optional)* Import Recyclarr profiles & advanced cleanup
-
-</details>
+> 
+> Radarr pairs best with **Prowlarr** (indexer management) and a download client such as **qBittorrent** or **SABnzbd**. Set those up first for the smoothest experience.
+{.is-info}
 
 # 1 · Deploy Radarr
-
-# tabs {.tabset}
-
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+# {.tabset}
+## Docker
 
 ```yaml
 services:
@@ -42,130 +35,69 @@ services:
       - /mnt/tank/configs/radarr:/config
       - /mnt/tank/media:/media
     ports:
-      - 7878:7878
+      - "7878:7878"
     restart: unless-stopped
 ```
 
-### Permissions & Folder Structure {.is-success}
+1. Deploy the stack in **Dockge**.
+2. Browse to `http://<your-server-ip>:7878` to load the Radarr UI.
+3. Set up authentication immediately under **Settings → General** (see section 2.1).
 
-* **PUID / PGID** – media‑owner UID/GID (TrueNAS SCALE default **568:568**).
-* **Volumes** – configs at `/mnt/tank/configs/radarr`, media at `/mnt/tank/media`.
-  📌 See the [Folder‑Structure](/Folder-Structure) guide.
+> 
+> The `/mnt/tank/media:/data` mount gives Radarr a single unified view of your downloads and movie library. This enables **hardlinks** and **atomic moves** instead of slow copy-and-delete operations — keep downloads and media under the same mount point.
+{.is-success}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
+## TrueNAS
 
-|  Step  |  Action                                                                         |
-| ------ | ------ |
-| **1**  | **Apps → Discover Apps → Radarr → Install**      |
-| **2**  | **Port Number → 7878**   |
-| **3**  | **Radarr Config Storage → Host Path** → `/mnt/tank/configs/radarr`     |
-| **4**  | **Additional Storage → Host Path** → mount dataset `/mnt/tank/media` ➜ `/media` |
-| **5**  | Click **Save → Deploy**     |
-
-# 2 · First‑Run Configuration
-
-## 2.1 Root Folder  <span class="chip">Mandatory</span>
-
-1. **Settings → Media Management → Add Root Folder**
-2. Choose **/media/movies** and ensure it’s **Monitored** (green ✔️).
-
-## 2.2 Download Client  <span class="chip">qBittorrent</span>
-
-1. **Settings → Download Client → ➕ → qBittorrent**
-2. Fill the form:
-
-|  Field                  |  Example         |
-| ----------------------- | ---------------- |
-|  Host                   |  `192.168.1.25`  |
-|  Port                   |  `8080`         |
-|  Username               |  `admin`         |
-|  Password               |  ••••••••        |
-|  Category               |  `movies-radarr` |
-|  Recent/Older Priority  |  **Last**        |
-|  Remove Completed       |  ✅               |
-
-## 2.3 Indexers (via Prowlarr)
-
-1. Connect Radarr in **Prowlarr → Settings → Apps → +**.
-2. Add indexers
-3. **Test → Save** — Radarr inherits them automatically.
+1. Navigate to **Apps** in the TrueNAS UI.
+2. Search the **Community** catalog for "Radarr" and click **Install**.
+3. Configure the following settings:
+   - **App Name**: `radarr`
+   - **Timezone**: `America/New_York`
+   - **User and Group ID**: PUID `568` / PGID `568`
+   - **Storage → Config**: Host Path → `/mnt/tank/configs/radarr`
+   - **Storage → Additional Storage**: Host Path `/mnt/tank/media` mounted to `/media`
+   - **Web Port**: `7878`
+4. Click **Install** and wait for the app to reach the **Running** state.
 
 
-# 3 · Advanced Tweaks *(optional)*
 
-> **Warning** – For Recyclarr users. Enable **Show Advanced** first. {.is-warning}
+# 2 · Configuration
 
-### Media‑Management Presets
+## 2.1 Authentication
 
-|  Field                  |  Recommended           |
-| ----------------------- | ---------------------- |
-|  Rename Movies          |  `True`                |
-|  Standard Movie Format  |  [TRaSH Radarr string](https://trash-guides.info/Radarr/Radarr-recommended-naming-scheme/#standard) |
-|  Propers & Repacks      |  `Do Not Prefer`       |
-|  Set Permissions        |  `True` *(chmod 770)*  |
+Before anything else, lock down access:
 
-<details><summary><strong>📑 Common Tags / Custom Formats (cheat‑sheet)</strong></summary>
+1. Go to **Settings → General**.
+2. Under **Security**, set **Authentication** to `Forms (Login Page)`.
+3. Set **Authentication Required** to `Enabled`.
+4. Create a username and password, then save. Radarr will restart.
 
-|  Tag          |  Purpose                    |
-| ------------- | --------------------------- |
-|  x265 / HEVC  |  Prefer modern video codec  |
-|  HDR10 / DV   |  Force HDR releases         |
-|  Atmos        |  Require Dolby Atmos audio  |
-|  Anime        |  Anime‑specific profiles    |
 
-</details>
+## 2.2 Connect Your Download Client
 
-### Profiles & Quality
+1. Go to **Settings → Download Clients** and click the **+** button.
+2. Select your client (e.g. **qBittorrent** or **SABnzbd**).
+3. Enter the host, port, and credentials.
+4. Click **Test**, then **Save**.
 
-Delete default profiles → keep Recyclarr-generated profiles → set Jellyseerr default.
+## 2.3 Connect Indexers via Prowlarr
 
-### Metadata & Backups
+Rather than adding indexers manually, let Prowlarr manage them:
 
-Enable **Kodi/Emby** metadata.
-Backups: `/media`, **Interval = 1 day**, **Retention = 7**.
+1. In **Prowlarr**, go to **Settings → Apps** and add Radarr.
+2. Enter the Radarr URL (`http://radarr:7878`) and API key (found in Radarr under **Settings → General → Security**).
+3. Prowlarr will sync all your indexers to Radarr automatically.
 
-<details><summary><strong>📤 Restoring a Backup</strong></summary>
-  
-1. Navigate to **System → Backup**
-1. Use one of two options for restoration:
-a. Either restore from a backup in the configured folder by clicking the clock icon at the end of a row
-b.  Click the **Restore Backup** icon in the top to restore from a local .zip backup
+## 2.4 Quality Profiles & Root Folder
 
-</details>
+1. Go to **Settings → Media Management** and add a **Root Folder** pointing to `/data/media/movies`.
+2. Under **Settings → Profiles**, configure quality profiles to match your storage and bandwidth.
+3. For curated custom formats and quality scoring, consider **Profilarr** to manage profiles across Radarr and Sonarr.
 
-# 4 · Troubleshooting
 
-<details><summary><strong>Radarr cannot see media files</strong></summary>
 
-```bash
-ls -lah /mnt/tank/media/movies
-chown -R 568:568 /mnt/tank/media/movies
-```
 
-</details>
-
-<details><summary><strong>Permission denied</strong></summary>
-
-```bash
-chmod -R 770 /mnt/tank/media/movies
-```
-
-</details>
-
-<details><summary><strong>Downloads stay in qBittorrent</strong></summary>
-
-* Verify **Download Client Path Mapping**.
-* Confirm Radarr can access the completed-downloads directory.
-
-</details>
-
-## ✏️ Editors & Contributors
-
-> **Special thanks to the following members for reviewing and polishing this guide**
-> - Scar13t
-
-Feel free to open a pull‑request or ping us on Discord if you spot an inaccuracy!
-
-# <img src="/patreon-light.png" class="tab-icon"> 5 · Video Guide 
+# <img src="/patreon-light.png" class="tab-icon"> 3 · Video Guide 
 
 [![Promo](/2025-03-18-advanced-media-management-with-r-promo-card.png)](https://www.patreon.com/posts/advanced-media-124637606)
