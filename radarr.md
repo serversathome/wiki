@@ -2,7 +2,7 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-06-07T14:35:14.113Z
+date: 2026-06-07T14:35:51.102Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:53.605Z
@@ -20,7 +20,7 @@ Radarr handles quality profiles, custom formats, automatic upgrades (e.g. replac
 
 # 1 · Deploy Radarr
 # {.tabset}
-## Docker
+## <img src="/docker.png" class="tab-icon"> Docker
 
 ```yaml
 services:
@@ -47,7 +47,7 @@ services:
 > The `/mnt/tank/media:/data` mount gives Radarr a single unified view of your downloads and movie library. This enables **hardlinks** and **atomic moves** instead of slow copy-and-delete operations — keep downloads and media under the same mount point.
 {.is-success}
 
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 1. Navigate to **Apps** in the TrueNAS UI.
 2. Search the **Community** catalog for "Radarr" and click **Install**.
