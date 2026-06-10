@@ -2,7 +2,7 @@
 title: Nextcloud
 description: A guide to deploying Nextcloud on TrueNAS Scale and via docker compose
 published: true
-date: 2026-06-10T11:29:43.906Z
+date: 2026-06-10T11:31:50.698Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:39.801Z
@@ -154,7 +154,7 @@ https://youtu.be/ibL9qAlUZes
 
 ## 4.2 · Deploy Euro-Office (Alternative to Collabora)
 
-Euro-Office is the new **Nextcloud Office** back-end shipped with Hub 26 Spring. It is a self-hosted OnlyOffice fork with strong Microsoft-format compatibility and fast in-browser editing. Use this instead of Collabora — only one office suite can be active at a time.
+Euro-Office is the new **Nextcloud Office** back-end shipped with Hub 26 Spring. It is a self-hosted OnlyOffice fork with strong Microsoft-format compatibility and fast in-browser editing. 
 
 ### <img src="/docker.png" class="tab-icon"> 4.2.1 Docker Compose
 
@@ -168,7 +168,7 @@ services:
       - "8080:80"
     environment:
       - JWT_ENABLED=true
-      - JWT_SECRET=CHANGE_ME_TO_A_LONG_RANDOM_STRING
+      - JWT_SECRET=
     volumes:
       - /mnt/tank/configs/euro-office/data:/var/www/onlyoffice/Data
       - /mnt/tank/configs/euro-office/logs:/var/log/onlyoffice
@@ -177,29 +177,21 @@ services:
 
 Generate the secret with <kbd>openssl rand -hex 32</kbd> (the connector requires **at least 32 characters**).
 
-> 
-> **Do not** add a `db:/var/lib/postgresql` volume — it crashes the container (`/var/lib/postgresql/16/main is not accessible or does not exist`). The image manages its own internal database; the document data that matters lives in Nextcloud.
-{.is-danger}
 
 ### 4.2.2 Reverse Proxy
 
 Add a public hostname (e.g. *office.example.com*) and — unlike Collabora — point it at an **http** origin: `http://euro-office:80` (same Docker network) or `http://<truenas-ip>:8080`.
 
-> 
-> The Euro-Office Document Server serves plain **HTTP** internally, so do **NOT** check **No TLS Verify** and do not use an `https://` origin (this is the opposite of the Collabora setup above). WebSockets — required for live co-editing — are automatic on Cloudflare Tunnels. Disable **Rocket Loader** on this hostname; it can break the editor JavaScript.
-{.is-warning}
 
 The connection must work in **both** directions: the browser and Nextcloud must reach the Document Server, and the Document Server must reach Nextcloud back (the save-back callback). If the callback can't reach Nextcloud, documents open but never save.
 
 ### 4.2.3 Nextcloud Settings
 
-1. Go to **Settings → Office & text** and select the **Nextcloud Office (Powered by Euro-Office)** card. Install the connector if prompted.
-2. Open **Administration Settings → Euro-Office** (`settings/admin/eurooffice`) and set the **Document Server address** to your proxy FQDN (e.g. `https://office.example.com/`). Use the public FQDN, not a LAN IP — the connector blocks local addresses by default.
+1. Go to **Apps → Office** and select the **Nextcloud Office (Powered by Euro-Office)** card. Install the connector if prompted.
+2. Open **Administration Settings → Office** and set the **Document Server address** to your proxy FQDN (e.g. `https://office.example.com/`). Use the public FQDN, not a LAN IP — the connector blocks local addresses by default.
 3. Enter the **Secret key (JWT)** matching your compose `JWT_SECRET` and save. You should see a green "server is reachable" confirmation.
 
-> 
-> If your Nextcloud isn't on Hub 26 yet and the App Store listing isn't available, install the connector from source: clone `https://github.com/Euro-Office/eurooffice-nextcloud.git` into your apps directory, run `git submodule update --init --recursive`, build webpack, install Composer deps, then enable it from **Disabled apps**.
-{.is-info}
+
 
 # <img src="/youtube.png" class="tab-icon"> 5 · Video
 https://www.youtube.com/watch?v=pAebJIDT_oc
