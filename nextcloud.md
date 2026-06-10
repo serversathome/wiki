@@ -2,7 +2,7 @@
 title: Nextcloud
 description: A guide to deploying Nextcloud on TrueNAS Scale and via docker compose
 published: true
-date: 2026-06-10T11:27:55.178Z
+date: 2026-06-10T11:29:43.906Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:39.801Z
@@ -98,7 +98,7 @@ To access the fastest way via mobile, use a QR code to login. To generate the QR
 
 # 4 · Office Suite Overview
 
-To use Nextcloud as a collaborative document platform you add a separate office back-end and point Nextcloud at it. As of **Nextcloud Hub 26 Spring**, the integration is chosen under **Settings → Office & text → "Select your preferred office suite,"** which now offers two options:
+To use Nextcloud as a collaborative document platform you add a separate office back-end and point Nextcloud at it. As of **Nextcloud Hub 26 Spring**, the integration is chosen under **Apps → Office → "Select your preferred office suite,"** which now offers two options:
 
 | | Collabora Office | Nextcloud Office (Euro-Office) |
 |---|---|---|
