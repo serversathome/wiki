@@ -2,7 +2,7 @@
 title: Euro-Office
 description: A guide to deploying Euro-Office in docker
 published: true
-date: 2026-06-10T12:18:40.399Z
+date: 2026-06-10T12:18:58.672Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-09T11:51:24.911Z
@@ -51,20 +51,6 @@ Generate a real JWT secret with <kbd>openssl rand -hex 32</kbd> and replace the 
 | `JWT_SECRET` | Shared secret the host app (Nextcloud) must match exactly. |
 | `EXAMPLE_ENABLED` | Enables the built-in test app at `/example`. Use for testing only; disable in production. |
 
-
-## 2.2 Try the Editors (no host app needed)
-
-With `EXAMPLE_ENABLED=true`, browse to:
-
-```
-http://<server-ip>:8080/example
-```
-
-The example app acts as a stand-in host so you can create and open documents directly against the engine. Create a blank DOCX, XLSX, or PPTX, or open an existing Microsoft file to test format compatibility. To see real-time collaboration, open the same document in a second browser window — you will see live cursors and changes sync between both.
-
-> 
-> The `/example` page is officially a testing and integration harness, not the intended production interface. For day-to-day use, connect the Document Server to a host application such as Nextcloud.
-{.is-warning}
 
 # 3 · Reverse Proxy & Reliability
  
