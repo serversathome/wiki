@@ -2,7 +2,7 @@
 title: Euro-Office
 description: A guide to deploying Euro-Office in docker
 published: true
-date: 2026-06-10T11:40:32.009Z
+date: 2026-06-10T12:18:40.399Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-09T11:51:24.911Z
@@ -32,7 +32,6 @@ services:
     environment:
       - JWT_ENABLED=true
       - JWT_SECRET=
-      - EXAMPLE_ENABLED=true
     volumes:
       - /mnt/tank/configs/euro-office/data:/var/www/onlyoffice/Data
       - /mnt/tank/configs/euro-office/logs:/var/log/onlyoffice
