@@ -2,7 +2,7 @@
 title: Euro-Office
 description: A guide to deploying Euro-Office in docker
 published: true
-date: 2026-06-10T12:18:58.672Z
+date: 2026-06-10T12:19:16.450Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-09T11:51:24.911Z
@@ -14,9 +14,6 @@ dateCreated: 2026-06-09T11:51:24.911Z
 
 Under the hood, Euro-Office is a fork of **OnlyOffice**. On launch it is functionally the OnlyOffice Document Server — rebranded, with a modernised build system and the first commits of its own ODF-focused work. The piece that runs today is the **Document Server** (the editing engine). It is not designed for standalone use: it is meant to be embedded in a host application (a file-sharing platform, wiki, or project tool). 
 
-
-> The desktop apps are not yet released (the repo has no published builds), and the Nextcloud App Store listing is not live yet — the Nextcloud connector is currently a build-from-source step. See section 4.
-{.is-info}
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Euro-Office
 
