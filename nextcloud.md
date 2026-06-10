@@ -2,7 +2,7 @@
 title: Nextcloud
 description: A guide to deploying Nextcloud on TrueNAS Scale and via docker compose
 published: true
-date: 2026-06-10T11:31:50.698Z
+date: 2026-06-10T11:32:33.688Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:39.801Z
@@ -150,7 +150,7 @@ Note that since Collabora has its own self-signed certificate we need to check t
 
 Navigate to **Settings → Office & text**, select the **Collabora Office** card, and install it if prompted. Then open **Administration Settings → Office**, click the radio button to **Use your own server**, enter the address of your FQDN and click save. You should see a green bar across the top that says *Collabora Online server is reachable*.
 
-https://youtu.be/ibL9qAlUZes
+
 
 ## 4.2 · Deploy Euro-Office (Alternative to Collabora)
 
@@ -194,5 +194,6 @@ The connection must work in **both** directions: the browser and Nextcloud must 
 
 
 # <img src="/youtube.png" class="tab-icon"> 5 · Video
+https://youtu.be/ibL9qAlUZes
 https://www.youtube.com/watch?v=pAebJIDT_oc
 https://youtu.be/qn5ccoCabdA
