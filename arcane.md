@@ -2,7 +2,7 @@
 title: Arcane
 description: A guide to deploying Arcane in docker
 published: true
-date: 2026-06-13T18:55:58.602Z
+date: 2026-06-13T18:56:08.365Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:09.587Z
@@ -68,7 +68,7 @@ Arcane is in the TrueNAS **Community** train.
    - **Encryption Key** — paste a value from `openssl rand -base64 32`.
    - **JWT Secret** — paste a second `openssl rand -base64 32` value.
    - **Host Path (App Data)**: `/mnt/tank/configs/arcane`
-   - **Projects Directory**: point at your stacks path (e.g. `/mnt/bigdeal/stacks`) and add a matching host-path mount.
+   - **Projects Directory**: point at your stacks path (e.g. `/mnt/tank/stacks`) and add a matching host-path mount.
    - **Docker Socket**: the app mounts `/var/run/docker.sock` automatically.
 4. The app runs as user/group **568** (the `apps` group) by default.
 5. Click **Install** and wait for the **Running** state.
