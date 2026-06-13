@@ -2,7 +2,7 @@
 title: Arcane
 description: A guide to deploying Arcane in docker
 published: true
-date: 2026-06-13T18:53:12.358Z
+date: 2026-06-13T18:55:58.602Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:09.587Z
@@ -36,7 +36,7 @@ services:
     environment:
       - ENCRYPTION_KEY=PASTE_FIRST_OPENSSL_VALUE_HERE
       - JWT_SECRET=PASTE_SECOND_OPENSSL_VALUE_HERE
-      - PROJECTS_DIRECTORY=/mnt/bigdeal/stacks   # where your Compose projects live
+      - PROJECTS_DIRECTORY=/mnt/tank/stacks   # where your Compose projects live
       - PUID=568
       - PGID=568
       - TZ=America/New_York
