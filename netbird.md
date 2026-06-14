@@ -2,7 +2,7 @@
 title: Netbird
 description: A guide to installing and using Netbird
 published: true
-date: 2026-05-16T14:06:08.677Z
+date: 2026-06-14T11:49:28.584Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:37.607Z
@@ -69,6 +69,13 @@ Get the app from your respective app store:
 {.links-list}
 
 # 2 · Reverse Proxy
+NetBird's built-in reverse proxy lets you expose local services over HTTPS without opening a single port on your router. Every service you publish lives on a **cluster** — a group of one or more proxy instances that serve a single apex domain. There are two kinds:
+
+- **Shared cluster** — the proxy is run by NetBird (on NetBird Cloud) or by whoever operates your management server. Zero setup: you just point a CNAME at their infrastructure. **This is what Sections 2.1 and 2.2 below use.**
+- **Account cluster** — a proxy *you* run on your *own* box, bound exclusively to your account, with traffic terminating on hardware you control. This is the **Bring Your Own Proxy (BYOP)** feature covered in [Section 2.4](#h-24-clusters-bring-your-own-proxy).
+
+Start with a shared cluster to get going in minutes, then graduate to your own cluster when you want traffic to stay on your own server.
+
 ## 2.1 Custom Domains
 By default, NetBird assigns your proxy services to a provided cloud domain. However, if you own your own domain (e.g., `yourdomain.com`), you can attach it to NetBird to make your services look cleaner and easier to remember.
 
@@ -137,6 +144,97 @@ While applications like Jellyfin manage their own users and login screens (meani
 > **💡 What does the user experience?** 
 > When a user navigates to a protected URL (e.g., `https://admin.yourdomain.com`), they won't see your application right away. Instead, they are stopped by a secure NetBird interception screen asking for the required SSO login, Password, or PIN. Once they successfully authenticate, they are forwarded to your actual backend application.
 {.is-success}
+
+## 2.4 Clusters (Bring Your Own Proxy)
+Everything above runs on a **shared cluster** — NetBird's own proxy infrastructure handles TLS and routes your traffic. That's the easy path, but it means your traffic terminates on someone else's servers.
+
+**Bring Your Own Proxy (BYOP)** lets your account run its own reverse proxy on your own box. The proxy connects to NetBird's management service like any other proxy, but it's bound to a single account: only *your* services route through it, and the apex domain you choose is reserved across the management instance. For a homelabber, this is the sweet spot — you keep NetBird's slick dashboard and mesh routing, but the proxy and the Let's Encrypt certs live on a server *you* control (a VPS, for example).
+
+You'd reach for BYOP when you want:
+- **Full control over traffic** — proxied traffic terminates on infrastructure you operate, not on shared clusters.
+- **Specific geographic placement** — pick the region/provider you need.
+- **Your own TLS and domain** — the proxy issues certificates directly via Let's Encrypt for a wildcard under a domain you own.
+
+In the dashboard, BYOP proxies live under **Reverse Proxy > Clusters** and show up as **account clusters**.
+
+### 2.4.1 Shared vs. Account Clusters
+Both cluster types appear together on the **Clusters** page. The **Type** badge marks each row as shared or account, the **Status** column shows whether at least one proxy has heartbeated in the last two minutes, and the **Features** column lists what the connected proxies support.
+
+| | **Shared cluster** | **Account cluster** (BYOP) |
+|---|---|---|
+| Who runs it | NetBird / your management operator | You |
+| Who can use it | Every account on the management instance | Only your account |
+| Apex domain | Provided by the platform | Provided by you (you own the DNS) |
+| TLS | Managed by the platform | Issued by the proxy you run (ACME or your own certs) |
+| Registration token | Management-wide | Account-scoped (one per account) |
+| Geographic placement | Wherever the platform runs proxies | Wherever you run the container |
+| Delete from dashboard | Not allowed | Allowed (account owner only) |
+
+
+There's **no functional difference at the data plane** — a service behaves identically once a request lands on either cluster type. The choice is purely operational: shared = zero effort, account = control over location, TLS, and the data path.
+
+The rest of this section sets up an **account cluster**. If you just want a shared cluster, there's nothing to do here — pick the platform-provided domain back in [Section 2.2](#h-22-services).
+
+
+### 2.4.2 Setup Walkthrough
+The dashboard provides a wizard that generates the proxy token, shows the DNS records to add, and emits a ready-to-run command.
+
+1. **Open the wizard.** Navigate to **Reverse Proxy > Clusters**. The table lists every cluster your account can reach. Click **Setup Self-Hosted Cluster**.
+
+2. **Choose your domain.** In the **Domain** tab, enter the domain this cluster will be reachable on, e.g., `proxy.yourdomain.com`. This becomes the proxy's `NB_PROXY_DOMAIN` and the suffix of every service URL hosted on it (`{subdomain}.proxy.yourdomain.com`). Click **Continue**.
+
+3. **Configure DNS records.** In the **DNS Records** tab, add these two records at your registrar:
+
+   | Type  | Name                    | Content                  |
+   |-------|-------------------------|--------------------------|
+   | A     | `proxy.yourdomain.com`  | Your server's public IP  |
+   | CNAME | `*.proxy.yourdomain.com`| `proxy.yourdomain.com`   |
+   {.dense}
+
+   The wildcard record is required so every service domain (`{subdomain}.proxy.yourdomain.com`) resolves to your proxy. If you're on Cloudflare, set these records to **DNS Only** (grey cloud). Click **Continue**.
+
+4. **Run the proxy.** The **Run the Proxy** tab generates a **one-time, account-scoped token** and embeds it into a command. The wizard hands you a `docker run`, but here's the equivalent Dockge-friendly compose stack to run on your server:
+
+   ```yaml
+   services:
+     netbird-proxy:
+       container_name: netbird-proxy
+       image: netbirdio/reverse-proxy:latest
+       restart: unless-stopped
+       environment:
+         - NB_PROXY_CERTIFICATE_DIRECTORY=/certs
+         - NB_PROXY_MANAGEMENT_ADDRESS=https://api.netbird.io
+         - NB_PROXY_ACME_CERTIFICATES=true
+         - NB_PROXY_DOMAIN=proxy.yourdomain.com
+         - NB_PROXY_LOG_LEVEL=info
+         - NB_PROXY_TOKEN=
+       ports:
+         - "443:443"
+         - "80:80"
+       volumes:
+         - ./netbird-certs:/certs
+   ```
+
+   Paste the generated token into the `NB_PROXY_TOKEN=` line and set `NB_PROXY_DOMAIN` to the domain from Step 2. On NetBird Cloud, leave `NB_PROXY_MANAGEMENT_ADDRESS` as `https://api.netbird.io`; on a self-hosted management server, use your own management URL.
+
+   > **Copy the token now.** The plain token is shown **only once**, at the moment it's generated. Store it somewhere safe before closing the modal. If you lose it, revoke it and generate a new one.
+   {.is-danger}
+
+
+    > With the default `tls-alpn-01` challenge you only need port 443 — you can drop the `80:80` mapping. Keep port 80 only if you switch to the `http-01` challenge.
+    {.is-info}
+
+
+
+
+### 2.4.3 Using Your Cluster for Services
+Once the cluster is connected, your BYOP domain shows up as a normal **Cluster** option in the service-creation flow:
+
+1. Go to **Reverse Proxy > Services > Add Service**.
+2. Choose a subdomain and pick your BYOP domain (`proxy.yourdomain.com`) as the base domain.
+3. Configure targets, authentication, and access restrictions exactly as in [Section 2.2](#h-22-services) and [Section 2.3](#h-23-authentication).
+
+Traffic to `subdomain.proxy.yourdomain.com` is now received by *your* proxy, terminated locally with a Let's Encrypt certificate, and forwarded over WireGuard to the target peer.
 
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
