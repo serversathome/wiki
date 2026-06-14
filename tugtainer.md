@@ -2,7 +2,7 @@
 title: Tugtainer
 description: A guide to deploying Tugtainer
 published: true
-date: 2026-06-14T11:00:57.900Z
+date: 2026-06-14T11:02:42.283Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:08.384Z
@@ -144,3 +144,5 @@ To check/update images from a private registry, mount your Docker config into th
 The Docker CLI inside the container handles authentication from there.
 
 
+# <img src="/youtube.png" class="tab-icon"> 6 · Video
+https://youtu.be/PTjco8Fryqg
