@@ -2,7 +2,7 @@
 title: Tugtainer
 description: A guide to deploying Tugtainer
 published: true
-date: 2026-06-14T10:58:28.904Z
+date: 2026-06-14T10:59:39.313Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:08.384Z
@@ -87,7 +87,7 @@ Two labels control how Tugtainer treats a container. Add them under `labels:` in
 |-------|--------|
 | `dev.quenary.tugtainer.protected=true` | Container can't be stopped/updated by the app. Used for Tugtainer itself, the agent, and the socket-proxy. Check-only still works for notifications. |
 | `dev.quenary.tugtainer.depends_on="db,cache"` | Declares a dependency on other containers by name, even outside the same Compose project. |
-{.dense}
+
 
 > 
 > You **cannot** update an **agent** or a **socket-proxy** from inside Tugtainer — they're how it talks to Docker. Don't put them in a Compose project alongside containers you auto-update, or the update will error. Mark them `protected` and recreate them manually (or with Portainer/Dockge).
