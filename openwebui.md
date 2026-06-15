@@ -2,7 +2,7 @@
 title: OpenWebUI
 description: A guide to deploying OpenWebUI
 published: true
-date: 2026-06-15T15:23:06.043Z
+date: 2026-06-15T15:32:57.138Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-15T15:23:06.042Z
@@ -14,13 +14,10 @@ dateCreated: 2026-06-15T15:23:06.042Z
 
 The difference from the commercial tools is that everything here is a toggle or a plugin you control. The core ships with the "assistant" features built in; a Python plugin system (Tools, Functions, Pipelines) plus an MCP bridge lets you add anything the core doesn't have. This page covers the deploy, the built-in parity features, and the community extras worth installing.
 
-> 
-> Open WebUI is **bring-your-own-brains**. It is the interface only — you still need a model backend (local Ollama, or a remote OpenAI/Anthropic/OpenRouter endpoint). Plan that piece first.
-{.is-info}
 
 # 1 · Deploy Open WebUI
 # {.tabset}
-## Docker
+## <img src="/docker.png" class="tab-icon"> Docker
 
 This compose assumes you already have a model backend running (e.g. Ollama elsewhere on the LAN or an OpenAI-compatible endpoint). The container listens on **8080** internally; we map it to **3000** on the host.
 
@@ -34,7 +31,7 @@ services:
       - "3000:8080"
     environment:
       # Point at your model backend(s)
-      - OLLAMA_BASE_URL=http://10.0.0.10:11434
+      - OLLAMA_BASE_URL=http://ollama:11434
       # Or use any OpenAI-compatible API (OpenRouter, your Meridian proxy, etc.)
       # - OPENAI_API_BASE_URL=http://10.0.0.20:4000/v1
       # - OPENAI_API_KEY=sk-xxxxxxxx
@@ -57,11 +54,9 @@ services:
 > Without a persistent `WEBUI_SECRET_KEY`, every container recreate logs out all users. Set it once and leave it. Generate one with `openssl rand -hex 32`.
 {.is-warning}
 
-> 
-> Want the all-in-one image with Ollama bundled inside? Use `ghcr.io/open-webui/open-webui:ollama` and add a `-v ollama:/root/.ollama` volume plus GPU passthrough. Cleaner for a single box, but I prefer Ollama as its own container so the two update independently.
-{.is-info}
 
-## TrueNAS
+
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 Open WebUI is in the **Community** train (App Version v0.9.5 as of May 2026, requires TrueNAS 24.10.2.2 or newer). The TrueNAS app bundles a Redis sidecar for you.
 
@@ -87,10 +82,9 @@ Go to **Admin Panel → Settings → Connections**. You can register as many bac
 
 | Backend type | Where to set it |
 |--------------|-----------------|
-| Ollama (local models) | Ollama API field, e.g. `http://10.0.0.10:11434` |
+| Ollama (local models) | Ollama API field, e.g. `http://ollama:11434` |
 | OpenAI / OpenRouter / LiteLLM / any OpenAI-compatible | OpenAI API field + key |
 | Anthropic Claude | via a **Pipe Function** (see §5.2) |
-{.dense}
 
 Pull Ollama models directly from the UI under **Admin Panel → Settings → Models** — no shelling into the Ollama box required.
 
@@ -98,9 +92,6 @@ Pull Ollama models directly from the UI under **Admin Panel → Settings → Mod
 
 Open WebUI is multi-user from day one. Set per-model permissions, create user groups, and (on the enterprise side) wire up SSO/OIDC. For a homelab the important bits are: keep `DEFAULT_USER_ROLE=pending` so randoms behind your reverse proxy can't self-register into a working account, and only give **admin** to accounts that should be allowed to install Tools and Functions.
 
-> 
-> If you expose this through Cloudflare Tunnel or NetBird, treat the **Workspace** (where plugins are installed) as the crown jewels. Anyone who can add a Function can run arbitrary Python on the host. More on that in §5.
-{.is-danger}
 
 # 3 · Built-In Parity Features
 
@@ -130,9 +121,6 @@ A built-in **Code Interpreter** runs Python in a sandbox (Pyodide in-browser, or
 - **Artifacts**: renders HTML/SVG/code output in a live side panel.
 - **Channels & Notes**: a Discord-style chat space and a built-in notes app, both wired into the model.
 
-> 
-> Quick parity checklist before you install a single plugin: **Web Search ✅ · Knowledge/RAG ✅ · Images ✅ · Code Interpreter ✅ · Voice ✅ · Vision ✅**. Most people who say Open WebUI "can't do what ChatGPT does" just never turned these on.
-{.is-success}
 
 # 4 · The Plugin System
 
@@ -155,7 +143,6 @@ When core doesn't cover it, the Python plugin system does. There are three layer
 | **Pipe** | Creates a brand-new "model" in the picker | Add Anthropic Claude, a custom RAG flow, or a multi-step agent |
 | **Filter** | Pre/post-processes every message (inlet/outlet/stream) | Live translation, token-usage display, toxic-message filtering, rate limiting |
 | **Action** | Adds a custom button under a message | "Summarize this", "Send to webhook", "Re-run with different model" |
-{.dense}
 
 A **Pipe** function is how you get Claude or Gemini to show up as a selectable model. A **Filter** is how you bolt cross-cutting behavior onto everything.
 
@@ -167,13 +154,10 @@ A **Pipe** function is how you get Claude or Gemini to show up as a selectable m
 
 Open WebUI connects to **MCP servers**, so the same tool servers you'd use with Claude Desktop work here too. The standard path is the **`mcpo`** proxy, which exposes an MCP server as an OpenAPI endpoint Open WebUI can consume as a Tool. Some community toolkits (below) add richer native MCP handling with connection pooling and resilience.
 
-> 
-> **Security — read this before installing anything.** Tools, Functions, and Pipelines execute **arbitrary Python on your server by design.** Only install from sources you've actually read. A malicious Function can compromise the whole host and your `/app/backend/data` directory (database, configs, cached plugins). Restrict Workspace/admin access to people you trust, and review code before importing.
-{.is-danger}
 
 # 5 · Community Extras
 
-This is where you close the last gap to ChatGPT/Claude/Odysseus. Everything below is community-maintained — apply the §4.4 security warning to all of it.
+This is where you close the last gap to ChatGPT/Claude/Odysseus. Everything below is community-maintained.
 
 ## 5.1 The Community Hub
 
@@ -199,31 +183,4 @@ These aren't Open WebUI plugins but they're what the plugins/features hook into:
 | **ComfyUI** | Image generation (§3.3) | Most flexible local image backend |
 | **Apache Tika / Docling** | Better document parsing for RAG | Improves §3.2 on messy PDFs |
 | **mcpo** | MCP → OpenAPI bridge (§4.4) | Connects any MCP server as a Tool |
-{.dense}
-
-> 
-> A realistic "feels like ChatGPT Plus" stack: **Open WebUI + Ollama + SearXNG + ComfyUI**, with an **Anthropic Pipe** for when you want Claude-grade reasoning. All self-hosted except the optional Claude API calls. That's the build I'd point a viewer at.
-{.is-success}
-
-# 6 · Maintenance & Updating
-
-Open WebUI ships updates constantly, and some carry database migrations — so **back up `/mnt/tank/configs/openwebui` before every upgrade.**
-
-**Docker / Dockge:** pull the new image and recreate. In Dockge that's just **Update** on the stack. From the CLI:
-
-```bash
-docker rm -f open-webui
-docker pull ghcr.io/open-webui/open-webui:main
-# recreate with your original compose/run command
-```
-
-**TrueNAS:** use **Update** on the installed app card; check the changelog first for migration notes.
-
-> 
-> Because rolling back the container does **not** undo a database migration, a snapshot or backup of the data directory is the only reliable rollback. Pin to a specific tag (e.g. `:v0.9.5`) instead of `:main` if you want change-on-your-schedule rather than change-on-their-schedule.
-{.is-warning}
-
-Check commit activity before pulling — the project moves fast and occasionally ships regressions on `:main`. The GitHub Releases page is well-annotated; skim it so you know what changed.
-
-# <img src="/youtube.png" class="tab-icon"> 7 · Video
 
