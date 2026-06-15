@@ -2,7 +2,7 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2026-04-28T13:14:17.578Z
+date: 2026-06-15T18:26:55.762Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:02.183Z
@@ -118,5 +118,5 @@ If you're exposing the PBS web UI through a Cloudflare Tunnel, set these under *
 > If you have **Bot Fight Mode** enabled you must create a rule to bypass your IP.
 {.is-warning}
 
-# <img src="/youtube.png" class="tab-icon"> Video Walkthrough
-https://youtu.be/lUWB-Dash9M
+# <img src="/youtube.png" class="tab-icon"> Video 
+https://youtu.be/TXHtfDQYyoc
