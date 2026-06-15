@@ -2,7 +2,7 @@
 title: OpenWebUI
 description: A guide to deploying OpenWebUI
 published: true
-date: 2026-06-15T15:32:57.138Z
+date: 2026-06-15T15:33:22.377Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-15T15:23:06.042Z
@@ -42,8 +42,7 @@ services:
       - DEFAULT_USER_ROLE=pending
     volumes:
       - /mnt/tank/configs/openwebui:/app/backend/data
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+
 ```
 
 1. Drop this into a new stack in **Dockge** and deploy.
