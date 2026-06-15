@@ -2,7 +2,7 @@
 title: Odysseus
 description: A guide to deploying Odysseus
 published: true
-date: 2026-06-05T20:39:49.945Z
+date: 2026-06-15T18:26:27.323Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-05T20:38:01.780Z
@@ -140,3 +140,4 @@ docker compose up -d --build
 Your data in `./data` is preserved across updates. This is a fast-moving, year-one project, so expect occasional breaking changes — check the GitHub README before major updates.
 
 # <img src="/youtube.png" class="tab-icon"> 6 · Video
+https://youtu.be/InKHg6WZ9-E
