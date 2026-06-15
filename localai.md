@@ -1,8 +1,8 @@
 ---
-title: AI
-description: How to deploy local AI containers on TrueNAS
+title: Ollama / OpenWebUI
+description: How to deploy local Ollama / OpenWebUI containers on TrueNAS
 published: true
-date: 2026-01-15T15:30:02.343Z
+date: 2026-06-15T14:52:43.981Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:07.368Z
