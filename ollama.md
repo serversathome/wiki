@@ -2,7 +2,7 @@
 title: Ollama
 description: A guide to deploying Ollama
 published: true
-date: 2026-06-15T14:57:57.280Z
+date: 2026-06-15T15:19:33.594Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-15T14:56:05.778Z
@@ -138,6 +138,84 @@ Ollama has no frontend on its own. Open WebUI gives you a clean ChatGPT-style in
 ```
 
 Browse to `http://<host-ip>:3000`, create the first admin account, and your installed models appear in the model dropdown automatically.
+
+# 3 · Find the Right Model with llmfit
+ 
+**llmfit** is a terminal tool that detects your hardware (CPU, RAM, GPU/VRAM) and ranks which models will actually run well on it before you download a thing. It pairs naturally with Ollama: from its TUI you can press <kbd>d</kbd> on any model to pull it straight into Ollama over the API — no manual `ollama pull`, no guessing at sizes.
+ 
+
+## 3.1 Install llmfit
+ 
+The installer drops a self-contained binary into your user directory with no root required:
+ 
+```bash
+curl -fsSL https://llmfit.axjns.dev/install.sh | sh -s -- --local
+```
+ 
+This installs to `~/.local/bin/llmfit`. Launch the interactive TUI with:
+ 
+```bash
+llmfit
+```
+ 
+The status bar across the top shows your detected specs — CPU, available/total RAM, GPU (or `none`), and which runtimes it found (Ollama, llama.cpp, MLX, Docker, LM Studio).
+ 
+> 
+> The TrueNAS root filesystem is wiped on every system update, so anything in `~/.local/bin` won't survive an upgrade. For a persistent install, download the release binary from the [GitHub releases page](https://github.com/AlexsJones/llmfit/releases) onto your pool (e.g. `/mnt/tank/configs/llmfit/llmfit`), make it executable with `chmod +x`, and run it from there — or simply re-run the one-liner after each upgrade.
+{.is-warning}
+ 
+## 3.2 Connect llmfit to Ollama
+ 
+llmfit talks to Ollama over the same REST API on port `11434`. As long as Ollama's port is published to the host (the `11434:11434` mapping from section 1), llmfit finds it automatically at `localhost:11434` — the status bar flips to **Ollama: ✓** with a count of installed models, and each model already pulled gets a green **✓** in the **Inst** column.
+ 
+If Ollama runs on another machine or a non-default port, point llmfit at it explicitly:
+ 
+```bash
+OLLAMA_HOST="http://<host-ip>:11434" llmfit
+```
+
+ 
+## 3.3 Read the Table
+ 
+Models are ranked by a composite **Score** (quality, speed, fit, and context combined) by default. But the column that decides whether a model is *usable* depends on your hardware:
+ 
+| Column | What to watch |
+|--------|---------------|
+| **Score** | Overall ranking — quality-weighted, good first sort |
+| **tok/s** | Estimated generation speed. On CPU this is the real usability gate |
+| **Mode** | `GPU` / `MoE` / `CPU+GPU` / `CPU` — how the model will run |
+| **Fit** | `Perfect` / `Good` / `Marginal` / `Too Tight` memory verdict |
+| **Mem %** | How much of your available memory the model uses |
+
+ 
+> 
+> On a **CPU-only** box, every model shows `CPU` mode and caps at `Marginal` fit — that's by design, not an error. Don't chase the top Score; watch **tok/s** instead. As a feel: 15+ tok/s is comfortable, ~5 is readable, and 1–2 tok/s is painful for interactive use. Mixture-of-Experts models (e.g. `Qwen3-Coder-30B-A3B`) are the sweet spot — they deliver large-model quality at small-model speed because only a few billion parameters are active per token.
+{.is-success}
+ 
+Press <kbd>S</kbd> to open hardware simulation and type in a VRAM figure (e.g. a 12 GB RTX 3060) to instantly recompute the whole table against that GPU — the clearest way to preview what adding a card would unlock before you buy one.
+ 
+## 3.4 Pull the Best Model with the `d` Key
+ 
+1. Navigate to a model with the arrow keys or <kbd>j</kbd> / <kbd>k</kbd>. Use <kbd>/</kbd> to search or <kbd>s</kbd> to cycle the sort column.
+2. With your pick highlighted, press <kbd>d</kbd>. llmfit sends a `POST /api/pull` to Ollama and shows an animated progress bar on the row.
+3. The download runs *inside* the Ollama container and lands in your `/mnt/tank/configs/ollama` volume — llmfit is only the trigger.
+4. When it completes, the row gains a green **✓** in the **Inst** column, and the model appears automatically in the Open WebUI dropdown (section 2.4), ready to chat.
+Common keys in the model table:
+ 
+| Key | Action |
+|-----|--------|
+| <kbd>↑</kbd> / <kbd>↓</kbd> or <kbd>j</kbd> / <kbd>k</kbd> | Navigate models |
+| <kbd>/</kbd> | Search by name, provider, params, or use case |
+| <kbd>s</kbd> | Cycle sort column (Score, tok/s, Params, Mem%, Ctx…) |
+| <kbd>f</kbd> | Cycle fit filter (All, Runnable, Perfect, Good, Marginal) |
+| <kbd>d</kbd> | Download highlighted model into Ollama |
+| <kbd>r</kbd> | Refresh installed models from Ollama |
+| <kbd>S</kbd> | Hardware simulation (override RAM/VRAM/CPU) |
+| <kbd>Enter</kbd> | Toggle the detail view for the selected model |
+| <kbd>q</kbd> | Quit |
+
+ 
+
 
 
 
