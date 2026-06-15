@@ -2,7 +2,7 @@
 title: Ollama
 description: A guide to deploying Ollama
 published: true
-date: 2026-06-15T14:56:41.561Z
+date: 2026-06-15T14:57:57.280Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-15T14:56:05.778Z
@@ -110,16 +110,13 @@ Browse the full catalog of available models at [ollama.com/library](https://olla
 Ollama exposes an OpenAI-compatible endpoint, so most LLM tooling can point straight at it. A quick generate call:
 
 ```bash
-curl http://localhost:11434/api/generate -d '{
+curl http://{TRUENASIP}:11434/api/generate -d '{
   "model": "llama3.2",
   "prompt": "Why is the sky blue?",
   "stream": false
 }'
 ```
 
-> 
-> If another container needs to reach Ollama, use the **service name** (`http://ollama:11434`), not `localhost`. Inside a container, `localhost` means *that* container — a classic cause of "it runs but won't connect" errors.
-{.is-success}
 
 ## 2.4 Add a Web UI (Open WebUI)
 
