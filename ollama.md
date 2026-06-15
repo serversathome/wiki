@@ -2,7 +2,7 @@
 title: Ollama
 description: A guide to deploying Ollama
 published: true
-date: 2026-06-15T14:56:05.778Z
+date: 2026-06-15T14:56:41.561Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-15T14:56:05.778Z
@@ -18,9 +18,9 @@ Ollama has no web interface of its own — it's an API and CLI. Pair it with **O
 > Ollama runs models on CPU by default, but performance is dramatically better with a GPU. NVIDIA cards need the **NVIDIA Container Toolkit** installed on the host before the container can see the GPU.
 {.is-info}
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Ollama
+# 1 · Deploy Ollama
 # {.tabset}
-## Docker
+## <img src="/docker.png" class="tab-icon"> Docker
 
 ```yaml
 services:
@@ -60,7 +60,7 @@ services:
 > The volume mount is the one thing you cannot skip. Models are multiple GB each — without persistence you re-download them on every container recreate.
 {.is-warning}
 
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 Ollama is available as a **Community** train app in the TrueNAS catalog.
 
