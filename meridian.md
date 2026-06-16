@@ -2,7 +2,7 @@
 title: Meridian
 description: A guide to deploying Meridian
 published: true
-date: 2026-05-29T10:45:28.346Z
+date: 2026-06-16T15:02:26.574Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-22T21:18:58.613Z
@@ -14,9 +14,7 @@ dateCreated: 2026-04-22T21:18:58.613Z
 
 Unlike older proxies that extracted OAuth tokens or patched binaries, Meridian only calls documented SDK functions. Anthropic retains control of authentication, rate limiting, prompt caching, and context management. It's a presentation layer, not a jailbreak.
 
-> 
-> **Billing changed on June 15, 2026 — read this before you build.** Meridian drives third-party tools through the Claude **Agent SDK**, and as of June 15, 2026 Agent SDK usage **no longer draws from your normal subscription limits**. It draws from a separate **monthly Agent SDK credit** *($20 Pro / $100 Max 5x / $200 Max 20x)*, metered at full API rates. Once that credit is spent, requests either stop or overflow to paid usage credits at API rates. 
-{.is-warning}
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Meridian
 
@@ -129,58 +127,9 @@ Meridian fingerprints conversations per-request, so multiple clients can share t
 
 Meridian supports multiple Claude accounts via separate profile directories, selected at runtime with the `x-meridian-profile` header. Useful if you want to segregate personal work from a work/team account. See the [Multi-Profile section](https://github.com/rynfar/meridian#multi-profile-support) of the README.
 
-> 
-> Each profile is a separate Claude account, and after June 15, 2026 each account carries **its own** monthly Agent SDK credit — credits don't pool or transfer between profiles. Switching to your `work` profile bills your work account's credit, not your personal one. This is a clean way to keep personal and work usage (and billing) separate, but it doesn't give you "more free quota" by stacking accounts.
-{.is-info}
+
 
 ## 2.5 API key and network exposure
 
 `MERIDIAN_API_KEY` is unset in the default compose above. Whether to enable it depends on where Meridian is reachable from. The setting isn't about protecting sensitive data — Meridian stores none — it's about protecting your account from unauthorised use. After June 15, 2026 that protection matters more, not less: anything that reaches the port can drain your monthly Agent SDK credit and then run up real per-token charges on your card if you have usage credits enabled. If the port is exposed beyond loopback (LAN, tunnel, VPN), set a long random `MERIDIAN_API_KEY` and require it on every client.
 
-# 3 · Billing & quota (the June 2026 change)
-
-Meridian is, by definition, "a third-party app that authenticates with your Claude subscription through the Agent SDK." That puts it squarely inside the billing change Anthropic rolled out on **June 15, 2026**, so it's worth understanding exactly what your traffic now costs.
-
-## 3.1 Before vs. after June 15, 2026
-
-- **Before:** Agent SDK traffic (i.e. everything Meridian sends) counted against your normal subscription usage limits — the same session and weekly bars as Claude chat and interactive Claude Code. On a Max plan that was a lot of effectively-included headroom, which is what made Meridian attractive.
-- **After:** Agent SDK traffic no longer touches your subscription limits at all. It draws from a **separate monthly Agent SDK credit**, metered at standard API rates. Your subscription limits are untouched and stay reserved for interactive use (chat, Claude Code in the terminal/IDE, Cowork).
-
-## 3.2 Monthly credit by plan
-
-| Plan | Monthly Agent SDK credit |
-|------|--------------------------|
-| Pro | $20 |
-| Max 5x | $100 |
-| Max 20x | $200 |
-| Team (Standard seats) | $20 |
-| Team (Premium seats) | $100 |
-| Enterprise (usage-based) | $20 |
-| Enterprise (seat-based Premium seats) | $200 |
-
-Standard seats on seat-based Enterprise plans aren't eligible. Claude Platform API-key accounts don't get a credit — they bill pay-as-you-go as before.
-
-## 3.3 How the credit behaves
-
-- **One-time opt-in, then automatic.** You claim it once from your Claude account (Anthropic emails eligible users before June 15). After that it refreshes every billing cycle on its own.
-- **Refreshes monthly, no rollover.** Unused credit does **not** carry over — it's $X per month, use-it-or-lose-it, not a single lump.
-- **Per-user, not pooled.** Credits belong to individual accounts and can't be shared, transferred, or pooled across a team.
-- **Drains first.** Agent SDK usage spends this credit before anything else.
-- **Then it stops — or charges you.** Once the credit is exhausted, further Agent SDK requests overflow to your paid **usage credits at standard API rates**, but only if usage credits are enabled. If they're not, requests simply fail until the credit refreshes next cycle.
-
-## 3.4 What the credit does and doesn't cover
-
-Covered (all the things Meridian relies on): Agent SDK usage, the `claude -p` non-interactive command, Claude Code GitHub Actions, and third-party apps authenticating through the Agent SDK.
-
-Not covered (these keep using your normal subscription limits): interactive Claude Code in the terminal or IDE, Claude chat on web/desktop/mobile, and Claude Cowork.
-
-## 3.5 What this means for running Meridian
-
-- Your real budget for everything you push through Meridian is now that monthly credit (e.g. **$100 on Max 5x**), priced at API rates — not the much larger subscription allowance you had before. For heavy agent use this is a significant cost increase versus the old behaviour.
-- If your goal was "cheap Claude across all my coding tools off one Max plan," the math after June 15 lands close to just using a Platform API key directly — at which point the proxy layer earns its keep mainly for tool interoperability and session management, not savings.
-- Want to keep using **subscription** limits for coding? Run the official `claude` CLI **interactively in a terminal** — that path still draws from your plan, not the credit. Meridian deliberately doesn't do this; it's the programmatic SDK path, which is the metered side.
-- The per-account rule (§2.3, §2.4) is the one most likely to bite a homelab setup: one personal login feeding several people's tools is the shared-automation pattern Anthropic points to a Platform API key for.
-
-> 
-> Source: Anthropic's help article, [Use the Claude Agent SDK with your Claude plan](https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan). Rollout details shifted more than once in early 2026, so confirm the current credit amounts and overflow behaviour against that page before relying on them.
-{.is-info}
