@@ -2,7 +2,7 @@
 title: Meridian
 description: A guide to deploying Meridian
 published: true
-date: 2026-06-16T15:02:26.574Z
+date: 2026-06-16T15:04:47.574Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-22T21:18:58.613Z
@@ -117,7 +117,7 @@ Then restart the stack in Dockge. Your `claude-auth` bind mount persists across 
 
 Meridian fingerprints conversations per-request, so multiple clients can share the same proxy without stepping on each other's sessions. A few things to keep in mind:
 
-- All clients draw from the same account. Before June 15, 2026 that meant the same Max/Pro subscription limits; after, it means the same **monthly Agent SDK credit** (e.g. $100 on Max 5x), so three active agents drain that credit roughly three times as fast. Once it's gone you're paying API rates per token (or requests stop — see §3).
+- All clients draw from the same account. 
 - Default concurrency is 10 SDK sessions; bump `MERIDIAN_MAX_CONCURRENT` if you routinely run more.
 - The Agent SDK credit is **per-account, not pooled** — it can't be shared across people. One proxy fanning a single login out to several users' tools is exactly the shared-automation pattern Anthropic steers toward a Platform API key instead. "Many of *your own* clients off one account" is fine; "a team off one personal subscription" is not.
 - If you publish the port to a LAN interface, tunnel, or VPN, read §2.5 on the API key and network exposure before deploying.
