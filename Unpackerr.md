@@ -2,7 +2,7 @@
 title: Unpackerr
 description: A guide to installing Unpackerr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-06-17T12:30:10.165Z
+date: 2026-06-17T13:27:01.319Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:58.731Z
@@ -151,4 +151,4 @@ A few options worth knowing about, set as environment variables (Docker) or wiza
 {.is-warning}
 
 # <img src="/patreon-light.png" class="tab-icon"> 3 · Video
-
+[![](/unpackerr-patreon.png)](https://www.patreon.com/serversathome/posts/stop-rar-files-161337330)
