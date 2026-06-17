@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2026-06-04T15:34:23.479Z
+date: 2026-06-17T12:26:31.264Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:56.437Z
@@ -80,7 +80,7 @@ https://youtu.be/uPCrDmjWV_I
 
 
 ## Datasets
-### Datsets
+### Datasets
 https://youtu.be/27MhvLKBKtQ?feature=shared
 
 For snapshots and rollbacks at a granular level, datasets should be set up in the pool for each individual app.
