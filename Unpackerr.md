@@ -2,7 +2,7 @@
 title: Unpackerr
 description: A guide to installing Unpackerr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-06-17T12:29:14.239Z
+date: 2026-06-17T12:30:10.165Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:58.731Z
@@ -43,7 +43,7 @@ There is an official Unpackerr app in the TrueNAS **Community** catalog, so no D
 | **Delete Delay** | `300` seconds / 5 min (default) |
 | **Delete Original** | Leave **unchecked** if you seed |
 | **Syncthing** | Leave off unless the path is Syncthing-managed |
-{.dense}
+
 
 > **The URL must use your host IP, not a container name.** Inside a compose file `http://sonarr:8989` works because the apps share a Docker network. TrueNAS catalog apps **do not** share a network by default — they publish ports on the host — so use your TrueNAS box's LAN IP and the app's port, e.g. `http://192.168.1.50:8989` (Radarr `7878`, Lidarr `8686`, Readarr `8787`, Whisparr `6969`).
 {.is-danger}
@@ -145,11 +145,10 @@ A few options worth knowing about, set as environment variables (Docker) or wiza
 | `UN_MAX_RETRIES` | `3` | Retry attempts before giving up on an archive |
 | `UN_FOLDER_0_PATH` | *(empty)* | Watch-folder path for non-Starr extraction |
 | `UN_WEBSERVER_METRICS` | `false` | Exposes a Prometheus metrics endpoint on `:5656` |
-{.dense}
+
 
 > **Password-protected archives:** Unpackerr can crack password-protected RAR/7-Zip if given a password list, but a wrong password forces it to read the entire archive before failing. A long password list will dramatically slow extractions and hammer your disk — use sparingly.
 {.is-warning}
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
 
-https://youtu.be/tXTHYMm6_bE
