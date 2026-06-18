@@ -2,7 +2,7 @@
 title: File Browser
 description: A guide to deploy the File Browser Quantum replacement in docker
 published: true
-date: 2026-06-18T17:49:51.954Z
+date: 2026-06-18T17:50:17.380Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:39.442Z
@@ -79,7 +79,7 @@ services:
   filebrowser:
     image: gtstef/filebrowser:stable
     container_name: filebrowser
-    user: "0:0"                # runs as root — reads/writes every file regardless of owner (understand the risk below)
+    user: "0:0"
     volumes:
       - /mnt:/srv
       - /mnt/tank/configs/filebrowser:/home/filebrowser/data
