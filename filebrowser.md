@@ -2,13 +2,13 @@
 title: File Browser
 description: A guide to deploy the File Browser Quantum replacement in docker
 published: true
-date: 2026-06-18T17:48:26.487Z
+date: 2026-06-18T17:49:51.954Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:39.442Z
 ---
 
-# What is File Browser Quantum?
+# <img src="/filebrowser-quantum.png" class="tab-icon"> What is File Browser Quantum?
 
 File Browser Quantum is a self-hosted, web-based file manager: browse, upload, download, preview, edit, search, and share the files on your server from any browser. It's called "Quantum" because it packs a huge amount of functionality — user management, SSO, indexed search, rich media previews — into a single tiny binary that's genuinely easy to run.
 
@@ -72,7 +72,7 @@ userDefaults:
 
 Everything you can set is in the [full config reference](https://filebrowserquantum.com/en/docs/reference/fullconfig/) and the [annotated default config](https://github.com/gtsteffaniak/filebrowser/blob/main/frontend/public/config.generated.yaml).
 
-# 2 · Deploy File Browser
+# <img src="/docker.png" class="tab-icon"> 2 · Deploy File Browser
 
 ```yaml
 services:
@@ -91,7 +91,7 @@ services:
 > The image auto-detects its config at `/home/filebrowser/data/config.yaml`, which is exactly where the volume above places it — no environment variable needed. The default database lands at `/home/filebrowser/data/database.db` on that same volume. The `:stable` tag bundles FFmpeg for video/office thumbnails; swap to `:stable-slim` for a ~15 MB core-only image with no media previews. I use `:stable` over `:latest` deliberately — because Quantum hard-fails on config it doesn't recognise and minor versions can introduce breaking changes, you don't want an unattended pull surprising you with a container that won't boot.
 {.is-info}
 
-## Who the container runs as (read this before first start)
+## 2.1 Who the container runs as (read this before first start)
 
 **Since v1.3.0 the image no longer runs as `root` by default — it runs as a built-in `filebrowser` user with UID:GID `1000:1000`.** (On v1.2.x and earlier it ran as root.) That non-root default is a deliberate hardening step by the maintainer, and for most setups it's the right call: pick a UID, `chown` your data to match, done.
 
