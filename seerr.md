@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-03-09T18:05:37.094Z
+date: 2026-06-20T21:36:06.700Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-14T20:08:17.652Z
@@ -113,7 +113,7 @@ If you're coming from Jellyseerr or Overseerr, the migration to Seerr is mostly 
     chown -R 1000:1000 /mnt/tank/configs/seerr
     ```
 
-1. Go into the permissions on TrueNAS. Leave user permissions as-is and set the **Group** to read/write/execute, and set **Other** to `none`.
+1. Go into the permissions of the Seerr dataset on TrueNAS. Leave user permissions as-is and set the **Group** to read/write/execute, and set **Other** to `none`.
 
 1. Deploy the Seerr stack
 
