@@ -2,7 +2,7 @@
 title: Wizarr
 description: A guide to deploying Wizarr
 published: true
-date: 2026-06-22T10:14:06.126Z
+date: 2026-06-22T10:14:26.737Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:40.051Z
@@ -16,9 +16,9 @@ It supports **Plex, Jellyfin, Emby, Audiobookshelf, Romm, Komga, and Kavita**, w
 
 
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Wizarr
+# 1 · Deploy Wizarr
 # {.tabset}
-## Docker
+## <img src="/docker.png" class="tab-icon"> Docker
 
 ```yaml
 services:
@@ -41,7 +41,7 @@ services:
 > Set `DISABLE_BUILTIN_AUTH=true` **only** if you are putting Wizarr behind a dedicated auth provider such as Authelia or Authentik. Leaving it enabled keeps Wizarr's own login active.
 {.is-warning}
 
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 Wizarr is available in the **Community** train of the TrueNAS Apps catalog.
 
