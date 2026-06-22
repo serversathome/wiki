@@ -2,7 +2,7 @@
 title: Dockhand
 description: A guide to depoying Dockhand
 published: true
-date: 2026-06-22T13:30:02.111Z
+date: 2026-06-22T13:33:56.356Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:20.950Z
@@ -33,10 +33,12 @@ services:
       - PUID=568
       - PGID=568
       - TZ=America/New_York
+      - HOST_DATA_DIR=/mnt/tank/stacks
     ports:
       - "3000:3000"
     volumes:
       - /mnt/tank/configs/dockhand:/app/data
+      - /mnt/tank/stacks:/mnt/tank/stacks   # same path in and out
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
 ```
