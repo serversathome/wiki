@@ -2,7 +2,7 @@
 title: Euro-Office
 description: A guide to deploying Euro-Office in docker
 published: true
-date: 2026-06-29T10:32:08.292Z
+date: 2026-06-29T10:39:16.775Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-09T11:51:24.911Z
@@ -92,5 +92,5 @@ Opening a `.docx`, `.xlsx`, or `.pptx` in Nextcloud Files will then launch the E
 
 https://youtu.be/9sf9OnoIcc4
 
-# 6 · Would You Like to Know More?
+# <img src="/eagle.png" class="tab-icon"> 6 · Would You Like to Know More?
 [![](/gemini_generated_image_vkli09vkli09vkli.png)](https://blog.serversatho.me/your-self-hosted-office-suite-is-going-through-some-things-right-now/)
