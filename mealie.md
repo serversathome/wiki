@@ -2,7 +2,7 @@
 title: Mealie
 description: A guide to deploying Mealie
 published: true
-date: 2026-01-15T15:30:07.828Z
+date: 2026-06-29T21:16:00.699Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:17.048Z
@@ -60,12 +60,22 @@ services:
     image: ghcr.io/gerardpollorebozado/social-to-mealie:latest
     container_name: social-to-mealie
     environment:
-      - OPENAI_URL=https://api.openai.com/v1 #URL of api endpoint of AI provider
-      - OPENAI_API_KEY=
-      - WHISPER_MODEL=whisper-1 # this model will be used to transcribe the audio to text
-      - MEALIE_URL=https://mealie.example.com
-      - MEALIE_API_KEY=
-provided in Spanish
+      - OPENAI_URL=https://api.openai.com/v1 #URL of an OPENAI api compatible provider
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - TRANSCRIPTION_MODEL=whisper-1 # this model will be used to transcribe the audio to text
+      - TEXT_MODEL=model # the model you want to use to create the recipe in json using the transcription result
+      - MEALIE_URL=https://mealie.example.com # url of you mealie instance
+      - MEALIE_API_KEY=${MEALIE_API_KEY}
+      # Optionally specify yt-dlp version to use. Use "latest" or a release tag like "2025.11.01".
+      # If provided, the container will try to download yt-dlp at startup
+      - YTDLP_VERSION=latest
+      # Optional, Mealie group name, defaults to "home"
+      - MEALIE_GROUP_NAME=home
+      # Optional, addition to the prompt, useful for translation needs remove if not needed
+      - EXTRA_PROMPT=The description, ingredients, and instructions must be provided in Spanish
+      - COOKIES= #Optional, cookie for yt-dlp requests, useful for protected content
+    volumes:
+      - ./cookies.txt:/app/cookies.txt # Optional, only needed for some content
     ports:
       - 4000:3000
     security_opt:
