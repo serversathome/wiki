@@ -2,7 +2,7 @@
 title: Proxmox
 description: An overview of the Proxmox hypervisor
 published: true
-date: 2026-01-15T15:27:46.467Z
+date: 2026-06-29T10:46:32.480Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:47.218Z
@@ -185,3 +185,10 @@ To see an example of deploying a docker LXC with a tteck script, go here.
 Also, watch this beginners guide.
 
 [https://youtu.be/b1BztUYB7VI](https://youtu.be/b1BztUYB7VI)
+
+
+
+# <img src="/eagle.png" class="tab-icon"> 8 · Would You Like to Know More?
+
+
+https://blog.serversatho.me/proxmox/
