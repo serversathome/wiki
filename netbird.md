@@ -2,7 +2,7 @@
 title: Netbird
 description: A guide to installing and using Netbird
 published: true
-date: 2026-06-14T11:49:28.584Z
+date: 2026-06-29T10:43:58.651Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:37.607Z
@@ -240,3 +240,8 @@ Traffic to `subdomain.proxy.yourdomain.com` is now received by *your* proxy, ter
 # <img src="/youtube.png" class="tab-icon"> 3 · Video
 https://youtu.be/-yfE3Lb3hTI
 https://youtu.be/skbWnMSwZcE
+
+
+
+# <img src="/eagle.png" class="tab-icon"> 4 · Would You Like to Know More?
+https://blog.serversatho.me/best-vpn-ever/
