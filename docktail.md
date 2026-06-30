@@ -39,8 +39,14 @@ graph TD
 # {.tabset}
 ## Tailscale on Host
 
-Use this when `tailscaled` is already installed and running on the TrueNAS/Docker host. This is the simplest setup.
+Use this when `tailscaled` is already installed and running on the Docker host. This is the simplest setup. 
 
+Ensure you complete section 2 and its sub. sections before starting the container.
+
+_*Note:_ As we know, Tailscale cannot be installed on the TrueNAS host, only via Docker Container, and Docktail cannot tie into a TrueNAS app as a standalone container.(_There may be a way to do so if the TrueNAS Tailscale app was in the same docker network as Docktail. This would need to be tested_) There would be no way for Docktail to reach the following:
+```- /var/run/tailscale:/var/run/tailscale```
+
+#### Compose
 ```yaml
 services:
   docktail:
@@ -56,6 +62,12 @@ services:
       - TAILSCALE_OAUTH_CLIENT_SECRET=${TAILSCALE_OAUTH_CLIENT_SECRET}
 ```
 
+#### Environment
+```.example.env
+TAILSCALE_OAUTH_CLIENT_ID=
+TAILSCALE_OAUTH_CLIENT_SECRET=
+```
+
 The host must advertise a tag that matches your ACL auto-approvers before services will be accepted:
 
 ```bash
@@ -68,8 +80,13 @@ sudo tailscale up --advertise-tags=tag:server --reset
 
 ## Tailscale Sidecar
 
-Use this when you do **not** want Tailscale installed directly on the host. DockTail talks to a dedicated Tailscale sidecar container over a shared socket volume.
+Use this when you do **not** want or cannot install Tailscale directly on the host. DockTail talks to a dedicated Tailscale sidecar container over a shared socket volume.
 
+Ensure you complete section 2 and its sub. sections before starting the container stack.
+
+If you already have Tailscale installed, you will need to add the ```docktail:``` and ```.env``` sections to your Tailscale ```docker-compose.yaml``` file. Additionally, include the environment variable ```- TS_EXTRA_ARGS=--advertise-tags=tag:server``` under the Tailscale service. Note that any arguments you previously used must be included in this section to ensure the Tailscale container starts properly. Otherwise, you’ll see an error in the container logs indicating the arguments that were previously applied.
+
+#### Compose
 ```yaml
 services:
   tailscale:
@@ -77,11 +94,13 @@ services:
     hostname: docktail-host
     environment:
       - TS_AUTHKEY=${TAILSCALE_AUTH_KEY}
-      - TS_EXTRA_ARGS=--advertise-tags=tag:server
+      - TS_ROUTES=192.168.1.0/24 #This makes your TrueNAS server a subnet router on your tailnet
+      - TS_EXTRA_ARGS=--advertise-tags=tag:server --advertise-exit-node
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_SOCKET=/var/run/tailscale/tailscaled.sock
+      - TS_USERSPACE=false
     volumes:
-      - tailscale-state:/var/lib/tailscale
+      - /mnt/tank/configs/tailscale:/var/lib/tailscale
       - tailscale-socket:/var/run/tailscale
       - /dev/net/tun:/dev/net/tun
     cap_add:
@@ -106,6 +125,13 @@ services:
 volumes:
   tailscale-state:
   tailscale-socket:
+```
+
+#### Environment
+```.example.env
+TAILSCALE_AUTH_KEY=
+TAILSCALE_OAUTH_CLIENT_ID=
+TAILSCALE_OAUTH_CLIENT_SECRET=
 ```
 
 Generate `TAILSCALE_AUTH_KEY` in the Tailscale Admin Console under **Settings -> Keys**. The sidecar should advertise `tag:server` so it satisfies the ACL auto-approver below.
