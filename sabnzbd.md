@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2026-07-01T18:57:45.728Z
+date: 2026-07-01T19:02:30.128Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:11.759Z
@@ -32,7 +32,7 @@ services:
       - TZ=America/New_York
     volumes:
       - /mnt/tank/configs/sabnzbd:/config
-      - /mnt/tank/media:/data
+      - /mnt/tank/media:/media
     ports:
       - "8080:8080"
     restart: unless-stopped
