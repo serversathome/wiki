@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2026-07-01T18:56:18.183Z
+date: 2026-07-01T18:57:45.728Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:11.759Z
@@ -24,7 +24,7 @@ Think of it as the Usenet counterpart to a torrent client like qBittorrent. It's
 ```yaml
 services:
   sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd:5.0.4
+    image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
     environment:
       - PUID=568
