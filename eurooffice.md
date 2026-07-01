@@ -2,7 +2,7 @@
 title: Euro-Office
 description: A guide to deploying Euro-Office in docker
 published: true
-date: 2026-06-29T10:39:16.775Z
+date: 2026-07-01T15:54:51.083Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-09T11:51:24.911Z
@@ -17,22 +17,20 @@ Under the hood, Euro-Office is a fork of **OnlyOffice**. On launch it is functio
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Euro-Office
 
-
 ```yaml
 services:
   euro-office:
-    image: ghcr.io/euro-office/documentserver:latest
+    image: ghcr.io/euro-office/documentserver:v9.3.1
     container_name: euro-office
     restart: unless-stopped
     ports:
       - "8080:80"
     environment:
       - JWT_ENABLED=true
-      - JWT_SECRET=
+      - JWT_SECRET=your_generated_secret_here
     volumes:
-      - /mnt/tank/configs/euro-office/data:/var/www/onlyoffice/Data
-      - /mnt/tank/configs/euro-office/logs:/var/log/onlyoffice
-      - /mnt/tank/configs/euro-office/lib:/var/lib/onlyoffice
+      - /mnt/tank/configs/euro-office/data:/var/www/euro-office/Data
+      - /mnt/tank/configs/euro-office/logs:/var/log/euro-office/documentserver
 ```
 
 Generate a real JWT secret with <kbd>openssl rand -hex 32</kbd> and replace the placeholder.
