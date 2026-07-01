@@ -2,7 +2,7 @@
 title: Tugtainer
 description: A guide to deploying Tugtainer
 published: true
-date: 2026-07-01T01:22:48.786Z
+date: 2026-07-01T01:23:13.149Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:08.384Z
@@ -55,10 +55,7 @@ services:
       dev.quenary.tugtainer.protected: "true"
 ```
 
-> Mounting the raw socket read-only gives Tugtainer full read access to the daemon. It works fine, but the socket-proxy tab is the safer default.
-{.is-info}
 
-The `:1` tag follows the current v1 major line (v1.30.x at the time of writing), so you get patches without jumping a major.
 
 ## Socket Proxy
 
