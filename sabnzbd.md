@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2026-07-01T18:54:24.548Z
+date: 2026-07-01T18:55:24.352Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:11.759Z
@@ -54,11 +54,10 @@ services:
    - **App Name**: `sabnzbd`
    - **WebUI Port**: `8080`
    - **Config Storage**: Host Path → `/mnt/tank/configs/sabnzbd`
-   - **Additional Storage**: Host Path `/mnt/tank/media` → Mount Path `/data` (your downloads + media dataset)
+   - **Additional Storage**: Host Path `/mnt/tank/media` → Mount Path `/media` 
 5. Click **Install** and wait for the app to report **Running**.
 
-> The TrueNAS SABnzbd app runs as UID/GID **568** (`apps`) by default, so files it creates are owned correctly for the rest of your media stack.
-{.is-info}
+
 
 # 2 · Configuration
 
