@@ -2,7 +2,7 @@
 title: Tugtainer
 description: A guide to deploying Tugtainer
 published: true
-date: 2026-07-01T01:23:13.149Z
+date: 2026-07-01T01:24:10.483Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:08.384Z
@@ -14,19 +14,7 @@ dateCreated: 2026-01-15T15:09:08.384Z
 
 It checks your running containers against their registries, flags the ones with a newer image, and can either notify you or pull, recreate, and restart them automatically on a cron schedule. You decide per container whether it's **check-only** (notify me) or **auto-update** (do it for me), so nothing moves unless you ask it to.
 
-Key things that set it apart from the usual auto-updaters:
 
-- **Web UI with auth** — password, OIDC, or no auth at all, your call
-- **Multiple hosts** from a single dashboard via a lightweight agent
-- **Socket-proxy support** so you never have to mount the raw Docker socket
-- **Dependency-aware updates** that respect Compose `depends_on` (and custom links)
-- **Separate check and update schedules** with independent crontabs
-- **Notifications** to ~100 services through Apprise, with Jinja2 templating
-- **Public API endpoints** you can wire into a dashboard or status page
-- **Image pruning**, container inspect/logs, and basic start/stop control
-
-> Tugtainer is distributed as-is and the author does **not** recommend it for production use. Automatic updates are **disabled by default** — you opt in per container. Keep regular backups of anything important before letting it recreate containers.
-{.is-warning}
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Tugtainer
 
