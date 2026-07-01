@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2026-07-01T18:55:24.352Z
+date: 2026-07-01T18:56:18.183Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:11.759Z
@@ -159,19 +159,23 @@ Found under **Config → Switches**:
 | **Permissions** | `770` | Sets completed-file permissions to match your media share's group mask. |
 
 
-## 3.2 Post-Processing Cleanup
+## 3.2 Block Unsafe Extensions
  
-Under **Config → Switches → Cleanup List**, add file extensions that SABnzbd should delete once a download finishes. This strips junk and risky executables out of your completed releases:
+Rather than downloading risky files and deleting them afterward, have SABnzbd reject any release that contains an executable outright, a classic sign of a fake or malicious NZB. Under **Config → Switches**:
  
-```
-exe, bat, cmd, com, scr, pif, hta, vbs, js, jar, wsf, ps1, msi, msp, cpl, ad, apk, dll, bin, gadget, vb, vbe, ws, wsc, wsh, lnk, iso, img, dmg, zipx, psm1, psd1, psc1, sh, rb, perl, py, pyd, url
-```
+1. Confirm the **Unwanted Extensions** list mode is **Blacklist** (the default), so the extensions you list are treated as unwanted.
+2. Paste this list into the **Unwanted Extensions** field:
+
+    ```
+    exe, bat, cmd, com, scr, pif, hta, vbs, js, jar, wsf, ps1, msi, msp, cpl, ad, apk, dll, bin, gadget, vb, vbe, ws, wsc, wsh, lnk, iso, img, dmg, zipx, psm1, psd1, psc1, sh, rb, perl, py, pyd, url
+    ```
  
-> **Stronger option:** for the executable extensions, use **Unwanted Extensions** instead of (or in addition to) the Cleanup List, and set **Action when unwanted extension detected** to **Fail job (move to History)**. That rejects the whole release, a classic sign of a fake or malicious NZB, rather than downloading it and deleting the file afterward.
-{.is-info}
+3. Set **Action when unwanted extension detected** to **Fail job (move to History)**.
+Now if any of these show up in a finished release, SABnzbd fails the whole job and moves it to History instead of handing it to your library.
  
-> Don't apply this list globally if you also use SABnzbd to download games or software, it will delete legitimate installers (`exe`, `msi`, `iso`, `dmg`, etc.). Give those their own download-only category instead.
+> This check is global, not per-category. If you also use SABnzbd for games or software, leave installer extensions (`exe`, `msi`, `iso`, `dmg`, etc.) off the list, or those legitimate downloads will fail too. Switch the action to **Off** while grabbing them if needed.
 {.is-warning}
+
 
 
 # <img src="/patreon-light.png" class="tab-icon"> 4 · Video
