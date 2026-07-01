@@ -2,7 +2,7 @@
 title: Tugtainer
 description: A guide to deploying Tugtainer
 published: true
-date: 2026-07-01T01:22:26.970Z
+date: 2026-07-01T01:22:48.786Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:08.384Z
@@ -33,7 +33,34 @@ Key things that set it apart from the usual auto-updaters:
 The project now ships with a **socket-proxy by default**, so Tugtainer talks to Docker over TCP instead of touching the raw socket. Pick the tab that fits how you like to run things.
 
 # {.tabset}
-## Socket Proxy (recommended)
+
+
+## Direct Socket
+
+```yaml
+services:
+  tugtainer:
+    image: ghcr.io/quenary/tugtainer:1
+    container_name: tugtainer
+    environment:
+      AGENT_SECRET: CHANGE_ME!
+      TZ: America/New_York
+    volumes:
+      - /mnt/tank/configs/tugtainer:/tugtainer
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - "9412:80"
+    restart: unless-stopped
+    labels:
+      dev.quenary.tugtainer.protected: "true"
+```
+
+> Mounting the raw socket read-only gives Tugtainer full read access to the daemon. It works fine, but the socket-proxy tab is the safer default.
+{.is-info}
+
+The `:1` tag follows the current v1 major line (v1.30.x at the time of writing), so you get patches without jumping a major.
+
+## Socket Proxy
 
 ```yaml
 networks:
@@ -91,31 +118,6 @@ services:
 
 > The proxy container is marked `protected` so Tugtainer can't try to update the thing it depends on to reach Docker.
 {.is-info}
-
-## Direct Socket
-
-```yaml
-services:
-  tugtainer:
-    image: ghcr.io/quenary/tugtainer:1
-    container_name: tugtainer
-    environment:
-      AGENT_SECRET: CHANGE_ME!
-      TZ: America/New_York
-    volumes:
-      - /mnt/tank/configs/tugtainer:/tugtainer
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    ports:
-      - "9412:80"
-    restart: unless-stopped
-    labels:
-      dev.quenary.tugtainer.protected: "true"
-```
-
-> Mounting the raw socket read-only gives Tugtainer full read access to the daemon. It works fine, but the socket-proxy tab is the safer default.
-{.is-info}
-
-The `:1` tag follows the current v1 major line (v1.30.x at the time of writing), so you get patches without jumping a major.
 
 # 2 · How Tugtainer Works
 
