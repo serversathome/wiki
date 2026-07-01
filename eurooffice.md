@@ -2,7 +2,7 @@
 title: Euro-Office
 description: A guide to deploying Euro-Office in docker
 published: true
-date: 2026-07-01T15:54:51.083Z
+date: 2026-07-01T16:07:06.856Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-09T11:51:24.911Z
@@ -30,7 +30,7 @@ services:
       - JWT_SECRET=your_generated_secret_here
     volumes:
       - /mnt/tank/configs/euro-office/data:/var/www/euro-office/Data
-      - /mnt/tank/configs/euro-office/logs:/var/log/euro-office/documentserver
+
 ```
 
 Generate a real JWT secret with <kbd>openssl rand -hex 32</kbd> and replace the placeholder.
