@@ -2,7 +2,7 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2026-07-09T01:29:19.167Z
+date: 2026-07-09T01:30:03.732Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:16.637Z
@@ -104,6 +104,8 @@ services:
 7. Click **Save**
 
 > Each client will need to make sure they have their dashboard set to show Live TV channels
+{.is-info}
+
 
 ## 4.2 Jellyfin
 
