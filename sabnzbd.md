@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2026-07-01T19:02:30.128Z
+date: 2026-07-09T21:18:33.584Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:11.759Z
@@ -179,3 +179,4 @@ Now if any of these show up in a finished release, SABnzbd fails the whole job a
 
 
 # <img src="/patreon-light.png" class="tab-icon"> 4 · Video
+[![](/2026-07-01-usenet-vs-torrents-the-faster--promo-card.png)](https://www.patreon.com/serversathome/posts/usenet-vs-faster-162640931)
