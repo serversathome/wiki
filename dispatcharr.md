@@ -2,7 +2,7 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2026-07-09T01:30:03.732Z
+date: 2026-07-09T01:33:05.285Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:16.637Z
@@ -10,10 +10,9 @@ dateCreated: 2026-01-15T15:04:16.637Z
 
 # What is Dispatcharr?
 
-Dispatcharr is an open-source powerhouse for managing IPTV streams, EPG data, and VOD content with elegance and control.
+Dispatcharr is an open-source command center for managing IPTV streams, EPG data, and VOD content. Think of it as the *arr family's IPTV cousin: it lets you consolidate multiple IPTV providers into a single interface, filter and organize thousands of channels, match or generate EPG guides, and hand the result off to your media server.
 
-Think of Dispatcharr as the *arr family's IPTV cousin: simple, smart, and designed for streamers who want reliability and flexibility. Beyond consolidating multiple IPTV sources into one interface, it handles Video on Demand with IMDB/TMDB metadata, a plugin system for automation, multi-user access control, and multiple output formats including M3U, XMLTV EPG, Xtream Codes API, and HDHomeRun emulation so media servers like Plex, Emby, and Jellyfin can discover it as a live TV source.
-
+It can emulate an HDHomeRun device so Plex, Emby, or Jellyfin discover it as a live TV source and record straight to their own DVR libraries. It also proxies and relays streams in real time, supports FFmpeg transcoding through output profiles, offers multi-user access control, and can be extended with a plugin system. Output can be served as M3U, XMLTV EPG, Xtream Codes API, or an HDHomeRun device.
 # 1 · Deploy Dispatcharr
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
