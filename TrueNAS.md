@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2026-07-10T15:41:15.396Z
+date: 2026-07-10T15:42:18.838Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:56.437Z
@@ -251,9 +251,8 @@ Drives die and ZFS is not a magic bullet. There is no substitute for a real 3-2-
  
 They are two legs of the same table, and neither replaces the other. **SMART checks the container** (the physical drive, including empty sectors your data has not touched yet). **ZFS checks the contents** (your actual blocks, via checksums and scrubs, and self-heals them). ZFS knows whether your data is intact but can infer nothing about the health of the metal it lives on. SMART is the only thing that sees the hardware. Run both.
  
-### <img src="/youtube.png" class="tab-icon"> 6 · Video
+### 6 · Video
 
-### Data Protection
 https://youtu.be/bV7Y9jQrVPg
 
 ## Network
