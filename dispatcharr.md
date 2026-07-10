@@ -2,7 +2,7 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2026-07-09T01:33:05.285Z
+date: 2026-07-10T15:13:09.222Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:16.637Z
@@ -128,4 +128,45 @@ Plex does not accept a raw M3U tuner, but Dispatcharr's HDHomeRun emulation lets
 
 > 
 > I do not run Plex myself, so if you have this working and can tighten up any of the steps above, please edit this page.
+{.is-info}
+
+# 5 · Source Lists
+
+The lists below are free, publicly distributed, and actively maintained. They carry the free-to-air streaming feeds (ABC News Live, NBC News NOW, CBS News, LiveNOW from FOX) and the free FAST platforms (Samsung TV Plus, Pluto TV) with their sports, news, and weather channels.
+
+> Avoid any list that advertises live cable networks like ESPN, FS1, TNT, or "CBS Sports HQ live games." Those are unauthorized retransmissions. They are against the law, they are unstable, and they get taken down within days. Everything on this page stays on the free and legal side.
+{.is-danger}
+
+## 5.1 M3U Playlists
+
+| Source | Playlist URL | Notes |
+|--------|-------------|-------|
+| Free-TV USA | `https://cdn.jsdelivr.net/gh/Free-TV/IPTV@master/playlists/playlist_usa.m3u8` | Curated free-to-air. Good primary for the ABC/CBS/NBC/Fox news feeds. |
+| iptv-org US | `https://iptv-org.github.io/iptv/countries/us.m3u` | Large community list. Filter to just News, Sports, Weather on import. |
+| Samsung TV Plus US | `https://cdn.jsdelivr.net/gh/BuddyChewChew/app-m3u-generator@main/playlists/samsungtvplus_us.m3u` | FAST channels. Most stable. Pairs with a matching guide below. |
+| Pluto TV US | `https://cdn.jsdelivr.net/gh/BuddyChewChew/app-m3u-generator@main/playlists/plutotv_us.m3u` | FAST channels. Adds the NBA Channel, UEFA Champions League, and more. |
+
+> Set **Account Type** to `Standard` for all of these, not Xtream Codes.
+{.is-info}
+
+## 5.2 EPG Guides
+
+| Source | Guide URL | Notes |
+|--------|----------|-------|
+| Samsung TV Plus US | `https://i.mjh.nz/SamsungTVPlus/us.xml.gz` | Channel IDs match the Samsung playlist, so **Auto Match** works. |
+| Pluto TV US | `https://i.mjh.nz/PlutoTV/us.xml.gz` | Channel IDs match the Pluto playlist. |
+
+> The free network news feeds (ABC/CBS/NBC/Fox) from Free-TV and iptv-org often have thin or missing guide data, since they are 24/7 rolling feeds. Leaving those channels on the Dummy guide is normal and they still play fine. The Samsung and Pluto channels are the ones that populate a full program grid.
+{.is-warning}
+
+## 5.3 If a GitHub Link Throws an Error
+
+Raw GitHub links (`raw.githubusercontent.com`) can hit a `429 Too Many Requests` rate limit. When that happens, swap to the **jsDelivr** mirror of the same file, which is a CDN and does not throttle:
+
+```
+Raw:      https://raw.githubusercontent.com/USER/REPO/BRANCH/path/file.m3u
+jsDelivr: https://cdn.jsdelivr.net/gh/USER/REPO@BRANCH/path/file.m3u
+```
+
+> These URLs occasionally move as the upstream repos reorganize. If one returns a 404, open the source repo (Free-TV/IPTV, iptv-org/iptv, BuddyChewChew/app-m3u-generator, matthuisman/i.mjh.nz) and grab the current path. A quick browser test of any URL before adding it will save you a lot of guessing.
 {.is-info}
