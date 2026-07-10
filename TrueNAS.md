@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2026-07-10T15:38:28.449Z
+date: 2026-07-10T15:41:15.396Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:56.437Z
@@ -117,7 +117,7 @@ https://youtu.be/RAlJ3fcktMQ
 > Setting up your own SMART self-tests is optional but recommended. A long test is the only thing that reads every sector, including empty ones, catching bad spots before your data lands on them.
 {.is-info}
  
-# 1 · What changed in 25.10
+### 1 · What changed in 25.10
  
 TrueNAS 25.10 removed the SMART UI (NAS-134927) and the built-in test scheduler (NAS-135020). The `smartmontools` binaries are still installed, so scripts and third-party tools keep working. Existing scheduled tests from 25.04 and earlier were **automatically migrated to cron jobs** during the upgrade, so check your Cron Jobs list before creating new ones.
  
@@ -125,9 +125,9 @@ TrueNAS 25.10 removed the SMART UI (NAS-134927) and the built-in test scheduler 
 > iX has announced they are working on bringing back API endpoints and UI trigger buttons for SMART testing in a future release. Until that ships, use one of the methods below.
 {.is-info}
  
-# 2 · Set up automatic SMART tests
-# {.tabset}
-## midclt (recommended)
+### 2 · Set up automatic SMART tests
+
+#### midclt (recommended)
  
 TrueNAS ships a middleware command that already knows about every disk in the system, so it is the cleanest way to test everything at once. Open the **Shell** and run:
  
@@ -149,7 +149,7 @@ The `["*"]` is a wildcard meaning "all disks."
  
 To schedule it, go to **System Settings → Advanced → Cron Jobs → Add**, paste the command, set the user to `root`, and set a schedule. A good baseline is **SHORT daily** and **LONG weekly or monthly**.
  
-## Cron job (smartctl)
+#### Cron job (smartctl)
  
 If you would rather stay in pure `smartctl` and not touch the TrueNAS API, this portable loop tests every drive the scan finds, spinning disk, SATA SSD, or NVMe alike:
  
@@ -159,7 +159,7 @@ for dev in $(smartctl --scan | cut -d' ' -f1); do smartctl -t short "$dev"; done
  
 Add it under **System Settings → Advanced → Cron Jobs**, run as `root`, on a daily schedule. Make a second job with `-t long` for the weekly or monthly full scan.
  
-## Scrutiny (GUI)
+#### Scrutiny (GUI)
  
 For a full dashboard with per-drive history, scheduled tests, and alerting, install **Scrutiny** from the TrueNAS apps catalog:
  
@@ -170,7 +170,7 @@ For a full dashboard with per-drive history, scheduled tests, and alerting, inst
 > Scrutiny was forked and is under active development again, so it is a safe pick today. Once it is collecting data you get trend lines on every metric over time.
 {.is-success}
  
-## Manual
+#### Manual
  
 To fire a test at a single drive by hand:
  
@@ -181,7 +181,7 @@ smartctl -t long /dev/sda
  
 The short test takes a couple of minutes. The long test can take hours on a big spinning drive and runs in the background while the drive stays in service.
  
-# 3 · Read a SMART report
+### 3 · Read a SMART report
  
 Find your disks first. This works for every drive type and tells you which are `scsi` (SATA/SAS) and which are `nvme`:
  
@@ -197,7 +197,7 @@ smartctl -H /dev/sda        # quick pass/fail summary
 smartctl -l selftest /dev/sda   # results of the self-tests you ran
 ```
  
-## 3.1 The five metrics that matter
+#### 3.1 The five metrics that matter
  
 Backblaze found that about 77% of drives that died had already tripped a warning on one of these five. Watch the **raw** values and their trend over time, not the normalized score (which is proprietary and varies by manufacturer).
  
@@ -210,7 +210,7 @@ Backblaze found that about 77% of drives that died had already tripped a warning
 | Command Timeout | 188 | Aborted ops, often cabling or power | 0, or low and stable |
 {.dense}
  
-## 3.2 Reading NVMe drives
+#### 3.2 Reading NVMe drives
  
 Those five are ATA attributes, so they apply to spinning drives and SATA SSDs. NVMe drives do not have them. On an NVMe drive, watch these instead in the `smartctl -a` output:
  
@@ -221,38 +221,37 @@ Those five are ATA attributes, so they apply to spinning drives and SATA SSDs. N
 > Many consumer NVMe SSDs do not support the self-test command at all. If a test errors out on an NVMe drive, that is expected. You still read its health with `smartctl -a`.
 {.is-info}
  
-# 4 · Extend drive life
+### 4 · Extend drive life
  
-## 4.1 Schedule ZFS scrubs
+#### 4.1 Schedule ZFS scrubs
  
 Scrub scheduling is still in the GUI. Go to **Data Protection → Scrub Tasks** and make sure every pool has one. A scrub reads every block, verifies it against its checksum, and self-heals from redundancy if a block has gone bad. Schedule scrubs weekly or monthly during quiet hours.
  
-## 4.2 Do not overlap tests
+#### 4.2 Do not overlap tests
  
 Never run a long SMART test and a scrub (or resilver) on the same drive at the same time. Long self-tests can take the disk offline. Stagger their schedules so they never collide.
 
  
-## 4.3 Correlate before you condemn
+#### 4.3 Correlate before you condemn
  
 When `zpool status` shows CKSUM, READ, or WRITE errors, cross-check SMART before you conclude:
  
 - **SMART clean, ZFS errors climbing** → suspect the transport (cable, backplane, HBA, PSU). Reseat or replace the path before condemning the drive.
 - **SMART shows reallocations, pending, or uncorrectables** → the drive is genuinely failing. Replace it.
-## 4.4 Keep them cool
+#### 4.4 Keep them cool
  
 Heat kills drives. Good airflow is one of the cheapest ways to extend drive life, and TrueNAS now monitors temperature on SATA and SAS disks. Fix airflow if a drive runs consistently hot.
  
-## 4.5 Have backups
+#### 4.5 Have backups
  
-> 
-> Drives die and ZFS is not a magic bullet. There is no substitute for a real 3-2-1 backup: three copies, two different media, one off-site.
-{.is-success}
+Drives die and ZFS is not a magic bullet. There is no substitute for a real 3-2-1 backup: three copies, two different media, one off-site.
+
  
-# 5 · SMART vs ZFS
+### 5 · SMART vs ZFS
  
 They are two legs of the same table, and neither replaces the other. **SMART checks the container** (the physical drive, including empty sectors your data has not touched yet). **ZFS checks the contents** (your actual blocks, via checksums and scrubs, and self-heals them). ZFS knows whether your data is intact but can infer nothing about the health of the metal it lives on. SMART is the only thing that sees the hardware. Run both.
  
-# <img src="/youtube.png" class="tab-icon"> 6 · Video
+### <img src="/youtube.png" class="tab-icon"> 6 · Video
 
 ### Data Protection
 https://youtu.be/bV7Y9jQrVPg
