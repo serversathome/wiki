@@ -2,7 +2,7 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2026-07-10T15:13:09.222Z
+date: 2026-07-10T15:14:40.268Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:16.637Z
@@ -134,8 +134,8 @@ Plex does not accept a raw M3U tuner, but Dispatcharr's HDHomeRun emulation lets
 
 The lists below are free, publicly distributed, and actively maintained. They carry the free-to-air streaming feeds (ABC News Live, NBC News NOW, CBS News, LiveNOW from FOX) and the free FAST platforms (Samsung TV Plus, Pluto TV) with their sports, news, and weather channels.
 
-> Avoid any list that advertises live cable networks like ESPN, FS1, TNT, or "CBS Sports HQ live games." Those are unauthorized retransmissions. They are against the law, they are unstable, and they get taken down within days. Everything on this page stays on the free and legal side.
-{.is-danger}
+> Lists that include live cable networks like ESPN, FS1, TNT, or "CBS Sports HQ live games" are unstable, and they get taken down frequently causing breakage.
+{.is-warning}
 
 ## 5.1 M3U Playlists
 
