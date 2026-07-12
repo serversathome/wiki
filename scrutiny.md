@@ -2,7 +2,7 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2026-07-12T12:03:33.369Z
+date: 2026-07-12T12:04:31.642Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:26.409Z
@@ -190,14 +190,5 @@ Two gotchas worth knowing:
 - **Gotify defaults to HTTPS.** Plain-HTTP deployments need `gotify://gotify-host:8080/token?disabletls=Yes`
 - **Telegram topic groups** take the thread ID after a colon: `channels=-123456789:12345`
 
-## 3.2 Testing Notifications
 
-1. Shell into the container
-2. Execute:
-
-```bash
-curl -X POST http://localhost:8080/api/health/notify
-```
-
-An empty payload to the health check endpoint fires a test notification to every configured URL.
 
