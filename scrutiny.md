@@ -2,7 +2,7 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2026-07-12T11:48:27.674Z
+date: 2026-07-12T11:48:50.687Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:26.409Z
@@ -20,7 +20,7 @@ This page covers the **Starosdev fork** (`ghcr.io/starosdev/scrutiny`), which is
 | Frontend | Angular 13 | Angular 21 |
 | Status | Minimal updates | Actively maintained |
 | Image | `ghcr.io/analogj/scrutiny` | `ghcr.io/starosdev/scrutiny` |
-{.dense}
+
 
 > **Migrating from AnalogJ?** Just swap the image name. Your existing SQLite database, InfluxDB data, `scrutiny.yaml` and `collector.yaml` are all fully compatible — no changes needed.
 {.is-success}
@@ -132,7 +132,7 @@ Config files live in `/opt/scrutiny/config` (i.e. `/mnt/tank/configs/scrutiny/co
 | `collector.yaml` | SMART collector settings, device type overrides, labels |
 | `collector-zfs.yaml` | ZFS pool collector |
 | `collector-performance.yaml` | fio benchmark collector |
-{.dense}
+
 
 Every key can also be set as an environment variable — `SCRUTINY_` prefix for the web app, `COLLECTOR_` for the collector, with dots becoming underscores (`web.listen.port` → `SCRUTINY_WEB_LISTEN_PORT`). Env vars win over the config file.
 
@@ -160,7 +160,7 @@ Noisy attribute triggering false failures? On the device detail page, click the 
 | Ignore | Attribute marked passed; excluded from device status and notifications |
 | Force Status | Force passed / warn / failed |
 | Custom Threshold | Your own `warn_above` / `fail_above` values |
-{.dense}
+
 
 # 3 · Notifications
 
@@ -194,7 +194,7 @@ Scrutiny speaks **Shoutrrr**, **Apprise**, custom scripts, and raw webhooks. App
 | Custom script | `script:///file/path/on/disk` |
 | Raw webhook | `https://www.example.com/path` |
 | Apprise (any) | `apprise+mailto://...`, `apprise+gotify://...`, `apprise+tgram://...` |
-{.dense}
+
 
 > **Usernames and passwords with special characters must be URL-encoded.** If your username is `myname@example.com` and your password is `124@34$1`, the SMTP URL becomes:
 > `smtp://myname%40example%2Ecom:124%4034%241@ms.my.domain.com:587`
