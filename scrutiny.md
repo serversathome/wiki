@@ -2,7 +2,7 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2026-07-12T11:48:50.687Z
+date: 2026-07-12T11:49:39.036Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:26.409Z
@@ -63,6 +63,9 @@ services:
 > Ports: **8080** is the web UI/API, **8086** is InfluxDB. You only need to publish 8086 if something outside the container will query InfluxDB directly.
 {.is-info}
 
+> **The Scrutiny app in the TrueNAS Apps catalog is NOT this version.** The Community train app installs the *original* AnalogJ build (v0.9.2-omnibus) — a different project on a different versioning track. It does not include ZFS pool monitoring, Prometheus metrics, Home Assistant MQTT discovery, performance benchmarking, workload insights, or the rebuilt UI. To run the fork on TrueNAS, deploy it as a **Custom App** using the compose file above.
+{.is-warning}
+
 ## <img src="/docker.png" class="tab-icon"> Docker (Hub/Spoke)
 
 Use this when you have multiple servers and want one dashboard. Run the web + InfluxDB containers once, then a collector on every machine with disks.
@@ -119,8 +122,7 @@ On remote machines, deploy **only** the collector service and point `COLLECTOR_A
 | `:latest-collector-performance` | fio benchmark collector |
 {.dense}
 
-> **The Scrutiny app in the TrueNAS Apps catalog is NOT this version.** The Community train app installs the *original* AnalogJ build (v0.9.2-omnibus) — a different project on a different versioning track. It does not include ZFS pool monitoring, Prometheus metrics, Home Assistant MQTT discovery, performance benchmarking, workload insights, or the rebuilt UI. To run the fork on TrueNAS, deploy it as a **Custom App** using the compose file above.
-{.is-warning}
+
 
 # 2 · Configuration
 
