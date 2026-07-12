@@ -2,7 +2,7 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2026-07-12T11:55:03.686Z
+date: 2026-07-12T12:03:33.369Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:26.409Z
@@ -179,8 +179,7 @@ Scrutiny speaks **Shoutrrr**, **Apprise**, custom scripts, and raw webhooks — 
 - [**Apprise docs**](https://appriseit.com/) — URL format for every supported service
 - [**Shoutrrr docs**](https://nicholas-fedor.github.io/shoutrrr/) — URL format for the built-in Shoutrrr targets
 {.links-list}
-> **Apprise URLs must be prefixed with `apprise+`** — e.g. `apprise+mailto://...` or `apprise+tgram://...`. Anything without that prefix is parsed as Shoutrrr syntax.
-{.is-info}
+
  
 > **Usernames and passwords with special characters must be URL-encoded.** If your username is `myname@example.com` and your password is `124@34$1`, the SMTP URL becomes:
 > `smtp://myname%40example%2Ecom:124%4034%241@ms.my.domain.com:587`
