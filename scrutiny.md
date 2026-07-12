@@ -2,7 +2,7 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2026-07-12T12:04:31.642Z
+date: 2026-07-12T12:05:21.148Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:26.409Z
@@ -46,6 +46,8 @@ services:
     environment:
       - COLLECTOR_CRON_SCHEDULE=0 0 * * *
       - COLLECTOR_RUN_STARTUP=true
+      - COLLECTOR_ZFS_CRON_SCHEDULE=*/15 * * * *
+      - COLLECTOR_ZFS_RUN_STARTUP=true
     volumes:
       - /run/udev:/run/udev:ro
       - /mnt/tank/configs/scrutiny/config:/opt/scrutiny/config
