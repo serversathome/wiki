@@ -2,103 +2,239 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2026-01-23T17:31:51.367Z
+date: 2026-07-12T11:48:27.674Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:26.409Z
 ---
 
-# ![](/scrutiny.png){class="tab-icon"}What is Scrutiny?
-Scrutiny is a Hard Drive Health Dashboard & Monitoring solution, merging manufacturer provided S.M.A.R.T metrics with real-world failure rates.
+# <img src="/scrutiny.png" class="tab-icon"> What is Scrutiny?
+
+**Scrutiny** is a hard drive health dashboard that collects S.M.A.R.T metrics from every disk in your system, tracks them over time, and warns you *before* a drive fails — instead of after. It wraps `smartctl` in a web UI, stores history in InfluxDB, and replaces the manufacturer's often-useless thresholds with real-world failure rates.
+
+This page covers the **Starosdev fork** (`ghcr.io/starosdev/scrutiny`), which is the actively maintained continuation of the original AnalogJ project. It adds ZFS pool monitoring, Prometheus metrics, Home Assistant MQTT discovery, performance benchmarking, workload insights, API authentication, and a proper mobile UI.
+
+| | Original (AnalogJ) | Starosdev Fork |
+|---|---|---|
+| Latest version | v0.8.1 (Apr 2024) | Actively released |
+| Frontend | Angular 13 | Angular 21 |
+| Status | Minimal updates | Actively maintained |
+| Image | `ghcr.io/analogj/scrutiny` | `ghcr.io/starosdev/scrutiny` |
+{.dense}
+
+> **Migrating from AnalogJ?** Just swap the image name. Your existing SQLite database, InfluxDB data, `scrutiny.yaml` and `collector.yaml` are all fully compatible — no changes needed.
+{.is-success}
 
 # 1 · Deploy Scrutiny
 # {.tabset}
+## <img src="/docker.png" class="tab-icon"> Docker (Omnibus)
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-Use all default values except for Storage Configuration, which needs **Host Path Configuration** for the `Config` folder at minimum.
+The omnibus image contains the web UI, the API, InfluxDB, and the collector in a single container. This is what you want for a single-box homelab.
 
-> Permissions should be `Generic` for the `config` dataset since Scrutiny runs as root
-{.is-info}
-
-## <img src="/docker.png" class="tab-icon"> Docker Compose
 ```yaml
 services:
   scrutiny:
+    image: ghcr.io/starosdev/scrutiny:latest-omnibus
     container_name: scrutiny
     restart: unless-stopped
-    image: ghcr.io/analogj/scrutiny:master-omnibus
-    privileged: true
+    ports:
+      - "8080:8080"
+      - "8086:8086"
     cap_add:
       - SYS_RAWIO
-    ports:
-      - 8083:8080 # webapp
-      - 8086:8086 # influxDB admin
+      - SYS_ADMIN
+    environment:
+      - COLLECTOR_CRON_SCHEDULE=0 0 * * *
+      - COLLECTOR_RUN_STARTUP=true
     volumes:
       - /run/udev:/run/udev:ro
-      - /dev:/dev:ro
-      - /mnt/tank/configs/scrutiny:/opt/scrutiny/config
-      - /mnt/tank/configs/scrutiny/influxdb:/opt/scrutiny/influxdb
+      - /mnt/tank/configs/scrutiny/config:/opt/scrutiny/config
+      - /mnt/tank/configs/scrutiny/influxdb2:/opt/scrutiny/influxdb
+    devices:
+      - "/dev/sda:/dev/sda"
+      - "/dev/sdb:/dev/sdb"
 ```
 
-# 2 · Notifications
-Scruitny can notify users in the event of value changes with a file added to the `config` folder. Add `scrutiny.yaml` to the `/config` directory with the following contents, uncommenting the notification type you would like:
+1. Run `smartctl --scan` on the host and add **every** listed device under `devices:` — Scrutiny can only see disks you explicitly pass through.
+2. `/run/udev` is required so the collector can read device metadata.
+3. `SYS_RAWIO` lets `smartctl` query SMART data. `SYS_ADMIN` is only required if you have **NVMe** drives.
+4. Browse to `http://<host>:8080`.
+
+> Ports: **8080** is the web UI/API, **8086** is InfluxDB. You only need to publish 8086 if something outside the container will query InfluxDB directly.
+{.is-info}
+
+## <img src="/docker.png" class="tab-icon"> Docker (Hub/Spoke)
+
+Use this when you have multiple servers and want one dashboard. Run the web + InfluxDB containers once, then a collector on every machine with disks.
 
 ```yaml
-web:
-  listen:
-    port: 8080
-    host: 0.0.0.0
-
-    basepath: ''
-  database:
-
-    location: /opt/scrutiny/config/scrutiny.db
-  src:
-    frontend:
-      path: /opt/scrutiny/web
-
+services:
   influxdb:
-    host: 0.0.0.0
-    port: 8086
+    image: influxdb:2.2
+    container_name: scrutiny-influxdb
+    restart: unless-stopped
+    volumes:
+      - /mnt/tank/configs/scrutiny/influxdb2:/var/lib/influxdb2
 
-    retention_policy: true
+  web:
+    image: ghcr.io/starosdev/scrutiny:latest-web
+    container_name: scrutiny-web
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - SCRUTINY_WEB_INFLUXDB_HOST=influxdb
+    volumes:
+      - /mnt/tank/configs/scrutiny/config:/opt/scrutiny/config
+    depends_on:
+      - influxdb
 
-
-log:
-  file: '' #absolute or relative paths allowed, eg. web.log
-  level: INFO
-
-
-# Notification "urls" look like the following. For more information about service specific configuration see
-# Shoutrrr's documentation: https://containrrr.dev/shoutrrr/services/overview/
-#
-# note, usernames and passwords containing special characters will need to be urlencoded.
-# if your username is: "myname@example.com" and your password is "124@34$1"
-# your shoutrrr url will look like: "smtp://myname%40example%2Ecom:124%4034%241@ms.my.domain.com:587"
-
-notify:
-  urls:
-#    - "discord://token@webhookid"
-#    - "telegram://token@telegram?channels=channel-1[,channel-2,...]"
-#    - "pushover://shoutrrr:apiToken@userKey/?priority=1&devices=device1[,device2, ...]"
-#    - "slack://[botname@]token-a/token-b/token-c"
-#    - "smtp://username:password@host:port/?fromAddress=fromAddress&toAddresses=recipient1[,recipient2,...]"
-#    - "teams://token-a/token-b/token-c"
-#    - "gotify://gotify-host/token"
-#    - "pushbullet://api-token[/device/#channel/email]"
-#    - "ifttt://key/?events=event1[,event2,...]&value1=value1&value2=value2&value3=value3"
-#    - "mattermost://[username@]mattermost-host/token[/channel]"
-#    - "ntfy://username:password@host:port/topic"
-#    - "hangouts://chat.googleapis.com/v1/spaces/FOO/messages?key=bar&token=baz"
-#    - "zulip://bot-mail:bot-key@zulip-domain/?stream=name-or-id&topic=name"
-#    - "join://shoutrrr:api-key@join/?devices=device1[,device2, ...][&icon=icon][&title=title]"
-#    - "script:///file/path/on/disk"
-#    - "https://www.example.com/path"
+  collector:
+    image: ghcr.io/starosdev/scrutiny:latest-collector
+    container_name: scrutiny-collector
+    restart: unless-stopped
+    cap_add:
+      - SYS_RAWIO
+      - SYS_ADMIN
+    environment:
+      - COLLECTOR_API_ENDPOINT=http://web:8080
+      - COLLECTOR_CRON_SCHEDULE=0 0 * * *
+    volumes:
+      - /run/udev:/run/udev:ro
+    devices:
+      - "/dev/sda:/dev/sda"
+      - "/dev/sdb:/dev/sdb"
+    depends_on:
+      - web
 ```
 
-## 2.1 Testing Notifications
-1. Shell into the container
-1. Execute `curl -X POST http://localhost:8080/api/health/notify`
+On remote machines, deploy **only** the collector service and point `COLLECTOR_API_ENDPOINT` at the IP of your web container.
 
-# <img src="/youtube.png" class="tab-icon"> Video
-https://youtu.be/5Pv2ip_v_2s
+| Image | Purpose |
+|-------|---------|
+| `:latest-omnibus` | Everything in one container |
+| `:latest-web` | Web UI + API only |
+| `:latest-collector` | SMART collector (one per server) |
+| `:latest-collector-zfs` | ZFS pool health collector |
+| `:latest-collector-performance` | fio benchmark collector |
+{.dense}
+
+> **The Scrutiny app in the TrueNAS Apps catalog is NOT this version.** The Community train app installs the *original* AnalogJ build (v0.9.2-omnibus) — a different project on a different versioning track. It does not include ZFS pool monitoring, Prometheus metrics, Home Assistant MQTT discovery, performance benchmarking, workload insights, or the rebuilt UI. To run the fork on TrueNAS, deploy it as a **Custom App** using the compose file above.
+{.is-warning}
+
+# 2 · Configuration
+
+Config files live in `/opt/scrutiny/config` (i.e. `/mnt/tank/configs/scrutiny/config` on the host). None are required, but they unlock everything below.
+
+| File | Purpose |
+|------|---------|
+| `scrutiny.yaml` | Web app / API settings, notifications, attribute overrides |
+| `collector.yaml` | SMART collector settings, device type overrides, labels |
+| `collector-zfs.yaml` | ZFS pool collector |
+| `collector-performance.yaml` | fio benchmark collector |
+{.dense}
+
+Every key can also be set as an environment variable — `SCRUTINY_` prefix for the web app, `COLLECTOR_` for the collector, with dots becoming underscores (`web.listen.port` → `SCRUTINY_WEB_LISTEN_PORT`). Env vars win over the config file.
+
+## 2.1 Collection Schedule
+
+The collector runs daily at midnight by default. Override with the `COLLECTOR_CRON_SCHEDULE` environment variable (standard cron syntax). To force a run right now:
+
+```bash
+docker exec scrutiny /opt/scrutiny/bin/scrutiny-collector-metrics run
+```
+
+## 2.2 RAID & Device Detection
+
+Scrutiny uses `smartctl --scan` to find drives. If a device type is detected incorrectly (common with RAID controllers), override it in `collector.yaml`. If you use Docker, the virtual disk **must** be visible to the container — it may live under `/dev/*` or `/dev/bus/*`.
+
+> If a drive shows up with no SMART data, the device type is almost always the culprit. Try `COLLECTOR_COMMANDS_METRICS_SMART_ARGS="--xall --json -T permissive"`.
+{.is-info}
+
+## 2.3 S.M.A.R.T Attribute Overrides
+
+Noisy attribute triggering false failures? On the device detail page, click the three-dot menu in the **Actions** column and choose **Ignore attribute** or **Force passed**. For global rules, use **Dashboard Settings → SMART Attribute Overrides**, or the `smart.attribute_overrides` block in `scrutiny.yaml`.
+
+| Action | Behavior |
+|--------|----------|
+| Ignore | Attribute marked passed; excluded from device status and notifications |
+| Force Status | Force passed / warn / failed |
+| Custom Threshold | Your own `warn_above` / `fail_above` values |
+{.dense}
+
+# 3 · Notifications
+
+Scrutiny alerts you when a drive's health changes. In this fork, notification endpoints are managed **entirely in the web UI** — add, edit, test, and delete them without touching a config file or restarting the container.
+
+## 3.1 Adding an Endpoint
+
+1. Open **Settings** in the web UI
+2. Under **Notifications**, click **Add**
+3. Paste your notification URL (formats below)
+4. Click **Test**, then **Save**
+
+Scrutiny speaks **Shoutrrr**, **Apprise**, custom scripts, and raw webhooks. Apprise URLs must be prefixed with `apprise+`; everything else uses standard Shoutrrr syntax.
+
+| Service | URL Format |
+|---------|------------|
+| Discord | `discord://token@webhookid` |
+| Telegram | `telegram://token@telegram?channels=channel-1[,channel-2,...]` |
+| Email (SMTP) | `smtp://username:password@host:port/?fromAddress=from&toAddresses=recipient1[,recipient2,...]` |
+| Slack | `slack://[botname@]token-a/token-b/token-c` |
+| Teams | `teams://token-a/token-b/token-c` |
+| Mattermost | `mattermost://[username@]mattermost-host/token[/channel]` |
+| ntfy | `ntfy://username:password@host:port/topic` |
+| Gotify | `gotify://gotify-host/token` |
+| Pushover | `pushover://shoutrrr:apiToken@userKey/?priority=1&devices=device1[,...]` |
+| Pushbullet | `pushbullet://api-token[/device/#channel/email]` |
+| Zulip | `zulip://bot-mail:bot-key@zulip-domain/?stream=name-or-id&topic=name` |
+| Join | `join://shoutrrr:api-key@join/?devices=device1[,...][&icon=icon][&title=title]` |
+| IFTTT | `ifttt://key/?events=event1[,...]&value1=v1&value2=v2&value3=v3` |
+| Hangouts | `hangouts://chat.googleapis.com/v1/spaces/FOO/messages?key=bar&token=baz` |
+| Custom script | `script:///file/path/on/disk` |
+| Raw webhook | `https://www.example.com/path` |
+| Apprise (any) | `apprise+mailto://...`, `apprise+gotify://...`, `apprise+tgram://...` |
+{.dense}
+
+> **Usernames and passwords with special characters must be URL-encoded.** If your username is `myname@example.com` and your password is `124@34$1`, the SMTP URL becomes:
+> `smtp://myname%40example%2Ecom:124%4034%241@ms.my.domain.com:587`
+{.is-warning}
+
+Two gotchas worth knowing:
+
+- **Gotify defaults to HTTPS.** Plain-HTTP deployments need `gotify://gotify-host:8080/token?disabletls=Yes`
+- **Telegram topic groups** take the thread ID after a colon: `channels=-123456789:12345`
+
+Full syntax reference: [Shoutrrr docs](https://nicholas-fedor.github.io/shoutrrr/) · [Apprise docs](https://appriseit.com/)
+
+## 3.2 Testing Notifications
+
+1. Shell into the container
+2. Execute:
+
+```bash
+curl -X POST http://localhost:8080/api/health/notify
+```
+
+An empty payload to the health check endpoint fires a test notification to every configured URL.
+
+## 3.3 Heartbeats, Digests & Reports
+
+These are **not** set in `scrutiny.yaml` — they're configured on the **Settings** page in the web UI, or via the `/api/settings` endpoint.
+
+| Feature | Purpose |
+|---------|---------|
+| Heartbeat notifications | Periodic "all clear" ping (off by default, 24h interval). Suppressed if any drive is failing, so failure alerts always take priority. |
+| Missed ping digest | One consolidated alert when multiple collectors go unreachable, instead of one email per device |
+| Per-device muting | Silence a drive you already know is dying |
+| Scheduled reports [WIP] | Daily/weekly/monthly health reports, HTML over SMTP, optional PDF export |
+| Uptime Kuma push | Dedicated push-based health status updates |
+{.dense}
+
+```bash
+# Example: enable a 24h heartbeat
+curl -X POST http://localhost:8080/api/settings \
+  -H "Content-Type: application/json" \
+  -d '{"metrics": {"heartbeat_enabled": true, "heartbeat_interval_hours": 24}}'
+```
+
