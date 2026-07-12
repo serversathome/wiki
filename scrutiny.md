@@ -2,7 +2,7 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2026-07-12T11:49:39.036Z
+date: 2026-07-12T11:54:02.144Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:26.409Z
@@ -165,49 +165,31 @@ Noisy attribute triggering false failures? On the device detail page, click the 
 
 
 # 3 · Notifications
-
+ 
 Scrutiny alerts you when a drive's health changes. In this fork, notification endpoints are managed **entirely in the web UI** — add, edit, test, and delete them without touching a config file or restarting the container.
-
+ 
 ## 3.1 Adding an Endpoint
-
+ 
 1. Open **Settings** in the web UI
 2. Under **Notifications**, click **Add**
-3. Paste your notification URL (formats below)
+3. Paste your notification URL
 4. Click **Test**, then **Save**
-
-Scrutiny speaks **Shoutrrr**, **Apprise**, custom scripts, and raw webhooks. Apprise URLs must be prefixed with `apprise+`; everything else uses standard Shoutrrr syntax.
-
-| Service | URL Format |
-|---------|------------|
-| Discord | `discord://token@webhookid` |
-| Telegram | `telegram://token@telegram?channels=channel-1[,channel-2,...]` |
-| Email (SMTP) | `smtp://username:password@host:port/?fromAddress=from&toAddresses=recipient1[,recipient2,...]` |
-| Slack | `slack://[botname@]token-a/token-b/token-c` |
-| Teams | `teams://token-a/token-b/token-c` |
-| Mattermost | `mattermost://[username@]mattermost-host/token[/channel]` |
-| ntfy | `ntfy://username:password@host:port/topic` |
-| Gotify | `gotify://gotify-host/token` |
-| Pushover | `pushover://shoutrrr:apiToken@userKey/?priority=1&devices=device1[,...]` |
-| Pushbullet | `pushbullet://api-token[/device/#channel/email]` |
-| Zulip | `zulip://bot-mail:bot-key@zulip-domain/?stream=name-or-id&topic=name` |
-| Join | `join://shoutrrr:api-key@join/?devices=device1[,...][&icon=icon][&title=title]` |
-| IFTTT | `ifttt://key/?events=event1[,...]&value1=v1&value2=v2&value3=v3` |
-| Hangouts | `hangouts://chat.googleapis.com/v1/spaces/FOO/messages?key=bar&token=baz` |
-| Custom script | `script:///file/path/on/disk` |
-| Raw webhook | `https://www.example.com/path` |
-| Apprise (any) | `apprise+mailto://...`, `apprise+gotify://...`, `apprise+tgram://...` |
-
-
+Scrutiny speaks **Shoutrrr**, **Apprise**, custom scripts, and raw webhooks — Discord, Telegram, email, Slack, Teams, ntfy, Gotify, Pushover, and dozens more.
+ 
+- [**Apprise docs**](https://appriseit.com/) — URL format for every supported service
+- [**Shoutrrr docs**](https://nicholas-fedor.github.io/shoutrrr/) — URL format for the built-in Shoutrrr targets
+{.links-list}
+> **Apprise URLs must be prefixed with `apprise+`** — e.g. `apprise+mailto://...` or `apprise+tgram://...`. Anything without that prefix is parsed as Shoutrrr syntax.
+{.is-info}
+ 
 > **Usernames and passwords with special characters must be URL-encoded.** If your username is `myname@example.com` and your password is `124@34$1`, the SMTP URL becomes:
 > `smtp://myname%40example%2Ecom:124%4034%241@ms.my.domain.com:587`
 {.is-warning}
-
+ 
 Two gotchas worth knowing:
-
+ 
 - **Gotify defaults to HTTPS.** Plain-HTTP deployments need `gotify://gotify-host:8080/token?disabletls=Yes`
 - **Telegram topic groups** take the thread ID after a colon: `channels=-123456789:12345`
-
-Full syntax reference: [Shoutrrr docs](https://nicholas-fedor.github.io/shoutrrr/) · [Apprise docs](https://appriseit.com/)
 
 ## 3.2 Testing Notifications
 
