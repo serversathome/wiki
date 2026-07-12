@@ -2,7 +2,7 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2026-07-12T11:54:02.144Z
+date: 2026-07-12T11:55:03.686Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:26.409Z
@@ -201,24 +201,4 @@ curl -X POST http://localhost:8080/api/health/notify
 ```
 
 An empty payload to the health check endpoint fires a test notification to every configured URL.
-
-## 3.3 Heartbeats, Digests & Reports
-
-These are **not** set in `scrutiny.yaml` — they're configured on the **Settings** page in the web UI, or via the `/api/settings` endpoint.
-
-| Feature | Purpose |
-|---------|---------|
-| Heartbeat notifications | Periodic "all clear" ping (off by default, 24h interval). Suppressed if any drive is failing, so failure alerts always take priority. |
-| Missed ping digest | One consolidated alert when multiple collectors go unreachable, instead of one email per device |
-| Per-device muting | Silence a drive you already know is dying |
-| Scheduled reports [WIP] | Daily/weekly/monthly health reports, HTML over SMTP, optional PDF export |
-| Uptime Kuma push | Dedicated push-based health status updates |
-{.dense}
-
-```bash
-# Example: enable a 24h heartbeat
-curl -X POST http://localhost:8080/api/settings \
-  -H "Content-Type: application/json" \
-  -d '{"metrics": {"heartbeat_enabled": true, "heartbeat_interval_hours": 24}}'
-```
 
