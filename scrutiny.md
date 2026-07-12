@@ -2,7 +2,7 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2026-07-12T12:05:21.148Z
+date: 2026-07-12T12:07:47.544Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:26.409Z
@@ -60,7 +60,6 @@ services:
 1. Run `smartctl --scan` on the host and add **every** listed device under `devices:` — Scrutiny can only see disks you explicitly pass through.
 2. `/run/udev` is required so the collector can read device metadata.
 3. `SYS_RAWIO` lets `smartctl` query SMART data. `SYS_ADMIN` is only required if you have **NVMe** drives.
-4. Browse to `http://<host>:8080`.
 
 > Ports: **8080** is the web UI/API, **8086** is InfluxDB. You only need to publish 8086 if something outside the container will query InfluxDB directly.
 {.is-info}
