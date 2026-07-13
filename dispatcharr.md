@@ -2,13 +2,13 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2026-07-10T15:14:40.268Z
+date: 2026-07-13T12:29:53.199Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:16.637Z
 ---
 
-# What is Dispatcharr?
+# <img src="/dispatcharr.png" class="tab-icon"> What is Dispatcharr?
 
 Dispatcharr is an open-source command center for managing IPTV streams, EPG data, and VOD content. Think of it as the *arr family's IPTV cousin: it lets you consolidate multiple IPTV providers into a single interface, filter and organize thousands of channels, match or generate EPG guides, and hand the result off to your media server.
 
