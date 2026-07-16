@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2026-04-14T17:33:51.875Z
+date: 2026-07-16T10:15:56.062Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:46.966Z
@@ -151,7 +151,7 @@ This tags stuck downloads that have Hit & Run risk for manual review.
 1. Set **Action** to **Tag** with tag `stuck-hr-risk`
 1. Click **Create** and enable the rule
 
-> Don't auto-delete torrents with H&R risk — you may still owe the tracker. Investigate manually or find an alternative source.
+> Don't auto-delete torrents with H&R risk, you may still have umet seeding requirements. Investigate manually or find an alternative source.
 {.is-warning}
 
 # 5 · Configure Orphan Scan
