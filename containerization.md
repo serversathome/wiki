@@ -2,7 +2,7 @@
 title: Containerization
 description: 
 published: true
-date: 2026-07-16T23:36:07.676Z
+date: 2026-07-16T23:37:30.626Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:57.908Z
@@ -22,7 +22,7 @@ These are GUI front-ends for managing Docker containers.
 * [<img src="/dockmon.png"> Dockmon](/dockmon)
 * [<img src="/komodo.png"> Komodo](/komodo)
 * [<img src="/portainer.png"> Portainer](/Portainer)
-* [<img src="/dockhand.png"> Dockhand](/Dockhand)
+* [<img src="/dockhand.png"> Dockhand](/dockhand)
   {.links-list}
 
 # Logging
