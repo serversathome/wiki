@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-07-17T17:28:21.752Z
+date: 2026-07-17T17:29:59.607Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -114,28 +114,17 @@ services:
       - 8080:8080     # Wings API — the Panel talks to this
       - 2022:2022     # SFTP
     volumes:
-      # --- Pelican's own dirs — wiki config path, mounted 1:1 (host == container) ---
-      - /mnt/tank/configs/wings/etc:/etc/pelican                       # node config.yml (internal, host may differ)
-      - /mnt/tank/configs/wings/data:/mnt/tank/configs/wings/data      # server files — MUST be 1:1
-      - /mnt/tank/configs/wings/logs:/var/log/pelican                  # Wings logs (internal)
-      - /mnt/tank/configs/wings/tmp:/mnt/tank/configs/wings/tmp        # install/backup temp — MUST be 1:1
+      - /mnt/tank/configs/wings/etc:/etc/pelican
+      - /mnt/tank/configs/wings/data:/mnt/tank/configs/wings/data      # MUST be 1:1
+      - /mnt/tank/configs/wings/logs:/var/log/pelican
+      - /mnt/tank/configs/wings/tmp:/mnt/tank/configs/wings/tmp        # MUST be 1:1
       # --- Host system paths — do NOT rename these ---
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/ssl/certs:/etc/ssl/certs:ro
-    networks:
-      - wings0
-
-networks:
-  wings0:
-    name: wings0
-    driver: bridge
-    ipam:
-      config:
-        - subnet: "172.21.0.0/16"
 ```
 
 > 
-> **Path parity — the one that bites people.** Wings drives the *host* Docker daemon through the socket, so any path it hands to that daemon must resolve to the **same absolute path** on the host and inside the container. That's why `data` and `tmp` above are mounted 1:1 (`/mnt/tank/configs/wings/data:/mnt/tank/configs/wings/data`). You can name that path whatever you like — it just has to be identical on both sides, and `config.yml` has to point at it. The `etc` and `logs` mounts are Wings-internal, so those can map to the standard container paths.
+> **Path parity — the one that bites people.** Wings drives the *host* Docker daemon through the socket, so any path it hands to that daemon must resolve to the **same absolute path** on the host and inside the container. That's why `data` and `tmp` above are mounted 1:1. You can name that path whatever you like — it just has to be identical on both sides, and `config.yml` has to point at it. The `etc` and `logs` mounts are Wings-internal, so those can map to the standard container paths.
 {.is-danger}
 
 
