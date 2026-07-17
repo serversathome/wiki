@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-07-17T19:39:16.416Z
+date: 2026-07-17T19:40:34.728Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -102,7 +102,7 @@ services:
   wings:
     image: ghcr.io/pelican-dev/wings:latest
     container_name: wings
-    restart: always
+    restart: unless-stopped
     tty: true
     environment:
       - TZ=America/New_York
