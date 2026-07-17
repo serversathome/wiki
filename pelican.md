@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-07-17T17:29:59.607Z
+date: 2026-07-17T19:39:16.416Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -86,9 +86,8 @@ On the TrueNAS host, create the config dir and save that YAML into it — this i
 ```bash
 mkdir -p /mnt/tank/configs/wings/{etc,data,logs,tmp}
 chown -R 568:568 /mnt/tank/configs/wings
-# paste the node config into:
-#   /mnt/tank/configs/wings/etc/config.yml
 ```
+Paste the node config into `/mnt/tank/configs/wings/etc/config.yml`
 
 > 
 > In that `config.yml`, point Wings' data directory at the 1:1 mount so server files land under the wiki path. Set `system.data` (and let `root_directory` follow) to `/mnt/tank/configs/wings/data`, and set the tmp/backup dir to `/mnt/tank/configs/wings/tmp`. The Panel also exposes the **Daemon Server File Directory** field on the node — set it to `/mnt/tank/configs/wings/data/volumes` so the generated config matches.
@@ -115,9 +114,9 @@ services:
       - 2022:2022     # SFTP
     volumes:
       - /mnt/tank/configs/wings/etc:/etc/pelican
-      - /mnt/tank/configs/wings/data:/mnt/tank/configs/wings/data      # MUST be 1:1
+      - /mnt/tank/configs/wings/data:/mnt/tank/configs/wings/data  # MUST be 1:1
       - /mnt/tank/configs/wings/logs:/var/log/pelican
-      - /mnt/tank/configs/wings/tmp:/mnt/tank/configs/wings/tmp        # MUST be 1:1
+      - /mnt/tank/configs/wings/tmp:/mnt/tank/configs/wings/tmp    # MUST be 1:1
       # --- Host system paths — do NOT rename these ---
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/ssl/certs:/etc/ssl/certs:ro
