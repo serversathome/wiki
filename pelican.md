@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-07-19T10:51:24.301Z
+date: 2026-07-19T11:21:29.008Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -52,6 +52,9 @@ Point your reverse proxy (Cloudflare Tunnel / DockFlare / etc.) at the container
 > Set the `/mnt/tank/configs/pelican` dataset to **Generic** permissions and give other full permissions
 {.is-success}
 
+> 
+> **`APP_URL` controls Caddy's listen port.** The built-in Caddy binds to whatever port is in `APP_URL`, so the **container side of the port mapping must match it**. If `APP_URL` ends in `:88`, the mapping is `88:88` — *not* `88:80`. Mismatch them and you get connection refused with a perfectly healthy-looking log.
+{.is-danger}
 
 > **Just testing on the LAN?** Set `APP_URL=http://<truenas-ip>:8088`, use `8088:8088` for ports, and drop the `BEHIND_PROXY`/`TRUSTED_PROXIES` lines. Don't use `80:80`/`443:443` — they collide with the TrueNAS web UI.
 {.is-info}
@@ -85,6 +88,7 @@ Wings needs a node config **before** it starts cleanly, so do this in order.
 
 In the Panel: **Admin → Nodes → Create Node**. Set the **FQDN** to the TrueNAS host's LAN IP (or a domain pointing at it), and match the SSL setting to your Panel — if the Panel is HTTPS, the node should be too. After saving, open the node's **Configuration** tab and copy the generated YAML.
 
+
 On the TrueNAS host, create the config dir and save that YAML into it — this is the `etc` bind from the stack below:
 
 ```bash
@@ -93,9 +97,27 @@ chown -R 568:568 /mnt/tank/configs/wings
 ```
 Paste the node config into `/mnt/tank/configs/wings/etc/config.yml`
 
+Then edit that file so Wings writes everything under the wiki path instead of `/etc` and `/var/lib`:
+
+```yaml
+system:
+  data: /mnt/tank/configs/wings/data/volumes
+  user:
+    uid: 568
+    gid: 568
+    mount_passwd: true
+    passwd_file: /mnt/tank/configs/wings/etc/passwd
+  sftp:
+    bind_port: 2022
+```
+
 > 
-> In that `config.yml`, point Wings' data directory at the 1:1 mount so server files land under the wiki path. Set `system.data` (and let `root_directory` follow) to `/mnt/tank/configs/wings/data`, and set the tmp/backup dir to `/mnt/tank/configs/wings/tmp`. The Panel also exposes the **Daemon Server File Directory** field on the node — set it to `/mnt/tank/configs/wings/data/volumes` so the generated config matches.
+> The Panel also exposes a **Daemon Server File Directory** field on the node — set it to `/mnt/tank/configs/wings/data/volumes` so the generated config already matches and you don't have to re-edit `system.data` every time.
 {.is-info}
+
+> 
+> **Re-copying the Configuration tab overwrites your edits.** The `user:` / `passwd_file` keys are local additions the Panel doesn't generate. Any time you re-copy the node config (after a token reset, port change, etc.), add them back before restarting Wings.
+{.is-warning}
 
 ## 2.2 Wings Stack
 
@@ -117,27 +139,34 @@ services:
       - 8099:8099     # Wings API — the Panel talks to this
       - 2022:2022     # SFTP
     volumes:
-      - /mnt/tank/configs/wings/etc:/etc/pelican
-      - /mnt/tank/configs/wings/data:/mnt/tank/configs/wings/data  # MUST be 1:1
+      - /mnt/tank/configs/wings/etc:/etc/pelican                     # where Wings reads config.yml
+      - /mnt/tank/configs/wings/etc:/mnt/tank/configs/wings/etc      # MUST be 1:1 — passwd/group source
+      - /mnt/tank/configs/wings/data:/mnt/tank/configs/wings/data    # MUST be 1:1
+      - /mnt/tank/configs/wings/tmp:/mnt/tank/configs/wings/tmp      # MUST be 1:1
       - /mnt/tank/configs/wings/logs:/var/log/pelican
-      - /mnt/tank/configs/wings/tmp:/mnt/tank/configs/wings/tmp    # MUST be 1:1
       # --- Host system paths — do NOT rename these ---
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/ssl/certs:/etc/ssl/certs:ro
 ```
 
 > 
-> **Path parity — the one that bites people.** Wings drives the *host* Docker daemon through the socket, so any path it hands to that daemon must resolve to the **same absolute path** on the host and inside the container. That's why `data` and `tmp` above are mounted 1:1. You can name that path whatever you like — it just has to be identical on both sides, and `config.yml` has to point at it. The `etc` and `logs` mounts are Wings-internal, so those can map to the standard container paths.
+> **Path parity — the one that bites people.** Wings drives the *host* Docker daemon through the socket, so any path it hands to that daemon must resolve to the **same absolute path** on the host and inside the container. That's why `data`, `tmp`, and `etc` are mounted 1:1. You can name those paths whatever you like — they just have to be identical on both sides, and `config.yml` has to point at them. Only `logs` is genuinely Wings-internal.
 {.is-danger}
+
 
 
 Deploy the stack. Check the **wings** container logs in Dockge — it should connect to the Panel with no errors.
 
 # 3 · Allocations & First Server
 
-Back in the Panel, open your node and add **Allocations** (the host IP plus the ports your servers will use). Then create a server, pick an Egg, assign an allocation, and Wings spins it up as its own container.
+Back in the Panel, open your node and add **Allocations** (the host IP plus the ports your servers will use). 
+
+Pelican ships with **no Eggs** — import them first via **Admin → Eggs → Import → GitHub**, which browses the official egg repos by category (Minecraft, Games Standalone, Games Steamcmd, etc.). Tick what you need and Submit, then restart Wings before creating a server with a freshly imported egg.
+
+Then create a server, pick an Egg, assign an allocation, and Wings spins it up as its own container.
 
 > 
 > Each game server publishes its own ports on the TrueNAS host (they're sibling containers). Reserve a port range and watch for collisions with your other apps.
 {.is-info}
+
 
