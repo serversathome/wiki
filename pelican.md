@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-07-19T20:47:50.656Z
+date: 2026-07-19T21:20:54.788Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -140,7 +140,7 @@ services:
       - 8099:8099     # Wings API — the Panel talks to this
       - 2022:2022     # SFTP
     volumes:
-      - /mnt/tank/configs/wings/etc:/etc/pelican                     # where Wings reads config.yml
+      - /mnt/tank/configs/wings/etc:/etc/pelican
       - /mnt/tank/configs/wings/etc:/mnt/tank/configs/wings/etc      # MUST be 1:1 — passwd/group source
       - /mnt/tank/configs/wings/data:/mnt/tank/configs/wings/data    # MUST be 1:1
       - /mnt/tank/configs/wings/tmp:/mnt/tank/configs/wings/tmp      # MUST be 1:1
