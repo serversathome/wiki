@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-07-19T10:21:29.130Z
+date: 2026-07-19T10:24:52.425Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -56,6 +56,8 @@ Point your reverse proxy (Cloudflare Tunnel / DockFlare / etc.) at the container
 > **Just testing on the LAN?** Set `APP_URL=http://<truenas-ip>:8088`, use `8088:8088` for ports, and drop the `BEHIND_PROXY`/`TRUSTED_PROXIES` lines. Don't use `80:80`/`443:443` — they collide with the TrueNAS web UI.
 {.is-info}
 
+> Once its running go to `http://{IP}:port/installer` to setup the panel
+{.is-success}
 
 
 
