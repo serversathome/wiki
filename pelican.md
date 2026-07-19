@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-07-19T10:04:06.372Z
+date: 2026-07-19T10:17:34.986Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -49,13 +49,13 @@ services:
 
 Point your reverse proxy (Cloudflare Tunnel / DockFlare / etc.) at the container on **port 88**, and set `APP_URL` to match the hostname you expose.
 
-> Set the `/mnt/tank/configs/pelican` dataset to **Generic** permissions and set the owner to `www-data`
+> Set the `/mnt/tank/configs/pelican` dataset to **Generic** permissions and give other full permissions until the container starts. Then remove other's permissions when the container is running and sets its user to `82`.
 {.is-success}
 
 
-> 
-> **Just testing on the LAN?** Change the port line to `8088:80`, set `APP_URL` to `http://<truenas-ip>:8088`, and drop the `BEHIND_PROXY`/`TRUSTED_PROXIES` lines. Don't use `80:80`/`443:443` — they collide with the TrueNAS web UI.
+> **Just testing on the LAN?** Set `APP_URL=http://<truenas-ip>:8088`, use `8088:8088` for ports, and drop the `BEHIND_PROXY`/`TRUSTED_PROXIES` lines. Don't use `80:80`/`443:443` — they collide with the TrueNAS web UI.
 {.is-info}
+
 
 
 
