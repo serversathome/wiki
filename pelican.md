@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-07-19T11:21:29.008Z
+date: 2026-07-19T20:47:50.656Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -93,6 +93,7 @@ On the TrueNAS host, create the config dir and save that YAML into it — this i
 
 ```bash
 mkdir -p /mnt/tank/configs/wings/{etc,data,logs,tmp}
+mkdir -p /mnt/tank/configs/wings/data/{archives,backups}
 chown -R 568:568 /mnt/tank/configs/wings
 ```
 Paste the node config into `/mnt/tank/configs/wings/etc/config.yml`
