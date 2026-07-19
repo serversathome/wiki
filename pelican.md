@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-07-19T10:43:22.971Z
+date: 2026-07-19T10:51:24.301Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -114,7 +114,7 @@ services:
       - WINGS_GID=568
       - WINGS_USERNAME=pelican
     ports:
-      - 87:87     # Wings API — the Panel talks to this
+      - 8099:8099     # Wings API — the Panel talks to this
       - 2022:2022     # SFTP
     volumes:
       - /mnt/tank/configs/wings/etc:/etc/pelican
