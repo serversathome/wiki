@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-07-19T10:17:34.986Z
+date: 2026-07-19T10:21:29.130Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -49,7 +49,7 @@ services:
 
 Point your reverse proxy (Cloudflare Tunnel / DockFlare / etc.) at the container on **port 88**, and set `APP_URL` to match the hostname you expose.
 
-> Set the `/mnt/tank/configs/pelican` dataset to **Generic** permissions and give other full permissions until the container starts. Then remove other's permissions when the container is running and sets its user to `82`.
+> Set the `/mnt/tank/configs/pelican` dataset to **Generic** permissions and give other full permissions
 {.is-success}
 
 
