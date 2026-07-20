@@ -2,7 +2,7 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2026-07-13T12:29:53.199Z
+date: 2026-07-20T19:09:20.986Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:16.637Z
@@ -170,3 +170,6 @@ jsDelivr: https://cdn.jsdelivr.net/gh/USER/REPO@BRANCH/path/file.m3u
 
 > These URLs occasionally move as the upstream repos reorganize. If one returns a 404, open the source repo (Free-TV/IPTV, iptv-org/iptv, BuddyChewChew/app-m3u-generator, matthuisman/i.mjh.nz) and grab the current path. A quick browser test of any URL before adding it will save you a lot of guessing.
 {.is-info}
+
+# <img src="/youtube.png" class="tab-icon"> 6 · Video
+[![](/2026-07-17-streaming-live-tv-with-dispatcha-promo-card.png)](https://www.patreon.com/serversathome/posts/streaming-live-163694070)
