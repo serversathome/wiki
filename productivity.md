@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2026-01-26T04:28:02.758Z
+date: 2026-07-20T09:47:52.458Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:28.852Z
@@ -13,7 +13,7 @@ Tags:
 <span class="badge">NEW</span>
 <span class="badge">UPDATED</span>
 -->
-- [<img src="/ollama.png"> AI<br>*Run AI locally*](/localai)
+- [<img src="/ollama.png"> AI<br>*Run AI locally*](/ollama)
 - [<img src="/authentik.png"> Authentik<br>*Identity Provider and SSO*](/authentik)
 - [<img src="/backvault.png">Backvault<br>*Backup Bitwarden/Vaultwarden*](/backvault)
 - [<img src="https://github.com/user-attachments/assets/f1a69d56-5850-4d83-95e8-052e25263fc8">BentoPDF<br>*Work with PDF files*](/bentopdf)
