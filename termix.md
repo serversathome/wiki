@@ -2,7 +2,7 @@
 title: Termix
 description: A guide to deploying Termix
 published: true
-date: 2026-05-06T22:04:27.210Z
+date: 2026-07-20T19:05:59.810Z
 tags: 
 editor: markdown
 dateCreated: 2026-05-06T22:04:27.210Z
@@ -94,3 +94,4 @@ Most modern Linux desktops include a VNC server. For GNOME, enable **Settings â†
 
 
 # <img src="/youtube.png" class="tab-icon"> 5 Â· Video
+https://youtu.be/KOXUqb6okow
