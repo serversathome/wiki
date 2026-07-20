@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-07-19T21:20:54.788Z
+date: 2026-07-20T00:33:32.347Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -103,11 +103,18 @@ Then edit that file so Wings writes everything under the wiki path instead of `/
 ```yaml
 system:
   data: /mnt/tank/configs/wings/data/volumes
+  tmp_directory: /mnt/tank/configs/wings/tmp
+  archive_directory: /mnt/tank/configs/wings/data/archives
+  backup_directory: /mnt/tank/configs/wings/data/backups
   user:
     uid: 568
     gid: 568
-    mount_passwd: true
-    passwd_file: /mnt/tank/configs/wings/etc/passwd
+    passwd:
+      enable: true
+      directory: /mnt/tank/configs/wings/etc
+  machine_id:
+    enable: true
+    directory: /mnt/tank/configs/wings/etc/machine-id
   sftp:
     bind_port: 2022
 ```
