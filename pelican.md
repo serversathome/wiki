@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-07-20T00:33:32.347Z
+date: 2026-07-20T00:34:49.103Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -92,8 +92,7 @@ In the Panel: **Admin → Nodes → Create Node**. Set the **FQDN** to the TrueN
 On the TrueNAS host, create the config dir and save that YAML into it — this is the `etc` bind from the stack below:
 
 ```bash
-mkdir -p /mnt/tank/configs/wings/{etc,data,logs,tmp}
-mkdir -p /mnt/tank/configs/wings/data/{archives,backups}
+mkdir -p /mnt/tank/configs/wings/{etc,logs,tmp,data/{archives,backups}}
 chown -R 568:568 /mnt/tank/configs/wings
 ```
 Paste the node config into `/mnt/tank/configs/wings/etc/config.yml`
