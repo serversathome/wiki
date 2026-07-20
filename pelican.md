@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-07-20T00:34:49.103Z
+date: 2026-07-20T19:05:18.199Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -176,4 +176,5 @@ Then create a server, pick an Egg, assign an allocation, and Wings spins it up a
 > Each game server publishes its own ports on the TrueNAS host (they're sibling containers). Reserve a port range and watch for collisions with your other apps.
 {.is-info}
 
-
+# <img src="/youtube.png" class="tab-icon"> 4 · Video
+https://youtu.be/Q3TKphmP188
