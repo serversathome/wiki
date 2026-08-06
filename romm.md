@@ -2,7 +2,7 @@
 title: RomM
 description: A guide to deploying RomM on TrueNAS and Docker
 published: true
-date: 2026-08-06T16:12:54.965Z
+date: 2026-08-06T16:13:05.440Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:07.432Z
@@ -112,8 +112,6 @@ chown -R 568:568 /mnt/tank/media/romm /mnt/tank/configs/romm
 > `romm_redis_data` is deliberately a **named volume** rather than a bind mount. RomM 5.x embeds Valkey inside the app container, and this path holds nothing but its cache file: the job queue, task results, and cached lookups. It is fully disposable and rebuilds itself. Docker also seeds a named volume with the image's own ownership, so it works out of the box under `user: 568:568`, while an auto-created bind mount would land as `root:root` and stop Valkey from starting. If you switch it to a bind mount, create and `chown 568:568` the directory yourself first.
 {.is-info}
 
-> If the container fails to start complaining about the config file, create an empty one with `sudo touch /mnt/tank/configs/romm/config/config.yml` and redeploy.
-{.is-warning}
 
 On first launch RomM drops you into a **Setup Wizard** rather than a login screen. The first account you create always receives the Admin role. Give the stack two or three minutes before the web UI answers, since it has to pull images, initialize the database, and run migrations.
 
