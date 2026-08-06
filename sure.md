@@ -2,7 +2,7 @@
 title: Sure
 description: A guide to deploy Sure
 published: true
-date: 2026-08-06T14:35:56.882Z
+date: 2026-08-06T14:36:32.545Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-06T14:22:23.744Z
@@ -98,13 +98,6 @@ services:
       retries: 5
 ```
 
-Docker creates the three subdirectories on first start, so there's nothing to `mkdir` ahead of time.
-
-> **You do not need to chown these directories.** The official Postgres and Redis images start their entrypoint as root, chown their own data directory, then drop privileges. Since neither service pins a `user:`, they sort themselves out on first run — this is the exception to the usual dataset-permissions step.
-{.is-success}
-
-That changes if you pin a `user:` in the compose, run rootless Docker or a userns-remapped daemon, or restore from a backup where files carry the wrong uid. In those cases: `999:999` for postgres, `999:1000` for redis, `1000:1000` for storage.
-
 > If your pool is named something besides `tank`, change the left side of each volume path.
 {.is-info}
 
@@ -120,8 +113,7 @@ RAILS_FORCE_SSL=false
 RAILS_ASSUME_SSL=false
 ```
 
-> Don't loosen permissions on the Postgres data directory afterward. It checks the mode on startup and refuses to boot if the directory is group- or world-readable. The image sets `0700` itself on first init — leave it there.
-{.is-warning}
+
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
