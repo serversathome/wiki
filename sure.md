@@ -2,7 +2,7 @@
 title: Sure
 description: A guide to deploy Sure
 published: true
-date: 2026-08-06T14:22:58.094Z
+date: 2026-08-06T14:35:56.882Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-06T14:22:23.744Z
@@ -11,7 +11,6 @@ dateCreated: 2026-08-06T14:22:23.744Z
 # <img src="/sure-finance.png" class="tab-icon"> What is Sure?
 
 **Sure** is a self-hosted personal finance app — net worth tracking, account aggregation, spending breakdowns, and investment holdings. It's the community fork of Maybe Finance, the VC-backed personal finance startup that shut down in 2023 and open-sourced its codebase.
-
 
 
 # 1 · Deploy Sure
@@ -99,19 +98,17 @@ services:
       retries: 5
 ```
 
-Create the data directories and set ownership **before** first start:
+Docker creates the three subdirectories on first start, so there's nothing to `mkdir` ahead of time.
 
-```bash
-mkdir -p /mnt/tank/configs/sure/{postgres,redis,storage}
-chown -R 999:999   /mnt/tank/configs/sure/postgres
-chown -R 999:1000  /mnt/tank/configs/sure/redis
-chown -R 1000:1000 /mnt/tank/configs/sure/storage
-```
+> **You do not need to chown these directories.** The official Postgres and Redis images start their entrypoint as root, chown their own data directory, then drop privileges. Since neither service pins a `user:`, they sort themselves out on first run — this is the exception to the usual dataset-permissions step.
+{.is-success}
 
-> **Ownership is not uniform.** Postgres and Redis both run as uid 999 but with different gids, and the Rails app runs as 1000. Using 568 across the board — the usual Servers@Home convention — will fail on all three.
-{.is-danger}
+That changes if you pin a `user:` in the compose, run rootless Docker or a userns-remapped daemon, or restore from a backup where files carry the wrong uid. In those cases: `999:999` for postgres, `999:1000` for redis, `1000:1000` for storage.
 
-Then create your `.env` alongside the compose file:
+> If your pool is named something besides `tank`, change the left side of each volume path.
+{.is-info}
+
+Create your `.env` alongside the compose file:
 
 ```bash
 SECRET_KEY_BASE=          # openssl rand -hex 64
@@ -123,12 +120,11 @@ RAILS_FORCE_SSL=false
 RAILS_ASSUME_SSL=false
 ```
 
-> Leave the Postgres data directory at `0700`. Postgres checks the mode on startup and refuses to initialize if it's group- or world-readable. The image sets this itself on first init — don't `chmod 755` it out of habit.
+> Don't loosen permissions on the Postgres data directory afterward. It checks the mode on startup and refuses to boot if the directory is group- or world-readable. The image sets `0700` itself on first init — leave it there.
 {.is-warning}
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
-A community app landed in the TrueNAS catalog in March 2026.
 
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for **Sure** (Community train, Financial category)
@@ -174,6 +170,13 @@ SimpleFIN is an open protocol for financial aggregation. Since almost no US bank
 
 In Sure, go to **Settings → SimpleFIN Connections** and paste the token. Sure exchanges it for a long-lived access URL containing HTTP Basic Auth credentials, and stores that encrypted with your `SECRET_KEY_BASE`.
 
+Watch the worker rather than the UI, which only reports a bare "Error":
+
+```bash
+docker logs -f sure-worker
+```
+
+You want the `SimplefinItem` sync to move `pending → syncing → completed`.
 
 > **Never manually retry `SimplefinConnectionUpdateJob`.** It consumes a single-use setup token, and retrying permanently breaks that connection attempt. If a sync fails, go back to Bridge, generate a *fresh* token, and start over.
 {.is-danger}
@@ -187,7 +190,7 @@ In Sure, go to **Settings → SimpleFIN Connections** and paste the token. Sure 
 | Credit card sign | Some institutions report positive, others negative — reconcile manually |
 | Pending transactions | Not all institutions return them, even when requested |
 | Non-USD accounts | Known bug where these can import as USD — spot-check |
-
+{.dense}
 
 > Rotating `SECRET_KEY_BASE` invalidates the stored access URL. You'll need to claim a brand new token from Bridge. Note this wherever you keep your secrets.
 {.is-warning}
@@ -201,13 +204,17 @@ Sure can use an LLM for chat, auto-categorization, merchant detection, and PDF s
 | OpenAI | Set `OPENAI_ACCESS_TOKEN` only |
 | OpenRouter | `OPENAI_URI_BASE=https://openrouter.ai/api/v1` + model name |
 | Ollama / LM Studio | Point `OPENAI_URI_BASE` at the `/v1` path, use any dummy token |
-
+{.dense}
 
 Notes worth having:
 
 - The `/v1` suffix is required. Omitting it produces an unhelpful 404
 - If the endpoint has no vision support, set `OPENAI_SUPPORTS_PDF_PROCESSING=false`
+- For a local model on the same host, `localhost` won't resolve from inside the container — use the container name or the host's LAN IP
+- Restart **both** `web` and `worker` after changing these. The worker runs background categorization, so restarting only web gets you working chat and stale batch behavior
+
+> Get SimpleFIN sync solid *before* adding an LLM. Fewer variables when something breaks.
+{.is-success}
 
 
-# <img src="/youtube.png" class="tab-icon"> 5 · Video
 
