@@ -2,13 +2,13 @@
 title: Sure
 description: A guide to deploy Sure
 published: true
-date: 2026-08-06T14:22:23.744Z
+date: 2026-08-06T14:22:58.094Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-06T14:22:23.744Z
 ---
 
-# <img src="/sure.png" class="tab-icon"> What is Sure?
+# <img src="/sure-finance.png" class="tab-icon"> What is Sure?
 
 **Sure** is a self-hosted personal finance app — net worth tracking, account aggregation, spending breakdowns, and investment holdings. It's the community fork of Maybe Finance, the VC-backed personal finance startup that shut down in 2023 and open-sourced its codebase.
 
