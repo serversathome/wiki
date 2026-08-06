@@ -2,7 +2,7 @@
 title: RomM
 description: A guide to deploying RomM on TrueNAS and Docker
 published: true
-date: 2026-08-06T14:38:02.649Z
+date: 2026-08-06T14:38:44.393Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:07.432Z
@@ -158,7 +158,7 @@ RomM will scan without any provider credentials, but match quality drops sharply
 | SteamGridDB | Yes, API key | Community cover art |
 | RetroAchievements | Yes, API key | Achievements and progress tracking |
 | MobyGames | Yes, paid | New API keys are behind a paywall |
-{.dense}
+
 
 # {.tabset}
 ## Hasheous
