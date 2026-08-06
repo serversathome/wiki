@@ -2,7 +2,7 @@
 title: RomM
 description: A guide to deploying RomM on TrueNAS and Docker
 published: true
-date: 2026-08-06T16:54:36.160Z
+date: 2026-08-06T16:55:01.426Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:07.432Z
@@ -101,6 +101,7 @@ Before deploying, create the host directories and hand them to the `apps` user:
 ```bash
 mkdir -p /mnt/tank/media/romm/{library/roms,resources,assets}
 chown -R 568:568 /mnt/tank/media/romm
+chmod 770 -R /mnt/tank/media/romm
 ```
 
 > **Keep `library` and `resources` on the same ZFS dataset.** RomM cannot link ROMs to their artwork across dataset boundaries, even when permissions are correct on both. The symptom looks like success: the scan finishes, the logs show artwork downloading, the image files are visibly on disk, and every cover in the UI stays blank. The config directory and the database can live on a separate dataset without any issue.
