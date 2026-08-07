@@ -2,13 +2,13 @@
 title: Calnode
 description: A guide to deploying Calnode
 published: true
-date: 2026-07-23T12:07:16.903Z
+date: 2026-08-07T09:15:40.697Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-23T12:07:16.903Z
 ---
 
-# What is Calnode?
+# <img src="/calnode.png" class="tab-icon"> What is Calnode?
 
 **Calnode** is a lean, self-hostable Calendly alternative — a scheduling and booking engine that ships as a **single Go binary with an embedded SQLite database**. There is no Redis, no Postgres, no separate API server, and no multi-gigabyte image. 
 
