@@ -2,7 +2,7 @@
 title: LinkBreeze
 description: A guide to deploying LinkBreeze
 published: true
-date: 2026-08-05T20:25:52.869Z
+date: 2026-08-10T21:58:54.756Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-05T20:25:52.869Z
@@ -50,7 +50,7 @@ On first launch, LinkBreeze walks you through creating your admin account and yo
 3. Set your **page slug** — this is the public URL, e.g. `/johndoe`
 4. Set your **display name**, **bio**, and **avatar**
 
-Your public page now lives at `http://<your-server-ip>:3000/<your-slug>`, and the admin dashboard is at `/admin`.
+Your public page now lives at `http://<your-server-ip>:3000/<your-slug>`, and the admin dashboard is at `/dashboard`.
 
 > 
 > Use a real password here. If you expose this page to the internet, the admin panel is exposed with it.
