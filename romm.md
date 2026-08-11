@@ -2,7 +2,7 @@
 title: RomM
 description: A guide to deploying RomM on TrueNAS and Docker
 published: true
-date: 2026-08-06T16:55:01.426Z
+date: 2026-08-11T09:30:20.690Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:07.432Z
@@ -311,5 +311,5 @@ It requires the `STREAMING_BROKER_SECRET` environment variable plus separate bro
 > Emulator streaming is in **early development** and its documentation is still being written. Treat it as experimental, and do not build a family-facing setup around it yet.
 {.is-warning}
 
-# <img src="/youtube.png" class="tab-icon"> 6 · Video Walkthrough
-https://youtu.be/lQeUq5Pzo1o
+# <img src="/patreon-light.png" class="tab-icon"> 6 · Video
+[![](/2026-08-06-romm-51-the-self-hosted-rom-ma-promo-card.png)](https://www.patreon.com/serversathome/posts/romm-5-1-self-165952710)
