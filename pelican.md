@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-07-20T19:05:18.199Z
+date: 2026-08-25T10:31:47.610Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -28,7 +28,7 @@ Create a new stack in Dockge called **`pelican`** and paste the compose below. I
 ```yaml
 services:
   pelican:
-    image: ghcr.io/pelican-dev/panel:latest
+    image: ghcr.io/pelican/panel:latest
     container_name: pelican
     environment:
       - XDG_DATA_HOME=/pelican-data
