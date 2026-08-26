@@ -2,7 +2,7 @@
 title: Plex
 description: A guide to installing Plex in TrueNAS and via docker compose
 published: true
-date: 2026-02-11T21:34:35.961Z
+date: 2026-08-26T09:31:49.289Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:21.349Z
@@ -145,6 +145,4 @@ Upon first launch follow these steps:
 1. Repeat this process for TV Shows
 1. Click **Next** then click **Done** then click **Finish Setup**
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video Walkthrough
-https://youtu.be/L8Wn5EPwuYI
 
