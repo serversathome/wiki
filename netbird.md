@@ -2,7 +2,7 @@
 title: Netbird
 description: A guide to installing and using Netbird
 published: true
-date: 2026-06-29T10:43:58.651Z
+date: 2026-08-27T10:48:29.711Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:37.607Z
@@ -189,7 +189,7 @@ The dashboard provides a wizard that generates the proxy token, shows the DNS re
    |-------|-------------------------|--------------------------|
    | A     | `proxy.yourdomain.com`  | Your server's public IP  |
    | CNAME | `*.proxy.yourdomain.com`| `proxy.yourdomain.com`   |
-   {.dense}
+
 
    The wildcard record is required so every service domain (`{subdomain}.proxy.yourdomain.com`) resolves to your proxy. If you're on Cloudflare, set these records to **DNS Only** (grey cloud). Click **Continue**.
 
@@ -217,11 +217,11 @@ The dashboard provides a wizard that generates the proxy token, shows the DNS re
 
    Paste the generated token into the `NB_PROXY_TOKEN=` line and set `NB_PROXY_DOMAIN` to the domain from Step 2. On NetBird Cloud, leave `NB_PROXY_MANAGEMENT_ADDRESS` as `https://api.netbird.io`; on a self-hosted management server, use your own management URL.
 
-   > **Copy the token now.** The plain token is shown **only once**, at the moment it's generated. Store it somewhere safe before closing the modal. If you lose it, revoke it and generate a new one.
+> **Copy the token now.** The plain token is shown **only once**, at the moment it's generated. Store it somewhere safe before closing the modal. If you lose it, revoke it and generate a new one.
    {.is-danger}
 
 
-    > With the default `tls-alpn-01` challenge you only need port 443 — you can drop the `80:80` mapping. Keep port 80 only if you switch to the `http-01` challenge.
+> With the default `tls-alpn-01` challenge you only need port 443 — you can drop the `80:80` mapping. Keep port 80 only if you switch to the `http-01` challenge.
     {.is-info}
 
 
