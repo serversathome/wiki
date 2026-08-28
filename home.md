@@ -2,7 +2,7 @@
 title: Home
 description: This is the official wiki for Servers@Home
 published: true
-date: 2026-05-27T08:12:03.894Z
+date: 2026-08-28T10:40:25.077Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:13.120Z
@@ -24,7 +24,7 @@ New to self-hosting? These three will get you running:
 | Guide | What you'll learn |
 |-------|-------------------|
 | [First-Time Homelab Guide](https://blog.serversatho.me/breaking-the-rules/) | Where to begin and what to buy |
-| [TrueNAS Scale Walkthrough](/TrueNAS) | Set up your storage OS |
+| [TrueNAS Walkthrough](/TrueNAS) | Set up your storage OS |
 | [Docker for Home Servers](/Docker) | Run your first containers |
 
 
