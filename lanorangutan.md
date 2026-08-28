@@ -2,7 +2,7 @@
 title: LAN-Orangutan
 description: A guide to deploying LAN-Orangutan
 published: true
-date: 2026-08-28T20:48:50.224Z
+date: 2026-08-28T21:11:52.065Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-28T20:48:50.224Z
@@ -101,6 +101,5 @@ The dashboard and settings pages also show connection state with a connect/disco
 > **Tailscale features need a host install.** They rely on the Tailscale CLI being present where LAN Orangutan runs. In the standard Docker setup the container has its own filesystem and cannot see the host's Tailscale, so the card reads "Not Installed" even when the host is on your tailnet. Run the binary on the host if you want this.
 {.is-warning}
 
-> Disconnecting warns you first — worth reading, since you may well be reaching the dashboard over Tailscale itself.
-{.is-info}
+
 
