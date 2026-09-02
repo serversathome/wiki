@@ -2,7 +2,7 @@
 title: NextDNS
 description: A guide to configuring NextDNS
 published: true
-date: 2026-09-02T10:12:40.040Z
+date: 2026-09-02T10:18:20.331Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-02T09:57:01.133Z
@@ -45,19 +45,39 @@ Private DNS is the cleaner option where the device supports it.
 
 ## Router
 
-**Setup** tab → **Setup Guide** → **Routers**, then pick your model.
+Start by checking what the gateway actually is, because that decides everything else.
  
-Picking the right endpoint matters more than the router does. Use **DoH**, **DoT** or the **IPv6** addresses if your router supports any of them, because all three carry the config ID in the endpoint itself. Plain IPv4 does not, so it needs **Linked IP**, which ties your profile to your current public address.
+### If it is a stock ISP gateway (most homes)
  
-> Linked IP breaks on a residential connection. A modem reboot or an ISP-side change gives you a new address, NextDNS stops recognising the queries, and filtering silently stops while the internet keeps working normally. Nobody notices for weeks.
+Verizon, Xfinity, Cox and similar boxes do not run resolver software, will not accept a DoH URL, and often will not take custom IPv6 DNS even when the line carries IPv6. Some, notably Xfinity xFi, will not let you change DNS at all.
+ 
+That leaves one workable option: **IPv4 with Linked IP**.
+ 
+1. Open the gateway's admin page, usually `http://192.168.0.1` or `http://192.168.1.1`
+2. Find the DNS settings and replace whatever is there with the two `45.90.x.x` servers from your **Linked IP** panel
+3. Save, then click **Link IP** on the Setup tab
+> Those IPv4 servers do not identify you. NextDNS matches queries to your profile by the public address they arrive from, so when your ISP hands out a new address after a modem reboot, filtering silently stops and the internet keeps working normally. Nobody notices for weeks.
 {.is-danger}
  
-If plain IPv4 is your only option, point the router's built-in **Dynamic DNS** at a free provider such as No-IP or DuckDNS, then enter that hostname under **Setup → Linked IP → Show advanced options**. NextDNS resolves it and keeps the link current. There is also a unique update URL there you can curl from a cron job on any always-on box.
+**Do not leave it there.** Look for a **Dynamic DNS** section in the gateway. If it has one, point it at a free No-IP or DuckDNS hostname, then enter that hostname under **Setup → Linked IP → Show advanced options**. NextDNS resolves it and keeps the link current on its own.
  
-Enable **per-device identification**, otherwise every client on the LAN collapses into one entry and the analytics stop being useful for spotting a device that should not be there.
+If the gateway has no DDNS section, skip router setup entirely rather than leaving a link that will quietly die. Cover the phones and tablets individually instead. That is the coverage that matters anyway, it works on cellular, and it has none of this fragility. What you give up is the TV and the consoles, which is a small gap.
  
-> If an ISP gateway stays in the path, turn its wifi radio off. Two SSIDs in a house means one unfiltered SSID, and someone will find it. Then reboot the modem and re-check before you call the job done.
+The real fix for whole-house coverage on a locked-down gateway is putting a capable router behind it. See [UniFi](/unifi).
+ 
+### If it runs real resolver software
+ 
+OpenWrt, pfSense, OPNsense, MikroTik, Asuswrt-Merlin and anything running the `nextdns` CLI can use an endpoint that carries the config ID, which removes the dynamic IP problem completely.
+ 
+The Setup Guide has ready-made blocks for dnsmasq, Stubby, Unbound, Knot, DNSCrypt and MikroTik. Each one embeds either your DoT hostname (`abc123.dns.nextdns.io`), your DoH URL (`https://dns.nextdns.io/abc123`), or a dnsmasq `add-cpe-id` tag. IPv6 works too, since the config ID is encoded in the address itself.
+ 
+### Either way
+ 
+Enable **per-device identification**, or every client on the LAN collapses into one entry and the analytics stop being useful for spotting a device that should not be there. On DoT and DoH this is done by prepending the name to the hostname, as shown under **Identify your devices** at the bottom of the Setup tab.
+ 
+> If the ISP gateway stays in the path, turn its wifi radio off. Two SSIDs in a house means one unfiltered SSID, and someone will find it. Then reboot the modem and re-check the banner at the top of the Setup tab before calling the job done.
 {.is-info}
+
 
 
 ## <img src="/docker.png" class="tab-icon"> Docker
