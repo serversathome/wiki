@@ -2,7 +2,7 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-06-07T14:40:42.423Z
+date: 2026-09-02T10:39:18.053Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:53.605Z
@@ -92,6 +92,6 @@ Rather than adding indexers manually, let Prowlarr manage them:
 
 
 
-# <img src="/patreon-light.png" class="tab-icon"> 3 · Video Guide 
+# <img src="/patreon-light.png" class="tab-icon"> 3 · Video 
 
 [![Promo](/2025-03-18-advanced-media-management-with-r-promo-card.png)](https://www.patreon.com/posts/advanced-media-124637606)
