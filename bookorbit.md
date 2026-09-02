@@ -2,7 +2,7 @@
 title: Bookorbit
 description: A guide to deploying Bookorbit
 published: true
-date: 2026-08-28T20:18:42.561Z
+date: 2026-09-02T10:35:16.589Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-28T20:18:42.561Z
@@ -135,10 +135,10 @@ On first load BookOrbit presents a setup screen that asks for the bootstrap toke
 5. Save, then run a scan
 
 > **Folder Layout That Scans Cleanly**
-> One folder per author, subfolder per title
-> Keep audiobook parts together in a single title folder
-> Separate libraries for comics and books rather than one mixed library
-{.is-success}
+> - [x] One folder per author, subfolder per title
+> - [x] Keep audiobook parts together in a single title folder
+> - [x] Separate libraries for comics and books rather than one mixed library
+<!-- {blockquote:.is-success} -->
 
 
 ## 2.3 Metadata Providers
