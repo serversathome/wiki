@@ -2,7 +2,7 @@
 title: Forgejo
 description: A guide to deploying Forgejo
 published: true
-date: 2026-08-25T18:25:30.503Z
+date: 2026-09-02T10:39:53.290Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-25T18:25:30.503Z
@@ -409,4 +409,7 @@ Also turn on the Forgejo setting requiring manual approval before workflows run 
 ## 7.8 If you never accept outside contributions
  
 If a repository is only ever built from code you wrote, the CI VM is more than you need and the `publish` runner on TrueNAS can do everything. The realistic threat there is a compromised upstream dependency in your own build, which DinD contains reasonably well.
+
+# <img src="/youtube.png" class="tab-icon"> 8 · Video 
+https://youtu.be/O_kpayAlRZA
  
