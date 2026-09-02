@@ -2,7 +2,7 @@
 title: NextDNS
 description: A guide to configuring NextDNS
 published: true
-date: 2026-09-02T10:26:14.824Z
+date: 2026-09-02T10:32:13.582Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-02T09:57:01.133Z
@@ -14,8 +14,7 @@ dateCreated: 2026-09-02T09:57:01.133Z
 
 Free tier is 300,000 queries per month with all features. Pro is $1.99/month or $19.90/year for unlimited queries.
 
-> Want to say thanks? Sign up using [my link](https://nextdns.io/?from=s8235t86) and I get a small commission at no extra cost to you!
-{.is-success}
+
 
 
 > The free tier does not error when it hits the cap. It keeps resolving DNS and silently stops filtering and logging for the remainder of the month. A single household burns through 300k quickly, especially with the router pointed at it. Take the paid tier.
@@ -24,9 +23,13 @@ Free tier is 300,000 queries per month with all features. Pro is $1.99/month or 
 # 1 · Create your account
 
 1. Go to [nextdns.io](https://nextdns.io/?from=s8235t86) and click **Try it now**
-2. Sign up with an email address and password
-3. You land on a dashboard with a configuration already created for you
-4. Open the **Settings** tab and give it a name. `Kids` is a sensible first one
+
+    > Want to say thanks? Sign up using [my link](https://nextdns.io/?from=s8235t86) and I get a small commission at no extra cost to you!
+<!-- {blockquote:.is-success} -->
+
+1. Sign up with an email address and password
+1. You land on a dashboard with a configuration already created for you
+1. Open the **Settings** tab and give it a name. `Kids` is a sensible first one
 
 ## 1.1 Subscribing
 
