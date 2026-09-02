@@ -2,7 +2,7 @@
 title: NextDNS
 description: A guide to configuring NextDNS
 published: true
-date: 2026-09-02T10:19:47.097Z
+date: 2026-09-02T10:22:22.995Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-02T09:57:01.133Z
@@ -10,9 +10,7 @@ dateCreated: 2026-09-02T09:57:01.133Z
 
 # <img src="/nextdns.png" class="tab-icon"> What is NextDNS?
 
-**NextDNS** is a hosted DNS resolver with per-device profiles, category filtering, threat blocking and query logging. Think Pi-hole with a cloud control plane, plus the ability to apply a policy to a device that is not on your network.
-
-That last part is the reason to run it alongside a local resolver rather than instead of one. A Pi-hole covers your LAN. A NextDNS profile installed on a phone covers that phone on cellular, at school, and on someone else's wifi.
+**NextDNS** protects you from all kinds of security threats, blocks ads and trackers on websites and in apps and provides a safe and supervised Internet for kids — on all devices and on all networks.
 
 Free tier is 300,000 queries per month with all features. Pro is $1.99/month or $19.90/year for unlimited queries.
 
