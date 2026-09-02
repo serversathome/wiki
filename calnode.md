@@ -2,7 +2,7 @@
 title: Calnode
 description: A guide to deploying Calnode
 published: true
-date: 2026-08-07T09:15:40.697Z
+date: 2026-09-02T10:41:14.955Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-23T12:07:16.903Z
@@ -207,3 +207,5 @@ If you see `SQLite format 3` and a file size close to your live database, the ro
 > The replica contains booking PII (names, email addresses, intake answers) in plaintext. **Keep the bucket private.** Calnode's own encrypted secrets stay sealed by the envelope key even inside the backup, but the booking data does not.
 {.is-danger}
 
+# <img src="/youtube.png" class="tab-icon"> 5 · Video
+https://youtu.be/Ozcy0fPlT3Q
