@@ -2,7 +2,7 @@
 title: NextDNS
 description: A guide to configuring NextDNS
 published: true
-date: 2026-09-02T09:57:01.133Z
+date: 2026-09-02T09:59:24.339Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-02T09:57:01.133Z
@@ -25,7 +25,7 @@ Free tier is 300,000 queries per month with all features. Pro is $1.99/month or 
 
 # 1 · Deploy NextDNS
 # {.tabset}
-## iOS / iPadOS
+## <img src="/apple-light.png" class="tab-icon"> iOS / iPadOS
 
 Install the **NextDNS** app from the App Store, then enter the configuration ID from your **Setup** tab.
 
@@ -34,7 +34,7 @@ Install the **NextDNS** app from the App Store, then enter the configuration ID 
 
 The signed configuration profile at `apple.nextdns.io` is the alternative. It uses DoH and needs no app, but the app is easier to verify and there are scattered reports of profiles applying on wifi but not cellular.
 
-## Android
+## <img src="/android-robot.png" class="tab-icon"> Android
 
 Two options:
 
@@ -52,7 +52,7 @@ Covers the TV, consoles and IoT devices that cannot run a profile.
 > Enable per-device identification. Without it every client on the LAN collapses into one entry and the analytics become useless for the one thing they are best at, which is spotting a device that should not be there.
 {.is-info}
 
-## Docker
+## <img src="/docker.png" class="tab-icon"> Docker
 
 ```yaml
 services:
