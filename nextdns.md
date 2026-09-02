@@ -2,7 +2,7 @@
 title: NextDNS
 description: A guide to configuring NextDNS
 published: true
-date: 2026-09-02T10:18:20.331Z
+date: 2026-09-02T10:19:47.097Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-02T09:57:01.133Z
@@ -62,22 +62,6 @@ That leaves one workable option: **IPv4 with Linked IP**.
 **Do not leave it there.** Look for a **Dynamic DNS** section in the gateway. If it has one, point it at a free No-IP or DuckDNS hostname, then enter that hostname under **Setup → Linked IP → Show advanced options**. NextDNS resolves it and keeps the link current on its own.
  
 If the gateway has no DDNS section, skip router setup entirely rather than leaving a link that will quietly die. Cover the phones and tablets individually instead. That is the coverage that matters anyway, it works on cellular, and it has none of this fragility. What you give up is the TV and the consoles, which is a small gap.
- 
-The real fix for whole-house coverage on a locked-down gateway is putting a capable router behind it. See [UniFi](/unifi).
- 
-### If it runs real resolver software
- 
-OpenWrt, pfSense, OPNsense, MikroTik, Asuswrt-Merlin and anything running the `nextdns` CLI can use an endpoint that carries the config ID, which removes the dynamic IP problem completely.
- 
-The Setup Guide has ready-made blocks for dnsmasq, Stubby, Unbound, Knot, DNSCrypt and MikroTik. Each one embeds either your DoT hostname (`abc123.dns.nextdns.io`), your DoH URL (`https://dns.nextdns.io/abc123`), or a dnsmasq `add-cpe-id` tag. IPv6 works too, since the config ID is encoded in the address itself.
- 
-### Either way
- 
-Enable **per-device identification**, or every client on the LAN collapses into one entry and the analytics stop being useful for spotting a device that should not be there. On DoT and DoH this is done by prepending the name to the hostname, as shown under **Identify your devices** at the bottom of the Setup tab.
- 
-> If the ISP gateway stays in the path, turn its wifi radio off. Two SSIDs in a house means one unfiltered SSID, and someone will find it. Then reboot the modem and re-check the banner at the top of the Setup tab before calling the job done.
-{.is-info}
-
 
 
 ## <img src="/docker.png" class="tab-icon"> Docker
