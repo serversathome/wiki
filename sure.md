@@ -2,7 +2,7 @@
 title: Sure
 description: A guide to deploy Sure
 published: true
-date: 2026-08-06T14:36:32.545Z
+date: 2026-09-02T10:42:03.270Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-06T14:22:23.744Z
@@ -208,5 +208,8 @@ Notes worth having:
 > Get SimpleFIN sync solid *before* adding an LLM. Fewer variables when something breaks.
 {.is-success}
 
+
+# <img src="/youtube.png" class="tab-icon"> 5 · Video
+https://youtu.be/ZX8N3mSnDGw
 
 
