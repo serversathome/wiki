@@ -2,7 +2,7 @@
 title: NextDNS
 description: A guide to configuring NextDNS
 published: true
-date: 2026-09-02T09:59:24.339Z
+date: 2026-09-02T10:12:40.040Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-02T09:57:01.133Z
@@ -26,13 +26,13 @@ Free tier is 300,000 queries per month with all features. Pro is $1.99/month or 
 # 1 · Deploy NextDNS
 # {.tabset}
 ## <img src="/apple-light.png" class="tab-icon"> iOS / iPadOS
-
-Install the **NextDNS** app from the App Store, then enter the configuration ID from your **Setup** tab.
-
-> The app ships blank. Installing it and stopping there gives you encrypted DNS with no filtering, which looks identical to working. This is the most common setup mistake by a wide margin.
+**Setup** tab → **Setup Guide** → **iOS**, then scan the QR code with the phone's camera.
+ 
+That single scan installs and configures the app together. It is the recommended path and it sidesteps the usual failure mode, where someone installs the app from the App Store, never enters a configuration ID, and ends up with encrypted DNS that filters nothing while looking exactly like it works.
+ 
+> Scan the code from the profile you actually want applied. The Setup tab is profile-scoped, so a code generated while the Adults profile is selected will apply adult rules to the kid's phone. Check the profile dropdown in the top left before scanning.
 {.is-warning}
 
-The signed configuration profile at `apple.nextdns.io` is the alternative. It uses DoH and needs no app, but the app is easier to verify and there are scattered reports of profiles applying on wifi but not cellular.
 
 ## <img src="/android-robot.png" class="tab-icon"> Android
 
@@ -45,12 +45,20 @@ Private DNS is the cleaner option where the device supports it.
 
 ## Router
 
-Point your gateway's upstream DNS at the IPv4 or IPv6 endpoints on the Setup tab, or use Linked IP if your WAN address is dynamic.
-
-Covers the TV, consoles and IoT devices that cannot run a profile.
-
-> Enable per-device identification. Without it every client on the LAN collapses into one entry and the analytics become useless for the one thing they are best at, which is spotting a device that should not be there.
+**Setup** tab → **Setup Guide** → **Routers**, then pick your model.
+ 
+Picking the right endpoint matters more than the router does. Use **DoH**, **DoT** or the **IPv6** addresses if your router supports any of them, because all three carry the config ID in the endpoint itself. Plain IPv4 does not, so it needs **Linked IP**, which ties your profile to your current public address.
+ 
+> Linked IP breaks on a residential connection. A modem reboot or an ISP-side change gives you a new address, NextDNS stops recognising the queries, and filtering silently stops while the internet keeps working normally. Nobody notices for weeks.
+{.is-danger}
+ 
+If plain IPv4 is your only option, point the router's built-in **Dynamic DNS** at a free provider such as No-IP or DuckDNS, then enter that hostname under **Setup → Linked IP → Show advanced options**. NextDNS resolves it and keeps the link current. There is also a unique update URL there you can curl from a cron job on any always-on box.
+ 
+Enable **per-device identification**, otherwise every client on the LAN collapses into one entry and the analytics stop being useful for spotting a device that should not be there.
+ 
+> If an ISP gateway stays in the path, turn its wifi radio off. Two SSIDs in a house means one unfiltered SSID, and someone will find it. Then reboot the modem and re-check before you call the job done.
 {.is-info}
+
 
 ## <img src="/docker.png" class="tab-icon"> Docker
 
