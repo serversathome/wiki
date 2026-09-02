@@ -2,7 +2,7 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2026-07-12T12:09:46.963Z
+date: 2026-09-02T10:30:25.528Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:26.409Z
@@ -190,6 +190,11 @@ Two gotchas worth knowing:
  
 - **Gotify defaults to HTTPS.** Plain-HTTP deployments need `gotify://gotify-host:8080/token?disabletls=Yes`
 - **Telegram topic groups** take the thread ID after a colon: `channels=-123456789:12345`
+
+# <img src="/eagle.png" class="tab-icon"> 8 · Would You Like to Know More?
+
+
+https://blog.serversatho.me/getting-smart-about-your-data-why-drive-health-isnt-enough/
 
 
 
