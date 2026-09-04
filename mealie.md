@@ -2,7 +2,7 @@
 title: Mealie
 description: A guide to deploying Mealie
 published: true
-date: 2026-06-29T21:16:00.699Z
+date: 2026-09-04T18:00:34.639Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:17.048Z
@@ -24,8 +24,8 @@ services:
       - /mnt/tank/configs/mealie:/app/data/
     environment:
       ALLOW_SIGNUP: "false"
-      PUID: 1000
-      PGID: 1000
+      PUID: 568
+      PGID: 568
       TZ: America/New_York
       MAX_WORKERS: 1
       WEB_CONCURRENCY: 1
