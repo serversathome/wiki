@@ -2,7 +2,7 @@
 title: Meridian
 description: A guide to deploying Meridian
 published: true
-date: 2026-06-16T15:04:47.574Z
+date: 2026-09-05T10:53:44.190Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-22T21:18:58.613Z
@@ -10,126 +10,85 @@ dateCreated: 2026-04-22T21:18:58.613Z
 
 # What is Meridian?
 
-**Meridian** is a local proxy that exposes your Claude Max or Pro subscription as a standard Anthropic-compatible (and OpenAI-compatible) API. It runs the Claude Code SDK under the hood and translates its output into the API formats that third-party tools expect — so you can point OpenCode, Cline, Aider, Crush, Droid, Open WebUI, Continue, and anything else that accepts a custom `base_url` at Meridian and drive them with Claude.
+**Meridian** is a local proxy that exposes the Claude Code SDK as a standard Anthropic API endpoint, so third-party coding tools can talk to Claude through a Claude Max subscription instead of a metered API key. It runs on `127.0.0.1:3456` by default and speaks both the Anthropic Messages API and the OpenAI chat-completions API, which means tools like OpenCode, Crush, Droid, Cline, Aider, Pi, ForgeCode and Open WebUI can point at it with nothing more than a `base_url` change.
 
-Unlike older proxies that extracted OAuth tokens or patched binaries, Meridian only calls documented SDK functions. Anthropic retains control of authentication, rate limiting, prompt caching, and context management. It's a presentation layer, not a jailbreak.
+Everything flows through the SDK's documented `query()` function — no OAuth interception, no patched binaries. Session management, streaming, prompt caching and rate limiting stay under Anthropic's control; Meridian only translates the SDK's output into the API shape that other tools expect. TypeScript, MIT licensed, distributed on npm as `@rynfar/meridian`.
+
+> **Terms of service caveat.** Claude Max is licensed as an individual subscription for Anthropic's own clients. Using it to drive third-party tools is a grey area, and the project's own docs describe sharing one subscription across machines or teams — that part is squarely against Anthropic's terms and is the fastest way to get an account flagged. Keep this to your own account on your own machine.
+{.is-warning}
 
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Meridian
 
-Meridian does not publish a prebuilt image, so you build it once from source. Authentication requires a browser, which containers don't have — so there's a one-time seeding step with a throwaway container before the stack will stay up.
-
-## 1.1 Build the image
-
-SSH into your host and clone the repo:
-
-```bash
-cd /mnt/tank/stacks
-git clone https://github.com/rynfar/meridian.git
-cd meridian
-docker build -t meridian:latest .
-```
-
-## 1.2 Create the stack directory and seed credentials
-
-Create a Dockge stack directory and an empty `claude-auth` bind mount next to it. The container runs as UID 1000, so the directory must be owned by that UID:
-
-```bash
-mkdir -p /mnt/tank/stacks/meridian/claude-auth
-cd /mnt/tank/stacks/meridian
-sudo chown -R 1000:1000 claude-auth
-```
-
-Launch a throwaway container with that directory mounted and run `claude login` inside it:
-
-```bash
-docker run --rm -it \
-  --user claude \
-  --entrypoint /bin/sh \
-  -v "$(pwd)/claude-auth:/home/claude/.claude" \
-  meridian:latest
-```
-
-At the container shell, authenticate:
-
-```bash
-claude 
-```
-
-Follow the OAuth URL in a browser, paste the returned code back into the container shell, then exit. You should now see `.credentials.json` (mode 0600) inside `./claude-auth/` on the host.
-
-> 
-> Whichever Claude account you authenticate here is the account every connected client will draw quota from — and, after June 15, 2026, the account whose monthly Agent SDK credit gets billed. If you're signed into multiple accounts in your browser, sign out of any you don't want used before running the OAuth flow.
-{.is-warning}
-
-## 1.3 Deploy the stack
-
-Create the stack in Dockge with the following `compose.yaml`:
-
 ```yaml
 services:
   meridian:
-    image: meridian:latest
+    image: ghcr.io/rynfar/meridian:1.67
     container_name: meridian
-    restart: unless-stopped
+    user: "568:568"
     environment:
-      - MERIDIAN_HOST=0.0.0.0
-      - MERIDIAN_PORT=3456
-      # - MERIDIAN_API_KEY=change-me-to-a-long-random-string   # see §2.5 before deciding
-      # - MERIDIAN_MAX_CONCURRENT=10                           # bump if many agents share this proxy
+      - HOME=/home/claude
+      - MERIDIAN_API_KEY=change-me-to-a-long-random-string
+      - MERIDIAN_TELEMETRY_PERSIST=1
+    restart: unless-stopped
     ports:
       - "3456:3456"
     volumes:
-      - ./claude-auth:/home/claude/.claude
+      - /mnt/tank/configs/meridian:/home/claude
 ```
 
 
-> `MERIDIAN_HOST` is the address the proxy binds to **inside the container** — keep it `0.0.0.0`. To scope the service to a specific host interface, put the IP in the `ports:` mapping as `HOST_IP:HOST_PORT:CONTAINER_PORT` instead. See the troubleshooting section — getting this backwards causes a silent crash loop.
-{.is-danger}
+## 1.1 Seeding credentials
+
+On the host, run this command to shell into the container:
+
+```bash
+
+docker exec -it meridian claude login
+```
+Then follow the standard steps to login to Claude Code.
+
 
 # 2 · Configuration
 
-## 2.1 Pointing clients at Meridian
-
-Most Anthropic-compatible tools just need two environment variables. Meridian does not validate API keys against Anthropic, so unless you've enabled `MERIDIAN_API_KEY` (see §2.5) any non-empty value works:
-
-```bash
-export ANTHROPIC_API_KEY=dummy
-export ANTHROPIC_BASE_URL=http://<host>:3456
-```
-
-If you have enabled `MERIDIAN_API_KEY`, set `ANTHROPIC_API_KEY` to that shared secret on every client instead. OpenAI-compatible tools (Open WebUI, Continue) point at `http://<host>:3456` as the OpenAI base URL, same rules for the key. Per-client setup for OpenCode, Crush, Droid, Cline, Aider, ForgeCode, and Pi is documented in the [Meridian README](https://github.com/rynfar/meridian).
-
-## 2.2 Updating Meridian
-
-Since there's no registry image, updates are manual:
-
-```bash
-cd /mnt/tank/stacks/meridian
-git pull
-docker build -t meridian:latest .
-```
-
-Then restart the stack in Dockge. Your `claude-auth` bind mount persists across rebuilds.
-
-## 2.3 Sharing one proxy across multiple clients
-
-Meridian fingerprints conversations per-request, so multiple clients can share the same proxy without stepping on each other's sessions. A few things to keep in mind:
-
-- All clients draw from the same account. 
-- Default concurrency is 10 SDK sessions; bump `MERIDIAN_MAX_CONCURRENT` if you routinely run more.
-- The Agent SDK credit is **per-account, not pooled** — it can't be shared across people. One proxy fanning a single login out to several users' tools is exactly the shared-automation pattern Anthropic steers toward a Platform API key instead. "Many of *your own* clients off one account" is fine; "a team off one personal subscription" is not.
-- If you publish the port to a LAN interface, tunnel, or VPN, read §2.5 on the API key and network exposure before deploying.
-- Multiple Meridian containers pointing at the same `claude-auth` will race on OAuth refresh and corrupt the token state. One proxy, many clients.
-
-## 2.4 Multi-profile setup
-
-Meridian supports multiple Claude accounts via separate profile directories, selected at runtime with the `x-meridian-profile` header. Useful if you want to segregate personal work from a work/team account. See the [Multi-Profile section](https://github.com/rynfar/meridian#multi-profile-support) of the README.
+## 2.1 Pointing tools at Meridian
+To use Meridian, point the tools at `http://{IP}:3456` and enter any API key since Meridian will accept anything with no explicit key set in the environment variables. 
 
 
+## 2.2 Environment variables
 
-## 2.5 API key and network exposure
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `MERIDIAN_API_KEY` | unset | Shared secret. When set, all API and admin routes require `x-api-key` or `Authorization: Bearer`. `/` and `/health` stay open. |
+| `MERIDIAN_PORT` | `3456` | Port to listen on |
+| `MERIDIAN_HOST` | `127.0.0.1` | Bind address |
+| `MERIDIAN_PASSTHROUGH` | unset | `1` forces tool calls back to the client, `0` forces the SDK to execute them |
+| `MERIDIAN_MAX_CONCURRENT` | `10` | Maximum concurrent SDK sessions |
+| `MERIDIAN_MAX_SESSIONS` | `1000` | In-memory LRU session cache size |
+| `MERIDIAN_MAX_STORED_SESSIONS` | `10000` | File-based session store capacity |
+| `MERIDIAN_WORKDIR` | `cwd()` | Default working directory for the SDK |
+| `MERIDIAN_SONNET_MODEL` | `sonnet` | `sonnet` (200k) or `sonnet[1m]` (1M, bills as Extra Usage) |
+| `MERIDIAN_DEFAULT_AGENT` | `opencode` | Adapter for unrecognised clients. Requires restart. |
+| `MERIDIAN_DEFER_TOOL_THRESHOLD` | `15` | Tool count before non-core tools defer via ToolSearch. `0` disables. |
+| `MERIDIAN_TELEMETRY_PERSIST` | unset | Enable SQLite telemetry that survives restarts |
+| `MERIDIAN_TELEMETRY_RETENTION_DAYS` | `7` | Telemetry retention window |
+| `MERIDIAN_PROFILES` | unset | JSON array of profile configs, overrides disk discovery |
+{.dense}
 
-`MERIDIAN_API_KEY` is unset in the default compose above. Whether to enable it depends on where Meridian is reachable from. The setting isn't about protecting sensitive data — Meridian stores none — it's about protecting your account from unauthorised use. After June 15, 2026 that protection matters more, not less: anything that reaches the port can drain your monthly Agent SDK credit and then run up real per-token charges on your card if you have usage credits enabled. If the port is exposed beyond loopback (LAN, tunnel, VPN), set a long random `MERIDIAN_API_KEY` and require it on every client.
+> Sonnet defaults to 200k context on purpose — Sonnet 1M is always billed as Extra Usage on Max plans, even when regular usage is not exhausted. Opus 1M is included with Max at no extra cost.
+{.is-info}
+
+## 2.3 Passthrough vs internal mode
+
+The question is who actually executes the tools.
+
+- **Passthrough** (default for coding agents) — Claude generates the tool call, Meridian hands it back to the client, and the client runs it with its own sandboxing and file tracking. This is what OpenCode, Crush, Cline and Claude Code all want.
+- **Internal** — the SDK executes tools directly on the host and runs its own agent loop. This is for pure chat frontends like Open WebUI that have no tools of their own.
+
+The adapter picks the right mode automatically. Override with `MERIDIAN_PASSTHROUGH=1` or `=0`.
+
+> **Known limitation.** In passthrough mode the SDK runs with `maxTurns=2`, so you get a single tool round-trip per request. Multi-step agentic loops need the client to re-send after each round.
+{.is-warning}
+
 
