@@ -2,7 +2,7 @@
 title: Meridian
 description: A guide to deploying Meridian
 published: true
-date: 2026-09-05T10:53:44.190Z
+date: 2026-09-05T10:54:21.092Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-22T21:18:58.613Z
@@ -24,12 +24,11 @@ Everything flows through the SDK's documented `query()` function — no OAuth in
 ```yaml
 services:
   meridian:
-    image: ghcr.io/rynfar/meridian:1.67
+    image: ghcr.io/rynfar/meridian:latest
     container_name: meridian
     user: "568:568"
     environment:
       - HOME=/home/claude
-      - MERIDIAN_API_KEY=change-me-to-a-long-random-string
       - MERIDIAN_TELEMETRY_PERSIST=1
     restart: unless-stopped
     ports:
