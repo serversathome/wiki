@@ -2,7 +2,7 @@
 title: NextDNS
 description: A guide to configuring NextDNS
 published: true
-date: 2026-09-02T10:32:58.515Z
+date: 2026-09-07T12:45:15.711Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-02T09:57:01.133Z
@@ -22,7 +22,7 @@ Free tier is 300,000 queries per month with all features. Pro is $1.99/month or 
 
 # 1 · Create your account
 
-1. Go to [nextdns.io](https://nextdns.io/?from=s8235t86) and click **Try it now**
+1. Go to [nextdns.io](https://nextdns.io/?from=5tyx27pn) and click **Try it now**
     > Want to say thanks? Sign up using [my link](https://nextdns.io/?from=s8235t86) and I get a small commission at no extra cost to you!
    <!-- {blockquote:.is-success} -->
 1. Sign up with an email address and password
