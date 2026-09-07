@@ -2,7 +2,7 @@
 title: NextDNS
 description: A guide to configuring NextDNS
 published: true
-date: 2026-09-07T12:45:15.711Z
+date: 2026-09-07T12:46:32.812Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-02T09:57:01.133Z
@@ -181,3 +181,4 @@ Where you cannot get tamper-proof, aim for tamper-evident. With per-device ident
 
 
 # <img src="/youtube.png" class="tab-icon"> 6 · Video
+https://youtu.be/u7h4IXgHGYc
