@@ -2,7 +2,7 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-09-08T12:57:08.279Z
+date: 2026-09-08T13:09:19.166Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
@@ -21,7 +21,7 @@ dateCreated: 2026-01-28T21:27:05.188Z
 - [📖 Install instructions<br>*A step-by-step order for installing the \*arr apps*](/InstallInstructions)
 - [🗂️ Folder structure<br>*TRaSH-guide layout that keeps hardlinks working*](/Folder-Structure)
 - [🗺️ Overview map<br>*How every component of a media server fits together*](/OverviewMap)
-{.links-list .arr .featured-first}
+{.links-list .arr}
 
 ## Download clients {.sec .arr}
 - [<img src="/qbittorrent.png"> qBittorrent<br>*Torrent client*](/qBittorrent)
