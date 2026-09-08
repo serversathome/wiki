@@ -17,7 +17,7 @@ dateCreated: 2026-08-25T18:25:30.503Z
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Difficulty</span><b class="difficulty advanced">Advanced</b></div>
   <div class="glance-links">
     <a href="https://codeberg.org/forgejo/forgejo"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/O_kpayAlRZA"><i class="mdi mdi-youtube"></i>Video walkthrough</a>

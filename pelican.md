@@ -22,7 +22,7 @@ Pelican has two parts: the **Panel** (the web UI) and **Wings** (the daemon that
   <div><span>Port</span><b><code>88</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Difficulty</span><b class="difficulty advanced">Advanced</b></div>
   <div class="glance-links">
     <a href="https://github.com/pelican/panel"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/Q3TKphmP188"><i class="mdi mdi-youtube"></i>Video walkthrough</a>

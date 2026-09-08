@@ -56,7 +56,7 @@ graph TB
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Difficulty</span><b class="difficulty advanced">Advanced</b></div>
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Synapse + PostgreSQL

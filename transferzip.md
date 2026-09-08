@@ -16,7 +16,7 @@ dateCreated: 2026-02-09T16:52:40.763Z
   <div><span>Port</span><b><code>9001</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Difficulty</span><b class="difficulty advanced">Advanced</b></div>
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Transfer.zip

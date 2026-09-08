@@ -20,7 +20,7 @@ Starting with v3.1.0, DockFlare also ships a self-hosted **Sovereign Email Suite
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>6 services</b></div>
   <div><span>Depends on</span><b>Redis</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Difficulty</span><b class="difficulty advanced">Advanced</b></div>
   <div class="glance-links">
     <a href="https://youtu.be/DSynNPaPKn0"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>

@@ -17,7 +17,7 @@ A web frontend for the headscale Tailscale-compatible coordination server by [gu
 <div class="glance">
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>3 services</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Difficulty</span><b class="difficulty advanced">Advanced</b></div>
   <div class="glance-links">
     <a href="https://github.com/gurucomputing/headscale-ui"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/r-qn6DrJ6IA"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
