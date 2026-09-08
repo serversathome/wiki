@@ -2,7 +2,7 @@
 title: Home
 description: This is the official wiki for Servers@Home
 published: true
-date: 2026-09-08T12:46:06.889Z
+date: 2026-09-08T15:31:43.852Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:13.120Z
@@ -17,7 +17,7 @@ dateCreated: 2026-01-15T15:05:13.120Z
 > Use the sidebar or the search bar at the top to find guides. On mobile, tap the blue menu icon ☰ at the bottom-left.
 {.is-info}
 
-## Start here {.sec .storage}
+# Start here {.sec .storage}
 
 - [🚀 First-time homelab guide<br>*Where to begin and what to buy*](https://blog.serversatho.me/breaking-the-rules/)
 - [🗺️ Overview map<br>*What every piece of a media server actually does*](/OverviewMap)
@@ -29,7 +29,7 @@ dateCreated: 2026-01-15T15:05:13.120Z
 > Stuck on something specific? Try the [FAQ](/faq) first, then ask in [Discord](https://discord.gg/syvCPcRJnR).
 {.is-info}
 
-## Browse by category {.sec .media}
+# Browse by category {.sec .media}
 
 - [<img src="/truenas-core.png"> TrueNAS<br>*Pools, datasets, permissions, shares, apps and hardening*](/TrueNAS)
 - [🖥️ Server management<br>*Proxmox, backups, monitoring, dashboards, game servers*](/servermanagement)
@@ -43,7 +43,7 @@ dateCreated: 2026-01-15T15:05:13.120Z
 
 Building a media server? Read [install instructions](/InstallInstructions) and [folder structure](/Folder-Structure) before you deploy anything. Getting hardlinks right the first time saves a rebuild later.
 
-## Popular guides {.sec .apps}
+# Popular guides {.sec .apps}
 
 - [<img src="/jellyfin.png"> Jellyfin<br>*Volunteer-built, fully free media server*](/jellyfin)
 - [<img src="/immich.png"> Immich<br>*Photo and video management with mobile backup*](/immich)
@@ -55,7 +55,7 @@ Building a media server? Read [install instructions](/InstallInstructions) and [
 - [<img src="/qbittorrent.png"> qBittorrent<br>*Torrent client, behind Gluetun*](/qBittorrent)
 {.links-list .apps}
 
-## Watch the series {.sec .network}
+# Watch the series {.sec .network}
 
 Most guides here have a video. If you would rather be walked through it:
 
@@ -69,7 +69,7 @@ Most guides here have a video. If you would rather be walked through it:
 > Want it structured? [TrueNAS Fundamentals for Beginners](https://www.udemy.com/course/truenas-fundamentals-for-beginners/?referralCode=8369F4A322AA6867F03C) on Udemy covers TrueNAS from the ground up in one course.
 {.is-success}
 
-## From the blog {.sec .containers}
+# From the blog {.sec .containers}
 
 The wiki tells you how. The [blog](https://blog.serversatho.me/) argues about what and why.
 
@@ -79,7 +79,7 @@ The wiki tells you how. The [blog](https://blog.serversatho.me/) argues about wh
 - [Sourcing used parts](https://blog.serversatho.me/sourcing-used-parts/), on buying secondhand hardware without getting burned
 - [Best.VPN.Ever.](https://blog.serversatho.me/best-vpn-ever/), AirVPN plus WireGuard for your homelab
 
-## Connect and contribute {.sec .arr}
+# Connect and contribute {.sec .arr}
 
 - [<img src="/discord.png"> Discord<br>*Real-time help, fastest response for technical questions*](https://discord.gg/syvCPcRJnR)
 - [<img src="/youtube.png"> YouTube<br>*Video walkthroughs of most guides here*](https://youtube.com/@Serversathome)
