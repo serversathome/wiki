@@ -13,6 +13,14 @@ dateCreated: 2026-01-15T15:07:06.342Z
 
 Penpot is the first open-source design tool for design and code collaboration. Designers can create stunning designs, interactive prototypes, design systems at scale, while developers enjoy ready-to-use code and make their workflow easy and fast. And all of this with no handoff drama.
 
+<div class="glance">
+  <div><span>Port</span><b><code>9001</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>6 services</b></div>
+  <div><span>Depends on</span><b>Postgres and Valkey</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 
 # 1 · Deploy Penpot
 # {.tabset}

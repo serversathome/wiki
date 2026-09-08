@@ -16,6 +16,16 @@ dateCreated: 2026-03-22T11:56:59.012Z
 > OpenCloud was created by members of the former ownCloud team and is developed by the Heinlein Gruppe in Germany.
 {.is-info}
 
+<div class="glance">
+  <div><span>Port</span><b><code>9200</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/CfGRm6QtEjE"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy OpenCloud
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker

@@ -10,6 +10,18 @@ dateCreated: 2026-01-15T15:07:10.430Z
 
 # ![](/phylum.png){class="tab-icon"} What is Phylum?
 Phylum is a self-hosted file storage platform with offline-first web and native clients, meant as a replacement for Google Drive, Dropbox, etc.
+
+<div class="glance">
+  <div><span>Port</span><b><code>2448</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://codeberg.org/shroff/phylum"><i class="mdi mdi-github"></i>Project</a>
+  </div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Phylum
 ```yaml
 services:

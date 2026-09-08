@@ -16,6 +16,13 @@ It installs to your home screen as a PWA, signs you in with **passkeys** (Face I
 
 Stack is React 19 + Vite on the front, a dependency-light Node API on the back, nginx in front of both. Licensed AGPL v3.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>3 services</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy openGym
 

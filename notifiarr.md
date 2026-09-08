@@ -14,6 +14,13 @@ Notifiarr is a system that integrates with many applications to manage and custo
 > Read the [official documentation](https://notifiarr.wiki/)
 {.is-success}
 
+<div class="glance">
+  <div><span>Port</span><b><code>5454</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 # 1 · Setup of Notifiarr
 1. Go to [Notifiarr](https://notifiarr.com/guest/register) and create a account.

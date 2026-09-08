@@ -14,6 +14,16 @@ dateCreated: 2026-06-15T15:23:06.042Z
 
 The difference from the commercial tools is that everything here is a toggle or a plugin you control. The core ships with the "assistant" features built in; a Python plugin system (Tools, Functions, Pipelines) plus an MCP bridge lets you add anything the core doesn't have. This page covers the deploy, the built-in parity features, and the community extras worth installing.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/Haervwe/open-webui-tools"><i class="mdi mdi-github"></i>Project</a>
+  </div>
+</div>
+
 
 # 1 · Deploy Open WebUI
 # {.tabset}

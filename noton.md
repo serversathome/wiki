@@ -11,6 +11,14 @@ dateCreated: 2026-01-15T15:06:50.817Z
 # <img src="/noton.png" class="tab-icon"> What is Noton?
 A free and open documentation platform built with Laravel and Filament, enhanced by Ollama for local AI features, focused on clarity, structure, and self-hosted simplicity. 
 
+<div class="glance">
+  <div><span>Port</span><b><code>6686</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Noton
 ```yaml
 services:

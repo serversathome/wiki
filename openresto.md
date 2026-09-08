@@ -14,6 +14,13 @@ dateCreated: 2026-06-29T20:52:10.263Z
 
 It is built for indie restaurants, bars, and cafes that do not want to pay SaaS booking fees or hand customer data to a third party. Everything runs from a single Docker Compose stack with no external services required beyond optional SMTP for confirmation emails.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>3 services</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy OpenResto

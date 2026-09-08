@@ -12,6 +12,13 @@ dateCreated: 2026-02-03T17:40:33.481Z
 
 A supplement and medication manager for biohackers and health optimizers. Track dosages, check for interactions with optional AI analysis, manage inventory, and generate doctor-ready PDF reports.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy OptiStack
 
 ```yaml

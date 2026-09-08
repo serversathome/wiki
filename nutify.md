@@ -10,6 +10,14 @@ dateCreated: 2026-01-15T15:06:52.884Z
 
 # <img src="/nutify.png" class="tab-icon"> What is Nutify?
 Nutify is a comprehensive monitoring system designed to track the health and performance of your Uninterruptible Power Supply (UPS) devices. It provides real-time insights into critical UPS metrics, allowing you to ensure the continuous operation and protection of your valuable equipment. Nutify collects data, generates detailed reports, and visualizes key parameters through interactive charts, all accessible via a user-friendly web interface.
+
+<div class="glance">
+  <div><span>Port</span><b><code>5050</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Nutify
 
 > Note: I am deploying this on Proxmox which is why this compose looks different than others

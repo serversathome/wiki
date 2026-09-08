@@ -20,6 +20,15 @@ Free tier is 300,000 queries per month with all features. Pro is $1.99/month or 
 > The free tier does not error when it hits the cap. It keeps resolving DNS and silently stops filtering and logging for the remainder of the month. A single household burns through 300k quickly, especially with the router pointed at it. Take the paid tier.
 {.is-danger}
 
+<div class="glance">
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/u7h4IXgHGYc"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Create your account
 
 1. Go to [nextdns.io](https://nextdns.io/?from=5tyx27pn) and click **Try it now**

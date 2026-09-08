@@ -12,6 +12,16 @@ dateCreated: 2026-01-15T15:06:44.152Z
 
 Nginx Proxy Manager (NPM) is a tool that lets you expose your private web services on your network with free SSL, Docker, and multiple users. You can configure and manage your proxy hosts with a beautiful UI and a simple Docker image.
 
+<div class="glance">
+  <div><span>Port</span><b><code>81</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/mvT0Ehz4s8o"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy NPM
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS

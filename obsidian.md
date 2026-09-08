@@ -14,6 +14,13 @@ Obsidian is an application which facilitates note-taking, organization, relation
 
 Many may elect to use a more "conventional" method of running Obsidian as a local application and then synchronizing the files by your method of choice (for example: via Syncthing) but it is also an option to just have it in a container. The default installation does not appear to implement any type of login, so exposing this container to the internet, without benefit of at least a secure vpn or the like, would be **highly** advised against.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3001</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Obsidian
 
 

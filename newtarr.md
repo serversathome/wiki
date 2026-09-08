@@ -14,6 +14,16 @@ dateCreated: 2026-03-14T00:05:42.713Z
 
 The original Huntarr project was abandoned after the developer introduced telemetry, obfuscated code, and potential security concerns. NewtArr is based on the last clean release (v6.6.3) before those controversial changes, with all telemetry and update-check code stripped out.
 
+<div class="glance">
+  <div><span>Port</span><b><code>9705</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/elfhosted/newtarr"><i class="mdi mdi-github"></i>Project</a>
+  </div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy NewtArr
 

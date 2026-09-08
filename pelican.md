@@ -18,6 +18,16 @@ Pelican has two parts: the **Panel** (the web UI) and **Wings** (the daemon that
 > Pelican is still in **Beta**, and Docker is the maintainers' planned future install method (currently marked "work in progress"). It's stable enough for a homelab — just pin your working image tag and read the changelog before updating.
 {.is-warning}
 
+<div class="glance">
+  <div><span>Port</span><b><code>88</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/Q3TKphmP188"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 
 # 1 · Deploy the Panel

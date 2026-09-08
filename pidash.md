@@ -11,6 +11,13 @@ dateCreated: 2026-01-15T15:07:12.626Z
 # ![](/pi-hole.png){class="tab-icon"} What is Pi-Dash?
 Pi-Dash is a simple, lightweight dashboard for monitoring multiple Pi-hole instances. It provides a clean, at-a-glance, responsive view of your Pi-hole statistics.
 
+<div class="glance">
+  <div><span>Port</span><b><code>5002</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Pi-Dash
 
 ```yaml

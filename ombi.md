@@ -12,6 +12,13 @@ dateCreated: 2026-01-15T15:06:55.304Z
 
 The seamless way for your Plex and Emby users to request new content. Ombi integrates with your media server and automatically manages user requests.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3579</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Ombi
 ```yaml
 services:

@@ -12,6 +12,17 @@ dateCreated: 2026-01-15T15:07:08.400Z
 
 PhotoPrism® is an AI-Powered Photos App for the Decentralized Web. It makes use of the latest technologies to tag and find pictures automatically without getting in your way. 
 
+<div class="glance">
+  <div><span>Port</span><b><code>2342</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>MariaDB</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://docs.photoprism.app/getting-started/config-options/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+  </div>
+</div>
+
 # 1 · Deploy PhotoPrism
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS

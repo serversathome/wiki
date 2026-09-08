@@ -11,6 +11,15 @@ dateCreated: 2026-01-15T15:06:37.607Z
 # ![](/netbird.png){class="tab-icon"} What is Netbird?
 NetBird combines a WireGuard®-based overlay network with Zero Trust Network Access, providing a unified open-source platform for reliable and secure connectivity
 
+<div class="glance">
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/-yfE3Lb3hTI"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy Netbird
 First, go to [https://netbird.io](https://netbird.io) and click **Get Started** to create your free account.
 

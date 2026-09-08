@@ -18,6 +18,14 @@ Ollama has no web interface of its own — it's an API and CLI. Pair it with **O
 > Ollama runs models on CPU by default, but performance is dramatically better with a GPU. NVIDIA cards need the **NVIDIA Container Toolkit** installed on the host before the container can see the GPU.
 {.is-info}
 
+<div class="glance">
+  <div><span>Port</span><b><code>11434</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Hardware accel</span><b>Nvidia</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 # 1 · Deploy Ollama
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker

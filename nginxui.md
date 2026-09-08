@@ -25,6 +25,16 @@ dateCreated: 2026-02-03T13:56:54.129Z
 - 2FA authentication support
 - Dark mode and responsive design
 
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/0xJacky/nginx-ui"><i class="mdi mdi-github"></i>Project</a>
+  </div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Nginx UI
 
 ```yaml
