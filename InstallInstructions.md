@@ -2,12 +2,14 @@
 title: Install Instructions
 description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2026-04-07T09:41:00.976Z
+date: 2026-09-08T10:47:49.778Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:31.090Z
 ---
 
+> Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help!
+{.is-success}
 # Steps
 
 Follow the steps in this order to make the install go as smoothly as possible.
