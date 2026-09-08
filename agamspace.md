@@ -18,6 +18,17 @@ Think of it as a self-hosted alternative to Mega or Proton Drive, where privacy 
 > Agam Space is in **early beta** and not ready for production use. Bugs and data loss are possible. Do not use as your only backup.
 {.is-warning}
 
+<div class="glance">
+  <div><span>Port</span><b><code>3331</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://docs.agamspace.app/configuration/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+  </div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Agam Space
 
 ```yaml

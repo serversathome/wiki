@@ -11,6 +11,15 @@ dateCreated: 2026-01-15T15:03:05.289Z
 # ![](/adguard-home.png){class="tab-icon"} What is AdGuard?
 AdGuard is the best way to get rid of annoying ads and online tracking and protect your computer from malware. Make your web surfing fast, safe and ad-free.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/u9PioLP57-4"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 # 1 · Deploy AdGuard
 # {.tabset}

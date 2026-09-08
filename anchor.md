@@ -12,6 +12,13 @@ dateCreated: 2026-02-04T13:21:46.457Z
 
 **Anchor** is an offline-first, self-hostable note-taking application designed for speed, privacy, simplicity, and reliability. Notes are stored locally, fully editable offline, and automatically sync across devices when online. Anchor offers both web and mobile (Android) interfaces, making it a great alternative to cloud-dependent note apps.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 ## Features
 
 - Rich text editor with formatting (bold, italic, underline, headings, lists, checkboxes)

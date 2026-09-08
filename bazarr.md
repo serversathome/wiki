@@ -11,6 +11,16 @@ dateCreated: 2026-01-15T15:03:20.150Z
 # ![](/bazarr.png){class="tab-icon"} What is Bazarr?
 Bazarr is a companion application to Sonarr and Radarr. It can manage and download subtitles based on your requirements. You define your preferences by TV show or movie and Bazarr takes care of everything for you.
 
+<div class="glance">
+  <div><span>Port</span><b><code>6767</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://wiki.bazarr.media/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+  </div>
+</div>
+
 
 # 1 · Deploy Bazarr
 # {.tabset}

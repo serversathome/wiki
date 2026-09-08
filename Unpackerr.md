@@ -19,6 +19,15 @@ Unpackerr extracts `rar`, `tar`, `tgz`, `gz`, `zip`, `7z`, `bz2`, `tbz2`, and `i
 > Unpackerr has **no web interface**. It runs silently in the background, so the only way to confirm it's working is by reading its logs. That's by design — once it's set up, you shouldn't have to look at it.
 {.is-info}
 
+<div class="glance">
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://unpackerr.zip/docs/install/configuration"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+  </div>
+</div>
+
 # 1 · Deploy Unpackerr
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS

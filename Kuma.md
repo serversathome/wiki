@@ -14,6 +14,17 @@ dateCreated: 2026-01-15T15:02:35.330Z
 
 Uptime Kuma is a web monitor tool that supports various monitors such as HTTP, DNS, MySQL, Postgres, Docker, and more.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3001</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://wiki.hydrology.cc/kumadash.jpg"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://youtu.be/tIazVdhsSqQ?si=u4A4-4AUqToEWCEl&t=198"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy Uptime Kuma
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose

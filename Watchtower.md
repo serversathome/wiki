@@ -11,6 +11,12 @@ dateCreated: 2026-01-15T15:03:01.108Z
 # ![](/watchtower.png){class="tab-icon"} What is Watchtower?
 Watchtower is a tool that automates the updating of Docker containers by pulling new images and restarting the containers with the same options used during deployment.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Watchtower
 
 ```yaml

@@ -14,6 +14,13 @@ BentoPDF is a powerful suite of tools that allow you to do all kinds of cool thi
 > No datasets need to be created
 {.is-info}
 
+<div class="glance">
+  <div><span>Port</span><b><code>3060</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy BentoPDF
 ```yaml
 services:

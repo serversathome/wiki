@@ -11,6 +11,12 @@ dateCreated: 2026-01-15T15:03:11.738Z
 # What is Arr Queue Cleaner?
 Automated queue cleaner for Sonarr that removes stuck downloads based on configurable rules.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Arr Queue Cleaner
 
 ```yaml

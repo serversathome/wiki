@@ -12,6 +12,14 @@ dateCreated: 2026-01-15T15:03:13.956Z
 
 Authentik is an IdP (Identity Provider) and SSO (Single Sign On) platform that is built with security at the forefront of every piece of code, every feature, with an emphasis on flexibility and versatility.
 
+<div class="glance">
+  <div><span>Port</span><b><code>9000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>4 services</b></div>
+  <div><span>Depends on</span><b>Postgres and Redis</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Authentik
 ```yaml
 services:

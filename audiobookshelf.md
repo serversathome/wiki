@@ -17,6 +17,13 @@ It is fully open source, including the Android and iOS apps, so nothing about yo
 > Audiobookshelf is a **library server**, not a downloader. It reads whatever is on disk and serves it. Pair it with [Chaptarr](/chaptarr) if you want automated acquisition and renaming.
 {.is-info}
 
+<div class="glance">
+  <div><span>Port</span><b><code>13378</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # 1 · Deploy Audiobookshelf
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker

@@ -13,6 +13,13 @@ Beszel is a lightweight server monitoring platform that includes Docker statisti
 
 It has a friendly web interface, simple configuration, and is ready to use out of the box. It supports automatic backup, multi-user, OAuth authentication, and API access.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8090</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 # 1 · Deploy Beszel
 # {.tabset}

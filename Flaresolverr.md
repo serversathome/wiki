@@ -11,6 +11,16 @@ dateCreated: 2026-01-15T15:02:27.125Z
 # ![](/flaresolverr.png){class="tab-icon"} What is Flaresolverr?
 FlareSolverr is a proxy server to bypass Cloudflare and DDoS-GUARD protection.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8191</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/sUMT0PTll_M"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy Flaresolverr
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS

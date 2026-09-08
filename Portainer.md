@@ -12,6 +12,16 @@ dateCreated: 2026-01-15T15:02:43.293Z
 
 Portainer is a popular Docker UI that helps you visualize your containers, images, volumes and networks. Portainer helps you take control of the Docker resources on your machine, avoiding lengthy terminal commands.
 
+<div class="glance">
+  <div><span>Port</span><b><code>9443</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://www.youtube.com/watch?v=wsixvmNPrlU"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # Installation
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS

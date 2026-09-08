@@ -12,6 +12,16 @@ dateCreated: 2026-01-15T15:02:49.417Z
 
 Recyclarr is a command-line application that will automatically synchronize recommended settings from the TRaSH guides to your Sonarr/Radarr instances.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://wiki.hydrology.cc/screenshot_from_2023-12-12_09-34-37.png"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://youtu.be/sIvBG9SbIQo"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy Recyclarr
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose

@@ -11,6 +11,13 @@ dateCreated: 2026-01-15T15:03:18.042Z
 # <img src="/screenshot_from_2025-12-04_11-37-02.png" class="tab-icon"> What is Backvault?
 BackVault is a lightweight Dockerized multi-architecture service that periodically backs up your Bitwarden or Vaultwarden vaults into password-protected encrypted files. It’s designed for hands-free, secure, and automated backups using the official Bitwarden CLI.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Backvault
 ```yaml
 services:

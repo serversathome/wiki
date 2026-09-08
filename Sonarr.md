@@ -14,6 +14,14 @@ Sonarr handles quality profiles, custom formats, automatic upgrades (e.g. replac
 > 
 > Sonarr pairs best with **Prowlarr** (indexer management) and a download client such as **qBittorrent** or **SABnzbd**. Set those up first for the smoothest experience.
 {.is-info}
+
+<div class="glance">
+  <div><span>Port</span><b><code>8989</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # 1 · Deploy Sonarr
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker

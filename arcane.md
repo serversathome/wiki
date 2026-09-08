@@ -12,6 +12,13 @@ dateCreated: 2026-01-15T15:03:09.587Z
 
 **Arcane** is a modern, self-hosted web UI for managing **Docker** and **Docker Swarm** — think containers, images, volumes, networks, ports, and Compose projects all from one place, plus a typed REST API and a companion CLI. It goes well beyond a basic dashboard: multi-host management via agents, image-update detection with optional auto-update/auto-heal, Trivy vulnerability scanning, GitOps, notifications, and full RBAC with OIDC SSO.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3552</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 # 1 · Deploy Arcane
 # {.tabset}

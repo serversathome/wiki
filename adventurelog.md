@@ -16,6 +16,13 @@ Log locations with photos, dates, ratings, tags, and notes. Sort them into custo
 
 For trips, the itinerary planner handles any number of days and destinations, with flight info, notes, checklists, and external links. Itineraries can be shared with friends and family so everyone plans together, and locations can be shared publicly or kept private.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8015</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 
 
 # 1 · Deploy AdventureLog

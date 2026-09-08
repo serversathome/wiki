@@ -16,6 +16,16 @@ Dockge is a self-hosted Docker stack manager developed by the same person behind
 
 This software allows you to manage multiple Docker compose files from a single, easy-to-use interface. It is similar to the stack system Portainer implements but cleaner and simpler to use.
 
+<div class="glance">
+  <div><span>Port</span><b><code>5001</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/LpAxsO7zAMA"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy Dockge
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS

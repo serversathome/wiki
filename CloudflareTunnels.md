@@ -12,6 +12,15 @@ dateCreated: 2026-01-15T15:02:18.633Z
 
 Cloudflare Tunnel provides you with a secure way to connect your resources to Cloudflare without a publicly routable IP address. With Tunnel, you do not send traffic to an external IP — instead, a lightweight daemon in your infrastructure (cloudflared) creates outbound-only connections to Cloudflare’s global network. Cloudflare Tunnel can connect HTTP web servers, SSH servers, remote desktops, and other protocols safely to Cloudflare. This way, your origins can serve traffic through Cloudflare without being vulnerable to attacks that bypass Cloudflare.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://wiki.hydrology.cc/screenshot_from_2023-12-11_11-42-42.png"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+  </div>
+</div>
+
 # 1 · Deploy Cloudflare Tunnels
 # {.tabset}
 ## <img src="/windows-terminal.png" class="tab-icon"> Bare Metal
