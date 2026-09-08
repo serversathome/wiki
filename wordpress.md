@@ -13,6 +13,14 @@ dateCreated: 2026-01-15T15:09:42.750Z
 # What is Wordpress?
 WordPress is a web content management system. It was originally created as a tool to publish blogs but has evolved to support publishing other web content, including more traditional websites, mailing lists and Internet forum, media galleries, membership sites, learning management systems and online stores.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8081</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>MySQL</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 # Installation
 # {.tabset}

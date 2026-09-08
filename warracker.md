@@ -11,6 +11,14 @@ dateCreated: 2026-01-15T15:09:22.115Z
 # <img src="/warracker.png" class="tab-icon"> What is Warracker?
 Warracker is an open source, self-hostable warranty tracker to monitor expirations, store receipts, files. You own the data, your rules!
 
+<div class="glance">
+  <div><span>Port</span><b><code>8005</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 # 1 · Deploy Warracker
 # tabs {.tabset}

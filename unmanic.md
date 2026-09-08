@@ -12,6 +12,14 @@ dateCreated: 2026-01-15T15:09:12.679Z
 
 Unmanic gives you the power to automate the management of any file library through the use of customised modular task flows to suit your specific needs, giving you the ultimate, simple to configure, set-and-forget library optimisation tool.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8870</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Hardware accel</span><b>Nvidia</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Unmanic
 
 ```yaml

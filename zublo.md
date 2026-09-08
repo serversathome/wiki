@@ -14,6 +14,13 @@ dateCreated: 2026-04-27T17:44:21.112Z
 
 Beyond just tracking subscriptions, Zublo includes a real AI layer with chat-based workflows, spending recommendations, and pluggable LLM providers (Google Gemini, OpenAI, Ollama, and any OpenAI-compatible gateway like OpenRouter, Groq, or Mistral). It also offers a calendar view of upcoming payments, multi-currency support with exchange-rate sync, REST API access via scoped keys, and TOTP-based 2FA — all without becoming a bloated full-finance suite.
 
+<div class="glance">
+  <div><span>Port</span><b><code>9597</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Zublo
 
 ```yaml

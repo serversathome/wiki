@@ -16,6 +16,13 @@ Easily track:
 🛡️ insurance
 📄 regulatory documents for all your vehicles in one place. 
 
+<div class="glance">
+  <div><span>Port</span><b><code>3333</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Tracktor
 ```yaml
 services:

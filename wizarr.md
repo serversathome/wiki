@@ -14,6 +14,13 @@ dateCreated: 2026-01-15T15:09:40.051Z
 
 It supports **Plex, Jellyfin, Emby, Audiobookshelf, Romm, Komga, and Kavita**, with multi-tiered invitations, time-limited memberships, customizable wizard steps, request system integration (Overseerr, Ombi, etc.), and optional SSO.
 
+<div class="glance">
+  <div><span>Port</span><b><code>5690</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 
 # 1 · Deploy Wizarr

@@ -12,6 +12,12 @@ dateCreated: 2026-01-15T15:09:29.972Z
 
 wg-easy is the easiest way to run WireGuard VPN + Web-based Admin UI.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 # 1 · Deploy wg-easy
 # {.tabset}

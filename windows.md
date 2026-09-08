@@ -11,6 +11,16 @@ dateCreated: 2026-01-15T15:09:37.478Z
 # <img src="/microsoft-windows.png" class="tab-icon"> What is the Windows Docker Container?
 The Windows 11 Operating System within a docker container.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8006</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/JtVfJn2drY4"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Windows
 ```yaml
 services:

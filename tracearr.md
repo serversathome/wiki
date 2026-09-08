@@ -14,6 +14,13 @@ dateCreated: 2026-01-15T15:09:01.316Z
 
 Key features include stream geolocation mapping, trust scoring, impossible travel detection, concurrent stream limits, Discord webhook alerts, and a public REST API. Tracearr can also import existing watch history from Tautulli and Jellystat so you don't start from scratch.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # 1 · Deploy Tracearr
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker

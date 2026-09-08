@@ -12,6 +12,13 @@ dateCreated: 2026-02-09T16:52:40.763Z
 
 **Transfer.zip** is a self-hostable, open-source file-sharing solution and a privacy-focused alternative to services like WeTransfer and Smash. It supports two transfer modes: **Quick Transfers** using WebRTC peer-to-peer connections with end-to-end AES-256-GCM encryption (files never touch the server), and **Stored Transfers** using the resumable tus upload protocol for reliable, chunked uploads to server or S3-compatible storage. Transfer.zip also supports transfer requests, custom branding, and email notifications.
 
+<div class="glance">
+  <div><span>Port</span><b><code>9001</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Transfer.zip
 
 The `transfer.zip-web` repository contains everything needed to self-host: the Next.js frontend, signaling server, worker, and MongoDB — all deployed via a single Docker Compose stack.

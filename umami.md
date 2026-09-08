@@ -12,6 +12,14 @@ dateCreated: 2026-01-15T15:09:10.553Z
 
 Umami is a simple, fast, privacy-focused, open-source analytics solution. Umami is a better alternative to [Google Analytics](https://marketingplatform.google.com/about/analytics/) because it gives you total control of your data and does not violate the privacy of your users.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3002</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # 1 · Deploy Umami
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS

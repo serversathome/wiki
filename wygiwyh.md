@@ -11,6 +11,14 @@ dateCreated: 2026-01-15T15:09:45.123Z
 # <img src="/wygiwyh.png" class="tab-icon"> What is WYGIWYH?
 WYGIWYH (What You Get Is What You Have) is a powerful, principles-first finance tracker designed for people who prefer a no-budget, straightforward approach to managing their money. With features like multi-currency support, customizable transactions, and a built-in dollar-cost averaging tracker, WYGIWYH helps you take control of your finances with simplicity and flexibility.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy WYGIWYH
 ```yaml
 services:

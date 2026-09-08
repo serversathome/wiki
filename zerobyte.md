@@ -16,6 +16,13 @@ Zerobyte is a backup automation tool that helps you save your data across multip
 - End-to-end encryption ensuring your data is always protected
 - Multi-protocol support: Backup from NFS, SMB, WebDAV, or local directories
 
+<div class="glance">
+  <div><span>Port</span><b><code>4096</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Zerobyte
 ```yaml
 services:

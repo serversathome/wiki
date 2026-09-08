@@ -12,6 +12,18 @@ dateCreated: 2026-01-15T15:09:35.215Z
 
 **Wiki.js** is an open source wiki software that works on any platform and database. It offers features such as authentication, media, themes, integrations and more.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://docs.requarks.io/en/editors/markdown"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://youtu.be/hfhP5WBAXmg"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Wiki.js
 
 ```yaml

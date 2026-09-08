@@ -25,6 +25,17 @@ What you get:
 - **API & automation** — Sanctum API tokens for scripts, dashboards, and agents
 - **Portable installation saves** — export an encrypted save and import it during onboarding to move or rebuild an instance
 
+<div class="glance">
+  <div><span>Port</span><b><code>8081</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/offen/docker-volume-backup"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://youtu.be/PLACEHOLDER"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 
 

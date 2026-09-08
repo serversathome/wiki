@@ -12,6 +12,14 @@ dateCreated: 2026-03-02T19:14:06.166Z
 
 **Torqvoice** is a self-hosted workshop management platform built for automotive service businesses. It replaces scattered tools with a single place to manage customers, vehicles, service records, quotes, invoicing, inventory, and billing — all with a clean, modern UI. Whether you run one garage or multiple locations, Torqvoice provides a unified dashboard to keep your operations organized.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Torqvoice
 

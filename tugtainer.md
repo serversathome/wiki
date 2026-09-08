@@ -14,6 +14,16 @@ dateCreated: 2026-01-15T15:09:08.384Z
 
 It checks your running containers against their registries, flags the ones with a newer image, and can either notify you or pull, recreate, and restart them automatically on a cron schedule. You decide per container whether it's **check-only** (notify me) or **auto-update** (do it for me), so nothing moves unless you ask it to.
 
+<div class="glance">
+  <div><span>Port</span><b><code>9412</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/PTjco8Fryqg"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Tugtainer

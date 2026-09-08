@@ -11,6 +11,13 @@ dateCreated: 2026-01-15T15:09:05.969Z
 # ![](/trailarr.png){class="tab-icon"} What is Trailarr?
 Trailarr is a Docker application to download and manage trailers for your Radarr, and Sonarr libraries.
 
+<div class="glance">
+  <div><span>Port</span><b><code>7889</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Trailarr
 
 ```yaml
