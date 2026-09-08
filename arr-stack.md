@@ -2,7 +2,7 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-09-08T13:09:19.166Z
+date: 2026-09-08T15:30:13.868Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
@@ -17,7 +17,7 @@ dateCreated: 2026-01-28T21:27:05.188Z
 > Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help.
 {.is-success}
 
-## Start here {.sec .arr}
+# Start here {.sec .arr}
 - [📖 Install instructions<br>*A step-by-step order for installing the \*arr apps*](/InstallInstructions)
 - [🗂️ Folder structure<br>*TRaSH-guide layout that keeps hardlinks working*](/Folder-Structure)
 - [🗺️ Overview map<br>*How every component of a media server fits together*](/OverviewMap)
