@@ -2,7 +2,7 @@
 title: Install Instructions
 description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2026-09-08T10:50:15.190Z
+date: 2026-09-08T10:50:40.210Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:31.090Z
@@ -53,8 +53,6 @@ Follow the steps in this order to make the install go as smoothly as possible.
 - Seerr will want to know which Radarr and Sonarr servers are set up and the default quality profile you want to use for downloads.
 
 - If you want to sure up your subtitles, install Bazarr.
-
-- Install Tdarr to compress H264 to save some hard drive space.
 
 # Auto Install Script
 I have created a script to create all the directories and install all the containers for you. [Go here](/Folder-Structure#auto-folder-creation-for-truenas) for more info. 
