@@ -2,7 +2,7 @@
 title: Install Instructions
 description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2026-09-08T10:48:40.699Z
+date: 2026-09-08T10:49:50.611Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:31.090Z
@@ -44,7 +44,7 @@ Follow the steps in this order to make the install go as smoothly as possible.
  
 - Prowlarr will want to know which apps you want to connect, and Radarr and Sonarr are now ready to accept API pushes from Prowlarr, as well as the Flaresolverr server for indexers which use Cloudflare.
  
-- Recyclarr or Profilarr will now need to set up quality profiles for Radarr and Sonarr, which are ready to accept them.
+- Profilarr will now need to set up quality profiles for Radarr and Sonarr, which are ready to accept them.
  
 - Emby/Jellyfin can be deployed since our media folders are being managed by Radarr and Sonarr.
  
