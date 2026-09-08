@@ -2,7 +2,7 @@
 title: Home Assistant
 description: A guide to deploying Home Assistant on TrueNAS
 published: true
-date: 2026-01-15T15:29:33.794Z
+date: 2026-09-08T11:43:27.480Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:16.650Z
@@ -11,7 +11,7 @@ dateCreated: 2026-01-15T15:05:16.650Z
 # ![](/homeassistant.png){class="tab-icon"} What is Home Assistant?
 Home Assistant is free and open-source software used for home automation. It serves as an integration platform and smart home hub, allowing users to control smart home devices. 
 
-# ![](/homeassistant/homeassistant.png){class="tab-icon"} What is Home Assistant?
+# ![](/homeassistant.png){class="tab-icon"} What is Home Assistant?
 Home Assistant is free and open-source software used for home automation. It serves as an integration platform and smart home hub, allowing users to control smart home devices.
 
 # 1 · Prerequisites
