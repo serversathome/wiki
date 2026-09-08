@@ -2,7 +2,7 @@
 title: Install Instructions
 description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2026-09-08T10:50:40.210Z
+date: 2026-09-08T11:42:38.443Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:31.090Z
@@ -55,7 +55,7 @@ Follow the steps in this order to make the install go as smoothly as possible.
 - If you want to sure up your subtitles, install Bazarr.
 
 # Auto Install Script
-I have created a script to create all the directories and install all the containers for you. [Go here](/Folder-Structure#auto-folder-creation-for-truenas) for more info. 
+I have created a script to create all the directories and install all the containers for you. [Go here](https://wiki.serversatho.me/Folder-Structure#h-2-auto-folder-creation-for-truenas) for more info. 
 
 # <img src="/patreon-light.png" class="tab-icon"> Video
 
