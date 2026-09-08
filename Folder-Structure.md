@@ -2,12 +2,14 @@
 title: Folder Structure
 description: Recommended folder structure to allow for hardlinks within the arr stack
 published: true
-date: 2026-03-22T11:45:20.784Z
+date: 2026-09-08T10:50:52.041Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:29.149Z
 ---
 
+> Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help!
+{.is-success}
 # Arr Stack Folder Structure
 
 This page provides a structured way to organize folders for media management when using the \*arr stack (Radarr, Sonarr, Prowlarr, etc.), ensuring no data duplication. This is based on [Trash Guides](https://trash-guides.info/)' recommendations, but slightly modified.
