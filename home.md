@@ -2,7 +2,7 @@
 title: Home
 description: This is the official wiki for Servers@Home
 published: true
-date: 2026-09-08T10:59:45.210Z
+date: 2026-09-08T11:01:09.983Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:13.120Z
@@ -69,8 +69,6 @@ Building a media server? Read [Install Instructions](/InstallInstructions) and [
 | [BookOrbit](/bookorbit) | Ebooks and audiobooks with two-way Kobo and KOReader sync |
 | [Calnode](/calnode) | Calendly alternative in a single Go binary |
 
-> 📅 Six newest pages only. Trim the bottom row each time you publish a new one.
-{.is-info}
 
 ## 🎥 Watch the Series
 
