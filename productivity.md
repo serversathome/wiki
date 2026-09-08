@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2026-09-08T12:42:51.336Z
+date: 2026-09-08T12:57:47.694Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:28.852Z
@@ -124,7 +124,7 @@ dateCreated: 2026-01-15T15:07:28.852Z
 
 ## Automation and dev {.sec .apps}
 - [<img src="/n8n.png"> n8n<br>*Visual workflow automation*](/n8n)
-- [<img src="/cronmaster.png"> Cr*n Master<br>*Dashboard for cron jobs*](/cronmaster)
+- [<img src="/cronmaster.png"> Cr\*n Master<br>*Dashboard for cron jobs*](/cronmaster)
 - [<img src="/coder.png"> Code Server<br>*VS Code in the browser*](/codeserver)
 - [<img src="/clipcascade-light.png"> ClipCascade<br>*Clipboard sync across devices*](/clipcascade)
 - [<img src="/microsoft-windows.png"> Windows in Docker<br>*A full Windows desktop in a container*](/windows)
