@@ -2,14 +2,14 @@
 title: Overview Map
 description: Overview map of how all the *arr components of a media server fit together
 published: true
-date: 2026-01-15T15:27:41.908Z
+date: 2026-09-08T16:24:32.300Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:41.415Z
 ---
 
 # Visual Map
-![arr_stack_2026.png](/arr_stack_2026.png)
+![arr-stack-torrent-usenet.png](/arr-stack-torrent-usenet.png)
 A full \*arr suite is composed of many apps that all talk to each other to automate your life. This is what they are and what they do:
 
 -   **Prowlarr** - this keeps track of indexers (sites that search for content) and manages their settings to pass them along to other apps
