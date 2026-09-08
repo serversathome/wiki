@@ -2,7 +2,7 @@
 title: Maintainerr
 description: A guide to deploying Maintainer via docker
 published: true
-date: 2026-09-08T13:07:00.473Z
+date: 2026-09-08T13:07:59.352Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:10.333Z
@@ -27,7 +27,7 @@ Typical uses:
 
 # {.tabset}
 
-## Docker
+## <img src="/docker.png" class="tab-icon"> Docker
 
 ```yaml
 services:
@@ -58,7 +58,7 @@ Optional environment variables:
 > Overlays and collection posters use `sharp`, which needs a CPU supporting `x86-64-v2`. Maintainerr still starts on older CPUs but those image features stay disabled. If you run it in a Proxmox VM, set the CPU type to `host` — the default `kvm64` does not expose `x86-64-v2`. This does not affect arm64.
 {.is-warning}
 
-## TrueNAS
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 Maintainerr is in the **Community** train of the TrueNAS Apps catalog.
 
