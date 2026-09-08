@@ -2,7 +2,7 @@
 title: openGym
 description: A guide to deploy openGym
 published: true
-date: 2026-08-05T20:35:06.941Z
+date: 2026-09-08T11:38:34.320Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-05T20:35:06.941Z
@@ -22,10 +22,18 @@ Stack is React 19 + Vite on the front, a dependency-light Node API on the back, 
 
 ```yaml
 services:
-  # One-time job: pulls the exercise images + GIFs (~140 MB) into the media folder.
-  # Exits when done, and skips the download on every start after the first.
-  media:
+
+  # ── One-time media fetch ────────────────────────────────────────────────
+  # Downloads ~140 MB of exercise images/GIFs, then exits. Skips if already present.
+  # Metadata and instruction text: MIT. Images and GIFs: © Gym visual (gymvisual.com),
+  # pulled from upstream under that dataset's terms — openGym does not redistribute them.
+  # Reusing the media yourself, commercial or not, needs your own licence from Gym visual.
+  opengym-media:
     image: alpine/git
+    container_name: opengym-media
+    user: "568:568"
+    environment:
+      - TZ=America/New_York
     volumes:
       - /mnt/tank/configs/opengym/media/img:/out/img
       - /mnt/tank/configs/opengym/media/gif:/out/gif
@@ -33,43 +41,67 @@ services:
     command:
       - |
         if [ -z "$$(ls -A /out/img 2>/dev/null)" ]; then
-          echo "Downloading exercise media (~140 MB, one time)..."
+          echo "↓ Downloading exercise media (~140 MB, one time)…"
+          echo "  Source: github.com/hasaneyldrm/exercises-dataset"
+          echo "  Images/animations © Gym visual — https://gymvisual.com/"
           git clone --depth 1 https://github.com/hasaneyldrm/exercises-dataset /tmp/ds
           cp /tmp/ds/images/*.jpg /out/img/ && cp /tmp/ds/videos/*.gif /out/gif/
-          echo "Exercise media ready."
+          echo "✓ Exercise media ready ($$(ls /out/img | wc -l) images)."
         else
-          echo "Exercise media already present - skipping download."
+          echo "✓ Exercise media already present — skipping download."
         fi
-    restart: "no"
+    restart: "no"   # one-shot job — do NOT change to unless-stopped
 
-  api:
-    image: ghcr.io/duartesantos8/opengym-api:latest
+  # ── API: passkey auth + per-user data ───────────────────────────────────
+  opengym-api:
+    image: registry.gitlab.com/duartesantos8/opengym/api:latest
     container_name: opengym-api
-    restart: unless-stopped
+    user: "568:568"
     environment:
-      - PORT=3000                        # internal only - nginx proxies here, do not change
+      - PUID=568
+      - PGID=568
+      - TZ=America/New_York
+      - PORT=3000
       - DATA_DIR=/data
-      - RP_ID=localhost                  # hostname passkeys bind to
-      - ORIGIN=http://localhost:8080     # exact URL in the address bar
-      - RP_NAME=openGym                  # name shown in the passkey prompt
-      - SESSION_DAYS=90
+    env_file: .env
     volumes:
       - /mnt/tank/configs/opengym/data:/data
-
-  web:
-    image: ghcr.io/duartesantos8/opengym-web:latest
-    container_name: opengym-web
+      - /mnt/tank/configs/opengym/coach-auth:/coach-auth
     restart: unless-stopped
-    depends_on:
-      media:
-        condition: service_completed_successfully
-      api:
-        condition: service_started
-    ports:
-      - "8080:80"
+
+    # AI Coach (optional): the default image ships no AI runtime. To opt in, build
+    # the coach target instead of pulling — uncomment and run:
+    #   API_TARGET=coach docker compose up --build opengym-api
+    # build:
+    #   context: ./api
+    #   target: ${API_TARGET:-default}
+
+  # ── Web: React frontend + nginx, proxies /api and serves the media ──────
+  opengym-web:
+    image: registry.gitlab.com/duartesantos8/opengym/web:latest
+    container_name: opengym-web
+    # No `user:` here on purpose — stock nginx binds :80 and writes /var/cache/nginx
+    # and its pid file as root. Forcing 568:568 makes the container crash-loop.
+    environment:
+      - TZ=America/New_York
+      - NGINX_PORT=80
+      - BACKEND=opengym-api   # must match the api container/service name above
+      - PORT=3000
+      # Behind a Cloudflare Tunnel, trust CF's real-client-IP header for the activity log.
+      # Leave EMPTY if you ever expose this directly, or clients can forge the address.
+      - CF_CONNECTING_IP=$$http_cf_connecting_ip
     volumes:
       - /mnt/tank/configs/opengym/media/img:/usr/share/nginx/html/img:ro
       - /mnt/tank/configs/opengym/media/gif:/usr/share/nginx/html/gif:ro
+    ports:
+      - "8080:80"
+    depends_on:
+      opengym-media:
+        condition: service_completed_successfully
+      opengym-api:
+        condition: service_started
+    restart: unless-stopped
+
 ```
 
 1. Set `RP_ID` and `ORIGIN` to your real domain **before** anyone registers — see section 3
