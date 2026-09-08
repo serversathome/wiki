@@ -2,7 +2,7 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-09-08T15:30:57.248Z
+date: 2026-09-08T15:31:13.060Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
@@ -58,7 +58,7 @@ Readarr is retired. These are what replaced it.
 - [📖 Chaptarr<br>*Book collection manager, the Readarr successor*](/chaptarr)
 {.links-list .arr}
 
-## Search automation {.sec .arr}
+# Search automation {.sec .arr}
 - [<img src="/fetcharr.png"> Fetcharr<br>*Re-searches for missing and upgradable media*](/fetcharr)
 - [<img src="/houndarr.png"> Houndarr<br>*Polite automated backfill searching across the stack*](/houndarr)
 - [🎯 NewtArr<br>*Maintained Huntarr fork for hunting missing media*](/newtarr)
