@@ -2,7 +2,7 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-09-08T12:06:22.944Z
+date: 2026-09-08T12:43:52.065Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
@@ -13,6 +13,9 @@ dateCreated: 2026-01-28T21:27:05.188Z
   <p>The acquisition pipeline: indexers, download clients, the *arr apps and everything that feeds them. For playback and libraries, see <a href="/mediamanagement">media management</a>.</p>
   <div class="hero-meta">Updated September 2026</div>
 </div>
+
+> Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help.
+{.is-success}
 
 ## Start here {.sec .arr}
 - [📖 Install instructions<br>*A step-by-step order for installing the *arr apps*](/InstallInstructions)
