@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2026-09-08T11:50:05.606Z
+date: 2026-09-08T11:50:21.725Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:20.212Z
@@ -38,7 +38,7 @@ dateCreated: 2026-01-15T15:06:20.212Z
 {.links-list}
 
 ## Games
-Running the game servers themselves? See [Server Management](/servermanagement).
+
 - [<img src="/romm.png"> RomM<br>*ROM and retro game library manager*](/romm)
 - [🏆 MatchExec<br>*Run game nights, matches and tournaments*](/matchexec)
 {.links-list}
