@@ -2,107 +2,100 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-09-08T11:40:13.377Z
+date: 2026-09-08T12:06:22.944Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
 ---
 
-> Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help!
-{.is-success}
+<div class="hero">
+  <div class="hero-title">*arr stack</div>
+  <p>The acquisition pipeline: indexers, download clients, the *arr apps and everything that feeds them. For playback and libraries, see <a href="/mediamanagement">media management</a>.</p>
+  <div class="hero-meta">Updated September 2026</div>
+</div>
 
-# Start Here
-- [📖 Install Instructions<br>*A step-by-step list of the arr apps*](/InstallInstructions)
-- [🗂️ Folder Structure<br>*Recommended folder structure from Trash Guides to allow for hardlinks within the arr stack*](/Folder-Structure)
-- [🗺️ Overview Map<br>*Overview map of how all the arr components of a media server fit together*](/OverviewMap)
-{.links-list}
+## Start here {.sec .arr}
+- [📖 Install instructions<br>*A step-by-step order for installing the *arr apps*](/InstallInstructions)
+- [🗂️ Folder structure<br>*TRaSH-guide layout that keeps hardlinks working*](/Folder-Structure)
+- [🗺️ Overview map<br>*How every component of a media server fits together*](/OverviewMap)
+{.links-list .arr .featured-first}
 
-# Download Clients
+## Download clients {.sec .arr}
 - [<img src="/qbittorrent.png"> qBittorrent<br>*Torrent client*](/qBittorrent)
 - [<img src="/sabnzbd.png"> SABnzbd<br>*Usenet download manager*](/sabnzbd)
+{.links-list .arr}
 
-{.links-list}
-
-# Media Servers
-- [<img src="/emby.png"> Emby<br>*Your personal media on any device*](/Emby)
-- [<img src="/jellyfin.png"> Jellyfin<br>*Volunteer-built media solution*](/jellyfin)
-- [<img src="/plex.png"> Plex<br>*Media-streaming server for movies, television shows, and music*](/plex)
-- [<img src="/navidrome.png"> Navidrome<br>*Music streaming server in your web browser*](/navidrome)
-{.links-list}
-
-# *arr Suite
-
-## Core Components
+## Core components {.sec .arr}
 - [<img src="/cinephage.png"> Cinephage<br>*Radarr, Sonarr, Prowlarr and Bazarr in a single app*](/cinephage)
-- [<img src="/mediamanager.png"> Media Manager<br>*Media Manager and requester*](/mediamanager)
-- [<img src="/prowlarr.png"> Prowlarr<br>*Indexer manager / proxy that integrates with the Arr apps*](/Prowlarr)
-- [<img src="/radarr.png"> Radarr<br>*Movie organizer / manager for Usenet &amp; Torrent users*](/radarr)
-- [<img src="/sonarr.png"> Sonarr<br>*TV-show organizer / manager for Usenet &amp; Torrent users*](/Sonarr)
+- [<img src="/mediamanager.png"> Media Manager<br>*Media manager and requester*](/mediamanager)
+- [<img src="/prowlarr.png"> Prowlarr<br>*Indexer manager and proxy for the *arr apps*](/Prowlarr)
+- [<img src="/radarr.png"> Radarr<br>*Movie organizer for Usenet and torrent users*](/radarr)
+- [<img src="/sonarr.png"> Sonarr<br>*TV organizer for Usenet and torrent users*](/Sonarr)
 - [<img src="/sportarr.png"> Sportarr<br>*A PVR for sports, built like Sonarr*](/sportarr)
-{.links-list}
+{.links-list .arr}
 
-## Media Discovery
-- [<img src="/agregarr.png"> Agregarr<br>*Keeps your Plex Home and Recommended fresh*](/agregarr)
+## Media discovery {.sec .arr}
+- [<img src="/agregarr.png"> Agregarr<br>*Keeps your Plex home and recommended fresh*](/agregarr)
 - [🎞️ Blockbusterr<br>*Auto-adds trending and top-rated titles from Trakt*](/blockbusterr)
 - [<img src="/boxarr.png"> Boxarr<br>*Monitors weekly box office charts*](/boxarr)
-- [<img src="/jellyseerr.png"> Seerr<br>*Media requests for Jellyfin and Emby libraries*](/seerr)
 - [📋 Listseerr<br>*Request everything on a list straight into Seerr*](/listseerr)
-- [<img src="/ombi.png"> Ombi<br>*Media request &amp; discovery manager*](/ombi)
-- [<img src="/pulsarr.png"> Pulsarr<br>*Plex watch-list monitoring, routing &amp; notifications*](/pulsarr)
+- [<img src="/ombi.png"> Ombi<br>*Media request and discovery manager*](/ombi)
+- [<img src="/pulsarr.png"> Pulsarr<br>*Plex watchlist monitoring, routing and notifications*](/pulsarr)
 - [<img src="/recommendarr.png"> Recommendarr<br>*Personalized recommendations for existing libraries*](/recommendarr)
-- [<img src="/seerr.png"> Seerr<br>*Media request &amp; discovery manager*](/seerr)
-- [Sommelierr<br>*Random content recommender*](/sommelierr)
+- [<img src="/seerr.png"> Seerr<br>*Media request and discovery manager*](/seerr)
+- [🍷 Sommelierr<br>*Random content recommender*](/sommelierr)
 - [<img src="/slskd.png"> Soulseek<br>*Music-sharing network*](/soulseek)
-- [🔍 Suggestarr<br>*Automated recommendations &amp; requests based on user activity*](/suggestarr)
-{.links-list}
+- [🔍 Suggestarr<br>*Automated recommendations based on watch activity*](/suggestarr)
+{.links-list .arr}
 
-## Books
+## Books {.sec .arr}
+
+Readarr is retired. These are what replaced it.
 
 - [📖 Chaptarr<br>*Book collection manager, the Readarr successor*](/chaptarr)
+{.links-list .arr}
 
-{.links-list}
-
-## Search Automation
-- [<img src="/fetcharr.png"> Fetcharr<br>*Periodically re-searches for missing and upgradable media*](/fetcharr)
+## Search automation {.sec .arr}
+- [<img src="/fetcharr.png"> Fetcharr<br>*Re-searches for missing and upgradable media*](/fetcharr)
 - [<img src="/houndarr.png"> Houndarr<br>*Polite automated backfill searching across the stack*](/houndarr)
 - [🎯 NewtArr<br>*Maintained Huntarr fork for hunting missing media*](/newtarr)
-{.links-list}
+{.links-list .arr}
 
-## Torrent Management
-- [Arr Queue Cleaner<br>*Automated queue cleaner for Sonarr*](/arrqueuecleaner)
-- [<img src="/cleanuparr.png"> Cleanuparr<br>*Automated cleanup of unwanted / blocked media files*](/cleanuparr)
+## Torrent management {.sec .arr}
+- [🧹 Arr Queue Cleaner<br>*Automated queue cleaner for Sonarr*](/arrqueuecleaner)
+- [<img src="/cleanuparr.png"> Cleanuparr<br>*Automated cleanup of unwanted and blocked files*](/cleanuparr)
 - [<img src="/cross-seed.png"> Cross-Seed<br>*Automatic torrent-link generator*](/crossseed)
 - [<img src="/maintainerr.png"> Maintainerr<br>*Maintenance tool for the Plex ecosystem*](/maintainerr)
 - [<img src="/autobrr.png"> Qui<br>*A fast, modern web interface for qBittorrent*](/qui)
-- [📦 Unpackerr<br>*Extracts media &amp; imports into the Arr apps*](/Unpackerr)
-{.links-list}
+- [<img src="/unpackerr.png"> Unpackerr<br>*Extracts media and imports it into the *arr apps*](/Unpackerr)
+{.links-list .arr}
 
-## Quality Control
+## Quality control {.sec .arr}
 - [📉 Capacitarr<br>*Scores your library and recommends what to cut*](/capacitarr)
 - [📺 Episeerr<br>*Episode-level control and automation for Sonarr*](/episeerr)
-- [<img src="/profilarr.png"> Profilarr<br>*Import, export &amp; sync profiles / custom formats*](/profilarr)
-- [<img src="/reclaimerr.png"> Reclaimerr<br>*Finds unwatched and stale media so you can reclaim space*](/reclaimerr)
-- [<img src="/recyclarr.png"> Recyclarr<br>*Automatically sync TRaSH Guides*](/Recyclarr)
+- [<img src="/profilarr.png"> Profilarr<br>*Import, export and sync profiles and custom formats*](/profilarr)
+- [<img src="/reclaimerr.png"> Reclaimerr<br>*Finds unwatched and stale media to reclaim space*](/reclaimerr)
+- [<img src="/recyclarr.png"> Recyclarr<br>*Automatically sync TRaSH guides*](/Recyclarr)
 - [<img src="/tdarr.png"> Tdarr<br>*Transcode automation*](/tdarr)
 - [<img src="/unmanic.png"> Unmanic<br>*Transcode automation*](/unmanic)
-{.links-list}
+{.links-list .arr}
 
-## Stats and Dashboards
+## Stats and dashboards {.sec .arr}
 - [<img src="/dasharr.png"> Dasharr<br>*Dashboard for the whole stack*](/dasharr)
-- [🗂️ Prismarr<br>*One interface over Radarr, Sonarr, Prowlarr, Jellyseerr and qBittorrent*](/prismarr)
+- [🗂️ Prismarr<br>*One interface over Radarr, Sonarr, Prowlarr and more*](/prismarr)
 - [📊 Sonarr Analyzer<br>*Average episode size per series*](/sonarranalyzer)
 - [💾 Sortarr<br>*Storage insights across Sonarr and Radarr*](/sortarr)
-- [<img src="/tracearr.png"> Tracearr<br>*Sessions, analytics and share detection for Plex, Jellyfin and Emby*](/tracearr)
-{.links-list}
+- [<img src="/tracearr.png"> Tracearr<br>*Sessions and analytics for Plex, Jellyfin and Emby*](/tracearr)
+{.links-list .arr}
 
-## Others
+## Others {.sec .arr}
 - [<img src="/bazarr.png"> Bazarr<br>*Subtitle management*](/bazarr)
 - [<img src="/crosswatch.png"> CrossWatch<br>*Sync client for Plex and Jellyfin*](/crosswatch)
-- [<img src="/dispatcharr.png"> Dispatcharr<br>*Live TV for media server*](/dispatcharr)
-- [<img src="/flaresolverr.png"> Flaresolverr<br>*Proxy server to bypass Cloudflare protection*](/Flaresolverr)
-- [<img src="/notifiarr.png"> Notifiarr<br>*Monitoring &amp; notifications via Discord*](/notifiarr)
+- [<img src="/dispatcharr.png"> Dispatcharr<br>*Live TV for your media server*](/dispatcharr)
+- [<img src="/flaresolverr.png"> Flaresolverr<br>*Proxy that gets past Cloudflare protection*](/Flaresolverr)
+- [<img src="/notifiarr.png"> Notifiarr<br>*Monitoring and notifications via Discord*](/notifiarr)
 - [<img src="/posterizarr.png"> Posterizarr<br>*Automatic textless posters for your library*](/posterizarr)
-- [📱 Remote Management<br>*Run your stack from an Android phone with nzb360*](/Remote-Management)
+- [📱 Remote management<br>*Run your stack from Android with nzb360*](/Remote-Management)
 - [<img src="/trailarr.png"> Trailarr<br>*Add trailers to your media*](/trailarr)
-- [<img src="/wizarr.png"> Wizarr<br>*User-invitation management for Jellyfin, Plex &amp; Emby*](/wizarr)
-{.links-list}
+- [<img src="/wizarr.png"> Wizarr<br>*User invitations for Jellyfin, Plex and Emby*](/wizarr)
+{.links-list .arr}
