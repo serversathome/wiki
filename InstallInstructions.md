@@ -2,7 +2,7 @@
 title: Install Instructions
 description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2026-09-08T10:49:50.611Z
+date: 2026-09-08T10:50:15.190Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:31.090Z
@@ -50,7 +50,7 @@ Follow the steps in this order to make the install go as smoothly as possible.
  
 - Unpackerr can now be deployed since we have API keys for Radarr and Sonarr in the event we get .rar files.
  
-- Jellyseerr will want to know which Radarr and Sonarr servers are set up and the default quality profile you want to use for downloads.
+- Seerr will want to know which Radarr and Sonarr servers are set up and the default quality profile you want to use for downloads.
 
 - If you want to sure up your subtitles, install Bazarr.
 
