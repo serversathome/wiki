@@ -2,7 +2,7 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: 2026-09-08T13:14:42.224Z
+date: 2026-09-08T13:15:16.193Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:25.101Z
@@ -16,9 +16,8 @@ Easily back up, organize, and manage your photos on your own server. Immich help
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>4 (server, ML, Postgres, Valkey)</b></div>
   <div><span>Depends on</span><b>Postgres and Valkey, optional GPU</b></div>
-  <div><span>Config path</span><b><code>/mnt/tank/configs/immich</code></b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div><span>Hardware accel</span><b>Nvidia, AMD, Intel or VAAPI</b></div>
+  <div class="wide"><span>Hardware accel</span><b>Nvidia, AMD, Intel or VAAPI</b></div>
   <div class="glance-links">
     <a href="https://github.com/immich-app/immich">Project</a>
     <a href="https://docs.immich.app">Docs</a>
@@ -32,7 +31,7 @@ Easily back up, organize, and manage your photos on your own server. Immich help
 
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+![screenshot_from_2025-04-30_08-01-41.png](/screenshot_from_2025-04-30_08-01-41.png)
 
 1. Set a database and redis password
 1. If you have an nVidia GPU, select the **Cuda Machine Learning Image** for the **Machine Learning Image Type**
