@@ -2,7 +2,7 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-09-08T12:43:52.065Z
+date: 2026-09-08T12:57:08.279Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
@@ -18,7 +18,7 @@ dateCreated: 2026-01-28T21:27:05.188Z
 {.is-success}
 
 ## Start here {.sec .arr}
-- [📖 Install instructions<br>*A step-by-step order for installing the *arr apps*](/InstallInstructions)
+- [📖 Install instructions<br>*A step-by-step order for installing the \*arr apps*](/InstallInstructions)
 - [🗂️ Folder structure<br>*TRaSH-guide layout that keeps hardlinks working*](/Folder-Structure)
 - [🗺️ Overview map<br>*How every component of a media server fits together*](/OverviewMap)
 {.links-list .arr .featured-first}
@@ -31,7 +31,7 @@ dateCreated: 2026-01-28T21:27:05.188Z
 ## Core components {.sec .arr}
 - [<img src="/cinephage.png"> Cinephage<br>*Radarr, Sonarr, Prowlarr and Bazarr in a single app*](/cinephage)
 - [<img src="/mediamanager.png"> Media Manager<br>*Media manager and requester*](/mediamanager)
-- [<img src="/prowlarr.png"> Prowlarr<br>*Indexer manager and proxy for the *arr apps*](/Prowlarr)
+- [<img src="/prowlarr.png"> Prowlarr<br>*Indexer manager and proxy for the \*arr apps*](/Prowlarr)
 - [<img src="/radarr.png"> Radarr<br>*Movie organizer for Usenet and torrent users*](/radarr)
 - [<img src="/sonarr.png"> Sonarr<br>*TV organizer for Usenet and torrent users*](/Sonarr)
 - [<img src="/sportarr.png"> Sportarr<br>*A PVR for sports, built like Sonarr*](/sportarr)
@@ -70,7 +70,7 @@ Readarr is retired. These are what replaced it.
 - [<img src="/cross-seed.png"> Cross-Seed<br>*Automatic torrent-link generator*](/crossseed)
 - [<img src="/maintainerr.png"> Maintainerr<br>*Maintenance tool for the Plex ecosystem*](/maintainerr)
 - [<img src="/autobrr.png"> Qui<br>*A fast, modern web interface for qBittorrent*](/qui)
-- [<img src="/unpackerr.png"> Unpackerr<br>*Extracts media and imports it into the *arr apps*](/Unpackerr)
+- [<img src="/unpackerr.png"> Unpackerr<br>*Extracts media and imports it into the \*arr apps*](/Unpackerr)
 {.links-list .arr}
 
 ## Quality control {.sec .arr}
