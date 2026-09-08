@@ -2,7 +2,7 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: 2026-09-08T13:12:17.805Z
+date: 2026-09-08T13:14:42.224Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:25.101Z
@@ -32,7 +32,7 @@ Easily back up, organize, and manage your photos on your own server. Immich help
 
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
-![screenshot_from_2025-04-30_08-01-41.png](/screenshot_from_2025-04-30_08-01-41.png)
+
 
 1. Set a database and redis password
 1. If you have an nVidia GPU, select the **Cuda Machine Learning Image** for the **Machine Learning Image Type**
