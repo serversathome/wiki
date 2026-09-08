@@ -2,7 +2,7 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: 2026-05-05T19:24:23.587Z
+date: 2026-09-08T13:12:17.805Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:25.101Z
@@ -10,6 +10,22 @@ dateCreated: 2026-01-15T15:05:25.101Z
 
 # ![](/immich.png){class="tab-icon"} What is Immich?
 Easily back up, organize, and manage your photos on your own server. Immich helps you browse, search and organize your photos and videos with ease, without sacrificing your privacy.
+
+<div class="glance media">
+  <div><span>Web UI</span><b>Port <code>2283</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>4 (server, ML, Postgres, Valkey)</b></div>
+  <div><span>Depends on</span><b>Postgres and Valkey, optional GPU</b></div>
+  <div><span>Config path</span><b><code>/mnt/tank/configs/immich</code></b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Hardware accel</span><b>Nvidia, AMD, Intel or VAAPI</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/immich-app/immich">Project</a>
+    <a href="https://docs.immich.app">Docs</a>
+    <a href="https://apps.truenas.com/resources/deploy-immich">TrueNAS app</a>
+    <a href="https://youtu.be/Kxg0JpWTDNQ">Video walkthrough</a>
+  </div>
+</div>
 
 # 1 · Deploy Immich
 # {.tabset}
