@@ -2,13 +2,13 @@
 title: Cantinarr
 description: A guide to deploying Cantinarr
 published: true
-date: 2026-09-08T15:22:51.037Z
+date: 2026-09-08T15:25:12.685Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-08T15:19:38.173Z
 ---
 
-#  What is Cantinarr?
+#  <img src="/cantinarr.png" class="tab-icon"> What is Cantinarr?
 
 **Cantinarr** is a self-hosted discovery, request, and \*arr management front end for your whole media stack. Household members browse movies, TV, books, and music powered by TMDB and Trakt, tap request, and get a push notification when it lands. You keep Radarr, Sonarr, Chaptarr, Lidarr, the download clients, Tautulli, and Plex invites behind the admin side. When a download gets stuck, Cantinarr diagnoses the cause in plain English and proposes a fix you approve. It also exposes itself as an MCP server, so Claude or any other MCP client can search your library and make requests for you. The whole thing is one Go container with an embedded Flutter web app, SQLite inside, and companion iOS and Android apps in beta.
 
