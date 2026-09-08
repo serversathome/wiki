@@ -2,7 +2,7 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: 2026-09-08T13:15:16.193Z
+date: 2026-09-08T14:00:30.588Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:25.101Z
@@ -19,10 +19,10 @@ Easily back up, organize, and manage your photos on your own server. Immich help
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="wide"><span>Hardware accel</span><b>Nvidia, AMD, Intel or VAAPI</b></div>
   <div class="glance-links">
-    <a href="https://github.com/immich-app/immich">Project</a>
-    <a href="https://docs.immich.app">Docs</a>
-    <a href="https://apps.truenas.com/resources/deploy-immich">TrueNAS app</a>
-    <a href="https://youtu.be/Kxg0JpWTDNQ">Video walkthrough</a>
+    <a href="https://github.com/immich-app/immich"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://docs.immich.app"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://apps.truenas.com/resources/deploy-immich"><i class="mdi mdi-server"></i>TrueNAS app</a>
+    <a href="https://youtu.be/Kxg0JpWTDNQ"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>
 
