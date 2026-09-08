@@ -32,3 +32,4 @@ services:
     volumes:
       - /mnt/tank/configs/crosswatch:/config
     restart: unless-stopped
+```

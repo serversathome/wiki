@@ -29,3 +29,4 @@ services:
     ports:
       - "7576:7576"
     restart: unless-stopped
+```

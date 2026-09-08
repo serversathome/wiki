@@ -23,9 +23,9 @@ A comprehensive container security scanning platform that provides an intuitive 
 
 ```yaml
 services:
-  image: ghcr.io/harborguard/harborguard:latest
-  restart: unless-stopped
   harborguard:
+    image: ghcr.io/harborguard/harborguard:latest
+    restart: unless-stopped
     ports:
       - 2998:8080
     environment:
