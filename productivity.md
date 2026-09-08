@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2026-09-08T12:14:13.595Z
+date: 2026-09-08T12:42:51.336Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:28.852Z
@@ -13,6 +13,9 @@ dateCreated: 2026-01-15T15:07:28.852Z
   <p>The apps that replace the subscriptions: notes, files, passwords, money, home and automation.</p>
   <div class="hero-meta">Updated September 2026</div>
 </div>
+
+> Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help.
+{.is-success}
 
 ## AI and assistants {.sec .apps}
 - [<img src="/ollama.png"> Ollama<br>*Run large language models locally*](/ollama)
