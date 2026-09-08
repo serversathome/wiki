@@ -2,7 +2,7 @@
 title: Install Instructions
 description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2026-09-08T10:47:49.778Z
+date: 2026-09-08T10:48:40.699Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:31.090Z
@@ -24,16 +24,15 @@ Follow the steps in this order to make the install go as smoothly as possible.
 | 6   | Install Sonarr | [Sonarr](/Sonarr) |
 | 7   | Install Flaresolverr | [Flaresolverr](/Flaresolverr) |
 | 8   | Install Prowlarr | [Prowlarr](/Prowlarr) |
-| 9   | Install Recyclarr or Profilarr | [Recyclarr](/Recyclarr) / [Profilarr](/profilarr) |
+| 9   | Install Profilarr | [Profilarr](/profilarr) |
 | 10  | Install Emby/Jellyfin | [Emby](/Emby)/[Jellyfin](/jellyfin) |
 | 11  | Install Unpackerr | [Unpackerr](/Unpackerr) |
 | 12  | Install Seer | [Seerr](/seerr) |
 | 13  | Install Bazarr | [Bazarr](/bazarr) |
-| 14  | Install Tdarr | [Tdarr](/tdarr) |
-| 15  | If you want remote access, configure a VPN | [Cloudflare Tunnels](/CloudflareTunnels) / [wg-easy](/wg-easy) / [Tailscale](/tailscale) / [Netbird](/netbird) |
-| 16  | If you don't have a static IP but want external access through a domain, add Cloudflare DDNS | [Cloudflare DDNS](/cloudflareddns) |
-| 17  | If you want to monitor your apps, install Uptime Kuma | [Uptime Kuma](/Kuma) |
-| 18  | Add notifications! | [Notifications](/Notifications) |
+| 14  | If you want remote access, configure a VPN | [Cloudflare Tunnels](/CloudflareTunnels) / [wg-easy](/wg-easy) / [Tailscale](/tailscale) / [Netbird](/netbird) |
+| 15  | If you don't have a static IP but want external access through a domain, add Cloudflare DDNS | [Cloudflare DDNS](/cloudflareddns) |
+| 16  | If you want to monitor your apps, install Uptime Kuma | [Uptime Kuma](/Kuma) |
+| 17  | Add notifications! | [Notifications](/Notifications) |
 
 - I feel like this is the most logical order of progression. You can't really set up anything until your server is configured and your folders are set up.
  
