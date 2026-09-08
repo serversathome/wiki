@@ -2,7 +2,7 @@
 title: Web Hosting
 description: 
 published: true
-date: 2026-09-08T11:23:11.468Z
+date: 2026-09-08T11:40:55.278Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:24.716Z
@@ -35,7 +35,7 @@ Publishing to the public internet. For getting traffic to these safely, see [Net
 - [<img src="/kutt.png"> Kutt<br>*URL shortener with custom domains*](/kutt)
 - [📰 RSSPub<br>*Turn feeds into a daily EPUB newspaper*](/rsspub)
 - [<img src="/searxng.png"> SearXNG<br>*Metasearch across 240 services, no tracking*](/searxng)
-- [<img src="/whoogle.png"> Whoogle<br>*Google results without the ads and tracking*](/whoogle)
+
 {.links-list}
 
 ## Hosting
