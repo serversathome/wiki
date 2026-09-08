@@ -2,7 +2,7 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-09-08T11:29:18.542Z
+date: 2026-09-08T11:40:13.377Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
@@ -50,7 +50,6 @@ dateCreated: 2026-01-28T21:27:05.188Z
 - [<img src="/ombi.png"> Ombi<br>*Media request &amp; discovery manager*](/ombi)
 - [<img src="/pulsarr.png"> Pulsarr<br>*Plex watch-list monitoring, routing &amp; notifications*](/pulsarr)
 - [<img src="/recommendarr.png"> Recommendarr<br>*Personalized recommendations for existing libraries*](/recommendarr)
-- [🎧 Releasarr<br>*Music discovery platform*](/releasarr)
 - [<img src="/seerr.png"> Seerr<br>*Media request &amp; discovery manager*](/seerr)
 - [Sommelierr<br>*Random content recommender*](/sommelierr)
 - [<img src="/slskd.png"> Soulseek<br>*Music-sharing network*](/soulseek)
@@ -60,7 +59,7 @@ dateCreated: 2026-01-28T21:27:05.188Z
 ## Books
 
 - [📖 Chaptarr<br>*Book collection manager, the Readarr successor*](/chaptarr)
-- [📚 Readarr / Calibre / Kavita<br>*The classic book and comic stack*](/books)
+
 {.links-list}
 
 ## Search Automation
@@ -101,7 +100,6 @@ dateCreated: 2026-01-28T21:27:05.188Z
 - [<img src="/crosswatch.png"> CrossWatch<br>*Sync client for Plex and Jellyfin*](/crosswatch)
 - [<img src="/dispatcharr.png"> Dispatcharr<br>*Live TV for media server*](/dispatcharr)
 - [<img src="/flaresolverr.png"> Flaresolverr<br>*Proxy server to bypass Cloudflare protection*](/Flaresolverr)
-- [<img src="/linkarr.png"> Linkarr<br>*Organize your media library*](/linkarr)
 - [<img src="/notifiarr.png"> Notifiarr<br>*Monitoring &amp; notifications via Discord*](/notifiarr)
 - [<img src="/posterizarr.png"> Posterizarr<br>*Automatic textless posters for your library*](/posterizarr)
 - [📱 Remote Management<br>*Run your stack from an Android phone with nzb360*](/Remote-Management)
