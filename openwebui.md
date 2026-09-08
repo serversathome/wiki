@@ -20,7 +20,7 @@ The difference from the commercial tools is that everything here is a toggle or 
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://github.com/Haervwe/open-webui-tools"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/open-webui/open-webui"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 

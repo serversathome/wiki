@@ -20,6 +20,9 @@ Think of it as a self-hosted alternative to Box or Dropbox Business — enterpri
   <div><span>Containers</span><b>5 services</b></div>
   <div><span>Depends on</span><b>Postgres and Redis</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/clovalink/clovalink-backend"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy ClovaLink

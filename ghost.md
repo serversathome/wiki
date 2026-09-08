@@ -19,7 +19,7 @@ Ghost is a powerful app for professional publishers to create, share, and grow a
   <div><span>Depends on</span><b>MySQL</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://ghost.org/docs/config/#mail"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://ghost.org/docs/config/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
     <a href="https://youtu.be/YnjYWhceepU?feature=shared&t=227"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>

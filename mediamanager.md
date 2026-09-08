@@ -17,6 +17,9 @@ MediaManager is modern software to manage your TV and movie library. It is desig
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/maxdorninger/mediamanager"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Media Manager

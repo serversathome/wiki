@@ -17,6 +17,7 @@ Speedtest Tracker is a self-hosted application that monitors the performance and
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
+    <a href="https://github.com/linuxserver/docker-speedtest-tracker"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://docs.speedtest-tracker.dev/getting-started/environment-variables"><i class="mdi mdi-book-open-variant"></i>Docs</a>
   </div>
 </div>

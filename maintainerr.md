@@ -27,6 +27,7 @@ Typical uses:
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
+    <a href="https://github.com/maintainerr/maintainerr"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/u8k-IlkShKs"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>

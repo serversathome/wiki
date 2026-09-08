@@ -20,9 +20,9 @@ qBittorrent is a free and open-source software that aims to provide the same fea
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://github.com/monstermuffin/qSticky"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-39-29.png"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://www.youtube.com/watch?v=WVM3Wgb290g"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+    <a href="https://github.com/hotio/qbittorrent"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://hotio.dev/containers/qbittorrent/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://youtu.be/I4SRwmKLfQQ"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>
 

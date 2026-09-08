@@ -17,6 +17,9 @@ A free and open documentation platform built with Laravel and Filament, enhanced
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/bartvantuijn/noton"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Noton

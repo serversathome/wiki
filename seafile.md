@@ -23,6 +23,7 @@ The Community Edition (CE) is fully free and open source. The Professional Editi
   <div><span>Depends on</span><b>MariaDB and Redis</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
+    <a href="https://manual.seafile.com/latest/upgrade/upgrade_notes_for_13.0.x/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
     <a href="https://youtu.be/ZaLfJnNWpg8"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>

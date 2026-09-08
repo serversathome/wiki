@@ -22,6 +22,9 @@ If you have ever configured HAProxy inside OPNsense, the layout will look famili
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/avandeputte/haproxy-manager"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 # 1 · Deploy HAProxy Cluster Manager

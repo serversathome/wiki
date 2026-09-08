@@ -16,6 +16,9 @@ A modern, self-hosted media management platform for tracking, organizing, and mo
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/getmydia/mydia"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Mydia

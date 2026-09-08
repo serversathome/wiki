@@ -21,6 +21,9 @@ For trips, the itinerary planner handles any number of days and destinations, wi
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/seanmorley15/adventurelog"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 

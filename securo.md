@@ -18,6 +18,9 @@ dateCreated: 2026-08-28T20:39:44.910Z
   <div><span>Containers</span><b>3 services</b></div>
   <div><span>Depends on</span><b>Postgres and Redis</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/securo-finance/securo-frontend"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 

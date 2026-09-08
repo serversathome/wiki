@@ -17,6 +17,9 @@ dateCreated: 2026-01-15T15:03:09.587Z
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/getarcaneapp/manager"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 

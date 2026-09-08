@@ -19,6 +19,7 @@ dateCreated: 2026-08-06T14:22:23.744Z
   <div><span>Depends on</span><b>Postgres and Redis</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
+    <a href="https://github.com/we-promise/sure"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/ZX8N3mSnDGw"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>

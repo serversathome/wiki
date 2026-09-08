@@ -26,7 +26,7 @@ Key highlights include `.strm` file support for streaming without downloading, T
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://github.com/MoldyTaint/Cinephage"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/moldytaint/cinephage"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 

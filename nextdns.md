@@ -25,6 +25,7 @@ Free tier is 300,000 queries per month with all features. Pro is $1.99/month or 
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
+    <a href="https://github.com/nextdns/nextdns"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/u7h4IXgHGYc"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>

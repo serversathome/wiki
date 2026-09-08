@@ -20,7 +20,7 @@ Named after James May, completing the trio of Top Gear presenters alongside [Cla
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://github.com/linuxserver/Clarkson"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/dannymcc/may"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 

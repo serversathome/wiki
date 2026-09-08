@@ -18,6 +18,7 @@ Duplicati is an open-source backup client that securely stores encrypted, increm
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
+    <a href="https://github.com/linuxserver/docker-duplicati"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/ZxSpwwtJ3aA"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>

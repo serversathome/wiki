@@ -17,6 +17,9 @@ Warracker is an open source, self-hostable warranty tracker to monitor expiratio
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/sassanix/warracker"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 

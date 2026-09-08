@@ -17,7 +17,7 @@ Recyclarr is a command-line application that will automatically synchronize reco
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://wiki.hydrology.cc/screenshot_from_2023-12-12_09-34-37.png"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://github.com/recyclarr/recyclarr"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/sIvBG9SbIQo"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>

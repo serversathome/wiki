@@ -19,8 +19,7 @@ Emby is a personal media server that lets you access and enjoy your videos, musi
   <div><span>Hardware accel</span><b>Nvidia</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://github.com/NVIDIA/nvidia-container-toolkit"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://wiki.hydrology.cc/screenshot_from_2023-12-11_08-39-08.png"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://github.com/linuxserver/docker-emby"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://apps.truenas.com/resources/deploy-emby"><i class="mdi mdi-server"></i>TrueNAS app</a>
   </div>
 </div>

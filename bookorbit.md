@@ -25,6 +25,9 @@ It is written in TypeScript/Vue on a NestJS backend, licensed AGPL-3.0, and back
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/bookorbit/bookorbit"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 # 1 · Deploy BookOrbit

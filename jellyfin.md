@@ -19,6 +19,7 @@ Jellyfin enables you to collect, manage, and stream your media. Run the Jellyfin
   <div><span>Hardware accel</span><b>Nvidia, Intel or AMD</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
+    <a href="https://github.com/linuxserver/docker-jellyfin"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://jellyfin.org/docs/general/installation/advanced/truenas/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
     <a href="https://apps.truenas.com/resources/deploy-jellyfin"><i class="mdi mdi-server"></i>TrueNAS app</a>
     <a href="https://youtu.be/VNhsR2lpntc"><i class="mdi mdi-youtube"></i>Video walkthrough</a>

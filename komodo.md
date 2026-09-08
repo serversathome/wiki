@@ -27,6 +27,9 @@ With Komodo you can:
   <div><span>Containers</span><b>3 services</b></div>
   <div><span>Depends on</span><b>MongoDB</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/moghtech/komodo-core"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 

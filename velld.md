@@ -16,6 +16,9 @@ A self-hosted database backup management tool. Schedule automated backups, monit
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/dendianugerah/velld"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Velld

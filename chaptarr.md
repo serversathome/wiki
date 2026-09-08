@@ -22,9 +22,6 @@ It handles both media types in a single instance, which Readarr never could, and
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/sandreas/m4b-tool"><i class="mdi mdi-github"></i>Project</a>
-  </div>
 </div>
 
 

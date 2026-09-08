@@ -22,7 +22,7 @@ This software allows you to manage multiple Docker compose files from a single, 
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://youtu.be/LpAxsO7zAMA"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+    <a href="https://youtu.be/mVbi6xkM-rk"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>
 

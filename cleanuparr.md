@@ -18,6 +18,7 @@ Automated Download Management. Automatically clean up unwanted, stalled, and mal
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
+    <a href="https://github.com/cleanuparr/cleanuparr"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://cleanuparr.github.io/Cleanuparr/docs/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
   </div>
 </div>

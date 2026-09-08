@@ -17,6 +17,9 @@ A privacy-first, locally-hosted medical record system for individuals, families,
   <div><span>Containers</span><b>3 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/dmjoh/mediqux"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Mediqux

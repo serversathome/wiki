@@ -18,6 +18,9 @@ A simple workspace for keeping track of homes you’re considering. Save listing
   <div><span>Containers</span><b>4 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/adomi-io/listing-lab"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Listing Lab

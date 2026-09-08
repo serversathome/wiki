@@ -17,6 +17,9 @@ dateCreated: 2026-03-02T21:33:57.457Z
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/theduffman85/linux-update-dashboard"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 

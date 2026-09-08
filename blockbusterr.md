@@ -36,6 +36,9 @@ Automatically add trending, popular, and highly-rated movies and TV shows from T
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/mahcks/blockbusterr"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 

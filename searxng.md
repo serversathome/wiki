@@ -21,7 +21,6 @@ SearXNG is a community-driven fork of the original SearX project, started in 202
   <div><span>Depends on</span><b>Redis</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://github.com/qdm12/gluetun"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://docs.searxng.org/admin/settings/index.html"><i class="mdi mdi-book-open-variant"></i>Docs</a>
     <a href="https://youtu.be/5vNegD0Lgt4"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>

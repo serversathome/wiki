@@ -18,6 +18,7 @@ Crafty Controller is a web-based panel that lets you manage Minecraft servers fr
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
+    <a href="https://gitlab.com/crafty-controller/crafty-4"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://www.youtube.com/watch?v=A9Nld6MxhXk"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>

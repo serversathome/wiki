@@ -18,6 +18,9 @@ dateCreated: 2026-03-02T19:14:06.166Z
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/torqvoice/torqvoice"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 

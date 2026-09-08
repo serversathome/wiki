@@ -18,6 +18,7 @@ Nextcloud is a self-hosted cloud file storage and collaboration software that of
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
+    <a href="https://github.com/linuxserver/docker-nextcloud"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://apps.truenas.com/resources/deploy-nextcloud"><i class="mdi mdi-server"></i>TrueNAS app</a>
     <a href="https://youtu.be/ibL9qAlUZes"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>

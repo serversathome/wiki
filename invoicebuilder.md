@@ -17,6 +17,9 @@ dateCreated: 2026-03-02T14:57:26.804Z
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/piratuks/invoice-builder"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Invoice Builder

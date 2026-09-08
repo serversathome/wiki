@@ -19,6 +19,7 @@ A powerful, flexible kanban app that helps you organise work, track progress, an
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
+    <a href="https://github.com/kanbn/kan"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://docs.kan.bn/introduction"><i class="mdi mdi-book-open-variant"></i>Docs</a>
     <a href="https://youtu.be/_Upe8mr5KMA"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>

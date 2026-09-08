@@ -18,6 +18,7 @@ dateCreated: 2026-02-10T11:00:58.064Z
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
+    <a href="https://github.com/hargata/lubelogger"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://docs.lubelogger.com/Advanced/Environment%20Variables"><i class="mdi mdi-book-open-variant"></i>Docs</a>
   </div>
 </div>

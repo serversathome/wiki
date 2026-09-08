@@ -18,6 +18,9 @@ Scanopy scans your network, identifies hosts and services, and generates an inte
   <div><span>Containers</span><b>3 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/scanopy/scanopy"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Scanopy

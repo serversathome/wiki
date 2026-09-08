@@ -19,6 +19,7 @@ dateCreated: 2026-01-15T15:09:35.215Z
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
+    <a href="https://github.com/requarks/wiki"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://docs.requarks.io/en/editors/markdown"><i class="mdi mdi-book-open-variant"></i>Docs</a>
     <a href="https://youtu.be/hfhP5WBAXmg"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>

@@ -31,7 +31,7 @@ v2 is a complete rewrite with a new database / customisation model, library page
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://github.com/Dictionarry-Hub/database"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/dictionarry-hub/profilarr"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/jvir2SmnwWs"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>

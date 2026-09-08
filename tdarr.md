@@ -18,6 +18,9 @@ Tdarr is a tool that can help you optimize your media files by transcode, remux,
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Hardware accel</span><b>Nvidia, Intel or AMD</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/haveagitgat/tdarr"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 # 1 · Deploy Tdarr

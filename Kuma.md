@@ -20,7 +20,6 @@ Uptime Kuma is a web monitor tool that supports various monitors such as HTTP, D
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://wiki.hydrology.cc/kumadash.jpg"><i class="mdi mdi-book-open-variant"></i>Docs</a>
     <a href="https://youtu.be/tIazVdhsSqQ?si=u4A4-4AUqToEWCEl&t=198"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>

@@ -21,6 +21,7 @@ Why not use it as your browser start page? It even has the ability to include a 
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
+    <a href="https://github.com/linuxserver/docker-heimdall"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/-pm-F9dzYn0"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>

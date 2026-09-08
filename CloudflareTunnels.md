@@ -16,9 +16,6 @@ Cloudflare Tunnel provides you with a secure way to connect your resources to Cl
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://wiki.hydrology.cc/screenshot_from_2023-12-11_11-42-42.png"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-  </div>
 </div>
 
 # 1 · Deploy Cloudflare Tunnels

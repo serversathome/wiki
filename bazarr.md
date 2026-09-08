@@ -17,6 +17,7 @@ Bazarr is a companion application to Sonarr and Radarr. It can manage and downlo
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
+    <a href="https://github.com/linuxserver/docker-bazarr"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://wiki.bazarr.media/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
   </div>
 </div>

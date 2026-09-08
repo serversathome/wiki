@@ -20,7 +20,7 @@ A one-stop destination to stream movies, TV shows, and music, Plex is the most c
   <div><span>Hardware accel</span><b>Nvidia, Intel, AMD or VAAPI</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
-    <a href="https://github.com/NVIDIA/nvidia-container-toolkit"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/linuxserver/docker-plex"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://apps.truenas.com/resources/deploy-plex"><i class="mdi mdi-server"></i>TrueNAS app</a>
     <a href="https://youtu.be/MU7wXJkGHqU?si=BuvTbpPo6yxYjBVH"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>

@@ -18,6 +18,7 @@ dateCreated: 2026-05-06T22:04:27.210Z
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
+    <a href="https://github.com/lukegus/termix"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/KOXUqb6okow"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>

@@ -17,6 +17,7 @@ FlareSolverr is a proxy server to bypass Cloudflare and DDoS-GUARD protection.
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
+    <a href="https://github.com/flaresolverr/flaresolverr"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/sUMT0PTll_M"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>
