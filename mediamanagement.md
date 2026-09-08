@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2026-09-08T12:41:42.726Z
+date: 2026-09-08T12:42:19.548Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:20.212Z
@@ -28,7 +28,7 @@ dateCreated: 2026-01-15T15:06:20.212Z
 - [Moonfin<br>*Refined Jellyfin and Emby clients for TV devices*](/moonfin)
 - [<img src="/jellyswarrm.png"> Jellyswarrm<br>*Combine multiple Jellyfin servers into one*](/jellyswarrm)
 - [Mydia<br>*Track and organize a media library*](/mydia)
-{.links-list .media .featured-first}
+{.links-list .media}
 
 ## Photos {.sec .media}
 - [<img src="/immich.png"> Immich<br>*Photo and video management with mobile backup*](/immich)
