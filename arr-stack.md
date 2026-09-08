@@ -2,7 +2,7 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-09-08T15:31:13.060Z
+date: 2026-09-08T16:22:51.565Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
@@ -53,7 +53,7 @@ dateCreated: 2026-01-28T21:27:05.188Z
 
 # Books {.sec .arr}
 
-Readarr is retired. These are what replaced it.
+
 
 - [📖 Chaptarr<br>*Book collection manager, the Readarr successor*](/chaptarr)
 {.links-list .arr}
