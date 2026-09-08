@@ -2,7 +2,7 @@
 title: Networking
 description: 
 published: true
-date: 2026-09-08T12:14:40.631Z
+date: 2026-09-08T12:42:38.701Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:37.268Z
@@ -13,6 +13,9 @@ dateCreated: 2026-01-15T15:02:37.268Z
   <p>Getting traffic in, out and around your homelab safely.</p>
   <div class="hero-meta">Updated September 2026</div>
 </div>
+
+> Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help.
+{.is-success}
 
 ## VPNs and mesh networks {.sec .network}
 - [<img src="/air_vpn.png"> AirVPN<br>*VPN for hiding torrent traffic*](/AirVPN)
