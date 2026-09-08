@@ -17,7 +17,7 @@ The big differentiator is that DockTail uses real Tailscale Services rather than
 <div class="glance">
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/marvinvr/docktail"><i class="mdi mdi-github"></i>Project</a>
   </div>

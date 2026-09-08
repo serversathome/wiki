@@ -16,7 +16,7 @@ Phylum is a self-hosted file storage platform with offline-first web and native 
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
     <a href="https://codeberg.org/shroff/phylum"><i class="mdi mdi-github"></i>Project</a>
   </div>

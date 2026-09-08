@@ -30,7 +30,7 @@ Notable features:
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Depends on</span><b>MongoDB</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
 </div>
 
 

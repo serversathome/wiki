@@ -18,7 +18,7 @@ It can emulate an HDHomeRun device so Plex, Emby, or Jellyfin discover it as a l
   <div><span>Port</span><b><code>9191</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/dispatcharr/dispatcharr"><i class="mdi mdi-github"></i>Project</a>
   </div>

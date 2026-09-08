@@ -23,7 +23,7 @@ Think of it as a self-hosted alternative to Mega or Proton Drive, where privacy 
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
     <a href="https://docs.agamspace.app/configuration/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
   </div>

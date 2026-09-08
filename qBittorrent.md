@@ -18,7 +18,7 @@ qBittorrent is a free and open-source software that aims to provide the same fea
   <div><span>Port</span><b><code>8080</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/hotio/qbittorrent"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://hotio.dev/containers/qbittorrent/"><i class="mdi mdi-book-open-variant"></i>Docs</a>

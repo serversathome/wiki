@@ -15,7 +15,7 @@ dateCreated: 2026-04-08T13:36:58.555Z
 <div class="glance">
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://youtu.be/aV4dDYc27gk"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>

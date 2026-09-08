@@ -18,7 +18,7 @@ Cross-seed is an app designed to help you download torrents that you can cross s
   <div><span>Port</span><b><code>2468</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/cross-seed/cross-seed"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://www.cross-seed.org/docs/basics/faq-troubleshooting"><i class="mdi mdi-book-open-variant"></i>Docs</a>

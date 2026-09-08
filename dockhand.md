@@ -23,7 +23,7 @@ A few things that set it apart from the usual Portainer/Dockge crowd:
   <div><span>Port</span><b><code>3000</code></b></div>
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/Finsys/dockhand"><i class="mdi mdi-github"></i>Project</a>
   </div>

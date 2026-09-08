@@ -20,7 +20,7 @@ Key features include Prowlarr integration (Newznab and Torznab API support), IPT
   <div><span>Port</span><b><code>1867</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Sportarr

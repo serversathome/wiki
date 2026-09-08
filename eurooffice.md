@@ -18,7 +18,7 @@ Under the hood, Euro-Office is a fork of **OnlyOffice**. On launch it is functio
   <div><span>Port</span><b><code>8080</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/euro-office/documentserver"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/9sf9OnoIcc4"><i class="mdi mdi-youtube"></i>Video walkthrough</a>

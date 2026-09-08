@@ -23,7 +23,7 @@ Ollama has no web interface of its own — it's an API and CLI. Pair it with **O
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Hardware accel</span><b>Nvidia</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
 </div>
 
 # 1 · Deploy Ollama

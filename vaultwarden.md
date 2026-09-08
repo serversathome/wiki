@@ -16,7 +16,7 @@ Vaultwarden is a free and secure password manager that works on any device and p
   <div><span>Port</span><b><code>8090</code></b></div>
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://www.youtube.com/watch?v=DqNZO6n8Wqc"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>

@@ -19,7 +19,7 @@ SearXNG is a community-driven fork of the original SearX project, started in 202
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Depends on</span><b>Redis</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/searxng/searxng"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://docs.searxng.org/admin/settings/index.html"><i class="mdi mdi-book-open-variant"></i>Docs</a>

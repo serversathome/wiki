@@ -17,7 +17,7 @@ dateCreated: 2026-03-05T18:35:20.228Z
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Depends on</span><b>Redis</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/thedevs-network/alfred-kutt"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/jJ-cydT3wB0"><i class="mdi mdi-youtube"></i>Video walkthrough</a>

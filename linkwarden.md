@@ -23,7 +23,7 @@ Linkwarden is also designed with collaboration in mind, enabling you to share li
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>3 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
     <a href="https://github.com/linkwarden/linkwarden"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/VV9Vuh_r1RY"><i class="mdi mdi-youtube"></i>Video walkthrough</a>

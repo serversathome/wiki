@@ -18,7 +18,7 @@ It checks your running containers against their registries, flags the ones with 
   <div><span>Port</span><b><code>9412</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/quenary/tugtainer"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/PTjco8Fryqg"><i class="mdi mdi-youtube"></i>Video walkthrough</a>

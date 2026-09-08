@@ -15,7 +15,7 @@ dateCreated: 2026-03-13T15:52:59.553Z
 <div class="glance">
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Fetcharr

@@ -30,7 +30,7 @@ Highlights:
   <div><span>Port</span><b><code>8080</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/x0lie/pia-tun/blob/main/docs/env.md"><i class="mdi mdi-book-open-variant"></i>Docs</a>
   </div>

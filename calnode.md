@@ -16,7 +16,7 @@ dateCreated: 2026-07-23T12:07:16.903Z
   <div><span>Port</span><b><code>3000</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/calnode/calnode"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/Ozcy0fPlT3Q"><i class="mdi mdi-youtube"></i>Video walkthrough</a>

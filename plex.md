@@ -18,7 +18,7 @@ A one-stop destination to stream movies, TV shows, and music, Plex is the most c
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Hardware accel</span><b>Nvidia, Intel, AMD or VAAPI</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
     <a href="https://github.com/linuxserver/docker-plex"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://apps.truenas.com/resources/deploy-plex"><i class="mdi mdi-server"></i>TrueNAS app</a>

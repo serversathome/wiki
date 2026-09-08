@@ -17,7 +17,7 @@ It has a friendly web interface, simple configuration, and is ready to use out o
   <div><span>Port</span><b><code>8090</code></b></div>
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
 </div>
 
 

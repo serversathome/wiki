@@ -17,7 +17,7 @@ Fitness Logger is a container I made to simply log workouts and show some progre
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>3 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
 </div>
 
 
