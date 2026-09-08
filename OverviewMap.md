@@ -2,7 +2,7 @@
 title: Overview Map
 description: Overview map of how all the *arr components of a media server fit together
 published: true
-date: 2026-09-08T16:24:32.300Z
+date: 2026-09-08T16:25:00.573Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:41.415Z
@@ -19,8 +19,7 @@ A full \*arr suite is composed of many apps that all talk to each other to autom
 -   **Unpackerr** - while not an official arr, still super useful for when you get .rar content and need it to be unzipped/unpacked
 -   **qBittorrent** - download client for torrents
 -   **Emby**/**Plex**/**Jellyfin** - media servers so u can watch your stuff on multiple devices
--   **Jellyseerr** - a single interface for both radarr/sonarr which also does recommendations
+-   **Seerr** - a single interface for both radarr/sonarr which also does recommendations
 -   **AirVPN** - VPN to protect your identity while torrenting
 -   **Bazarr** - provides subtitles in case they are missing
-- **Huntarr** - finds missing and upgrades low quality media
 - **Wizarr** - creates invites to media server for users
