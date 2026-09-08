@@ -19,6 +19,14 @@ It is written in TypeScript/Vue on a NestJS backend, licensed AGPL-3.0, and back
 > BookOrbit requires a PostgreSQL database with the `uuid-ossp`, `pg_trgm`, and `vector` (pgvector) extensions. The compose file below brings up its own database, so there is nothing to install separately.
 {.is-info}
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # 1 · Deploy BookOrbit
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker

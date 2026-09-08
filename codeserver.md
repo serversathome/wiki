@@ -12,6 +12,13 @@ dateCreated: 2026-01-15T15:03:50.157Z
 
 Run VS Code on any machine anywhere and access it in the browser.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8443</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # 1 · Deploy Code Server
 # {.tabset}
 

@@ -12,6 +12,16 @@ dateCreated: 2026-01-15T15:03:41.816Z
 
 Automated Download Management. Automatically clean up unwanted, stalled, and malicious downloads from your \*arr applications and download clients. Keep your queues clean and your media library safe.
 
+<div class="glance">
+  <div><span>Port</span><b><code>11011</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://cleanuparr.github.io/Cleanuparr/docs/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+  </div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Cleanuparr
 

@@ -16,6 +16,18 @@ The only dashboard you'll ever need to manage your entire server infrastructure.
 
 [GitHub](https://github.com/crocofied/CoreControl)
 
+<div class="glance">
+  <div><span>Port</span><b><code>3005</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>3 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/crocofied/CoreControl"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://www.youtube.com/watch?v=wMSmOsZYmg0"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # Installation
 # {.tabset}
 ## Server Docker Compose

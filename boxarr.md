@@ -12,6 +12,13 @@ dateCreated: 2026-01-15T15:03:34.981Z
 
 Boxarr monitors weekly box office charts and seamlessly integrates with Radarr to ensure your media library always has what people want to watch. No more manual searching for popular movies - Boxarr handles it automatically.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8898</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Boxarr
 ```yaml
 services:

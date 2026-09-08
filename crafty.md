@@ -12,6 +12,16 @@ dateCreated: 2026-01-15T15:04:04.135Z
 
 Crafty Controller is a web-based panel that lets you manage Minecraft servers from a user-friendly interface. You can create and run servers, manage players, change settings, view files, and get support from the developer and community.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8443</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://www.youtube.com/watch?v=A9Nld6MxhXk"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy Crafty Controller
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS

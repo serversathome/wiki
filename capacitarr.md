@@ -12,6 +12,13 @@ dateCreated: 2026-03-21T11:32:55.609Z
 
 **Capacitarr** is an intelligent media library capacity manager for the \*arr ecosystem. It scores every media item across six dimensions — watch history, recency, file size, ratings, age, and series status — then removes the least-valuable items first when disk space runs low. A visual rule builder lets you protect specific content from ever being deleted.
 
+<div class="glance">
+  <div><span>Port</span><b><code>2187</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Capacitarr
 
 ```yaml

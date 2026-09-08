@@ -12,6 +12,14 @@ dateCreated: 2026-05-30T10:30:25.104Z
 
 **CatalogIT** is a self-hosted web app for tracking the hardware and software an IT team is responsible for — an asset and license inventory with renewal reminders, attachments, and an audit trail. Think of it as a lightweight, self-hosted alternative to commercial IT asset management (ITAM) tools: register devices and software services, attach files, get notified before licenses or warranties expire, and keep a record of who changed what.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>5 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy CatalogIT
 

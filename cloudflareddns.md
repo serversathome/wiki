@@ -13,6 +13,15 @@ dateCreated: 2026-01-15T15:03:46.034Z
 # What is Cloudflared DDNS?
 A feature-rich and robust Cloudflare DDNS updater with a small footprint. The program will detect your machine's public IP addresses and update DNS records using the Cloudflare API.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://docs.portainer.io/user/docker/containers/logs"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+  </div>
+</div>
+
 # Docker Compose
 
 ```yaml

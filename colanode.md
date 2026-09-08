@@ -12,6 +12,17 @@ dateCreated: 2026-01-15T15:03:52.103Z
 
 Open-source and local-first Slack and Notion alternative that puts you in control of your data. 
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>4 services</b></div>
+  <div><span>Depends on</span><b>Postgres and Valkey</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/fhdE2zLmkAQ"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Colanode
 ```yaml
 services:

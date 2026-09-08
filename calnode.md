@@ -12,6 +12,16 @@ dateCreated: 2026-07-23T12:07:16.903Z
 
 **Calnode** is a lean, self-hostable Calendly alternative — a scheduling and booking engine that ships as a **single Go binary with an embedded SQLite database**. There is no Redis, no Postgres, no separate API server, and no multi-gigabyte image. 
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/Ozcy0fPlT3Q"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 
 

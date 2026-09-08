@@ -15,6 +15,17 @@ dateCreated: 2026-03-07T11:20:08.256Z
 > **Migrating from the old `calcom/cal.com` image?** Back up your database directory first, then swap the image to `calcom/cal.diy:latest`. Your environment variables and data are compatible. Enterprise-only features (Teams, Organizations, Workflows, SSO/SAML, Insights) are no longer available in Cal.diy. See [Cal.com's announcement](https://cal.com/blog/calcom-v6-4) for full details.
 {.is-warning}
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/calcom/cal.diy"><i class="mdi mdi-github"></i>Project</a>
+  </div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Cal.diy
 
 

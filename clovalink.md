@@ -14,6 +14,14 @@ dateCreated: 2026-02-03T14:11:22.216Z
 
 Think of it as a self-hosted alternative to Box or Dropbox Business — enterprise file management without the per-user pricing.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>5 services</b></div>
+  <div><span>Depends on</span><b>Postgres and Redis</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy ClovaLink
 
 ```yaml

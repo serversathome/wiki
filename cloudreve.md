@@ -12,6 +12,17 @@ dateCreated: 2026-01-15T15:03:48.008Z
 
 Cloudreve can help you build a self-hosted file management service that is both suitable for private and public use, with support for multiple storage providers and virtual file systems to provide a flexible file management experience.
 
+<div class="glance">
+  <div><span>Port</span><b><code>5212</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>3 services</b></div>
+  <div><span>Depends on</span><b>Postgres and Redis</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/5zWL_cIdmIU"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Cloudreve
 ```yaml
 services:

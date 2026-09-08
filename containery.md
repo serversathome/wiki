@@ -12,6 +12,13 @@ dateCreated: 2026-01-15T15:04:00.219Z
 
 Containery is a web-based container management tool that provides a fast, lightweight, and intuitive interface for managing Docker containers. Whether you're a software engineer, DevOps, QA, or anyone who needs to interact with containers, Containery makes it easy to monitor status, view logs, and access terminals for quick insights and control.
 
+<div class="glance">
+  <div><span>Port</span><b><code>5000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Containery
 
 ```yaml

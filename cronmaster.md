@@ -11,6 +11,13 @@ dateCreated: 2026-01-15T15:04:06.236Z
 # <img src="/cronmaster.png" class="tab-icon"> What is Cr\*nMaster?
 Cronmaster is a tool that helps manage cron jobs, which are scheduled tasks on Unix-like operating systems. It simplifies the process of creating and maintaining these scheduled tasks, often used for automating system maintenance or other repetitive jobs.
 
+<div class="glance">
+  <div><span>Port</span><b><code>40123</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Cr\*nMaster
 ```yaml
 services:

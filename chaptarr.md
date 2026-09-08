@@ -17,6 +17,16 @@ It handles both media types in a single instance, which Readarr never could, and
 > Readarr was archived on **27 June 2025** when its metadata backend went permanently offline. Chaptarr is not compatible with Readarr's metadata sources — it resolves entities across multiple providers and aggregates them by consensus, specifically so one dead endpoint cannot kill the project again.
 {.is-info}
 
+<div class="glance">
+  <div><span>Port</span><b><code>8789</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/sandreas/m4b-tool"><i class="mdi mdi-github"></i>Project</a>
+  </div>
+</div>
+
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Chaptarr
