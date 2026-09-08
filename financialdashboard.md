@@ -21,6 +21,13 @@ dateCreated: 2026-08-05T20:38:18.977Z
 - **Grouped ledger** — asset and liability accounts split into Current Accounts, Savings, and Credit Cards
 - **Credit card rules** — per-card statement day, due day, and whether you pay the full statement balance or the minimum
 
+<div class="glance">
+  <div><span>Port</span><b><code>3001</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 
 # 1 · Prerequisites

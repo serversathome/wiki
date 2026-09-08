@@ -22,6 +22,13 @@ Key features include:
 - Docker integration for container management
 - Weather, calendar, and system monitoring widgets
 
+<div class="glance">
+  <div><span>Port</span><b><code>7575</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # 1 · Deploy Homarr
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker

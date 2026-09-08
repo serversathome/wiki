@@ -12,6 +12,13 @@ dateCreated: 2026-01-15T15:05:01.209Z
 
 A comprehensive container security scanning platform that provides an intuitive web interface for managing and visualizing security assessments of Docker images.
 
+<div class="glance">
+  <div><span>Port</span><b><code>2998</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Harbor Guard
 
 ```yaml

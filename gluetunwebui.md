@@ -17,6 +17,16 @@ dateCreated: 2026-03-03T17:52:24.390Z
 > Gluetun WebUI requires a running [Gluetun](https://github.com/qdm12/gluetun) container with its HTTP control server enabled (default port `8000`). Both containers must be on the same Docker network.
 {.is-info}
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/qdm12/gluetun"><i class="mdi mdi-github"></i>Project</a>
+  </div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Gluetun WebUI
 
 ```yaml

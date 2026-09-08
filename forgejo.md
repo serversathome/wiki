@@ -12,6 +12,18 @@ dateCreated: 2026-08-25T18:25:30.503Z
 
 **Forgejo** is a self-hosted software forge. In plain terms, it is your own GitHub: git hosting over HTTP and SSH, issues, pull requests, wikis, releases, organizations, CI/CD, and a built-in container registry, all from a single lightweight Go binary.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://codeberg.org/forgejo/forgejo"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://youtu.be/O_kpayAlRZA"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy Forgejo
 
 # {.tabset}

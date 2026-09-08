@@ -12,6 +12,18 @@ dateCreated: 2026-01-15T15:04:44.549Z
 
 Ghost is a powerful app for professional publishers to create, share, and grow a business around their content. It comes with modern tools to build a website, publish content, send newsletters & offer paid subscriptions to members.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8085</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>MySQL</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://ghost.org/docs/config/#mail"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://youtu.be/YnjYWhceepU?feature=shared&t=227"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Ghost
 

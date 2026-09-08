@@ -13,6 +13,13 @@ A simple family utility app for managing household tasks with secure authenticat
 
 **Features**: Shopping lists • Chores • Expiry tracking • Bills • Mobile-friendly
 
+<div class="glance">
+  <div><span>Port</span><b><code>5000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Homie
 ```yaml
 services:

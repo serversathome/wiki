@@ -12,6 +12,19 @@ dateCreated: 2026-01-15T15:05:36.259Z
 
 Jellyfin enables you to collect, manage, and stream your media. Run the Jellyfin server on your system and gain access to the leading free-software entertainment system, bells and whistles included.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8096</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Hardware accel</span><b>Nvidia, Intel or AMD</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://jellyfin.org/docs/general/installation/advanced/truenas/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://apps.truenas.com/resources/deploy-jellyfin"><i class="mdi mdi-server"></i>TrueNAS app</a>
+    <a href="https://youtu.be/VNhsR2lpntc"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy Jellyfin
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose

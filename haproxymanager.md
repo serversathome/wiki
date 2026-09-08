@@ -18,6 +18,12 @@ If you have ever configured HAProxy inside OPNsense, the layout will look famili
 > HAProxy Cluster Manager expects to own `/etc/haproxy/haproxy.cfg`. The first **Apply** overwrites whatever is there (keeping a `.bak`). Do not point this at an existing hand-tuned HAProxy install you care about.
 {.is-warning}
 
+<div class="glance">
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 # 1 · Deploy HAProxy Cluster Manager
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker

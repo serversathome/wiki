@@ -16,6 +16,15 @@ dateCreated: 2026-01-15T15:04:52.667Z
 
 Gluetun Docker provides a universal VPN to all docker containers + non-docker apps. It supports [multiple VPN providers](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers).
 
+<div class="glance">
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/monstermuffin/qSticky"><i class="mdi mdi-github"></i>Project</a>
+  </div>
+</div>
+
 # Docker Compose
 
 ```yaml

@@ -15,6 +15,16 @@ Heimdall is an elegant solution to organise all your web applications. It’s de
 
 Why not use it as your browser start page? It even has the ability to include a search bar using either Google, Bing or DuckDuckGo.
 
+<div class="glance">
+  <div><span>Port</span><b><code>1080</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/-pm-F9dzYn0"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 # 1 · Deploy Heimdall
 # {.tabset}

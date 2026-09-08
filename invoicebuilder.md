@@ -12,6 +12,13 @@ dateCreated: 2026-03-02T14:57:26.804Z
 
 **Invoice Builder** is an offline-first, open-source invoicing and quoting application designed for freelancers and small businesses who want full control over their data. It supports creating and managing invoices and quotes with PDF export, multi-currency support, customizable templates, and a local SQLite database — no accounts, no cloud, no subscriptions required.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3001</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Invoice Builder
 
 ```yaml

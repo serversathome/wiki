@@ -16,6 +16,14 @@ It goes further than a pure stats dashboard. JellyGlance also acts as an operati
 
 The project is inspired by **Jellystat**, but adds request triage, per-user profile pages, a customizable home layout with kiosk mode, and a much larger integration list.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy JellyGlance

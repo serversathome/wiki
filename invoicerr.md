@@ -28,6 +28,14 @@ Invoicerr is a simple, open-source invoicing application designed to help freela
 - REST API backend, ready for future integrations (mobile & desktop apps)
 - Plugin system for community-made features
 
+<div class="glance">
+  <div><span>Port</span><b><code>8001</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Invoicerr

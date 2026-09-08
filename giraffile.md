@@ -12,6 +12,13 @@ dateCreated: 2026-08-05T20:22:40.563Z
 
 **Giraffile** is a tiny, self-hostable web app for sending files straight from one browser to another. There is no upload, no storage backend and no account — you drop a file in, get a short link (or a QR code), and the file streams peer-to-peer over WebRTC to whoever opens that link. When the timer runs out, the link dies.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8085</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 
 
 # 1 · How It Works

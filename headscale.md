@@ -14,6 +14,16 @@ Headscale aims to implement a self-hosted, open source alternative to the Tailsc
 # What is Headscale-UI?
 A web frontend for the headscale Tailscale-compatible coordination server by [gurucomputing](https://github.com/gurucomputing/headscale-ui). It provides a simple browser-based interface for managing users, devices, pre-auth keys, and routes. The UI stores your API key locally in the browser — no backend configuration needed.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>3 services</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/gurucomputing/headscale-ui"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://youtu.be/r-qn6DrJ6IA"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Prerequisites
 - A Linux system with root access and a public IP address *(we recommend Ubuntu or Debian based systems)*
 - [Docker](/Docker) installed on the server

@@ -12,6 +12,14 @@ dateCreated: 2026-01-15T15:04:41.398Z
 
 Fitness Logger is a container I made to simply log workouts and show some progression reports based on exercise. Have suggestions, leave them below!
 
+<div class="glance">
+  <div><span>Port</span><b><code>5000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>3 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Fitness Logger
 ```yaml

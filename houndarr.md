@@ -14,6 +14,13 @@ dateCreated: 2026-03-27T14:32:54.954Z
 
 Houndarr solves this by searching **slowly and automatically** — small batches, configurable sleep intervals, per-item cooldowns, and hourly API caps. It works with **Radarr**, **Sonarr**, **Lidarr**, **Readarr**, and **Whisparr**, supporting multiple instances of each. It runs as a single Docker container with a dark-themed web UI, SQLite database, encrypted API keys, and zero telemetry.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8877</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Houndarr

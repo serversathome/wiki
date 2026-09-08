@@ -12,6 +12,14 @@ dateCreated: 2026-01-27T12:16:53.162Z
 
 **Joplin** is an open source note-taking and to-do application with sync capabilities. Joplin Server allows you to self-host your own sync backend, giving you full control over your notes across all your devices.
 
+<div class="glance">
+  <div><span>Port</span><b><code>22300</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Joplin Server
 
 ```yaml

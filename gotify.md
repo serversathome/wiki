@@ -12,6 +12,16 @@ dateCreated: 2026-01-15T15:04:55.681Z
 
 Gotify is a free and open source project that lets you control your data and communicate via a REST-API and a web socket.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8001</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/CaKs9M2SL3k"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Gotify
 
 ```yaml

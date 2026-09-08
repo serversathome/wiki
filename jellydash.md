@@ -12,6 +12,14 @@ dateCreated: 2026-08-28T20:28:41.792Z
 
 **Jellydash** is a self-hosted monitoring dashboard for your Jellyfin server. If you have used Tautulli on the Plex side, this is the same idea built for Jellyfin: live sessions, complete play history, statistics, library overviews, optional Jellyseerr requests, and push notifications when someone hits play.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>MariaDB</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 
 

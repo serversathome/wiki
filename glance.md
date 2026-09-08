@@ -11,6 +11,14 @@ dateCreated: 2026-01-15T15:04:49.727Z
 # <img src="/glance.png" class="tab-icon"> What is Glance?
 
 A lightweight, highly customizable dashboard that displays your feeds in a beautiful, streamlined interface.
+
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Glance
 ```yaml
 services:
