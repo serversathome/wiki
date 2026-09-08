@@ -12,6 +12,12 @@ dateCreated: 2026-08-28T20:48:50.224Z
 
 **LAN Orangutan** is a lightweight, self-hosted network scanner from [291 Group](https://291group.com) that discovers the devices on your networks and lets you label, group, and track them over time. It wraps `nmap` in a clean web dashboard with a full CLI behind it, ships as a single Go binary with no runtime dependencies, and adds Tailscale integration so your tailnet peers show up alongside the machines on your LAN.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy LAN Orangutan

@@ -12,6 +12,14 @@ dateCreated: 2026-01-15T15:06:01.751Z
 
 A simple workspace for keeping track of homes you’re considering. Save listings, add notes, and share them with others. Listing Lab stays on top of changes, like price cuts and updates, so you always have an accurate view of the properties you're interested in. 
 
+<div class="glance">
+  <div><span>Port</span><b><code>8069</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>4 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Listing Lab
 ```yaml
 services:

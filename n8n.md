@@ -12,6 +12,16 @@ dateCreated: 2026-01-15T15:06:32.194Z
 
 n8n offers a unique workflow automation platform combining AI and business process automation for technical teams, blending coding flexibility with no-code speed.
 
+<div class="glance">
+  <div><span>Port</span><b><code>5678</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/bGdkSHf0MGI"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy n8n
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose

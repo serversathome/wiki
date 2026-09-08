@@ -11,6 +11,14 @@ dateCreated: 2026-01-15T15:06:26.492Z
 # 🏥 What is Mediqux?
 A privacy-first, locally-hosted medical record system for individuals, families, and small healthcare practices - featuring comprehensive patient management, lab result processing, and medication tracking with complete data sovereignty. 
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>3 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Mediqux
 ```yaml
 services:

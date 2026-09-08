@@ -11,6 +11,13 @@ dateCreated: 2026-01-15T15:06:29.542Z
 # What is Mydia?
 A modern, self-hosted media management platform for tracking, organizing, and monitoring your media library.
 
+<div class="glance">
+  <div><span>Port</span><b><code>4000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Mydia
 ```yaml
 services:

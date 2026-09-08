@@ -19,6 +19,13 @@ MatchExec handles all aspects of managing video game matches. Do you want to hos
 ✅ Flexible — Support for different scoring types, custom modes, custom maps, whatever you want, it's playable
 ✅ Voice Announcers — 4 different personas to choose from: A evil queen, a British football announcer, a London radio DJ, and an American Wrestling Announcer
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy MatchExec
 ```yaml
 services:

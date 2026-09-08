@@ -18,6 +18,17 @@ In addition to preservation, Linkwarden provides a user-friendly reading and ann
 
 Linkwarden is also designed with collaboration in mind, enabling you to share links with the public and/or collaborate seamlessly with multiple users.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>3 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/VV9Vuh_r1RY"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy Linkwarden
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose

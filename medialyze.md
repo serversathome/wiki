@@ -18,6 +18,13 @@ Everything runs in a single container with one SQLite database and one UI. It su
 > MediaLyze mounts your media directory as **read-only**. It will never modify, move, or delete your files.
 {.is-success}
 
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy MediaLyze
 
 ```yaml

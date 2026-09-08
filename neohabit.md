@@ -12,6 +12,14 @@ dateCreated: 2026-03-02T21:01:26.673Z
 
 **Neohabit** is a self-hosted habit tracker designed for systematic self-improvement. Unlike basic trackers, Neohabit supports flexible habits that happen X times in Y days, custom heatmaps (monochromatic, numeric, and fractured styles), skill trees for planning progressions, and project grouping to organize related habits together. It features a polished desktop-focused interface with a responsive mobile browser view, multiple account support, and dark/light themes.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>4 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Neohabit
 

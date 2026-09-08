@@ -51,6 +51,14 @@ graph TB
 > Synapse and Sable run on your NAS at home — no ports need to be opened on your router since all inbound traffic arrives through the Cloudflare Tunnel. LiveKit **requires a VPS with a public IP** and open UDP ports because Cloudflare tunnels only handle HTTP/WebSocket traffic, not UDP media streams.
 {.is-warning}
 
+<div class="glance">
+  <div><span>Port</span><b><code>8008</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Synapse + PostgreSQL
 
 ## 1.1 Generate Synapse Config

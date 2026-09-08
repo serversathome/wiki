@@ -12,6 +12,18 @@ dateCreated: 2026-01-15T15:05:45.849Z
 
 A powerful, flexible kanban app that helps you organise work, track progress, and deliver results—all in one place.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://docs.kan.bn/introduction"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://youtu.be/_Upe8mr5KMA"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # Installation
 ```yaml
 services:

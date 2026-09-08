@@ -11,6 +11,14 @@ dateCreated: 2026-01-15T15:06:23.142Z
 # ![](/mediamanager.png){class="tab-icon"} What is Media Manager?
 MediaManager is modern software to manage your TV and movie library. It is designed to be a replacement for Sonarr, Radarr, Overseer, and Jellyseer. It supports TVDB and TMDB for metadata, supports OIDC and OAuth 2.0 for authentication and supports Prowlarr and Jackett. 
 
+<div class="glance">
+  <div><span>Port</span><b><code>8000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Media Manager
 ```yaml
 services:

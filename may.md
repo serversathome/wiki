@@ -14,6 +14,16 @@ dateCreated: 2026-03-02T15:20:14.740Z
 
 Named after James May, completing the trio of Top Gear presenters alongside [Clarkson](https://github.com/linuxserver/Clarkson) and [Hammond](https://github.com/AlfHou/hammond).
 
+<div class="glance">
+  <div><span>Port</span><b><code>5050</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/linuxserver/Clarkson"><i class="mdi mdi-github"></i>Project</a>
+  </div>
+</div>
+
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy May

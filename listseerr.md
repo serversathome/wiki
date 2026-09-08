@@ -12,6 +12,13 @@ dateCreated: 2026-01-15T15:06:04.583Z
 
 Request movies & shows in Seerr from your favorite lists.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Listseerr
 ```yaml

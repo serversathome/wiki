@@ -11,6 +11,17 @@ dateCreated: 2026-01-15T15:06:17.048Z
 # ![](/mealie.png){class="tab-icon"} What is Mealie?
 Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family. Easily add recipes into your database by providing the url and Mealie will automatically import the relevant data or add a family recipe with the UI editor. Mealie also provides an API for interactions from 3rd party applications.
 
+<div class="glance">
+  <div><span>Port</span><b><code>9925</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/GerardPolloRebozado/social-to-mealie"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://docs.mealie.io/documentation/getting-started/installation/backend-config/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+  </div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Mealie
 ```yaml
 services:

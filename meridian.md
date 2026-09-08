@@ -17,6 +17,13 @@ Everything flows through the SDK's documented `query()` function — no OAuth in
 > **Terms of service caveat.** Claude Max is licensed as an individual subscription for Anthropic's own clients. Using it to drive third-party tools is a grey area, and the project's own docs describe sharing one subscription across machines or teams — that part is squarely against Anthropic's terms and is the fastest way to get an account flagged. Keep this to your own account on your own machine.
 {.is-warning}
 
+<div class="glance">
+  <div><span>Port</span><b><code>3456</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Meridian

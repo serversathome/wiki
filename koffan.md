@@ -13,6 +13,13 @@ Koffan is a lightweight web application for managing shopping lists, designed fo
 
 The app works in any browser on both mobile and desktop. Just one password to log in - no complicated registration required.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Koffan
 ```yaml

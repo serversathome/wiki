@@ -12,6 +12,18 @@ dateCreated: 2026-03-05T18:35:20.228Z
 
 **Kutt** is a free, open-source, self-hosted URL shortener with support for custom domains. It allows you to create and manage shortened links, set custom addresses, protect links with passwords, configure expiration times, view private click statistics, and integrate with other tools through a RESTful API. Kutt supports SQLite (default), PostgreSQL, and MySQL/MariaDB as database backends, and optionally Redis for caching.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Redis</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/thedevs-network/alfred-kutt"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://youtu.be/jJ-cydT3wB0"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Kutt
 # {.tabset}

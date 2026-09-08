@@ -12,6 +12,13 @@ dateCreated: 2026-03-02T21:33:57.457Z
 
 **Linux Update Dashboard** is a self-hosted web app for managing Linux package updates across multiple servers from a single interface. It connects to your servers via SSH, checks for available updates, and lets you apply them individually or in bulk — all from your browser. It supports APT, DNF, YUM, Pacman, Flatpak, and Snap with automatic package manager detection, and includes SSH-safe upgrades that survive connection drops via `nohup`. The app features encrypted SSH credentials (AES-256-GCM), four authentication methods (password, Passkeys, OIDC SSO, API tokens), flexible notifications via Email/SMTP and ntfy.sh, and a lightweight SQLite backend.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3001</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Linux Update Dashboard

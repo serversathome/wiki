@@ -21,6 +21,16 @@ Typical uses:
 - Unmonitor or delete in Radarr/Sonarr and clear the matching Seerr request in one action
 - Remove the completed download from qBittorrent once seeding is finished
 
+<div class="glance">
+  <div><span>Port</span><b><code>6246</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/u8k-IlkShKs"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 
 # 1 · Deploy Maintainerr

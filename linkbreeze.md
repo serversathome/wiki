@@ -14,6 +14,13 @@ dateCreated: 2026-08-05T20:25:52.869Z
 
 It runs as a single container backed by SQLite (no external database), the public page is 100% server-rendered with zero client JavaScript, and the whole thing is MIT licensed. If you're a creator who's tired of paying a monthly subscription just to host a list of links, this is the one to self-host.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 
 

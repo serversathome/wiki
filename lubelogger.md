@@ -12,6 +12,16 @@ dateCreated: 2026-02-10T11:00:58.064Z
 
 **LubeLogger** is a self-hosted, open-source, web-based vehicle maintenance and fuel mileage tracker. Despite its unconventional name, it's an incredibly powerful tool for keeping all your vehicle service records, fuel economy data, repair history, and maintenance reminders organized in one place. Whether you're managing a single daily driver or a fleet of vehicles, LubeLogger gives you a clean dashboard with expense breakdowns, fuel economy charts, and upcoming maintenance reminders.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://docs.lubelogger.com/Advanced/Environment%20Variables"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+  </div>
+</div>
+
 
 
 # 1 · Deploy LubeLogger
