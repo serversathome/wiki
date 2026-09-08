@@ -2,7 +2,7 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-09-08T15:30:13.868Z
+date: 2026-09-08T15:30:57.248Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
@@ -23,12 +23,12 @@ dateCreated: 2026-01-28T21:27:05.188Z
 - [🗺️ Overview map<br>*How every component of a media server fits together*](/OverviewMap)
 {.links-list .arr}
 
-## Download clients {.sec .arr}
+# Download clients {.sec .arr}
 - [<img src="/qbittorrent.png"> qBittorrent<br>*Torrent client*](/qBittorrent)
 - [<img src="/sabnzbd.png"> SABnzbd<br>*Usenet download manager*](/sabnzbd)
 {.links-list .arr}
 
-## Core components {.sec .arr}
+# Core components {.sec .arr}
 - [<img src="/cinephage.png"> Cinephage<br>*Radarr, Sonarr, Prowlarr and Bazarr in a single app*](/cinephage)
 - [<img src="/mediamanager.png"> Media Manager<br>*Media manager and requester*](/mediamanager)
 - [<img src="/prowlarr.png"> Prowlarr<br>*Indexer manager and proxy for the \*arr apps*](/Prowlarr)
@@ -37,7 +37,7 @@ dateCreated: 2026-01-28T21:27:05.188Z
 - [<img src="/sportarr.png"> Sportarr<br>*A PVR for sports, built like Sonarr*](/sportarr)
 {.links-list .arr}
 
-## Media discovery {.sec .arr}
+# Media discovery {.sec .arr}
 - [<img src="/agregarr.png"> Agregarr<br>*Keeps your Plex home and recommended fresh*](/agregarr)
 - [🎞️ Blockbusterr<br>*Auto-adds trending and top-rated titles from Trakt*](/blockbusterr)
 - [<img src="/boxarr.png"> Boxarr<br>*Monitors weekly box office charts*](/boxarr)
@@ -51,7 +51,7 @@ dateCreated: 2026-01-28T21:27:05.188Z
 - [🔍 Suggestarr<br>*Automated recommendations based on watch activity*](/suggestarr)
 {.links-list .arr}
 
-## Books {.sec .arr}
+# Books {.sec .arr}
 
 Readarr is retired. These are what replaced it.
 
@@ -64,7 +64,7 @@ Readarr is retired. These are what replaced it.
 - [🎯 NewtArr<br>*Maintained Huntarr fork for hunting missing media*](/newtarr)
 {.links-list .arr}
 
-## Torrent management {.sec .arr}
+# Torrent management {.sec .arr}
 - [🧹 Arr Queue Cleaner<br>*Automated queue cleaner for Sonarr*](/arrqueuecleaner)
 - [<img src="/cleanuparr.png"> Cleanuparr<br>*Automated cleanup of unwanted and blocked files*](/cleanuparr)
 - [<img src="/cross-seed.png"> Cross-Seed<br>*Automatic torrent-link generator*](/crossseed)
@@ -73,7 +73,7 @@ Readarr is retired. These are what replaced it.
 - [<img src="/unpackerr.png"> Unpackerr<br>*Extracts media and imports it into the \*arr apps*](/Unpackerr)
 {.links-list .arr}
 
-## Quality control {.sec .arr}
+# Quality control {.sec .arr}
 - [📉 Capacitarr<br>*Scores your library and recommends what to cut*](/capacitarr)
 - [📺 Episeerr<br>*Episode-level control and automation for Sonarr*](/episeerr)
 - [<img src="/profilarr.png"> Profilarr<br>*Import, export and sync profiles and custom formats*](/profilarr)
@@ -83,7 +83,7 @@ Readarr is retired. These are what replaced it.
 - [<img src="/unmanic.png"> Unmanic<br>*Transcode automation*](/unmanic)
 {.links-list .arr}
 
-## Stats and dashboards {.sec .arr}
+# Stats and dashboards {.sec .arr}
 - [<img src="/dasharr.png"> Dasharr<br>*Dashboard for the whole stack*](/dasharr)
 - [🗂️ Prismarr<br>*One interface over Radarr, Sonarr, Prowlarr and more*](/prismarr)
 - [📊 Sonarr Analyzer<br>*Average episode size per series*](/sonarranalyzer)
@@ -91,7 +91,7 @@ Readarr is retired. These are what replaced it.
 - [<img src="/tracearr.png"> Tracearr<br>*Sessions and analytics for Plex, Jellyfin and Emby*](/tracearr)
 {.links-list .arr}
 
-## Others {.sec .arr}
+# Others {.sec .arr}
 - [<img src="/bazarr.png"> Bazarr<br>*Subtitle management*](/bazarr)
 - [<img src="/crosswatch.png"> CrossWatch<br>*Sync client for Plex and Jellyfin*](/crosswatch)
 - [<img src="/dispatcharr.png"> Dispatcharr<br>*Live TV for your media server*](/dispatcharr)
