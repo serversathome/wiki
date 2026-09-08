@@ -2,7 +2,7 @@
 title: Cantinarr
 description: A guide to deploying Cantinarr
 published: true
-date: 2026-09-08T15:25:12.685Z
+date: 2026-09-08T15:27:05.009Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-08T15:19:38.173Z
@@ -143,13 +143,13 @@ Everything below is optional. Credentials are managed in the UI, not here.
 |----------|---------|-------------|
 | `CANTINARR_PORT` | `8585` | HTTP listen port |
 | `CANTINARR_SERVER_NAME` | `Cantinarr` | Display name shown in clients |
-| `CANTINARR_PUBLIC_URL` | request origin | Origin the \*arrs POST webhooks back to. Must be reachable **from the \*arr containers** |
+| `CANTINARR_ARR_CALLBACK_URL` | request origin | Origin the \*arrs POST webhooks back to. Must be reachable **from the \*arr containers** |
 | `CANTINARR_OAUTH_ISSUER` | request origin | External HTTPS origin for inbound MCP OAuth. Set it behind a proxy and keep it stable |
 | `CANTINARR_ENCRYPTION_KEY` | auto-generated | Base64 32-byte key for secrets at rest. Defaults to `/config/encryption.key` |
 | `CANTINARR_MEDIA_ROOTS` | unset | Comma-separated absolute paths allowed for completed-media downloads. Empty disables the feature |
 | `CANTINARR_PUSH_GATEWAY_URL` | unset | Setting it enables push notifications and auto-enrolls on first start |
 | `CANTINARR_DISABLE_UPDATE_CHECK` | unset | Set to `1` to turn off the periodic GitHub release check |
-{.dense}
+
 
 # 5 · Mobile apps
 
