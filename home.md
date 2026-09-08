@@ -2,117 +2,94 @@
 title: Home
 description: This is the official wiki for Servers@Home
 published: true
-date: 2026-09-08T11:01:09.983Z
+date: 2026-09-08T12:03:25.314Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:13.120Z
 ---
 
-# 🖥️ Welcome to the Servers@Home Wiki
+<div class="hero">
+  <div class="hero-title">Servers@Home wiki</div>
+  <p>Your guide to self-hosting, homelabs, and taking control of your data. Tested guides, open source solutions, privacy-respecting infrastructure.</p>
+  <div class="hero-meta">261 guides &middot; maintained by Evan and contributors like you</div>
+</div>
 
-**Your guide to self-hosting, homelabs, and taking control of your data.**
-
-> 💡 Use the sidebar or the search bar at the top to find guides. On mobile, tap the blue ☰ icon at the bottom-left.
+> Use the sidebar or the search bar at the top to find guides. On mobile, tap the blue menu icon at the bottom-left.
 {.is-info}
 
-## 🚀 Start Here
+## Start here {.sec .storage}
 
-New to self-hosting? Work through these in order:
+- [🚀 First-time homelab guide<br>*Where to begin and what to buy*](https://blog.serversatho.me/breaking-the-rules/)
+- [🗺️ Overview map<br>*What every piece of a media server actually does*](/OverviewMap)
+- [<img src="/truenas-core.png"> TrueNAS<br>*Install and run your storage OS*](/TrueNAS)
+- [<img src="/docker.png"> Docker<br>*Run your first containers*](/Docker)
+- [<img src="/dockge.png"> Dockge<br>*Manage compose stacks from a browser*](/Dockge)
+{.links-list .storage .featured-first}
 
-| Guide | What you'll learn |
-|-------|-------------------|
-| [First-Time Homelab Guide](https://blog.serversatho.me/breaking-the-rules/) | Where to begin and what to buy |
-| [Overview Map](/OverviewMap) | What every piece of a media server actually does |
-| [TrueNAS Community Edition](/TrueNAS) | Install and run your storage OS |
-| [Docker for Home Servers](/Docker) | Run your first containers |
-| [Dockge](/Dockge) | Manage compose stacks from a browser |
-
-> ❓ Stuck on something specific? Try the [FAQ](/faq) first, then ask in [Discord](https://discord.gg/syvCPcRJnR).
+> Stuck on something specific? Try the [FAQ](/faq) first, then ask in [Discord](https://discord.gg/syvCPcRJnR).
 {.is-info}
 
-## 📚 Browse by Category
+## Browse by category {.sec .media}
 
-Every guide here lives in one of these areas. They match the sidebar.
+- [<img src="/truenas-core.png"> TrueNAS<br>*Pools, datasets, permissions, shares, apps and hardening*](/TrueNAS)
+- [🖥️ Server management<br>*Proxmox, backups, monitoring, dashboards, game servers*](/servermanagement)
+- [🎬 Media management<br>*Media servers, photos, music, books, games*](/mediamanagement)
+- [📺 *Arr stack<br>*Radarr, Sonarr, Prowlarr, download clients, quality control*](/arr-stack)
+- [🌐 Networking<br>*VPNs, reverse proxies, ad blocking, DNS*](/Networking)
+- [<img src="/docker.png"> Containerization<br>*Docker, Dockge, Portainer, updates, logging*](/containerization)
+- [🧰 Productivity apps<br>*Notes, files, passwords, money, automation, self-hosted AI*](/productivity)
+- [🌍 Web hosting<br>*Ghost, WordPress, analytics, wikis, VPS*](/webhosting)
+{.links-list .media}
 
-| Category | What's in it |
-|----------|--------------|
-| [<img src="/truenas-core.png" width="22" style="vertical-align:middle;margin-right:4px"> TrueNAS](/TrueNAS) | Install, pools, [datasets](/TrueNAS#datasets), [permissions](/TrueNAS#permissions), [shares](/TrueNAS#shares), [apps](/TrueNAS#apps), [hardening](/TrueNAS#hardening) |
-| [🖥️ Server Management](/servermanagement) | Proxmox, PBS, monitoring, notifications, drive health |
-| [🎬 Media Management](/mediamanagement) | Media servers, photos, music, books, games |
-| [📺 *Arr Stack](/arr-stack) | Radarr, Sonarr, Prowlarr, download clients, quality control |
-| [🌐 Networking](/Networking) | VPNs, reverse proxies, ad blocking, DNS |
-| [<img src="/docker.png" width="22" style="vertical-align:middle;margin-right:4px"> Containerization](/containerization) | Docker, Dockge, Portainer, updates, logging |
-| [🧰 Productivity Apps](/productivity) | Notes, files, passwords, automation, self-hosted AI |
-| [🌍 Web Hosting](/webhosting) | Ghost, WordPress, analytics, wikis, VPS |
+Building a media server? Read [install instructions](/InstallInstructions) and [folder structure](/Folder-Structure) before you deploy anything. Getting hardlinks right the first time saves a rebuild later.
 
-Building a media server? Read [Install Instructions](/InstallInstructions) and [Folder Structure](/Folder-Structure) before you deploy anything. Getting hardlinks right the first time saves a rebuild later.
+## Popular guides {.sec .apps}
 
-## ⭐ Popular Guides
+- [<img src="/jellyfin.png"> Jellyfin<br>*Volunteer-built, fully free media server*](/jellyfin)
+- [<img src="/immich.png"> Immich<br>*Photo and video management with mobile backup*](/immich)
+- [<img src="/nextcloud.png"> Nextcloud<br>*Google Workspace replacement*](/nextcloud)
+- [<img src="/wireguard.png"> wg-easy<br>*WireGuard VPN with a friendly GUI*](/wg-easy)
+- [<img src="/cloudflare.png"> Cloudflare Tunnels<br>*Expose services without opening ports*](/CloudflareTunnels)
+- [<img src="/netbird.png"> NetBird<br>*Zero-config mesh VPN*](/netbird)
+- [<img src="/vaultwarden.png"> Vaultwarden<br>*Bitwarden-compatible password manager*](/vaultwarden)
+- [<img src="/qbittorrent.png"> qBittorrent<br>*Torrent client, behind Gluetun*](/qBittorrent)
+{.links-list .apps}
 
-- [<img src="/jellyfin.png" width="22" style="vertical-align:middle;margin-right:4px"> Jellyfin Media Server](/jellyfin)
-- [<img src="/immich.png" width="22" style="vertical-align:middle;margin-right:4px"> Immich Photo Management](/immich)
-- [<img src="/nextcloud.png" width="22" style="vertical-align:middle;margin-right:4px"> Nextcloud with Nginx Proxy](/nextcloud)
-- [<img src="/wireguard.png" width="22" style="vertical-align:middle;margin-right:4px"> WireGuard VPN with wg-easy](/wg-easy)
-- [<img src="/cloudflare.png" width="22" style="vertical-align:middle;margin-right:4px"> Cloudflare Tunnels](/CloudflareTunnels)
-- [<img src="/netbird.png" width="22" style="vertical-align:middle;margin-right:4px"> NetBird Mesh VPN](/netbird)
-- [🔐 Vaultwarden](/vaultwarden)
-- [📥 qBittorrent behind Gluetun](/qBittorrent)
-
-## 🆕 Recently Added
-
-| Guide | What it is |
-|-------|------------|
-| [NextDNS](/nextdns) | Hosted DNS filtering for every device on the network |
-| [Meridian](/meridian) | Local proxy that exposes the Claude Code SDK as a standard API endpoint |
-| [Prismedia](/prismedia) | One library for movies, music, books and comics, requests included |
-| [Sure](/sure) | Self-hosted personal finance, the community fork of Maybe |
-| [BookOrbit](/bookorbit) | Ebooks and audiobooks with two-way Kobo and KOReader sync |
-| [Calnode](/calnode) | Calendly alternative in a single Go binary |
-
-
-## 🎥 Watch the Series
+## Watch the series {.sec .network}
 
 Most guides here have a video. If you would rather be walked through it:
 
-| Playlist | For |
-|----------|-----|
-| [TrueNAS Basics](https://www.youtube.com/playlist?list=PL6zQmF2gDqDT7SHyBe7ni1P2S4NzyJpD6) | Your first NAS, start to finish |
-| [TrueNAS / Docker Guides](https://www.youtube.com/playlist?list=PL6zQmF2gDqDTOLfGfYN9lIYw5WkXXZ5yu) | Deploying the apps documented on this wiki |
-| [Proxmox Series](https://www.youtube.com/playlist?list=PL6zQmF2gDqDRMv3Mc-vYLnMzxUXEOd6Ns) | Virtualization instead of, or alongside, TrueNAS |
-| [Top 10 New Applications](https://www.youtube.com/playlist?list=PL6zQmF2gDqDQvUKdCaARpOYqNsbTVpWpE) | What is worth self-hosting this month |
-| [State of Self-Hosting](https://www.youtube.com/playlist?list=PL6zQmF2gDqDSxiqFBQkGjnKBrvOcCnEHt) | Where the ecosystem is heading |
+- [▶️ TrueNAS basics<br>*Your first NAS, start to finish*](https://www.youtube.com/playlist?list=PL6zQmF2gDqDT7SHyBe7ni1P2S4NzyJpD6)
+- [▶️ TrueNAS and Docker guides<br>*Deploying the apps documented on this wiki*](https://www.youtube.com/playlist?list=PL6zQmF2gDqDTOLfGfYN9lIYw5WkXXZ5yu)
+- [▶️ Proxmox series<br>*Virtualization instead of, or alongside, TrueNAS*](https://www.youtube.com/playlist?list=PL6zQmF2gDqDRMv3Mc-vYLnMzxUXEOd6Ns)
+- [▶️ Top 10 new applications<br>*What is worth self-hosting this month*](https://www.youtube.com/playlist?list=PL6zQmF2gDqDQvUKdCaARpOYqNsbTVpWpE)
+- [▶️ State of self-hosting<br>*Where the ecosystem is heading*](https://www.youtube.com/playlist?list=PL6zQmF2gDqDSxiqFBQkGjnKBrvOcCnEHt)
+{.links-list .network}
 
-> 🎓 Want it structured? [TrueNAS Fundamentals for Beginners](https://www.udemy.com/course/truenas-fundamentals-for-beginners/?referralCode=8369F4A322AA6867F03C) on Udemy covers TrueNAS from the ground up in one course.
+> Want it structured? [TrueNAS Fundamentals for Beginners](https://www.udemy.com/course/truenas-fundamentals-for-beginners/?referralCode=8369F4A322AA6867F03C) on Udemy covers TrueNAS from the ground up in one course.
 {.is-success}
 
-## 📝 From the Blog
+## From the blog {.sec .containers}
 
 The wiki tells you how. The [blog](https://blog.serversatho.me/) argues about what and why.
 
-- [Streaming Media is Officially Ridiculous](https://blog.serversatho.me/streaming-media-is-officially-ridiculous/)
-- [Getting SMART About Your Data: Why Drive Health Isn't Enough](https://blog.serversatho.me/getting-smart-about-your-data-why-drive-health-isnt-enough/)
-- [Your Self-Hosted Office Suite Is Going Through Some Things Right Now](https://blog.serversatho.me/your-self-hosted-office-suite-is-going-through-some-things-right-now/)
-- [Sourcing Used Parts](https://blog.serversatho.me/sourcing-used-parts/), on buying secondhand hardware without getting burned
+- [Streaming media is officially ridiculous](https://blog.serversatho.me/streaming-media-is-officially-ridiculous/)
+- [Getting SMART about your data: why drive health isn't enough](https://blog.serversatho.me/getting-smart-about-your-data-why-drive-health-isnt-enough/)
+- [Your self-hosted office suite is going through some things right now](https://blog.serversatho.me/your-self-hosted-office-suite-is-going-through-some-things-right-now/)
+- [Sourcing used parts](https://blog.serversatho.me/sourcing-used-parts/), on buying secondhand hardware without getting burned
 - [Best.VPN.Ever.](https://blog.serversatho.me/best-vpn-ever/), AirVPN plus WireGuard for your homelab
 
-## 🏆 About the Community
+## Connect and contribute {.sec .arr}
 
-**Servers@Home** is a collective of self-hosting enthusiasts focused on practical, tested guides; open source solutions; and privacy-respecting infrastructure.
+- [<img src="/discord.png"> Discord<br>*Real-time help, fastest response for technical questions*](https://discord.gg/syvCPcRJnR)
+- [<img src="/youtube.png"> YouTube<br>*Video walkthroughs of most guides here*](https://youtube.com/@Serversathome)
+- [📝 Blog<br>*Opinion pieces, build logs, buying advice*](https://blog.serversatho.me/)
+- [🛠️ Hire me<br>*One-on-one help, migrations, rescue work*](https://links.serversatho.me/hire)
+- [<img src="/github-light.png"> GitHub<br>*Projects, images, and the source of this wiki*](https://github.com/serversathome/ServersatHome)
+- [🐳 Docker Hub<br>*Images published by Servers@Home*](https://hub.docker.com/u/serversathome)
+- [🧡 Patreon<br>*Recurring support and bonus content*](https://patreon.com/serversathome)
+- [<img src="/buy-me-a-coffee.png"> Buy me a coffee<br>*One-time support*](https://buymeacoffee.com/serversathome)
+{.links-list .arr}
 
-Maintained by Evan and contributors like you.
-
-## 💬 Connect & Contribute
-
-| Where | What for |
-|-------|----------|
-| <img src="/discord.png" width="25" style="vertical-align:middle;margin-right:4px"> [Discord](https://discord.gg/syvCPcRJnR) | Real-time help and conversation, **fastest response for technical questions** |
-| <img src="/youtube.png" width="25" style="vertical-align:middle;margin-right:4px"> [YouTube](https://youtube.com/@Serversathome) | Video walkthroughs of most guides here |
-| 📝 [Blog](https://blog.serversatho.me/) | Opinion pieces, build logs, buying advice |
-| 🛠️ [Hire Me](https://serversatho.me/hire) | One-on-one help, migrations, rescue work |
-| <img src="/github-light.png" width="25" style="vertical-align:middle;margin-right:4px"> [GitHub](https://github.com/serversathome/ServersatHome) | Projects, images, and the source of this wiki |
-| 🐳 [Docker Hub](https://hub.docker.com/u/serversathome) | Images published by Servers@Home |
-| 🧡 [Patreon](https://patreon.com/serversathome) | Recurring support and bonus content |
-| <img src="/buy-me-a-coffee.png" width="25" style="vertical-align:middle;margin-right:4px"> [Buy Me a Coffee](https://buymeacoffee.com/serversathome) | One-time support |
-
-> 🤝 **See something missing or wrong?** Edit the page on [GitHub](https://github.com/serversathome/wiki) and open a pull request, or sign up for an account here to become an editor.
+> **See something missing or wrong?** Edit the page on [GitHub](https://github.com/serversathome/wiki) and open a pull request, or sign up for an account here to become an editor.
 {.is-success}
