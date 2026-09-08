@@ -2,11 +2,14 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-08-13T20:05:26.523Z
+date: 2026-09-08T10:47:31.806Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
 ---
+
+> Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help!
+{.is-success}
 
 # <img src="/profilarr.png" class="tab-icon"> What is Profilarr?
 
