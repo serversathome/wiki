@@ -2,7 +2,7 @@
 title: Server Management
 description: 
 published: true
-date: 2026-09-08T12:06:48.705Z
+date: 2026-09-08T12:44:32.049Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:30.750Z
@@ -14,12 +14,15 @@ dateCreated: 2026-01-15T15:08:30.750Z
   <div class="hero-meta">Updated September 2026</div>
 </div>
 
+> Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help.
+{.is-success}
+
 ## Storage and virtualization {.sec .storage}
 - [<img src="/truenas-core.png"> TrueNAS<br>*Network attached storage on ZFS*](/TrueNAS)
 - [<img src="/proxmox.png"> Proxmox VE<br>*Virtual machines and LXC containers*](/Proxmox)
 - [<img src="/proxmox.png"> Proxmox Backup Server<br>*Deduplicated backups for Proxmox*](/pbs)
 - [Kasm Workspaces<br>*Streamed browsers and Linux desktops*](/kasm)
-{.links-list .storage .featured-first}
+{.links-list .storage}
 
 ## Dashboards {.sec .storage}
 - [<img src="/corecontrol-light.png"> CoreControl<br>*Server and service dashboard*](/corecontrol)
