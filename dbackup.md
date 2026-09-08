@@ -14,6 +14,13 @@ dateCreated: 2026-04-27T17:49:27.607Z
 
 Backups are encrypted at rest with AES-256-GCM, compressed with GZIP or Brotli, and rotated using Grandfather-Father-Son retention. The web interface gives you live job progress, restore-with-remap, multi-destination jobs for redundancy, and notifications via Discord, Slack, Teams, Telegram, Gotify, ntfy, Twilio SMS, generic webhooks, or SMTP email. SSO/OIDC and RBAC are baked in for team use.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy DBackup

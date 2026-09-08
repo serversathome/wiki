@@ -12,6 +12,13 @@ dateCreated: 2026-01-15T15:04:23.225Z
 
 A comprehensive Docker container monitoring and management platform with real-time monitoring, intelligent auto-restart, multi-channel alerting, and complete event logging.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8001</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Dockmon
 ```yaml
 services:

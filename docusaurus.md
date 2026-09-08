@@ -11,6 +11,13 @@ dateCreated: 2026-01-15T15:04:27.463Z
 # <img src="/docusaurus.png" class="tab-icon"> What is Docusaurus?
 Docusaurus is an open-source static site generator designed for building documentation websites quickly and easily, primarily using Markdown. It allows users to create customizable sites while focusing on content creation, making it popular among software documentation teams.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>4 services</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Docusaurus
 
 

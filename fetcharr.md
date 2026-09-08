@@ -12,6 +12,12 @@ dateCreated: 2026-03-13T15:52:59.553Z
 
 **Fetcharr** is a lightweight CLI container that periodically scans your \*arr stack (Radarr, Sonarr, Whisparr) for missing or upgradable media and automatically triggers searches. It was created as a successor to the now-defunct Huntarr project, designed to do one thing well — hunt for better quality releases so you don't have to spend hours manually searching. 
 
+<div class="glance">
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Fetcharr
 
 ```yaml

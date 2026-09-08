@@ -11,6 +11,13 @@ dateCreated: 2026-01-15T15:04:12.442Z
 # ![](/dasharr.png){class="tab-icon"} What is Dasharr?
 Dasharr is a unified media and network dashboard that brings all your media management services and network monitoring together in one place. Following the *arr naming convention (like Radarr, Sonarr), Dasharr provides a beautiful, responsive interface to monitor and manage your entire media stack and network infrastructure.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Dasharr
 
 

@@ -15,6 +15,17 @@ dateCreated: 2026-05-01T19:51:02.015Z
 
 Starting with v3.1.0, DockFlare also ships a self-hosted **Sovereign Email Suite** that uses Cloudflare Email Routing, Workers, R2, and KV as a delivery layer while keeping mailbox data, attachments, and full-text search local on your server.
 
+<div class="glance">
+  <div><span>Port</span><b><code>5000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>6 services</b></div>
+  <div><span>Depends on</span><b>Redis</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/DSynNPaPKn0"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 
 # 0 · About the Email Suite (Read Me First)

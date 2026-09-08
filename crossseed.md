@@ -14,6 +14,16 @@ Cross-seed is an app designed to help you download torrents that you can cross s
 > This container requires the ability to hardlink to your media files. If you have not read the [Folder Structure](/Folder-Structure) Guide, I recommend you have you folders set up as-described so Cross Seed can function properly.
 {.is-warning}
 
+<div class="glance">
+  <div><span>Port</span><b><code>2468</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://www.cross-seed.org/docs/basics/faq-troubleshooting"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+  </div>
+</div>
+
 # ## <img src="/docker.png" class="tab-icon"> 1 · Deploy Cross-Seed
 ```yaml
 services:

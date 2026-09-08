@@ -15,6 +15,16 @@ dateCreated: 2026-03-05T15:12:42.220Z
 > DOCSight is designed exclusively for **cable internet (DOCSIS/coax)** connections. It will not work with DSL or fiber.
 {.is-danger}
 
+<div class="glance">
+  <div><span>Port</span><b><code>8765</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/alexjustesen/speedtest-tracker"><i class="mdi mdi-github"></i>Project</a>
+  </div>
+</div>
+
 
 
 

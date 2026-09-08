@@ -13,6 +13,13 @@ DCM (Docker Compose Maker) is a simple yet powerful tool that helps you create d
 
 No more copy-pasting from documentation or trying to remember the correct configuration options - this tool makes it easy to set up your Docker environment.
 
+<div class="glance">
+  <div><span>Port</span><b><code>7576</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Docker Compose Maker
 ```yaml
 services:

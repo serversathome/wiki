@@ -14,6 +14,12 @@ dateCreated: 2026-06-30T09:42:59.122Z
 
 The big differentiator is that DockTail uses real Tailscale Services rather than spinning up a separate Tailscale device per app. One tagged host advertises everything, so your apps do not burn through device slots. It is fully stateless, supports HTTP, HTTPS, TCP, and TLS-terminated TCP, can hand out automatic HTTPS certs, and can publish anything to the public internet through Tailscale Funnel.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 
 # How DockTail Works

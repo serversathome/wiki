@@ -11,6 +11,13 @@ dateCreated: 2026-01-15T15:04:14.446Z
 # ![](/dashy.png){class="tab-icon"} What is Dashy?
 A self-hostable personal dashboard built for you. Includes status-checking, widgets, themes, icon packs, a UI editor and tons more! 
 
+<div class="glance">
+  <div><span>Port</span><b><code>4000</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # 1 · Deploy Dashy
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS

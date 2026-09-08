@@ -12,6 +12,17 @@ dateCreated: 2026-01-26T14:16:20.520Z
 
 A simple, modern server dashboard, primarily used by smaller private servers.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3001</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Hardware accel</span><b>Nvidia</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://getdashdot.com/docs/configuration/basic"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+  </div>
+</div>
+
 # 1 · Deploy Dash.
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Without GPU

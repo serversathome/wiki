@@ -19,6 +19,16 @@ A few things that set it apart from the usual Portainer/Dockge crowd:
 - **Multi-host via the Hawser agent** — an open-source Go agent that makes **outbound** connections back to Dockhand, so you can manage hosts behind NAT, firewalls, or dynamic IPs with no inbound ports exposed.
 - **GitOps** — point a stack at a Git repo and use webhooks or scheduled auto-sync to keep it deployed.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/wolfi-dev/os"><i class="mdi mdi-github"></i>Project</a>
+  </div>
+</div>
+
 
 # 1 · Deploy Dockhand
 # {.tabset}

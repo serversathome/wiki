@@ -14,6 +14,17 @@ File Browser Quantum is a self-hosted, web-based file manager: browse, upload, d
 
 If you want one tool to put a clean, fast web UI in front of a folder (or your whole pool), this is my pick.
 
+<div class="glance">
+  <div><span>Port</span><b><code>7999</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/gtsteffaniak/filebrowser"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://filebrowserquantum.com/en/docs/reference/fullconfig/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+  </div>
+</div>
+
 # Quantum vs. the original File Browser
 
 The original File Browser (`filebrowser/filebrowser`) still works, but it's in [maintenance-only mode](https://github.com/filebrowser/filebrowser/discussions/4906#discussioncomment-13436994) — no new features. [gtsteffaniak](https://github.com/gtsteffaniak/filebrowser) forked it into **Quantum**, and it's now a properly maintained project with stable releases (the stable line is now **v1.4.x**). This is the one I'd run today.

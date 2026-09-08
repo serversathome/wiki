@@ -14,6 +14,16 @@ dateCreated: 2026-06-09T11:51:24.911Z
 
 Under the hood, Euro-Office is a fork of **OnlyOffice**. On launch it is functionally the OnlyOffice Document Server — rebranded, with a modernised build system and the first commits of its own ODF-focused work. The piece that runs today is the **Document Server** (the editing engine). It is not designed for standalone use: it is meant to be embedded in a host application (a file-sharing platform, wiki, or project tool). 
 
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/9sf9OnoIcc4"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Euro-Office
 

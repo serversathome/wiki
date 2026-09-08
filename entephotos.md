@@ -12,6 +12,14 @@ dateCreated: 2026-01-15T15:04:35.538Z
 
 Ente Photos is the private, secure photo storage app with end-to-end encryption.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>5 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Ente Photos
 Ente Photos requires a normal docker compose file and in the **same folder** an additional file named `museum.yaml` to be present and configured. 
 

@@ -12,6 +12,13 @@ dateCreated: 2026-02-03T15:45:15.644Z
 
 **Databasement** is a web-based database backup management application for MySQL, PostgreSQL, and MariaDB. It allows you to schedule automated backups, store them locally or on S3-compatible storage, and restore snapshots to any registered server — including cross-server restores (e.g., production to staging).
 
+<div class="glance">
+  <div><span>Port</span><b><code>2226</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Databasement
 
 ```yaml
