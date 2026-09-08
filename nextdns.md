@@ -12,7 +12,7 @@ dateCreated: 2026-09-02T09:57:01.133Z
 
 **NextDNS** protects you from all kinds of security threats, blocks ads and trackers on websites and in apps and provides a safe and supervised Internet for kids — on all devices and on all networks.
 
-Free tier is 300,000 queries per month with all features. Pro is $1.99/month or $19.90/year for unlimited queries.
+Free tier is 300,000 queries per month with all features. Pro is $1.99/month or $19.90/year for unlimited queries. 
 
 
 
