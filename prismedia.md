@@ -12,6 +12,13 @@ dateCreated: 2026-09-03T11:49:15.948Z
 
 **Prismedia** is a private, self-hosted media library that handles movies, series, music, audiobooks, eBooks, comics, images, and galleries in a single system — plus requesting and acquiring new media. Instead of running one app for playback, another for requests, and a suite of services for acquisition and metadata, Prismedia keeps discovery, requests, downloads, identification, organization, and playback attached to the same library item.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8008</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Prismedia

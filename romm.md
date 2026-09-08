@@ -14,6 +14,14 @@ RomM (ROM Manager) allows you to scan, enrich, browse and play your game collect
 
 RomM 5.x rebuilt the interface from the ground up with a universal input model that works with mouse, touch, keyboard and gamepad, and added per-user and per-group permissions, shared saves and savestates, server-side ROM patching, and an early-development emulator streaming mode.
 
+<div class="glance">
+  <div><span>Port</span><b><code>30061</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>MariaDB</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 
 # 1 · Deploy RomM
 # {.tabset}

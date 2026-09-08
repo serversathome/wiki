@@ -11,6 +11,13 @@ dateCreated: 2026-01-15T15:08:02.443Z
 # ![](/recommendarr.png){class="tab-icon"} What is Recommendarr?
 Recommendarr is a web application that generates personalized TV show and movie recommendations based on your Sonarr, Radarr, Plex, and Jellyfin libraries using AI.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3006</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Recommendarr
 
 ```yaml

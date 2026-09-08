@@ -14,6 +14,18 @@ dateCreated: 2026-01-15T15:07:42.310Z
 # ![](/qbittorrent.png){class="tab-icon"} What is qBittorrent?
 qBittorrent is a free and open-source software that aims to provide the same features as µTorrent, such as polished user interface, no ads, search engine, torrent creation tool and more. It runs on all major platforms (Windows, Linux, macOS, FreeBSD, OS/2) and supports many Bittorrent extensions.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/monstermuffin/qSticky"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-39-29.png"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://www.youtube.com/watch?v=WVM3Wgb290g"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy qBittorrent
 # {.tabset}
 

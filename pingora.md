@@ -22,6 +22,13 @@ Simple, Modern, and Fast. Now supports Wildcard SSL & TCP/UDP Streams!
 🎨 Modern Dashboard: Clean and responsive UI built with React, Tailwind CSS, and shadcn/ui.
 🐳 Docker Ready: Single container deployment for easy setup and maintenance.
 
+<div class="glance">
+  <div><span>Port</span><b><code>81</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Pingora Proxy Manager
 ```yaml

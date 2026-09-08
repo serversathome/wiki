@@ -19,6 +19,13 @@ Posterizarr is a PowerShell script with a full Web UI that automates generating 
 - Kometa Integration: Organizes assets in a Kometa-compatible folder structure.
 - Smart Integration: Trigger runs from Tautulli, Sonarr, and Radarr.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Posterizarr
 ```yaml

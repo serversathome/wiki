@@ -11,6 +11,14 @@ dateCreated: 2026-01-15T15:07:40.075Z
 # <img src="/punipuni.png" class="tab-icon"> What is PuniPuni?
 PuniPuni is an user invitation system for Jellyfin, inspired by Wizarr. Built with Spring Boot and Angular, it allows user management for Jellyfin administrators through an interface and automation features.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8089</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy PuniPuni
 ```yaml
 services:

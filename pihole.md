@@ -11,6 +11,12 @@ dateCreated: 2026-01-15T15:07:14.829Z
 # ![](/pi-hole.png){class="tab-icon"} What is Pi-Hole?
 Pi-hole is a software that blocks ads and trackers across your entire network.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # 1 · Deploy Pi-Hole
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS

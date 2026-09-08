@@ -12,6 +12,16 @@ dateCreated: 2026-01-15T15:07:37.846Z
 
 Pulsarr is an integration tool that bridges Plex watchlists with Sonarr and Radarr, enabling real-time media monitoring and automated content acquisition all from within the Plex App itself.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3003</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://jamcalli.github.io/Pulsarr/docs/intro"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+  </div>
+</div>
+
 # 1 · Deploy Pulsarr
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose

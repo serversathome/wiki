@@ -14,6 +14,13 @@ dateCreated: 2026-03-02T18:36:35.268Z
 
 RackPeek supports managing servers, switches, routers, firewalls, access points, UPS units, desktops, laptops, and services — along with their components like CPUs, drives, GPUs, and NICs. It also includes a web UI for visualizing your infrastructure at a glance.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy RackPeek

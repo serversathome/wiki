@@ -12,6 +12,13 @@ dateCreated: 2026-03-02T21:21:42.589Z
 
 **Plumio** is a self-hosted markdown editor with live preview, end-to-end document encryption, multi-user support, and multi-organization capabilities. It's designed for individuals and teams who want a secure, private, and customizable note-taking solution with full control over their data. The frontend is built with SolidJS, and the backend runs on HonoJS (Node.js) with a lightweight SQLite database.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Plumio
  On Dockge, use the below compose.yaml file:

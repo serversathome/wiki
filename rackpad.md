@@ -30,6 +30,13 @@ What you can actually do with it:
 
 It also includes optional OIDC SSO (authorization-code + PKCE), admin-only JSON backup export (which preserves password hashes but redacts stored alert secrets), an audit log, and sensible security headers (CSP, HSTS, X-Frame-Options) out of the box.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Rackpad
 

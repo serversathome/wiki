@@ -16,6 +16,13 @@ dateCreated: 2026-04-16T20:23:27.413Z
 > Reclaimerr is currently in **beta**. While in beta, automatic deletion is intentionally disabled — deletions must be processed manually through the UI or API. Automatic deletion will be added as an opt-in feature once the project matures.
 {.is-warning}
 
+<div class="glance">
+  <div><span>Port</span><b><code>8000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Reclaimerr
 
 Reclaimerr requires both a compose file and an accompanying `.env` file for its environment variables.

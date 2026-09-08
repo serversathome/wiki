@@ -11,6 +11,16 @@ dateCreated: 2026-01-15T15:07:23.902Z
 # ![](/portracker.png){class="tab-icon"} What is Portracker?
 By auto-discovering services on your systems, portracker provides a live, accurate map of your network. It helps eliminate manual tracking in spreadsheets and prevents deployment failures caused by port conflicts.
 
+<div class="glance">
+  <div><span>Port</span><b><code>4999</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/oTG5gBA6UgM"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 # 1 · Deploy Portracker
 # {.tabset}

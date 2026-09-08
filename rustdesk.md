@@ -12,6 +12,15 @@ dateCreated: 2026-04-08T13:36:58.555Z
 
 **RustDesk** is an open-source remote desktop application and self-hostable alternative to TeamViewer, AnyDesk, and similar commercial tools. It provides full remote control of another computer's mouse and keyboard, file transfer, screen sharing, and clipboard sync — all with end-to-end encryption. By self-hosting the RustDesk server, you maintain complete control over your relay infrastructure with no dependency on third-party cloud services.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/aV4dDYc27gk"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 
 # 1 · Deploy RustDesk

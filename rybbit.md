@@ -12,6 +12,13 @@ dateCreated: 2026-01-24T19:52:22.810Z
 
 **Rybbit** is an open source, privacy-first web analytics platform. It's a self-hosted alternative to Google Analytics that respects user privacy while providing detailed insights about your website traffic.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>5 services</b></div>
+  <div><span>Depends on</span><b>Postgres</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 # <img src="/cloudflare.png" class="tab-icon"> Cloudflare Tunnel Setup
 
 This guide is for deploying Rybbit behind a **Cloudflare Tunnel** reverse proxy. Rybbit requires path-based routing (`/api` goes to the backend, everything else goes to the frontend), which the Cloudflare Zero Trust dashboard doesn't support natively. To work around this, we use an nginx container to handle the routing.

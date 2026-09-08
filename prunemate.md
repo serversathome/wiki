@@ -10,6 +10,14 @@ dateCreated: 2026-01-15T15:07:33.318Z
 
 # <img src="/prunemate.png" class="tab-icon"> What is PruneMate?
 A sleek, lightweight web interface to automatically clean up Docker resources on a schedule.
+
+<div class="glance">
+  <div><span>Port</span><b><code>7676</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy PruneMate
 ```yaml
 services:

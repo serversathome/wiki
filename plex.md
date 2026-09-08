@@ -14,6 +14,18 @@ dateCreated: 2026-01-15T15:07:21.349Z
 # <img src="/plex.png" class="tab-icon"> What is Plex?
 A one-stop destination to stream movies, TV shows, and music, Plex is the most comprehensive entertainment platform available today. Available on almost any device, Plex is the first-and-only streaming platform to offer free ad-supported movies, shows, and live TV together with the ability to easily search—and add to your Watchlist—any title ever made, no matter which streaming service it lives on. Using the platform as their entertainment concierge, 17 million (and growing!) monthly active users count on Plex for new discoveries and recommendations from all their favorite streaming apps, personal media libraries, and beyond.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Hardware accel</span><b>Nvidia, Intel, AMD or VAAPI</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/NVIDIA/nvidia-container-toolkit"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://apps.truenas.com/resources/deploy-plex"><i class="mdi mdi-server"></i>TrueNAS app</a>
+    <a href="https://youtu.be/MU7wXJkGHqU?si=BuvTbpPo6yxYjBVH"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy Plex
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose Nvidia
