@@ -2,7 +2,7 @@
 title: Networking
 description: 
 published: true
-date: 2026-09-08T11:24:33.702Z
+date: 2026-09-08T11:40:41.806Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:37.268Z
@@ -22,7 +22,7 @@ dateCreated: 2026-01-15T15:02:37.268Z
 - [<img src="/tailscale-light.png"> Tailscale<br>*Zero-config mesh VPN*](/tailscale)
 - [<img src="/headscale.png"> Headscale<br>*Self-hosted Tailscale control server*](/headscale)
 - [<img src="/wireguard.png"> wg-easy<br>*Friendly GUI for WireGuard*](/wg-easy)
-- [🔑 Wireguard-UI<br>*Web UI for a bare-metal WireGuard server*](/Wireguard-UI)
+
 - [🏷️ DockTail<br>*Expose containers as native Tailscale services*](/docktail)
 {.links-list}
 
