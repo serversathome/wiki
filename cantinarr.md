@@ -2,7 +2,7 @@
 title: Cantinarr
 description: A guide to deploying Cantinarr
 published: true
-date: 2026-09-08T15:19:38.173Z
+date: 2026-09-08T15:22:51.037Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-08T15:19:38.173Z
@@ -91,10 +91,9 @@ Everything is added from the admin UI. There are no config files and no environm
 | SABnzbd / qBittorrent / NZBGet / Transmission | Settings > Add Instance | Queue, history, speeds |
 | Tautulli | Settings > Add Instance | Plex activity and stats |
 | Trakt client ID | Settings > Providers & Credentials | Better discovery plus fallback ID bridging |
-{.dense}
 
-> **Instance URLs are dialed by the Cantinarr server, never by phones or browsers.** Use container names or internal DNS such as `http://radarr:7878`. Your \*arrs never need to be exposed outside their own network. The **Test Connection** button also runs from the server, so it tells you the truth about the address you typed.
-{.is-success}
+
+
 
 Two gotchas worth knowing up front:
 
@@ -135,9 +134,6 @@ The server also exposes an MCP endpoint at `/mcp` with OAuth discovery, browser 
 > MCP clients authenticate over inbound OAuth, which needs a secure context for passkeys. On a plain HTTP deployment, give the account a password under **Settings > Users** instead. Behind a reverse proxy, set `CANTINARR_OAUTH_ISSUER` to your external HTTPS origin and keep it stable, since changing it forces every MCP client to reconnect.
 {.is-info}
 
-## 3.4 Completed-media downloads
-
-Off by default, and deliberately so. To turn it on you mount each library read-only into the container, list the visible boundary in `CANTINARR_MEDIA_ROOTS`, then map each \*arr-reported path to a folder inside that boundary from the instance editor. The two paths do not have to match. Cantinarr re-checks the live file record and issues a short-lived, file-scoped link rather than putting \*arr credentials in a URL.
 
 # 4 · Environment variables
 
@@ -157,13 +153,12 @@ Everything below is optional. Credentials are managed in the UI, not here.
 
 # 5 · Mobile apps
 
-The server already serves the full app in any browser at `http://your-server:8585`, so nothing needs installing. The native apps are in beta:
+The native apps are in beta:
 
 - **iPhone and iPad**: open public beta on [TestFlight](https://testflight.apple.com/join/bCPDwCsD)
 - **Android**: closed testing, testers added by hand through the [project site](https://cantinarr.com/#android-beta)
 
-Both talk only to your own server, so stand the container up first. There is also a [live demo](https://demo.cantinarr.com) if you want a look before installing anything.
+Both talk only to your own server, so stand the container up first.
 
 # <img src="/youtube.png" class="tab-icon"> 6 · Video
 
-Video walkthrough coming soon.
