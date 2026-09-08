@@ -16,6 +16,13 @@ Sportarr supports **400+ sports leagues** worldwide, including combat sports (UF
 
 Key features include Prowlarr integration (Newznab and Torznab API support), IPTV DVR recording (alpha), Plex/Jellyfin/Emby metadata agents, and support for popular download clients like qBittorrent, Transmission, Deluge, SABnzbd, NZBGet, and Decypharr.
 
+<div class="glance">
+  <div><span>Port</span><b><code>1867</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Sportarr
 
 ```yaml

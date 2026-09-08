@@ -14,6 +14,17 @@ dateCreated: 2026-02-14T20:08:17.652Z
 
 Seerr v3.0.0 merges the Overseerr and Jellyseerr codebases into a single project, combining all existing Overseerr functionality with the latest Jellyseerr features.
 
+<div class="glance">
+  <div><span>Port</span><b><code>5055</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://docs.seerr.dev/extending-jellyseerr/database-config#postgresql-options"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://youtu.be/tJgvZqKo37U"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy Seerr
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker

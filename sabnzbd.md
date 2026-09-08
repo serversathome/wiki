@@ -17,6 +17,13 @@ Think of it as the Usenet counterpart to a torrent client like qBittorrent. It's
 > To use SABnzbd you need two other things it does **not** provide: a **Usenet provider** (where the files actually live, e.g. Newshosting) and an **indexer** (a search engine that gives you NZB files, e.g. SceneNZBs). Only the provider is entered into SABnzbd. The indexer feeds NZBs in from the outside, usually through Sonarr/Radarr.
 {.is-info}
 
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # 1 · Deploy SABnzbd
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker

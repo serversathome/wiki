@@ -14,6 +14,19 @@ dateCreated: 2026-03-22T12:08:48.277Z
 
 SearXNG is a community-driven fork of the original SearX project, started in 2021, and is under very active development with 26,900+ GitHub stars.
 
+<div class="glance">
+  <div><span>Port</span><b><code>5080</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>Redis</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/qdm12/gluetun"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://docs.searxng.org/admin/settings/index.html"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://youtu.be/5vNegD0Lgt4"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy SearXNG
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker

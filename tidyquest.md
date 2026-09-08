@@ -12,6 +12,13 @@ dateCreated: 2026-03-03T18:07:39.432Z
 
 **TidyQuest** is a self-hosted web application that gamifies household chores using RPG mechanics. Family members complete tasks to earn coins, build streaks, unlock achievements, and compete on a leaderboard — turning boring housework into an epic family adventure.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3020</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy TidyQuest
 
 ```yaml

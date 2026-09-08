@@ -12,6 +12,16 @@ dateCreated: 2026-05-06T22:04:27.210Z
 
 **Termix** is a free, open-source, self-hosted server management platform that puts SSH, RDP, VNC, and Telnet access into a single web interface. Think of it as a self-hosted alternative to Termius, with cross-device sync and no subscription. Beyond remote terminals and desktops, Termix includes SSH tunnel management with auto-reconnect, a remote file manager with sudo support, Docker container management, server stats dashboards, command snippets, and a network graph view of your homelab. It supports jump hosts, SOCKS5 proxies, OIDC, 2FA, and host key verification, and stores all data in an encrypted SQLite database. Available as a web app, desktop app for Windows/Linux/macOS, PWA, and dedicated mobile/tablet apps for iOS and Android.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/KOXUqb6okow"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy Termix
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker

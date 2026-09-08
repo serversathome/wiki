@@ -11,6 +11,15 @@ dateCreated: 2026-01-15T15:08:53.492Z
 # ![](/tailscale-light.png){class="tab-icon"} What is Tailscale?
 Tailscale makes creating software-defined networks easy: securely connecting users, services, and devices.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/lajmJtNycgQ"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 # 1 · Deploy Tailscale
 You must first go to [tailscale.com](https://tailscale.com) and click **Get Started**. After you create an account:
 1. Navigate to **Settings** ➡ **Keys** ➡ **Auth keys** then click the **Gen Auth Key** button

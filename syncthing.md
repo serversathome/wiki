@@ -12,6 +12,12 @@ dateCreated: 2026-04-23T10:31:51.612Z
 
 **Syncthing** is a free, open-source, continuous file synchronization program that keeps files in sync between two or more devices in real time. It uses a peer-to-peer mesh model — there is no central server, no cloud account, and no third party brokering your data. All traffic is TLS encrypted device-to-device, devices are mutually authenticated with cryptographic certificates, and files are chunked into blocks so multiple peers can contribute to a sync in parallel.
 
+<div class="glance">
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 
 
 # 1 · Deploy Syncthing

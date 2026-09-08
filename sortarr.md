@@ -12,6 +12,13 @@ dateCreated: 2026-01-17T15:46:01.206Z
 
 **Sortarr** is a lightweight, read-only web dashboard for Sonarr and Radarr that provides deep storage insights into your media library. It connects to your Sonarr/Radarr APIs (and optionally Tautulli) to compute size and efficiency metrics, helping you spot oversized series or movies and compare quality vs. size trade-offs. Sortarr does **not** modify files or take any actions against your media — it's purely analytical.
 
+<div class="glance">
+  <div><span>Port</span><b><code>9595</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Sortarr
 
 ```yaml

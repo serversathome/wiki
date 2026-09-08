@@ -11,6 +11,16 @@ dateCreated: 2026-01-15T15:08:42.424Z
 # What is Sousous?
 Sousous is a clean and lightweight personal finance app. It helps you track your expenses, categorize them, and get a quick view of your budget.
 
+<div class="glance">
+  <div><span>Port</span><b><code>4999</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://codeberg.org/tdelorge/sousous"><i class="mdi mdi-github"></i>Project</a>
+  </div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Sousous
 ```yaml
 services:

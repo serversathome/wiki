@@ -25,6 +25,13 @@ This page covers the **Starosdev fork** (`ghcr.io/starosdev/scrutiny`), which is
 > **Migrating from AnalogJ?** Just swap the image name. Your existing SQLite database, InfluxDB data, `scrutiny.yaml` and `collector.yaml` are all fully compatible — no changes needed.
 {.is-success}
 
+<div class="glance">
+  <div><span>Port</span><b><code>8080</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # 1 · Deploy Scrutiny
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker (Omnibus)

@@ -12,6 +12,14 @@ dateCreated: 2026-08-28T20:39:44.910Z
 
 **Securo** is an open-source, self-hosted personal finance manager — think Rocket Money or Monarch, but running on your own hardware with none of your financial data leaving the house. It handles multi-account tracking with running balances, transactions with search and CSV export, budgets, recurring transactions, savings goals, asset valuation, and Net Worth / Income vs Expenses reporting.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>3 services</b></div>
+  <div><span>Depends on</span><b>Postgres and Redis</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Securo
 

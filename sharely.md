@@ -25,6 +25,14 @@ Notable features:
 - **Admin dashboard** with stats, user/file management, and a CSV-exportable audit log
 - **8 languages**, email verification / password reset (SMTP), role-based access control, and GDPR-ready privacy tooling
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Depends on</span><b>MongoDB</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Sharely
 

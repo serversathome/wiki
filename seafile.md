@@ -16,6 +16,17 @@ Seafile organizes files into **libraries** (repositories) that can be shared, en
 
 The Community Edition (CE) is fully free and open source. The Professional Edition adds features like online garbage collection, S3/OpenStack storage backends, SAML SSO, audit logs, and full-text search via ElasticSearch — free for up to 3 users.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>3 services</b></div>
+  <div><span>Depends on</span><b>MariaDB and Redis</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/ZaLfJnNWpg8"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Seafile
 To keep passwords and hostnames in a single place — so changing the root password doesn't mean editing three different lines — we'll use a `.env` file alongside the compose file. In Dockge, each stack has both a Compose and an Environment tab; paste the compose into the first and the env vars into the second.

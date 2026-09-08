@@ -10,6 +10,14 @@ dateCreated: 2026-01-15T15:08:38.032Z
 
 # 📊 What is Sonarr Analyzer?
 A web application built with Streamlit for analyzing average file size per episode across TV series managed by Sonarr.
+
+<div class="glance">
+  <div><span>Port</span><b><code>8501</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Sonarr Analyzer
 ```yaml
 services:

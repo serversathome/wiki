@@ -12,6 +12,13 @@ dateCreated: 2026-04-27T17:59:04.372Z
 
 **SkySend** is a minimalist, end-to-end encrypted, self-hostable file and note sharing service. Files and notes are encrypted entirely in the browser using AES-256-GCM before they ever reach the server, so the host stores only encrypted blobs and never has access to the decryption key (which lives only in the URL fragment after the `#`). It supports drag-and-drop file uploads up to 2GB, multi-file uploads (zipped client-side), encrypted notes (text, code snippets with syntax highlighting, Markdown, password sharing, SSH keys), burn-after-reading mode, password protection via Argon2id, and optional S3-compatible storage backends (R2, MinIO, Wasabi, Hetzner, etc.). Inspired by Mozilla Send and PrivateBin, SkySend is a modern, AGPL-licensed alternative built from scratch with no accounts, no telemetry, and no tracking.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy SkySend
 
 ```yaml

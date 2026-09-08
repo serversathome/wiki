@@ -11,6 +11,13 @@ dateCreated: 2026-01-15T15:08:33.499Z
 # 🚢 What is ShipShipShip?
 A modern, self-hostable changelog and roadmap platform that helps you share product updates with your community and gather feedback through feature voting.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8087</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy ShipShipShip
 
 ```yaml

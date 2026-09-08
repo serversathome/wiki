@@ -12,6 +12,14 @@ dateCreated: 2026-01-15T15:08:55.739Z
 
 Tdarr is a tool that can help you optimize your media files by transcode, remux, remove unwanted streams and more. It supports cross-platform nodes, hardware transcoding, plugins and job reports.
 
+<div class="glance">
+  <div><span>Port</span><b><code>8265</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Hardware accel</span><b>Nvidia, Intel or AMD</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+</div>
+
 # 1 · Deploy Tdarr
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose

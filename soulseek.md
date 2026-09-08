@@ -27,6 +27,16 @@ dateCreated: 2026-01-15T15:08:40.062Z
 
 ---
 
+<div class="glance">
+  <div><span>Port</span><b><code>5030</code></b></div>
+  <div><span>Deploy via</span><b>Docker compose</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/slskd/slskd"><i class="mdi mdi-github"></i>Project</a>
+  </div>
+</div>
+
 # 1 · Deploy slskd
 
 # tabs {.tabset}

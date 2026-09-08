@@ -12,6 +12,17 @@ dateCreated: 2026-08-06T14:22:23.744Z
 
 **Sure** is a self-hosted personal finance app — net worth tracking, account aggregation, spending breakdowns, and investment holdings. It's the community fork of Maybe Finance, the VC-backed personal finance startup that shut down in 2023 and open-sourced its codebase.
 
+<div class="glance">
+  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
+  <div><span>Containers</span><b>4 services</b></div>
+  <div><span>Depends on</span><b>Postgres and Redis</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://youtu.be/ZX8N3mSnDGw"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+  </div>
+</div>
+
 
 # 1 · Deploy Sure
 # {.tabset}
