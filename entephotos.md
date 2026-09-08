@@ -19,7 +19,7 @@ Ente Photos is the private, secure photo storage app with end-to-end encryption.
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
-    <a href="https://github.com/ente-io/server"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/ente-io/ente"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 

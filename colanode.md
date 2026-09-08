@@ -19,7 +19,7 @@ Open-source and local-first Slack and Notion alternative that puts you in contro
   <div><span>Depends on</span><b>Postgres and Valkey</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
-    <a href="https://github.com/colanode/server"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/colanode/colanode"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/fhdE2zLmkAQ"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>

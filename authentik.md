@@ -19,7 +19,7 @@ Authentik is an IdP (Identity Provider) and SSO (Single Sign On) platform that i
   <div><span>Depends on</span><b>Postgres and Redis</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
-    <a href="https://github.com/goauthentik/server"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/goauthentik/authentik"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 
