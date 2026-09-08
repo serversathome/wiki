@@ -2,7 +2,7 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2026-09-08T11:22:47.069Z
+date: 2026-09-08T11:50:05.606Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:20.212Z
@@ -12,8 +12,7 @@ dateCreated: 2026-01-15T15:06:20.212Z
 {.is-success}
 
 
-Playing, viewing and organizing what you already have. Anything that talks to Radarr, Sonarr, Prowlarr or a Seerr requester lives on the [*Arr Stack](/arr-stack) page instead.
-{.is-info}
+
 
 ## Media Servers
 - [<img src="/jellyfin.png"> Jellyfin<br>*Volunteer-built, fully free media server*](/jellyfin)
