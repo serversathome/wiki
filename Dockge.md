@@ -2,13 +2,12 @@
 title: Dockge
 description: A guide to installing Dockge on Ubuntu Server LTS
 published: true
-date: 2026-01-15T15:27:27.200Z
+date: 2026-09-09T21:46:45.384Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:22.797Z
 ---
 
-![](/dockgedash.png)
 
 # ![](/dockge.png){class="tab-icon"} What is Dockge?
 
