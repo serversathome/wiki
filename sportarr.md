@@ -2,7 +2,7 @@
 title: Sportarr
 description: A guide to deploying Sportarr
 published: true
-date: 2026-03-11T17:24:53.161Z
+date: 2026-09-10T11:34:13.309Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-10T16:23:09.485Z
@@ -39,7 +39,7 @@ services:
       - "1867:1867"
     volumes:
       - /mnt/tank/configs/sportarr:/config
-      - /mnt/tank/media/:/data
+      - /mnt/tank/media/:/media
     restart: unless-stopped
 ```
 
@@ -53,7 +53,7 @@ services:
 
 After deployment, navigate to `http://your-server-ip:1867` and configure the following:
 
-**Root Folder** — Go to **Settings → Media Management** and add a root folder. This is where Sportarr will store your sports library. If you followed the compose above, set this to `/data/sports`.
+**Root Folder** — Go to **Settings → Media Management** and add a root folder. This is where Sportarr will store your sports library. If you followed the compose above, set this to `/media/sports`.
 
 **Download Client** — Go to **Settings → Download Clients** and add your download client.
 
