@@ -2,7 +2,7 @@
 title: Cantinarr
 description: A guide to deploying Cantinarr
 published: true
-date: 2026-09-08T15:27:05.009Z
+date: 2026-09-10T13:52:24.252Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-08T15:19:38.173Z
@@ -95,9 +95,7 @@ Everything is added from the admin UI. There are no config files and no environm
 
 
 
-Two gotchas worth knowing up front:
 
-- A container using `network_mode: container:gluetun` has no hostname of its own, so `http://chaptarr:8789` will never resolve. Point the instance URL at the VPN gateway container that publishes the port instead.
 - SABnzbd rejects hostnames it does not recognise. Add the name to `host_whitelist` under **Config > Special**, or set the container hostname to match.
 
 When you add an \*arr instance, Cantinarr installs its own authenticated webhook on that instance automatically, which is what makes imports, deletes, and manual adds show up in the app instantly instead of on a poll. Each instance's edit screen has a **Configure instant updates** button to repair it if the callback address changes.
