@@ -2,7 +2,7 @@
 title: Sportarr
 description: A guide to deploying Sportarr
 published: true
-date: 2026-09-10T11:34:13.309Z
+date: 2026-09-10T12:12:09.278Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-10T16:23:09.485Z
@@ -105,17 +105,11 @@ For older Plex versions, download the legacy bundle from the Sportarr UI (**Sett
 
 ### Emby
 
-Emby works with the same metadata API as Jellyfin and Plex using Open Media data sources:
-
-1. In Emby, go to **Settings → Server → Metadata**
-2. Under **Open Media**, add a new provider:
-   - **Name**: `Sportarr`
-   - **URL**: `https://sportarr.net`
-3. Create a library for your sports content:
+1. Create a library for your sports content:
    - Select **TV Shows** as the content type
    - Add your sports media folder
-   - Under **Metadata Downloaders**, enable **Open Media** and move Sportarr to the top
-4. Refresh your library metadata to pull in sports event information
+   - Under **Metadata Downloaders**, enable **Sportarr** 
+1. Refresh your library metadata to pull in sports event information
 ## 2.4 IPTV DVR (Alpha)
 
 Sportarr includes an experimental IPTV DVR feature that can automatically record live sports events.
