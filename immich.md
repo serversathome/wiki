@@ -2,7 +2,7 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: 2026-09-08T14:02:46.626Z
+date: 2026-09-11T12:40:39.093Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:25.101Z
@@ -29,6 +29,11 @@ Easily back up, organize, and manage your photos on your own server. Immich help
 # 1 · Deploy Immich
 # {.tabset}
 
+## Custom Builder
+
+Immich has a custom yaml compose builder you can try [here!](https://immich.app/docker-compose-builder)
+
+![screenshot_from_2026-09-11_08-40-01.png](/screenshot_from_2026-09-11_08-40-01.png)
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 ![screenshot_from_2025-04-30_08-01-41.png](/screenshot_from_2025-04-30_08-01-41.png)
