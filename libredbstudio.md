@@ -2,7 +2,7 @@
 title: LibreDB Studio
 description: A guide to deploying LibreDB Studio
 published: true
-date: 2026-09-15T12:34:44.506Z
+date: 2026-09-15T12:35:08.688Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-15T12:32:23.123Z
@@ -135,4 +135,4 @@ Nothing unusual. Point your proxy at port 3000 on the container. In Nginx Proxy 
 | `LLM_MODEL` | Model name, e.g. `qwen2.5:7b` |
 | `LLM_API_URL` | Endpoint, e.g. `http://172.17.0.1:11434/v1` |
 | `LLM_API_KEY` | Required for `gemini` and `openai` |
-{.dense}
+
