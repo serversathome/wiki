@@ -2,10 +2,10 @@
 title: LibreDB Studio
 description: A guide to deploying LibreDB Studio
 published: true
-date: 2026-09-15T10:12:47.318Z
+date: 2026-09-15T12:33:51.669Z
 tags: 
 editor: markdown
-dateCreated: 2026-09-15T10:12:47.318Z
+dateCreated: 2026-09-15T12:32:23.123Z
 ---
 
 # <img src="/libredbstudio.png" class="tab-icon"> What is LibreDB Studio?
@@ -135,7 +135,3 @@ Nothing unusual. Point your proxy at port 3000 on the container. In Nginx Proxy 
 | `LLM_API_URL` | Endpoint, e.g. `http://172.17.0.1:11434/v1` |
 | `LLM_API_KEY` | Required for `gemini` and `openai` |
 {.dense}
-
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-
-*No video yet — check back soon!*
