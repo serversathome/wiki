@@ -2,7 +2,7 @@
 title: LibreDB Studio
 description: A guide to deploying LibreDB Studio
 published: true
-date: 2026-09-15T12:33:51.669Z
+date: 2026-09-15T12:34:44.506Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-15T12:32:23.123Z
@@ -29,6 +29,7 @@ services:
   libredbstudio:
     image: ghcr.io/libredb/libredb-studio:latest
     container_name: libredbstudio
+    user: "568:568"
     restart: unless-stopped
     ports:
       - "3000:3000"
