@@ -2,7 +2,7 @@
 title: Watchtower
 description: A guide on how to install Watchtower for container updates
 published: true
-date: 2026-09-16T10:39:09.989Z
+date: 2026-09-16T10:43:12.370Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:01.108Z
@@ -53,16 +53,31 @@ docker exec -it watchtower /watchtower --run-once
 ```
 
 # 3 · Notifications
+ 
+Watchtower sends notifications through **Shoutrrr** URLs. Add a `WATCHTOWER_NOTIFICATION_URL` variable to the environment:
+ 
+| Service | URL format |
+|---------|------------|
+| Discord | `discord://token@webhookid` |
+| Gotify | `gotify://gotify.example.com/token` |
+| ntfy | `ntfy://ntfy.sh/your-topic` |
+| Email | `smtp://user:password@host:port/?from=you@example.com&to=you@example.com` |
 
-## 3.1 Discord
+ 
+```yaml
+      - WATCHTOWER_NOTIFICATION_URL=discord://token@webhookid
+```
+ 
+# 4 · Useful Environment Variables
+ 
+| Variable | What it does |
+|----------|--------------|
+| `WATCHTOWER_CLEANUP` | Removes the old image after updating so they do not pile up on disk |
+| `WATCHTOWER_ROLLING_RESTART` | Restarts containers one at a time instead of all at once |
+| `WATCHTOWER_INCLUDE_STOPPED` | Also checks stopped containers |
+| `WATCHTOWER_REVIVE_STOPPED` | Starts stopped containers after updating them |
+| `WATCHTOWER_RUN_ONCE` | Runs a single update check and then exits |
+| `WATCHTOWER_DEBUG` | More detailed logging for troubleshooting |
 
-To use the Discord notification uncomment out the top line `WATCHTOWER_NOTIFICATION_URL`
 
-Your Discord Webhook-URL will look like this:
-
-https://discord.com/api/webhooks/**webhookid**/**token**
-
-The shoutrrr service URL should look like this:
-
-discord://`token`@`webhookid`
 
