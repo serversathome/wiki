@@ -2,7 +2,7 @@
 title: Watchtower
 description: A guide on how to install Watchtower for container updates
 published: true
-date: 2026-01-15T15:27:56.694Z
+date: 2026-09-16T10:39:09.989Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:01.108Z
@@ -31,9 +31,6 @@ services:
       - WATCHTOWER_INCLUDE_STOPPED=true
       - WATCHTOWER_SCHEDULE=0 0 3 * * *
       # - WATCHTOWER_NOTIFICATION_URL=discord://token@webhookid
-      # - WATCHTOWER_NOTIFICATIONS=gotify
-      # - WATCHTOWER_NOTIFICATION_GOTIFY_URL=https://
-      # - WATCHTOWER_NOTIFICATION_GOTIFY_TOKEN=
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -42,8 +39,8 @@ services:
 > I have added some custom environment variables to this compose file. For a full explanation of all possible variables, [see the docs](https://watchtower.nickfedor.com/v1.11.8/configuration/arguments/)
 {.is-info}
 
-> Watchtower does not update apps from the TrueNAS catalog. To skip those, add this line to the `environment` section:
-> `- WATCHTOWER_DISABLE_CONTAINERS=ix*`
+> Watchtower does not update apps from the TrueNAS catalog. To skip those, add this line to the `environment` section with the container names:
+> `- WATCHTOWER_DISABLE_CONTAINERS=`
 {.is-warning}
 
 
@@ -69,9 +66,3 @@ The shoutrrr service URL should look like this:
 
 discord://`token`@`webhookid`
 
-## 3.2 Gotify
-
-To use Gotify, uncomment out the bottom 3 lines:
-`WATCHTOWER_NOTIFICATIONS`
-`WATCHTOWER_NOTIFICATION_GOTIFY_URL`
-`WATCHTOWER_NOTIFICATION_GOTIFY_TOKEN`
