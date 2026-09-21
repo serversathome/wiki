@@ -281,7 +281,6 @@ Add to your Forgejo environment and restart:
  
 Get a registration token from **Site Administration** → **Actions** → **Runners** → **Create new Runner**.
  
- 
 ## 7.2 Build the CI VM
  
 In Proxmox, **Create VM**, not an LXC. Docker-in-Docker inside LXC pushes you back to privileged containers, which defeats the purpose.
@@ -326,39 +325,61 @@ Verify rather than assume. From inside the VM, `curl -k https://<truenas-ip>` sh
 
 ## 7.5 Deploy the runner
  
-Inside the VM:
- 
+1. Inside the VM, login as root ( -su in debian ):
+```bash 
+mkdir -p data/.cache
+chown -R 1001:1001 data
+chmod 775 data/.cache
+chmod g+s data/.cache
+```
+
+2. Then we create `runner-config.yml` with the first part generated in 7.1: 
+```yaml
+server:
+  connections:
+    forgejo:
+      url: https://git.serversatho.me
+      uuid: 0bab1017-5923-8c44-b962-c12589736743
+      token: f86ef3060ad981ba33b5d30e1b8z372416fd1d74
+
+runner:
+  labels:
+    - "untrusted:docker://node:current-bookworm"
+```
+
+3. Next, create `docker-compose.yml`:
 ```yaml
 services:
-  forgejo-runner:
-    image: code.forgejo.org/forgejo/runner:9
-    container_name: forgejo-runner
-    depends_on:
-      - forgejo-dind
-    environment:
-      - FORGEJO_INSTANCE_URL=https://git.serversatho.me
-      - FORGEJO_RUNNER_REGISTRATION_TOKEN=CHANGE_ME_TOKEN
-      - DOCKER_HOST=tcp://forgejo-dind:2375
-    restart: unless-stopped
-    volumes:
-      - /opt/forgejo-runner/data:/data
- 
-  forgejo-dind:
+  docker-in-docker:
     image: docker:dind
-    container_name: forgejo-dind
-    privileged: true
-    command: ["dockerd", "-H", "tcp://0.0.0.0:2375", "--tls=false"]
+    container_name: 'docker_dind'
+    privileged: 'true'
+    command: ['dockerd', '-H', 'tcp://0.0.0.0:2375', '--tls=false']
+    restart: 'unless-stopped'
+
+  runner:
+    image: 'data.forgejo.org/forgejo/runner:13'
+    links:
+      - docker-in-docker
+    depends_on:
+      docker-in-docker:
+        condition: service_started
+    container_name: 'runner'
     environment:
-      - DOCKER_TLS_CERTDIR=
-    restart: unless-stopped
+      DOCKER_HOST: tcp://docker-in-docker:2375
+    user: 1001:1001
     volumes:
-      - /opt/forgejo-runner/dind:/var/lib/docker
+      - ./data:/data
+    restart: 'unless-stopped'
+    command: 'forgejo-runner daemon --config runner-config.yml'
 ```
- 
-1. Create the directories: `mkdir -p /opt/forgejo-runner/{data,dind}`
-2. Paste the registration token from 7.1
-3. Give the runner the label `untrusted` when it registers
-4. Confirm it shows as **Idle** under **Site Administration** → **Actions** → **Runners**
+
+4. Run docker through docker terminal: 
+```bash
+docker compose up -d
+``` 
+
+5. Confirm it shows as **Idle** and labels **untrusted** under **Site Administration** → **Actions** → **Runners**
 
 ## 7.6 The two-runner split
  
@@ -424,4 +445,3 @@ If a repository is only ever built from code you wrote, the CI VM is more than y
 
 # <img src="/youtube.png" class="tab-icon"> 8 · Video 
 https://youtu.be/O_kpayAlRZA
- 
