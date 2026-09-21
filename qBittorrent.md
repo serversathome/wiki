@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-05-05T22:11:16.884Z
+date: 2026-09-21T19:42:02.055Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -536,7 +536,12 @@ A result of `downloading` at *any* speed indicates a success. If it stalls or er
 
 ## 6.1 Logging In
 
-To login to the webUI, navigate to http://{serverIP}:8080. If when you first try to open the app and you receive a blank page which just says “Unauthorized”, don't worry, you did everything correctly. Click the URL bar and hit <kbd>Enter</kbd> and you should be forwarded to the login screen. The default username is *admin* and the password is set randomly. To see it, go into the logs and look for this line:
+To login to the webUI, navigate to `http://{serverIP}:8080`.
+
+> **Seeing a blank page that just says "Unauthorized"?** This is expected and does not mean anything is broken. Click the URL bar and press <kbd>Enter</kbd> to load the login screen.
+{.is-warning}
+
+The default username is *admin* and the password is set randomly. To see it, go into the logs and look for this line:
 
 ![](/screenshot_from_2024-08-26_07-55-35.png)
 
