@@ -356,7 +356,9 @@ chown 1001:1001 data/runner-config.yml
 ```yaml
 runner:
   labels:
-    - "untrusted:docker://node:current-bookworm"
+    - "untrusted:docker://node:current-trixie"
+  envs:
+    DOCKER_HOST: tcp://docker-in-docker:2375
  
 server:
   connections:
@@ -365,6 +367,8 @@ server:
       uuid: CHANGE_ME_UUID
       token: CHANGE_ME_TOKEN
 ```
+ 
+The label decides which image your jobs run in, and `node:current-trixie` is the one to use here: Forgejo Actions runs JavaScript actions such as `actions/checkout` with the `node` binary from inside the job's own container, so an image without Node cannot check your code out. `envs` is what makes `docker build` work inside a job. The runner talks to the DinD daemon on its own, but the job container is a separate world, and without `DOCKER_HOST` pointed at DinD every docker command in a workflow dies with `Cannot connect to the Docker daemon at unix:///var/run/docker.sock`.
  
 **4. Create `/opt/forgejo-runner/docker-compose.yml`:**
  
@@ -405,7 +409,7 @@ services:
  
 The VM protects your data. This protects your users, and it is the half people skip.
  
-Register a **second** runner, on TrueNAS via Dockge, repeating 7.5 with `/mnt/tank/configs/forgejo-runner/` as the stack directory. Create a second runner in Forgejo so it gets its own UUID and token, and give it the label `publish:docker://node:current-bookworm` in its own `runner-config.yml`. It holds your registry token, and it only ever runs on tag pushes, which no outside contributor can perform.
+Register a **second** runner, on TrueNAS via Dockge, repeating 7.5 with `/mnt/tank/configs/forgejo-runner/` as the stack directory. Create a second runner in Forgejo so it gets its own UUID and token, and give it the label `publish:docker://node:current-trixie`, and the same `envs` block, in its own `runner-config.yml`. It holds your registry token, and it only ever runs on tag pushes, which no outside contributor can perform.
  
 | Runner | Where | Secrets | Triggers on |
 |--------|-------|---------|-------------|
@@ -421,8 +425,12 @@ jobs:
     runs-on: untrusted
     steps:
       - uses: actions/checkout@v4
+      - run: apt-get update && apt-get install -y --no-install-recommends docker-cli
       - run: docker build -t testbuild .
 ```
+ 
+> **That `apt-get` step is not optional.** The Node image has no `docker` command in it, and the runner deliberately does not mount a docker socket into job containers. Installing `docker-cli` gives the job a client, and the `DOCKER_HOST` from 7.5 points it at DinD. Debian 13 carries `docker-cli` as its own package, which is why the job image is a `trixie` one. An image that already ships the client, or one you build yourself, works just as well and saves the thirty seconds.
+{.is-info}
  
 ```yaml
 # Runs only when you push a tag, which only you can do.
@@ -435,6 +443,7 @@ jobs:
     runs-on: publish
     steps:
       - uses: actions/checkout@v4
+      - run: apt-get update && apt-get install -y --no-install-recommends docker-cli
       - run: echo "${{ secrets.REGISTRY_TOKEN }}" | docker login git.serversatho.me -u yourname --password-stdin
       - run: docker build -t git.serversatho.me/yourname/myapp:${{ github.ref_name }} .
       - run: docker push git.serversatho.me/yourname/myapp:${{ github.ref_name }}
