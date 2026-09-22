@@ -279,7 +279,9 @@ Add to your Forgejo environment and restart:
       - FORGEJO__actions__DEFAULT_ACTIONS_URL=https://data.forgejo.org
 ```
  
-Get a registration token from **Site Administration** → **Actions** → **Runners** → **Create new Runner**.
+Both are already the defaults in Forgejo 16, setting them explicitly just makes the intent visible.
+ 
+Now create the runner identity: **Site Administration** → **Actions** → **Runners** → **Create new Runner**. Give it a name, hit **Create**, and Forgejo shows you a **UUID** and a **Token**. Copy both, the token is only shown once. Section 7.5 pastes them into the runner's config file.
  
  
 ## 7.2 Build the CI VM
@@ -326,45 +328,84 @@ Verify rather than assume. From inside the VM, `curl -k https://<truenas-ip>` sh
 
 ## 7.5 Deploy the runner
  
-Inside the VM:
+Inside the VM, as root, working in `/opt/forgejo-runner`.
+ 
+**1. Create the data directory.** The runner image does not run as root, so the directory has to be owned by the unprivileged user the container runs as:
+ 
+```bash
+mkdir -p /opt/forgejo-runner/data/.cache
+cd /opt/forgejo-runner
+chown -R 1001:1001 data
+chmod 775 data/.cache
+chmod g+s data/.cache
+```
+ 
+**2. Generate the config file** into that directory:
+ 
+```bash
+docker run --rm data.forgejo.org/forgejo/runner:13 \
+  forgejo-runner generate-config > data/runner-config.yml
+chown 1001:1001 data/runner-config.yml
+```
+ 
+> **The path matters.** The container's working directory is `/data`, which is where `./data` is mounted, so the config has to live at `data/runner-config.yml` on the host. Put it beside `docker-compose.yml` instead and the runner starts, finds no config and exits.
+{.is-warning}
+ 
+**3. Edit `data/runner-config.yml`.** Two blocks change, the rest of the generated file is fine as it ships. The UUID and token are the ones from 7.1:
+ 
+```yaml
+runner:
+  labels:
+    - "untrusted:docker://node:current-bookworm"
+ 
+server:
+  connections:
+    forgejo:
+      url: https://git.serversatho.me
+      uuid: CHANGE_ME_UUID
+      token: CHANGE_ME_TOKEN
+```
+ 
+**4. Create `/opt/forgejo-runner/docker-compose.yml`:**
  
 ```yaml
 services:
-  forgejo-runner:
-    image: code.forgejo.org/forgejo/runner:9
-    container_name: forgejo-runner
-    depends_on:
-      - forgejo-dind
-    environment:
-      - FORGEJO_INSTANCE_URL=https://git.serversatho.me
-      - FORGEJO_RUNNER_REGISTRATION_TOKEN=CHANGE_ME_TOKEN
-      - DOCKER_HOST=tcp://forgejo-dind:2375
-    restart: unless-stopped
-    volumes:
-      - /opt/forgejo-runner/data:/data
- 
-  forgejo-dind:
+  docker-in-docker:
     image: docker:dind
-    container_name: forgejo-dind
-    privileged: true
-    command: ["dockerd", "-H", "tcp://0.0.0.0:2375", "--tls=false"]
+    container_name: 'docker_dind'
+    privileged: 'true'
+    command: ['dockerd', '-H', 'tcp://0.0.0.0:2375', '--tls=false']
+    restart: 'unless-stopped'
+ 
+  runner:
+    image: 'data.forgejo.org/forgejo/runner:13'
+    container_name: 'runner'
+    links:
+      - docker-in-docker
+    depends_on:
+      docker-in-docker:
+        condition: service_started
     environment:
-      - DOCKER_TLS_CERTDIR=
-    restart: unless-stopped
+      DOCKER_HOST: tcp://docker-in-docker:2375
+    user: 1001:1001
     volumes:
-      - /opt/forgejo-runner/dind:/var/lib/docker
+      - ./data:/data
+    restart: 'unless-stopped'
+    command: 'forgejo-runner daemon --config runner-config.yml'
 ```
  
-1. Create the directories: `mkdir -p /opt/forgejo-runner/{data,dind}`
-2. Paste the registration token from 7.1
-3. Give the runner the label `untrusted` when it registers
-4. Confirm it shows as **Idle** under **Site Administration** → **Actions** → **Runners**
-
+**5. Start it:** `docker compose up -d`
+ 
+**6. Confirm** it shows as **Idle**, carrying the label `untrusted`, under **Site Administration** → **Actions** → **Runners**.
+ 
+> **Registration is a config file now, not a CLI step.** Guides written against older runners hand the runner a `FORGEJO_INSTANCE_URL` and a `FORGEJO_RUNNER_REGISTRATION_TOKEN` environment variable. Those belong to Gitea's `act_runner`; the Forgejo runner never reads them, so a compose file built that way registers nothing. `forgejo-runner register` still exists but is deprecated as of runner v13.
+{.is-info}
+ 
 ## 7.6 The two-runner split
  
 The VM protects your data. This protects your users, and it is the half people skip.
  
-Register a **second** runner, on TrueNAS via Dockge, using the same compose as 7.5 with `/mnt/tank/configs/forgejo-runner/` paths. Give it the label `publish`. It holds your registry token, and it only ever runs on tag pushes, which no outside contributor can perform.
+Register a **second** runner, on TrueNAS via Dockge, repeating 7.5 with `/mnt/tank/configs/forgejo-runner/` as the stack directory. Create a second runner in Forgejo so it gets its own UUID and token, and give it the label `publish:docker://node:current-bookworm` in its own `runner-config.yml`. It holds your registry token, and it only ever runs on tag pushes, which no outside contributor can perform.
  
 | Runner | Where | Secrets | Triggers on |
 |--------|-------|---------|-------------|
