@@ -279,7 +279,9 @@ Add to your Forgejo environment and restart:
       - FORGEJO__actions__DEFAULT_ACTIONS_URL=https://data.forgejo.org
 ```
  
-Get a registration token from **Site Administration** → **Actions** → **Runners** → **Create new Runner**.
+Both are already the defaults in Forgejo 16, setting them explicitly just makes the intent visible.
+ 
+Now create the runner identity: **Site Administration** → **Actions** → **Runners** → **Create new Runner**. Give it a name, hit **Create**, and Forgejo shows you a **UUID** and a **Token**. Copy both, the token is only shown once. Section 7.5 pastes them into the runner's config file.
  
  
 ## 7.2 Build the CI VM
@@ -326,45 +328,88 @@ Verify rather than assume. From inside the VM, `curl -k https://<truenas-ip>` sh
 
 ## 7.5 Deploy the runner
  
-Inside the VM:
+Inside the VM, as root, working in `/opt/forgejo-runner`.
+ 
+**1. Create the data directory.** The runner image does not run as root, so the directory has to be owned by the unprivileged user the container runs as:
+ 
+```bash
+mkdir -p /opt/forgejo-runner/data/.cache
+cd /opt/forgejo-runner
+chown -R 1001:1001 data
+chmod 775 data/.cache
+chmod g+s data/.cache
+```
+ 
+**2. Generate the config file** into that directory:
+ 
+```bash
+docker run --rm data.forgejo.org/forgejo/runner:13 \
+  forgejo-runner generate-config > data/runner-config.yml
+chown 1001:1001 data/runner-config.yml
+```
+ 
+> **The path matters.** The container's working directory is `/data`, which is where `./data` is mounted, so the config has to live at `data/runner-config.yml` on the host. Put it beside `docker-compose.yml` instead and the runner starts, finds no config and exits.
+{.is-warning}
+ 
+**3. Edit `data/runner-config.yml`.** Two blocks change, the rest of the generated file is fine as it ships. The UUID and token are the ones from 7.1:
+ 
+```yaml
+runner:
+  labels:
+    - "untrusted:docker://node:current-trixie"
+  envs:
+    DOCKER_HOST: tcp://docker-in-docker:2375
+ 
+server:
+  connections:
+    forgejo:
+      url: https://git.serversatho.me
+      uuid: CHANGE_ME_UUID
+      token: CHANGE_ME_TOKEN
+```
+ 
+The label decides which image your jobs run in, and `node:current-trixie` is the one to use here: Forgejo Actions runs JavaScript actions such as `actions/checkout` with the `node` binary from inside the job's own container, so an image without Node cannot check your code out. `envs` is what makes `docker build` work inside a job. The runner talks to the DinD daemon on its own, but the job container is a separate world, and without `DOCKER_HOST` pointed at DinD every docker command in a workflow dies with `Cannot connect to the Docker daemon at unix:///var/run/docker.sock`.
+ 
+**4. Create `/opt/forgejo-runner/docker-compose.yml`:**
  
 ```yaml
 services:
-  forgejo-runner:
-    image: code.forgejo.org/forgejo/runner:9
-    container_name: forgejo-runner
-    depends_on:
-      - forgejo-dind
-    environment:
-      - FORGEJO_INSTANCE_URL=https://git.serversatho.me
-      - FORGEJO_RUNNER_REGISTRATION_TOKEN=CHANGE_ME_TOKEN
-      - DOCKER_HOST=tcp://forgejo-dind:2375
-    restart: unless-stopped
-    volumes:
-      - /opt/forgejo-runner/data:/data
- 
-  forgejo-dind:
+  docker-in-docker:
     image: docker:dind
-    container_name: forgejo-dind
-    privileged: true
-    command: ["dockerd", "-H", "tcp://0.0.0.0:2375", "--tls=false"]
+    container_name: 'docker_dind'
+    privileged: 'true'
+    command: ['dockerd', '-H', 'tcp://0.0.0.0:2375', '--tls=false']
+    restart: 'unless-stopped'
+ 
+  runner:
+    image: 'data.forgejo.org/forgejo/runner:13'
+    container_name: 'runner'
+    links:
+      - docker-in-docker
+    depends_on:
+      docker-in-docker:
+        condition: service_started
     environment:
-      - DOCKER_TLS_CERTDIR=
-    restart: unless-stopped
+      DOCKER_HOST: tcp://docker-in-docker:2375
+    user: 1001:1001
     volumes:
-      - /opt/forgejo-runner/dind:/var/lib/docker
+      - ./data:/data
+    restart: 'unless-stopped'
+    command: 'forgejo-runner daemon --config runner-config.yml'
 ```
  
-1. Create the directories: `mkdir -p /opt/forgejo-runner/{data,dind}`
-2. Paste the registration token from 7.1
-3. Give the runner the label `untrusted` when it registers
-4. Confirm it shows as **Idle** under **Site Administration** → **Actions** → **Runners**
-
+**5. Start it:** `docker compose up -d`
+ 
+**6. Confirm** it shows as **Idle**, carrying the label `untrusted`, under **Site Administration** → **Actions** → **Runners**.
+ 
+> **Registration is a config file now, not a CLI step.** Guides written against older runners hand the runner a `FORGEJO_INSTANCE_URL` and a `FORGEJO_RUNNER_REGISTRATION_TOKEN` environment variable. Those belong to Gitea's `act_runner`; the Forgejo runner never reads them, so a compose file built that way registers nothing. `forgejo-runner register` still exists but is deprecated as of runner v13.
+{.is-info}
+ 
 ## 7.6 The two-runner split
  
 The VM protects your data. This protects your users, and it is the half people skip.
  
-Register a **second** runner, on TrueNAS via Dockge, using the same compose as 7.5 with `/mnt/tank/configs/forgejo-runner/` paths. Give it the label `publish`. It holds your registry token, and it only ever runs on tag pushes, which no outside contributor can perform.
+Register a **second** runner, on TrueNAS via Dockge, repeating 7.5 with `/mnt/tank/configs/forgejo-runner/` as the stack directory. Create a second runner in Forgejo so it gets its own UUID and token, and give it the label `publish:docker://node:current-trixie`, and the same `envs` block, in its own `runner-config.yml`. It holds your registry token, and it only ever runs on tag pushes, which no outside contributor can perform.
  
 | Runner | Where | Secrets | Triggers on |
 |--------|-------|---------|-------------|
@@ -380,8 +425,12 @@ jobs:
     runs-on: untrusted
     steps:
       - uses: actions/checkout@v4
+      - run: apt-get update && apt-get install -y --no-install-recommends docker-cli
       - run: docker build -t testbuild .
 ```
+ 
+> **That `apt-get` step is not optional.** The Node image has no `docker` command in it, and the runner deliberately does not mount a docker socket into job containers. Installing `docker-cli` gives the job a client, and the `DOCKER_HOST` from 7.5 points it at DinD. Debian 13 carries `docker-cli` as its own package, which is why the job image is a `trixie` one. An image that already ships the client, or one you build yourself, works just as well and saves the thirty seconds.
+{.is-info}
  
 ```yaml
 # Runs only when you push a tag, which only you can do.
@@ -394,6 +443,7 @@ jobs:
     runs-on: publish
     steps:
       - uses: actions/checkout@v4
+      - run: apt-get update && apt-get install -y --no-install-recommends docker-cli
       - run: echo "${{ secrets.REGISTRY_TOKEN }}" | docker login git.serversatho.me -u yourname --password-stdin
       - run: docker build -t git.serversatho.me/yourname/myapp:${{ github.ref_name }} .
       - run: docker push git.serversatho.me/yourname/myapp:${{ github.ref_name }}
