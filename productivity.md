@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2026-09-08T12:57:47.694Z
+date: 2026-09-28T18:16:19.926Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:28.852Z
@@ -33,6 +33,7 @@ dateCreated: 2026-01-15T15:07:28.852Z
 - [<img src="/plumio.png"> Plumio<br>*Encrypted markdown editor with live preview*](/plumio)
 - [<img src="/notediscovery.png"> NoteDiscovery<br>*Knowledge base with real math support*](/notediscovery)
 - [Euro-Office<br>*Collaborative docs, sheets and slides*](/eurooffice)
+- [<img src="/edentext.png"> EdenText<br>*Browser-based word processor for .odt and .docx*](/edentext)
 - [<img src="/ironcalc.png"> IronCalc<br>*Open source spreadsheet engine*](/ironcalc)
 - [<img src="https://github.com/user-attachments/assets/f1a69d56-5850-4d83-95e8-052e25263fc8"> BentoPDF<br>*Merge, split and edit PDFs*](/bentopdf)
 - [<img src="/docsight.png"> Docsight<br>*Document search and insight*](/docsight)
@@ -79,10 +80,12 @@ dateCreated: 2026-01-15T15:07:28.852Z
 ## Home and family {.sec .apps}
 - [<img src="/homeassistant.png"> Home Assistant<br>*Home automation hub*](/homeassistant)
 - [<img src="/mealie.png"> Mealie<br>*Recipes and meal planning*](/mealie)
+- [<img src="/ghee.png"> Ghee<br>*iOS and Android companion app for Mealie*](/ghee)
 - [Homie<br>*Shopping lists, chores, bills and expiry dates*](/homie)
 - [Koffan<br>*Shared shopping lists that sync live*](/koffan)
 - [TidyQuest<br>*Chores gamified with RPG mechanics*](/tidyquest)
 - [<img src="/sprout-track.png"> Sprout Track<br>*Track feeds, sleep and nappies for a baby*](/sprouttrack)
+- [<img src="/attic.png"> Attic<br>*Home inventory for everything you own*](/attic)
 - [<img src="/warracker.png"> Warracker<br>*Warranty expirations and receipts*](/warracker)
 - [Listing Lab<br>*Track houses you are considering*](/listinglab)
 - [Secret Santa<br>*Organize a gift exchange*](/secretsanta)
@@ -112,6 +115,8 @@ dateCreated: 2026-01-15T15:07:28.852Z
 - [elm.chat<br>*Disposable encrypted chat rooms*](/elmchat)
 - [ShipShipShip<br>*Public changelog and roadmap*](/shipshipship)
 - [<img src="/bettershift.png"> Bettershift<br>*Shift scheduling made simple*](/bettershift)
+- [<img src="/compdesk.png"> CompDesk<br>*Help desk and ticketing for small teams*](/compdesk)
+- [<img src="/opnform.png"> OpnForm<br>*No-code form builder, a Typeform alternative*](/opnform)
 - [<img src="/bichon.png"> Bichon<br>*Email archiving*](/bichon)
 - [<img src="/reactive-resume.png"> Reactive Resume<br>*Private resume builder*](/reactiveresume)
 - [<img src="/penpot.png"> Penpot<br>*Design and code collaboration*](/penpot)
