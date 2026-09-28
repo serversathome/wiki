@@ -2,7 +2,7 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-09-08T16:22:51.565Z
+date: 2026-09-28T18:15:17.287Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
@@ -49,6 +49,8 @@ dateCreated: 2026-01-28T21:27:05.188Z
 - [🍷 Sommelierr<br>*Random content recommender*](/sommelierr)
 - [<img src="/slskd.png"> Soulseek<br>*Music-sharing network*](/soulseek)
 - [🔍 Suggestarr<br>*Automated recommendations based on watch activity*](/suggestarr)
+- [<img src="/tasterr.svg"> Tasterr<br>*Netflix-style discovery and requests on top of Seerr*](/tasterr)
+
 {.links-list .arr}
 
 # Books {.sec .arr}
