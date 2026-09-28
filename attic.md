@@ -2,7 +2,7 @@
 title: Attic
 description: A guide to deploying Attic
 published: true
-date: 2026-09-28T18:01:07.684Z
+date: 2026-09-28T18:02:18.858Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-28T18:01:07.684Z
@@ -130,6 +130,3 @@ Collections group items without moving them, so a PS5 game can live on the TV st
 
 Attachments are stored on disk in `/mnt/tank/configs/attic/uploads` by default. To use S3-compatible storage instead, set `ATTIC_S3_ENDPOINT`, `ATTIC_S3_BUCKET`, `ATTIC_S3_REGION`, `ATTIC_S3_ACCESS_KEY` and `ATTIC_S3_SECRET_KEY`. Attic switches to S3 as soon as both keys are present.
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-
-Video coming soon.
