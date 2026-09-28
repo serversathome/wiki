@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>Tasterr</title>
+  <defs>
+    <linearGradient id="accent" x1="14" y1="14" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#a855f7"></stop>
+      <stop offset="1" stop-color="#22d3ee"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#09090b"></rect>
+  <path d="M14 15h36v10H37v25H27V25H14z" fill="url(#accent)"></path>
+</svg>
