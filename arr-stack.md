@@ -2,7 +2,7 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-09-28T18:15:17.287Z
+date: 2026-09-28T18:16:03.611Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
@@ -57,7 +57,7 @@ dateCreated: 2026-01-28T21:27:05.188Z
 
 
 
-- [📖 Chaptarr<br>*Book collection manager, the Readarr successor*](/chaptarr)
+- [<img src="/chaptarr.png"> Chaptarr<br>*Book collection manager, the Readarr successor*](/chaptarr)
 {.links-list .arr}
 
 # Search automation {.sec .arr}
