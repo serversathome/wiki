@@ -2,13 +2,13 @@
 title: Chaptarr
 description: A guide to deploying Chaptarr
 published: true
-date: 2026-08-14T11:14:36.717Z
+date: 2026-09-28T18:07:29.604Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-14T11:11:39.002Z
 ---
 
-# What is Chaptarr?
+# <img src="/chaptarr.png" class="tab-icon"> What is Chaptarr?
 
 **Chaptarr** is a book collection manager for audiobooks and ebooks — a community fork of the retired Readarr, rebuilt around its own metadata pipeline. You follow authors, it watches your indexers, grabs releases through your download client, renames them into a clean tree, and upgrades quality when something better appears.
 
