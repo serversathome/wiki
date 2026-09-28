@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2026-09-28T18:16:19.926Z
+date: 2026-09-28T18:16:57.544Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:28.852Z
@@ -17,7 +17,7 @@ dateCreated: 2026-01-15T15:07:28.852Z
 > Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help.
 {.is-success}
 
-## AI and assistants {.sec .apps}
+# AI and assistants {.sec .apps}
 - [<img src="/ollama.png"> Ollama<br>*Run large language models locally*](/ollama)
 - [Open WebUI<br>*Polished multi-user chat UI for local models*](/openwebui)
 - [Odysseus<br>*Self-hosted AI workspace with research tools*](/odysseus)
@@ -26,7 +26,7 @@ dateCreated: 2026-01-15T15:07:28.852Z
 - [<img src="/noton.png"> Noton<br>*AI-assisted documentation platform*](/noton)
 {.links-list .apps}
 
-## Notes and documents {.sec .apps}
+# Notes and documents {.sec .apps}
 - [<img src="/obsidian.png"> Obsidian<br>*Linked notes and brainstorming, self-synced*](/obsidian)
 - [<img src="/joplin.png"> Joplin<br>*Notes and to-dos with your own sync server*](/joplin)
 - [Anchor<br>*Offline-first notes that sync when you reconnect*](/anchor)
@@ -39,7 +39,7 @@ dateCreated: 2026-01-15T15:07:28.852Z
 - [<img src="/docsight.png"> Docsight<br>*Document search and insight*](/docsight)
 {.links-list .apps}
 
-## Files and sync {.sec .apps}
+# Files and sync {.sec .apps}
 - [<img src="/nextcloud.png"> Nextcloud<br>*Full Google Workspace replacement*](/nextcloud)
 - [<img src="/opencloud.png"> OpenCloud<br>*Lighter Go-based Nextcloud alternative*](/opencloud)
 - [<img src="/seafile.png"> Seafile<br>*Fast block-level file sync and share*](/seafile)
@@ -51,7 +51,7 @@ dateCreated: 2026-01-15T15:07:28.852Z
 - [Agam Space<br>*Zero-knowledge encrypted file storage*](/agamspace)
 {.links-list .apps}
 
-## Sharing and transfer {.sec .apps}
+# Sharing and transfer {.sec .apps}
 - [<img src="/sharely.png"> Sharely<br>*File sharing with ShareX integration and an API*](/sharely)
 - [Transfer.zip<br>*Self-hosted WeTransfer alternative*](/transferzip)
 - [SkySend<br>*End-to-end encrypted files and notes*](/skysend)
@@ -77,7 +77,7 @@ dateCreated: 2026-01-15T15:07:28.852Z
 - [Invoice Builder<br>*Offline-first invoicing and quoting*](/invoicebuilder)
 {.links-list .apps}
 
-## Home and family {.sec .apps}
+# Home and family {.sec .apps}
 - [<img src="/homeassistant.png"> Home Assistant<br>*Home automation hub*](/homeassistant)
 - [<img src="/mealie.png"> Mealie<br>*Recipes and meal planning*](/mealie)
 - [<img src="/ghee.png"> Ghee<br>*iOS and Android companion app for Mealie*](/ghee)
@@ -92,7 +92,7 @@ dateCreated: 2026-01-15T15:07:28.852Z
 - [<img src="/adventurelog.png"> AdventureLog<br>*Travel tracker and trip planner*](/adventurelog)
 {.links-list .apps}
 
-## Health and fitness {.sec .apps}
+# Health and fitness {.sec .apps}
 - [openGym<br>*Private gym and body-weight tracker*](/opengym)
 - [Fitness Logger<br>*Log workouts and see progression*](/fitnesslogger)
 - [<img src="/neohabit.png"> Neohabit<br>*Flexible habit tracking with heatmaps*](/neohabit)
@@ -100,14 +100,14 @@ dateCreated: 2026-01-15T15:07:28.852Z
 - [Mediqux<br>*Local medical record keeping*](/mediqux)
 {.links-list .apps}
 
-## Vehicles {.sec .apps}
+# Vehicles {.sec .apps}
 - [<img src="/lubelogger.png"> LubeLogger<br>*Service records and fuel mileage*](/lubelogger)
 - [<img src="/tracktor.png"> Tracktor<br>*Fuel, maintenance, insurance and documents*](/tracktor)
 - [May<br>*Fleet fuel, expenses and reminders*](/may)
 - [<img src="/torqvoice.png"> Torqvoice<br>*Workshop management for auto shops*](/torqvoice)
 {.links-list .apps}
 
-## Work and projects {.sec .apps}
+# Work and projects {.sec .apps}
 - [<img src="/kan.png"> Kan<br>*Open source Trello*](/kanbn)
 - [<img src="/syncwave.png"> Syncwave<br>*Real-time kanban board*](/syncwave)
 - [<img src="/colanode.png"> Colanode<br>*Slack and Notion style workspace*](/colanode)
@@ -127,7 +127,7 @@ dateCreated: 2026-01-15T15:07:28.852Z
 - [Cal.diy<br>*Community edition of Cal.com scheduling*](/caldiy)
 {.links-list .apps}
 
-## Automation and dev {.sec .apps}
+# Automation and dev {.sec .apps}
 - [<img src="/n8n.png"> n8n<br>*Visual workflow automation*](/n8n)
 - [<img src="/cronmaster.png"> Cr\*n Master<br>*Dashboard for cron jobs*](/cronmaster)
 - [<img src="/coder.png"> Code Server<br>*VS Code in the browser*](/codeserver)
