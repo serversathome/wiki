@@ -2,7 +2,7 @@
 title: RomM
 description: A guide to deploying RomM on TrueNAS and Docker
 published: true
-date: 2026-09-27T21:18:57.561Z
+date: 2026-09-28T10:36:49.460Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:07.432Z
@@ -82,7 +82,7 @@ services:
             - /mnt/tank/media/romm/resources:/romm/resources
             - /mnt/tank/media/romm/assets:/romm/assets
             - /mnt/tank/configs/romm:/romm/config
-            - romm_redis_data:/redis-data
+            - /mnt/tank/configs/romm/redis-data:/redis-data
         ports:
             - 30061:8080
         depends_on:
@@ -109,9 +109,6 @@ services:
             interval: 10s
             timeout: 5s
             retries: 5
-
-volumes:
-    romm_redis_data:
 ```
 
 Before deploying, create the host directories and hand them to the `apps` user:
