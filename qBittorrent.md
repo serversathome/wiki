@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-09-21T19:42:02.055Z
+date: 2026-09-28T12:44:43.358Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -409,105 +409,6 @@ docker run --rm --cap-add=NET_ADMIN -e TOKEN={{{TOKEN}}} ghcr.io/bubuntux/nordvp
 
 >For more info on this container, look [here](https://github.com/bubuntux/nordlynx)
 {.is-info}
-
-## <img src="/docker.png" class="tab-icon"> Hotio + Private Internet Access (PIA)
-
-
-```yaml
-services:
-  qbittorrent:
-    container_name: qbittorrent
-    image: ghcr.io/hotio/qbittorrent:release-5.1.2
-    restart: unless-stopped
-    ports:
-      - 8080:8080
-    environment:
-      - PUID=568
-      - PGID=568
-      - UMASK=002
-      - TZ=America/New_York
-      - WEBUI_PORTS=8080/tcp,8080/udp
-      - VPN_ENABLED=true
-      - VPN_CONF=wg0
-      - VPN_PROVIDER=generic
-      - VPN_LAN_NETWORK=10.99.0.0/24 #Change to match your local Network
-      - VPN_LAN_LEAK_ENABLED=false
-      - VPN_EXPOSE_PORTS_ON_LAN=
-      - VPN_AUTO_PORT_FORWARD= # enter port number here
-      - VPN_PORT_REDIRECTS= # enter port number here
-      - VPN_FIREWALL_TYPE=auto
-      - VPN_HEALTHCHECK_ENABLED=false
-      - VPN_NAMESERVERS=wg
-      - PRIVOXY_ENABLED=false
-    cap_add:
-      - NET_ADMIN
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
-      - net.ipv6.conf.all.disable_ipv6=1
-    volumes:
-      - /mnt/tank/configs/qbittorrent:/config
-      - /mnt/tank/media:/media
-```
-> If you want to change the webui ports to something other then `8080`, change the ports section to something like:
-> ```
-> ports:
->   - 8081:8081
-> ```
-> And change the `WEBUI_PORTS` variable to the same port (both for tcp and udp). 
-{.is-success}
-
-PIA does not provide Wireguard configuration files. Therefore it is required to use a Third party tool to generate the configration file. The tool `pia-wg` can be found at the github link [here](https://github.com/hsand/pia-wg).
-
-
-### <img src="/linux-update-dashboard.png" class="tab-icon"> Linux
-
-1. Install the following packages from your package manager:
-
-    **For Debian Based:**
-    ```bash
-    sudo apt install git python3-venv wireguard openresolv
-    ```
-    **For Arch Based:**
-    ```bash
-    sudo pacman -S git python3-venv wireguard openresolv
-    ````
-1. Clone the git repository for pia-wg
-    ```bash
-    git clone https://github.com/hsand/pia-wg.git
-    ```
-1. Enter the new new folder
-    ```bash
-    cd pia-wg
-    ```
-1. Install the python 3 modulue venv & set venv source
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
-1. Install pip requerments
-    ```bash
-    pip install -r requirements.txt
-    ```
-6. Run pia-wg
-    ```bash
-    python3 generate-config.py
-    ```
-1. Use your up and down arrows to select a Region & press enter
-
-    ![wip-wg-select_region.png](/wip-wg-select_region.png)
-
-1. Enter username & Password. Press Enter
-
-    ![pia-wg_run.png](/pia-wg_run.png)
-1. Open the genrated file and copy it's contants
-
-1. Create your wg0.conf file in TrueNAS
-    ```bash
-    sudo su
-    nano /mnt/tank/configs/qbittorrent/wireguard/wg0.conf
-    ```
-1. Paste your configration into nano with <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>V</kbd>
-1. Save and close nano
 
 
 # 2 · Testing Open Ports
