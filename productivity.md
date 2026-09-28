@@ -2,7 +2,7 @@
 title: Productivity
 description: 
 published: true
-date: 2026-09-28T18:16:57.544Z
+date: 2026-09-28T18:17:14.262Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:28.852Z
@@ -61,12 +61,12 @@ dateCreated: 2026-01-15T15:07:28.852Z
 - [<img src="/clovalink.png"> ClovaLink<br>*Multi-tenant file platform with compliance modes*](/clovalink)
 {.links-list .apps}
 
-## Passwords and identity {.sec .apps}
+# Passwords and identity {.sec .apps}
 - [<img src="/vaultwarden.png"> Vaultwarden<br>*Bitwarden-compatible password manager*](/vaultwarden)
 - [<img src="/authentik.png"> Authentik<br>*Identity provider and single sign-on*](/authentik)
 {.links-list .apps}
 
-## Money {.sec .apps}
+# Money {.sec .apps}
 - [Sure<br>*Net worth and spending, the Maybe fork*](/sure)
 - [<img src="/securo.png"> Securo<br>*Rocket Money style finance manager*](/securo)
 - [<img src="/wygiwyh.png"> WYGIWYH<br>*Principles-first, no-budget finance tracking*](/wygiwyh)
