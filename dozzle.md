@@ -2,7 +2,7 @@
 title: Dozzle
 description: A guide to deploying Dozzle on TrueNAS Scale and via Docker Compose
 published: true
-date: 2026-10-04T11:20:03.419Z
+date: 2026-10-04T11:22:16.900Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:29.434Z
@@ -18,6 +18,7 @@ Version 11 is the biggest update Dozzle has ever had: a completely redesigned in
   <div><span>Port</span><b><code>8888</code></b></div>
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/amir20/dozzle"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://dozzle.dev"><i class="mdi mdi-book-open-variant"></i>Docs</a>
@@ -33,6 +34,12 @@ Version 11 is the biggest update Dozzle has ever had: a completely redesigned in
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
+Create the config folder and hand it to the apps user first:
+
+```bash
+mkdir -p /mnt/tank/configs/dozzle
+chown -R 568:568 /mnt/tank/configs/dozzle
+```
 
 ```yaml
 services:
