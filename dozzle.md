@@ -2,7 +2,7 @@
 title: Dozzle
 description: A guide to deploying Dozzle on TrueNAS Scale and via Docker Compose
 published: true
-date: 2026-10-04T11:22:16.900Z
+date: 2026-10-04T11:42:37.490Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:29.434Z
@@ -260,17 +260,11 @@ Run a Dozzle agent on any other Docker machine (a VPS, a Proxmox VM, a Pi) and a
 services:
   dozzle-agent:
     image: amir20/dozzle:latest
-    container_name: dozzle-agent
     command: agent
-    user: "568:568"
-    group_add:
-      - "999"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /proc:/host/proc:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
-      - "7007:7007"
-    restart: unless-stopped
+      - 7007:7007
 ```
 
 1. Check the socket's group on that machine with `stat -c '%g' /var/run/docker.sock` and use that number under `group_add`. It is often different from TrueNAS.
