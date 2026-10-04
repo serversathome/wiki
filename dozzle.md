@@ -2,7 +2,7 @@
 title: Dozzle
 description: A guide to deploying Dozzle on TrueNAS Scale and via Docker Compose
 published: true
-date: 2026-10-04T11:51:36.922Z
+date: 2026-10-04T11:51:52.724Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:29.434Z
@@ -261,7 +261,7 @@ Dozzle can watch your containers and ping you when something goes wrong. Everyth
 | Log | A log line matches a pattern | Errors, stack traces, failed logins |
 | Metric | CPU or memory crosses a threshold | A container pegging the CPU |
 | Event | Docker reports a lifecycle event | Crashes, OOM kills, unhealthy containers |
-{.dense}
+
  
 > Alerts and destinations are saved to `notifications.yml` in `/data`, which is your `/mnt/tank/configs/dozzle` folder. Back that file up, or copy it to another Dozzle instance to reuse your alerts. Restart Dozzle after editing it by hand.
 {.is-info}
