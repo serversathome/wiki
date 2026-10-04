@@ -2,7 +2,7 @@
 title: Dozzle
 description: A guide to deploying Dozzle on TrueNAS Scale and via Docker Compose
 published: true
-date: 2026-10-04T11:42:37.490Z
+date: 2026-10-04T11:51:36.922Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:29.434Z
@@ -252,7 +252,103 @@ Then point your client at `http://your-server-ip:8888/api/mcp`. With login enabl
 > With no login configured, the MCP endpoint is open to anyone who can reach Dozzle. Turn on login before enabling it.
 {.is-warning}
 
-# 4 · Monitoring Other Hosts
+# 4 · Alerts
+ 
+Dozzle can watch your containers and ping you when something goes wrong. Everything lives on the **Notifications** page, and none of it needs Dozzle Cloud. There are three kinds of alert:
+ 
+| Type | Fires when | Good for |
+|------|------------|----------|
+| Log | A log line matches a pattern | Errors, stack traces, failed logins |
+| Metric | CPU or memory crosses a threshold | A container pegging the CPU |
+| Event | Docker reports a lifecycle event | Crashes, OOM kills, unhealthy containers |
+{.dense}
+ 
+> Alerts and destinations are saved to `notifications.yml` in `/data`, which is your `/mnt/tank/configs/dozzle` folder. Back that file up, or copy it to another Dozzle instance to reuse your alerts. Restart Dozzle after editing it by hand.
+{.is-info}
+ 
+## 4.1 Add a Destination
+ 
+You need somewhere to send alerts before you can create one. This example uses a Discord channel.
+ 
+1. In Discord, open your server settings and go to **Integrations** > **Webhooks**
+2. Click **New Webhook**, pick the channel (a private `#alerts` channel works well) and click **Copy Webhook URL**
+3. In Dozzle, open **Notifications** and click **Add Destination**
+4. Choose **Webhook**, paste the URL and select the **Discord** template
+5. Click **Test** and check that the message lands in Discord, then **Save**
+Dozzle also ships templates for **Slack** and **ntfy**. The **Custom** template sends plain JSON, which makes it easy to point at an n8n webhook or anything else that accepts an HTTP POST.
+ 
+## 4.2 Create an Alert
+ 
+Click **Add Alert**. Every alert is two expressions:
+ 
+- **Container expression** picks which containers to watch. Use `true` for all of them, or filter on `name`, `image`, `state`, `health`, `hostName` or `labels["key"]`.
+- **Trigger expression** is the condition that fires the alert.
+Combine conditions with `&&` (and), `||` (or) and `!` (not). The editor autocompletes as you type and previews which containers and log lines match before you save, so you can check your work before anything fires.
+ 
+## 4.3 A Starter Set
+ 
+These five cover most of what goes wrong in a homelab. Add them one at a time with **Add Alert**.
+ 
+**A container crashed.** Clean stops, <kbd>CTRL</kbd> + <kbd>C</kbd> and update cycles exit with 0, 130, 143 or 137, so those are excluded. Real failures still alert.
+ 
+```
+Container: true
+Event:     name == "die" && !(attributes["exitCode"] in ["0", "130", "143", "137"])
+```
+ 
+**A container ran out of memory.**
+ 
+```
+Container: true
+Event:     name == "oom"
+```
+ 
+**A container went unhealthy.** Only works for containers that define a healthcheck.
+ 
+```
+Container: true
+Event:     name == "health_status" && attributes["healthStatus"] == "unhealthy"
+```
+ 
+**Sustained high CPU.**
+ 
+```
+Container: true
+Metric:    cpu > 90
+```
+ 
+Metric alerts average stats over a **sample window** before checking, so short spikes do not trigger them. Set a **cooldown** too, which is the minimum number of seconds between repeat alerts for the same container. Without one, a container stuck at 90% floods your channel.
+ 
+**Errors from one app.** Swap in whatever container you care about.
+ 
+```
+Container: name contains "jellyfin"
+Log:       level == "error"
+```
+ 
+## 4.4 Writing Your Own
+ 
+Log alerts can match on `message`, `level` and `stream`. A few useful patterns:
+ 
+```
+# Regex match, case insensitive
+message matches "(?i)(unauthorized|forbidden|invalid token)"
+ 
+# Anything written to stderr
+stream == "stderr"
+ 
+# Fields inside JSON logs, using dot notation
+message.status >= 500 && message.path contains "/api"
+```
+ 
+String operators are `contains`, `startsWith`, `endsWith` and `matches`.
+ 
+Metric alerts use `cpu` and `memory` (both 0 to 100) or `memoryUsage` in bytes, for example `memoryUsage > 1073741824` for 1 GiB.
+ 
+From the Notifications page you can disable an alert without deleting it, edit it, and see how many times it has fired and when it last triggered.
+
+
+# 5 · Monitoring Other Hosts
 
 Run a Dozzle agent on any other Docker machine (a VPS, a Proxmox VM, a Pi) and add it from **Add host** at the bottom of the host list, or in the wizard.
 
@@ -274,5 +370,5 @@ services:
 > Keep the agent's port `7007` off the public internet. Reach it over your LAN or a mesh VPN like NetBird.
 {.is-info}
 
-# <img src="/youtube.png" class="tab-icon"> 5 · Video
+# <img src="/youtube.png" class="tab-icon"> 6 · Video
 
