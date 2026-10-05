@@ -2,7 +2,7 @@
 title: Homarr
 description: A guide to deploying Homarr
 published: true
-date: 2026-10-04T19:30:28.147Z
+date: 2026-10-05T15:00:38.104Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:10.051Z
@@ -52,7 +52,7 @@ services:
       - PGID=568
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /mnt/tank/configs/homarr/appdata:/appdata
+      - /mnt/tank/configs/homarr:/appdata
 ```
 
 1. Generate a secret encryption key using `openssl rand -hex 32`
