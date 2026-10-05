@@ -2,7 +2,7 @@
 title: Homarr
 description: A guide to deploying Homarr
 published: true
-date: 2026-10-05T15:00:38.104Z
+date: 2026-10-05T17:12:38.572Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:10.051Z
@@ -49,7 +49,7 @@ services:
     environment:
       - SECRET_ENCRYPTION_KEY=your_64_character_hex_string
       - PUID=568
-      - PGID=568
+      - PGID=999
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /mnt/tank/configs/homarr:/appdata
