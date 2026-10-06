@@ -2,7 +2,7 @@
 title: Dozzle
 description: A guide to deploying Dozzle on TrueNAS Scale and via Docker Compose
 published: true
-date: 2026-10-04T11:51:52.724Z
+date: 2026-10-06T15:51:04.069Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:29.434Z
@@ -34,12 +34,6 @@ Version 11 is the biggest update Dozzle has ever had: a completely redesigned in
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
-Create the config folder and hand it to the apps user first:
-
-```bash
-mkdir -p /mnt/tank/configs/dozzle
-chown -R 568:568 /mnt/tank/configs/dozzle
-```
 
 ```yaml
 services:
