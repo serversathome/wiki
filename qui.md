@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2026-07-16T10:15:56.062Z
+date: 2026-10-07T16:04:41.451Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:46.966Z
@@ -56,7 +56,7 @@ services:
 > **Only sync your private trackers!** Public trackers aren't useful for cross-seeding and will cause rate limit errors.
 {.is-warning}
 
-## 2.2 Add *arr Integration (Optional)
+## 2.2 Add \*arr Integration (Optional)
 
 1. Navigate to **Settings → Integrations**
 1. Add your Sonarr/Radarr instances
@@ -65,7 +65,11 @@ This enables IMDb/TMDb ID lookups for better cross-seed match accuracy.
 
 # 3 · Configure Cross-Seed
 
-Cross-seeding allows you to seed the same content on multiple trackers automatically.
+Cross-seeding allows you to seed the same content on multiple trackers automatically. Qui finds cross-seeds three ways, and you want all three:
+
+- **Library Scan** searches your trackers for everything you already seed. This is how your existing library gets cross-seeded.
+- **RSS Automation** watches your trackers' feeds for new uploads that match something you already have.
+- **Auto-search on completion** searches for cross-seeds as soon as a new download finishes.
 
 ## 3.1 Rules Tab
 
@@ -75,29 +79,52 @@ Cross-seeding allows you to seed the same content on multiple trackers automatic
 1. Set **Base directory** to a folder on the same filesystem as your downloads (e.g., `/media/downloads/crossseed`)
 1. Set **Directory organization** to **Flat**
 1. Under **Categories**, select **Category affix** with Suffix: `.cross`
-1. Size Mismatch Tolerance → 0 (or 0.1%)
-1. Piece Boundary Safety Check → ENABLE it (toggle ON)
+1. Set **Size Mismatch Tolerance** to `0` (or `0.1%`)
+1. Toggle **Piece Boundary Safety Check** on
 
 > Reflink mode is safer if your filesystem supports it (ZFS, Btrfs). It creates copy-on-write clones so any writes don't affect your original files.
 {.is-info}
 
-## 3.2 Auto Tab
+> The piece boundary check matters most in **Hardlink** mode. It blocks cross-seeds whose extra files share pieces with your content, which could otherwise let qBittorrent overwrite your existing data.
+{.is-warning}
 
-### RSS Automation
+## 3.2 Library Scan (Existing Library)
 
+RSS only sees new uploads, so it will never find matches for content you already have. Run a Library Scan once to backfill your existing library.
+
+1. Navigate to **Cross-Seed → Scan**
+1. Select your qBit instance
+1. Under **Categories**, select your \*arr categories (e.g. `radarr` and `sonarr`, or `movies` and `tv`)
+1. Set **Interval** to `60` seconds
+1. Set **Cooldown** to `7` days
+1. Click **Start**
+
+> Library Scan queries every indexer for every torrent. At 60 seconds per torrent, 1,000 torrents takes about 17 hours. Run it once, then rerun it occasionally to catch older content that shows up on new trackers. RSS handles everything new.
+{.is-warning}
+
+> Only select your original categories here. Your `.cross` categories hold cross-seeds of the same content, so scanning them just repeats the work.
+{.is-info}
+
+## 3.3 RSS Automation
+
+1. Navigate to **Cross-Seed → Auto**
 1. Toggle **Enable RSS automation** on
 1. Set **RSS run interval** to 60-120 minutes
 1. Select your qBit instance under **Target instances**
-1. Add `radarr.cross` and `sonarr.cross` to **Exclude categories**
+1. Leave **Target indexers** empty to use all enabled indexers
+1. Add `cross-seed` to **Exclude tags**
 1. Click **Save RSS automation settings**
 
-### Auto-search on completion
+> RSS compares new uploads in your trackers' feeds against torrents you already have. Excluding the `cross-seed` tag makes qui match against your original torrents instead of existing cross-seeds. Qui tags every cross-seed with `cross-seed` by default, so this works no matter what your categories are called.
+{.is-info}
+
+## 3.4 Auto-search on Completion
 
 1. Toggle your qBit instance **On**
 1. Expand the instance settings
-1. Add `radarr.cross` and `sonarr.cross` to **Exclude categories**
+1. Add `cross-seed` to **Exclude tags**
 
-> Excluding `.cross` categories prevents qui from trying to cross-seed torrents that are already cross-seeded.
+> New cross-seeds finish a recheck after they're added, which counts as a completion. Excluding the `cross-seed` tag stops every cross-seed from triggering another search.
 {.is-info}
 
 # 4 · Configure Automations
@@ -108,19 +135,26 @@ Automations are rule-based actions that automatically manage your torrents based
 
 This removes torrents that are no longer hardlinked to your media library after Radarr/Sonarr upgrades.
 
+> **Read before enabling.** This rule deletes anything that isn't hardlinked into your library. If your downloads and media folders are on different datasets, your \*arr apps copied files instead of hardlinking them, and **every torrent you have** will match. Torrents your \*arr apps never imported (music, ISOs, manual downloads) will match too. Limit the rule to your \*arr categories, and test it with a **Tag** action before switching it to **Delete**.
+{.is-danger}
+
 1. Navigate to **Automations** and click **Add rule**
 1. Set **Name** to `Remove Unlinked`
+1. Add condition: `Category` matches your \*arr categories and their `.cross` versions (e.g. `radarr`, `sonarr`, `radarr.cross`, `sonarr.cross`)
 1. Add condition: `Hardlink Scope` **is not** `Outside qBittorrent (library/import)`
 1. Add condition: `Completed Age` **>=** `15` **days**
-1. Set **Action** to **Delete** with mode **Remove with files (include cross-seeds)**
-1. Leave **Include hardlinked copies** unchecked
+1. Set **Action** to **Tag** with tag `unlinked-test`
 1. Click **Create** and enable the rule
+1. Check which torrents get tagged. Once the list looks right, edit the rule and set **Action** to **Delete** with mode **Remove with files (include cross-seeds)**
+1. Leave **Include hardlinked copies** unchecked
 
 **How it works:**
 - You download a movie → hardlinked to `/media` → scope = "Outside qBittorrent"
 - Radarr upgrades to better quality → old hardlink deleted → scope becomes "None"
 - After 15 days → rule matches → torrent and all cross-seeds deleted
 
+> Some trackers require more than 15 days of seeding. Raise **Completed Age** to match the longest seeding requirement across your trackers.
+{.is-warning}
 
 ## 4.2 Remove Unregistered Torrents
 
@@ -139,7 +173,7 @@ This removes torrents that the tracker no longer recognizes.
 
 ## 4.3 Remove Stalled Downloads (Safe)
 
-This removes downloads that never started — safe for private trackers since you haven't crossed the Hit & Run threshold.
+This removes downloads that never started. It's safe for private trackers because you haven't crossed the Hit & Run threshold.
 
 1. Click **Add rule**
 1. Set **Name** to `Remove Stalled (No H&R Risk)`
@@ -161,7 +195,7 @@ This tags stuck downloads that have Hit & Run risk for manual review.
 1. Set **Action** to **Tag** with tag `stuck-hr-risk`
 1. Click **Create** and enable the rule
 
-> Don't auto-delete torrents with H&R risk, you may still have umet seeding requirements. Investigate manually or find an alternative source.
+> Don't auto-delete torrents with H&R risk. You may still have unmet seeding requirements. Investigate manually or find an alternative source.
 {.is-warning}
 
 # 5 · Configure Orphan Scan
@@ -176,7 +210,7 @@ Orphan scan finds files on disk that have no corresponding torrent in qBittorren
 
 # 6 · Enable Reannounce
 
-Reannounce helps fix torrents that stall right after being added — especially useful with private trackers.
+Reannounce helps fix torrents that stall right after being added. It's especially useful with private trackers.
 
 1. Navigate to **Automations** and expand **Reannounce**
 1. Toggle your instance **On**
