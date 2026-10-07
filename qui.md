@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2026-10-07T16:04:41.451Z
+date: 2026-10-07T16:12:44.974Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:46.966Z
@@ -129,7 +129,7 @@ RSS only sees new uploads, so it will never find matches for content you already
 
 # 4 · Configure Automations
 
-Automations are rule-based actions that automatically manage your torrents based on conditions.
+Automations are rule-based actions that automatically manage your torrents based on conditions. To use these, Click the **Import** button and paste these contents in.
 
 ## 4.1 Remove Unlinked (Upgraded Torrents)
 
@@ -138,15 +138,38 @@ This removes torrents that are no longer hardlinked to your media library after 
 > **Read before enabling.** This rule deletes anything that isn't hardlinked into your library. If your downloads and media folders are on different datasets, your \*arr apps copied files instead of hardlinking them, and **every torrent you have** will match. Torrents your \*arr apps never imported (music, ISOs, manual downloads) will match too. Limit the rule to your \*arr categories, and test it with a **Tag** action before switching it to **Delete**.
 {.is-danger}
 
-1. Navigate to **Automations** and click **Add rule**
-1. Set **Name** to `Remove Unlinked`
-1. Add condition: `Category` matches your \*arr categories and their `.cross` versions (e.g. `radarr`, `sonarr`, `radarr.cross`, `sonarr.cross`)
-1. Add condition: `Hardlink Scope` **is not** `Outside qBittorrent (library/import)`
-1. Add condition: `Completed Age` **>=** `15` **days**
-1. Set **Action** to **Tag** with tag `unlinked-test`
-1. Click **Create** and enable the rule
-1. Check which torrents get tagged. Once the list looks right, edit the rule and set **Action** to **Delete** with mode **Remove with files (include cross-seeds)**
-1. Leave **Include hardlinked copies** unchecked
+```json
+{
+  "name": "Remove Unlinked",
+  "trackerPattern": "*",
+  "trackerDomains": [
+    "*"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "delete": {
+      "enabled": true,
+      "mode": "deleteWithFilesIncludeCrossSeeds",
+      "includeHardlinks": true,
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "HARDLINK_SCOPE",
+            "operator": "NOT_EQUAL",
+            "value": "outside_qbittorrent"
+          },
+          {
+            "field": "COMPLETION_ON_AGE",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "1296000"
+          }
+        ]
+      }
+    }
+  }
+}
+```
 
 **How it works:**
 - You download a movie → hardlinked to `/media` → scope = "Outside qBittorrent"
@@ -160,13 +183,37 @@ This removes torrents that are no longer hardlinked to your media library after 
 
 This removes torrents that the tracker no longer recognizes.
 
-1. Click **Add rule**
-1. Set **Name** to `Remove Unregistered`
-1. Add condition: `Unregistered` **is** `true`
-1. Add condition: `Completed Age` **>=** `1` **day**
-1. Set **Action** to **Delete** with mode **Remove with files (include cross-seeds)**
-1. Leave **Include hardlinked copies** unchecked
-1. Click **Create** and enable the rule
+```json
+{
+  "name": "Unregistered",
+  "trackerPattern": "*",
+  "trackerDomains": [
+    "*"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "delete": {
+      "enabled": true,
+      "mode": "deleteWithFilesIncludeCrossSeeds",
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "IS_UNREGISTERED",
+            "operator": "EQUAL",
+            "value": "true"
+          },
+          {
+            "field": "COMPLETION_ON_AGE",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "86400"
+          }
+        ]
+      }
+    }
+  }
+}
+```
 
 > The 1-day grace period prevents deletion during temporary tracker issues.
 {.is-info}
@@ -175,25 +222,110 @@ This removes torrents that the tracker no longer recognizes.
 
 This removes downloads that never started. It's safe for private trackers because you haven't crossed the Hit & Run threshold.
 
-1. Click **Add rule**
-1. Set **Name** to `Remove Stalled (No H&R Risk)`
-1. Add condition: `Progress` **<** `2`
-1. Add condition: `State` **is** `stalled`
-1. Add condition: `Added Age` **>=** `1` **hour**
-1. Set **Action** to **Delete** with mode **Remove with files**
-1. Click **Create** and enable the rule
+```json
+{
+  "name": "Stalled",
+  "trackerPattern": "*",
+  "trackerDomains": [
+    "*"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "delete": {
+      "enabled": true,
+      "mode": "deleteWithFiles",
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "PROGRESS",
+            "operator": "LESS_THAN_OR_EQUAL",
+            "value": "0.02"
+          },
+          {
+            "field": "ADDED_ON_AGE",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "3600"
+          }
+        ]
+      }
+    }
+  }
+}
+```
 
 ## 4.4 Tag Stalled Downloads (H&R Risk)
 
 This tags stuck downloads that have Hit & Run risk for manual review.
 
-1. Click **Add rule**
-1. Set **Name** to `Tag Stuck (H&R Risk)`
-1. Add condition: `Progress` **>=** `2`
-1. Add condition: `Progress` **<** `100`
-1. Add condition: `Added Age` **>=** `2` **days**
-1. Set **Action** to **Tag** with tag `stuck-hr-risk`
-1. Click **Create** and enable the rule
+```json
+{
+  "name": "Tag Stalled (H&R Risk)",
+  "trackerPattern": "*",
+  "trackerDomains": [
+    "*"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "tag": {
+      "enabled": true,
+      "tags": [
+        "stuck-hr-risk"
+      ],
+      "mode": "full",
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "PROGRESS",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "0.02"
+          },
+          {
+            "field": "PROGRESS",
+            "operator": "LESS_THAN",
+            "value": "1"
+          },
+          {
+            "field": "ADDED_ON_AGE",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "172800"
+          }
+        ]
+      }
+    },
+    "tags": [
+      {
+        "enabled": true,
+        "tags": [
+          "stuck-hr-risk"
+        ],
+        "mode": "full",
+        "condition": {
+          "operator": "AND",
+          "conditions": [
+            {
+              "field": "PROGRESS",
+              "operator": "GREATER_THAN_OR_EQUAL",
+              "value": "0.02"
+            },
+            {
+              "field": "PROGRESS",
+              "operator": "LESS_THAN",
+              "value": "1"
+            },
+            {
+              "field": "ADDED_ON_AGE",
+              "operator": "GREATER_THAN_OR_EQUAL",
+              "value": "172800"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
 
 > Don't auto-delete torrents with H&R risk. You may still have unmet seeding requirements. Investigate manually or find an alternative source.
 {.is-warning}
