@@ -2,7 +2,7 @@
 title: File Browser
 description: A guide to deploy the File Browser Quantum replacement in docker
 published: true
-date: 2026-10-14T17:39:31.750Z
+date: 2026-10-14T17:40:29.016Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:39.442Z
@@ -31,8 +31,6 @@ If you want one tool to put a clean, fast web UI in front of a folder (or your w
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy File Browser
 
-# {.tabset}
-## Docker
 
 ### Create your config
 
@@ -122,25 +120,7 @@ The image's built-in default is a `filebrowser` user with UID:GID `1000:1000`. I
 > Resist the urge to "fix" this by running as root (`user: "0:0"`). A root container holds the keys to your entire mounted pool, and Quantum has shipped serious path-traversal bugs (see section 2). Fix the file ownership instead.
 {.is-warning}
 
-## TrueNAS
 
-FileBrowser Quantum is in the TrueNAS **Community** train (the old "File Browser" app is marked deprecated, so skip that one).
-
-1. Navigate to **Apps** in the TrueNAS UI and click **Discover Apps**
-2. Search for **FileBrowser Quantum** and click **Install**
-3. Set an **Admin Password** (the form requires one)
-4. Leave **User ID / Group ID** at `568` / `568` (the apps user)
-5. Under **Network**, note the **Web Port** (defaults to `30334`) and leave **Host Network** unchecked
-6. Under **Storage**:
-   - **Config Storage**: switch to **Host Path** and point it at `/mnt/tank/configs/filebrowser`
-   - **Additional Storage**: add a **Host Path** entry for each dataset you want to browse (for example `/mnt/tank/media` mounted at `/srv/media`). Tick **Read Only** on anything you only want to view
-7. Click **Install**, then browse to `http://<truenas-ip>:30334`
-
-> The datasets you add must be writable by the apps user (568) for uploads, renames and deletes to work. See the ownership note in the Docker tab, it applies here too.
-{.is-info}
-
-> The TrueNAS form covers the basics. The advanced options in section 3 (SSO, enforced 2FA, multiple named sources, reverse-proxy settings) assume you control `config.yaml`, which is the Docker route.
-{.is-info}
 
 # 2 · First login & hardening
 
