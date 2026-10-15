@@ -2,13 +2,13 @@
 title: File Browser
 description: A guide to deploy the File Browser Quantum replacement in docker
 published: true
-date: 2026-10-14T17:40:29.016Z
+date: 2026-10-15T10:28:02.565Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:39.442Z
 ---
 
-# <img src="/filebrowser.png" class="tab-icon"> What is File Browser Quantum?
+# <img src="/filebrowser-quantum.png" class="tab-icon"> What is File Browser Quantum?
 
 **File Browser Quantum** is a self-hosted, web-based file manager: browse, upload, download, preview, edit, search, and share the files on your server from any browser. It's called "Quantum" because it packs a huge amount of functionality (user management, SSO, indexed search, rich media previews) into a single tiny binary that's genuinely easy to run.
 
