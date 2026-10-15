@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure to allow for hardlinks within the arr stack
 published: true
-date: 2026-10-15T18:54:48.742Z
+date: 2026-10-15T18:57:32.122Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:29.149Z
@@ -156,15 +156,4 @@ https://youtu.be/ho4NUoyU6tM
 # <img src="/youtube.png" class="tab-icon"> 3 ·  Hardlinks
 https://youtu.be/dD1u0KOWizw
 
-# 4 · Key Takeaways
 
-1.  Media files are stored under `media` and are neatly categorized into movies, tv, and downloads/torrent for torrent handling. For example, the file paths would be:
-
-| Category | Example Path |
-| --- | --- |
-| Movies | /media/movies/Inception (2010)/Inception.mkv |
-| TV Shows | /media/tv/Breaking Bad/Season 1/Breaking Bad S01E01.mkv |
-
-1.  Configuration files are kept in a separate `configs` directory for standard Docker/TrueNAS setups, while Dockge places these inside `stacks`.
-2.  TrueNAS users benefit from the `configs` directory while other systems (e.g., Proxmox LXCs, Ubuntu) may have different volume handling.
-3.  Dockge users should place all container volumes inside `stacks` for easier backups and migrations.
