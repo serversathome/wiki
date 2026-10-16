@@ -2,7 +2,7 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2026-09-02T10:30:25.528Z
+date: 2026-10-16T08:54:21.545Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:26.409Z
@@ -40,7 +40,6 @@ This page covers the **Starosdev fork** (`ghcr.io/starosdev/scrutiny`), which is
 ## <img src="/docker.png" class="tab-icon"> Docker (Omnibus)
 
 The omnibus image contains the web UI, the API, InfluxDB, and the collector in a single container. This is what you want for a single-box homelab.
-
 ```yaml
 services:
   scrutiny:
@@ -54,6 +53,8 @@ services:
       - SYS_RAWIO
       - SYS_ADMIN
     environment:
+      - COLLECTOR_HOST_ID=truenas          # REQUIRED for ZFS pool status, see below
+      - TZ=America/New_York                # cron schedules and report times use this
       - COLLECTOR_CRON_SCHEDULE=0 0 * * *
       - COLLECTOR_RUN_STARTUP=true
       - COLLECTOR_ZFS_CRON_SCHEDULE=*/15 * * * *
@@ -65,26 +66,33 @@ services:
     devices:
       - "/dev/sda:/dev/sda"
       - "/dev/sdb:/dev/sdb"
+      - "/dev/zfs:/dev/zfs"                # needed for ZFS pool monitoring
 ```
 
-1. Run `smartctl --scan` on the host and add **every** listed device under `devices:` — Scrutiny can only see disks you explicitly pass through.
+1. Run `smartctl --scan` on the host and add **every** listed device under `devices:`. Scrutiny can only see disks you explicitly pass through. Drive letters (`sda`, `sdb`...) can change between reboots, so pass through every letter in use, not just the ones you care about.
 2. `/run/udev` is required so the collector can read device metadata.
 3. `SYS_RAWIO` lets `smartctl` query SMART data. `SYS_ADMIN` is only required if you have **NVMe** drives.
+4. `COLLECTOR_HOST_ID` is **required** if you use ZFS monitoring. Without it, every pool shows **UNKNOWN** and "Inventory unavailable", even though the pools are healthy. The ZFS collector only sends a complete pool list when it knows which host it is reporting for. It also groups disks per host on the Hosts tab.
+5. `TZ` sets the time zone for the cron schedules and for scheduled reports. Without it they run in UTC.
+6. Alternatively, `privileged: true` replaces `cap_add` and `devices:` completely, which saves you maintaining the device list.
 
 > Ports: **8080** is the web UI/API, **8086** is InfluxDB. You only need to publish 8086 if something outside the container will query InfluxDB directly.
 {.is-info}
 
-> **The Scrutiny app in the TrueNAS Apps catalog is NOT this version.** The Community train app installs the *original* AnalogJ build (v0.9.2-omnibus) — a different project on a different versioning track. It does not include ZFS pool monitoring, Prometheus metrics, Home Assistant MQTT discovery, performance benchmarking, workload insights, or the rebuilt UI. To run the fork on TrueNAS, deploy it as a **Custom App** using the compose file above.
+> **Upgrading an existing omnibus install:** recent versions moved the bundled InfluxDB to **2.9.1**. Stop Scrutiny and back up the whole `influxdb2` folder, then add `SCRUTINY_INFLUXDB_29_BACKUP_CONFIRMED=true`. The container will not start InfluxDB without it. Fresh installs don't need this.
+{.is-warning}
+
+> **The Scrutiny app in the TrueNAS Apps catalog is NOT this version.** The Community train app installs the *original* AnalogJ build, a different project on a different versioning track. It does not include ZFS pool monitoring, Prometheus metrics, Home Assistant MQTT discovery, performance benchmarking, workload insights, or the rebuilt UI. To run the fork on TrueNAS, deploy it as a **Custom App** using the compose file above.
 {.is-warning}
 
 ## <img src="/docker.png" class="tab-icon"> Docker (Hub/Spoke)
 
-Use this when you have multiple servers and want one dashboard. Run the web + InfluxDB containers once, then a collector on every machine with disks.
+Use this when you have multiple servers and want one dashboard. Run the web + InfluxDB containers once, then the collectors on every machine with disks.
 
 ```yaml
 services:
   influxdb:
-    image: influxdb:2.2
+    image: influxdb:2.9.1
     container_name: scrutiny-influxdb
     restart: unless-stopped
     volumes:
@@ -98,6 +106,7 @@ services:
       - "8080:8080"
     environment:
       - SCRUTINY_WEB_INFLUXDB_HOST=influxdb
+      - TZ=America/New_York
     volumes:
       - /mnt/tank/configs/scrutiny/config:/opt/scrutiny/config
     depends_on:
@@ -112,7 +121,9 @@ services:
       - SYS_ADMIN
     environment:
       - COLLECTOR_API_ENDPOINT=http://web:8080
+      - COLLECTOR_HOST_ID=server1            # unique per machine
       - COLLECTOR_CRON_SCHEDULE=0 0 * * *
+      - TZ=America/New_York
     volumes:
       - /run/udev:/run/udev:ro
     devices:
@@ -120,18 +131,33 @@ services:
       - "/dev/sdb:/dev/sdb"
     depends_on:
       - web
+
+  # Only on machines with ZFS pools
+  collector-zfs:
+    image: ghcr.io/starosdev/scrutiny:latest-collector-zfs
+    container_name: scrutiny-collector-zfs
+    restart: unless-stopped
+    environment:
+      - COLLECTOR_API_ENDPOINT=http://web:8080
+      - COLLECTOR_HOST_ID=server1            # same ID as this machine's SMART collector
+      - COLLECTOR_ZFS_CRON_SCHEDULE=*/15 * * * *
+      - TZ=America/New_York
+    devices:
+      - "/dev/zfs:/dev/zfs"
+    depends_on:
+      - web
 ```
 
-On remote machines, deploy **only** the collector service and point `COLLECTOR_API_ENDPOINT` at the IP of your web container.
+On remote machines, deploy **only** the collector service(s) and point `COLLECTOR_API_ENDPOINT` at the IP of your web container. Give every machine its own `COLLECTOR_HOST_ID`, and use the same ID for that machine's SMART and ZFS collectors.
 
 | Image | Purpose |
 |-------|---------|
 | `:latest-omnibus` | Everything in one container |
 | `:latest-web` | Web UI + API only |
 | `:latest-collector` | SMART collector (one per server) |
-| `:latest-collector-zfs` | ZFS pool health collector |
-| `:latest-collector-performance` | fio benchmark collector |
-{.dense}
+| `:latest-collector-zfs` | ZFS pool health collector (one per ZFS server) |
+| `:latest-collector-performance` | fio benchmark collector (heavy disk I/O, schedule it off-hours) |
+
 
 
 
