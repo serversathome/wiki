@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-09-08T10:47:31.806Z
+date: 2026-10-17T11:42:38.898Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -15,20 +15,20 @@ dateCreated: 2026-01-15T15:07:30.974Z
 
 **Profilarr** syncs quality profiles, custom formats, and media management settings from shared configuration databases into your Radarr and Sonarr instances. Instead of hand-copying custom formats from forum posts, pasting JSON, and re-doing it all the next time TRaSH Guides updates, you link one (or more) curated databases in Profilarr, customize what you need, then push everything to any number of Arr instances.
 
-v2 is a complete rewrite with a new database / customisation model, library pages for both Radarr and Sonarr, simultaneous multi-database support, drift detection, built-in upgrade automation (a Huntarr / Upgradinatorr replacement), Renameinatorr-style rename automation, Health Checkarr-style cleanup, in-app onboarding, in-app announcements, OIDC support, and an overhauled testing engine.
+v2 is a complete rewrite with a new database and customization model, library pages for both Radarr and Sonarr, simultaneous multi-database support, drift detection, built-in upgrade automation (a Huntarr / Upgradinatorr replacement), Renameinatorr-style rename automation, Health Checkarr-style cleanup, in-app onboarding, in-app announcements, OIDC support, and an overhauled testing engine.
 
 > 
-> v2 is **not** compatible with v1. The underlying database and customisation systems changed significantly, so existing v1 databases, configs, and appdata won't work in v2. If you're upgrading from v1, treat this as a fresh install on a new config volume.
+> v2 is **not** compatible with v1. The underlying database and customization systems changed significantly, so existing v1 databases, configs, and appdata won't work in v2. If you're upgrading from v1, treat this as a fresh install on a new config volume.
 {.is-warning}
 
 > 
-> Profilarr v2 requires a Docker host running Linux kernel 3.17 or newer. Older kernels (including Synology DSM installs on kernel 3.10) are **not** supported.
+> Profilarr v2 requires a Docker host running Linux kernel 3.17 or newer on `amd64` or `arm64`. Older kernels (including Synology DSM installs on kernel 3.10) are **not** supported. It also requires **Sonarr v4+** and **Radarr v5+**.
 {.is-danger}
 
 <div class="glance">
   <div><span>Port</span><b><code>6868</code></b></div>
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Containers</span><b>1 service + optional parser</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/dictionarry-hub/profilarr"><i class="mdi mdi-github"></i>Project</a>
@@ -55,16 +55,33 @@ services:
       - PGID=568
       - UMASK=022
       - TZ=America/New_York
-      # Uncomment ORIGIN if accessing through a reverse proxy
+      # Uncomment ORIGIN if accessing through a reverse proxy (required for OIDC)
       #- ORIGIN=https://profilarr.yourdomain.com
+      - PARSER_HOST=parser
+      - PARSER_PORT=5000
+    depends_on:
+      parser:
+        condition: service_healthy
 
+  # Optional: only needed for custom format and quality profile testing
+  parser:
+    image: ghcr.io/dictionarry-hub/profilarr-parser:latest
+    container_name: profilarr-parser
+    restart: unless-stopped
+    user: "568:568"
+    expose:
+      - "5000"
 ```
+
+> 
+> The **parser** service only powers the custom format and quality profile **testing** tools. Linking, syncing, upgrades, and everything else work without it. If you don't need testing, delete the `parser` service along with the `PARSER_HOST`, `PARSER_PORT`, and `depends_on` lines.
+{.is-info}
 
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 1. Navigate to **Apps** in the TrueNAS UI
-2. Search for **Profilarr** (Community train, version 2.0.2 or newer ships app version 2.0.4+)
+2. Search for **Profilarr** (Community train; app version 2.0.2 or newer ships Profilarr 2.0.4+)
 3. Click **Install**
 4. Configure the following settings:
    - **Application Name**: `profilarr`
@@ -78,8 +95,10 @@ services:
 # 2 · First Login
 
 1. Open `http://your-server:6868` in your browser
-2. On first launch, Profilarr's in-app onboarding walks you through everything — set your **username and password** when prompted and the wizard handles the rest
-3. (Optional) Under **Settings → Security**, configure **OIDC** if you want SSO with your IdP (Authelia, Authentik, Google, etc.), or disable auth entirely if you're running Profilarr behind your own reverse proxy that handles authentication
+2. On first launch, Profilarr's in-app onboarding walks you through everything. Set your **username and password** when prompted and the wizard handles the rest
+3. (Optional) Authentication is controlled by the `AUTH` environment variable:
+   - `AUTH=oidc` for SSO with your IdP (Authelia, Authentik, Google, etc.). Also set `OIDC_CLIENT_ID`, `OIDC_CLIENT_SECRET`, `OIDC_DISCOVERY_URL`, and `ORIGIN`. The redirect URL is `{ORIGIN}/auth/oidc/callback`
+   - `AUTH=off` to disable auth entirely, only if Profilarr sits behind your own reverse proxy that handles authentication
 
 You can re-run the onboarding flow any time from **Settings → Onboarding**.
 
@@ -91,7 +110,7 @@ v2 supports **multiple databases at once**, so you can mix profiles from differe
 | Database | Repo | Notes |
 |----------|------|-------|
 | Dictionarry | `https://github.com/Dictionarry-Hub/database` | The default. Connected automatically. Covers 720p through 2160p, from compact x265 encodes to UHD remuxes |
-| TRaSH PCD | `https://github.com/Dictionarry-Hub/trash-pcd` | A port of the TRaSH Guides in PCD format. Maintained by the Dictionarry team (not the TRaSH team) — report any issues to Dictionarry first. French and German profiles still in progress |
+| TRaSH PCD | `https://github.com/Dictionarry-Hub/trash-pcd` | A port of the TRaSH Guides in PCD format. Maintained by the Dictionarry team (not the TRaSH team), so report any issues to Dictionarry first. French and German profiles still in progress |
 | Dumpstarr | `https://github.com/Dumpstarr/Database` | Community fork built on top of Dictionarry and TRaSH formats |
 
 
@@ -111,18 +130,18 @@ Repeat for every Arr instance you want Profilarr to manage. v2 cleanly handles c
 
 ## 4.1 Library Pages
 
-Each linked Arr in v2 gets a full **library page** inside Profilarr — table and card views over your movies or series with configurable display fields, so you can browse and operate on the library without bouncing back to Radarr/Sonarr.
+Each linked Arr in v2 gets a full **library page** inside Profilarr: table and card views over your movies or series with configurable display fields, so you can browse and operate on the library without bouncing back to Radarr/Sonarr.
 
 - **Smart filters** with AND logic, negation, and range queries across quality, profile, year, genre, status, monitored, etc.
-- **Filter by custom format** — show only items where a given custom format does (or doesn't) apply
-- **Sort by custom format score** — surface your worst-scoring items at the top so you know what to upgrade
+- **Filter by custom format** to show only items where a given custom format does (or doesn't) apply
+- **Sort by custom format score** to surface your worst-scoring items at the top so you know what to upgrade
 - Configurable columns / card fields per view
 
 This is the easiest way to spot mis-tagged or mis-scored items before they bite you on the next upgrade run.
 
 ## 4.2 Sync to Your Arrs
 
-Sync is triggered per Arr from the **Arrs** view (or scheduled — see section 12).
+Sync is triggered per Arr from the **Arrs** view (or scheduled, see section 7).
 
 1. Open an Arr in the **Arrs** view
 2. Review what's queued to push (Profilarr shows a diff)
@@ -132,11 +151,11 @@ After syncing, head into Radarr/Sonarr and:
 
 1. Open **Movies** / **Series**
 2. Select all → **Edit → Quality Profile** → pick your new Profilarr profile
-3. Trigger an **Interactive Search** or **Cut-off Unmet** search to upgrade your existing files
+3. Trigger an **Interactive Search** or **Cut-off Unmet** search to upgrade your existing files, or let Profilarr's Upgrades (section 4.4) work through them over time
 
 ## 4.3 Arr Drift Detection
 
-Profilarr periodically checks each linked Arr against the configuration Profilarr last synced to it. If something has drifted — a custom format edited directly in Radarr, a score changed in Sonarr's UI, a quality profile renamed by hand, a delay profile or media management setting nudged — Profilarr surfaces it as a **drift event**.
+Profilarr periodically checks each linked Arr against the configuration Profilarr last synced to it. If something has drifted (a custom format edited directly in Radarr, a score changed in Sonarr's UI, a quality profile renamed by hand, a delay profile or media management setting nudged), Profilarr surfaces it as a **drift event**.
 
 This catches the silent failure mode where your 4K Radarr instance slowly diverges from your 1080p one because someone tweaked a score in the Radarr UI and forgot.
 
@@ -144,24 +163,130 @@ Drift events fire notifications and can be reconciled by re-syncing from Profila
 
 ## 4.4 Upgrades
 
-The Arrs react well to new releases via RSS, but they don't continuously revisit older downloads looking for something better — especially relevant when you switch or update quality profiles and end up with files the new profile would no longer have grabbed. **Upgradinatorr** solved that by cycling through the library and triggering searches over time. Profilarr v2 brings the same idea inside, with a GUI and more control:
+The Arrs react well to new releases via RSS, but they don't continuously revisit older downloads looking for something better. That matters most when you switch or update quality profiles and end up with files the new profile would no longer have grabbed. **Upgradinatorr** solved that by cycling through the library and triggering searches over time. Profilarr v2 brings the same idea inside, with a GUI and more control:
 
 - **Filter** by any metadata your Arr tracks: ratings, year, genre, size, release group, language, date added, and more
 - Filters support **nested AND/OR** logic
-- **Selectors** let you prioritise what gets searched first
+- **Selectors** let you prioritize what gets searched first
 - **Cooldowns** prevent the same item from being repeatedly hammered
 - Runs on a schedule
 
-Tune **Count** (how many items to process per run) and the match filters if you want to be more specific — defaults work well.
+Tune **Count** (how many items to process per run) and the match filters if you want to be more specific. The defaults work well.
+
+### Sample Filters
+
+These are the filters I run. Each one targets monitored items that haven't hit their profile's cutoff yet and searches the lowest scoring ones first.
+
+<details>
+<summary><b>Radarr: Servers@Home Upgrade Filter</b></summary>
+
+Matches movies that are monitored, released, and below cutoff. Searches the 5 lowest scoring movies per run.
+
+```json
+{
+  "name": "Servers@Home Upgrade Filter",
+  "enabled": true,
+  "group": {
+    "type": "group",
+    "match": "all",
+    "children": [
+      {
+        "type": "rule",
+        "field": "monitored",
+        "operator": "is",
+        "value": true
+      },
+      {
+        "type": "rule",
+        "field": "status",
+        "operator": "eq",
+        "value": "released"
+      },
+      {
+        "type": "rule",
+        "field": "cutoff_met",
+        "operator": "is",
+        "value": false
+      }
+    ]
+  },
+  "selector": "lowest_score",
+  "count": 5,
+  "cutoff": 100,
+  "tag": ""
+}
+```
+
+</details>
+
+<details>
+<summary><b>Sonarr: Servers@Home Upgrade Filter</b></summary>
+
+Matches series that are monitored, either continuing or ended, below cutoff, and that have at least one episode file on disk. Searches 1 series per run, since each Sonarr search covers a whole series.
+
+```json
+{
+  "name": "Servers@Home Upgrade Filter",
+  "enabled": true,
+  "group": {
+    "type": "group",
+    "match": "all",
+    "children": [
+      {
+        "type": "rule",
+        "field": "monitored",
+        "operator": "is",
+        "value": true
+      },
+      {
+        "type": "group",
+        "match": "any",
+        "children": [
+          {
+            "type": "rule",
+            "field": "status",
+            "operator": "eq",
+            "value": "continuing"
+          },
+          {
+            "type": "rule",
+            "field": "status",
+            "operator": "eq",
+            "value": "ended"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "field": "cutoff_met",
+        "operator": "is",
+        "value": false
+      },
+      {
+        "type": "rule",
+        "field": "episode_file_count",
+        "operator": "gt",
+        "value": 0
+      }
+    ]
+  },
+  "selector": "lowest_score",
+  "count": 1,
+  "cutoff": 100,
+  "tag": ""
+}
+```
+
+</details>
 
 > 
-> Don't run two upgrade services at the same time. If you're already using Huntarr, Upgradinatorr, or another upgrade tool and you're happy with it, leave Profilarr's Upgrades disabled — running both will fight each other and burn through indexer queries. This feature is optional if you already use a replacement service you like.
+> Don't run two upgrade services at the same time. If you're already using Huntarr, Upgradinatorr, or another upgrade tool and you're happy with it, leave Profilarr's Upgrades disabled. Running both will fight each other and burn through indexer queries. This feature is optional if you already use a replacement service you like.
 {.is-warning}
 
 ## 4.5 Rename & Cleanup
 
-- **Rename** — bulk rename files and folders with **dry-run previews** before anything touches disk. Inspired by Renameinatorr. v2 also adds an `include-in-rename` flag at the database spec level so each renamable item is tracked properly.
-- **Arr Cleanup** — periodic housekeeping that removes orphaned entries and stale config bits from each Arr. Inspired by Health Checkarr.
+- **Rename**: bulk rename files and folders with **dry-run previews** before anything touches disk. Inspired by Renameinatorr. v2 also adds an `include-in-rename` flag at the database spec level so each renamable item is tracked properly.
+- **Arr Cleanup**: periodic housekeeping that removes orphaned entries and stale config bits from each Arr. Inspired by Health Checkarr.
 
 Both are configured per Arr and can be scheduled via Jobs.
 
@@ -170,20 +295,20 @@ Both are configured per Arr and can be scheduled via Jobs.
 ## 5.1 Quality Profiles
 
 - Group and order qualities (e.g. WEB-DL 1080p → Bluray 1080p → Remux)
-- Assign custom format scores **per app** — Radarr and Sonarr can score the same format differently
-- Profiles inherit defaults from the linked database, with your local customisations layered on top
+- Assign custom format scores **per app**, so Radarr and Sonarr can score the same format differently
+- Profiles inherit defaults from the linked database, with your local customizations layered on top and preserved across upstream updates
 
 ## 5.2 Custom Formats
 
 - Match releases by resolution, source, release group, file size, language, codec, HDR flag, audio channels, and more
-- Conditions are composable — build complex rules without leaving the UI
+- Conditions are composable, so you can build complex rules without leaving the UI
 - v2 also adds per-condition Arr types so the same format can behave differently on Radarr vs Sonarr where needed
 
 ## 5.3 Regular Expressions
 
 - Reusable regex patterns shared across multiple custom formats
 - Edit a pattern once and every custom format that references it updates
-- Patterns can carry an attached **Regex101 link** — Profilarr parses the test cases from it so you have inline validation
+- Patterns can carry an attached **Regex101 link**. Profilarr parses the test cases from it so you have inline validation
 
 
 
@@ -191,9 +316,9 @@ Both are configured per Arr and can be scheduled via Jobs.
 
 Under **Media Management** in the sidebar you'll find:
 
-- **Naming Settings** — file and folder naming schemes
-- **Quality Definitions** — size limits per quality (your Bluray-2160p ceiling, etc.)
-- **Media Settings** — Radarr/Sonarr's misc media options
+- **Naming Settings**: file and folder naming schemes
+- **Quality Definitions**: size limits per quality (your Bluray-2160p ceiling, etc.)
+- **Media Settings**: Radarr/Sonarr's misc media options
 
 And separately, **Delay Profiles** is its own config type in v2, controlling protocol preferences (usenet vs torrent), release delays, and score gates.
 
@@ -209,13 +334,13 @@ Set these to your database of choice (typically Dictionarry's defaults) and let 
 
 **Settings → Jobs** is where everything schedulable lives:
 
-- **Database refresh** — pull upstream database updates (Dictionarry pushes new formats over time as codecs and release groups evolve)
-- **Arr Sync** — push config to your Arrs on a cadence
-- **Arr Cleanup** — periodic library cleanup
-- **Upgrades** — the scheduled upgrade search
-- **Renames** — periodic library renames
-- **Drift detection** — how often to check Arrs for drift
-- **Backups** — config backup snapshots (also accessible under **Settings → Backups**)
+- **Database refresh**: pull upstream database updates (Dictionarry pushes new formats over time as codecs and release groups evolve)
+- **Arr Sync**: push config to your Arrs on a cadence
+- **Arr Cleanup**: periodic library cleanup
+- **Upgrades**: the scheduled upgrade search
+- **Renames**: periodic library renames
+- **Drift detection**: how often to check Arrs for drift
+- **Backups**: config backup snapshots (also accessible under **Settings → Backups**)
 
 Repo sync and backup intervals are tunable from the Jobs page (added in v2.0.x).
 
@@ -223,12 +348,16 @@ A reasonable starting cadence: database refresh every few hours, Arr Sync daily,
 
 # 8 · Notifications
 
-**Settings → Notifications**. Profilarr v2 ships with four notification service types:
+**Settings → Notifications**. Profilarr v2 supports these notification services:
 
 - **Discord** (webhook with optional bot username, avatar, and @here mentions)
-- **Ntfy**
-- **Webhook** (generic)
 - **Telegram**
+- **Slack**
+- **Ntfy**
+- **Pushover**
+- **Gotify**
+- **Apprise**
+- **Webhook** (generic)
 
 When you create a service you can scope which event categories it receives. Events are grouped into:
 
