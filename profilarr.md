@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-10-17T11:51:13.403Z
+date: 2026-10-17T11:56:41.805Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -208,7 +208,7 @@ Matches movies that are monitored, released, and below cutoff. Searches the 5 lo
 <details>
 <summary><b>Sonarr: Servers@Home Upgrade Filter</b></summary>
 
-Matches series that are monitored, either continuing or ended, below cutoff, and that have at least one episode file on disk. Searches 1 series per run, since each Sonarr search covers a whole series.
+Matches series that are monitored, either continuing or ended, below cutoff, and that have at least one episode file on disk. Searches 1 series per run.
 
 ```json
 {
