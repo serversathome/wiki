@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-10-17T11:43:49.886Z
+date: 2026-10-17T11:51:13.403Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -157,9 +157,11 @@ The Arrs react well to new releases via RSS, but they don't continuously revisit
 
 Tune **Count** (how many items to process per run) and the match filters if you want to be more specific. The defaults work well.
 
-### Sample Filters
+### 4.4.1 Sample Filters
 
 These are the filters I run. Each one targets monitored items that haven't hit their profile's cutoff yet and searches the lowest scoring ones first.
+
+To import these, click the <kbd>+</kbd> button at the end of the **Search Filters** dropdown box and select **Import** then paste the JSON code. 
 
 <details>
 <summary><b>Radarr: Servers@Home Upgrade Filter</b></summary>
