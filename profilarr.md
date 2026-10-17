@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-10-17T11:43:13.474Z
+date: 2026-10-17T11:43:49.886Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -60,9 +60,6 @@ services:
 
 ```
 
-> 
-> The **parser** service only powers the custom format and quality profile **testing** tools. Linking, syncing, upgrades, and everything else work without it. If you don't need testing, delete the `parser` service along with the `PARSER_HOST`, `PARSER_PORT`, and `depends_on` lines.
-{.is-info}
 
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
