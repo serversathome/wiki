@@ -2,7 +2,7 @@
 title: Dockge
 description: A guide to installing Dockge on Ubuntu Server LTS
 published: true
-date: 2026-09-09T21:46:45.384Z
+date: 2026-10-18T09:49:50.183Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:22.797Z
@@ -70,18 +70,12 @@ services:
    volumes:
      - /var/run/docker.sock:/var/run/docker.sock
      - /mnt/tank/configs/dockge:/app/data
-
-     # If you want to use private registries, you need to share the auth file with Dockge:
-     # - /root/.docker/:/root/.docker
-
-     # Stacks Directory
-     # ⚠️ READ IT CAREFULLY. If you did it wrong, your data could end up writing into a WRONG PATH.
-     # ⚠️ 1. FULL path only. No relative path (MUST)
-     # ⚠️ 2. Left Stacks Path === Right Stacks Path (MUST)
-     - /opt/stacks:/opt/stacks
+     - /mnt/tank/stacks:/mnt/tank/stacks
    environment:
-     # Tell Dockge where is your stacks directory
-     - DOCKGE_STACKS_DIR=/opt/stacks
+     - DOCKGE_STACKS_DIR=/mnt/tank/stacks
+     - PUID=568
+     - PGID=568
+     - DOCKGE_ENABLE_CONSOLE=true
 ```
 
 # 2 · Logging In
