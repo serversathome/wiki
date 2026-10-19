@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2026-10-07T16:12:44.974Z
+date: 2026-10-19T14:28:07.465Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:46.966Z
@@ -75,7 +75,7 @@ Cross-seeding allows you to seed the same content on multiple trackers automatic
 
 1. Navigate to **Cross-Seed → Rules**
 1. Expand **Hardlink / Reflink Mode** and select your instance
-1. Set **Cross-seed mode** to **Reflink** (for ZFS/Btrfs) or **Hardlink**
+1. Set **Cross-seed mode** to **Hardlink**
 1. Set **Base directory** to a folder on the same filesystem as your downloads (e.g., `/media/downloads/crossseed`)
 1. Set **Directory organization** to **Flat**
 1. Under **Categories**, select **Category affix** with Suffix: `.cross`
