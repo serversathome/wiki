@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-10-20T11:41:14.345Z
+date: 2026-10-20T11:41:45.709Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -31,8 +31,6 @@ qBittorrent is a free and open-source software that aims to provide the same fea
 
 ## <img src="/docker.png" class="tab-icon"> Hotio + VPN
 
-> This is the same compose file the [arr-complete.sh](https://github.com/serversathome/ServersatHome/blob/main/arr-complete.sh) script deploys, and it is tested as working with hotio's current image.
-{.is-success}
 
 ```yaml
 services:
