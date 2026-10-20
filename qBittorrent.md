@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-10-20T11:41:45.709Z
+date: 2026-10-20T11:54:41.807Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -83,14 +83,14 @@ services:
 | --- | --- |
 | `LIBTORRENT` | hotio ships both libtorrent builds and runs 1.2 by default. `v2` selects libtorrent 2, which is required for the **POSIX-compliant** disk IO type (the right choice on ZFS, see the [Advanced tab](#h-62-configuration-options) below). |
 | `VPN_CONF` | With VPN\_CONF you can set the name used for your WireGuard config. There needs to be a file `wg0.conf` located in `/config/wireguard` for the VPN to start. |
-| `VPN_LAN_NETWORK` | The environment variable VPN\_LAN\_NETWORK can be set to for example 192.168.1.0/24, 192.168.1.0/24,192.168.44.0/24, so you can get access to the webui or other additional ports. If for example you were to pick 192.168.0.0/24, every device with an ip in the range 192.168.0.0 - 192.168.0.255 on your LAN is allowed access to the webui. The `10.8.0.0/24` entry lets clients coming in over a WireGuard VPN reach the webui; replace it with your own VPN's range if it differs. |
-| `VPN_EXPOSE_PORTS_ON_LAN` | If you need to expose ports on your LAN you can use VPN\_EXPOSE\_PORTS\_ON\_LAN. For example VPN\_EXPOSE\_PORTS\_ON\_LAN=7878/tcp,9117/tcp, will block those ports on the vpn interface, so that there's no risk that they might be exposed to the world and allow access to them from your LAN. Some images also have a WEBUI\_PORTS environment variable that does basically the same for the vpn part. For those apps that support it, it'll also change the port on which the app runs. |
+| `VPN_LAN_NETWORK` | The environment variable VPN\_LAN\_NETWORK can be set to for example 192.168.1.0/24, 192.168.1.0/24,192.168.44.0/24, so you can get access to the webui or other additional ports. If for example you were to pick 192.168.0.0/24, every device with an ip in the range 192.168.0.0 - 192.168.0.255 on your LAN is allowed access to the webui. If you reach your network over a VPN, add that VPN's IPv4 range too (comma separated, no spaces). Do **not** add the Docker bridge networks to this variable. |
+| `VPN_EXPOSE_PORTS_ON_LAN` | Extra ports to allow from your LAN, e.g. `7878/tcp,9117/tcp`. The webui port is already covered by `WEBUI_PORTS`; this is mostly for other containers routed through qBittorrent's VPN. |
 | `VPN_AUTO_PORT_FORWARD` | `false` for a plain WireGuard config. If your VPN provider gave you a fixed forwarded port, enter just the number and qBittorrent will listen on it. `true` (auto-retrieve a forwarded port) only works together with `VPN_PROVIDER=proton` or `pia`. |
 | `VPN_PORT_REDIRECTS` | Adds a redirect for the forwarded port from your vpn provider to the internal port on which the app runs, ports in this list are also not blocked on the wireguard interface, so this var is also useful if you want to expose a port on both your LAN and VPN. Values like 32400/tcp will use the port from VPN\_AUTO\_PORT\_FORWARD to create the redirect or if set to true the forwarded port from pia/proton. Use 3000@3001/tcp,3002@3003/tcp syntax for extra static redirects. The only known usecase as of right now is Plex and exposing it on the VPN with a non configurable forwarded port, because it's not possible to run Plex on anything else but 32400. |
-| `VPN_HEALTHCHECK_ENABLED` | This is almost never needed, only in very rare cases (mostly when using PIA). |
+| `VPN_HEALTHCHECK_ENABLED` | When enabled, the container shuts down if its VPN connectivity tests fail. This is almost never needed, only in very rare cases (mostly when using PIA). |
 | `VPN_NAMESERVERS` | Possible values are `wg`, `8.8.8.8` or `1.1.1.1@853#cloudflare-dns.com` seperated by a `,`. The value `wg` will use the nameservers from the `wg0.conf` file. The value `8.8.8.8` is to use a plain old nameserver. The value `1.1.1.1@853#cloudflare-dns.com` will add a DNS over TLS nameserver, this will override all other regular nameservers. |
-| `VPN_INTERFACE_PREFIXES` | New in hotio's current base image. Leave it empty. |
-| `UNBOUND_ENABLED` | New in hotio's current base image. Left `false` so DNS comes from your `wg0.conf` (`VPN_NAMESERVERS=wg`). |
+| `VPN_INTERFACE_PREFIXES` | Leave empty to use the default (`eth,enp`), which the image uses to identify the local Docker networks. Only set it if your container's interfaces use a different prefix. |
+| `UNBOUND_ENABLED` | Only used when the VPN is off. Leave it `false`; with the VPN on, DNS comes from `VPN_NAMESERVERS`. |
 
 > `VPN_FIREWALL_TYPE` has been removed from hotio's image (it is nftables only now). If you have it in an older compose file you can delete it.
 {.is-info}
