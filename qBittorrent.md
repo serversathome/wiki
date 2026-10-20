@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-10-20T11:54:41.807Z
+date: 2026-10-20T11:55:36.276Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -513,9 +513,6 @@ Change the **Network Interface** to **VPN** (yours might also say **wg0** or **t
 
 Change **Disk IO type (libtorrent >= 2.0; requires restart)** to **POSIX-compliant**, then restart the container. This option only appears when the container runs libtorrent 2 (`LIBTORRENT=v2` in the Hotio compose above).
 
-If you're experiencing high memory usage when using Qbittorrent, change these settings and restart the container
-
-<img width="536" height="84" alt="image" src="https://github.com/user-attachments/assets/ee770a76-19c4-4b0b-bece-8b2fe2ed1a85" />
 
 
 # <img src="/youtube.png" class="tab-icon"> 7 · Troubleshooting Video
