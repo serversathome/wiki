@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-10-20T11:56:25.475Z
+date: 2026-10-20T11:56:59.662Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -490,11 +490,11 @@ Uncheck the box for **Torrent Queuing**.
 
 Change the **Network Interface** to **VPN** (yours might also say **wg0** or **tun0**).
 
-![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-40-12.png)
+
 
 Change **Disk IO type (libtorrent >= 2.0; requires restart)** to **POSIX-compliant**, then restart the container. This option only appears when the container runs libtorrent 2 (`LIBTORRENT=v2` in the Hotio compose above).
 
-
+![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-40-12.png)
 
 # <img src="/youtube.png" class="tab-icon"> 7 · Troubleshooting Video
 
