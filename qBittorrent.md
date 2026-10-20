@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-09-28T12:44:43.358Z
+date: 2026-10-20T11:41:14.345Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -31,12 +31,14 @@ qBittorrent is a free and open-source software that aims to provide the same fea
 
 ## <img src="/docker.png" class="tab-icon"> Hotio + VPN
 
+> This is the same compose file the [arr-complete.sh](https://github.com/serversathome/ServersatHome/blob/main/arr-complete.sh) script deploys, and it is tested as working with hotio's current image.
+{.is-success}
 
 ```yaml
 services:
   qbittorrent:
     container_name: qbittorrent
-    image: ghcr.io/hotio/qbittorrent:release-5.1.2
+    image: ghcr.io/hotio/qbittorrent:latest
     restart: unless-stopped
     ports:
       - 8080:8080
@@ -45,19 +47,21 @@ services:
       - PGID=568
       - UMASK=002
       - TZ=America/New_York
-      - WEBUI_PORTS=8080/tcp,8080/udp
+      - WEBUI_PORTS=8080/tcp
+      - LIBTORRENT=v2
       - VPN_ENABLED=true
       - VPN_CONF=wg0
       - VPN_PROVIDER=generic
-      - VPN_LAN_NETWORK=10.99.0.0/24
+      - VPN_LAN_NETWORK=192.168.1.0/24,10.8.0.0/24 # change to your LAN subnet
       - VPN_LAN_LEAK_ENABLED=false
       - VPN_EXPOSE_PORTS_ON_LAN=
-      - VPN_AUTO_PORT_FORWARD= # enter port number here
-      - VPN_PORT_REDIRECTS= # enter port number here
-      - VPN_FIREWALL_TYPE=auto
+      - VPN_AUTO_PORT_FORWARD=false # or your forwarded port number
+      - VPN_PORT_REDIRECTS=
       - VPN_HEALTHCHECK_ENABLED=false
       - VPN_NAMESERVERS=wg
+      - VPN_INTERFACE_PREFIXES=
       - PRIVOXY_ENABLED=false
+      - UNBOUND_ENABLED=false
     cap_add:
       - NET_ADMIN
     sysctls:
@@ -72,23 +76,28 @@ services:
 > ports:
 >   - 8081:8081
 > ```
-> And change the `WEBUI_PORTS` variable to the same port (both for tcp and udp). 
+> And change the `WEBUI_PORTS` variable to the same port (`WEBUI_PORTS=8081/tcp`). 
 {.is-success}
 
 <details><summary><strong>Environment Variables Explanations</strong> (click to expand)</summary>
 
 |  Variable   | Value    |
 | --- | --- |
+| `LIBTORRENT` | hotio ships both libtorrent builds and runs 1.2 by default. `v2` selects libtorrent 2, which is required for the **POSIX-compliant** disk IO type (the right choice on ZFS, see the [Advanced tab](#h-62-configuration-options) below). |
 | `VPN_CONF` | With VPN\_CONF you can set the name used for your WireGuard config. There needs to be a file `wg0.conf` located in `/config/wireguard` for the VPN to start. |
-| `VPN_LAN_NETWORK` | The environment variable VPN\_LAN\_NETWORK can be set to for example 192.168.1.0/24, 192.168.1.0/24,192.168.44.0/24, so you can get access to the webui or other additional ports. If for example you were to pick 192.168.0.0/24, every device with an ip in the range 192.168.0.0 - 192.168.0.255 on your LAN is allowed access to the webui. |
+| `VPN_LAN_NETWORK` | The environment variable VPN\_LAN\_NETWORK can be set to for example 192.168.1.0/24, 192.168.1.0/24,192.168.44.0/24, so you can get access to the webui or other additional ports. If for example you were to pick 192.168.0.0/24, every device with an ip in the range 192.168.0.0 - 192.168.0.255 on your LAN is allowed access to the webui. The `10.8.0.0/24` entry lets clients coming in over a WireGuard VPN reach the webui; replace it with your own VPN's range if it differs. |
 | `VPN_EXPOSE_PORTS_ON_LAN` | If you need to expose ports on your LAN you can use VPN\_EXPOSE\_PORTS\_ON\_LAN. For example VPN\_EXPOSE\_PORTS\_ON\_LAN=7878/tcp,9117/tcp, will block those ports on the vpn interface, so that there's no risk that they might be exposed to the world and allow access to them from your LAN. Some images also have a WEBUI\_PORTS environment variable that does basically the same for the vpn part. For those apps that support it, it'll also change the port on which the app runs. |
-| `VPN_AUTO_PORT_FORWARD` | Auto retrieve a forwarded port and configure the supported app if set to true or if you can manually request/set a forwarded port in the VPN provider's web interface, fill in the port number (just the number). |
+| `VPN_AUTO_PORT_FORWARD` | `false` for a plain WireGuard config. If your VPN provider gave you a fixed forwarded port, enter just the number and qBittorrent will listen on it. `true` (auto-retrieve a forwarded port) only works together with `VPN_PROVIDER=proton` or `pia`. |
 | `VPN_PORT_REDIRECTS` | Adds a redirect for the forwarded port from your vpn provider to the internal port on which the app runs, ports in this list are also not blocked on the wireguard interface, so this var is also useful if you want to expose a port on both your LAN and VPN. Values like 32400/tcp will use the port from VPN\_AUTO\_PORT\_FORWARD to create the redirect or if set to true the forwarded port from pia/proton. Use 3000@3001/tcp,3002@3003/tcp syntax for extra static redirects. The only known usecase as of right now is Plex and exposing it on the VPN with a non configurable forwarded port, because it's not possible to run Plex on anything else but 32400. |
-| `VPN_FIREWALL_TYPE` | Possible values are auto, legacy or nftables. The default is auto, this will try to use the most modern method available. If this doesn't work, you can try forcing it to legacy or nftables. |
 | `VPN_HEALTHCHECK_ENABLED` | This is almost never needed, only in very rare cases (mostly when using PIA). |
-| `VPN_NAMESERVERS` | Possible values are `wg`, `8.8.8.8` or `1.1.1.1@853#cloudflare-dns.com` seperated by a `,`. The value `wg` will use the nameservers from the `wg0.conf` file. The value `8.8.8.8` is to use a plain old nameserver. The value `1.1.1.1@853#cloudflare-dns.com` will add a DNS over TLS nameserver, this will override all other regular nameservers. Leaving the variable empty will allow Unbound to work in recursive mode.   |
+| `VPN_NAMESERVERS` | Possible values are `wg`, `8.8.8.8` or `1.1.1.1@853#cloudflare-dns.com` seperated by a `,`. The value `wg` will use the nameservers from the `wg0.conf` file. The value `8.8.8.8` is to use a plain old nameserver. The value `1.1.1.1@853#cloudflare-dns.com` will add a DNS over TLS nameserver, this will override all other regular nameservers. |
+| `VPN_INTERFACE_PREFIXES` | New in hotio's current base image. Leave it empty. |
+| `UNBOUND_ENABLED` | New in hotio's current base image. Left `false` so DNS comes from your `wg0.conf` (`VPN_NAMESERVERS=wg`). |
 
-> For more info on these values, look [here](https://hotio.dev/containers/qbittorrent/#__tabbed_5_2) 
+> `VPN_FIREWALL_TYPE` has been removed from hotio's image (it is nftables only now). If you have it in an older compose file you can delete it.
+{.is-info}
+
+> For more info on these values, look [here](https://hotio.dev/containers/qbittorrent/#__tabbed_5_2) 
 {.is-info}
 
 </details>
@@ -100,7 +109,7 @@ services:
 
 In whatever wireguard file your VPN provider gives you, you must:
 1. Remove any IPv6 information
-1. Place the file in the `/mnt/tank/configs/qbittorrent/config/wireguard` folder
+1. Place the file in the `/mnt/tank/configs/qbittorrent/wireguard` folder
 1. Name it `wg0.conf`
 
 ## <img src="/docker.png" class="tab-icon"> Linuxserver Wireguard
@@ -457,7 +466,7 @@ Click on the cog icon :gear: in the bar or select **Tools** > **Options** in the
 # {.tabset}
 ## Downloads
 
-The **Default Save Path** needs to be modified to be **/media/downloads** if you followed the [Folder Structure](/Folder-Structure) guide. 
+The **Default Save Path** needs to be modified to be **/media/downloads** if you followed the [Folder Structure](/Folder-Structure) guide. 
 
 ![screenshot_from_2025-05-07_08-20-01.png](/screenshot_from_2025-05-07_08-20-01.png)
 
@@ -473,7 +482,7 @@ Uncheck all the boxes under **Connection Limits**.
 
 If you are using private trackers only, uncheck all the boxes in the **Privacy** grouping. If you are using public trackers, leave this section default.
 
-Uncheck the box for **Torrent Queuing**. 
+Uncheck the box for **Torrent Queuing**. 
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-39-42.png)
 
@@ -503,6 +512,8 @@ To use Qui instead, visit the [Qui page](/qui) to deploy the container alongside
 Change the **Network Interface** to **VPN** (yours might also say **wg0** or **tun0**).
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-40-12.png)
+
+Change **Disk IO type (libtorrent >= 2.0; requires restart)** to **POSIX-compliant**, then restart the container. This option only appears when the container runs libtorrent 2 (`LIBTORRENT=v2` in the Hotio compose above).
 
 If you're experiencing high memory usage when using Qbittorrent, change these settings and restart the container
 
