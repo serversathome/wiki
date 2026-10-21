@@ -81,7 +81,7 @@ services:
 
 |  Variable   | Value    |
 | --- | --- |
-| `LIBTORRENT` | hotio ships both libtorrent builds and runs 1.2 by default. `v2` selects libtorrent 2, which is required for the **POSIX-compliant** disk IO type (the right choice on ZFS, see the [Advanced tab](#h-62-configuration-options) below). |
+| `LIBTORRENT` | hotio ships two builds and runs libtorrent 1.2 by default (`v1`). `v2` selects libtorrent **2.0**, which is required for the **POSIX-compliant** disk IO type (the right choice on ZFS, see the [Advanced tab](#h-62-configuration-options) below). hotio does not ship the newer libtorrent 2.1 build yet. qBittorrent 5.3 deprecates libtorrent 2.0 and plans to drop it in 5.4, so expect this variable to change when hotio adds 2.1. |
 | `VPN_CONF` | With VPN\_CONF you can set the name used for your WireGuard config. There needs to be a file `wg0.conf` located in `/config/wireguard` for the VPN to start. |
 | `VPN_LAN_NETWORK` | The environment variable VPN\_LAN\_NETWORK can be set to for example 192.168.1.0/24, 192.168.1.0/24,192.168.44.0/24, so you can get access to the webui or other additional ports. If for example you were to pick 192.168.0.0/24, every device with an ip in the range 192.168.0.0 - 192.168.0.255 on your LAN is allowed access to the webui. If you reach your network over a VPN, add that VPN's IPv4 range too (comma separated, no spaces). Do **not** add the Docker bridge networks to this variable. |
 | `VPN_EXPOSE_PORTS_ON_LAN` | Extra ports to allow from your LAN, e.g. `7878/tcp,9117/tcp`. The webui port is already covered by `WEBUI_PORTS`; this is mostly for other containers routed through qBittorrent's VPN. |
@@ -170,6 +170,9 @@ services:
         condition: service_healthy
     restart: unless-stopped
 ```
+> As of qBittorrent 5.3, the linuxserver `latest` tag ships **libtorrent 2.1**. That changes the disk IO advice in the [Advanced tab](#h-62-configuration-options) below. If you want libtorrent 1.2 instead, use the `linuxserver/qbittorrent:libtorrentv1` tag.
+{.is-info}
+
 > **CRITICAL SECURITY REQUIREMENT:** Your `wg0.conf` MUST include the PostUp line shown in Section 2 below. Without it, your real IP will be exposed! The PostUp line does two things: (1) allows WebUI access from your LAN, and (2) blocks all non-VPN traffic with a firewall.
 {.is-danger}
 
@@ -438,7 +441,7 @@ A result of `downloading` at *any* speed indicates a success. If it stalls or er
 
 # <img src="/youtube.png" class="tab-icon"> 5 · YouTube Walkthrough
 
-[https://www.youtube.com/watch?v=WVM3Wgb290g](https://youtu.be/I4SRwmKLfQQ)
+[https://youtu.be/I4SRwmKLfQQ](https://youtu.be/I4SRwmKLfQQ)
 
 # 6 · qBittorrent Configuration
 
@@ -470,7 +473,7 @@ The **Default Save Path** needs to be modified to be **/media/downloads** if you
 
 ## Connection
 
-In the **Listenting Port** section, add the port given to you by AirVPN (see the [AirVPN page](/AirVPN) for instructions).
+In the **Listening Port** section, add the port given to you by AirVPN (see the [AirVPN page](/AirVPN) for instructions).
 
 Uncheck all the boxes under **Connection Limits**.
 
@@ -486,13 +489,23 @@ Uncheck the box for **Torrent Queuing**.
 
 
 
+## WebUI
+
+Change the **Password** from the temporary one in the logs to your own.
+
+Leave **Bypass authentication for clients on localhost** and **Bypass authentication for clients in whitelisted IP subnets** unchecked. qBittorrent 5.3 fixed a bug where a spoofed `X-Forwarded-For` header could get around authentication, and these bypass options are what made it dangerous. Never port-forward the WebUI to the internet; reach it from outside over a VPN like Tailscale or WireGuard instead.
+
 ## Advanced
 
 Change the **Network Interface** to **VPN** (yours might also say **wg0** or **tun0**).
 
+Set **Disk IO type (libtorrent >= 2.0; requires restart)** based on the libtorrent version your container runs (it is shown in **Help** > **About** > **Libraries**), then restart the container:
 
-
-Change **Disk IO type (libtorrent >= 2.0; requires restart)** to **POSIX-compliant**, then restart the container. This option only appears when the container runs libtorrent 2 (`LIBTORRENT=v2` in the Hotio compose above).
+| libtorrent | Containers | Disk IO type |
+| --- | --- | --- |
+| 2.1 | linuxserver `latest` | **Default**. On 2.1 this is libtorrent's new multithreaded pread/pwrite backend, which is meant to avoid the memory and ZFS problems of 2.0's memory-mapped files. If you set POSIX-compliant before, switch it back to Default. |
+| 2.0 | Hotio with `LIBTORRENT=v2` | **POSIX-compliant**. The 2.0 default (memory-mapped files) performs badly on ZFS. |
+| 1.2 | Hotio default (`LIBTORRENT=v1`), linuxserver `libtorrentv1` | No setting to change. libtorrent 1.2 does not have this option. |
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-40-12.png)
 
