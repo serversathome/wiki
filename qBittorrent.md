@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-10-21T17:06:47.894Z
+date: 2026-10-21T17:15:25.118Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -50,7 +50,7 @@ services:
       - VPN_ENABLED=true
       - VPN_CONF=wg0
       - VPN_PROVIDER=generic
-      - VPN_LAN_NETWORK=192.168.1.0/24,10.8.0.0/24 # change to your LAN subnet
+      - VPN_LAN_NETWORK=192.168.1.0/24 # change to your LAN subnet
       - VPN_LAN_LEAK_ENABLED=false
       - VPN_EXPOSE_PORTS_ON_LAN=
       - VPN_AUTO_PORT_FORWARD=false # or your forwarded port number
@@ -161,7 +161,7 @@ services:
 > As of qBittorrent 5.3, the linuxserver `latest` tag ships **libtorrent 2.1**. That changes the disk IO advice in the [Advanced tab](#h-62-configuration-options) below. If you want libtorrent 1.2 instead, use the `linuxserver/qbittorrent:libtorrentv1` tag.
 {.is-info}
 
-> **CRITICAL SECURITY REQUIREMENT:** Your `wg0.conf` MUST include the PostUp line shown in Section 2 below. Without it, your real IP will be exposed! The PostUp line does two things: (1) allows WebUI access from your LAN, and (2) blocks all non-VPN traffic with a firewall.
+> **CRITICAL SECURITY REQUIREMENT:** Your `wg0.conf` MUST include the PostUp line shown in the wg0.conf section below. Without it, your real IP will be exposed! The PostUp line does two things: (1) allows WebUI access from your LAN, and (2) blocks all non-VPN traffic with a firewall.
 {.is-danger}
 
 ### Changing the Port
@@ -459,7 +459,7 @@ The **Default Save Path** needs to be modified to be **/media/downloads** if you
 
 ## Connection
 
-In the **Listening Port** section, add the port given to you by AirVPN (see the [AirVPN page](/AirVPN) for instructions).
+In the **Listening Port** section, add the port given to you by AirVPN (see the [AirVPN page](/AirVPN) for instructions). *If you use the hotio container ignore this.*
 
 Uncheck all the boxes under **Connection Limits**.
 
