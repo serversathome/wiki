@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-10-21T17:01:34.491Z
+date: 2026-10-21T17:06:47.894Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -111,19 +111,7 @@ In whatever wireguard file your VPN provider gives you, you must:
 1. Name it `wg0.conf`
 
 ## <img src="/docker.png" class="tab-icon"> Linuxserver Wireguard
-This is the recommended approach for Servers@Home. It uses **100% stock linuxserver.io containers** (no custom images to maintain!) with automatic killswitch protection.
 
-**How it works:**
-- qBittorrent shares WireGuard's network namespace using `network_mode: "service:wireguard"`
-- All torrent traffic routes through the VPN tunnel (wg0 interface)
-- WebUI remains accessible from your local network via LAN bypass
-- Firewall rules in wg0.conf prevent IP leaks even if qBittorrent is misconfigured
-
-**Why two containers?**
-- **Natural killswitch**: qBittorrent literally cannot access any network except through wg0
-- **No custom images**: Uses 100% stock linuxserver containers - just add PostUp to your wg0.conf
-- **Easier maintenance**: Update qBittorrent without rebuilding VPN container
-- **Better isolation**: VPN and torrent client are independent
 
 
 ```yaml
@@ -241,7 +229,8 @@ AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 15
 ```
 
-### More Info
+<details><summary><strong>More Info</strong> (click to expand)</summary>
+
 The PostUp command is a single line executed when WireGuard starts. It:
 1. Dynamically detects your network gateway and interface (works on any network)
 1. Adds routing rules so LAN traffic bypasses the VPN
@@ -281,6 +270,7 @@ iptables -A OUTPUT -o $IF -j DROP
     - Traffic to LAN destinations (192.168.x.x, 10.x.x.x, etc.)
   - Result: WebUI works from LAN, but **torrents cannot leak through eth0**
 
+</details>
 
 > This file needs to be added to `/mnt/tank/configs/wireguard/` (assuming your pool is named *tank*) before the container can run
 {.is-warning}
@@ -289,8 +279,6 @@ iptables -A OUTPUT -o $IF -j DROP
 
 ## <img src="/docker.png" class="tab-icon"> Gluetun + qBit
 
-> There have been widespread reports of issues with this container. The main one being it will work for awhile then go down, or the port will be open then close on its own after 10 minutes or less. As such, I am not recommending this for the time being. Use at your own risk - no support will be answered for issues with this container
-{.is-danger}
 
 > In Discord many people have said this container fixes the Gluetun issue. I have not tested it, but if you are using Gluetun and you get randomly discconnected every so often, try this method: [qSticky](https://github.com/monstermuffin/qSticky).
 {.is-info}
