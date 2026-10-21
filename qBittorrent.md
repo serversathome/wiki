@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-10-20T11:56:59.662Z
+date: 2026-10-21T17:01:34.491Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -320,8 +320,6 @@ services:
     image: qmcgaw/gluetun:latest
     ports:
       - '8080:8080'
-      - 6881:6881/udp
-      - 6881:6881/tcp
     restart: unless-stopped
 
   qbittorrent:
