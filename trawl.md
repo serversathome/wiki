@@ -2,7 +2,7 @@
 title: Trawl
 description: A guide to deploying Trawl
 published: true
-date: 2026-10-20T15:12:05.236Z
+date: 2026-10-22T10:07:06.786Z
 tags: 
 editor: markdown
 dateCreated: 2026-10-20T15:12:05.236Z
@@ -32,11 +32,6 @@ On top of the FlareSolverr drop-in, Trawl adds an MCP server for AI agents, isol
 
 Create the config folders and hand them to the apps user first:
 
-```bash
-mkdir -p /mnt/tank/configs/trawl/metrics
-chown -R 568:568 /mnt/tank/configs/trawl
-```
-
 ```yaml
 services:
   trawl:
@@ -52,7 +47,7 @@ services:
     ports:
       - 8191:8191
     volumes:
-      - /mnt/tank/configs/trawl/metrics:/data/metrics
+      - /mnt/tank/configs/trawl:/data/metrics
     healthcheck:
       test: ["CMD", "curl", "-sf", "http://localhost:8191/health"]
       interval: 30s
