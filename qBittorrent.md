@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-10-21T17:15:25.118Z
+date: 2026-10-22T14:12:09.851Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -46,7 +46,6 @@ services:
       - UMASK=002
       - TZ=America/New_York
       - WEBUI_PORTS=8080/tcp
-      - LIBTORRENT=v2
       - VPN_ENABLED=true
       - VPN_CONF=wg0
       - VPN_PROVIDER=generic
