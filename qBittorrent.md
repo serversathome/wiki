@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-10-22T14:12:09.851Z
+date: 2026-10-22T14:13:06.070Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -483,14 +483,6 @@ Leave **Bypass authentication for clients on localhost** and **Bypass authentica
 ## Advanced
 
 Change the **Network Interface** to **VPN** (yours might also say **wg0** or **tun0**).
-
-Set **Disk IO type (libtorrent >= 2.0; requires restart)** based on the libtorrent version your container runs (it is shown in **Help** > **About** > **Libraries**), then restart the container:
-
-| libtorrent | Containers | Disk IO type |
-| --- | --- | --- |
-| 2.1 | linuxserver `latest` | **Default**. On 2.1 this is libtorrent's new multithreaded pread/pwrite backend, which is meant to avoid the memory and ZFS problems of 2.0's memory-mapped files. If you set POSIX-compliant before, switch it back to Default. |
-| 2.0 | Hotio with `LIBTORRENT=v2` | **POSIX-compliant**. The 2.0 default (memory-mapped files) performs badly on ZFS. |
-| 1.2 | Hotio default (`LIBTORRENT=v1`), linuxserver `libtorrentv1` | No setting to change. libtorrent 1.2 does not have this option. |
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-40-12.png)
 
