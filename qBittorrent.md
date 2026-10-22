@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-10-22T14:13:06.070Z
+date: 2026-10-22T14:13:44.911Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -157,8 +157,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
 ```
-> As of qBittorrent 5.3, the linuxserver `latest` tag ships **libtorrent 2.1**. That changes the disk IO advice in the [Advanced tab](#h-62-configuration-options) below. If you want libtorrent 1.2 instead, use the `linuxserver/qbittorrent:libtorrentv1` tag.
-{.is-info}
+
 
 > **CRITICAL SECURITY REQUIREMENT:** Your `wg0.conf` MUST include the PostUp line shown in the wg0.conf section below. Without it, your real IP will be exposed! The PostUp line does two things: (1) allows WebUI access from your LAN, and (2) blocks all non-VPN traffic with a firewall.
 {.is-danger}
