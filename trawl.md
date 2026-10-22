@@ -2,7 +2,7 @@
 title: Trawl
 description: A guide to deploying Trawl
 published: true
-date: 2026-10-22T10:07:06.786Z
+date: 2026-10-22T10:08:19.012Z
 tags: 
 editor: markdown
 dateCreated: 2026-10-20T15:12:05.236Z
@@ -136,7 +136,7 @@ Trawl loads URLs you give it. It does not do web search on its own.
 | `TIER1_TRANSPORT` | `bun` | Set to `wreq` to impersonate Firefox TLS on plain HTTP requests |
 | `PROXY_URL` | unset | Upstream proxy for all browser traffic |
 | `RESIDENTIAL_PROXY_URL` | unset | Fallback proxy used only when the direct path fails |
-{.dense}
+
 
 The full list lives in the [configuration docs](https://docs.trawl.germondai.com/getting-started/configuration).
 
