@@ -2,7 +2,7 @@
 title: AirVPN
 description: Instructions on how to use AirVPN to create a wireguard config for torrenting
 published: true
-date: 2026-10-26T10:30:24.110Z
+date: 2026-10-26T10:32:56.387Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:16.582Z
@@ -46,10 +46,8 @@ Instead of using the Config Generator by hand, you can let my `airvpn-wg.sh` scr
 To view the script, [look here](https://raw.githubusercontent.com/serversathome/ServersatHome/refs/heads/main/airvpn-wg.sh). To run it, execute this one-liner in the TrueNAS shell:
 
 ```bash
-sudo su -c "wget -O airvpn-wg.sh https://raw.githubusercontent.com/serversathome/ServersatHome/refs/heads/main/airvpn-wg.sh && chmod +x airvpn-wg.sh && bash airvpn-wg.sh --output /mnt/tank/configs/qbittorrent/wireguard/wg0.conf"
+sudo su -c "wget -O airvpn-wg.sh https://raw.githubusercontent.com/serversathome/ServersatHome/refs/heads/main/airvpn-wg.sh && chmod +x airvpn-wg.sh && bash airvpn-wg.sh"
 ```
-
-Replace `tank` with your pool name. `--output` is where the `wg0.conf` is written. Without it, the file goes in the current directory.
 
 The script walks you through these steps:
 
