@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure to allow for hardlinks within the arr stack
 published: true
-date: 2026-10-26T10:10:13.474Z
+date: 2026-10-26T10:10:22.595Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:29.149Z
@@ -139,7 +139,7 @@ The script asks you a few questions up front:
 It then checks for a **GPU** (NVIDIA, Intel or AMD, dedicated or integrated). If it finds one, it tests what the GPU can actually decode and encode using Jellyfin's own ffmpeg in a throwaway container, passes the GPU into the Jellyfin stack, and later sets up Jellyfin's hardware transcoding to match. 
 
 > The script is safe to re-run. Datasets and directories that already exist are left in place (permissions are re-applied), a `compose.yaml` that changed is backed up (`compose.yaml.bak-<date>`) before it is regenerated, and every configuration step reports "already present" instead of doing its work twice. A step that cannot be completed is added to a **Finish by hand** list and the rest of the script still runs.
-{.is-info}
+{.is-success}
 
 ## 2.2 Docker Compose Stacks
 Each container gets its own compose file at `/mnt/POOLNAME/stacks/<container>/compose.yaml`. To view one, for example Radarr's, execute
