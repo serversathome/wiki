@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure to allow for hardlinks within the arr stack
 published: true
-date: 2026-10-26T12:00:00.000Z
+date: 2026-10-26T10:08:17.258Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:29.149Z
@@ -129,8 +129,7 @@ To run the script, execute this one-liner in the TrueNAS shell:
 sudo su -c "wget -O arr-complete.sh https://raw.githubusercontent.com/serversathome/ServersatHome/refs/heads/main/arr-complete.sh && chmod +x arr-complete.sh && bash arr-complete.sh"
 ```
 
-> `wget -O` overwrites an older copy of the script. Without it, `wget` would save the new one as `arr-complete.sh.1` and you would run the old one.
-{.is-info}
+
 
 The script asks you a few questions up front:
 
