@@ -2,7 +2,7 @@
 title: Unpackerr
 description: A guide to installing Unpackerr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-10-26T12:00:00.000Z
+date: 2026-10-26T11:32:43.777Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:58.731Z
@@ -83,17 +83,14 @@ services:
     image: golift/unpackerr
     container_name: unpackerr
     restart: unless-stopped
-    # 1.0 uses user: instead of PUID/PGID.
     user: 568:568
     ports:
-      # Web UI and API
       - 5656:5656
     environment:
       - TZ=America/New_York
     volumes:
       # Must match your Starr apps; the folder mount (/media) should be identical.
       - /mnt/tank/media:/media
-      # Settings saved in the web UI are written to /config/unpackerr.conf.
       - /mnt/tank/configs/unpackerr:/config
 ```
 
