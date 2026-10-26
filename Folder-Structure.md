@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure to allow for hardlinks within the arr stack
 published: true
-date: 2026-10-26T10:10:22.595Z
+date: 2026-10-26T10:13:24.241Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:29.149Z
@@ -216,8 +216,8 @@ There is nothing to convert: the script installs [Dockge](/Dockge) and points it
 > If you edit a `compose.yaml` by hand (or in Dockge), keep in mind that re-running the script regenerates it. Your edited version is not lost: it is saved next to the new one as `compose.yaml.bak-<date>`.
 {.is-info}
 
-## <img src="/youtube.png" class="tab-icon"> 2.5 Script Video
-https://youtu.be/ho4NUoyU6tM
+## <img src="/patreon-light.png" class="tab-icon"> 2.5 Script Video
+
 
 > If you are completely new to Docker or container volumes, you may want to check out a beginner-friendly guide (e.g. [Docker docs](https://docs.docker.com/get-started/)) before running this setup.
 {.is-info}
