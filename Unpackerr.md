@@ -75,78 +75,57 @@ There is an official Unpackerr app in the TrueNAS **Community** catalog, so no D
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
-Prefer to run it as code in Dockge? Use the official `golift/unpackerr` image. Create a `configs/unpackerr` dataset for the `/config` mount first, then edit the **URL**, **API Key**, and **PATHS_0** for each app you use, and delete the blocks for apps you don't run.
+Prefer to run it as code in Dockge? Use the official `golift/unpackerr` image. Since 1.0 the compose file only needs the mounts, the port and the user: your Starr apps and every other setting are added in the web UI. Create a `configs/unpackerr` dataset for the `/config` mount first.
 
 ```yaml
 services:
   unpackerr:
     image: golift/unpackerr
     container_name: unpackerr
-    volumes:
-      # You need at least this one volume mapped so Unpackerr can find your files to extract.
-      # Make sure this matches your Starr apps; the folder mount (/downloads or /media) should be identical.
-      - /mnt/tank/media:/media
-      # New in 1.0: settings saved in the web UI are written to /config/unpackerr.conf.
-      - /mnt/tank/configs/unpackerr:/config
-    ports:
-      # Web UI and API
-      - 5656:5656
     restart: unless-stopped
     # 1.0 uses user: instead of PUID/PGID.
     user: 568:568
+    ports:
+      # Web UI and API
+      - 5656:5656
     environment:
       - TZ=America/New_York
-      # General config
-      - UN_DEBUG=false
-      - UN_INTERVAL=2m
-      - UN_START_DELAY=1m
-      - UN_RETRY_DELAY=5m
-      - UN_MAX_RETRIES=2
-      - UN_PARALLEL=1
-      - UN_FILE_MODE=0644
-      - UN_DIR_MODE=0755
-      # Sonarr Config
+    volumes:
+      # Must match your Starr apps; the folder mount (/media) should be identical.
+      - /mnt/tank/media:/media
+      # Settings saved in the web UI are written to /config/unpackerr.conf.
+      - /mnt/tank/configs/unpackerr:/config
+```
+
+On first start Unpackerr creates `/config/unpackerr.conf` with the defaults. Then [log in to the web UI](#h-logging-in-to-the-web-ui) and open **Settings**:
+
+1. Add **Sonarr** and **Radarr** (and Lidarr / Readarr if you run them) with the **URL**, **API Key** (from the app: **Settings → General → Security → API Key**), **Path** `/media/downloads` and **Protocols** `torrent`.
+1. Click **Test** on each row to check it can reach the app, then **Save**.
+1. Optional: add a **watch folder** for non-Starr extraction (set its interval to `1s`, see [Configuration Notes](#h-2-configuration-notes)).
+
+> The compose method **can** use container names like `http://sonarr:8989` for the URL — as long as Unpackerr and your Starr apps share the same Docker network. Otherwise use your host IP and the app's port.
+{.is-info}
+
+### Optional: Configure with Environment Variables
+
+You can still set everything in the compose file instead, for example to keep the setup as code. Add these under `environment:`, one block per app:
+
+```yaml
+      # Sonarr
       - UN_SONARR_0_URL=http://sonarr:8989
       - UN_SONARR_0_API_KEY=YOUR_SONARR_API_KEY
       - UN_SONARR_0_PATHS_0=/media/downloads
       - UN_SONARR_0_PROTOCOLS=torrent
-      - UN_SONARR_0_TIMEOUT=10s
-      - UN_SONARR_0_DELETE_ORIG=false
-      - UN_SONARR_0_DELETE_DELAY=5m
-      # Radarr Config
+      # Radarr
       - UN_RADARR_0_URL=http://radarr:7878
       - UN_RADARR_0_API_KEY=YOUR_RADARR_API_KEY
       - UN_RADARR_0_PATHS_0=/media/downloads
       - UN_RADARR_0_PROTOCOLS=torrent
-      - UN_RADARR_0_TIMEOUT=10s
-      - UN_RADARR_0_DELETE_ORIG=false
-      - UN_RADARR_0_DELETE_DELAY=5m
-      # Lidarr Config
-      - UN_LIDARR_0_URL=http://lidarr:8686
-      - UN_LIDARR_0_API_KEY=YOUR_LIDARR_API_KEY
-      - UN_LIDARR_0_PATHS_0=/media/downloads
-      - UN_LIDARR_0_PROTOCOLS=torrent
-      - UN_LIDARR_0_TIMEOUT=10s
-      - UN_LIDARR_0_DELETE_ORIG=false
-      - UN_LIDARR_0_DELETE_DELAY=5m
-      # Readarr Config
-      - UN_READARR_0_URL=http://readarr:8787
-      - UN_READARR_0_API_KEY=YOUR_READARR_API_KEY
-      - UN_READARR_0_PATHS_0=/media/downloads
-      - UN_READARR_0_PROTOCOLS=torrent
-      - UN_READARR_0_TIMEOUT=10s
-      - UN_READARR_0_DELETE_ORIG=false
-      - UN_READARR_0_DELETE_DELAY=5m
-      # Web Server (the web UI; set to empty to turn it off)
-      - UN_WEBSERVER_LISTEN_ADDR=0.0.0.0:5656
-      # Prometheus metrics at /metrics (optional — for Grafana; needs an API key, see below)
-      - UN_WEBSERVER_METRICS=false
 ```
 
-> Unlike the TrueNAS app, the compose method **can** use container names like `http://sonarr:8989` for the URL — as long as Unpackerr and your Starr apps share the same Docker network.
-{.is-info}
+Lidarr and Readarr follow the same pattern (`UN_LIDARR_0_*`, `UN_READARR_0_*`). Every option and its variable name is in the [official compose example](https://github.com/Unpackerr/unpackerr/blob/main/examples/docker-compose.yml).
 
-> **Environment variables lock settings in the UI.** Any field set by a `UN_*` variable is read-only in the web UI until you remove that variable. If you'd rather manage your Starr apps from the UI (with its **Test** button), leave the `UN_SONARR_*` / `UN_RADARR_*` blocks out of the compose file and add the apps under **Settings** instead.
+> **Environment variables lock settings in the UI.** Any field set by a `UN_*` variable is read-only in the web UI until you remove that variable, so pick one place to manage each setting.
 {.is-warning}
 
 ### Permissions & Folder Structure
@@ -169,7 +148,7 @@ Find it with `docker logs unpackerr` (or the app's **Logs** in TrueNAS), log in,
 
 # 2 · Configuration Notes
 
-A few options worth knowing about, set as environment variables (Docker) or wizard fields (TrueNAS):
+A few options worth knowing about. Set them in the web UI's **Settings**, or as environment variables (Docker) / wizard fields (TrueNAS):
 
 | Option | Default | What it does |
 |--------|---------|--------------|
