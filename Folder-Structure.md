@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure to allow for hardlinks within the arr stack
 published: true
-date: 2026-10-26T10:08:17.258Z
+date: 2026-10-26T10:10:13.474Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:29.149Z
@@ -136,7 +136,7 @@ The script asks you a few questions up front:
 1. **Pools**: it lists the pools on your system and asks you to pick one for `configs` and `stacks` (your SSD pool if you have one) and one for `media` (press Enter to use the same pool). If you only have one data pool it is used automatically. Pool names must be lowercase with no spaces.
 1. **Login**: one username and password that it creates in **every** app. Press Enter to keep the defaults `admin` / `changeme`. The username needs at least 3 characters and the password at least 8. Your answers are saved (root-only) in `configs/arr-complete.env`, so a re-run offers them as the defaults.
 
-It then checks for a **GPU** (NVIDIA, Intel or AMD, dedicated or integrated). If it finds one, it tests what the GPU can actually decode and encode using Jellyfin's own ffmpeg in a throwaway container, passes the GPU into the Jellyfin stack, and later sets up Jellyfin's hardware transcoding to match. With no GPU, Jellyfin transcodes in software. The script prints what it checked and why, so a software-only result is never a mystery (for example a TrueNAS VM without GPU passthrough, or an NVIDIA card without the driver enabled under **Apps > Settings**).
+It then checks for a **GPU** (NVIDIA, Intel or AMD, dedicated or integrated). If it finds one, it tests what the GPU can actually decode and encode using Jellyfin's own ffmpeg in a throwaway container, passes the GPU into the Jellyfin stack, and later sets up Jellyfin's hardware transcoding to match. 
 
 > The script is safe to re-run. Datasets and directories that already exist are left in place (permissions are re-applied), a `compose.yaml` that changed is backed up (`compose.yaml.bak-<date>`) before it is regenerated, and every configuration step reports "already present" instead of doing its work twice. A step that cannot be completed is added to a **Finish by hand** list and the rest of the script still runs.
 {.is-info}
