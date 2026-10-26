@@ -26,7 +26,7 @@ The primary dataset is named `media`, and contains three main subdirectories:
 -   **tv** – Stores all TV shows
 -   **downloads** – Houses downloaded torrents
     -   **torrent** – Stores incomplete torrent files and .torrent metadata files for restoring a BitTorrent client.
-    -   **crossseed** – Where Qui places its cross-seed links (reflinks on ZFS), so cross-seeded torrents never duplicate data.
+    -   **crossseed** – Where Qui places its cross-seed hardlinks, so cross-seeded torrents never duplicate data.
 
 # 1 · Creating the Datasets and Directories
 
@@ -64,7 +64,10 @@ tank
    ├── jellyfin
    ├── qbittorrent
    ├── qui
-   └── dozzle
+   ├── dozzle
+   ├── tracearr
+   ├── trawl
+   └── dockge
 ```
 
 # 2 · Auto Folder Creation and Setup for TrueNAS
