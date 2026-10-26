@@ -53,7 +53,7 @@ Replace `tank` with your pool name. `--output` is where the `wg0.conf` is writte
 
 The script walks you through these steps:
 
-1. **API key**: paste your AirVPN API key. It is saved so you're only asked once.
+1. **API key**: paste your AirVPN API key. It is only saved when the monitor needs it later (auto-switch, or device-offline / expiry alerts); otherwise you are asked again next time.
 1. **Device**: pick one of the devices (keys) on your AirVPN account, or create a new one.
 1. **Server**: choose your preferred countries and a minimum server bandwidth (by default the largest size AirVPN offers, currently 20000 Mbit/s). The script lists only healthy servers and ranks them by load, reliability (outages over the last 90 days for the top 5, 10 days for the rest) and measured ping. Every figure is shown, so you can still pick any server you like.
 1. **Generate**: it writes the `wg0.conf` (WireGuard, Linux, IPv4 only), saves the previous one as `wg0.conf.bak`, and checks that the config really belongs to the device you picked. Any running container that uses this `wg0.conf` (like qBittorrent) is restarted so it switches over.
