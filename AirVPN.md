@@ -2,7 +2,7 @@
 title: AirVPN
 description: Instructions on how to use AirVPN to create a wireguard config for torrenting
 published: true
-date: 2026-10-27T02:57:45.548Z
+date: 2026-10-27T02:58:07.979Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:16.582Z
@@ -35,7 +35,7 @@ To use AirVPN, sign up and generate a Wireguard Configuration from the **Client 
 {.is-warning}
 
 
-# 2 · Generating a .conf File with a Script
+# 2 · Generating a .conf File with my Script
 
 Instead of using the Config Generator by hand, you can let my `airvpn-wg.sh` script build the `wg0.conf` for you straight from the AirVPN API. It picks the best server for you, and it can also **send you alerts** and **automatically switch servers** when the one you're on goes down. My [\*arr stack script](https://wiki.serversatho.me/Folder-Structure#h-21-running-the-script) offers it when it asks for qBittorrent's WireGuard config (option 2, **Auto-generate**), so if you use that script you don't need to run this one separately.
 
