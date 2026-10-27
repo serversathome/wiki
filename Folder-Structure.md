@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure to allow for hardlinks within the arr stack
 published: true
-date: 2026-10-26T10:13:24.241Z
+date: 2026-10-27T02:57:07.798Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:29.149Z
@@ -218,9 +218,7 @@ There is nothing to convert: the script installs [Dockge](/Dockge) and points it
 
 ## <img src="/patreon-light.png" class="tab-icon"> 2.5 Script Video
 
-
-> If you are completely new to Docker or container volumes, you may want to check out a beginner-friendly guide (e.g. [Docker docs](https://docs.docker.com/get-started/)) before running this setup.
-{.is-info}
+Coming November 4th
 
 # <img src="/youtube.png" class="tab-icon"> 3 ·  Hardlinks
 https://youtu.be/dD1u0KOWizw
