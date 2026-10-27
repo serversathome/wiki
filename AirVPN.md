@@ -2,7 +2,7 @@
 title: AirVPN
 description: Instructions on how to use AirVPN to create a wireguard config for torrenting
 published: true
-date: 2026-10-26T10:36:49.597Z
+date: 2026-10-27T02:57:45.548Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:16.582Z
@@ -108,5 +108,6 @@ The point of using AirVPN is the port forward for qBittorrent. Go the **Client A
 
 ![](https://wiki.hydrology.cc/portforward.png)
 
-# <img src="/patreon-light.png" class="tab-icon"> 4 · Script Video
+# <img src="/youtube.png" class="tab-icon"> 4 · Script Video
+https://youtu.be/kcUKYFtfX58
 
