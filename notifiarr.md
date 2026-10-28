@@ -2,7 +2,7 @@
 title: Notifiarr
 description: A guide to deploy Notifiarr in TrueNAS
 published: true
-date: 2026-01-15T15:30:27.753Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:48.473Z
@@ -52,6 +52,8 @@ services:
     restart: unless-stopped
     ports:
       - "5454:5454"
+    environment:
+      - DN_API_KEY=<your-notifiarr-api-key>
     volumes:
       - /mnt/tank/configs/notifiarr:/config
       - /var/run/utmp:/var/run/utmp
@@ -62,11 +64,13 @@ services:
 
 ![](/screenshot_from_2024-02-23_09-37-02.png)
 
-1. Change the **Hostname** to the IP of your TrueNAS server
+1. Set the **Hostname** to a static name such as `notifiarr`. Notifiarr identifies each client by hostname, so don't change it later
+1. Enter the **API Key** you copied in section 1
+1. Under **Additional Environment Variables**, add **Name** `DN_UI_PASSWORD` with your chosen web UI password as the **Value**. On TrueNAS the container doesn't reliably set or log the UI password otherwise
 1. Change the **Storage Configuration**. The **Notifiarr Config Storage** *Type* should be set to **Host Path** and point to `/mnt/tank/configs/notifiarr`
 
 # 3 · Logging In
-1. The username is `admin`. The one-time password is printed in the logs.
+1. Navigate to `http://IP:5454`. The username is `admin`. On TrueNAS the password is the `DN_UI_PASSWORD` you set. On Docker it is your API key, or the one-time password printed in the logs.
 1. Login to your instance
 1. Verify Notifiarr can see your endpoint by visiting the Notifiarr website navigating to **Setup** on the left pane and select **Integrations → Client Configuration**. Scroll down to see a green connect symbol (or a popup in the bottom right corner will say it is connected).
 
