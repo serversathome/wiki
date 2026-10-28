@@ -42,18 +42,10 @@ services:
       - FORCE_DATA_SEED=false
       - CORS_ORIGINS=http://YOUR-SERVER-IP:3333
       - APP_SECRET=CHANGE_ME # generate with: openssl rand -hex 32
-      # - HTTP_MODE=https # uncomment when served over TLS (reverse proxy) so auth cookies get the secure flag
 ```
 
-1. Replace `YOUR-SERVER-IP` in `CORS_ORIGINS` with your server's IP (or the URL you browse to). Upstream's default is `*`.
-1. Generate `APP_SECRET`, which encrypts sensitive data:
-   ```bash
-   openssl rand -hex 32
-   ```
+Replace `YOUR-SERVER-IP` in `CORS_ORIGINS` with your server's IP (or the URL you browse to).
 
 # 2 · Logging In
 1. Navigate to `http://IP:3333`
 1. On first visit there are no users yet, so a registration form is shown. Enter a username and password and click **Create Account**.
-
-> Tracktor no longer uses a PIN. Older guides mention a default pin of `123456`, but current versions use username and password accounts.
-{.is-info}
