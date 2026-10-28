@@ -2,7 +2,7 @@
 title: DockTail
 description: A guide to deploying Docktail
 published: true
-date: 2026-06-30T20:40:49.297Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-30T09:42:59.122Z
@@ -52,8 +52,7 @@ Use this when `tailscaled` is already installed and running on the Docker host. 
 
 Ensure you complete section 2 and its sub. sections before starting the container.
 
-_*Note:_ As we know, Tailscale cannot be installed on the TrueNAS host, only via Docker Container, and Docktail cannot tie into a TrueNAS app as a standalone container.(_There may be a way to do so if the TrueNAS Tailscale app was in the same docker network as Docktail. This would need to be tested_) There would be no way for Docktail to reach the following:
-```- /var/run/tailscale:/var/run/tailscale```
+_*Note:_ On TrueNAS, use the **Tailscale Sidecar** tab as a custom app (TrueNAS SCALE 24.10+), so DockTail and its `tailscaled` are deployed together. The host method isn't possible because `tailscaled` can't run on the TrueNAS host.
 
 #### Compose
 ```yaml
@@ -117,12 +116,18 @@ services:
       - SYS_MODULE
     network_mode: host
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "test", "-S", "/var/run/tailscale/tailscaled.sock"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
 
   docktail:
     image: ghcr.io/marvinvr/docktail:latest
     container_name: docktail
     depends_on:
-      - tailscale
+      tailscale:
+        condition: service_healthy
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -132,7 +137,6 @@ services:
       - TAILSCALE_OAUTH_CLIENT_SECRET=${TAILSCALE_OAUTH_CLIENT_SECRET}
 
 volumes:
-  tailscale-state:
   tailscale-socket:
 ```
 
@@ -322,7 +326,7 @@ Public Funnel URL: `https://your-machine.your-tailnet.ts.net`
 ```yaml
 services:
   immich-public-proxy:
-    image: ghcr.io/immich-app/immich-public-proxy:latest
+    image: alangrainger/immich-public-proxy:latest
     labels:
       - "docktail.funnel.enable=true"
       - "docktail.funnel.port=3000"
