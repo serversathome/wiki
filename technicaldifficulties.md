@@ -2,7 +2,7 @@
 title: Technical Difficulties
 description: Some common technical issues reported by the community
 published: true
-date: 2026-01-15T15:32:06.658Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:59.035Z
@@ -40,7 +40,7 @@ This is also a permissions issue. See the solution above.
 
 ## When I add a movie or show nothing downloads
 This can be caused by many things.
-1. **Profiles**. If you are using Recyclarr or Profilarr or something like that to manage quality profiles the results from your indexer might not be meeting the minimum requirements.
+1. **Profiles**. If you are using [Profilarr](/profilarr) or something like that to manage quality profiles the results from your indexer might not be meeting the minimum requirements.
 1. The indexer you have added may not have any results for that search.
 1. Your indexer may not be synced to Radarr/Sonarr.
 

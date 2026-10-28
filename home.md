@@ -11,7 +11,7 @@ dateCreated: 2026-01-15T15:05:13.120Z
 <div class="hero">
   <div class="hero-title">Servers@Home wiki</div>
   <p>Your guide to self-hosting, homelabs, and taking control of your data. Tested guides, open source solutions, privacy-respecting infrastructure.</p>
-  <div class="hero-meta">255 guides &middot; maintained by Evan and contributors like you</div>
+  <div class="hero-meta">250 guides &middot; maintained by Evan and contributors like you</div>
 </div>
 
 > Use the sidebar or the search bar at the top to find guides. On mobile, tap the blue menu icon ☰ at the bottom-left.

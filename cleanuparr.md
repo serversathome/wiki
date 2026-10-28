@@ -78,7 +78,6 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 ### 2.3.1 General Configuration
 1. Uncheck the box for **Display Support Banner** for a cleaner dashboard
 1. Change the **Certificate Validation** to **Disabled for Local Addresses** 
-1. If you are using [Huntarr](/huntarr), leave the **Enable Search** box unchecked
 1. Click **Save**
 
 ### 2.3.2 Queue Cleaner Configuration
@@ -108,7 +107,7 @@ The `BASE_PATH` variable is for reverse proxy setups but can be left blank.
 1. Click **Save**
 
 ### 2.3.3 Content Blocker Configuration
-*I do not use this because I am also using Recyclarr (or Profilarr) to ensure my grabs are high quality. If you are not using one of those tools I would suggest enabling this feature.*
+*I do not use this because I am also using [Profilarr](/profilarr) to ensure my grabs are high quality. If you are not using it I would suggest enabling this feature.*
 
 ### 2.3.4 Download Cleaner Configuration
 1. Check the **Download Queue Cleaner** box

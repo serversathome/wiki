@@ -121,7 +121,6 @@ dateCreated: 2026-01-15T15:07:28.852Z
 - [<img src="/journiv.png"> Journiv<br>*Private journalling*](/journiv)
 - [Openresto<br>*Restaurant booking management*](/openresto)
 - [<img src="/calnode.png"> Calnode<br>*Calendly alternative in a single binary*](/calnode)
-- [Cal.diy<br>*Community edition of Cal.com scheduling*](/caldiy)
 {.links-list .apps}
 
 # Automation and dev {.sec .apps}
