@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2026-01-15T15:29:53.832Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:51.359Z
@@ -28,7 +28,7 @@ With Komodo you can:
   <div><span>Depends on</span><b>MongoDB</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
-    <a href="https://github.com/moghtech/komodo-core"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/moghtech/komodo"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 
@@ -40,7 +40,7 @@ With Komodo you can:
 
 1. Set a **Database Password**
 1. Set a **Passkey (Periphery)**
-1. Set **Backups Storage**, **Syncs Storage**, **Periphery Root Storage**, and **MongoDB Data Storage** to **Host Path**
+1. Set **Config Keys Storage**, **Backups Storage**, **Syncs Storage**, **Periphery Root Storage**, and **MongoDB Data Storage** to **Host Path**
 
 > Remember to check the box for **Automatic Permissions** under **MongoDB Data Storage**
 {.is-warning}
@@ -49,11 +49,15 @@ With Komodo you can:
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
+> **Upgrading from Komodo 1.x?** The v2 images are only published under the `:2` tag (`:latest` is deprecated and stuck on 1.19). v2 replaces passkeys with auto-generated key pairs, and Periphery now connects out to Core, so a 1.x compose won't work as-is. Back up your database and read the [v2.0.0 release notes](https://github.com/moghtech/komodo/releases/tag/v2.0.0) before upgrading.
+{.is-warning}
 
 ```yaml
 services:
   mongo:
     image: mongo
+    labels:
+      komodo.skip: # Prevent Komodo from stopping with StopAllContainers
     command: --quiet --wiredTigerCacheSizeGB 0.25
     restart: unless-stopped
     volumes:
@@ -64,7 +68,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: admin
 
   core:
-    image: ghcr.io/moghtech/komodo-core:latest
+    image: ghcr.io/moghtech/komodo-core:2
+    init: true
     restart: unless-stopped
     depends_on:
       - mongo
@@ -74,17 +79,16 @@ services:
       KOMODO_DATABASE_ADDRESS: mongo:27017
       KOMODO_DATABASE_USERNAME: admin
       KOMODO_DATABASE_PASSWORD: admin
-      KOMODO_PASSKEY: a_random_passkey
       TZ: America/New_York
-      KOMODO_HOST: https://demo.komo.do
+      KOMODO_HOST: https://komodo.example.com
       KOMODO_TITLE: Komodo
-      KOMODO_FIRST_SERVER: https://periphery:8120
+      KOMODO_PERIPHERY_PUBLIC_KEY: file:/config/keys/periphery.pub
       KOMODO_FIRST_SERVER_NAME: Local
       KOMODO_DISABLE_CONFIRM_DIALOG: "false"
       KOMODO_MONITORING_INTERVAL: "15-sec"
       KOMODO_RESOURCE_POLL_INTERVAL: "1-hr"
-      KOMODO_WEBHOOK_SECRET: a_random_secret
-      KOMODO_JWT_SECRET: a_random_jwt_secret
+      KOMODO_WEBHOOK_SECRET: a_random_secret # generate with: openssl rand -hex 32
+      KOMODO_JWT_SECRET: a_random_jwt_secret # generate with: openssl rand -hex 32
       KOMODO_LOCAL_AUTH: "true"
       KOMODO_INIT_ADMIN_USERNAME: admin
       KOMODO_INIT_ADMIN_PASSWORD: changeme
@@ -100,27 +104,39 @@ services:
       KOMODO_AWS_ACCESS_KEY_ID: ""
       KOMODO_AWS_SECRET_ACCESS_KEY: ""
     volumes:
+      - /mnt/tank/configs/komodo/keys:/config/keys
       - /mnt/tank/configs/komodo/backups:/backups
 
   periphery:
-    image: ghcr.io/moghtech/komodo-periphery:latest
+    image: ghcr.io/moghtech/komodo-periphery:2
+    init: true
     restart: unless-stopped
+    depends_on:
+      - core
     environment:
-      KOMODO_PASSKEY: a_random_passkey
-      PERIPHERY_ROOT_DIRECTORY: /mnt/tank/configs/etc/komodo
-      PERIPHERY_PASSKEYS: a_random_passkey
+      PERIPHERY_CORE_ADDRESS: ws://core:9120
+      PERIPHERY_CONNECT_AS: Local # same as KOMODO_FIRST_SERVER_NAME
+      PERIPHERY_CORE_PUBLIC_KEYS: file:/config/keys/core.pub
+      PERIPHERY_ROOT_DIRECTORY: /mnt/tank/configs/komodo/etc
       PERIPHERY_DISABLE_TERMINALS: "false"
-      PERIPHERY_SSL_ENABLED: "true"
       PERIPHERY_INCLUDE_DISK_MOUNTS: /etc/hostname
       PERIPHERY_LOGGING_PRETTY: "true"
       PERIPHERY_PRETTY_STARTUP_CONFIG: "true"
     volumes:
+      - /mnt/tank/configs/komodo/keys:/config/keys
       - /var/run/docker.sock:/var/run/docker.sock
       - /proc:/proc
       - /mnt/tank/configs/komodo/etc:/mnt/tank/configs/komodo/etc
 ```
 
+> `PERIPHERY_ROOT_DIRECTORY` must match the path you mount, and the path must be the same inside and outside the container. All your stacks and repos need to live under it.
+{.is-info}
+
 ## <img src="/docker.png" class="tab-icon"> Stacks Importer
+
+> `komodo-import` is an early-stage community tool that hasn't been updated since September 2025. It hasn't been confirmed to work with Komodo v2.
+{.is-warning}
+
 ```yaml
 services:
   komodo-import:
@@ -135,7 +151,7 @@ services:
       - HOST_DIR=/mnt/tank/stacks
       - STACKS_FROM=dir
       - SERVER_NAME=Local
-      - KOMODO_URL=http://10.99.0.191:30160
+      - KOMODO_URL=http://10.99.0.191:30160 # TrueNAS app port; use 9120 if you deployed with Docker Compose
       - API_KEY=
       - API_SECRET=
       - OUTPUT_API_SYNC=true
