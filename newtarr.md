@@ -27,10 +27,14 @@ The original Huntarr project was abandoned after the developer introduced teleme
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy NewtArr
 
+> The published image (`ghcr.io/elfhosted/newtarr`) is not publicly pullable right now, so this compose builds NewtArr from source. Clone the repo first with `git clone https://github.com/elfhosted/newtarr.git /mnt/tank/stacks/newtarr`, then deploy. To update later, run `git pull` in that folder and redeploy with a rebuild.
+{.is-info}
+
 ```yaml
 services:
   newtarr:
-    image: ghcr.io/elfhosted/newtarr:latest
+    build: /mnt/tank/stacks/newtarr
+    image: newtarr:local
     container_name: newtarr
     restart: unless-stopped
     ports:
@@ -40,9 +44,6 @@ services:
     environment:
       - TZ=America/New_York
 ```
-
-> If `docker pull ghcr.io/elfhosted/newtarr:latest` fails with an authentication error, build the image from source instead. Clone the repo with `git clone https://github.com/elfhosted/newtarr.git /mnt/tank/stacks/newtarr`, then replace the `image:` line above with `build: /mnt/tank/stacks/newtarr`.
-{.is-info}
 
 
 # 2 · Configuration
