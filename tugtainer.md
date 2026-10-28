@@ -44,8 +44,6 @@ services:
     environment:
       AGENT_SECRET: CHANGE_ME!
       TZ: America/New_York
-      # Uncomment for remote agents on your LAN (see section 4):
-      # AGENT_ALLOW_NETWORKS: "192.168.1.0/24"
     volumes:
       - /mnt/tank/configs/tugtainer:/tugtainer
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -78,12 +76,6 @@ services:
       PING: 1
       POST: 1
       VERSION: 1
-      ALLOW_LOGS: 1
-      ALLOW_START: 1
-      ALLOW_STOP: 1
-      ALLOW_RESTARTS: 1
-      ALLOW_PAUSE: 1
-      ALLOW_UNPAUSE: 1
       LOG_LEVEL: warning
       TZ: America/New_York
     volumes:
@@ -106,8 +98,6 @@ services:
       AGENT_SECRET: CHANGE_ME!
       DOCKER_HOST: tcp://socket-proxy:2375
       TZ: America/New_York
-      # Uncomment for remote agents on your LAN (see section 4):
-      # AGENT_ALLOW_NETWORKS: "192.168.1.0/24"
     volumes:
       - /mnt/tank/configs/tugtainer:/tugtainer
     networks:
@@ -120,7 +110,7 @@ services:
 ```
 
 - `AGENT_SECRET` is **required**. Replace `CHANGE_ME!` with a strong, unique value, e.g. from `openssl rand -hex 32`.
-- `CONTAINERS`, `IMAGES`, `POST`, `INFO`, `PING` are the minimum for the **check** feature; `NETWORKS` is needed for the **update** feature. `ALLOW_LOGS` enables the logs view, and `ALLOW_START`/`ALLOW_STOP`/`ALLOW_RESTARTS`/`ALLOW_PAUSE`/`ALLOW_UNPAUSE` enable the container controls.
+- `CONTAINERS`, `IMAGES`, `POST`, `INFO`, `PING` are the minimum for the **check** feature; `NETWORKS` is needed for the **update** feature.
 - `DOCKER_HOST` points Tugtainer at the proxy over the Compose network. The service name `socket-proxy` resolves even though the container is named `tugtainer-socket-proxy`, so it won't collide with a socket-proxy in another stack.
 
 > The proxy container is marked `protected` so Tugtainer can't try to update the thing it depends on to reach Docker.
@@ -163,7 +153,7 @@ Two labels control how Tugtainer treats a container. Add them under `labels:` in
 | `dev.quenary.tugtainer.depends_on="db,cache"` | Declares a dependency on other containers by name, even outside the same Compose project.                                                            |
 {.dense}
 
-> You **cannot** update an **agent** or a **socket-proxy** from inside Tugtainer — they're how it talks to Docker. Don't put them in a Compose project alongside containers you auto-update, or the update will error. Mark them `protected` and recreate them manually (or with Portainer/Dockge). The Tugtainer app container itself can now update itself from the UI with the opt-in [self-update](https://github.com/Quenary/tugtainer/blob/main/docs/SELF_UPDATE.md) feature.
+> You **cannot** update an **agent** or a **socket-proxy** from inside Tugtainer — they're how it talks to Docker. Don't put them in a Compose project alongside containers you auto-update, or the update will error. Mark them `protected` and recreate them manually (or with Portainer/Dockge).
 {.is-warning}
 
 # 4 · Remote Hosts (Agent)
@@ -260,8 +250,6 @@ Most are optional, but **`AGENT_SECRET` is required**. These are the ones you'll
 | `LOG_LEVEL`         | app, agent | `warning`          | `critical`, `error`, `warning`, `info`, `debug`, `trace`.                  |
 | `AGENT_ENABLED`     | app        | `true`             | Set `false` to disable the built-in agent (e.g. host with no socket access). |
 | `AGENT_SECRET`      | app, agent | empty              | **Required.** Signs backend↔agent requests. Also set it per host in the UI. |
-| `AGENT_ALLOW_NETWORKS` | app     | empty              | Networks allowed for agent host URLs, e.g. `192.168.1.0/24`. Needed for LAN agents. |
-| `AGENT_ALLOW_ENDPOINTS` | app    | `127.0.0.1:8001`   | Exact `host:port` endpoints allowed for agents (more precise alternative). |
 | `DOCKER_HOST`       | app, agent | empty              | Point at a socket-proxy, e.g. `tcp://socket-proxy:2375`.                    |
 | `DOCKER_CONFIG`     | app, agent | `~/.docker`        | Location of Docker client config (private registries).                     |
 | `DISABLE_AUTH`      | app        | `false`            | Turn off authentication entirely (front it with something else).           |
