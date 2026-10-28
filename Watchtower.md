@@ -2,7 +2,7 @@
 title: Watchtower
 description: A guide on how to install Watchtower for container updates
 published: true
-date: 2026-09-16T10:43:12.370Z
+date: 2026-10-28T09:48:25.438Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:01.108Z
@@ -30,6 +30,7 @@ services:
       - WATCHTOWER_CLEANUP=true
       - WATCHTOWER_INCLUDE_STOPPED=true
       - WATCHTOWER_SCHEDULE=0 0 3 * * *
+      - WATCHTOWER_DISABLE_CONTAINERS=^ix-.*
       # - WATCHTOWER_NOTIFICATION_URL=discord://token@webhookid
     restart: unless-stopped
     volumes:
