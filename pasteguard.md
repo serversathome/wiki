@@ -2,7 +2,7 @@
 title: Pasteguard
 description: A guide to deploying Pasteguard
 published: true
-date: 2026-02-04T12:53:46.440Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-04T12:53:46.440Z
@@ -10,32 +10,40 @@ dateCreated: 2026-02-04T12:53:46.440Z
 
 # What is PasteGuard?
 
-**PasteGuard** is a privacy proxy for LLMs that automatically masks personal data (PII) and secrets before sending prompts to AI providers like OpenAI or Anthropic. It detects 30+ types of sensitive data across 24 languages, ensuring your private information never leaves your infrastructure. PasteGuard is OpenAI API compatible and powered by Microsoft Presidio.
+**PasteGuard** is a privacy proxy for LLMs that automatically masks personal data (PII) and secrets before sending prompts to AI providers like OpenAI or Anthropic. It detects names, locations, contact details, financial identifiers and secrets in multiple languages, ensuring your private information never leaves your infrastructure. PasteGuard exposes OpenAI-compatible, Anthropic and Codex endpoints, and its detector combines checksums and format checks with a GLiNER-based semantic backend.
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy PasteGuard
 
-## 1.1 Clone the Repository
-> PasteGuard does not have a docker compose file and must use docker build
-{.is-info}
+## 1.1 Create the Configuration
 
-1. Run the following command in the `stacks` directory of your TrueNAS shell:
-    ```bash
-    git clone https://github.com/sgasser/pasteguard.git
-    ```
-1. Create Configuration
+PasteGuard now ships a prebuilt all-in-one image (proxy and PII detector in one container).
 
+1. Create the stack folder and download the example config in your TrueNAS shell:
     ```bash
-    cd pasteguard
-    cp config.example.yaml config.yaml
+    mkdir -p /mnt/tank/stacks/pasteguard/data
+    cd /mnt/tank/stacks/pasteguard
+    curl -fsSL -o config.yaml https://raw.githubusercontent.com/sgasser/pasteguard/main/config.example.yaml
     ```
 
 1. Edit `config.yaml` to configure your providers and detection settings. See the Configuration section below for details.
 
-1. Navigate to your container manager and launch the stack
+## 1.2 Deploy the Stack
 
+```yaml
+services:
+  pasteguard:
+    image: ghcr.io/sgasser/pasteguard:latest
+    container_name: pasteguard
+    ports:
+      - "3000:3000"
+    volumes:
+      - /mnt/tank/stacks/pasteguard/config.yaml:/pasteguard/config.yaml:ro
+      - /mnt/tank/stacks/pasteguard/data:/pasteguard/data
+    restart: unless-stopped
+```
 
 > 
-> Point your applications to `http://your-server:3000/openai/v1` instead of `https://api.openai.com/v1` to route requests through PasteGuard.
+> Point your applications to `http://your-server:3000/openai/v1` instead of `https://api.openai.com/v1` to route requests through PasteGuard. Anthropic clients use `http://your-server:3000/anthropic` and Codex CLI uses `http://your-server:3000/codex`.
 {.is-success}
 
 # 2 · Configuration
@@ -62,12 +70,18 @@ You receive:        "I'll contact john@acme.com to schedule with Sarah Miller...
 ```yaml
 mode: mask
 providers:
-  upstream:
-    type: openai
+  openai:
     base_url: https://api.openai.com/v1
+  anthropic:          # optional, enables /anthropic
+    base_url: https://api.anthropic.com
 masking:
-  placeholder_format: "<{TYPE}_{N}>"
   show_markers: false
+  marker_text: "[protected]"
+  # allowlist:        # text that is never masked
+  #   - pattern: "Company Name Inc."
+  # denylist:         # text that is always masked
+  #   - pattern: "ProjectX"
+  #     type: PROJECT_NAME
 ```
 
 ## 2.3 Route Mode Configuration
@@ -75,16 +89,12 @@ masking:
 ```yaml
 mode: route
 providers:
-  upstream:
-    type: openai
+  openai:
     base_url: https://api.openai.com/v1
-  local:
-    type: ollama
-    base_url: http://localhost:11434
-    model: llama3.2
-routing:
-  default: upstream
-  on_pii_detected: local
+local:
+  type: ollama        # or openai for vLLM, LocalAI, LM Studio
+  base_url: http://<ollama-ip>:11434
+  model: llama3.2
 ```
 
 > 
@@ -106,24 +116,26 @@ PasteGuard detects the following PII types by default:
 | IBANs | DE89 3704 0044 0532 0130 00 |
 | IP Addresses | 192.168.1.1 |
 | Locations | New York, Berlin |
+| EU VAT Numbers | DE123456789 |
 {.dense}
-
-Additional entity types can be enabled: `US_SSN`, `US_PASSPORT`, `CRYPTO`, `NRP`, `MEDICAL_LICENSE`, `URL`.
 
 ## 3.2 PII Configuration
 
 ```yaml
 pii_detection:
+  detector_url: ${DETECTOR_URL:-http://localhost:5002}  # built into the all-in-one image
+  detector_timeout: ${DETECTOR_TIMEOUT:-30}
+  phone_regions: []   # e.g. [US, GB, DE] for national-format numbers
   score_threshold: 0.7
-  languages:
-    - en
-    - de
   entities:
     - PERSON
+    - LOCATION
     - EMAIL_ADDRESS
     - PHONE_NUMBER
     - CREDIT_CARD
     - IBAN_CODE
+    - IP_ADDRESS
+    - VAT_CODE
 ```
 
 # 4 · Secrets Detection (Secrets Shield)
@@ -136,11 +148,13 @@ PasteGuard includes a Secrets Shield that detects credentials and API keys befor
 |------|---------|
 | OpenSSH Private Keys | `-----BEGIN OPENSSH PRIVATE KEY-----` |
 | PEM Private Keys | `-----BEGIN RSA PRIVATE KEY-----` |
-| OpenAI API Keys | `sk-proj-...`, `sk-...` |
+| `sk-` API Keys (OpenAI, Anthropic, Stripe, ...) | `sk-proj-...`, `sk-...` |
 | AWS Access Keys | `AKIA...` (20 chars) |
 | GitHub Tokens | `ghp_...`, `gho_...`, `ghu_...` |
 | JWT Tokens | `eyJ...` (three base64 segments) |
 | Bearer Tokens | `Bearer ...` (20+ char tokens) |
+| Passwords / Secrets in env files | `PASSWORD=...`, `SECRET=...` |
+| Connection Strings | `postgres://user:pass@host/db` |
 {.dense}
 
 ## 4.2 Secrets Configuration
@@ -148,33 +162,36 @@ PasteGuard includes a Secrets Shield that detects credentials and API keys befor
 ```yaml
 secrets_detection:
   enabled: true
-  action: block  # block | redact | route_local
+  action: mask  # mask | block | route_local
   entities:
     - OPENSSH_PRIVATE_KEY
     - PEM_PRIVATE_KEY
-    - API_KEY_OPENAI
+    - API_KEY_SK
     - API_KEY_AWS
     - API_KEY_GITHUB
     - JWT_TOKEN
     - BEARER_TOKEN
+    - ENV_PASSWORD
+    - ENV_SECRET
+    - CONNECTION_STRING
   max_scan_chars: 200000
   log_detected_types: true
 ```
 
 | Action | Behavior |
 |--------|----------|
+| **mask** | Replaces secrets with placeholders, unmasks in response |
 | **block** | Returns HTTP 400 error, request never reaches LLM |
-| **redact** | Replaces secrets with placeholders, unredacts in response |
 | **route_local** | Routes to local LLM when secrets detected (route mode only) |
 {.dense}
 
 > 
-> The default action is `block`. Detected secrets are never logged in their original form.
+> The default action is `mask`. Set `action: block` if you would rather reject any request containing a secret. Detected secrets are never logged in their original form.
 {.is-danger}
 
 # 5 · Dashboard & Authentication
 
-PasteGuard includes a built-in monitoring dashboard accessible at `/dashboard`. To secure the dashboard, configure authentication in `config.yaml`:
+PasteGuard includes a built-in monitoring dashboard at the root URL, `http://your-server:3000`. Request logs are stored in SQLite (`./data/pasteguard.db`) by default, or Postgres with `logging.driver: postgres`, and kept for `logging.retention_days` (30 by default). To secure the dashboard, configure authentication in `config.yaml`:
 
 ```yaml
 dashboard:
@@ -188,13 +205,7 @@ Set the `DASHBOARD_PASSWORD` environment variable or replace `${DASHBOARD_PASSWO
 
 # 6 · Language Support
 
-PasteGuard supports 24 languages for PII detection: `ca`, `zh`, `hr`, `da`, `nl`, `en`, `fi`, `fr`, `de`, `el`, `it`, `ja`, `ko`, `lt`, `mk`, `nb`, `pl`, `pt`, `ro`, `ru`, `sl`, `es`, `sv`, `uk`.
-
-Language is auto-detected per request. If a detected language isn't installed, PasteGuard falls back to English. The response header `X-PasteGuard-Language-Fallback: true` indicates when fallback is used.
-
-> 
-> Make sure the `languages` list in your `config.yaml` matches the `LANGUAGES` build argument used when building the Presidio container.
-{.is-info}
+PII detection is multilingual. The detector uses checksums and format checks for structured values (cards, IBANs, VAT numbers) and a GLiNER semantic backend for names and places, so there is no per-language build step any more. Use `phone_regions` in `config.yaml` if you need national-format phone numbers detected; numbers in `+` international format work everywhere. See the [PasteGuard docs](https://pasteguard.com/docs) for custom GLiNER models.
 
 
 
