@@ -2,7 +2,7 @@
 title: Lubelogger
 description: A guide to deploying Lubelogger
 published: true
-date: 2026-02-10T11:01:46.468Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-10T11:00:58.064Z
@@ -18,7 +18,7 @@ dateCreated: 2026-02-10T11:00:58.064Z
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://github.com/hargata/lubelogger"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/hargata/lubelog"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://docs.lubelogger.com/Advanced/Environment%20Variables"><i class="mdi mdi-book-open-variant"></i>Docs</a>
   </div>
 </div>
@@ -51,7 +51,7 @@ services:
 
 ### Production Deployment (PostgreSQL)
 
-For a more robust setup, use PostgreSQL as the database backend. Create a `.env` file alongside your compose file for environment variables.
+For a more robust setup, use PostgreSQL as the database backend. You can optionally create a `.env` file alongside your compose file for extra environment variables.
 
 ```yaml
 services:
@@ -68,7 +68,8 @@ services:
       - /mnt/tank/configs/lubelogger/data:/App/data
       - /mnt/tank/configs/lubelogger/keys:/root/.aspnet/DataProtection-Keys
     env_file:
-      - .env
+      - path: .env
+        required: false # optional, for extra settings like SMTP or OIDC
     environment:
       - LC_ALL=en_US.UTF-8
       - LANG=en_US.UTF-8
@@ -108,9 +109,11 @@ LubeLogger is available in the **Community** train of the TrueNAS App Catalog.
 3. Search for **LubeLogger**
 4. Click **Install**
 5. Configure the following settings:
-   - **Network → Web Port**: `8080` (or your preferred port)
-   - **Storage → App Data Host Path**: `/mnt/tank/configs/lubelogger/data`
-   - **Storage → Keys Host Path**: `/mnt/tank/configs/lubelogger/keys`
+   - **Database Password**: a strong password for the bundled PostgreSQL database
+   - **WebUI Port**: `8080` (or your preferred port)
+   - **Data Storage** → **Host Path**: `/mnt/tank/configs/lubelogger/data`
+   - **Protection Keys Storage** → **Host Path**: `/mnt/tank/configs/lubelogger/keys`
+   - **Postgres Data Storage** → **Host Path**: `/mnt/tank/configs/lubelogger/db` (check **Automatic Permissions**)
 6. Click **Install**
 
 > 
