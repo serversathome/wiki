@@ -167,7 +167,7 @@ services:
 ```
 
 
-`aliasgroup1` is the URL of your **Nextcloud** server (the WOPI host allowed to use Collabora), not the office hostname. Current Collabora images no longer support the old `domain` variable. Replace what I have with your correct FQDN values.
+`aliasgroup1` is the URL of your **Nextcloud** server (the WOPI host allowed to use Collabora), not the office hostname. Use `aliasgroup1` rather than the old `domain` variable, which is deprecated. Replace what I have with your correct FQDN values.
 
 ### 4.1.2 Reverse Proxy
 
