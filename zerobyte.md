@@ -47,19 +47,15 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /mnt/tank/configs/zerobyte:/var/lib/zerobyte
       - /mnt/tank:/mydata
-      - ~/.config/rclone:/root/.config/rclone:ro
+      - ~/.config/rclone:/root/.config/rclone
 ```
 
-1. `BASE_URL` and `APP_SECRET` are **required**. Set `BASE_URL` to the URL you open Zerobyte at, and generate `APP_SECRET` (32+ characters, used to encrypt sensitive data in the database):
+1. Set `BASE_URL` to the URL you open Zerobyte at, and generate `APP_SECRET`:
    ```bash
    openssl rand -hex 32
    ```
-1. If you only back up locally mounted folders (no NFS/SMB/WebDAV remote mounts), you can remove the `cap_add: SYS_ADMIN` and `/dev/fuse` device lines.
 
-> Don't expose Zerobyte to the internet. If the server is reachable from outside (VPS or port forwarding), change the port mapping to `127.0.0.1:4096:4096` and use a secure tunnel with authentication.
-{.is-warning}
-
-> **Upgrading from an older version?** Older versions of this guide used the `v0.15` tag, which is no longer published. Newer releases require `BASE_URL` and `APP_SECRET`. Back up `/mnt/tank/configs/zerobyte` before switching to `v0.43`, and check the [release notes](https://github.com/nicotsx/zerobyte/releases) for migration steps.
+> Upgrading from `v0.15`? Back up `/mnt/tank/configs/zerobyte` and add the two new variables. See the [release notes](https://github.com/nicotsx/zerobyte/releases).
 {.is-info}
 
 # 2 · Setting Up rclone
