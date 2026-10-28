@@ -55,7 +55,7 @@ services:
      mail__transport: SMTP
      mail__from: 
    volumes:
-     - /mnt/tank/configs/ghost:/var/lib/ghost/content
+     - /mnt/tank/configs/ghost/content:/var/lib/ghost/content
 
  db:
    image: mysql:8.0.44
@@ -78,6 +78,9 @@ services:
 
 > **Upgrading from an older version of this guide?** It used `ghost:5-alpine`, which no longer gets updates. Before switching to `ghost:6-alpine`, back up `/mnt/tank/configs/ghost` and read Ghost's [update guide](https://docs.ghost.org/update/) and the [Ghost 6.0 changelog](https://ghost.org/changelog/6/). The `MYSQL_USER`/`MYSQL_PASSWORD` user is only created on a fresh database, so if your existing database was set up with `root`, keep `database__connection__user: root` and your old password.
 {.is-warning}
+
+> **Existing installs:** older versions of this guide mounted Ghost's content at `/mnt/tank/configs/ghost` with the database nested inside it at `/mnt/tank/configs/ghost/db`. The compose above keeps them apart (`ghost/content` and `ghost/db`) so Ghost's ownership changes can't touch MySQL's files. If you deployed the old layout, either keep your original `/mnt/tank/configs/ghost:/var/lib/ghost/content` line, or stop the stack and move everything except `db` into a new `content` folder before redeploying.
+{.is-info}
 
 
 # 2 · Logging In
