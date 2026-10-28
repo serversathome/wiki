@@ -2,7 +2,7 @@
 title: Nextcloud
 description: A guide to deploying Nextcloud on TrueNAS Scale and via docker compose
 published: true
-date: 2026-06-10T11:32:33.688Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:39.801Z
@@ -73,16 +73,35 @@ I have changed the **PUID** and **PGID** to the TrueNAS `apps` user and group. I
 
 # 2 · Post-Install
 
-Nextcloud will have some warnings from certain variables not being set out-of-the-box. Shell into Nextcloud, run this command, then **restart** your container:
+Nextcloud will have some warnings from certain variables not being set out-of-the-box. The fix depends on how you deployed it.
+
+# {.tabset}
+## <img src="/docker.png" class="tab-icon"> Docker Compose (linuxserver)
+
+The linuxserver image runs Alpine with **nginx**, not Apache, so there is no `apache2` to configure. Run these commands from the host, one at a time:
 
 ```bash
-occ config:system:set maintenance_window_start --value=3 && \
-occ maintenance:repair --include-expensive && \
-echo 'Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains; preload"' >> /etc/apache2/conf-available/security.conf && \
-a2enconf security && \
-service apache2 restart && \
-occ db:add-missing-indices && \
-occ config:system:set default_phone_region --value="XX" && \
+docker exec -it nextcloud occ config:system:set maintenance_window_start --value=3
+docker exec -it nextcloud occ maintenance:repair --include-expensive
+docker exec -it nextcloud occ db:add-missing-indices
+docker exec -it nextcloud occ config:system:set default_phone_region --value="XX"
+docker exec -it nextcloud occ config:system:set mail_smtpmode --type=string --value="log"
+```
+
+For the HSTS warning, edit `/mnt/tank/configs/nextcloud/config/nginx/ssl.conf`, uncomment the `add_header Strict-Transport-Security` line, then **restart** your container.
+
+## <img src="/truenas.png" class="tab-icon"> TrueNAS
+
+Shell into Nextcloud, run these commands one at a time, then **restart** your container:
+
+```bash
+occ config:system:set maintenance_window_start --value=3
+occ maintenance:repair --include-expensive
+echo 'Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains; preload"' >> /etc/apache2/conf-available/security.conf
+a2enconf security
+service apache2 restart
+occ db:add-missing-indices
+occ config:system:set default_phone_region --value="XX"
 occ config:system:set mail_smtpmode --type=string --value="log"
 ```
 
@@ -93,7 +112,7 @@ occ config:system:set mail_smtpmode --type=string --value="log"
 
 You will not be able to go to the private IP of your Nextcloud instance because you need an https connection for it to work. This may work if you set a **Certificate ID** in TrueNAS during install, but it won't matter because we need to adjust the **Trusted Domain** array no matter what. 
 
-To do this, go the the directory where the configs are stored (usually the mount path followed by /var/www/html/config/config.php). Edit this file and find the **Trusted Domains Array** and add another line at the bottom for your FQDN. Make sure it lines up underneath the other entries as spacing matters. Your line should look like `4 => 'nextcloud.example.com',` incrementing to whatever number would be next in your array. Once this is done restart the container.
+To do this, go the the directory where the configs are stored. On TrueNAS this is usually the mount path followed by /var/www/html/config/config.php. With the linuxserver compose it is `/mnt/tank/configs/nextcloud/config/www/nextcloud/config/config.php`. Edit this file and find the **Trusted Domains Array** and add another line at the bottom for your FQDN. Make sure it lines up underneath the other entries as spacing matters. Your line should look like `4 => 'nextcloud.example.com',` incrementing to whatever number would be next in your array. Once this is done restart the container.
 
 ## 3.2 Adding External Storage
 
@@ -110,7 +129,7 @@ To access the fastest way via mobile, use a QR code to login. To generate the QR
 
 # 4 · Office Suite Overview
 
-To use Nextcloud as a collaborative document platform you add a separate office back-end and point Nextcloud at it. As of **Nextcloud Hub 26 Spring**, the integration is chosen under **Apps → Office → "Select your preferred office suite,"** which now offers two options:
+To use Nextcloud as a collaborative document platform you add a separate office back-end and point Nextcloud at it. As of **Nextcloud Hub 26 Spring**, the integration is chosen under **Apps → Office → "Select your preferred office suite,"** which now offers three options: Euro-Office, Collabora and Thinkfree Office. This guide covers the first two:
 
 | | Collabora Office | Nextcloud Office (Euro-Office) |
 |---|---|---|
@@ -139,16 +158,16 @@ services:
       - 9980:9980
     environment:
       - TZ=America/New_York
-      - domain=office\\.example\\.com
+      - aliasgroup1=https://nextcloud.example.com:443
       - server_name=office.example.com
       - username=admin
-      - password=adminpassword
+      - password=adminpassword # change this, e.g. openssl rand -hex 16
     volumes:
       - /mnt/tank/configs/collabora:/data
 ```
 
 
-Note for the `domain` it needs to be in regex. Replace what I have with your correct FQDN values.
+`aliasgroup1` is the URL of your **Nextcloud** server (the WOPI host allowed to use Collabora), not the office hostname. Current Collabora images no longer support the old `domain` variable. Replace what I have with your correct FQDN values.
 
 ### 4.1.2 Reverse Proxy
 
