@@ -31,14 +31,8 @@ services:
     container_name: sortarr
     ports:
       - "9595:8787"
-    environment:
-      - SORTARR_CONFIG_PATH=/data/Sortarr.env
-      - CACHE_SECONDS=300
-      - SORTARR_STORE_SECRETS_AS_FILES=1
-      # Behind a reverse proxy (e.g. Nginx Proxy Manager), uncomment:
-      # - SORTARR_PROXY_MODE=single
     volumes:
-      - /mnt/tank/configs/sortarr:/data
+      - /mnt/tank/configs/sortarr:/config
     restart: unless-stopped
 ```
 
@@ -66,11 +60,8 @@ When you first open Sortarr, the `/setup` page will prompt you to enter your ser
 URLs can be entered with or without a scheme — duplicate schemes are automatically normalized. Read-only API keys are recommended.
 
 
-> Treat the `Sortarr.env` file and the `secrets/` folder next to it (`/mnt/tank/configs/sortarr/secrets`) as secrets. With `SORTARR_STORE_SECRETS_AS_FILES=1`, API keys and basic auth credentials are kept in `secrets/` instead of in `Sortarr.env`.
+> Treat the `Sortarr.env` file as a secret — it stores API keys and optional basic auth credentials.
 {.is-warning}
-
-> Upgrading from an older version of this guide that mounted the folder at `/config`? Change the container side of the volume to `/data` and add `SORTARR_CONFIG_PATH=/data/Sortarr.env`. The host folder stays the same, so your existing `Sortarr.env` is picked up.
-{.is-info}
 
 ## 2.2 Multiple Instances
 
