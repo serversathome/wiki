@@ -2,7 +2,7 @@
 title: Securo
 description: A guide to deploying Securo
 published: true
-date: 2026-08-28T20:39:44.910Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-28T20:39:44.910Z
@@ -19,7 +19,7 @@ dateCreated: 2026-08-28T20:39:44.910Z
   <div><span>Depends on</span><b>Postgres and Redis</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
-    <a href="https://github.com/securo-finance/securo-frontend"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/securo-finance/securo"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 
@@ -42,11 +42,28 @@ x-backend-env: &backend-env
   SIMPLEFIN_API_URL: ${SIMPLEFIN_API_URL:-https://beta-bridge.simplefin.org}
   ENABLE_BANKING_APP_ID: ${ENABLE_BANKING_APP_ID:-}
   ENABLE_BANKING_PRIVATE_KEY_FILE: ${ENABLE_BANKING_PRIVATE_KEY_FILE:-/app/secrets/enable_banking_private.pem}
+  ENABLE_BANKING_API_URL: ${ENABLE_BANKING_API_URL:-https://api.enablebanking.com}
   ENABLE_BANKING_OAUTH_REDIRECT_URI: ${ENABLE_BANKING_OAUTH_REDIRECT_URI:-}
   PLUGGY_CLIENT_ID: ${PLUGGY_CLIENT_ID:-}
   PLUGGY_CLIENT_SECRET: ${PLUGGY_CLIENT_SECRET:-}
+  PLUGGY_OAUTH_REDIRECT_URI: ${PLUGGY_OAUTH_REDIRECT_URI:-}
   OPENEXCHANGERATES_APP_ID: ${OPENEXCHANGERATES_APP_ID:-}
   TESOURO_DIRETO_ENABLED: ${TESOURO_DIRETO_ENABLED:-false}
+  # Login: OIDC, passkeys and local accounts (see section 4)
+  OIDC_ENABLED: ${OIDC_ENABLED:-false}
+  OIDC_PROVIDER_NAME: ${OIDC_PROVIDER_NAME:-OIDC}
+  OIDC_DISCOVERY_URL: ${OIDC_DISCOVERY_URL:-}
+  OIDC_CLIENT_ID: ${OIDC_CLIENT_ID:-}
+  OIDC_CLIENT_SECRET: ${OIDC_CLIENT_SECRET:-}
+  OIDC_REDIRECT_URI: ${OIDC_REDIRECT_URI:-}
+  OIDC_SCOPES: ${OIDC_SCOPES:-openid email profile}
+  OIDC_AUTO_REGISTER: ${OIDC_AUTO_REGISTER:-true}
+  LOCAL_AUTH_ENABLED: ${LOCAL_AUTH_ENABLED:-true}
+  WEBAUTHN_RP_ID: ${WEBAUTHN_RP_ID:-}
+  WEBAUTHN_RP_NAME: ${WEBAUTHN_RP_NAME:-Securo}
+  WEBAUTHN_ORIGIN: ${WEBAUTHN_ORIGIN:-}
+  # The backend sits behind the bundled nginx frontend, so rate limiting trusts one proxy hop
+  TRUSTED_PROXY_HOPS: ${TRUSTED_PROXY_HOPS:-1}
   REDIS_URL: redis://redis:6379/0
   STORAGE_LOCAL_PATH: /app/data/attachments
   AGENTS_KNOWLEDGE_STORAGE_PATH: /app/data/agent_knowledge
@@ -134,7 +151,7 @@ services:
     profiles: [agents]
     command: uvicorn mcp_server.main:app --host 0.0.0.0 --port 8765
     ports:
-      - "${AGENTS_MCP_EXTERNAL_HOST_PORT:-0.0.0.0:8765}:8765"
+      - "${AGENTS_MCP_EXTERNAL_HOST_PORT:-127.0.0.1:8765}:8765"
 ```
 
 ## 1.2 .env File
@@ -244,7 +261,7 @@ COMPOSE_PROFILES=agents
 
 Redeploy the stack, then go to **Settings → AI Agents** to add a provider connection.
 
-The `agents` profile also starts a built-in **MCP server** on port 8765. From **Settings → AI Agents → External MCP access** you can mint a JWT (90-day default TTL) and point Claude Desktop, n8n, or any other MCP client straight at your own finance data. JWT auth is always required.
+The `agents` profile also starts a built-in **MCP server** on port 8765. It only listens on `127.0.0.1` by default; set `AGENTS_MCP_EXTERNAL_HOST_PORT=0.0.0.0:8765` in `.env` if MCP clients on other machines need to reach it. From **Settings → AI Agents → External MCP access** you can mint a JWT (90-day default TTL) and point Claude Desktop, n8n, or any other MCP client straight at your own finance data. JWT auth is always required.
 
 
 
@@ -282,4 +299,7 @@ OIDC_CLIENT_SECRET=your-client-secret
 # Optional: OIDC-only, kills local login and registration entirely
 LOCAL_AUTH_ENABLED=false
 ```
+
+> These login variables only reach the containers because they're listed in the `x-backend-env` block of the compose file. If you add another Securo setting to `.env` that isn't listed there, add a matching `NAME: ${NAME:-}` line to `x-backend-env` too.
+{.is-info}
 

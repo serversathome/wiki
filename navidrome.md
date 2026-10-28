@@ -2,7 +2,7 @@
 title: Navidrome
 description: A guide to deploying the Navidrome music player using docker
 published: true
-date: 2026-01-15T15:30:17.709Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:35.306Z
@@ -30,7 +30,7 @@ dateCreated: 2026-01-15T15:06:35.306Z
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://www.navidrome.org/docs/usage/configuration-options/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://www.navidrome.org/docs/usage/configuration/options/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
   </div>
 </div>
 
@@ -65,7 +65,8 @@ services:
 * **Volumes** – `/data` stores library cache & artwork, `/music` is read‑only music share.
   📌 See the [Folder‑Structure](/Folder-Structure) guide.
 
-> Official env‑vars list: [Navidrome Docker Docs](https://www.navidrome.org/docs/usage/configuration-options/) {.is-info}
+> Official env‑vars list: [Navidrome Docker Docs](https://www.navidrome.org/docs/usage/configuration/options/)
+{.is-info}
 
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
@@ -73,8 +74,8 @@ services:
 | Step  | Action                                                                                      |
 | ----- | ----------- |
 | **1** | **Apps → Discover Apps → Navidrome → Install**   |
-| **2** | **Config Storage → Host Path** → `/mnt/tank/configs/navidrome/data`    |
-| **3** | **Additional Storage → Host Path** → mount `/mnt/tank/media/music` ➜ `/music` *(read‑only)* |
+| **2** | **Navidrome Data Storage → Host Path** → `/mnt/tank/configs/navidrome/data`    |
+| **3** | **Navidrome Music Storage → Host Path** → mount `/mnt/tank/media/music` ➜ `/music` *(read‑only)* |
 | **4** | Expose port **4533** → 4533       |
 | **5** | **Save → Deploy**     |
 
@@ -83,8 +84,8 @@ services:
 
 1. Browse to `http://SERVER_IP:4533` → create **admin** user.
 2. Navidrome scans your library automatically. Watch progress top‑left.
-3. **Settings → Transcoding** — enable optional MP3/Opus profiles for mobile data‑savings.
-4. **Settings → Last.fm** — add API key if you want scrobbling.
+3. **Settings → Transcoding** — enable optional MP3/Opus profiles for mobile data‑savings. This menu only appears when `ND_ENABLETRANSCODINGCONFIG=true` is set.
+4. **Last.fm scrobbling** — add the `ND_LASTFM_APIKEY` and `ND_LASTFM_SECRET` environment variables, then link your own Last.fm account under **Personal** settings.
 
 
 # 3 · Recommended Tweaks *(optional)*
@@ -92,8 +93,8 @@ services:
 | Setting                 | Recommended | Why                                  |
 | ----------------------- | ----------- | ------------------------------------ |
 | **Scanner Schedule**    | `1h`        | Picks up new music hourly            |
-| **Cover Size Limit**    | `6000` px   | Keeps huge artwork but not originals |
-| **Transcoding Threads** | `4`         | Speed on multi‑core CPUs             |
+| **Cover Art Quality** (`ND_COVERARTQUALITY`) | `75`        | JPEG/WebP quality for resized artwork |
+| **Max Concurrent Transcodes** (`ND_TRANSCODING_MAXCONCURRENT`) | `4`         | Caps server‑wide transcoding load     |
 | **Session Timeout**     | `12h`       | Stay logged in on home network       |
 
 
@@ -115,7 +116,8 @@ services:
 
 <details><summary><strong>Slow transcoding / buffering</strong></summary>
   
-- Enable **hardware transcoding**: set `ND_TRANSCODING_FFMPEG_PARAMS="-threads 2 -codec:a libmp3lame -b:a 192k"`.  
+- Set `ND_ENABLETRANSCODINGCONFIG=true` to edit the transcoding profiles (ffmpeg commands) in the UI.  
+- Limit load with `ND_TRANSCODING_MAXCONCURRENT` (server‑wide) or `ND_TRANSCODING_MAXCONCURRENTPERUSER`.  
 - Or raise CPU limits on the container.
   
 </details>

@@ -2,7 +2,7 @@
 title: elm.chat
 description: A guide to deploying elm.chat
 published: true
-date: 2026-08-28T20:24:30.358Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-28T20:24:30.358Z
@@ -51,17 +51,22 @@ Open it, click **Create private conversation**, and you have a working room.
 > **First deploy to a new account?** Cloudflare may ask you to register a free `*.workers.dev` subdomain under **Workers & Pages** in the dashboard. Do that once, then re-run `npm run deploy`.
 {.is-info}
 
-> The `migrations` block in `workers/api/wrangler.jsonc` creates the `RoomDurableObject` SQLite class automatically on first deploy. There is no manual migration step and no database to provision.
+> The `migrations` block in the root `wrangler.jsonc` creates the `RoomDurableObject` SQLite class automatically on first deploy. There is no manual migration step and no database to provision.
 {.is-success}
 
 ## One-Click Deploy
 
 1. Click the **Deploy to Cloudflare** button on the [project README](https://github.com/shawnbure/elm-chat).
 2. Authorize Cloudflare to fork the repo into your GitHub account and connect it to Workers Builds.
-3. When prompted for build settings:
-   - **Build command**: `npm install && npm run build`
-   - **Wrangler config path**: `workers/api/wrangler.jsonc` (leave as-is)
+3. Cloudflare should detect the root `wrangler.jsonc` and fill in the build settings for you:
+   - **Build command**: `npm run build`
+   - **Deploy command**: `npm run deploy`
+   - **Root directory**: `/` (repo root)
 4. Deploy. Cloudflare provisions the Worker and Durable Object namespace for you.
+5. Before sharing the instance, run through the upstream [deployment verification checklist](https://github.com/shawnbure/elm-chat/blob/main/docs/deploy-to-cloudflare-verification.md).
+
+> If the setup screen says **No Wrangler configuration detected**, stop before deploying and [open an issue](https://github.com/shawnbure/elm-chat/issues) upstream. It means Cloudflare is falling back to automatic project configuration instead of the project's Worker and Durable Object bindings.
+{.is-danger}
 
 > The one-click path builds on Cloudflare's infrastructure and occasionally fails on build settings. If it does, fall back to the Wrangler CLI tab — that's the path the maintainer actively tests.
 {.is-warning}
@@ -77,7 +82,7 @@ To serve the app from your own domain instead of `*.workers.dev`:
 1. Add the domain to your Cloudflare account — it must use Cloudflare DNS.
 2. Go to **Workers & Pages → your Worker → Settings → Domains & Routes → Add custom domain**.
 
-Alternatively, add a `routes` entry to `workers/api/wrangler.jsonc` and redeploy. Cloudflare provisions the TLS certificate automatically either way.
+Alternatively, add a `routes` entry to the root `wrangler.jsonc` and redeploy. Cloudflare provisions the TLS certificate automatically either way.
 
 ## 2.2 Abuse Protection with Turnstile
 
@@ -120,7 +125,7 @@ The creator token is stored in the browser's `localStorage`. Clear it and you lo
 
 ## 2.4 Renaming the Worker
 
-To run multiple instances, or to avoid a name clash on your account, change the `"name"` field in `workers/api/wrangler.jsonc` before deploying.
+To run multiple instances, or to avoid a name clash on your account, change the `"name"` field in **both** Wrangler configuration files (the root `wrangler.jsonc` and `workers/api/wrangler.jsonc`) before deploying. `npm run check:wrangler-configs` fails if the two drift apart.
 
 
 
@@ -153,7 +158,7 @@ Open `http://localhost:3000`, create a room, then open the copied link in a seco
 1. The landing page generates a random 256-bit `room_secret` **in your browser**.
 2. `POST /api/rooms` creates the room metadata and its Durable Object.
 3. The browser navigates to `/c/:roomId#<room_secret>` — the fragment never leaves the client.
-4. The client derives the room key locally from that fragment using HKDF-SHA-256.
+4. The client derives the room key locally from that fragment using HKDF-SHA-256. When membership changes, a fresh room-key epoch is distributed only to the remaining participants.
 5. One WebSocket carries join, presence, encrypted chat, encrypted file chunks, transcript sync, kicks, destroy, and keepalives.
 6. The Durable Object relays each encrypted envelope — broadcast to everyone else, or targeted to a single session for file chunks and per-peer sync.
 7. New joiners request transcript sync from connected peers, who replay their local encrypted history.
@@ -184,10 +189,10 @@ The trade-off: an honest-but-curious server relays ciphertext and can observe co
 
 | Component | Implementation |
 |-----------|----------------|
-| Room key | HKDF-SHA-256 over the fragment secret → AES-GCM-256 |
-| Messages | AES-GCM, random 96-bit nonce per message, base64url envelope |
+| Room key | HKDF-SHA-256 over the fragment secret → AES-GCM-256; fresh key epochs sent to remaining participants via ephemeral ECDH when membership changes |
+| Messages | AES-GCM, random 96-bit nonce per message, base64url envelope; protocol v3 binds room, key epoch, sender session, message ID, timestamp and expiry |
 | Files | 64 KiB chunks, each AES-GCM encrypted with its own nonce, 25 MiB max |
-| Identity keys | Ephemeral ECDSA P-256 per client, shared on join (reserved for future message authentication) |
+| Identity keys | Ephemeral ECDSA P-256 per admitted session; every peer event (text, sync, file chunks, key rotation) is signed with it. This verifies the session, not a person's real-world identity |
 
 
 

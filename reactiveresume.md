@@ -2,7 +2,7 @@
 title: Reactive Resume
 description: A guide to deploying Reactive Resume
 published: true
-date: 2026-01-25T11:59:52.944Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:58.027Z
@@ -14,98 +14,44 @@ A free and open-source resume builder that simplifies the process of creating, u
 <div class="glance">
   <div><span>Port</span><b><code>3000</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>5 services</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Reactive Resume
+Generate an `AUTH_SECRET` and a database password (run it twice):
+
+```bash
+openssl rand -hex 32
+```
+
 ```yaml
 services:
   postgres:
-    image: postgres:latest
+    image: postgres:18
     restart: unless-stopped
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: your_db_password
     volumes:
       - /mnt/tank/configs/postgres_data:/var/lib/postgresql
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "postgres"]
-      start_period: 10s
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  browserless:
-    image: ghcr.io/browserless/chromium:latest
-    restart: unless-stopped
-    environment:
-      - QUEUED=30
-      - HEALTH=true
-      - CONCURRENT=20
-      - TOKEN=1234567890
-    healthcheck:
-      test:
-        ["CMD", "curl", "-f", "http://localhost:3000/pressure?token=1234567890"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
       interval: 10s
       timeout: 5s
       retries: 10
 
-
-  seaweedfs:
-    image: chrislusf/seaweedfs:latest
-    restart: unless-stopped
-    command: server -s3 -filer -dir=/data -ip=0.0.0.0
-    environment:
-      - AWS_ACCESS_KEY_ID=seaweedfs
-      - AWS_SECRET_ACCESS_KEY=seaweedfs
-    volumes:
-      - /mnt/tank/configs/seaweedfs_data:/data
-    healthcheck:
-      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:8888"]
-      start_period: 10s
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  seaweedfs-create-bucket:
-    image: quay.io/minio/mc:latest
-    restart: on-failure
-    entrypoint: >
-      /bin/sh -c "
-        sleep 5;
-        mc alias set seaweedfs http://seaweedfs:8333 seaweedfs seaweedfs;
-        mc mb seaweedfs/reactive-resume;
-        exit 0;
-      "
-    depends_on:
-      seaweedfs:
-        condition: service_healthy
-
   app:
     image: amruthpillai/reactive-resume:latest
-    # image: ghcr.io/amruthpillai/reactive-resume:latest
+    # image: ghcr.io/reactive-resume/reactive-resume:latest
+    restart: unless-stopped
     environment:
-      # Server
-      - TZ=Etc/UTC
-      - NODE_ENV=production
+      - TZ=America/New_York
       - APP_URL=http://[your-server-ip]:3000
-      - PRINTER_APP_URL=http://app:3000
-      # Printer
-      - PRINTER_ENDPOINT=ws://browserless:3000?token=1234567890
-      # - PRINTER_ENDPOINT=http://chrome:9222 # Or, if you're using chromedp/headless-shell
-      # Database
-      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
-      # Authentication
-      - AUTH_SECRET=change-me-to-a-secure-secret-key-in-production
-      # Storage
-      - S3_ACCESS_KEY_ID=seaweedfs
-      - S3_SECRET_ACCESS_KEY=seaweedfs
-      - S3_ENDPOINT=http://seaweedfs:8333
-      - S3_BUCKET=reactive-resume
-      - S3_FORCE_PATH_STYLE=true
+      - DATABASE_URL=postgresql://postgres:your_db_password@postgres:5432/postgres
+      - AUTH_SECRET=your_generated_secret
     volumes:
       - /mnt/tank/configs/reactive_resume_data:/app/data
     ports:
@@ -113,18 +59,14 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-      browserless:
-        condition: service_healthy
-      seaweedfs-create-bucket:
-        condition: service_completed_successfully
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
-      start_period: 10s
-      interval: 30s
-      timeout: 10s
-      retries: 3
 ```
-> Replace `[your-server-ip]` with the correct IP before deploying!
+> Replace `[your-server-ip]` with the correct IP before deploying, and use the same password in `POSTGRES_PASSWORD` and `DATABASE_URL`!
+{.is-warning}
+
+> Reactive Resume v6 renders PDFs itself and stores uploads in `/app/data`, so the old Browserless printer and SeaweedFS/bucket containers are no longer needed. (The `quay.io/minio/mc` image the old bucket job used can't be pulled anonymously anymore, which stopped the app from starting.) If you want S3 storage, Redis or AI features, see the upstream [environment variable reference](https://github.com/AmruthPillai/Reactive-Resume/blob/main/docs/self-hosting/environment-variables.mdx).
+{.is-info}
+
+> **Upgrading from v5?** v6 upgrades the database, and v5 can't run against it afterwards. Back up `/mnt/tank/configs/postgres_data` (and your SeaweedFS data if you used the old compose) before pulling, and follow the [upgrading to v6 guide](https://github.com/AmruthPillai/Reactive-Resume/blob/main/docs/self-hosting/upgrading-to-v6.mdx), which also covers converting older resume styles. If your existing uploads are in SeaweedFS, keep the `seaweedfs` service and the `S3_*` variables, and switch the bucket job to the `amazon/aws-cli` image as in the upstream [compose.yml](https://github.com/AmruthPillai/Reactive-Resume/blob/main/compose.yml).
 {.is-warning}
 
 

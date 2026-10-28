@@ -2,7 +2,7 @@
 title: Capacitarr
 description: A guide to deploying Capacitarr
 published: true
-date: 2026-05-05T19:29:32.558Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-21T11:32:55.609Z
@@ -10,7 +10,7 @@ dateCreated: 2026-03-21T11:32:55.609Z
 
 # What is Capacitarr?
 
-**Capacitarr** is an intelligent media library capacity manager for the \*arr ecosystem. It scores every media item across six dimensions — watch history, recency, file size, ratings, age, and series status — then removes the least-valuable items first when disk space runs low. A visual rule builder lets you protect specific content from ever being deleted.
+**Capacitarr** is an intelligent media library capacity manager for the \*arr ecosystem. It scores every media item across seven pluggable dimensions — watch history, recency, file size, ratings, age, series status, and request popularity — then removes the least-valuable items first when disk space runs low. A visual rule builder lets you protect specific content from ever being deleted.
 
 <div class="glance">
   <div><span>Port</span><b><code>2187</code></b></div>
@@ -49,7 +49,7 @@ services:
 
 ## 2.1 Connect Your Stack
 
-After first launch, you'll need to point Capacitarr at your existing services. For each integration, you provide the **URL** and **API key** of the service. Capacitarr supports 9 integrations:
+After first launch, you'll need to point Capacitarr at your existing services. For each integration, you provide the **URL** and **API key** of the service. Capacitarr supports 11 integrations:
 
 | Service | Type |
 |---|---|
@@ -61,12 +61,14 @@ After first launch, you'll need to point Capacitarr at your existing services. F
 | Jellyfin | Media server |
 | Emby | Media server |
 | Tautulli | Plex analytics |
-| Overseerr | Request manager |
+| Jellystat | Jellyfin analytics |
+| Tracearr | Watch history tracking |
+| Seerr (Overseerr/Jellyseerr) | Request manager |
 
 
 ## 2.2 Scoring & Rules
 
-Capacitarr scores every item in your library across six weighted dimensions:
+Capacitarr scores every item in your library across seven weighted dimensions:
 
 | Dimension | Description |
 |---|---|
@@ -76,12 +78,13 @@ Capacitarr scores every item in your library across six weighted dimensions:
 | Ratings | Community and critic ratings |
 | Age | How old the media itself is (release date) |
 | Series Status | Whether a series is still airing, ended, or canceled |
+| Request Popularity | Request data pulled from your request manager (Seerr) |
 
 
 You can configure:
 
-- **Scoring Weights** — adjust how much each of the six dimensions matters to your cleanup decisions
-- **Visual Rule Builder** — create rules using four priority levels: `always_keep`, `prefer_keep`, `prefer_delete`, and `always_delete`
+- **Scoring Weights** — adjust how much each of the seven dimensions matters to your cleanup decisions
+- **Visual Rule Builder** — create rules using four priority levels: `always_keep`, `prefer_keep`, `prefer_remove`, and `always_remove`
 - **Protected Content** — tag specific items so certain media is never deleted
 
 Every score is transparent and fully explainable through the score detail view.
@@ -91,17 +94,17 @@ Every score is transparent and fully explainable through the score detail view.
 Capacitarr uses a safety-first approach to media cleanup:
 
 - **Dry-run mode** — preview what would be removed without taking action
-- **Approval queue** — review and approve deletions before they happen
+- **Approval queue** — per-disk-group approval mode queues deletions for review on the dashboard before they run
 - **Safety guards** — built-in protections prevent accidental mass deletion
 - **Audit log** — a complete record of every decision and action taken
 
 > 
-> Capacitarr will **never** delete media without your approval unless you explicitly configure it to do so. The default mode requires manual review of all deletion candidates.
+> Start in dry-run mode, or turn on approval mode for each disk group, so you can review every deletion candidate before anything is removed. Only switch to automatic deletion once you trust your scores and rules.
 {.is-success}
 
 ## 2.4 Real-Time Updates
 
-The dashboard uses Server-Sent Events (SSE) to push engine state, deletions, and activity to the browser instantly — no polling required. There are 40 typed event types to keep you informed of everything happening in your library.
+The dashboard uses Server-Sent Events (SSE) to push engine state, deletions, and activity to the browser instantly — no polling required. There are 70 granular event types to keep you informed of everything happening in your library.
 
 # <img src="/patreon-light.png" class="tab-icon"> 3 · Video
 

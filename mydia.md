@@ -2,7 +2,7 @@
 title: Mydia
 description: A guide to deploying Mydia
 published: true
-date: 2026-01-15T15:30:14.385Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:29.542Z
@@ -31,8 +31,8 @@ services:
       - PUID=568
       - PGID=568
       - TZ=America/New_York
-      - SECRET_KEY_BASE=F0cBmQrlSn9DllTroJECMW3T0kYgpBvysBRzYqxlX4z3WffISuauecEk7norkU9u
-      - GUARDIAN_SECRET_KEY=F0cBmQrlSn9DllTroJECMW3T0kYgpBvysBRzYqxlX4z3WffISuauecEk7norkU9u
+      - SECRET_KEY_BASE=your-secret-key-base-here # generate with: openssl rand -base64 48
+      - GUARDIAN_SECRET_KEY=your-guardian-secret-key-here # generate a second, different value with: openssl rand -base64 48
       - PHX_HOST=10.99.0.242
       - PORT=4000
       - MOVIES_PATH=/media/movies
@@ -44,6 +44,12 @@ services:
       - 4000:4000
     restart: unless-stopped
 ```
+
+> Generate two separate secrets (one for `SECRET_KEY_BASE`, one for `GUARDIAN_SECRET_KEY`) by running `openssl rand -base64 48` twice in a shell. Don't reuse the same value for both.
+{.is-warning}
+
+1. Navigate to `http://IP:4000`
+1. Create your admin account
 
 # <img src="/patreon-light.png" class="tab-icon"> 2 · Video
 [![](/2025-11-24-mydia-a-modern-self-hosted-medi-promo-card.png)](https://www.patreon.com/posts/mydia-modern-143868943)

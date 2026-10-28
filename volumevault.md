@@ -2,7 +2,7 @@
 title: VolumeVault
 description: A guide to deploying VolumeVault
 published: true
-date: 2026-06-02T20:33:22.276Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-05-30T11:20:56.597Z
@@ -32,7 +32,6 @@ What you get:
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
     <a href="https://github.com/darkdragon14/volumevault"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/PLACEHOLDER"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>
 
@@ -46,7 +45,7 @@ What you get:
 VolumeVault encrypts your stored credentials with a Laravel `APP_KEY`, so you generate one first and paste it into your compose file. Run this one-off command (it just prints a key, runs nothing persistent):
 
 ```bash
-docker run --rm ghcr.io/darkdragon14/volumevault:v1.6.0 php artisan key:generate --show
+docker run --rm ghcr.io/darkdragon14/volumevault:v2.0.7 php artisan key:generate --show
 ```
 
 Copy the full output, including the `base64:` prefix.
@@ -60,7 +59,7 @@ Copy the full output, including the `base64:` prefix.
 ```yaml
 services:
   volumevault:
-    image: ghcr.io/darkdragon14/volumevault:v1.6.0
+    image: ghcr.io/darkdragon14/volumevault:v2.0.7
     container_name: volumevault
     ports:
       - "8081:8080"
@@ -76,10 +75,16 @@ services:
     restart: unless-stopped
 ```
 
+> **Upgrading from v1.x?** v2.0.0 added multi-host agents (a separate, opt-in `volumevault-agent` image; existing installs keep working as a single host). Back up `/mnt/tank/configs/volumevault` and your `APP_KEY` before changing the tag, and read the [release notes](https://github.com/Darkdragon14/VolumeVault/releases) for any migration steps. Keep the same `APP_KEY` and storage folder when you recreate the container.
+{.is-warning}
+
 
 ## 1.3 · Host Path Allowlist
 
-If you plan to back up **host paths** (not just named Docker volumes), set `VOLUMEVAULT_HOST_PATH_ALLOWLIST` to a comma-separated list of permitted path prefixes, e.g. `/mnt/tank,/srv`. When set, any host-path job pointing outside those prefixes is rejected on save — a good guardrail given the socket access. Leave it unset if you only back up named volumes.
+`VOLUMEVAULT_HOST_PATH_ALLOWLIST` is a comma-separated list of permitted path prefixes, e.g. `/mnt/tank,/srv`. It covers both **host-path backup sources** and **local filesystem destinations**. Any path outside those prefixes is rejected when you save the job and again at run time — a good guardrail given the socket access.
+
+> The allowlist is **fail-closed**: if the variable is empty or unset, host-path sources *and* local backup destinations are refused entirely. Include every host path you back up from and every local folder you back up to. Leave it unset only if you back up named volumes to remote destinations.
+{.is-warning}
 
 # 2 · Configuration
 
@@ -115,6 +120,5 @@ VolumeVault issues Sanctum API tokens for automation — trigger backups, read j
 
 Set `APP_URL` to your public HTTPS URL and front the container with your usual proxy (Cloudflare Tunnel or Nginx pointing at `:8080`). If your proxy sits in front, you may also need `TRUSTED_PROXIES` set so Laravel honors the forwarded scheme/host. Given the socket access, keep this behind authentication and avoid exposing it publicly without a good reason.
 
-
-
-https://youtu.be/PLACEHOLDER
+> When VolumeVault is served over HTTPS, also set `SESSION_SECURE_COOKIE: "true"` so the session cookie is only sent over HTTPS. Leave it off for plain-HTTP or LAN-only access, because enabling it without TLS breaks login.
+{.is-info}

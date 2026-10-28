@@ -2,7 +2,7 @@
 title: Crafty Controller
 description: A guide to deploying Crafty Controller
 published: true
-date: 2026-01-15T15:28:44.631Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:04.135Z
@@ -18,7 +18,7 @@ Crafty Controller is a web-based panel that lets you manage Minecraft servers fr
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://gitlab.com/crafty-controller/crafty-4"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://gitlab.com/crafty-controller/crafty-4"><i class="mdi mdi-gitlab"></i>Project</a>
     <a href="https://www.youtube.com/watch?v=A9Nld6MxhXk"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>
@@ -46,6 +46,7 @@ services:
             - "8123:8123" # DYNMAP
             - "19132:19132/udp" # BEDROCK
             - "25500-25600:25500-25600" # MC SERV PORT RANGE
+            - "5520-5550:5520-5550/udp" # HYTALE (optional)
         volumes:
             - /mnt/tank/configs/crafty/backups:/crafty/backups
             - /mnt/tank/configs/crafty/logs:/crafty/logs

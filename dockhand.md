@@ -2,7 +2,7 @@
 title: Dockhand
 description: A guide to depoying Dockhand
 published: true
-date: 2026-06-22T13:33:56.356Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:20.950Z
@@ -16,7 +16,7 @@ A few things that set it apart from the usual Portainer/Dockge crowd:
 
 - **Hardened base image** — Dockhand builds its own OS layer from scratch using [Wolfi](https://github.com/wolfi-dev/os) packages via apko, with every package explicitly declared. The goal is a near-zero-CVE image rather than shipping Alpine with whatever vulnerabilities come along for the ride.
 - **Safe-pull auto-updates** — when checking for updates, new images are pulled to a temporary tag and scanned (Grype/Trivy) *before* touching your running container. If the scan exceeds your vulnerability criteria, the temp image is deleted and the running container is left alone.
-- **Multi-host via the Hawser agent** — an open-source Go agent that makes **outbound** connections back to Dockhand, so you can manage hosts behind NAT, firewalls, or dynamic IPs with no inbound ports exposed.
+- **Multi-host via the Hawser agent** — an open-source Go agent that either listens for Dockhand on your LAN (Standard mode) or makes **outbound** connections back to Dockhand (Edge mode), so you can manage hosts behind NAT, firewalls, or dynamic IPs with no inbound ports exposed.
 - **GitOps** — point a stack at a Git repo and use webhooks or scheduled auto-sync to keep it deployed.
 
 <div class="glance">
@@ -37,13 +37,13 @@ A few things that set it apart from the usual Portainer/Dockge crowd:
 ```yaml
 services:
   dockhand:
-    image: fnsys/dockhand:v1.0.33
+    image: fnsys/dockhand:latest
     container_name: dockhand
     environment:
       - PUID=568
       - PGID=568
       - TZ=America/New_York
-      - HOST_DATA_DIR=/mnt/tank/stacks
+      - STACKS_DIR=/mnt/tank/stacks   # flat stacks folder (Dockhand 1.0.46+)
     ports:
       - "3000:3000"
     volumes:
@@ -98,7 +98,11 @@ Dockhand manages multiple Docker hosts from one dashboard. Each host is an **Env
 
 ## 3.1 Hawser Agent (Remote Hosts)
 
-On each remote machine, install Docker and deploy the Hawser agent:
+On each remote machine, install Docker and deploy the Hawser agent. Hawser has two modes. Pick the one that fits the host:
+
+### Hawser mode {.tabset}
+#### Standard mode (LAN)
+Dockhand connects **in** to the agent on port `2376`. A `TOKEN` is required: without one, the agent refuses to start.
 
 ```yaml
 services:
@@ -106,18 +110,38 @@ services:
     image: ghcr.io/finsys/hawser:latest
     container_name: hawser
     environment:
-      - HAWSER_NODE_NAME=remote-node-1   # optional friendly name
-      # - HAWSER_TLS_ENABLED=true        # optional encrypted transport
+      - TOKEN=change-me                 # openssl rand -hex 32
+      - AGENT_NAME=remote-node-1        # optional friendly name
+      - STACKS_DIR=/mnt/tank/stacks
     ports:
       - "2376:2376"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /mnt/tank/stacks:/mnt/tank/stacks   # same path in and out
     restart: unless-stopped
 ```
 
-Then back in Dockhand, add the environment using the remote host's IP, the agent port (`2376`), and the token. Once the connection test passes, the host appears in your dashboard alongside the others.
+Then back in Dockhand, add the environment using the remote host's IP, the agent port (`2376`), and the same token. Once the connection test passes, the host appears in your dashboard alongside the others.
+
+#### Edge mode (NAT / VPS)
+The agent dials **out** to Dockhand over a WebSocket. Add a Hawser Edge environment in Dockhand first to get its token.
+
+```yaml
+services:
+  hawser:
+    image: ghcr.io/finsys/hawser:latest
+    container_name: hawser
+    environment:
+      - DOCKHAND_SERVER_URL=wss://dockhand.example.com/api/hawser/connect
+      - TOKEN=<token from Dockhand>
+      - AGENT_NAME=remote-node-1        # optional friendly name
+      - STACKS_DIR=/mnt/tank/stacks
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /mnt/tank/stacks:/mnt/tank/stacks   # same path in and out
+    restart: unless-stopped
+```
 
 > 
-> Hawser dials **out** to Dockhand, so the remote host needs no inbound firewall rules or port forwards — handy for NetBird-meshed or NAT'd nodes.
+> In Edge mode Hawser dials **out** to Dockhand, so the remote host needs no inbound firewall rules or port forwards — handy for NetBird-meshed or NAT'd nodes.
 {.is-success}
-

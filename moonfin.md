@@ -2,7 +2,7 @@
 title: Moonfin
 description: A guide to dpeloying Moonfin
 published: true
-date: 2026-04-27T17:52:32.472Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-27T17:52:32.472Z
@@ -12,7 +12,7 @@ dateCreated: 2026-04-27T17:52:32.472Z
 
 **Moonfin** is a collection of enhanced Jellyfin (and Emby) client applications for smart TVs and streaming devices. Built as forks of the official Jellyfin clients, Moonfin focuses on refined UI/UX, native Jellyseerr integration, cross-server content playback, and platform-specific optimizations — all while maintaining full compatibility with any standard Jellyfin server.
 
-Available for Android TV / Fire TV, Roku, Samsung TV (Tizen), and LG TV (WebOS), Moonfin clients add features like a Featured Media Bar, theme music playback, pre-playback track selection, customizable navigation, MDBList rating sources, and the first **native** Jellyfin TV clients with built-in Jellyseerr/Seerr support.
+Available for Android (phone and TV), Fire TV, Roku, Samsung TV (Tizen), LG TV (WebOS), Xbox, iOS, tvOS, macOS, Windows, Linux and the web, Moonfin clients add features like a Featured Media Bar, theme music playback, pre-playback track selection, customizable navigation, MDBList rating sources, and the first **native** Jellyfin TV clients with built-in Jellyseerr/Seerr support.
 
 # 1 · Server Requirements
 
@@ -29,12 +29,23 @@ Before installing any Moonfin client, make sure your media server is running a s
 {.is-success}
 
 # 2 · Install a Moonfin Client
+
+> The clients were consolidated in 2026. Android, Android TV, Fire TV (Fire OS), iOS, tvOS, macOS, Windows and Linux now ship from [Moonfin-Core](https://github.com/Moonfin-Client/Moonfin-Core/releases). Samsung (Tizen), LG (webOS), Fire TV (Vega OS) and Xbox ship from [Smart-TV](https://github.com/Moonfin-Client/Smart-TV/releases). The old `AndroidTV-FireTV`, `Tizen` and `WebOS` repositories are gone.
+{.is-info}
+
 # {.tabset}
 ## Android TV / Fire TV
 
-The flagship Moonfin client supports Android TV 6.0+, Nvidia Shield, Fire TV / Fire TV Stick, and Chromecast with Google TV.
+The Android client supports Android 6.0+ phones and TVs, Nvidia Shield, Fire TV / Fire TV Stick, and Chromecast with Google TV.
 
-1. Download the latest APK from the [Releases page](https://github.com/Moonfin-Client/AndroidTV-FireTV/releases).
+**Store install (recommended)**
+
+- **Android / Android TV**: install Moonfin from [Google Play](https://play.google.com/store/apps/details?id=org.moonfin.androidtv).
+- **Fire TV**: install Moonfin from the [Amazon Appstore](https://www.amazon.com/Moonfin/dp/B0H76BG3DW). This listing also covers newer Vega OS Fire TV devices.
+
+**Sideload (optional)**
+
+1. Download the latest APK from the [Moonfin-Core Releases page](https://github.com/Moonfin-Client/Moonfin-Core/releases).
 2. On your TV device, enable **Unknown Sources** or **Install Unknown Apps** in Settings.
 3. Transfer the APK using one of:
    - A file manager app (e.g., **Send Files to TV**, **X-plore**)
@@ -43,13 +54,15 @@ The flagship Moonfin client supports Android TV 6.0+, Nvidia Shield, Fire TV / F
 4. Open the APK and follow the install prompts.
 5. Launch Moonfin and connect to your Jellyfin / Emby server.
 
-> 
-> Moonfin for Android TV includes a built-in OTA update checker — once installed, future updates can be applied directly from inside the app.
-{.is-info}
-
 ## Roku
 
-The first and only Roku client with native Jellyseerr support. Works on Roku OS 9.1+ devices (2018 and newer), including Roku TV, Streaming Stick, Ultra, and Express.
+A Roku client with native Seerr support. Works on Roku OS 9.1+ devices (2018 and newer), including Roku TV, Streaming Stick, Ultra, and Express.
+
+**Store install (recommended)**
+
+Install Moonfin from the [Roku Channel Store](https://channelstore.roku.com/details/92a83c9f4112b76a7bcee3dc076254ca:3251a91bf7af7339652d5409ccfdcb39/moonfin).
+
+**Sideload (optional)**
 
 1. On your Roku, navigate to **Settings → System → Advanced system settings → Developer options** and enable **Developer mode**. Note the IP address shown.
 2. Set a developer username and password during the activation process.
@@ -68,7 +81,7 @@ The first and only Roku client with native Jellyseerr support. Works on Roku OS 
 
 For Samsung Smart TVs running Tizen 4.0 or newer (2016+ models). Tizen 5.5+ is recommended for the best performance.
 
-1. Download the latest WGT package from the [Tizen Releases page](https://github.com/Moonfin-Client/Tizen/releases).
+1. Download the latest WGT package from the [Smart-TV Releases page](https://github.com/Moonfin-Client/Smart-TV/releases).
 2. The easiest install method is the [Samsung Jellyfin Installer](https://github.com/PatrickSt1991/Samsung-Jellyfin-Installer) — it handles certificate generation and TV pairing automatically.
 3. Alternatively, install via **Tizen Studio**:
    - Install Tizen Studio with the TV Extensions package
@@ -86,7 +99,13 @@ For Samsung Smart TVs running Tizen 4.0 or newer (2016+ models). Tizen 5.5+ is r
 
 For LG Smart TVs running WebOS 3.0 or newer (2016+ models). Includes optimizations for the LG Magic Remote.
 
-1. Download the latest IPK package from the [WebOS Releases page](https://github.com/Moonfin-Client/WebOS/releases).
+**Homebrew Channel install**
+
+If your TV has the webOS Homebrew Channel, install Moonfin from the [webOS Homebrew repo](https://repo.webosbrew.org/apps/org.moonfin.webos/).
+
+**Developer Mode sideload**
+
+1. Download the latest IPK package from the [Smart-TV Releases page](https://github.com/Moonfin-Client/Smart-TV/releases).
 2. On your TV, sign in with an [LG Developer account](https://webostv.developer.lge.com/) and install the **Developer Mode** app from the LG Content Store.
 3. Open the Developer Mode app, log in, and toggle **Dev Mode Status** on. Note the IP address and Passphrase.
 4. On a computer, install [webOS Dev Manager](https://github.com/webosbrew/dev-manager-desktop) (community-maintained GUI).
@@ -97,9 +116,20 @@ For LG Smart TVs running WebOS 3.0 or newer (2016+ models). Includes optimizatio
 > Developer mode on WebOS expires every 50 hours by default. The TV will warn you to extend the session — just open the Dev Mode app and tap **Check for Updates** to reset the timer.
 {.is-warning}
 
-## tvOS (Coming Soon)
+## Apple (iOS / tvOS / macOS)
 
-A Moonfin client for Apple TV is in development and not yet released. Watch the [main Moonfin organization](https://github.com/Moonfin-Client) for announcements.
+Moonfin is available for iPhone, iPad, Apple TV and Mac from the [App Store](https://apps.apple.com/app/moonfin/id6761283970). On macOS you can also install it with Homebrew:
+
+```bash
+brew install --cask moonfin
+```
+
+## Desktop / Xbox / Web
+
+- **Windows**: install from the [Microsoft Store](https://apps.microsoft.com/detail/9plb327dd51d), or download the installer from [Moonfin-Core releases](https://github.com/Moonfin-Client/Moonfin-Core/releases).
+- **Linux**: binaries are in [Moonfin-Core releases](https://github.com/Moonfin-Client/Moonfin-Core/releases), and Arch users can install [`moonfin-bin`](https://aur.archlinux.org/packages/moonfin-bin) from the AUR.
+- **Xbox**: install from the [Microsoft Store](https://apps.microsoft.com/detail/9plb327dd51d), or sideload the ZIP from [Smart-TV releases](https://github.com/Moonfin-Client/Smart-TV/releases) in Developer Mode ([guide](https://github.com/Moonfin-Client/Smart-TV/wiki/Installation-and-Sideloading#xbox)).
+- **Web**: install the Moonbase server plugin (section 3.2). It serves the Moonfin web app as an installable PWA at `http://<jellyfin-server>/Moonfin/Web/`.
 
 # 3 · Initial Configuration
 
@@ -121,19 +151,17 @@ On first launch, every Moonfin client walks through the same connection flow:
 
 Moonfin's headline feature is native Jellyseerr support — browse trending content and request HD/4K movies and shows directly from your TV.
 
-There are two ways to set it up:
+Seerr support requires the **Moonbase** server plugin, which upstream also strongly recommends for all users (it handles settings sync, the Seerr proxy, MDBList/TMDB and the hosted web app).
 
-**Option A — Moonfin Server Plugin (Recommended)**
-
-1. Install the **Moonfin server plugin** on your Jellyfin server.
-2. In the Jellyfin admin dashboard, configure your Jellyseerr/Seerr URL and API key in the plugin settings.
+1. Install the [Moonbase plugin](https://github.com/Moonfin-Client/Plugin) on your Jellyfin server.
+2. In the Jellyfin admin dashboard, go to **Dashboard → Plugins → Moonfin** and configure your Jellyseerr/Seerr URL and API key.
 3. In your Moonfin client, go to **Settings → Plugin** and enable **Plugin Sync**.
 4. Jellyseerr is now configured automatically — all requests are proxied through your Jellyfin server, so the client never needs direct access to Jellyseerr.
 
 
 # 4 · Updates & Maintenance
 
-- **Android TV / Fire TV** has built-in OTA updates — accept the prompt when a new version is detected.
-- **Roku, Tizen, and WebOS** require manual reinstall via the same sideload process used for the initial install. Watch the relevant GitHub repo's Releases page for new versions, or subscribe to release notifications.
+- **Store installs** (Google Play, Amazon, Roku Channel Store, App Store, Microsoft Store) update through the store.
+- **Sideloaded installs** (APK, Tizen WGT, webOS IPK, Roku ZIP) require a manual reinstall via the same sideload process used for the initial install. Watch the relevant GitHub repo's Releases page for new versions, or subscribe to release notifications.
 - All clients inherit upstream Jellyfin compatibility, so server-side updates do not require client updates unless a new Jellyfin major version is released.
 

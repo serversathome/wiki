@@ -2,7 +2,7 @@
 title: LibreDB Studio
 description: A guide to deploying LibreDB Studio
 published: true
-date: 2026-09-15T12:35:08.688Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-15T12:32:23.123Z
@@ -10,7 +10,7 @@ dateCreated: 2026-09-15T12:32:23.123Z
 
 # <img src="/libredbstudio.png" class="tab-icon"> What is LibreDB Studio?
 
-**LibreDB Studio** is a browser-based SQL client you run on your server rather than your desktop. One container reaches sixteen database engines — PostgreSQL, MySQL, SQLite, MongoDB, Redis, ClickHouse, Elasticsearch and Cassandra among them — through the same explorer, editor and result grid.
+**LibreDB Studio** is a browser-based SQL client you run on your server rather than your desktop. One container reaches more than forty database engines — PostgreSQL, MySQL, SQL Server, Oracle, SQLite, MongoDB, Redis, ClickHouse, Elasticsearch and Cassandra among them — through the same explorer, editor and result grid.
 
 <div class="glance">
   <div><span>Port</span><b><code>3000</code></b></div>

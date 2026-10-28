@@ -2,7 +2,7 @@
 title: CatalogIT
 description: A guide to deploying CatalogIT
 published: true
-date: 2026-05-30T10:30:25.104Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-05-30T10:30:25.104Z
@@ -18,6 +18,9 @@ dateCreated: 2026-05-30T10:30:25.104Z
   <div><span>Containers</span><b>5 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/jonymaster/catalogIT"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 
@@ -44,7 +47,7 @@ services:
     restart: unless-stopped
 
   minio:
-    image: minio/minio
+    image: docker.io/pgsty/silo:RELEASE.2026-09-16T00-00-00Z@sha256:635197cb9f36d01bee221d34d1c7d7960f6a95c48b0b6c01d99cd13bdae51a46
     container_name: catalogit-minio
     command: server /data --console-address ":9001"
     ports:
@@ -55,14 +58,14 @@ services:
     volumes:
       - /mnt/tank/configs/catalogit/minio:/data
     healthcheck:
-      test: ["CMD", "mc", "ready", "local"]
+      test: ["CMD", "curl", "-fsS", "http://localhost:9000/minio/health/ready"]
       interval: 5s
       timeout: 5s
       retries: 5
     restart: unless-stopped
 
   api:
-    image: jonymaster/catalogit-api:${CATALOGIT_TAG:-1.4.4}
+    image: jonymaster/catalogit-api:${CATALOGIT_TAG:-1.6.3}
     container_name: catalogit-api
     ports:
       - "8000:8000"
@@ -97,7 +100,7 @@ services:
     restart: unless-stopped
 
   ui:
-    image: jonymaster/catalogit-ui:${CATALOGIT_TAG:-1.4.4}
+    image: jonymaster/catalogit-ui:${CATALOGIT_TAG:-1.6.3}
     container_name: catalogit-ui
     ports:
       - "8080:80"
@@ -120,6 +123,12 @@ services:
       - api
     restart: unless-stopped
 ```
+
+> The official `minio/minio` image has been removed from Docker Hub, so CatalogIT now ships with [Silo](https://github.com/pgsty/silo), the community-maintained MinIO fork. It is a drop-in replacement: the service is still called `minio` and all the `MINIO_*` variables stay the same.
+{.is-info}
+
+> **Upgrading an existing install from `minio/minio`?** Back up PostgreSQL and copy the whole `/mnt/tank/configs/catalogit/minio` folder (including `.minio.sys`) before switching images. The switch changes stored IAM state and can't be rolled back by just going back to the old image. Follow upstream's [Silo upgrade notes](https://github.com/jonymaster/catalogIT/blob/main/docs/releases/next.md).
+{.is-warning}
 
 
 

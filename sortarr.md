@@ -2,7 +2,7 @@
 title: Sortarr
 description: A guide to deploying Sortarr
 published: true
-date: 2026-03-15T20:52:05.753Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-17T15:46:01.206Z
@@ -10,7 +10,7 @@ dateCreated: 2026-01-17T15:46:01.206Z
 
 # What is Sortarr?
 
-**Sortarr** is a lightweight, read-only web dashboard for Sonarr and Radarr that provides deep storage insights into your media library. It connects to your Sonarr/Radarr APIs (and optionally Tautulli) to compute size and efficiency metrics, helping you spot oversized series or movies and compare quality vs. size trade-offs. Sortarr does **not** modify files or take any actions against your media — it's purely analytical.
+**Sortarr** is a lightweight, read-only web dashboard that provides deep storage insights into your media library. It can analyse Sonarr and Radarr libraries, or use Plex, Jellyfin, or Emby directly as a media source, and overlays playback history from Tautulli, Tracearr, Jellystat, Streamystats, or Plex to compute size and efficiency metrics, helping you spot oversized series or movies and compare quality vs. size trade-offs. Sortarr does **not** modify files or take any actions against your media — it's purely analytical.
 
 <div class="glance">
   <div><span>Port</span><b><code>9595</code></b></div>
@@ -31,8 +31,14 @@ services:
     container_name: sortarr
     ports:
       - "9595:8787"
+    environment:
+      - SORTARR_CONFIG_PATH=/data/Sortarr.env
+      - CACHE_SECONDS=300
+      - SORTARR_STORE_SECRETS_AS_FILES=1
+      # Behind a reverse proxy (e.g. Nginx Proxy Manager), uncomment:
+      # - SORTARR_PROXY_MODE=single
     volumes:
-      - /mnt/tank/configs/sortarr:/config
+      - /mnt/tank/configs/sortarr:/data
     restart: unless-stopped
 ```
 
@@ -60,12 +66,15 @@ When you first open Sortarr, the `/setup` page will prompt you to enter your ser
 URLs can be entered with or without a scheme — duplicate schemes are automatically normalized. Read-only API keys are recommended.
 
 
-> Treat the `Sortarr.env` file as a secret — it stores API keys and optional basic auth credentials.
+> Treat the `Sortarr.env` file and the `secrets/` folder next to it (`/mnt/tank/configs/sortarr/secrets`) as secrets. With `SORTARR_STORE_SECRETS_AS_FILES=1`, API keys and basic auth credentials are kept in `secrets/` instead of in `Sortarr.env`.
 {.is-warning}
+
+> Upgrading from an older version of this guide that mounted the folder at `/config`? Change the container side of the volume to `/data` and add `SORTARR_CONFIG_PATH=/data/Sortarr.env`. The host folder stays the same, so your existing `Sortarr.env` is picked up.
+{.is-info}
 
 ## 2.2 Multiple Instances
 
-Sortarr supports up to 3 Sonarr and 3 Radarr instances. Additional instances are configured under the **Advanced** sections of the setup page. When multiple instances are configured, an **Instance** column and filter chips appear in the UI.
+Sortarr supports multiple Sonarr and Radarr instances. Additional instances are configured under the **Advanced** sections of the setup page. When multiple instances are configured, an **Instance** column and filter chips appear in the UI.
 
 ## 2.3 Tautulli Integration (Optional)
 

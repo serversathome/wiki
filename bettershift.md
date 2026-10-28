@@ -2,7 +2,7 @@
 title: Bettershift
 description: A guide to deploying Bettershift
 published: true
-date: 2026-01-15T15:28:15.620Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:26.069Z
@@ -30,6 +30,21 @@ services:
       - 3000:3000
     volumes:
       - /mnt/tank/configs/bettershift:/app/data
+      - /mnt/tank/configs/bettershift/uploads:/app/public/uploads
+    environment:
+      - BETTER_AUTH_SECRET=CHANGEME
+      - BETTER_AUTH_URL=http://your-server-ip:3000
+      - TZ=America/New_York
+      # - ALLOW_USER_REGISTRATION=false
     container_name: bettershift
     image: ghcr.io/pantelx/bettershift:latest
+    restart: unless-stopped
 ```
+
+1. Generate a secret with `openssl rand -base64 32` and paste it in place of `CHANGEME`. Authentication is on by default, and logins fail without a real `BETTER_AUTH_SECRET`
+2. Set `BETTER_AUTH_URL` to the address you open BetterShift at, without a trailing slash. Use your public URL instead if you put it behind a reverse proxy or Cloudflare Tunnel
+3. Deploy the stack, browse to `http://your-server-ip:3000` and create your account
+4. Once your account exists, uncomment `ALLOW_USER_REGISTRATION=false` and redeploy if you don't want anyone else signing up
+
+> BetterShift images are **amd64 only** since v3.0.0. ARM hosts (Raspberry Pi, Apple Silicon) are no longer supported. Before updating an existing install, check the [Upgrade Guide](https://github.com/pantelx/bettershift/blob/main/docs/UPGRADING.md) for breaking changes.
+{.is-warning}

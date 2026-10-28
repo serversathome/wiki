@@ -2,7 +2,7 @@
 title: PIA-tun
 description: A guide to deploying PIA-tun
 published: true
-date: 2026-05-30T11:10:56.041Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-05-30T11:10:56.041Z
@@ -54,6 +54,8 @@ services:
       - PIA_PASS=your_pia_password
       - PIA_LOCATIONS=ca_ontario,ca_toronto
       - PS_CLIENT=qbittorrent
+      - PS_USER=admin                  # qBittorrent WebUI login, used for port syncing
+      - PS_PASS=your_qbit_password
       - LOCAL_NETWORKS=192.168.1.0/24
       - TZ=America/New_York
     ports:
@@ -107,6 +109,12 @@ The full reference is in the project's [env docs](https://github.com/x0lie/pia-t
 | `PS_SCRIPT` | Custom script run after each port refresh, for unsupported clients | None |
 | `PORT_FILE` | File the forwarded port is written to | `/run/pia-tun/port` |
 
+
+> `PS_USER`/`PS_PASS` must match your qBittorrent WebUI login, or the forwarded port never reaches qBittorrent. Update `PS_PASS` after you change qBittorrent's default password.
+{.is-warning}
+
+> **Private tracker users:** PIA is moving to rotating IPs, which can break private tracker rules on simultaneous IPs. See the project's [rotating IP notes](https://github.com/x0lie/pia-tun/blob/main/docs/rotating-ip.md) for workarounds (Dedicated IP, or pinning an older server).
+{.is-info}
 
 If your downloader has no usable API (e.g. rtorrent), pia-tun can't restart other containers itself (that would need the Docker socket). The project recommends a host-side `inotifywait` watcher on `PORT_FILE` that runs `docker restart`, or switching to an API-capable client. See their [dependent-restarts doc](https://github.com/x0lie/pia-tun/blob/main/docs/dependent-restarts.md).
 

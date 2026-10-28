@@ -2,7 +2,7 @@
 title: Tdarr
 description: A guide to installing Tdarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-01-15T15:32:04.412Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:55.739Z
@@ -41,14 +41,16 @@ services:
       - TZ=America/New_York
       - PUID=568
       - PGID=568
-      - UMASK_SET=002
+      - UMASK=002
       - serverIP=0.0.0.0
       - serverPort=8266
       - webUIPort=8265
       - internalNode=true
       - inContainer=true
-      - ffmpegVersion=6
+      - ffmpegVersion=7
       - nodeName=MyInternalNode
+      - auth=true
+      - apiKey= # API key for the internal node, see First Login below
       - NVIDIA_DRIVER_CAPABILITIES=all
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
@@ -89,6 +91,19 @@ services:
 1. Under **Storage Configuration** use **Host Path** for each of the datasets (Tdarr Server Storage, Tdarr Configs Storage, Tdarr Logs Storage, Tdarr Transcode Storage) and point them to datasets you create in your pool. 
 1. Click the **Add** button for **Additional Storage** to pass the `media` directory into the container.
 1. At the very bottom, click the box to **Select NVIDIA GPU(s)** to pass your dGPU into the container. 
+
+# 1.5 · First Login
+
+Since version 3.00.00, new installs start with authentication turned on (`auth=true`). Until an account exists, anyone who can reach the web UI can create the first account, so do this right away.
+
+1. Open `http://YOUR-SERVER-IP:8265` and create a local account when prompted. The first account is the admin.
+1. Go to **Tools → API Keys** and create an API key.
+1. Put that key in the `apiKey` environment variable and redeploy. The internal node won't connect, or show up on the **Tdarr** tab, without a valid key.
+    - **Docker:** fill in the `apiKey=` line in the compose above (`- apiKey=tapi_...`) and redeploy the stack.
+    - **TrueNAS:** edit the app, click **Add** next to **Additional Environment Variables**, set **Name** to `apiKey` and **Value** to your `tapi_...` key, then click **Update**.
+
+> Prefer to skip the manual step? Set `seededApiKey` **and** `apiKey` to the same `tapi_...` value. On first start, Tdarr creates the key (and, if no users exist yet, an `admin` user with the key as its password). `seededApiKey` only creates the key on the server; the internal node still needs `apiKey` to connect. The key must start with `tapi_`, for example: `echo "tapi_$(openssl rand -hex 16)"`. See the [Tdarr authentication docs](https://docs.tdarr.io/docs/other/authentication).
+{.is-info}
 
 # 2 · Tdarr Configuration
 

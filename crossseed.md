@@ -2,7 +2,7 @@
 title: Cross Seed
 description: A guide on how to deploy Cross Seed
 published: true
-date: 2026-01-17T16:53:58.651Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:08.228Z
@@ -43,7 +43,7 @@ services:
 
 # 2 · Configuration
 
-> This assumes Cross Seed and the other containers are within the same Docker network and can reach each other using the container name (eg http://radarr:8989)
+> This assumes Cross Seed and the other containers are within the same Docker network and can reach each other using the container name (eg http://radarr:7878)
 {.is-warning}
 
 1. Use the command below in the TrueNAS shell to open the `config.js` file for editing:
@@ -157,8 +157,8 @@ services:
     ```
 1. Edit the Radarr/Sonarr section and add your info:
     ```json
-      sonarr: ["http://localhost:8989/?apikey=12345"],
-      radarr: ["http://localhost:7878/?apikey=67890"],
+      sonarr: ["http://sonarr:8989/?apikey=12345"],
+      radarr: ["http://radarr:7878/?apikey=67890"],
     ```
 
 1. Restart the container

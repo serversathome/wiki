@@ -2,7 +2,7 @@
 title: Agam Space
 description: A guide to deploying Agam Space
 published: true
-date: 2026-02-03T19:12:40.839Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-03T14:03:10.655Z
@@ -64,8 +64,12 @@ services:
       - /mnt/tank/configs/agamspace/postgres:/var/lib/postgresql/data
 ```
 
-1. Change the `POSTGRES_PASSWORD` to something secure
-2. Update the `DATABASE_URL` password to match
+1. Change the `POSTGRES_PASSWORD` to something secure (you can generate one with `openssl rand -hex 32`)
+2. Update `DATABASE_PASSWORD` to match `POSTGRES_PASSWORD`
+
+> Upstream also publishes hardened images (no shell) under tags like `agamspace/agam-space:latest-hardened`.
+{.is-info}
+
 > 
 > For production deployments, place Agam Space behind a reverse proxy with HTTPS. The encryption happens client-side, but you still want secure transport.
 {.is-info}
@@ -114,7 +118,13 @@ Refer to the [official documentation](https://docs.agamspace.app/configuration/)
 
 | Environment Variable | Description |
 |---------------------|-------------|
-| `DATABASE_URL` | PostgreSQL connection string |
+| `DATABASE_HOST` | Hostname of the Postgres container (`agam-db`) |
+| `DATABASE_PORT` | Postgres port (`5432`) |
+| `DATABASE_USERNAME` | Postgres user, must match `POSTGRES_USER` |
+| `DATABASE_PASSWORD` | Postgres password, must match `POSTGRES_PASSWORD` |
+| `DATABASE_NAME` | Postgres database, must match `POSTGRES_DB` |
+| `HTTP_PORT` | Port the web UI listens on (`3331`) |
+| `ALLOW_NEW_SIGNUP` | Set to `false` to stop new users from signing up |
 {.dense}
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video

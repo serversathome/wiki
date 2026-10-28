@@ -2,7 +2,7 @@
 title: Arcane
 description: A guide to deploying Arcane in docker
 published: true
-date: 2026-06-13T18:56:08.365Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:09.587Z
@@ -27,11 +27,10 @@ dateCreated: 2026-01-15T15:03:09.587Z
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker
 
-Arcane needs **two secrets** before it'll start: an encryption key (for secrets at rest) and a JWT signing secret (for login tokens). Generate them first:
+Arcane needs **one secret** before it'll start: `ENCRYPTION_KEY` (32 bytes, used for secrets at rest). Arcane v2 no longer uses `JWT_SECRET`; it generates and stores its own session signing key. Generate the encryption key first:
 
 ```bash
 openssl rand -base64 32   # use the output for ENCRYPTION_KEY
-openssl rand -base64 32   # run again for JWT_SECRET
 ```
 
 Then deploy via Dockge:
@@ -44,8 +43,8 @@ services:
     ports:
       - "3552:3552"
     environment:
-      - ENCRYPTION_KEY=PASTE_FIRST_OPENSSL_VALUE_HERE
-      - JWT_SECRET=PASTE_SECOND_OPENSSL_VALUE_HERE
+      - ENCRYPTION_KEY=PASTE_OPENSSL_VALUE_HERE
+      - APP_URL=http://YOUR-IP:3552            # the exact URL your browser uses to reach Arcane
       - PROJECTS_DIRECTORY=/mnt/tank/stacks   # where your Compose projects live
       - PUID=568
       - PGID=568
@@ -66,6 +65,9 @@ services:
 
 `PROJECTS_DIRECTORY` is the folder Arcane scans for your Compose projects — point it at your existing stacks directory and mount that **same path** into the container.
 
+> **Upgrading from Arcane 1.x?** Remove `JWT_SECRET` from your compose (Arcane logs a warning if it is still set) and add `APP_URL`, or you may get "Cross-origin request blocked" errors. v2 also no longer runs as root, so make sure user `568` can write to `/mnt/tank/configs/arcane` and your stacks folder. See the [v2 migration guide](https://getarcane.app/docs/get-started/migrate-v2).
+{.is-warning}
+
 
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
@@ -76,7 +78,7 @@ Arcane is in the TrueNAS **Community** train.
 2. Search for **Arcane** and click **Install**.
 3. Configure the key settings:
    - **Encryption Key** — paste a value from `openssl rand -base64 32`.
-   - **JWT Secret** — paste a second `openssl rand -base64 32` value.
+   - **JWT Secret** — the catalog app still requires this field, so paste a second `openssl rand -base64 32` value. Arcane v2 ignores it and signs sessions with its own key.
    - **Host Path (App Data)**: `/mnt/tank/configs/arcane`
    - **Projects Directory**: point at your stacks path (e.g. `/mnt/tank/stacks`) and add a matching host-path mount.
    - **Docker Socket**: the app mounts `/var/run/docker.sock` automatically.
@@ -112,7 +114,6 @@ For external access, terminate TLS at your reverse proxy (or Cloudflare Tunnel) 
 ```yaml
     environment:
       - ENCRYPTION_KEY=...
-      - JWT_SECRET=...
       - APP_URL=https://arcane.serversatho.me
       - TRUSTED_PROXIES=172.16.0.0/12      # your Docker/proxy subnet
 ```

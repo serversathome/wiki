@@ -2,7 +2,7 @@
 title: TrueNAS Community Edition
 description: This article will describe how to set up a TrueNAS server to be compatible will services described in this wiki.
 published: true
-date: 2026-09-02T19:21:40.443Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:56.437Z
@@ -147,7 +147,7 @@ The `["*"]` is a wildcard meaning "all disks."
 > A successful call returns `null`. That is not an error, it just means the tests kicked off. This is also why you may get "produced the following output: null" emails after upgrading.
 {.is-warning}
  
-To schedule it, go to **System Settings → Advanced → Cron Jobs → Add**, paste the command, set the user to `root`, and set a schedule. A good baseline is **SHORT daily** and **LONG weekly or monthly**.
+To schedule it, go to **System → Advanced Settings → Cron Jobs → Add**, paste the command, set the user to `root`, and set a schedule. A good baseline is **SHORT daily** and **LONG weekly or monthly**.
  
 #### Cron job (smartctl)
  
@@ -157,7 +157,7 @@ If you would rather stay in pure `smartctl` and not touch the TrueNAS API, this 
 for dev in $(smartctl --scan | cut -d' ' -f1); do smartctl -t short "$dev"; done
 ```
  
-Add it under **System Settings → Advanced → Cron Jobs**, run as `root`, on a daily schedule. Make a second job with `-t long` for the weekly or monthly full scan.
+Add it under **System → Advanced Settings → Cron Jobs**, run as `root`, on a daily schedule. Make a second job with `-t long` for the weekly or monthly full scan.
  
 #### Scrutiny (GUI)
  
@@ -291,7 +291,6 @@ We need to change the Nameservers away from our local to something more reliable
 Before we setup the VM, we have to build a network bridge. This is necessary because without it, our VM won't be able to see anything on our TrueNAS host. Follow the [docs](https://www.truenas.com/docs/scale/scaletutorials/network/interfaces/settingupbridge/) or even better, follow this YouTube video:  
 https://youtu.be/XBcAMd_wyI0
 
-## Containers
 ## Virtual Machines
 https://youtu.be/l1ISBq7cWkU
 

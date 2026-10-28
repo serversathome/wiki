@@ -2,7 +2,7 @@
 title: Phylum
 description: A guide to deploying Phylum via docker
 published: true
-date: 2026-01-15T15:30:45.137Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:10.430Z
@@ -23,16 +23,25 @@ Phylum is a self-hosted file storage platform with offline-first web and native 
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Phylum
+Generate a database password and use it for both `PHYLUM_DB__PASSWORD` and `POSTGRES_PASSWORD`:
+
+```bash
+openssl rand -hex 32
+```
+
 ```yaml
 services:
   server:
     container_name: phylum_server
     image: shroff12/phylum:latest
     volumes:
-      - /mnt/tank/configs/phylum/storage:/app/storage
+      - /mnt/tank/configs/phylum/data:/var/lib/phylum
     environment:
-      PHYLUM_DB_HOST: db
-      PHYLUM_DB_PASSWORD: changeme
+      PHYLUM_DB__HOST: db
+      PHYLUM_DB__PORT: 5432
+      PHYLUM_DB__NAME: phylum
+      PHYLUM_DB__USER: phylum
+      PHYLUM_DB__PASSWORD: your_db_password
     ports:
       - '2448:2448'
     depends_on:
@@ -46,11 +55,11 @@ services:
     environment:
       POSTGRES_DB: phylum
       POSTGRES_USER: phylum
-      POSTGRES_PASSWORD: changeme
+      POSTGRES_PASSWORD: your_db_password
     volumes:
       - /mnt/tank/configs/phylum/postgres:/var/lib/postgresql/data
-    ports:
-      - '5432:5432'
+    expose:
+      - 5432
     healthcheck:
       test: "pg_isready -U phylum -d phylum"
       interval: 30s
@@ -65,12 +74,17 @@ services:
 {.is-warning}
 
 
-1. Create a user by running the following command in the TrueNAS shell replacing the `admin@test.com` with your user:
-    ```bash
-    docker exec -it phylum_server phylum admin user create admin@test.com --no-email
-    ```
+1. Open `http://IP:2448` (or connect with one of the native apps). On first run Phylum starts in setup mode, so follow the setup flow to configure the instance and create your first user.
 > 
 > The password must be at least 8 characters long
+{.is-warning}
+
+> **Upgrading from an older install?** Earlier versions of this page mounted `/mnt/tank/configs/phylum/storage:/app/storage`. v0.9.0 moved Phylum's data to `/var/lib/phylum` (with `config.yml` and `storage` inside it), and v0.10.0 renamed the config env vars (each `.` is now `__`, e.g. `PHYLUM_DB__HOST`) and changed the storage layout. Stop the stack, then move your old files into the new folder **before** you start it with the new compose:
+> ```bash
+> mkdir -p /mnt/tank/configs/phylum/data
+> mv /mnt/tank/configs/phylum/storage /mnt/tank/configs/phylum/data/storage
+> ```
+> Move `config.yml` into `/mnt/tank/configs/phylum/data/` as well if you have one. Then update your compose as above and migrate your data with `docker compose run --rm server admin migrate img previews` and `docker compose run --rm server admin migrate localstorage`. Read the [v0.9.0](https://codeberg.org/shroff/phylum/releases/tag/releases/v0.9.0) and [v0.10.0](https://codeberg.org/shroff/phylum/releases/tag/releases/v0.10.0) release notes before upgrading.
 {.is-warning}
 
 

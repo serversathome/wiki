@@ -2,7 +2,7 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-09-02T10:39:18.053Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:53.605Z
@@ -95,7 +95,7 @@ Rather than adding indexers manually, let Prowlarr manage them:
 
 ## 2.4 Quality Profiles & Root Folder
 
-1. Go to **Settings → Media Management** and add a **Root Folder** pointing to `/data/media/movies`.
+1. Go to **Settings → Media Management** and add a **Root Folder** pointing to `/media/movies`.
 2. Under **Settings → Profiles**, configure quality profiles to match your storage and bandwidth.
 3. For curated custom formats and quality scoring, consider [Profilarr](/profilarr) to manage profiles across Radarr and Sonarr.
 

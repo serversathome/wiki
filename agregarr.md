@@ -2,17 +2,19 @@
 title: Agregarr
 description: A guide to deploying Agregarr
 published: true
-date: 2026-01-15T15:28:01.203Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:07.197Z
 ---
 
 # ![](/agregarr.png){class="tab-icon"} What is Agregarr?
-Agregarr keeps your Plex Home and Recommended fresh by frequently updating it with Collections from various sources, including Trakt, IMDb, TMdb and Letterboxd, as well as generated Collections from Tautulli Statistics, and Overseerr Requests. It has various options for downloading missing media, including as requests through Overseerr. Collections can be reordered on the Home/Recommended and Library tabs independently, and can have time periods or days set for their visibility in Plex.
+Agregarr keeps your Plex Home and Recommended fresh by frequently updating it with Collections from various sources, including Trakt, IMDb, TMDB, Letterboxd, MDBList, FlixPatrol (Networks Top 10), AniList and MyAnimeList, as well as generated Collections from Tautulli Statistics, and Overseerr Requests. It has various options for downloading missing media, including as requests through Overseerr, or directly through Radarr/Sonarr. Collections can be reordered on the Home/Recommended and Library tabs independently, and can have time periods or days set for their visibility in Plex.
 
 
-- Public Lists: Add public lists from Trakt, IMDb, TMDB and Letterboxd, with presets and custom list options
+- Public Lists: Add public lists from Trakt, IMDb, TMDB, Letterboxd, MDBList, FlixPatrol (Networks Top 10), AniList and MyAnimeList, with presets and custom list options
+- Grab Missing Items: Missing items from lists can be added via Radarr/Sonarr or Overseerr
+- Coming Soon: Create Coming Soon Collections based off monitored content in Radarr/Sonarr, or anticipated releases from Trakt, with trailers and poster overlays
 - Overseerr Requests: Generate Collections either for each users requests (only visible to that user), or for All Requests
 - Tautulli Statistics: Generate Collections based on the Most Popular content on your server
 - Independent Reordering: Control the order in which Collections appear across the Home/Recommended screens and the Library tab independetly
@@ -41,6 +43,12 @@ services:
     restart: unless-stopped
     volumes:
       - /mnt/tank/configs/agregarr:/app/config
+      # Optional: placeholder media folders for the Coming Soon feature.
+      # Add these folders to Plex, but NOT to Radarr/Sonarr.
+      # - /mnt/tank/media/movie-placeholders:/data/movies
+      # - /mnt/tank/media/tv-placeholders:/data/tv
+    environment:
+      - TZ=America/New_York # for accurate poster overlay release dates/countdowns
     ports:
       - 7171:7171
 ```

@@ -2,7 +2,7 @@
 title: Docsight
 description: A guide to deploying Docsight
 published: true
-date: 2026-03-05T15:12:42.220Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-05T15:12:42.220Z
@@ -12,8 +12,8 @@ dateCreated: 2026-03-05T15:12:42.220Z
 
 **DOCSight** is a self-hosted DOCSIS cable modem monitoring dashboard that tracks your cable internet connection 24/7, providing health assessments, trend charts, and hard evidence for ISP complaints. It features automatic signal quality evaluation, interactive charts with DOCSIS reference zones, Speedtest Tracker integration, complaint letter generation, and optional Home Assistant integration via MQTT auto-discovery.
 
-> DOCSight is designed exclusively for **cable internet (DOCSIS/coax)** connections. It will not work with DSL or fiber.
-{.is-danger}
+> Full signal monitoring requires a **DOCSIS cable modem**. On fiber, DSL or satellite, use **Generic Router mode** (speed tests, latency monitoring, notes and reports only, no DOCSIS signal data).
+{.is-info}
 
 <div class="glance">
   <div><span>Port</span><b><code>8765</code></b></div>
@@ -33,9 +33,10 @@ dateCreated: 2026-03-05T15:12:42.220Z
 ```yaml
 services:
   docsight:
-    image: ghcr.io/itsdnns/docsight:latest
+    image: ghcr.io/itsdnns/docsight:stable
     container_name: docsight
     environment:
+      - MODEM_TYPE=fritzbox   # modem driver key, see the DOCSight wiki Configuration page
       - MODEM_URL=http://192.168.178.1
       - MODEM_USER=admin
       - MODEM_PASSWORD=yourpassword
@@ -56,9 +57,11 @@ services:
       - "8765:8765"
     volumes:
       - /mnt/tank/configs/docsight:/data
+    cap_add:
+      - NET_RAW   # needed for latency/ping monitoring
 ```
 
-1. Update `MODEM_URL`, `MODEM_USER`, and `MODEM_PASSWORD` to match your cable modem / router login.
+1. Update `MODEM_TYPE`, `MODEM_URL`, `MODEM_USER`, and `MODEM_PASSWORD` to match your cable modem / router login.
 1. On first launch, the **Setup Wizard** will guide you through connection testing and configuration.
 
 > 
@@ -73,6 +76,7 @@ Configuration is stored in `config.json` inside the Docker volume and persists a
 
 | Variable | Default | Description |
 |---|---|---|
+| `MODEM_TYPE` | — | Modem driver key (e.g. `fritzbox`); see the [Configuration wiki](https://github.com/itsDNNS/docsight/wiki/Configuration) |
 | `MODEM_URL` | `http://192.168.178.1` | Modem / router URL |
 | `MODEM_USER` | — | Modem username |
 | `MODEM_PASSWORD` | — | Modem password |

@@ -2,7 +2,7 @@
 title: Jellydash
 description: A guide to deploying Jellydash
 published: true
-date: 2026-08-28T20:28:41.792Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-28T20:28:41.792Z
@@ -32,8 +32,8 @@ dateCreated: 2026-08-28T20:28:41.792Z
 Create the config directories first so the bind mounts do not come up as root-owned:
 
 ```bash
-mkdir -p /mnt/tank/configs/jellydash/{cache,runtime-cache,logs,uploads,db}
-chown -R 33:33 /mnt/tank/configs/jellydash/{cache,runtime-cache,logs,uploads}
+mkdir -p /mnt/tank/configs/jellydash/{cache,runtime-cache,logs,sessions,uploads,db}
+chown -R 33:33 /mnt/tank/configs/jellydash/{cache,runtime-cache,logs,sessions,uploads}
 ```
 
 Then deploy the stack:
@@ -63,6 +63,9 @@ services:
       POLLER_ENABLED: "true"
       POLL_INTERVAL: "30"
       PUSH_ENABLED: "true"
+      VAPID_PUBLIC_KEY: ""
+      VAPID_PRIVATE_KEY: ""
+      VAPID_SUBJECT: mailto:admin@example.com
       AUTH_ENABLED: "false"
     depends_on:
       jellydash-db:
@@ -71,6 +74,7 @@ services:
       - /mnt/tank/configs/jellydash/cache:/var/www/html/cache
       - /mnt/tank/configs/jellydash/runtime-cache:/var/www/html/var/cache
       - /mnt/tank/configs/jellydash/logs:/var/www/html/var/log
+      - /mnt/tank/configs/jellydash/sessions:/var/www/html/var/sessions
       - /mnt/tank/configs/jellydash/uploads:/var/www/html/public/uploads
 
   jellydash-db:
@@ -100,7 +104,7 @@ services:
 
 ## 2.1 Jellyfin API Key
 
-1. In Jellyfin, go to **Dashboard → API Keys**
+1. In Jellyfin, go to **Dashboard → Advanced → API Keys**
 2. Click **+** and name the key `Jellydash`
 3. Copy the key into `JELLYFIN_API_TOKEN`
 
@@ -129,3 +133,15 @@ Add these to the `jellydash` service and the Jellyseerr page appears in the menu
 
 The API key comes from **Jellyseerr → Settings → General → API Key**. Note the env var spelling is `JELLYSEER_` with one **R**.
 
+## 2.4 Push Notifications
+
+Browser push needs a VAPID keypair, and your dashboard must be served over HTTPS. Generate the keys once:
+
+```bash
+docker exec jellydash php bin/console.php push:vapid
+```
+
+Paste the two keys into `VAPID_PUBLIC_KEY` and `VAPID_PRIVATE_KEY`, set `VAPID_SUBJECT` to your own email, and redeploy the stack. Then tap the bell in the app and allow notifications.
+
+> If you don't want browser push, set `PUSH_ENABLED: "false"`. Jellydash also has built-in Telegram, Pushover, Discord, ntfy and Gotify channels. See the [upstream README](https://github.com/themartz90/jellydash#readme) for their variables.
+{.is-info}

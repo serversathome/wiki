@@ -2,7 +2,7 @@
 title: PeerTube
 description: A guide to deploying PeerTube
 published: true
-date: 2026-01-15T15:30:40.240Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:04.139Z
@@ -24,7 +24,7 @@ PeerTube is a free, decentralized and federated video platform developed as an a
 ```yaml
 services:
   peertube:
-    image: chocobozzz/peertube:production-bookworm
+    image: chocobozzz/peertube:production
     networks:
       default:
         ipv4_address: 172.18.0.42
@@ -43,14 +43,14 @@ services:
       - postfix
     restart: unless-stopped
   postgres:
-    image: postgres:13-alpine
+    image: postgres:17-alpine
     env_file:
       - .env
     volumes:
       - /mnt/tank/configs/peertube/db:/var/lib/postgresql/data
     restart: unless-stopped
   redis:
-    image: redis:6-alpine
+    image: redis:8-alpine
     volumes:
       - /mnt/tank/configs/peertube/redis:/data
     restart: unless-stopped
@@ -71,11 +71,15 @@ networks:
         - subnet: fdab:e4b3:21a2:ef1b::/64
 ```
 
+> **Upgrading an existing install?** The old `production-bookworm` tag stopped at PeerTube 7.3.0 in December 2025; current images are Debian trixie based and tagged `production` (v8.x). Read the [PeerTube upgrade notes](https://docs.joinpeertube.org/install/docker) and the v8 changelog before switching. Postgres also moves from 13 (end of life) to 17, and a major Postgres version can't just be swapped: dump the database first (`docker compose exec postgres pg_dumpall -U <POSTGRES_USER> > peertube.sql`), start Postgres 17 with an empty `/mnt/tank/configs/peertube/db` folder, then restore the dump before starting PeerTube. Keep the old folder until you have confirmed it works. Also keep your existing `POSTGRES_USER` in the `.env` below: older versions of this page used `POSTGRES_USER=admin`, and switching it to `peertube` on an existing database means PeerTube logs in as a role that doesn't own its data.
+{.is-warning}
+
 ## 1.1 env File
-```yaml
+```env
 # Database / Postgres service configuration
-POSTGRES_USER=admin
-POSTGRES_PASSWORD=admin
+POSTGRES_USER=peertube
+# Generate with: openssl rand -hex 16
+POSTGRES_PASSWORD=<strong password>
 POSTGRES_DB=peertube
 PEERTUBE_DB_USERNAME=$POSTGRES_USER
 PEERTUBE_DB_PASSWORD=$POSTGRES_PASSWORD
@@ -89,7 +93,8 @@ PEERTUBE_WEBSERVER_HOSTNAME=peertube.example.com
 #PEERTUBE_WEBSERVER_HTTPS=false
 PEERTUBE_TRUST_PROXY=["127.0.0.1", "loopback", "172.18.0.0/16", "10.99.0.0/24"]
 
-PEERTUBE_SECRET=935dc40ace5d004d60ba7f3a411e6f3b6ac6e4a2c7f73bf63cb466808888f470
+# Generate with: openssl rand -hex 32
+PEERTUBE_SECRET=<your-generated-secret>
 
 # E-mail configuration
 # If you use a Custom SMTP server

@@ -2,7 +2,7 @@
 title: Invoice-Builder
 description: A guide to deploying Invoice Builder
 published: true
-date: 2026-03-02T14:57:26.804Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-02T14:57:26.804Z
@@ -10,7 +10,7 @@ dateCreated: 2026-03-02T14:57:26.804Z
 
 # What is Invoice Builder?
 
-**Invoice Builder** is an offline-first, open-source invoicing and quoting application designed for freelancers and small businesses who want full control over their data. It supports creating and managing invoices and quotes with PDF export, multi-currency support, customizable templates, and a local SQLite database — no accounts, no cloud, no subscriptions required.
+**Invoice Builder** is an offline-first, open-source invoicing and quoting application designed for freelancers and small businesses who want full control over their data. It supports creating and managing invoices and quotes with PDF export, multi-currency support, customizable templates, and a local SQLite database (PostgreSQL is also supported) — no accounts, no cloud, no subscriptions required.
 
 <div class="glance">
   <div><span>Port</span><b><code>3001</code></b></div>
@@ -23,6 +23,9 @@ dateCreated: 2026-03-02T14:57:26.804Z
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Invoice Builder
+
+> **Upgrading from 2.x?** Back up your database and make sure it completed migrations through 2.10.0 before pulling 3.x. Version 3 starts new databases from a consolidated schema and won't upgrade databases with incomplete migrations. See the [upstream upgrade notice](https://github.com/piratuks/invoice-builder#readme).
+{.is-info}
 
 ```yaml
 services:
@@ -38,7 +41,7 @@ services:
       - PORT=3000
       - DEV_SERVER_URL=0.0.0.0
       - FE_SERVER_URL=http://localhost:3001
-      - MIGRATIONS_PATH=/app/dist-be/backend/server/shared/migrations
+      - MIGRATIONS_PATH=/app/dist-migrations
     volumes:
       - /mnt/tank/configs/invoice-builder:/data
     healthcheck:

@@ -2,7 +2,7 @@
 title: Warracker
 description: A guide to deploying Warracker
 published: true
-date: 2026-01-15T15:32:23.712Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:22.115Z
@@ -39,7 +39,7 @@ services:
     ports:
       - "8005:80"
     volumes:
-      - /mnt/tank/configs/uploads:/data/uploads
+      - /mnt/tank/configs/warracker/uploads:/data/uploads
     env_file:
       - .env
     depends_on:
@@ -50,7 +50,7 @@ services:
   warrackerdb:
     image: postgres:15-alpine
     volumes:
-      - /mnt/tank/configs/db:/var/lib/postgresql/data
+      - /mnt/tank/configs/warracker/db:/var/lib/postgresql/data
     env_file:
       - .env
     restart: unless-stopped
@@ -61,9 +61,12 @@ services:
       retries: 5
 ```
 
+> Older versions of this guide used `/mnt/tank/configs/uploads` and `/mnt/tank/configs/db`, which can collide with other apps. If you already deployed with those paths, either keep them or move the folders into `/mnt/tank/configs/warracker/` before redeploying.
+{.is-info}
+
 ### 1.1 env File
 
-```yaml
+```env
 # Warracker Environment Variables Configuration
 # Copy this file to .env and customize the values for your deployment
 
@@ -89,8 +92,10 @@ POSTGRES_PASSWORD=warranty_password
 ###  Security Configuration**
 
 # Application secret key for JWT tokens and Flask sessions
-# IMPORTANT: Generate a strong, unique secret key for production!
-SECRET_KEY=your_very_secret_flask_key_change_me
+# Leave empty to auto-generate a random key on first start (it is persisted),
+# or set your own with: openssl rand -hex 32
+# Do NOT use a known default value here.
+SECRET_KEY=
 
 # JWT token expiration time (in hours)
 JWT_EXPIRATION_HOURS=24
@@ -160,6 +165,13 @@ OIDC_SCOPE=openid email profile
 
 # OIDC admin group (optional, requires group scope)
 OIDC_ADMIN_GROUP=
+
+# OIDC-only mode: hide the username/password login form, OIDC login only
+OIDC_ONLY_MODE=false
+
+# Skip the login screen and redirect straight to the OIDC provider
+# (only takes effect when OIDC_ONLY_MODE is also true)
+OIDC_SKIP_LOGIN_SCREEN=false
 
 ### **Development/Debugging Configuration (Optional)**
 

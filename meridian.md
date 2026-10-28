@@ -2,7 +2,7 @@
 title: Meridian
 description: A guide to deploying Meridian
 published: true
-date: 2026-09-05T10:54:21.092Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-22T21:18:58.613Z
@@ -10,7 +10,9 @@ dateCreated: 2026-04-22T21:18:58.613Z
 
 # What is Meridian?
 
-**Meridian** is a local proxy that exposes the Claude Code SDK as a standard Anthropic API endpoint, so third-party coding tools can talk to Claude through a Claude Max subscription instead of a metered API key. It runs on `127.0.0.1:3456` by default and speaks both the Anthropic Messages API and the OpenAI chat-completions API, which means tools like OpenCode, Crush, Droid, Cline, Aider, Pi, ForgeCode and Open WebUI can point at it with nothing more than a `base_url` change.
+**Meridian** is a local proxy that exposes the Claude Agent SDK (formerly the Claude Code SDK) as a standard Anthropic API endpoint, so third-party coding tools can talk to Claude through a Claude Max subscription instead of a metered API key. It runs on `127.0.0.1:3456` by default and speaks both the Anthropic Messages API and the OpenAI chat-completions API, which means tools like OpenCode, Crush, Droid, Cline, Aider, Pi, ForgeCode and Open WebUI can point at it with nothing more than a `base_url` change.
+
+Newer releases also include a web UI at `/` (with **Providers** and **Settings** pages) and a preview **Antigravity** backend that routes requests through Google's official `agy` CLI instead of Claude. It is selected with `MERIDIAN_BACKEND=antigravity`; see the [Antigravity docs](https://github.com/rynfar/meridian/blob/HEAD/docs/antigravity.md).
 
 Everything flows through the SDK's documented `query()` function — no OAuth interception, no patched binaries. Session management, streaming, prompt caching and rate limiting stay under Anthropic's control; Meridian only translates the SDK's output into the API shape that other tools expect. TypeScript, MIT licensed, distributed on npm as `@rynfar/meridian`.
 
@@ -40,6 +42,7 @@ services:
     environment:
       - HOME=/home/claude
       - MERIDIAN_TELEMETRY_PERSIST=1
+      - MERIDIAN_HOST_ID=meridian-local # stable, unique per container
     restart: unless-stopped
     ports:
       - "3456:3456"
@@ -77,7 +80,11 @@ To use Meridian, point the tools at `http://{IP}:3456` and enter any API key sin
 | `MERIDIAN_MAX_SESSIONS` | `1000` | In-memory LRU session cache size |
 | `MERIDIAN_MAX_STORED_SESSIONS` | `10000` | File-based session store capacity |
 | `MERIDIAN_WORKDIR` | `cwd()` | Default working directory for the SDK |
-| `MERIDIAN_SONNET_MODEL` | `sonnet` | `sonnet` (200k) or `sonnet[1m]` (1M, bills as Extra Usage) |
+| `MERIDIAN_SONNET_MODEL` | `sonnet` | Sonnet 4.x only: `sonnet` (200k) or `sonnet[1m]` (1M, bills as Extra Usage). No effect on Sonnet 5+ |
+| `MERIDIAN_OPUS_MODEL` | `opus[1m]` | Set to `opus` to stay on the 200k Opus variant |
+| `MERIDIAN_1M_CONTEXT_SUPPORT` | unset | `0` stops Meridian from requesting any optional `[1m]` tier |
+| `MERIDIAN_HOST_ID` | derived | Stable, unique container identity for session locks. Set it in containers |
+| `MERIDIAN_BACKEND` | Claude | `antigravity` selects the preview Antigravity backend |
 | `MERIDIAN_DEFAULT_AGENT` | `opencode` | Adapter for unrecognised clients. Requires restart. |
 | `MERIDIAN_DEFER_TOOL_THRESHOLD` | `15` | Tool count before non-core tools defer via ToolSearch. `0` disables. |
 | `MERIDIAN_TELEMETRY_PERSIST` | unset | Enable SQLite telemetry that survives restarts |
@@ -85,7 +92,7 @@ To use Meridian, point the tools at `http://{IP}:3456` and enter any API key sin
 | `MERIDIAN_PROFILES` | unset | JSON array of profile configs, overrides disk discovery |
 {.dense}
 
-> Sonnet defaults to 200k context on purpose — Sonnet 1M is always billed as Extra Usage on Max plans, even when regular usage is not exhausted. Opus 1M is included with Max at no extra cost.
+> Sonnet 5 and later (the default) run with a native 1M context window on every plan, with no Extra Usage. The `MERIDIAN_SONNET_MODEL` 200k default only matters if you pin a Sonnet 4.x model, where `sonnet[1m]` is always billed as Extra Usage on Max plans. Opus 1M is included with Max at no extra cost.
 {.is-info}
 
 ## 2.3 Passthrough vs internal mode
@@ -97,7 +104,7 @@ The question is who actually executes the tools.
 
 The adapter picks the right mode automatically. Override with `MERIDIAN_PASSTHROUGH=1` or `=0`.
 
-> **Known limitation.** In passthrough mode the SDK runs with `maxTurns=2`, so you get a single tool round-trip per request. Multi-step agentic loops need the client to re-send after each round.
+> **Known limitation.** In passthrough mode the SDK is capped at one turn per request by default, so the client runs the tool calls and re-sends after each round. Set `MERIDIAN_PASSTHROUGH_MAX_TURNS` to raise the budget (with `MERIDIAN_PASSTHROUGH_EARLY_STOP=1`, the default, it still stops once a tool batch is handed to the client). See the [configuration docs](https://github.com/rynfar/meridian/blob/HEAD/docs/configuration.md).
 {.is-warning}
 
 

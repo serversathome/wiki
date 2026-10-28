@@ -2,7 +2,7 @@
 title: Nginx UI
 description: A guide to deplpying Nginx UI
 published: true
-date: 2026-02-03T13:56:54.129Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-03T13:56:54.129Z
@@ -56,7 +56,12 @@ services:
 
 1. Ensure the `/mnt/tank/configs/nginx` directory is empty on first run
 2. Deploy the stack and navigate to `http://your-server-ip:8080/install`
-3. Complete the initial setup wizard to create your admin account
+3. Get the one-time install secret and paste it into the setup page:
+    ```bash
+    cat /mnt/tank/configs/nginx-ui/.install_secret
+    ```
+    (or `docker exec nginx-ui cat /etc/nginx-ui/.install_secret`). The secret is removed once setup completes or expires.
+4. Complete the initial setup wizard to create your admin account
 
 > 
 > The Nginx UI image includes Nginx itself. Ports 8080 and 8443 map to the container's port 80 and 443, allowing you to use Nginx UI as your primary reverse proxy.

@@ -2,7 +2,7 @@
 title: *Arr Stack
 description: 
 published: true
-date: 2026-09-28T18:16:03.611Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-28T21:27:05.188Z
@@ -44,7 +44,6 @@ dateCreated: 2026-01-28T21:27:05.188Z
 - [📋 Listseerr<br>*Request everything on a list straight into Seerr*](/listseerr)
 - [<img src="/ombi.png"> Ombi<br>*Media request and discovery manager*](/ombi)
 - [<img src="/pulsarr.png"> Pulsarr<br>*Plex watchlist monitoring, routing and notifications*](/pulsarr)
-- [<img src="/recommendarr.png"> Recommendarr<br>*Personalized recommendations for existing libraries*](/recommendarr)
 - [<img src="/seerr.png"> Seerr<br>*Media request and discovery manager*](/seerr)
 - [🍷 Sommelierr<br>*Random content recommender*](/sommelierr)
 - [<img src="/slskd.png"> Soulseek<br>*Music-sharing network*](/soulseek)
@@ -58,12 +57,6 @@ dateCreated: 2026-01-28T21:27:05.188Z
 
 
 - [<img src="/chaptarr.png"> Chaptarr<br>*Book collection manager, the Readarr successor*](/chaptarr)
-{.links-list .arr}
-
-# Search automation {.sec .arr}
-- [<img src="/fetcharr.png"> Fetcharr<br>*Re-searches for missing and upgradable media*](/fetcharr)
-- [<img src="/houndarr.png"> Houndarr<br>*Polite automated backfill searching across the stack*](/houndarr)
-- [🎯 NewtArr<br>*Maintained Huntarr fork for hunting missing media*](/newtarr)
 {.links-list .arr}
 
 # Torrent management {.sec .arr}
@@ -80,13 +73,11 @@ dateCreated: 2026-01-28T21:27:05.188Z
 - [📺 Episeerr<br>*Episode-level control and automation for Sonarr*](/episeerr)
 - [<img src="/profilarr.png"> Profilarr<br>*Import, export and sync profiles and custom formats*](/profilarr)
 - [<img src="/reclaimerr.png"> Reclaimerr<br>*Finds unwatched and stale media to reclaim space*](/reclaimerr)
-- [<img src="/recyclarr.png"> Recyclarr<br>*Automatically sync TRaSH guides*](/Recyclarr)
 - [<img src="/tdarr.png"> Tdarr<br>*Transcode automation*](/tdarr)
 - [<img src="/unmanic.png"> Unmanic<br>*Transcode automation*](/unmanic)
 {.links-list .arr}
 
 # Stats and dashboards {.sec .arr}
-- [<img src="/dasharr.png"> Dasharr<br>*Dashboard for the whole stack*](/dasharr)
 - [🗂️ Prismarr<br>*One interface over Radarr, Sonarr, Prowlarr and more*](/prismarr)
 - [📊 Sonarr Analyzer<br>*Average episode size per series*](/sonarranalyzer)
 - [💾 Sortarr<br>*Storage insights across Sonarr and Radarr*](/sortarr)

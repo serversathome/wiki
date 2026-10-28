@@ -2,7 +2,7 @@
 title: OpenWebUI
 description: A guide to deploying OpenWebUI
 published: true
-date: 2026-06-15T15:33:22.377Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-15T15:23:06.042Z
@@ -67,15 +67,18 @@ services:
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
-Open WebUI is in the **Community** train (App Version v0.9.5 as of May 2026, requires TrueNAS 24.10.2.2 or newer). The TrueNAS app bundles a Redis sidecar for you.
+Open WebUI is in the **Community** train (App Version v0.12.x as of October 2026, requires TrueNAS 24.10.2.2 or newer). The TrueNAS app bundles a Redis sidecar for you.
 
 1. Navigate to **Apps** in the TrueNAS UI and select the **Discover** screen.
 2. Search for **Open WebUI** and click **Install**.
 3. Configure the key settings:
-   - **Web Port**: `30080` (or your choice)
-   - **Ollama URL**: point at your existing Ollama app, e.g. `http://<ollama-app>:11434`
-   - **Storage → Data**: set a **Host Path** of `/mnt/tank/configs/openwebui` (maps to `/app/backend/data`)
-   - **Secret Key**: paste a long random string so sessions survive restarts
+   - **Image Selector**: the default **Ollama Image** bundles Ollama; pick **Standard Image** if you use an existing Ollama app or an OpenAI-compatible API, or **Cuda Image** for NVIDIA
+   - **WebUI Port**: `30080` (or your choice)
+   - **Ollama Base URL (Optional, Used for External Ollama Server)**: point at your existing Ollama app, e.g. `http://<ollama-app>:11434`
+   - **OpenAI API Key** (optional): for OpenAI or a compatible API
+   - **Storage → Open WebUI Data Storage**: set a **Host Path** of `/mnt/tank/configs/openwebui` (maps to `/app/backend/data`)
+   - **Storage → Open WebUI Ollama Storage**: only used with the bundled Ollama image, e.g. `/mnt/tank/configs/openwebui-ollama`
+   - **WebUI Secret Key**: paste a long random string (e.g. `openssl rand -hex 32`) so sessions survive restarts
 4. Click **Install** and wait for the app to report **Running**.
 5. Open the **Web Portal** — the first account you create is the admin.
 

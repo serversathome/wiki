@@ -2,7 +2,7 @@
 title: Vaultwarden
 description: A guide to installing Vaultwarden in docker via compose
 published: true
-date: 2026-01-15T15:32:20.559Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:17.568Z
@@ -18,6 +18,7 @@ Vaultwarden is a free and secure password manager that works on any device and p
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
+    <a href="https://github.com/dani-garcia/vaultwarden"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://www.youtube.com/watch?v=DqNZO6n8Wqc"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>
@@ -61,11 +62,21 @@ Your Vaultwarden server is now ready on whatever port you specified. However, do
 # 3 · Admin Controls
 
 After you have created your account, to prevent other users from doing so on your server, you must disable to ability to create new account from the admin panel. 
-1. Go back to your compose file an uncomment out the `ADMIN_TOKEN` line and relaunch your container
+1. Generate a hashed admin token with Vaultwarden's built-in generator. It asks for a password (this is what you will type on the admin page) and prints an Argon2 string starting with `$argon2id$`:
+   ```bash
+   docker exec -it vaultwarden /vaultwarden hash
+   ```
+1. Go back to your compose file, uncomment the `ADMIN_TOKEN` line, paste the hash in single quotes, and change every `$` to `$$` so compose doesn't treat them as variables. Then relaunch your container
 1. Navigate to https://{yourFQDN}.com/admin and uncheck the box that says *Allow new signups*. When you are done, scroll to the bottom and click **Save**
 1. Now comment the `ADMIN_TOKEN` line back out and restart the container. 
 > To fully disable to Admin panel, you need to remove the line for the admin token from the config.json file within the container.
 {.is-warning}
+
+> A plain-text `ADMIN_TOKEN` still works, but Vaultwarden logs a warning that it is insecure. Use the hash from `vaultwarden hash` instead. See the [admin page docs](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page).
+{.is-info}
+
+> Prefer to skip the admin panel? Add `SIGNUPS_ALLOWED: "false"` under `environment:` after you have created your account and restart the container. New sign-ups are then turned off.
+{.is-info}
 
 
 ![](/untitled.jpeg)

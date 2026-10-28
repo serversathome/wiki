@@ -2,7 +2,7 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-10-22T14:13:44.911Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:42.310Z
@@ -302,7 +302,7 @@ services:
       - WIREGUARD_ADDRESSES=
       - FIREWALL_VPN_INPUT_PORTS=6881
       - SERVER_COUNTRIES= #optional
-      - DNS_ADDRESS= #optional
+      - DNS_UPSTREAM_RESOLVERS= #optional, e.g. cloudflare,quad9
     image: qmcgaw/gluetun:latest
     ports:
       - '8080:8080'
@@ -340,38 +340,30 @@ To add port forwarding, on the `FIREWALL_VPN_INPUT_PORTS` add a comma with no sp
 
 ## <img src="/docker.png" class="tab-icon"> NordVPN + qBit
 
+> The `bubuntux/nordlynx` container this tab used to rely on was archived on Aug 16, 2026 and is no longer maintained. Its author recommends Gluetun, which has NordVPN built in, so this tab now uses Gluetun's NordVPN provider over WireGuard (NordLynx).
+{.is-warning}
 
 ```yaml
 services:
-  nordvpn:
-    image: ghcr.io/bubuntux/nordlynx
-    container_name: nordvpn
+  gluetun:
+    image: qmcgaw/gluetun:latest
+    container_name: gluetun
     cap_add:
-      - NET_ADMIN # Required for VPN
-      - NET_RAW
-      - SYS_MODULE
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
     environment:
-      - PRIVATE_KEY=
-      - CONNECT=United_States
-      - TECHNOLOGY=NordLynx
-      - NETWORK={ENTER YOUR LAN SUBNET HERE;i.e. 192.168.1.0/24} 
+      - VPN_SERVICE_PROVIDER=nordvpn
+      - VPN_TYPE=wireguard
+      - WIREGUARD_PRIVATE_KEY=
+      - SERVER_COUNTRIES=United States
     ports:
       - 8080:8080
-    dns:
-      - 1.1.1.1
-      - 8.8.8.8
-    sysctls:
-      - net.ipv6.conf.all.disable_ipv6=1
-      - net.ipv4.ip_forward=1
-    volumes:
-      - /mnt/tank/configs/nordvpn:/config
-    devices:
-      - /dev/net/tun
     restart: unless-stopped
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
-    network_mode: container:nordvpn
+    network_mode: service:gluetun
     environment:
       - PUID=568
       - PGID=568
@@ -379,11 +371,10 @@ services:
       - WEBUI_PORT=8080
     volumes:
       - /mnt/tank/configs/qbittorrent:/config
-      - /mnt/tank/media:/media  
+      - /mnt/tank/media:/media
     depends_on:
-      - nordvpn
+      - gluetun
     restart: unless-stopped
-
 ```
 > If you want to change the webui ports to something other then 8080, change the ports section to something like:
 > ```
@@ -393,15 +384,15 @@ services:
 > And change the WEBUI_PORT variable to the same port. 
 {.is-warning}
 
-To get your Private Key needed to make this container work, you will need to log into your NordVPN account and head to the "NordVPN" service located on the left menu option.  Scroll down until you see the "Access Token" option and click on "Get Access Token".  You will likely need to verify your email address.  Once verified, click on the "Generate a New Token" option and leave set to 30 day period, as the token will not be necessary after being used to generate your Private Key.
+To get the WireGuard private key, log into your NordVPN account and head to the "NordVPN" service located on the left menu option. Scroll down until you see the "Access Token" option and click on "Get Access Token". You will likely need to verify your email address. Once verified, click on the "Generate a New Token" option and leave set to 30 day period, as the token will not be necessary after being used to get your private key.
 
-You will now use the Token you have generated to generate your Private Key by using the following command to run a container in a removal state, so that it will display in the terminal what your Private Key is for NordVPN to be able to enter into the compose file above.  You will want to use a Shell that has access to the Docker service.  If you have been using Dockge installed on a Truenas instance, you can shell into the Dockge app to use this command to generate your Private Key.
+Then use the token to fetch your private key from any shell (replace `YOUR_TOKEN`), and paste the output into `WIREGUARD_PRIVATE_KEY`:
 
 ```bash
-docker run --rm --cap-add=NET_ADMIN -e TOKEN={{{TOKEN}}} ghcr.io/bubuntux/nordvpn:get_private_key
+curl -s -u token:YOUR_TOKEN https://api.nordvpn.com/v1/users/services/credentials | grep -o '"nordlynx_private_key":"[^"]*"'
 ```
 
->For more info on this container, look [here](https://github.com/bubuntux/nordlynx)
+>For more info, see Gluetun's [NordVPN provider docs](https://github.com/qdm12/gluetun-wiki/blob/main/setup/providers/nordvpn.md)
 {.is-info}
 
 

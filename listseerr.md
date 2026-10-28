@@ -2,7 +2,7 @@
 title: Listseerr
 description: A guide to deploying Listseerr
 published: true
-date: 2026-01-22T10:55:35.969Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:04.583Z
@@ -34,7 +34,7 @@ services:
     environment:
       TZ: 'America/New_York'
       # (REQUIRED) Generate with: openssl rand -hex 32
-      ENCRYPTION_KEY: 'e31a4c1b30373bc6eb08826541c10ff650921d8f96ddf69809328e64dda56a92'
+      ENCRYPTION_KEY: 'CHANGE_ME'
     volumes:
       - /mnt/tank/configs/listseerr:/app/data
     restart: unless-stopped

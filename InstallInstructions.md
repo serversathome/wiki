@@ -2,7 +2,7 @@
 title: Install Instructions
 description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2026-09-08T11:42:38.443Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:31.090Z
@@ -22,7 +22,7 @@ Follow the steps in this order to make the install go as smoothly as possible.
 | 4   | Install qBittorrent | [qBittorrent](/qBittorrent) |
 | 5   | Install Radarr | [Radarr](/radarr) |
 | 6   | Install Sonarr | [Sonarr](/Sonarr) |
-| 7   | Install Flaresolverr | [Flaresolverr](/Flaresolverr) |
+| 7   | Install Flaresolverr (or Trawl, which the auto-install script now uses) | [Flaresolverr](/Flaresolverr) / [Trawl](/trawl) |
 | 8   | Install Prowlarr | [Prowlarr](/Prowlarr) |
 | 9   | Install Profilarr | [Profilarr](/profilarr) |
 | 10  | Install Emby/Jellyfin | [Emby](/Emby)/[Jellyfin](/jellyfin) |
@@ -40,7 +40,7 @@ Follow the steps in this order to make the install go as smoothly as possible.
  
 - After that Radarr and Sonarr will ask to be pointed to the media folders you already have set up as well as the download client which is now running.
  
-- Install Flaresolverr so when we set up Prowlarr next, we can add it in case we will need it later. 
+- Install Flaresolverr (or Trawl, a drop-in replacement with the same API) so when we set up Prowlarr next, we can add it in case we will need it later. 
  
 - Prowlarr will want to know which apps you want to connect, and Radarr and Sonarr are now ready to accept API pushes from Prowlarr, as well as the Flaresolverr server for indexers which use Cloudflare.
  

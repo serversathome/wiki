@@ -2,7 +2,7 @@
 title: Euro-Office
 description: A guide to deploying Euro-Office in docker
 published: true
-date: 2026-07-01T16:07:06.856Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-09T11:51:24.911Z
@@ -31,7 +31,7 @@ Under the hood, Euro-Office is a fork of **OnlyOffice**. On launch it is functio
 ```yaml
 services:
   euro-office:
-    image: ghcr.io/euro-office/documentserver:v9.3.1
+    image: ghcr.io/euro-office/documentserver:v9.3.7
     container_name: euro-office
     restart: unless-stopped
     ports:
@@ -40,11 +40,15 @@ services:
       - JWT_ENABLED=true
       - JWT_SECRET=your_generated_secret_here
     volumes:
-      - /mnt/tank/configs/euro-office/data:/var/www/euro-office/Data
-
+      - /mnt/tank/configs/euro-office/data:/var/lib/euro-office/documentserver
+      - /mnt/tank/configs/euro-office/private:/var/www/euro-office/Data
+      - /mnt/tank/configs/euro-office/logs:/var/log/euro-office/documentserver
 ```
 
-Generate a real JWT secret with <kbd>openssl rand -hex 32</kbd> and replace the placeholder.
+Generate a real JWT secret with <kbd>openssl rand -hex 32</kbd> and replace the placeholder. Since v9.3.4 the container refuses to start with a `JWT_SECRET` shorter than 32 characters or with the old placeholder defaults. Pin the [current release](https://github.com/euro-office/documentserver/releases) tag rather than `latest`.
+
+> **Upgrading from an earlier version of this guide?** It mounted `/mnt/tank/configs/euro-office/data` at `/var/www/euro-office/Data`. Move that folder's contents to `/mnt/tank/configs/euro-office/private` before redeploying, so your runtime settings and any generated secrets survive.
+{.is-warning}
 
 
 # 2 · Configuration
@@ -56,6 +60,7 @@ Generate a real JWT secret with <kbd>openssl rand -hex 32</kbd> and replace the 
 | `JWT_ENABLED` | Require signed requests. Keep `true`. |
 | `JWT_SECRET` | Shared secret the host app (Nextcloud) must match exactly. |
 | `EXAMPLE_ENABLED` | Enables the built-in test app at `/example`. Use for testing only; disable in production. |
+| `ALLOW_PRIVATE_IP_ADDRESS` | Default `false`. Set to `true` if the Document Server has to fetch files from a Nextcloud on a private/LAN IP. |
 
 ## 2.2 Try the Editors (no host app needed)
 
@@ -82,17 +87,19 @@ For a reliable connection, **all three** of these paths must work:
 |------|-----|
 | Browser → Document Server | Loads the editor UI and JavaScript |
 | Nextcloud → Document Server | Health/command check on save |
-| Document Server → Nextcloud | The save-back callback (WOPI). If this fails, edits never persist. |
+| Document Server → Nextcloud | The save-back callback. If this fails, edits never persist. |
 
  
 
 # 4 · Connecting to Nextcloud
  
-On **Nextcloud Hub 26 Spring** the office integration is chosen under **Apps → Office → Select your preferred office suite**, where Euro-Office appears as **Nextcloud Office (Powered by Euro-Office)** alongside Collabora.
+Euro-Office connects to Nextcloud through the dedicated **Euro-Office integration** app, which requires **Nextcloud 34 or later**.
  
-1. Select **Nextcloud Office**.
-2. Open the Euro-Office admin settings and set the **Document Server address** to your proxy hostname (e.g. `https://office.example.com/`) — use the public FQDN, not a LAN IP, or the connector will refuse to connect to a local address.
-3. Enter the **Secret key (JWT)** — the exact `JWT_SECRET` from your compose — and save. You should see a green "server is reachable" confirmation.
+1. In Nextcloud, go to **Apps → Office & text → Euro-Office integration** and click **Download and enable**.
+2. Go to **Settings → Administration → Euro-Office** and enter the URL of your Document Server, including the protocol (e.g. `https://office.example.com`). Use the public FQDN, not a LAN IP, or the connector will refuse to connect to a local address.
+3. Enter the **JWT secret**, which is the exact `JWT_SECRET` from your compose, and click **Save**.
+
+See the official [Nextcloud integration guide](https://euro-office.github.io/documentation/integration/nextcloud/) for details.
 Opening a `.docx`, `.xlsx`, or `.pptx` in Nextcloud Files will then launch the Euro-Office editor inline, with real-time collaboration.
  
 

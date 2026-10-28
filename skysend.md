@@ -2,7 +2,7 @@
 title: Skysend
 description: A guide to deploy Skysend
 published: true
-date: 2026-04-27T17:59:04.372Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-27T17:59:04.372Z
@@ -51,12 +51,12 @@ services:
 
 ## 2.1 File Upload Limits
 
-By default, SkySend allows files up to 2GB and 32 files per multi-upload. Adjust these limits via environment variables:
+By default, SkySend allows files up to 2GB and 200 files per multi-upload. Adjust these limits via environment variables:
 
 ```
 environment:
   - FILE_MAX_SIZE=5GB
-  - FILE_MAX_FILES_PER_UPLOAD=64
+  - FILE_MAX_FILES_PER_UPLOAD=300
   - FILE_EXPIRE_OPTIONS_SEC=300,3600,86400,604800,2592000
   - FILE_DEFAULT_EXPIRE_SEC=86400
   - FILE_DOWNLOAD_OPTIONS=1,2,3,5,10,20,50,100
@@ -66,7 +66,7 @@ environment:
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `FILE_MAX_SIZE` | `2GB` | Maximum size per file |
-| `FILE_MAX_FILES_PER_UPLOAD` | `32` | Files per multi-upload |
+| `FILE_MAX_FILES_PER_UPLOAD` | `200` | Files per multi-upload |
 | `FILE_EXPIRE_OPTIONS_SEC` | `300,3600,86400,604800` | Selectable expiry times in seconds |
 | `FILE_DEFAULT_EXPIRE_SEC` | `86400` | Default expiry (must match an option) |
 | `FILE_UPLOAD_QUOTA_BYTES` | `0` | Per-IP daily upload quota (`0` = unlimited) |
@@ -111,13 +111,14 @@ environment:
 
 ## 2.4 Service Toggles
 
-If you only want file sharing or only notes, control which features are enabled:
+SkySend v3 has three services: file sharing, notes, and **File Requests** (`request`, a link others can use to upload files to you). Control which ones are enabled:
 
 ```yaml
 environment:
-  - ENABLED_SERVICES=file,note   # Both (default)
-  # ENABLED_SERVICES=file        # Files only
-  # ENABLED_SERVICES=note        # Notes only
+  - ENABLED_SERVICES=file,note,request   # All three (default)
+  # ENABLED_SERVICES=file,note           # Files and notes, no file requests
+  # ENABLED_SERVICES=file                # Files only
+  # ENABLED_SERVICES=note                # Notes only
 ```
 
 Disabled services return HTTP 403 and their UI tabs are hidden.

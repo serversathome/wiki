@@ -2,7 +2,7 @@
 title: Nginx Proxy Manager
 description: 
 published: true
-date: 2026-01-15T15:30:24.739Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:44.152Z
@@ -31,7 +31,7 @@ Nginx Proxy Manager (NPM) is a tool that lets you expose your private web servic
 1. Change the **HTTP Port** to **80** and the **HTTPS Port** to **443**. Choose any port you want for the **WebUI Port** which isn't in use.
 1. For the **Nginx Proxy Manager Data Storage** and the **Nginx Proxy Manager Certs Storage** use **Host Path** pointed to a dataset with the correct permissions. 
 
-> The dashboard is now deployed on `http://{serverIP}:81`. The username is *admin@example.com* and the password is *changeme*. After you login you will be forced to change your password.
+> The dashboard is now deployed on `http://{serverIP}:<WebUI Port>` (the **WebUI Port** you chose in step 2). On first visit the setup wizard asks you to create the admin account. There is no default *admin@example.com* / *changeme* login since v2.13.
 {.is-info}
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
@@ -51,8 +51,11 @@ services:
      - /mnt/tank/configs/npm/letsencrypt:/etc/letsencrypt
 ```
 
-> The dashboard is now deployed on `http://{serverIP}:81`. The username is *admin@example.com* and the password is *changeme*. After you login you will be forced to change your password.
+> The dashboard is now deployed on `http://{serverIP}:81`. On first visit the setup wizard asks you to create the admin account. There is no default *admin@example.com* / *changeme* login since v2.13.
 {.is-info}
+
+> On 32-bit ARM (`armv7`, e.g. older Raspberry Pi OS) use the `jc21/nginx-proxy-manager:2.13.7` tag. Version 2.14+ no longer supports armv7.
+{.is-warning}
 
 
 # 2 · Port Forwarding
@@ -70,6 +73,9 @@ Whoever manages your domain should have an area for the DNS entries. In order to
 ## Details
 
 To setup a reverse proxy to a container, add a proxy host. 
+
+> The screenshots below show the pre-2.13 interface. Newer versions have a redesigned UI, but the same fields.
+{.is-info}
 
 ![](/screenshot_from_2024-04-15_14-56-45.png)
 

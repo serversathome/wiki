@@ -2,7 +2,7 @@
 title: Seafile
 description: A guide to deploying Seafile
 published: true
-date: 2026-05-11T14:08:51.837Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-18T12:46:01.658Z
@@ -167,7 +167,7 @@ Cloudflare's free plan caps uploads at **100 MB per request**. For larger files,
 
 ## 2.2 Nginx Proxy Manager / Traefik
 
-Point your proxy host to `http://[SERVERIP]:80` and make sure **WebSockets** are enabled. Seafile's internal Nginx already handles the `/seafhttp` and `/notification` routing internally, so you only need to expose the single upstream.
+Point your proxy host to `http://[SERVERIP]:8000` and make sure **WebSockets** are enabled. Seafile's internal Nginx already handles the `/seafhttp` and `/notification` routing internally, so you only need to expose the single upstream.
 
 In NPM, under the **Advanced** tab, add:
 
@@ -213,7 +213,7 @@ Add your server URL (with `https://`), email, and password. Seafile's sync engin
 |---------|--------------|
 | **File Properties** | Assign custom metadata (owner, status, tags, dates) to any file and filter libraries by those fields |
 | **Views** | Same library, different presentations — table, kanban, gallery, or map |
-| **SeaDoc** | Collaborative real-time document editor with markdown, embeds, and version history |
+| **SeaDoc** | Collaborative real-time document editor with markdown, embeds, and version history. Needs the separate `sdoc-server` container from upstream's [`seadoc.yml`](https://manual.seafile.com/latest/extension/setup_seadoc/), which the compose above doesn't include |
 | **Wikis** | Built-in hierarchical wiki with nested pages, access controls, and version tracking |
 | **Share Links** | Password-protected, time-limited, permission-scoped share links for files and folders |
 | **Snapshots** | Every library keeps version history automatically; restore any file to any point in time |
@@ -223,7 +223,7 @@ Add your server URL (with `https://`), email, and password. Seafile's sync engin
 
 ## 5.1 Updating
 
-Bump the image tag in your compose file (e.g. `13.0-latest` → `13.1-latest`), then redeploy. For **minor** version bumps (13.0.x → 13.0.y), this is all you need. For **major** version bumps (12 → 13), always read the [upgrade notes](https://manual.seafile.com/latest/upgrade/upgrade_notes_for_13.0.x/) first — schema migrations and config changes are sometimes required.
+For **minor** version bumps (13.0.x → 13.0.y), just pull the image again (`13.0-latest` always tracks the newest 13.0 release) and redeploy. For **major** version bumps (e.g. `13.0-latest` → `14.0-latest`), always read the upgrade notes first — schema migrations and config changes are sometimes required. Seafile 14.0 moves several settings (WebDAV, metadata, search) from the config files into `.env`; follow the [14.0 Docker upgrade guide](https://manual.seafile.com/14.0/upgrade/upgrade_docker_14.0/) before changing the tag.
 
 > 
 > Before any major upgrade: stop the stack, snapshot the `/mnt/tank/configs/seafile` dataset in TrueNAS, and then proceed. ZFS snapshots make rollback trivial if the upgrade goes sideways.

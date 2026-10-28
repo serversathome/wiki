@@ -2,7 +2,7 @@
 title: Portracker
 description: A guide to deploying Portracker via docker
 published: true
-date: 2026-01-15T15:30:55.039Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:23.902Z
@@ -27,7 +27,7 @@ By auto-discovering services on your systems, portracker provides a live, accura
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
 1. Add two **Additional Environment Variables** (see [section 2](https://wiki.serversatho.me/en/portracker#h-2-integrating-with-truenas) for explanation)
-	a. TRUENAS_API_KEY
+  a. TRUENAS_API_KEY
   b. TRUENAS_WS_BASE
 1. Set the **Data Storage** to *Host Path*
 
@@ -41,7 +41,7 @@ services:
     restart: unless-stopped
     pid: "host"
     ports:
-    	- 4999:4999
+      - 4999:4999
     cap_add:
       - SYS_PTRACE
       - SYS_ADMIN
@@ -53,10 +53,15 @@ services:
     environment:
       - DATABASE_PATH=/data/portracker.db
       - PORT=4999
+      - ENABLE_AUTH=true
+      - SESSION_SECRET=your_generated_secret   # openssl rand -hex 32
       # Optional: For enhanced TrueNAS features
       # - TRUENAS_API_KEY=your-api-key-here
       # - TRUENAS_WS_BASE=wss://10.99.0.191:444
 ```
+
+> With `ENABLE_AUTH=true`, the first visit to `http://IP:4999` opens a setup wizard to create the admin account. Keep auth on: without it, anyone who can reach Portracker gets admin-level control, and this container has the Docker socket and host PID access.
+{.is-warning}
 
 # 2 · Integrating With TrueNAS
 

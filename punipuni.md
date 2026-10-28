@@ -2,7 +2,7 @@
 title: PuniPuni
 description: A guide to deploying PuniPuni
 published: true
-date: 2026-01-15T15:31:06.375Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:40.075Z
@@ -20,31 +20,52 @@ PuniPuni is an user invitation system for Jellyfin, inspired by Wizarr. Built wi
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy PuniPuni
+Generate a JWT secret seed with `openssl rand -hex 32`, and replace the `change-me` passwords with your own.
+
 ```yaml
 services:
-  puni-app:
+  punipuni:
     image: kowlown/punipuni:latest
+    container_name: punipuni
+    restart: unless-stopped
     ports:
       - "8089:8080"
     environment:
+      - PUNI_ADMIN_EMAIL=admin@example.com
+      - PUNI_ADMIN_PASSWORD=change-me
       - PUNI_APPLICATION_DATABASE_TYPE=postgresql
       - PUNI_APPLICATION_DATABASE_HOST=postgres
       - PUNI_APPLICATION_DATABASE_PORT=5432
-      - PUNI_APPLICATION_DATABASE_USERNAME=dbuser
-      - PUNI_APPLICATION_DATABASE_PASSWORD=dbpassword
-      - PUNI_ADMIN_USERNAME=admin
-      - PUNI_ADMIN_PASSWORD=adminpassword
-      - PUNI_APPLICATION_WELCOME_PAGES=./welcome-pages
+      - PUNI_APPLICATION_DATABASE_NAME=puni
+      - PUNI_APPLICATION_DATABASE_USERNAME=puni
+      - PUNI_APPLICATION_DATABASE_PASSWORD=change-me
+      - PUNI_APPLICATION_DATABASE_SCHEMA=public
+      - PUNI_APPLICATION_WELCOME_PAGES_FOLDER_PATH=/welcome-pages
+      - PUNI_JWT_JWT_SECRET_SEED=your_generated_secret
+    volumes:
+      - /mnt/tank/configs/punipuni/data:/var/puni/data
+      - /mnt/tank/configs/punipuni/welcome-pages:/welcome-pages
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
   postgres:
     image: postgres:17
+    container_name: punipuni-postgres
+    restart: unless-stopped
     environment:
-      - POSTGRES_DB=database
-      - POSTGRES_USER=dbuser
-      - POSTGRES_PASSWORD=dbpassword
+      - POSTGRES_DB=puni
+      - POSTGRES_USER=puni
+      - POSTGRES_PASSWORD=change-me
     volumes:
-      - /mnt/tank/configs/punipuni/:/var/lib/postgresql/data
+      - /mnt/tank/configs/punipuni/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U puni -d puni"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 ```
+
+> Log in at `http://IP:8089` with the `PUNI_ADMIN_EMAIL` and `PUNI_ADMIN_PASSWORD` you set. Postgres data now lives in `/mnt/tank/configs/punipuni/postgres`; if you deployed an older version of this guide, its database was in `/mnt/tank/configs/punipuni/` itself.
+{.is-info}
 

@@ -2,7 +2,7 @@
 title: Notifications
 description: Learn how to setup notifications for all of your services!
 published: true
-date: 2026-01-15T15:27:40.396Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:39.274Z
@@ -10,7 +10,7 @@ dateCreated: 2026-01-15T15:02:39.274Z
 
 # <img src="/gotify.png" class="tab-icon"> Gotify
 
-> I am moving away from Discord in favor of [Gotify](/gotify). Unfortunately, I'm told there is no mobile app for iOS. Even though there is a Gotify template for Unpackerr, I could not get it working. Other than that, I like it much more.
+> I am moving away from Discord in favor of [Gotify](/gotify). Unfortunately, I'm told there is no mobile app for iOS. Unpackerr 1.0 now detects Gotify webhook URLs automatically, so it can send to Gotify too. Other than that, I like it much more.
 {.is-info}
 
 
@@ -67,9 +67,9 @@ Since all the \*arrs are basically the same UI, we will follow the same steps fo
 
 # <img src="/unpackerr.png" class="tab-icon"> Unpackerr
 
-Since this is command line, it will be a little uglier, but no less difficult. 
+Unpackerr 1.0 has a web UI on port `5656`, and you can add your Discord webhook from its **Settings** page. Unpackerr detects the template (Discord, Gotify, Slack, Telegram, ntfy and others) from the URL, so you no longer need to set one.
 
-If you are using Docker, you will see the section for Webhook in the config file. These are the values which need to be modified:
+If you would rather use environment variables, you will see the section for Webhook in the config file. These are the values which can be modified:
 
 | Config Name | Variable Name | Default / Note |
 | --- | --- | --- |
@@ -83,10 +83,10 @@ If you are using Docker, you will see the section for Webhook in the config file
 | webhook.exclude | `UN_WEBHOOK_0_EXCLUDE` | leave default |
 | webhook.events | `UN_WEBHOOK_0_EVENTS` | leave default |
 | webhook.template\_path | `UN_WEBHOOK_0_TEMPLATE_PATH` | leave default |
-| webhook.template | `UN_WEBHOOK_0_TEMPLATE` | use “discord” |
+| webhook.template | `UN_WEBHOOK_0_TEMPLATE` | leave blank, it is detected from the URL |
 | webhook.content\_type | `UN_WEBHOOK_0_CONTENT_TYPE` | leave default |
 
-In TrueNAS, we only need to add 3 values in the *Extra Environment Variables* for Unpackerr:
+In TrueNAS, we only need to add 2 values in the *Extra Environment Variables* for Unpackerr:
 
 ![](https://wiki.hydrology.cc/screenshot_from_2024-02-12_17-54-02.png)
 
@@ -94,10 +94,9 @@ In TrueNAS, we only need to add 3 values in the *Extra Environment Variables* fo
 | --- | --- |
 | UN_WEBHOOK_0_URL  | enter webhook here |
 | UN_WEBHOOK_0_NAME | Unpackerr/Discord |
-|  UN_WEBHOOK_0_TEMPLATE |  discord |
 
 
-# <img src="/jellyseerr.png" class="tab-icon"> Jellyseerr
+# <img src="/seerr.png" class="tab-icon"> Seerr
 
 1. Navigate to **Settings** > **Notifications** > **Discord** 
 1. Paste your webhook in the correct box.

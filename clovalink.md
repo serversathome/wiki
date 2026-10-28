@@ -2,7 +2,7 @@
 title: ClovaLink
 description: A guide to deploying ClovaLink
 published: true
-date: 2026-02-03T19:30:50.255Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-03T14:11:22.216Z
@@ -21,7 +21,7 @@ Think of it as a self-hosted alternative to Box or Dropbox Business — enterpri
   <div><span>Depends on</span><b>Postgres and Redis</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
-    <a href="https://github.com/clovalink/clovalink-backend"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/ClovaLink/ClovaLink"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 
@@ -37,9 +37,9 @@ services:
         aliases:
           - backend
     environment:
-      - DATABASE_URL=postgres://clovalink:clovalink@clovalink-db:5432/clovalink
+      - DATABASE_URL=postgres://clovalink:CHANGEME_DB_PASSWORD@clovalink-db:5432/clovalink
       - REDIS_URL=redis://clovalink-redis:6379
-      - JWT_SECRET=CHANGE-ME-generate-with-openssl-rand-base64-32
+      - JWT_SECRET=CHANGEME_JWT_SECRET
       - STORAGE_TYPE=local
       - RUST_LOG=info
       - ENVIRONMENT=production
@@ -48,6 +48,10 @@ services:
       - CLAMAV_ENABLED=true
       - CLAMAV_HOST=clovalink-clamav
       - CLAMAV_PORT=3310
+      # Optional: encrypt files at rest on local storage (openssl rand -base64 32)
+      # - ENCRYPTION_KEY=CHANGEME_ENCRYPTION_KEY
+      # Optional: required for scheduled auto-backups (openssl rand -base64 48)
+      # - BACKUP_MASTER_KEY=CHANGEME_BACKUP_MASTER_KEY
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -72,7 +76,7 @@ services:
     container_name: clovalink-db
     environment:
       - POSTGRES_USER=clovalink
-      - POSTGRES_PASSWORD=clovalink
+      - POSTGRES_PASSWORD=CHANGEME_DB_PASSWORD
       - POSTGRES_DB=clovalink
     restart: unless-stopped
     volumes:
@@ -91,12 +95,22 @@ services:
     restart: unless-stopped
     volumes:
       - /mnt/tank/configs/clovalink/clamav:/var/lib/clamav
+    healthcheck:
+      test: ["CMD", "clamdscan", "--ping", "1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
 ```
 
 1. Generate a secure JWT secret: `openssl rand -base64 32`
-2. Replace `JWT_SECRET` with your generated value
-3. Change `POSTGRES_PASSWORD` and update `DATABASE_URL` to match
+2. Replace `CHANGEME_JWT_SECRET` with your generated value
+3. Generate a database password with `openssl rand -hex 24` and replace both `CHANGEME_DB_PASSWORD` values with it
 4. Update `CORS_ALLOWED_ORIGINS` to your actual domain
+5. Optional: uncomment `ENCRYPTION_KEY` to encrypt uploaded files at rest, and `BACKUP_MASTER_KEY` if you want scheduled auto-backups
+
+> If you set `ENCRYPTION_KEY`, back it up somewhere safe. Losing it means losing access to every encrypted file.
+{.is-warning}
 
 > 
 > ClamAV takes 2-3 minutes on first start to download virus definitions. The backend will wait for it to be ready.
@@ -165,6 +179,8 @@ CLAMAV_ENABLED=false
 | `STORAGE_TYPE` | `local` or `s3` |
 | `CORS_ALLOWED_ORIGINS` | Comma-separated allowed origins |
 | `CLAMAV_ENABLED` | Enable/disable virus scanning |
+| `ENCRYPTION_KEY` | Optional. Base64 32-byte key for at-rest encryption of local storage |
+| `BACKUP_MASTER_KEY` | Optional. Required for scheduled auto-backups |
 {.dense}
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video

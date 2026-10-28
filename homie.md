@@ -2,7 +2,7 @@
 title: Homie
 description: A guide to deploying Homie
 published: true
-date: 2026-01-15T15:29:35.556Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:19.606Z
@@ -35,7 +35,7 @@ services:
     volumes:
       - /mnt/tank/configs/homie:/app/data
     environment:
-      - SECRET_KEY=your-secret-key-here-change-in-production
+      - SECRET_KEY=your-secret-key-here-change-in-production # generate with: openssl rand -hex 32
       - FLASK_DEBUG=false
       - BASE_URL=http://localhost:5000
       - PORT=5000
@@ -50,6 +50,10 @@ services:
       - OIDC_CLIENT_SECRET=your-client-secret
       # Allowed email addresses (comma-separated list of who can access the app - used with OIDC)
       - ALLOWED_EMAILS=user1@example.com,user2@example.com,admin@example.com
+      # Or allow by OIDC group (recommended; takes precedence over ALLOWED_EMAILS if both are set)
+      # - ALLOWED_GROUPS=homie-users
+      # Admins can hide/show features for each user
+      # - ADMIN_EMAILS=admin@example.com
       
       # ===== Local Users Configuration (when OIDC is disabled) =====
       # Local users list (simple names or full format username:email:Full Name)
@@ -60,3 +64,6 @@ services:
       - PYTHONUNBUFFERED=1
     
 ```
+
+> When OIDC is enabled, register `{BASE_URL}/auth/callback` (e.g. `https://homie.example.com/auth/callback`) as the redirect/callback URL in your OIDC provider, and set `BASE_URL` to the address you actually reach Homie at.
+{.is-info}

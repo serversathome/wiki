@@ -2,7 +2,7 @@
 title: Dash.
 description: A guide to deploying Dash.
 published: true
-date: 2026-01-26T18:47:13.398Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-26T14:16:20.520Z
@@ -24,6 +24,9 @@ A simple, modern server dashboard, primarily used by smaller private servers.
 </div>
 
 # 1 · Deploy Dash.
+> Dash. reads OS, storage and network info from the host root, so `/` is mounted read-only at `/mnt/host`. It has no config folder; all settings are environment variables.
+{.is-info}
+
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Without GPU
 ```yaml
@@ -36,7 +39,7 @@ services:
     ports:
       - '3001:3001'
     volumes:
-      - /mnt/tank/configs/dashdot:/mnt/host:ro
+      - /:/mnt/host:ro
     environment:
       DASHDOT_WIDGET_LIST: 'os,cpu,storage,ram,network'
 ```
@@ -54,10 +57,10 @@ services:
           devices:
             - capabilities:
                 - gpu
-     ports:
+    ports:
       - '3001:3001'
     volumes:
-      - /mnt/tank/configs/dashdot:/mnt/host:ro
+      - /:/mnt/host:ro
     environment:
       DASHDOT_WIDGET_LIST: 'os,cpu,storage,ram,network,gpu'
 ```

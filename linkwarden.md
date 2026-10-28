@@ -2,7 +2,7 @@
 title: Linkwarden
 description: A guide to deploying Linkwarden
 published: true
-date: 2026-01-15T15:29:57.316Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:57.751Z
@@ -40,7 +40,7 @@ services:
     image: postgres:16-alpine
     restart: unless-stopped
     environment:
-    	- POSTGRES_PASSWORD=admin
+      - POSTGRES_PASSWORD=admin
     volumes:
       - /mnt/tank/configs/linkwarden/pgdata:/var/lib/postgresql/data
   
@@ -49,21 +49,34 @@ services:
       - DATABASE_URL=postgresql://postgres:admin@postgres:5432/postgres
       - NEXTAUTH_URL=http://localhost:3000/api/v1/auth
       - NEXTAUTH_SECRET=VERY_SENSITIVE_SECRET
+      - MEILI_HOST=http://meilisearch:7700
+      - MEILI_MASTER_KEY=VERY_SENSITIVE_MEILI_MASTER_KEY
     restart: unless-stopped
     image: ghcr.io/linkwarden/linkwarden:latest 
     ports:
       - 3000:3000
     volumes:
       - /mnt/tank/configs/linkwarden/data:/data/data
+    depends_on:
+      - postgres
+      - meilisearch
   
   meilisearch:
-    image: getmeili/meilisearch:v1.12.8
+    image: getmeili/meilisearch:v1.13.3
     restart: unless-stopped
     environment:
-    	- MEILI_MASTER_KEY=VERY_SENSITIVE_MEILI_MASTER_KEY
+      - MEILI_MASTER_KEY=VERY_SENSITIVE_MEILI_MASTER_KEY
     volumes:
       - /mnt/tank/configs/linkwarden/meili_data:/meili_data
 ```
+
+> Replace `VERY_SENSITIVE_SECRET` and both copies of `VERY_SENSITIVE_MEILI_MASTER_KEY` with random strings (generate each with `openssl rand -hex 32`). The two `MEILI_MASTER_KEY` values must match, and `admin` in `DATABASE_URL` must match `POSTGRES_PASSWORD`.
+{.is-warning}
+
+> **Upgrading from Meilisearch v1.12.8?** Meilisearch v1.13 refuses to start on a database written by an older version, so the `meilisearch` container will crash-loop. Pick one fix:
+> - **Upgrade in place:** back up `/mnt/tank/configs/linkwarden/meili_data` first, add `command: meilisearch --experimental-dumpless-upgrade` under the `meilisearch` service, and start the stack once. When the logs show it is up, remove the `command:` line and redeploy.
+> - **Start fresh:** stop the stack, delete `/mnt/tank/configs/linkwarden/meili_data`, and start it again. Linkwarden re-indexes your links into the new search database (your links themselves live in Postgres and are not lost).
+{.is-warning}
 
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
@@ -72,7 +85,7 @@ services:
 1. Set the **Storage Configuration** for **Data Storage**, **Meilisearch Data Storage**, and **Postgres Data Storage** to *Host Path*
 
 # 2 · Logging In
-1. Navigate to `http://PORT:IP` 
+1. Navigate to `http://IP:PORT` 
 1. Click **Sign Up** at the bottom of the window
 1. Enter your credentials then click **Sign Up**
 1. Login with your created credentials

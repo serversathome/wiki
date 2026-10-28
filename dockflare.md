@@ -2,7 +2,7 @@
 title: Dockflare
 description: A guide to deploying Dockflare
 published: true
-date: 2026-06-15T18:27:20.301Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-05-01T19:51:02.015Z
@@ -191,6 +191,7 @@ services:
       - REDIS_URL=redis://redis:6379/0
       - REDIS_DB_INDEX=0
       - DOCKER_HOST=tcp://docker-socket-proxy:2375
+      - INTERNAL_BOOTSTRAP_SECRET=${INTERNAL_BOOTSTRAP_SECRET}
     depends_on:
       docker-socket-proxy:
         condition: service_started
@@ -219,6 +220,8 @@ services:
     environment:
       - DOCKFLARE_MASTER_URL=http://dockflare:5000
       - MAIL_DATA_PATH=/data
+      - INTERNAL_BOOTSTRAP_SECRET=${INTERNAL_BOOTSTRAP_SECRET}
+      - MAIL_SECRET_KEY=${MAIL_SECRET_KEY}
     volumes:
       - /mnt/tank/configs/dockflare/mail:/data
     depends_on:
@@ -260,7 +263,16 @@ networks:
 {.is-danger}
 
 ## 2.1 env Variables
-Set `DOMAIN=yourdomain.com` in the stack's environment variables.
+Set these in the stack's environment variables (`.env`):
+
+```env
+DOMAIN=yourdomain.com
+INTERNAL_BOOTSTRAP_SECRET=   # openssl rand -hex 32
+MAIL_SECRET_KEY=             # openssl rand -hex 32
+```
+
+> Since v3.1.6, the mail manager can't bootstrap without `INTERNAL_BOOTSTRAP_SECRET`, and the same value must be set on both `dockflare` and `dockflare-mail-manager`. `MAIL_SECRET_KEY` encrypts the R2, webhook and outbound secrets stored by the mail manager. **Never change or remove it once set**, or those stored secrets become unreadable.
+{.is-warning}
 
 # 3 · Initial Setup Wizard
 

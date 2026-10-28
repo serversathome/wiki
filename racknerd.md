@@ -2,7 +2,7 @@
 title: Racknerd VPS
 description: A guide to deploying a Racknerd VPS
 published: true
-date: 2026-05-13T11:53:05.171Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:49.041Z
@@ -48,7 +48,7 @@ By default, Racknerd has no security on their VPS. We will deploy `ufw` (univers
 1. SSH into your server
 1. Run the command:
     ```bash
-    sudo ufw default deny incoming && sudo ufw default allow outbound && sudo ufw limit 22/tcp && sudo ufw enable -y && sudo ufw status verbose
+    sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw limit 22/tcp && sudo ufw --force enable && sudo ufw status verbose
     ```
 
 This is a very safe way to secure access to your server. In the event you wanted no ports open you could install a VPN like [tailscale](/tailscale), [netbird](/netbird), twingate, or the like which do not require outbound ports to be open. If you choose to do this, you can remove the `sudo ufw limit 22/tcp` from the above command and no ports will be open. 

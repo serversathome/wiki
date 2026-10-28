@@ -2,7 +2,7 @@
 title: Container Census
 description: A guide to deploy Container Census
 published: true
-date: 2026-01-15T15:28:38.176Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:56.053Z
@@ -39,11 +39,11 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /mnt/tank/configs/census/server:/app/data
-      - /mnt/tank/configs/census/config:/app/config
     environment:
       AUTH_ENABLED: false
       AUTH_USERNAME: your_username
       AUTH_PASSWORD: your_secure_password
+      SESSION_SECRET: change-me # Required if AUTH_ENABLED is true. Generate with: openssl rand -hex 32
       TZ: ${TZ:-UTC}
 
     healthcheck:
@@ -53,4 +53,35 @@ services:
       retries: 3
       start_period: 10s
 
+```
+
+> All settings (scanner interval, vulnerability scanning, telemetry) are managed in the Web UI. Older versions used a `/app/config` folder; it is no longer needed and is only read once to migrate old settings.
+{.is-info}
+
+# <img src="/docker.png" class="tab-icon"> 2 · Agents for Other Hosts
+
+To scan containers on other Docker hosts, run the Census agent on each one, then add it in the server UI with **+ Add Agent Host** (agent URL `http://<host-ip>:9876` plus the token).
+
+```yaml
+services:
+  census-agent:
+    image: ghcr.io/selfhosters-cc/census-agent:latest
+    container_name: census-agent
+    restart: unless-stopped
+    group_add:
+      - "${DOCKER_GID:-999}"
+    ports:
+      - "9876:9876"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      API_TOKEN: change-me # Generate with: openssl rand -hex 32
+      PORT: 9876
+      TZ: ${TZ:-UTC}
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9876/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
 ```

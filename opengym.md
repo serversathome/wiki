@@ -2,7 +2,7 @@
 title: openGym
 description: A guide to deploy openGym
 published: true
-date: 2026-09-08T11:38:34.320Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-05T20:35:06.941Z
@@ -19,10 +19,10 @@ Stack is React 19 + Vite on the front, a dependency-light Node API on the back, 
 <div class="glance">
   <div><span>Port</span><b><code>8080</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>3 services</b></div>
+  <div><span>Containers</span><b>2 services</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
-    <a href="https://gitlab.com/duartesantos8/opengym"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/DuarteSantos8/openGym"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 
@@ -33,38 +33,9 @@ Stack is React 19 + Vite on the front, a dependency-light Node API on the back, 
 ```yaml
 services:
 
-  # ── One-time media fetch ────────────────────────────────────────────────
-  # Downloads ~140 MB of exercise images/GIFs, then exits. Skips if already present.
-  # Metadata and instruction text: MIT. Images and GIFs: © Gym visual (gymvisual.com),
-  # pulled from upstream under that dataset's terms — openGym does not redistribute them.
-  # Reusing the media yourself, commercial or not, needs your own licence from Gym visual.
-  opengym-media:
-    image: alpine/git
-    container_name: opengym-media
-    user: "568:568"
-    environment:
-      - TZ=America/New_York
-    volumes:
-      - /mnt/tank/configs/opengym/media/img:/out/img
-      - /mnt/tank/configs/opengym/media/gif:/out/gif
-    entrypoint: ["/bin/sh", "-c"]
-    command:
-      - |
-        if [ -z "$$(ls -A /out/img 2>/dev/null)" ]; then
-          echo "↓ Downloading exercise media (~140 MB, one time)…"
-          echo "  Source: github.com/hasaneyldrm/exercises-dataset"
-          echo "  Images/animations © Gym visual — https://gymvisual.com/"
-          git clone --depth 1 https://github.com/hasaneyldrm/exercises-dataset /tmp/ds
-          cp /tmp/ds/images/*.jpg /out/img/ && cp /tmp/ds/videos/*.gif /out/gif/
-          echo "✓ Exercise media ready ($$(ls /out/img | wc -l) images)."
-        else
-          echo "✓ Exercise media already present — skipping download."
-        fi
-    restart: "no"   # one-shot job — do NOT change to unless-stopped
-
   # ── API: passkey auth + per-user data ───────────────────────────────────
   opengym-api:
-    image: registry.gitlab.com/duartesantos8/opengym/api:latest
+    image: ghcr.io/duartesantos8/opengym-api:latest
     container_name: opengym-api
     user: "568:568"
     environment:
@@ -73,6 +44,7 @@ services:
       - TZ=America/New_York
       - PORT=3000
       - DATA_DIR=/data
+      - TRUST_PROXY=1
     env_file: .env
     volumes:
       - /mnt/tank/configs/opengym/data:/data
@@ -86,9 +58,9 @@ services:
     #   context: ./api
     #   target: ${API_TARGET:-default}
 
-  # ── Web: React frontend + nginx, proxies /api and serves the media ──────
+  # ── Web: React frontend + nginx, proxies /api; exercise media ship in the image ──
   opengym-web:
-    image: registry.gitlab.com/duartesantos8/opengym/web:latest
+    image: ghcr.io/duartesantos8/opengym-web:latest
     container_name: opengym-web
     # No `user:` here on purpose — stock nginx binds :80 and writes /var/cache/nginx
     # and its pid file as root. Forcing 568:568 makes the container crash-loop.
@@ -100,21 +72,19 @@ services:
       # Behind a Cloudflare Tunnel, trust CF's real-client-IP header for the activity log.
       # Leave EMPTY if you ever expose this directly, or clients can forge the address.
       - CF_CONNECTING_IP=$$http_cf_connecting_ip
-    volumes:
-      - /mnt/tank/configs/opengym/media/img:/usr/share/nginx/html/img:ro
-      - /mnt/tank/configs/opengym/media/gif:/usr/share/nginx/html/gif:ro
     ports:
       - "8080:80"
     depends_on:
-      opengym-media:
-        condition: service_completed_successfully
       opengym-api:
         condition: service_started
     restart: unless-stopped
 
 ```
 
-1. Set `RP_ID` and `ORIGIN` to your real domain **before** anyone registers — see section 3
+> The exercise images and animations now ship inside the web image, so the old one-shot `opengym-media` job and its `img`/`gif` bind mounts are no longer needed. If you deployed an earlier version of this guide, remove them (mounting over those folders hides the bundled media). Images also moved from `registry.gitlab.com` to `ghcr.io`; the GitLab images are still published.
+{.is-info}
+
+1. Create the `.env` file next to the compose file **before** the first start — see section 2.1. Set `RP_ID` and `ORIGIN` to your real domain **before** anyone registers (section 3 explains why)
 1. Browse to `http://<host>:8080` and tap **Create profile**
 
 
@@ -123,6 +93,19 @@ services:
 
 # 2 · Configuration
 
+## 2.1 The `.env` file
+
+The compose file reads `.env` with `env_file`, so `docker compose up` fails if it doesn't exist. Create it in the stack folder:
+
+```env
+RP_ID=gym.example.com
+ORIGIN=https://gym.example.com
+WEB_PORT=8080
+RP_NAME=openGym
+FIRST_USER_ADMIN=1
+```
+
+For a quick local test use `RP_ID=localhost` and `ORIGIN=http://localhost:8080`. With `FIRST_USER_ADMIN=1`, the first profile created on a fresh instance becomes its admin, so register yours before you share the address. See the upstream [`.env.example`](https://github.com/DuarteSantos8/openGym/blob/main/.env.example) for every option.
 
 ## 2.2 First run
 
@@ -143,7 +126,7 @@ Default behavior is open signup: anyone who can reach the URL creates their own 
       - INVITE_ONLY=1
 ```
 
-Register your own profile first, then find your ID in `data/db.json` under `users[].id` and drop it into `ADMIN_UIDS`. An **Admin dashboard** link appears in Settings — user list, workout history, the ability to disable an account, and invite-code generation when `INVITE_ONLY=1` is set. Existing accounts keep working when you flip invite-only on.
+With `FIRST_USER_ADMIN=1` (section 2.1) your first profile is already an admin. For more admins, or an instance that existed before that setting, find the ID under **Settings → Account → Account ID** (or in `data/db.json` under `users[].id`) and drop it into `ADMIN_UIDS`. An **Admin dashboard** link appears in Settings — user list, workout history, the ability to disable an account, and invite-code generation when `INVITE_ONLY=1` is set. Existing accounts keep working when you flip invite-only on.
 
 Admin access is gated by your passkey and enforced server-side, so there's no second login to manage.
 
@@ -170,7 +153,7 @@ Each browser reports its own timezone, so the reminder fires at the user's local
 
 # 5 · Optional: MCP server for AI queries
 
-As of v1.2.5 the repo ships an opt-in **MCP server** that lets Claude Desktop, Cursor, or any MCP client read your training data directly off the `data` folder. It's read-only, runs as a local stdio process, and adds no container and no network exposure.
+As of v1.2.5 the repo ships an opt-in **MCP server** that lets Claude Desktop, Cursor, or any MCP client read your training data directly off the `data` folder. It runs as a local stdio process and adds no container and no network exposure.
 
 ```bash
 git clone https://github.com/DuarteSantos8/openGym
@@ -200,6 +183,6 @@ Claude Desktop config:
 *"What did I bench last week?"* · *"What's my estimated 1RM on deadlift?"* · *"Which muscles have I been neglecting?"*
 
 > 
-> The MCP server never reads passkey material, VAPID keys, or session state — only the profile it's pointed at. It also can't write, so you can't log a workout through it yet.
+> The MCP server never reads passkey material, VAPID keys, or session state — only the profile it's pointed at. Its read tools need no authentication. There is now one write tool, `log_workout`, which stays off until you pair the MCP server with your openGym server — see the [MCP README](https://github.com/DuarteSantos8/openGym/blob/main/mcp/README.md).
 {.is-info}
 

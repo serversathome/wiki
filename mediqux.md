@@ -2,7 +2,7 @@
 title: Mediqux
 description: A guide to deploy Mediqux
 published: true
-date: 2026-01-15T15:30:12.707Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:26.492Z
@@ -12,7 +12,7 @@ dateCreated: 2026-01-15T15:06:26.492Z
 A privacy-first, locally-hosted medical record system for individuals, families, and small healthcare practices - featuring comprehensive patient management, lab result processing, and medication tracking with complete data sovereignty. 
 
 <div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
+  <div><span>Port</span><b><code>8086</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>3 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
@@ -51,14 +51,12 @@ services:
       DB_NAME: mediqux
       DB_USER: admin
       DB_PASSWORD: admin
-      JWT_SECRET: choose-a-new-secret
-      FRONTEND_URL: http://10.99.0.191:8086
+      JWT_SECRET: choose-a-new-secret # generate with: openssl rand -hex 32
       MAX_FILE_SIZE: 10MB
-      UPLOAD_PATH: -/app/uploads
+      UPLOAD_PATH: /app/uploads
       PUID: 1000
       PGID: 1000
-    ports:
-      - "3000:3000"
+      TRUST_PROXY_HOPS: 1 # number of reverse proxies in front of Mediqux
     volumes:
       - /mnt/tank/configs/mediqux/uploads:/app/uploads
     depends_on:
@@ -74,16 +72,20 @@ services:
   frontend:
     image: ghcr.io/dmjoh/mediqux/mediqux-frontend:latest
     container_name: mediqux_frontend
-    environment:
-      MEDIQUX_API_URL: http://10.99.0.191:8086
     ports:
-      - "8086:80"
+      - "8086:8080"
     depends_on:
       - backend
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080"]
       interval: 30s
       timeout: 10s
       retries: 3
 ```
+
+> Since Mediqux 2.0 the frontend listens on port `8080` inside the container and proxies the API on the same origin, so the backend no longer needs a published port. `MEDIQUX_API_URL`, `BACKEND_URL` and the old port variables were removed. If you are upgrading from 1.x, update your compose to match the one above. See the [release notes](https://github.com/dmjoh/mediqux/releases).
+{.is-warning}
+
+> Navigate to `http://IP:8086`. Self-service sign-up only works for the first account you create.
+{.is-info}

@@ -2,7 +2,7 @@
 title: Gluetun-webui
 description: A guide to deploying Gluetun-webui
 published: true
-date: 2026-03-03T17:52:24.390Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-03T17:52:24.390Z
@@ -14,7 +14,7 @@ dateCreated: 2026-03-03T17:52:24.390Z
 
 
 > 
-> Gluetun WebUI requires a running [Gluetun](https://github.com/qdm12/gluetun) container with its HTTP control server enabled (default port `8000`). Both containers must be on the same Docker network.
+> Gluetun WebUI requires a running [Gluetun](https://github.com/qdm12/gluetun) container with its HTTP control server enabled (default port `8000`). Both containers must be on the same Docker network. Current Gluetun versions **require** authentication on every control server route, so you will need to set up an API key or basic auth in Gluetun (see 2.2).
 {.is-info}
 
 <div class="glance">
@@ -23,7 +23,7 @@ dateCreated: 2026-03-03T17:52:24.390Z
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://github.com/qdm12/gluetun"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/Sir-Scuzza/gluetun-webui"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 
@@ -35,17 +35,17 @@ services:
     image: scuzza/gluetun-webui:latest
     container_name: gluetun-webui
     ports:
-      - "3000:3000"
+      - "3000:3000" # use "127.0.0.1:3000:3000" if you only reach it through a reverse proxy
     environment:
       - GLUETUN_CONTROL_URL=http://gluetun:8000
-      # Uncomment ONE of the auth options below if Gluetun has auth enabled:
-      # Bearer token (HTTP_CONTROL_SERVER_AUTH=apikey:yourtoken in gluetun)
+      # Gluetun requires auth. Uncomment ONE option to match your Gluetun config:
+      # API key (on Gluetun: - 'HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE={"auth":"apikey","apikey":"yourtoken"}')
       #- GLUETUN_API_KEY=yourtoken
-      # HTTP Basic auth (HTTP_CONTROL_SERVER_AUTH=username:password in gluetun)
+      # HTTP Basic auth (on Gluetun: - 'HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE={"auth":"basic","username":"username","password":"password"}')
       #- GLUETUN_USER=username
       #- GLUETUN_PASSWORD=password
     networks:
-      - your_network_name
+      - ext-network
     restart: unless-stopped
     read_only: true
     tmpfs:
@@ -68,7 +68,7 @@ networks:
 ```
 
 1. Replace `your_network_name` with the Docker network your Gluetun container is running on
-2. If your Gluetun instance has authentication enabled, uncomment the appropriate environment variables (`GLUETUN_API_KEY` for bearer token auth, or `GLUETUN_USER` / `GLUETUN_PASSWORD` for HTTP basic auth)
+2. Uncomment the auth variables that match your Gluetun control server config (`GLUETUN_API_KEY` for API key auth, or `GLUETUN_USER` / `GLUETUN_PASSWORD` for HTTP basic auth). Without them the UI gets `401` errors from Gluetun.
 3. Deploy the stack and access the UI at `http://your-server-ip:3000`
 
 
@@ -83,14 +83,31 @@ networks:
 | `GLUETUN_API_KEY` | *(empty)* | Bearer token if Gluetun API key auth is enabled |
 | `GLUETUN_USER` | *(empty)* | Username for HTTP Basic auth |
 | `GLUETUN_PASSWORD` | *(empty)* | Password for HTTP Basic auth |
+| `GLUETUN_{N}_URL` / `GLUETUN_{N}_NAME` | *(empty)* / `Instance {N}` | Monitor multiple Gluetun instances (N = 1–20). Each shows as its own dashboard |
+| `GLUETUN_{N}_API_KEY` / `GLUETUN_{N}_USER` / `GLUETUN_{N}_PASSWORD` | *(empty)* | Per-instance auth |
 {.dense}
+
+For several VPNs, replace `GLUETUN_CONTROL_URL` with numbered variables:
+
+```yaml
+    environment:
+      - GLUETUN_1_NAME=VPN - London
+      - GLUETUN_1_URL=http://gluetun-1:8000
+      - GLUETUN_1_API_KEY=token1
+      - GLUETUN_2_NAME=VPN - Amsterdam
+      - GLUETUN_2_URL=http://gluetun-2:8000
+      - GLUETUN_2_API_KEY=token2
+```
 
 ## 2.2 Authentication
 
-Gluetun WebUI supports the same authentication methods as Gluetun's control server:
+All of Gluetun's control server routes are private by default and **require** authentication. Configure it on the **Gluetun** container, either with the `HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE` environment variable or with a `config.toml` mounted at `/gluetun/auth/config.toml` (see the [Gluetun control server docs](https://github.com/qdm12/gluetun-wiki/blob/main/setup/advanced/control-server.md)). Then give Gluetun WebUI the matching credentials:
 
-- **Bearer Token Auth** — Set `GLUETUN_API_KEY` to match the token configured in Gluetun via `HTTP_CONTROL_SERVER_AUTH=apikey:yourtoken`
-- **HTTP Basic Auth** — Set `GLUETUN_USER` and `GLUETUN_PASSWORD` to match the credentials configured in Gluetun via `HTTP_CONTROL_SERVER_AUTH=username:password`
+- **API Key Auth** — In Gluetun's `environment:` add `- 'HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE={"auth":"apikey","apikey":"yourtoken"}'`, then set `GLUETUN_API_KEY=yourtoken` here. Generate a key with `docker run --rm qmcgaw/gluetun genkey`.
+- **HTTP Basic Auth** — In Gluetun's `environment:` add `- 'HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE={"auth":"basic","username":"username","password":"password"}'`, then set `GLUETUN_USER` and `GLUETUN_PASSWORD` here.
+
+> Quote the **whole** list item as shown, with the single quotes outside the variable name. Writing `- HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE='{...}'` (the `docker run -e` form) makes the quotes part of the value, and Gluetun fails to parse the JSON.
+{.is-warning}
 
 > 
 > If you expose this service beyond localhost, place it behind a reverse proxy with authentication (Nginx Proxy Manager, Caddy, Traefik, etc.). The VPN start/stop endpoints have no UI-layer authentication by default.

@@ -2,7 +2,7 @@
 title: CompDesk
 description: A guide to deploying CompDesk
 published: true
-date: 2026-09-28T18:10:28.190Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-28T18:10:28.190Z
@@ -10,7 +10,7 @@ dateCreated: 2026-09-28T18:10:28.190Z
 
 # What is CompDesk?
 
-**CompDesk** is a lightweight, privacy-first help desk and ticketing system for small organizations. Tickets route to departments, and four server-enforced roles (User, Agent, department Admin and Super Admin) control who sees what. It includes searchable queues, templates, custom fields, SLA policies and escalation, internal notes, private attachments with optional ClamAV scanning, SMTP notifications, signed webhooks, your own branding, and optional Microsoft Entra ID sign-in, with English and French interfaces.
+**CompDesk** is a lightweight, privacy-first help desk and ticketing system for small organizations. Tickets route to departments, and four server-enforced roles (User, Agent, department Admin and Super Admin) control who sees what. It includes searchable queues, templates, custom fields, SLA policies and escalation, internal notes, private attachments with optional ClamAV scanning, SMTP notifications, signed webhooks, your own branding, optional OpenID Connect sign-in (Microsoft Entra ID, Authentik, Authelia and others), email through SMTP or Microsoft 365 / Graph, with English and French interfaces.
 
 <div class="glance">
   <div><span>Port</span><b><code>3070</code></b></div>
@@ -43,7 +43,7 @@ chown -R 568:568 /mnt/tank/configs/compdesk
 ```yaml
 services:
   config-init:
-    image: ghcr.io/tahahydra/compdesk:0.9.0-beta.2
+    image: ghcr.io/tahahydra/compdesk:0.9.0-beta.4.2
     container_name: compdesk-init
     user: root
     restart: "no"
@@ -91,7 +91,7 @@ services:
     stop_grace_period: 30s
 
   compdesk:
-    image: ghcr.io/tahahydra/compdesk:0.9.0-beta.2
+    image: ghcr.io/tahahydra/compdesk:0.9.0-beta.4.2
     container_name: compdesk
     user: "568:568"
     restart: on-failure:5
@@ -103,6 +103,7 @@ services:
     read_only: true
     tmpfs:
       - /tmp
+      - /app/.next/cache:uid=568,gid=568,mode=0700,size=268435456
     depends_on:
       config-init:
         condition: service_completed_successfully
@@ -134,7 +135,7 @@ services:
 2. Set `SETUP_PUBLIC_ORIGIN` to that exact HTTPS origin
 3. Deploy the stack
 
-> This guide pins `0.9.0-beta.2` instead of `latest` on purpose. CompDesk only publishes a `latest` tag for stable releases, and every release so far is a beta, so `latest` does not exist yet. Check the GitHub releases page for newer versions when you update.
+> This guide pins `0.9.0-beta.4.2` instead of `latest` on purpose. CompDesk only publishes a `latest` tag for stable releases, and every release so far is a beta, so `latest` does not exist yet. When you update, check the [GitHub releases page](https://github.com/TahaHydra/CompDesk/releases) and read the release notes for every beta you skip. Upstream also attaches a version-pinned `docker-compose.yml` to each release, so compare it against yours for new settings.
 {.is-warning}
 
 > CompDesk must be served over **HTTPS** anywhere other than `localhost`. That is why this compose sets `SETUP_PUBLIC_ORIGIN` and `SETUP_TRUST_PROXY`. Only enable `SETUP_TRUST_PROXY` when the proxy or tunnel is the only way in and it overwrites the forwarded host and protocol headers.

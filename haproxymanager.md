@@ -2,7 +2,7 @@
 title: HA Proxy Manager
 description: A guide to deploying HA Proxy Manager
 published: true
-date: 2026-08-28T20:44:54.637Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-28T20:44:54.637Z
@@ -45,6 +45,9 @@ services:
     environment:
       HAM_LISTEN: "0.0.0.0"
       HAM_PORT: "8080"
+      # Optional: pre-seed the admin login instead of creating it in the UI
+      # HAM_ADMIN_USER: "admin"
+      # HAM_ADMIN_PASSWORD: "your-password"  # generate with: openssl rand -base64 24
     volumes:
       - /mnt/tank/configs/haproxy-manager/data:/var/lib/haproxy-manager
       - /mnt/tank/configs/haproxy-manager/acme:/var/lib/acme.sh
@@ -53,10 +56,10 @@ services:
 ```
 
 1. Deploy the stack, then browse to `http://<node-ip>:8080`
-2. Create the administrator account when the UI asks for one
+2. Create the administrator account when the UI asks for one (skipped if you set `HAM_ADMIN_PASSWORD`)
 3. Run one container per node — the image is all-in-one (manager, HAProxy, Keepalived and `acme.sh` under `supervisord`)
 
-Images are published for **linux/amd64** and **linux/arm64**. Pin a tag such as `:1.46` in production; `:latest` moves whenever `main` does.
+Images are published for **linux/amd64** and **linux/arm64**. Pin a version tag such as `:1.98.1` in production (or `:sha-<commit>` for one exact build); `:latest` moves whenever `main` does.
 
 > Host networking is the intended mode. Keepalived's VRRP and the virtual IP need a real interface, and HAProxy binds whatever ports your Public Services define. Bridge mode works for a single standalone node with no VIP, but then you have to publish every port yourself — `8080` for the UI, `80`, `443`, and `9080` for the HTTP-01 listener.
 {.is-info}
@@ -75,7 +78,7 @@ curl -fsSL https://raw.githubusercontent.com/avandeputte/haproxy-manager/main/in
 Or grab the `.deb` / `.rpm` attached to any release:
 
 ```bash
-sudo apt-get install -y ./haproxy-manager_1.91.1_all.deb
+sudo apt-get install -y ./haproxy-manager_1.98.1_all.deb
 ```
 
 The installer pulls in `haproxy`, `keepalived`, `python3-flask`, `python3-requests`, `python3-waitress`, `openssl`, `socat` and `iproute2`, drops in a pinned `acme.sh` with its own cron disabled, enables `net.ipv4.ip_nonlocal_bind` so HAProxy can bind a VIP this node does not currently hold, generates the administrator login and API key, and installs the systemd unit.

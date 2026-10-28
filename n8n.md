@@ -2,7 +2,7 @@
 title: n8n
 description: A guide to deploying n8n on TrueNAS as well as docker compose
 published: true
-date: 2026-01-15T15:30:15.954Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:32.194Z
@@ -34,10 +34,8 @@ services:
     ports:
       - 5678:5678
     environment:
-      - N8N_BASIC_AUTH_ACTIVE=true
-      - N8N_BASIC_AUTH_USER=admin
-      - N8N_BASIC_AUTH_PASSWORD=securepassword
       - TZ=America/New_York
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - N8N_SECURE_COOKIE=false
       - WEBHOOK_URL=
     volumes:
@@ -48,6 +46,12 @@ services:
 > **Error: Command "start" not found**
 > For some reason, n8n does not respect the `user` field, so whatever volume you use must have 777 permissions. To do this run the `chmod 777 /mnt/tank/configs/n8n` command to correct the issue.
 {.is-danger}
+
+> **n8n 3.0 is coming.** The `latest` tag will move to 3.x without warning. 3.0 renames `~/.n8n/binaryData` to `~/.n8n/storage` on first start (startup fails if both folders exist), turns on encryption key rotation by default, and removes the legacy Function, Function Item and Item Lists nodes. Back up `/mnt/tank/configs/n8n` and check **Settings → Migration Report** before upgrading, or pin a 2.x tag such as `n8nio/n8n:2.45.5` until you are ready. See the [v3.0 breaking changes](https://docs.n8n.io/changelog/v30-breaking-changes).
+{.is-warning}
+
+> The old `N8N_BASIC_AUTH_*` variables were removed in n8n 1.0 and do nothing. Login is handled by the owner account you create in section 2.
+{.is-info}
 
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS

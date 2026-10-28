@@ -2,7 +2,7 @@
 title: readme
 description: 
 published: true
-date: 2026-01-15T15:31:20.684Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:00.302Z
@@ -12,7 +12,7 @@ dateCreated: 2026-01-15T15:08:00.302Z
 
 Welcome to the **Servers@Home Wiki** — a living knowledge base for homelabbers, self-hosters, and tech enthusiasts!
 
-This repository is the source of truth for all wiki content and is automatically synced with the live Wiki.js site at [serversatho.me](https://serversatho.me).
+This repository is the source of truth for all wiki content and is automatically synced with the live Wiki.js site at [wiki.serversatho.me](https://wiki.serversatho.me).
 
 ## 🧠 What You'll Find Here
 
@@ -29,13 +29,13 @@ We encourage contributions from the community!
 
 1. Fork this repo or edit files directly in your browser
 2. Submit a pull request with your changes
-3. Once approved, your edits will automatically appear on [serversatho.me](https://serversatho.me)
+3. Once approved, your edits will automatically appear on [wiki.serversatho.me](https://wiki.serversatho.me)
 
 > 📢 **You do not need to use the Wiki.js UI** to contribute. GitHub is now the primary editing interface for this wiki.
 
 ### 🔍 What You Can Edit
 
-- Markdown files in the `content/` directory
+- Markdown files in the repository root
 - Add new pages as `.md` files using the same structure
 
 ---

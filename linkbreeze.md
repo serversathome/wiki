@@ -2,7 +2,7 @@
 title: LinkBreeze
 description: A guide to deploying LinkBreeze
 published: true
-date: 2026-08-10T21:58:54.756Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-05T20:25:52.869Z
@@ -10,7 +10,7 @@ dateCreated: 2026-08-05T20:25:52.869Z
 
 # What is LinkBreeze?
 
-**LinkBreeze** is a self-hosted link-in-bio platform — the open-source alternative to Linktree. It gives you a single public page that holds all of your links, plus a fast admin dashboard for managing them, built-in privacy-first analytics, auto-generated QR codes, and a full theme engine.
+**LinkBreeze** is a self-hosted link-in-bio platform — the open-source alternative to Linktree. It gives you public pages that hold all of your links (as many pages as you want, each with its own slug), plus a fast admin dashboard for managing them, built-in privacy-first analytics, auto-generated QR codes, and a full theme engine.
 
 It runs as a single container backed by SQLite (no external database), the public page is 100% server-rendered with zero client JavaScript, and the whole thing is MIT licensed. If you're a creator who's tired of paying a monthly subscription just to host a list of links, this is the one to self-host.
 
@@ -20,7 +20,7 @@ It runs as a single container backed by SQLite (no external database), the publi
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://github.com/manak-hash/linkbreeze"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/OmniRise/LinkBreeze"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 
@@ -29,10 +29,13 @@ It runs as a single container backed by SQLite (no external database), the publi
 
 # 1 · Deploy LinkBreeze
 
+> The project moved to [OmniRise/LinkBreeze](https://github.com/OmniRise/LinkBreeze) and now publishes its image on Docker Hub. The old `ghcr.io/manak-hash/linkbreeze` image stopped at v1.4.1, so switch the `image:` line if you deployed from an earlier version of this page.
+{.is-info}
+
 ```yaml
 services:
   linkbreeze:
-    image: ghcr.io/manak-hash/linkbreeze:latest
+    image: docker.io/omnirise/linkbreeze:latest
     container_name: linkbreeze
     environment:
       - DATABASE_PATH=/app/data/linkbreeze.db
@@ -68,14 +71,14 @@ Your public page now lives at `http://<your-server-ip>:3000/<your-slug>`, and th
 
 ## 2.3 Adding Links
 
-1. Log into **/admin** and open the **Links** tab
+1. Log into **/dashboard** and open the **Links** tab
 2. Click **Add Link**, then set the title, URL, and optional thumbnail
 3. Drag the handles to reorder — the public page updates immediately
 4. Open a link's options to set a **schedule** (start/end date and time) or turn it into an **embed widget**
 
 # 3 · Theming
 
-LinkBreeze ships with 9 presets: **Aurora** (the animated flagship), **Glassmorphism**, **Neon Cyberpunk**, **Editorial Paper**, **Terminal Mono**, **Pastel Soft**, **Brutalist**, **Retro Sunset**, and **Minimal Light**.
+LinkBreeze ships with 11 presets: **Aurora** (the animated flagship), **Glassmorphism**, **Neon Cyberpunk**, **Editorial Paper**, **Terminal Mono**, **Pastel Soft**, **Brutalist**, **Retro Sunset**, **Minimal Light**, **8-Bit Retro**, and **Frutiger Aero**.
 
 Under the hood the theme engine is a CSS custom property token system (`--lb-*`), so the customizer can change nearly everything without touching code:
 

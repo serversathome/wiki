@@ -2,7 +2,7 @@
 title: Portainer
 description: A guide to installing Portainer on Ubuntu Server LTS
 published: true
-date: 2026-01-22T19:21:31.003Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:43.293Z
@@ -39,10 +39,10 @@ Portainer is a popular Docker UI that helps you visualize your containers, image
 
 ### Docker Run
 
-Run all of these commands in sequence:
+Run all of these commands in sequence (port `8000` is only needed if you use Edge Agents):
 ```bash
 docker volume create portainer_data
-docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:lts
 ```
 
 ### Docker Compose
@@ -50,11 +50,11 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /va
 ```yaml
 services:
   portainer:
-    image: portainer/portainer-ce:latest
+    image: portainer/portainer-ce:lts
     container_name: portainer
     restart: unless-stopped
     ports:
-      - 8000:8000
+      - 8000:8000 # only needed for Edge Agents; remove if you do not use them
       - 9443:9443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

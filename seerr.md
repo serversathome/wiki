@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-06-20T21:36:06.700Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-14T20:08:17.652Z
@@ -21,7 +21,7 @@ Seerr v3.0.0 merges the Overseerr and Jellyseerr codebases into a single project
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/seerr-team/seerr"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://docs.seerr.dev/extending-jellyseerr/database-config"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://docs.seerr.dev/extending-seerr/database-config/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
     <a href="https://youtu.be/tJgvZqKo37U"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>
@@ -45,7 +45,7 @@ services:
     volumes:
       - /mnt/tank/configs/seerr:/app/config
     healthcheck:
-      test: wget --no-verbose --tries=1 --spider http://localhost:5055/api/v1/status || exit 1
+      test: wget --no-verbose --tries=1 --spider http://localhost:5055/api/v1/settings/public || exit 1
       start_period: 20s
       timeout: 3s
       interval: 15s
@@ -58,7 +58,7 @@ services:
 {.is-info}
 
 >
-> The Seerr Docker container runs internally as the `node` user (UID **1000**) and does **not** respect the `user:` directive in your compose file. This is different from most containers in the arr stack. See [Section 2 · Permissions](#h-2-permissions-docker-only) for how to handle this on TrueNAS.
+> The Seerr Docker container runs as the `node` user (UID **1000**) by default, unlike most containers in the arr stack, which use 568. Either give the config folder to UID 1000, or add `user: "568:568"` to the compose to run it as the `apps` user. See [Section 2 · Permissions](#h-2-permissions-docker-only) for how to handle this on TrueNAS.
 {.is-danger}
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
@@ -80,11 +80,13 @@ services:
 > This section only applies to **Docker (Dockge)** deployments. The TrueNAS app runs as 568:568 and handles permissions normally.
 {.is-info}
 
-The Seerr Docker container always runs as UID **1000** (the `node` user) regardless of any `user:` directive in your compose file. On TrueNAS, where the standard `apps` user is UID **568**, this means the config directory must be owned by UID 1000 for Seerr to function properly.
+The Seerr Docker container runs as UID **1000** (the `node` user) by default. On TrueNAS, where the standard `apps` user is UID **568**, the config directory must be owned by whichever user the container runs as. With the default, give it to UID 1000:
 
 ```bash
 chown -R 1000:1000 /mnt/tank/configs/seerr
 ```
+
+If you'd rather keep everything as `apps`, add `user: "568:568"` to the `seerr` service instead and run `chown -R 568:568 /mnt/tank/configs/seerr`.
 
 > 
 > If Seerr is having trouble writing to its config directory, permissions are almost always the cause. Check with `ls -la /mnt/tank/configs/seerr` and verify UID 1000 owns the files.
@@ -113,7 +115,7 @@ If you're coming from Jellyseerr or Overseerr, the migration to Seerr is mostly 
     ```bash
     rsync -avh /mnt/tank/configs/jellyseerr/ /mnt/tank/configs/seerr/
     ```
-		
+
     > Note the trailing slash on the source path — this copies the **contents** of the directory, not the directory itself.
 <!-- {blockquote:.is-warning} -->
 
@@ -229,7 +231,7 @@ If your Jellyseerr/Overseerr TrueNAS app was using **ixVolume** storage, you'll 
 
 ## 4.3 PostgreSQL (Optional)
 
-Seerr v3.0.0 adds optional PostgreSQL support. By default, Seerr uses SQLite (stored in the config directory). If you want to switch to PostgreSQL, refer to the [official database configuration docs](https://docs.seerr.dev/extending-jellyseerr/database-config#postgresql-options).
+Seerr v3.0.0 adds optional PostgreSQL support. By default, Seerr uses SQLite (stored in the config directory). If you want to switch to PostgreSQL, refer to the [official database configuration docs](https://docs.seerr.dev/extending-seerr/database-config/#postgresql-options).
 
 ## 4.4 DNS Caching (Experimental)
 

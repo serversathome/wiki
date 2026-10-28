@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2026-01-15T15:29:03.311Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:27.463Z
@@ -19,6 +19,9 @@ Docusaurus is an open-source static site generator designed for building documen
 </div>
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Docusaurus
+
+> The `trevorbrunette/docusaurus` images are community-built (no public source) and haven't been updated since August 2025, so they won't pick up new Docusaurus releases on their own.
+{.is-warning}
 
 
 ```yaml
@@ -49,7 +52,7 @@ services:
         condition: service_healthy
     container_name: docusaurus-build
     image: trevorbrunette/docusaurus:build
-    restart: no
+    restart: "no"
     volumes:
       - /mnt/tank/configs/docusaurus:/opt/docusaurus
     healthcheck:
@@ -91,7 +94,7 @@ services:
       - PUID=0
       - PGID=0
       - TZ=America/New_York
-      - PASSWORD=password
+      - PASSWORD=change-me # Generate with: openssl rand -base64 24
       - DEFAULT_WORKSPACE=/mnt/
     volumes:
       - /mnt/tank/configs/codeserver:/config
@@ -122,7 +125,7 @@ Once the `prod` site is built, point your reverse proxy at `http://{IP}:8082` to
 
 This compose stack comes with a **VS Code** container which will allow you to edit the files in the `/mnt/tank/configs/docusaurus` directory through a visual editor. Once the files are edited the changes will be reflected immediately on the `dev` server.
 
-To login to the code container, visit `http://{IP}:8443` and use the password `password`.
+To login to the code container, visit `http://{IP}:8443` and use the `PASSWORD` you set in the compose file.
 
 # 3 · Publishing to GitHub
 
@@ -176,9 +179,9 @@ Add Pages following the steps below:
 ## 3.5 Publishing
 1. Either hit the **Start** button in Dockge or restart the stack to tirgger a build
 1. Run the following command from the TrueNAS shell to publish the site to GitHub:
-```bash
-
-```
+    ```bash
+    cd /mnt/tank/configs/docusaurus && git add . && git commit -m "Update site" && git push
+    ```
 
 
 

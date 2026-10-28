@@ -2,7 +2,7 @@
 title: Audiobookshelf
 description: A guide to deploying Audiobookshelf
 published: true
-date: 2026-08-14T11:19:57.749Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-14T11:19:57.749Z
@@ -34,7 +34,7 @@ It is fully open source, including the Android and iOS apps, so nothing about yo
 ```yaml
 services:
   audiobookshelf:
-    image: ghcr.io/advplyr/audiobookshelf:2.36.0
+    image: ghcr.io/advplyr/audiobookshelf:2.37.2
     container_name: audiobookshelf
     restart: unless-stopped
     user: "568:568"

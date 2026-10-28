@@ -2,7 +2,7 @@
 title: Duplicati
 description: A guide to deploying Duplicati on TrueNAS as well as via docker compose
 published: true
-date: 2026-01-15T15:29:06.400Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:31.421Z
@@ -51,7 +51,8 @@ services:
       - PUID=0
       - PGID=0
       - TZ=America/New_York
-      - SETTINGS_ENCRYPTION_KEY=changeme
+      - SETTINGS_ENCRYPTION_KEY=change-me # min 8 chars, alphanumeric. Generate with: openssl rand -hex 16
+      - DUPLICATI__WEBSERVICE_PASSWORD=change-me # Web UI password; defaults to changeme if unset
     volumes:
       - /mnt/tank/configs/duplicati:/config
       - /mnt/tank/backups:/backups
@@ -64,20 +65,16 @@ services:
 # 2 · Duplicati Configuration
 
 ## 2.1 Adding a Backup
-1. Click **+ Add Backup** in the left pane
-1. Give it a **Name**
-1. Optionally select **Encryption**
-1. Click **Next**
-1. Select **Storage Type**
-1. Enter your **AuthID**
-1. Click **Test Connection**
-1. For **Source Data**, expand **Computer** and navigate to `/source` and select directories for backup
-1. Click **Next**
-1. Configure your **Schedule**
-1. Click **Next**
-1. Select a **Remote Volume Size**
-1. Select a **Backup Retention** period
-1. Click **Save**
+1. Click **Add backup**, then choose **Add a new backup**
+1. Under **Basic configuration**, give it a **Name** and optionally set an encryption passphrase
+1. For **Source data**, expand **Computer** and navigate to `/source` and select directories for backup, then click **Continue**
+1. For **Storage destination**, select the storage type and enter your credentials (e.g. **AuthID**), click **Test now**, then click **Continue**
+1. Configure your **Schedule**, then click **Continue**
+1. Under **Retention and miscellaneous**, select a **Remote Volume Size** and a **Backup Retention** period
+1. Click **Submit**
+
+> In Duplicati versions before 2.4.0.1, the storage destination step comes before source data.
+{.is-info}
 
 ## 2.2 Data Restoration
 1. Click **Restore** in the left pane
@@ -88,22 +85,9 @@ services:
 1. Click **Restore**
 
 ## 2.3 Remote Management
-1. Navigate to **Settings** in the left pane
-1. Click the button to **Register for remote control**
-1. Click the generated hyperlink to add Duplicati to your account
-1. Click the blue **Register machine** button
-1. Click the **Get Started** link in the left pane
-1. Click **Next** to get to the **Connection key** step
-1. Copy the conneciton key
-a. Open the local Duplicati interface
-b. Navigate to **Settings**
-c. Scroll to the **Default Options** at the bottom
-d. Click the **Edit as text** hyperlink
-e. Paste the key
-f. Click **OK**
-1. Navigate back to the Duplicati web interface
-1. Click **next Step** twice
-1. Click **Back to Dashboard**
+1. In the local Duplicati web interface, click **Click to register** in the top-right corner
+1. Sign in to the Duplicati Console if prompted, and accept adding the machine to your account
+1. The machine now shows up in the Duplicati Console, where you can manage it remotely
 
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video

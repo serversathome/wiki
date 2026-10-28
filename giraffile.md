@@ -2,7 +2,7 @@
 title: Giraffile
 description: A guide to deploy Giraffile
 published: true
-date: 2026-08-05T20:22:40.563Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-05T20:22:40.563Z
@@ -17,6 +17,9 @@ dateCreated: 2026-08-05T20:22:40.563Z
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
+  <div class="glance-links">
+    <a href="https://github.com/coffeetron832/Giraffile"><i class="mdi mdi-github"></i>Project</a>
+  </div>
 </div>
 
 
@@ -49,11 +52,13 @@ graph LR
 
 # <img src="/docker.png" class="tab-icon"> 2 · Deploy Giraffile
 
-There is no published image. Clone the repo and serve the folder with nginx.
+There is no published image. Clone the repo straight into the folder nginx will serve:
 
 ```bash
-cd /mnt/tank/stacks && git clone https://github.com/coffeetron832/Giraffile.git
+git clone https://github.com/coffeetron832/Giraffile.git /mnt/tank/configs/giraffile/site
 ```
+
+To update later, run `git -C /mnt/tank/configs/giraffile/site pull`.
 
 In Dockge, use this for your compose stack:
 

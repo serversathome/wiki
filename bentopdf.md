@@ -2,7 +2,7 @@
 title: BentoPDF
 description: A guide to deploying BentoPDF via docker
 published: true
-date: 2026-03-12T10:13:39.054Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:22.226Z
@@ -28,12 +28,18 @@ BentoPDF is a powerful suite of tools that allow you to do all kinds of cool thi
 ```yaml
 services:
   bentopdf:
-    image: ghcr.io/alam00000/bentopdf:latest
+    image: ghcr.io/alam00000/bentopdf-simple:latest
     container_name: bentopdf
     ports:
       - 3060:8080
     restart: unless-stopped
+    # For IPv4-only hosts
+    #environment:
+    #  - DISABLE_IPV6=true
 ```
+
+> This uses the **Self-Hosted** build (`bentopdf-simple`), which upstream recommends for home and internal use. It has every PDF tool, just without the marketing pages. The `bentopdf` image without `-simple` is the commercial build that runs bentopdf.com.
+{.is-info}
 
 > After deploying the container, simply go to `http://IP:3060` and start using the software.
 {.is-success}

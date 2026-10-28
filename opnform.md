@@ -2,7 +2,7 @@
 title: OpnForm
 description: A guide to deploying OpnForm
 published: true
-date: 2026-10-01T16:13:23.436Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-28T16:23:10.223Z
@@ -55,6 +55,16 @@ server {
     index index.html index.htm index.php;
 
     location / {
+        proxy_http_version 1.1;
+        proxy_pass http://opnform-client:3000;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Port $server_port;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+    }
+
+    location ^~ /api/_nuxt_icon/ {
         proxy_http_version 1.1;
         proxy_pass http://opnform-client:3000;
         proxy_set_header X-Real-IP $remote_addr;

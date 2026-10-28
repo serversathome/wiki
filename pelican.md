@@ -2,7 +2,7 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-08-25T10:31:47.610Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-17T17:28:21.752Z
@@ -15,7 +15,7 @@ dateCreated: 2026-07-17T17:28:21.752Z
 Pelican has two parts: the **Panel** (the web UI) and **Wings** (the daemon that runs the actual game servers via Docker). This guide runs **both as Docker stacks in Dockge** on TrueNAS — no VM or LXC required.
 
 > 
-> Pelican is still in **Beta**, and Docker is the maintainers' planned future install method (currently marked "work in progress"). It's stable enough for a homelab — just pin your working image tag and read the changelog before updating.
+> Pelican is at the **v1.0 release-candidate** stage, and Docker is the maintainers' planned future install method (currently marked "work in progress"). It's stable enough for a homelab — just pin your working image tag and read the changelog before updating.
 {.is-warning}
 
 <div class="glance">
@@ -54,7 +54,7 @@ services:
     volumes:
       - /mnt/tank/configs/pelican:/pelican-data
     ports:
-      - 88:88
+      - 88:80     # behind a proxy, Caddy always listens on 80 inside the container
     restart: unless-stopped
 ```
 
@@ -64,7 +64,7 @@ Point your reverse proxy (Cloudflare Tunnel / DockFlare / etc.) at the container
 {.is-success}
 
 > 
-> **`APP_URL` controls Caddy's listen port.** The built-in Caddy binds to whatever port is in `APP_URL`, so the **container side of the port mapping must match it**. If `APP_URL` ends in `:88`, the mapping is `88:88` — *not* `88:80`. Mismatch them and you get connection refused with a perfectly healthy-looking log.
+> **`APP_URL` sets Caddy's listen port only when `BEHIND_PROXY` is not set.** With `BEHIND_PROXY=true`, Caddy always listens on **port 80 inside the container**, so the mapping is `88:80`. Without `BEHIND_PROXY`, Caddy binds to whatever port is in `APP_URL`, and the **container side of the port mapping must match it** (e.g. `APP_URL` ending in `:8088` → `8088:8088`). Mismatch them and you get connection refused with a perfectly healthy-looking log.
 {.is-danger}
 
 > **Just testing on the LAN?** Set `APP_URL=http://<truenas-ip>:8088`, use `8088:8088` for ports, and drop the `BEHIND_PROXY`/`TRUSTED_PROXIES` lines. Don't use `80:80`/`443:443` — they collide with the TrueNAS web UI.
@@ -97,7 +97,7 @@ Wings needs a node config **before** it starts cleanly, so do this in order.
 
 ## 2.1 Create the Node in the Panel
 
-In the Panel: **Admin → Nodes → Create Node**. Set the **FQDN** to the TrueNAS host's LAN IP (or a domain pointing at it), and match the SSL setting to your Panel — if the Panel is HTTPS, the node should be too. After saving, open the node's **Configuration** tab and copy the generated YAML.
+In the Panel: **Admin → Nodes → Create Node**. Set the **FQDN** to the TrueNAS host's LAN IP (or a domain pointing at it), and match the SSL setting to your Panel — if the Panel is HTTPS, the node should be too. Set the **Daemon Port** to `8099` so it matches the Wings port mapping below (the default is `8080`). After saving, open the node's **Configuration** tab and copy the generated YAML.
 
 
 On the TrueNAS host, create the config dir and save that YAML into it — this is the `etc` bind from the stack below:
@@ -144,7 +144,7 @@ Create a second Dockge stack called **`wings`** with this compose. UID/GID are s
 ```yaml
 services:
   wings:
-    image: ghcr.io/pelican-dev/wings:latest
+    image: ghcr.io/pelican/wings:latest
     container_name: wings
     restart: unless-stopped
     tty: true
@@ -164,6 +164,7 @@ services:
       - /mnt/tank/configs/wings/logs:/var/log/pelican
       # --- Host system paths — do NOT rename these ---
       - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/containers/:/var/lib/docker/containers/   # Wings reads server console logs here
       - /etc/ssl/certs:/etc/ssl/certs:ro
 ```
 

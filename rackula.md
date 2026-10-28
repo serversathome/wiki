@@ -2,7 +2,7 @@
 title: Rackula
 description: A guide to deploying Rackula
 published: true
-date: 2026-01-15T15:31:14.756Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:51.532Z
@@ -24,9 +24,13 @@ Plan your rack layout. Drag your devices in, move them around, export it. It run
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Rackula
 ```yaml
 services:
-  Rackula:
+  rackula:
     image: ghcr.io/rackulalives/rackula:latest
+    container_name: rackula
     ports:
-      - "8080:80"
+      - "8080:8080"
     restart: unless-stopped
 ```
+
+> By default your layouts live in the browser. If you want them saved on the server (with optional local or OIDC login), use the project's [persistence compose](https://github.com/RackulaLives/Rackula/blob/main/docs/deployment/SELF-HOSTING.md), which adds the `rackula-api` sidecar.
+{.is-info}

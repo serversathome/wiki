@@ -2,7 +2,7 @@
 title: Calnode
 description: A guide to deploying Calnode
 published: true
-date: 2026-09-02T10:41:14.955Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-07-23T12:07:16.903Z
@@ -66,7 +66,7 @@ services:
 
 Then browse to `https://booking.yourdomain.com` — it redirects to `/admin/` and walks you through first-run setup.
 
-> **`BASE_URL` must include the scheme.** An `https://` prefix flips the app into production mode: secure cookies on, and the encryption key becomes mandatory. If you set `https://` and forget `CALNODE_ENCRYPTION_KEY`, the container refuses to start.
+> **`BASE_URL` must include the scheme.** An `https://` prefix flips the app into production mode: secure cookies on, and the encryption key becomes mandatory. If you set `https://` and forget `CALNODE_ENCRYPTION_KEY`, the container refuses to start. On plain `http://` without the key, Calnode generates one itself and saves it as `/data/calnode.key`. Back that file up with the database: Litestream replicates the database, not the key, and nothing else can decrypt the stored credentials.
 {.is-warning}
 
 
@@ -110,6 +110,8 @@ location / {
 | `EMAIL_FROM_ADDRESS` | No | `bookings@localhost` | |
 | `EMAIL_FROM_NAME` | No | `Calnode` | |
 | `GOOGLE_CLIENT_ID` / `_SECRET` | No | — | Google sign-in + calendar. |
+| `MICROSOFT_CLIENT_ID` / `_SECRET` | No | — | Microsoft 365 / Outlook sign-in + calendar. Env vars only, no in-app page yet. |
+| `MICROSOFT_TENANT` | No | `common` | Restrict Microsoft sign-in to one organisation's tenant. |
 | `LITESTREAM_REPLICA_URL` | Recommended | — | Setting this turns backups **on**. |
 | `COOKIE_SECURE` | No | https→true | Override the cookie Secure flag. |
 | `LOG_LEVEL` | No | `info` | `debug` / `info` / `warn` / `error` |
@@ -164,7 +166,14 @@ Then set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, or paste them into Setti
 > Google Calendar is a **sensitive scope**. Unverified apps get a warning screen and a 100-user cap. For a personal or small-team booking page that's usually fine — for anything public-facing, submit the app for verification.
 {.is-warning}
 
-Microsoft 365 / Outlook works the same way, and Calnode mints **Google Meet** or **Teams** links automatically when the host's connected calendar matches the platform.
+Microsoft 365 / Outlook is similar, but there is **no in-app settings page for it yet**, so it has to be set with environment variables. In the Azure / Entra admin center go to **App registrations → New registration**, add a **Web** platform with these redirect URIs:
+
+```
+https://booking.yourdomain.com/v1/auth/microsoft/callback
+https://booking.yourdomain.com/v1/calendar/callback
+```
+
+Then set `MICROSOFT_CLIENT_ID`, `MICROSOFT_CLIENT_SECRET` and, only if you want to limit sign-in to a single organisation, `MICROSOFT_TENANT` (defaults to `common`). Calnode mints **Google Meet** or **Teams** links automatically when the host's connected calendar matches the platform.
 
 ## 4.4 Backups with Litestream
 

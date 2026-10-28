@@ -2,7 +2,7 @@
 title: Dockge
 description: A guide to installing Dockge on Ubuntu Server LTS
 published: true
-date: 2026-10-18T09:49:50.183Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:22.797Z
@@ -14,6 +14,9 @@ dateCreated: 2026-01-15T15:02:22.797Z
 Dockge is a self-hosted Docker stack manager developed by the same person behind the popular software Uptime Kuma.
 
 This software allows you to manage multiple Docker compose files from a single, easy-to-use interface. It is similar to the stack system Portainer implements but cleaner and simpler to use.
+
+> Dockge has not had a new release since 1.5.0 (March 2025), although the repo still gets occasional commits. If you want an actively developed alternative, take a look at [Arcane](/arcane).
+{.is-info}
 
 <div class="glance">
   <div><span>Port</span><b><code>5001</code></b></div>
@@ -62,7 +65,7 @@ docker compose up -d
 ```yaml
 services:
  dockge:
-   image: louislam/dockge:latest
+   image: louislam/dockge:1
    restart: unless-stopped
    container_name: dockge
    ports:
@@ -73,8 +76,6 @@ services:
      - /mnt/tank/stacks:/mnt/tank/stacks
    environment:
      - DOCKGE_STACKS_DIR=/mnt/tank/stacks
-     - PUID=568
-     - PGID=568
      - DOCKGE_ENABLE_CONSOLE=true
 ```
 

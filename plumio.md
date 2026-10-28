@@ -2,7 +2,7 @@
 title: Plumio
 description: A guide to deploying Plumio
 published: true
-date: 2026-03-02T21:22:01.624Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-02T21:21:42.589Z
@@ -67,16 +67,18 @@ Replace `YOUR_SERVER_IP` in `ALLOWED_ORIGINS` with your actual server IP or host
 
 And in the ENV section below the compose window add the following content:
 
-```bash
+```env
 JWT_SECRET=
 ENCRYPTION_KEY=
-VITE_API_URL=http://localhost:3001
 ```
 
 > 
-> Generate both secrets with: `openssl rand -base64 32`
-> Run the command twice — once for `JWT_SECRET` and once for `ENCRYPTION_KEY`.
+> Generate `JWT_SECRET` with `openssl rand -base64 32`.
+> Generate `ENCRYPTION_KEY` with `openssl rand -hex 32`. It must be exactly 64 hexadecimal characters.
 {.is-info}
+
+> Back up your `ENCRYPTION_KEY`. If you change or lose it, your encrypted documents can no longer be read.
+{.is-danger}
 
 
 

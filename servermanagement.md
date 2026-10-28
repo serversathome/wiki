@@ -25,7 +25,6 @@ dateCreated: 2026-01-15T15:08:30.750Z
 {.links-list .storage}
 
 ## Dashboards {.sec .storage}
-- [<img src="/corecontrol-light.png"> CoreControl<br>*Server and service dashboard*](/corecontrol)
 - [<img src="/homarr.png"> Homarr<br>*Drag-and-drop homelab dashboard*](/homarr)
 - [<img src="/dashy.png"> Dashy<br>*Customizable dashboard with status checks*](/dashy)
 - [<img src="/heimdall.png"> Heimdall<br>*Simple application launcher*](/heimdall)
@@ -58,7 +57,6 @@ dateCreated: 2026-01-15T15:08:30.750Z
 ## Remote access {.sec .storage}
 - [<img src="/termix.png"> Termix<br>*SSH, RDP, VNC and Telnet in one web UI*](/termix)
 - [<img src="/rustdesk.png"> RustDesk<br>*Self-hosted TeamViewer alternative*](/rustdesk)
-- [PiMan<br>*Manage a fleet of Raspberry Pis*](/piman)
 {.links-list .storage}
 
 ## Inventory and documentation {.sec .storage}
