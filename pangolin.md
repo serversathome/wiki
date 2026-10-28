@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: true
-date: 2026-05-13T11:55:02.473Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:59.674Z
@@ -11,14 +11,14 @@ dateCreated: 2026-01-15T15:06:59.674Z
 # ![](/pangolin.png){class="tab-icon"} What is Pangolin?
 Pangolin at its core is a self-hosted tunneled reverse proxy with identity and access management, designed to securely expose private resources through encrypted WireGuard tunnels running in user space. Think self hosted Cloudflare tunnels.
 > 
-> Read the [official documentation](https://docs.fossorial.io/Getting%20Started/overview)
+> Read the [official documentation](https://docs.pangolin.net/)
 {.is-success}
 
 
 # 1 · Prerequisites
 - A Linux system with root access and a public IP address *(we recommend Ubuntu or Debian based systems)*
 - A domain name pointed to your server's IP address
-- TCP ports 80, 443, and UDP port 51820 exposed to your Linux instance.
+- TCP ports 80, 443, and UDP ports 51820 and 21820 (the latter for clients) exposed to your Linux instance.
 
 # 2 · Choosing a VPS
 Pangolin is best run from somewhere outside your network, ideally in the cloud. As such, you need to have a VPS to install Pangolin.
@@ -47,17 +47,23 @@ sudo ./installer
 # 4 · Installer Configuration
 The installer will prompt you for the following basic information. For example:
 
+1. **Edition:** Choose **Community Edition** or Enterprise Edition
 1. **Base Domain Name:** Enter your base fully qualified domain name (without any subdomains) Example: example.com
 1. **Dashboard Domain Name:** The domain where the application will be hosted. This is used for many things, including generating links. You can run Pangolin on a subdomain or root domain. Example: `pangolin.example.com`
 1. **Let's Encrypt Email:** Provide an email address for SSL certificate registration with Lets Encrypt. This should be an email you have access to.
-1. **Tunneling:** You can choose not to install Gerbil for tunneling support - in this config it will just be a normal reverse proxy. See how to [use without tunneling](https://docs.fossorial.io/Pangolin/without-tunneling).
+1. **Tunneling:** You can choose not to install Gerbil for tunneling support - in this config it will just be a normal reverse proxy. See how to [use without tunneling](https://docs.pangolin.net/self-host/advanced/without-tunneling).
 
 ## 4.1 Admin User Setup
 
-You'll need to configure the admin user. This is the first user in the system. You will log in initially with this user.
+The installer no longer asks for an admin account. Instead, it prints a one-time **setup token**, and you create the first admin user in the web UI:
 
-1. **Admin Email:** Defaults to `admin@yourdomain.com` but can be customized
-1. **Admin Password:** Must meet these requirements:
+1. Browse to `https://pangolin.example.com/auth/initial-setup` (your dashboard domain)
+1. Paste the setup token the installer displayed. If you missed it, find it in the Pangolin container logs:
+    ```bash
+    sudo docker compose logs pangolin
+    ```
+1. **Admin Email:** Enter your admin email address
+1. **Admin Password:** Use a strong, unique password. For example:
     - At least 8 characters
     - At least one uppercase letter
     - At least one lowercase letter
@@ -66,7 +72,10 @@ You'll need to configure the admin user. This is the first user in the system. Y
 
 ## 4.2 Security Settings
 
-It will ask you to configure some basic security options. For example:
+> Current installers no longer list these prompts. If yours doesn't ask, skip this step.
+{.is-info}
+
+Older installers asked you to configure some basic security options. For example:
 
 1. **Signup Without Invite:** Choose whether to disable user registration without invites (defaults to disabled). This removes the "Sign Up" button on the login form and is recommended for private deployments.
 1. **Organization Creation:** Decide if users can create their own organizations (defaults to enabled)
@@ -122,7 +131,7 @@ A site is a remote location that you want to proxy through the tunnel and system
 1. You should now be on the Connectivity page under your new resource
 1. If you would like to secure this site with https, leave the **Enable SSL** toggle enabled
 1. Add a target for this resource. If your resource is accessible on your internal network at `http://192.168.1.24:8080` for example, then choose the following:
-	a. **Method:** `HTTP` 
+  a. **Method:** `HTTP` 
   b. **IP Address:** `192.168.1.24` 
   c. **Port:** `8080`
 1. Press **Add Target** and you will see the target added to the list and enabled.
