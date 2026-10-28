@@ -2,7 +2,7 @@
 title: Mealie
 description: A guide to deploying Mealie
 published: true
-date: 2026-09-04T18:00:34.639Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:17.048Z
@@ -38,12 +38,8 @@ services:
       PUID: 568
       PGID: 568
       TZ: America/New_York
-      MAX_WORKERS: 1
-      WEB_CONCURRENCY: 1
+      UVICORN_WORKERS: 1
       BASE_URL: 
-      OPENAI_API_KEY: 
-      OPENAI_ENABLE_IMAGE_SERVICES: "false"
-      OPENAI_SEND_DATABASE_DATA: "false"
 ```
 
 > See more environment variable options and explanations [here](https://docs.mealie.io/documentation/getting-started/installation/backend-config/)
@@ -51,14 +47,26 @@ services:
 
 
 # 2 · Why Add AI?
-- The OpenAI Ingredient Parser can be used as an alternative to the NLP and Brute Force parsers. Simply choose the OpenAI parser while parsing ingredients 
-- When importing a recipe via URL, if the default recipe scraper is unable to read the recipe data from a webpage, the webpage contents will be parsed by OpenAI 
-- You can import an image of a written recipe, which is sent to OpenAI and imported into Mealie. The recipe can be hand-written or typed, as long as the text is in the picture. You can also optionally have OpenAI translate the recipe into your own language 
+- The AI Ingredient Parser can be used as an alternative to the NLP and Brute Force parsers. Simply choose the AI parser while parsing ingredients 
+- When importing a recipe via URL, if the default recipe scraper is unable to read the recipe data from a webpage, the webpage contents will be parsed by AI 
+- The **Import with AI** page (*Create → Import with AI*) builds a recipe from pasted text, photos of a written recipe, or a link. Give it a YouTube or Instagram video link and Mealie transcribes the video, as long as you've set up an audio provider. You can also optionally have the recipe translated into your own language 
 
-If you have another service you'd like to use in-place of OpenAI, you can configure Mealie to use that instead, as long as it has an OpenAI-compatible API. For instance, a common self-hosted alternative to OpenAI is Ollama. To use Ollama with Mealie, change your `OPENAI_BASE_URL` to http://localhost:11434/v1 (where http://localhost:11434 is wherever you're hosting Ollama, and /v1 enables the OpenAI-compatible endpoints). Note that you must provide an API key, even though it is ultimately ignored by Ollama.
+AI is no longer configured with environment variables. To set it up:
+
+1. Go to your **Group Settings** and open the AI providers section
+1. Add a **default provider** (e.g. OpenAI with `gpt-5` and your API key). AI features stay off until a default provider is set
+1. Optionally add an **image provider** (for recipes from photos) and an **audio provider** such as `whisper-1` (for video imports)
+
+If you have another service you'd like to use in-place of OpenAI, you can configure Mealie to use that instead, as long as it has an OpenAI-compatible API. For instance, a common self-hosted alternative to OpenAI is Ollama. To use Ollama with Mealie, set the provider's `base_url` to http://localhost:11434/v1 (where http://localhost:11434 is wherever you're hosting Ollama, and /v1 enables the OpenAI-compatible endpoints). Note that you must provide an API key, even though it is ultimately ignored by Ollama.
+
+> See the [AI integration docs](https://docs.mealie.io/documentation/getting-started/installation/ai-providers/) for more details.
+{.is-info}
 
 # <img src="/docker.png" class="tab-icon"> 3 · Grab Recipes from Social
 Have you found a recipe on social media and don’t want to write it out yourself? This tool lets you import recipes from videos directly into Mealie.
+
+> Mealie can now import videos itself through **Import with AI** (see section 2) once an audio provider is configured. social-to-mealie is still handy if you want a separate share target or different models.
+{.is-info}
 
 > See the [GitHub repo](https://github.com/GerardPolloRebozado/social-to-mealie) for more information!
 {.is-info}
@@ -74,7 +82,7 @@ services:
       - OPENAI_URL=https://api.openai.com/v1 #URL of an OPENAI api compatible provider
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - TRANSCRIPTION_MODEL=whisper-1 # this model will be used to transcribe the audio to text
-      - TEXT_MODEL=model # the model you want to use to create the recipe in json using the transcription result
+      - TEXT_MODEL=gpt-5-mini # the model you want to use to create the recipe in json using the transcription result
       - MEALIE_URL=https://mealie.example.com # url of you mealie instance
       - MEALIE_API_KEY=${MEALIE_API_KEY}
       # Optionally specify yt-dlp version to use. Use "latest" or a release tag like "2025.11.01".
@@ -83,7 +91,7 @@ services:
       # Optional, Mealie group name, defaults to "home"
       - MEALIE_GROUP_NAME=home
       # Optional, addition to the prompt, useful for translation needs remove if not needed
-      - EXTRA_PROMPT=The description, ingredients, and instructions must be provided in Spanish
+      - EXTRA_PROMPT=
       - COOKIES= #Optional, cookie for yt-dlp requests, useful for protected content
     volumes:
       - ./cookies.txt:/app/cookies.txt # Optional, only needed for some content
