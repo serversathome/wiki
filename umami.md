@@ -2,7 +2,7 @@
 title: Umami
 description: A guide to installing Umami in docker via compose
 published: true
-date: 2026-01-15T15:32:15.101Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:10.553Z
@@ -44,11 +44,13 @@ services:
      - "3002:3000"
    environment:
      DATABASE_URL: postgresql://umami:umami@db:5432/umami
-     DATABASE_TYPE: postgresql
      APP_SECRET: replace-me-with-a-random-string
+     # Required for two-factor authentication, generate with: openssl rand -hex 32
+     TWO_FACTOR_ENCRYPTION_KEY: replace-me-with-a-64-character-hex-string
    depends_on:
      db:
        condition: service_healthy
+   init: true
    restart: unless-stopped
    healthcheck:
      test: ["CMD-SHELL", "curl http://localhost:3000/api/heartbeat"]
@@ -72,6 +74,7 @@ services:
 ```
 
 1. Change the default user names and passwords from the example. 
+1. Generate `APP_SECRET` and `TWO_FACTOR_ENCRYPTION_KEY` with `openssl rand -hex 32` (use a different value for each).
 
 # 2 · Logging In
 
