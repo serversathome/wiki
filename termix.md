@@ -41,7 +41,7 @@ services:
       PORT: "8080"
 ```
 
-Remote desktop (RDP, VNC, and Telnet) is now built into Termix, so no `guacd` sidecar is needed. Since v26.10.2 the upstream compose files no longer start a `guacd` container. If you deployed the older two-service compose, you can remove the `guacd` service.
+Remote desktop (RDP, VNC, and Telnet) is now built into Termix, so no `guacd` sidecar is needed. The current upstream compose file no longer starts a `guacd` container. If you deployed the older two-service compose, you can remove the `guacd` service.
 
 > The project moved from `lukegus/termix` to the `Termix-SSH` organization. The old `ghcr.io/lukegus/termix` image is still published, but `ghcr.io/termix-ssh/termix` is the upstream name going forward.
 {.is-info}
