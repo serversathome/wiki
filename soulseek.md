@@ -125,7 +125,7 @@ services:
    * `soulseek.password: YOUR_PASS`
    * *(optional)* `soulseek.description: "Hi, enjoy the tunes!"`
 3. **Save → Restart daemon**.  Watch logs until **Connected to server** appears.
-4. The compose already shares `/music/library` via `SLSKD_SHARED_DIR` (change it to wherever your library sits under `/music`). Avoid sharing all of `/music`, since that also shares the `downloads` and `incomplete` folders.
+4. The compose shares `/music/library` via `SLSKD_SHARED_DIR`; change it to wherever your library sits under `/music`.
 
 ---
 
@@ -139,20 +139,6 @@ Set these in `slskd.yml` (**System → Options**) or with the matching environme
 | `transfers.upload.slots` | `SLSKD_UPLOAD_SLOTS` | `3` | Prevent bandwidth hogging |
 | `transfers.download.slots` | `SLSKD_DOWNLOAD_SLOTS` | `6` | Balanced performance |
 | `shares.filters` | `SLSKD_SHARE_FILTER` | `\.log$`, `\.nfo$` | Regex list of files to leave out of your shares |
-
-```yaml
-soulseek:
-  listen_port: 50300
-transfers:
-  upload:
-    slots: 3
-  download:
-    slots: 6
-shares:
-  filters:
-    - \.log$
-    - \.nfo$
-```
 
 ---
 
