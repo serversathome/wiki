@@ -2,7 +2,7 @@
 title: Dozzle
 description: A guide to deploying Dozzle on TrueNAS Scale and via Docker Compose
 published: true
-date: 2026-10-28T10:15:22.083Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:29.434Z
@@ -23,7 +23,7 @@ Version 11 is the biggest update Dozzle has ever had: a completely redesigned in
     <a href="https://github.com/amir20/dozzle"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://dozzle.dev"><i class="mdi mdi-book-open-variant"></i>Docs</a>
     <a href="https://apps.truenas.com/catalog/dozzle_community/"><i class="mdi mdi-server"></i>TrueNAS app</a>
-    <a href="https://youtu.be/LNDkGBOfv6Y"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
+    <a href="https://youtu.be/esZJz8so4f0"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>
 
@@ -358,9 +358,8 @@ services:
       - 7007:7007
 ```
 
-1. Check the socket's group on that machine with `stat -c '%g' /var/run/docker.sock` and use that number under `group_add`. It is often different from TrueNAS.
-2. In Dozzle, click **Add host** and enter the agent's address, for example `10.99.0.50:7007`.
-3. The host appears in the sidebar right away, with its own uptime, load and disk on its card.
+1. In Dozzle, click **Add host** and enter the agent's address, for example `10.99.0.50:7007`.
+2. The host appears in the sidebar right away, with its own uptime, load and disk on its card.
 
 > Keep the agent's port `7007` off the public internet. Reach it over your LAN or a mesh VPN like NetBird.
 {.is-info}
