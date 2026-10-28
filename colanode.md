@@ -26,27 +26,14 @@ Open-source and local-first Slack and Notion alternative that puts you in contro
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Colanode
 
-Since v0.4.0, Colanode's server settings live in a `config.json` file instead of environment variables. Create `/mnt/tank/configs/colanode/config.json` first. It only needs the settings you want to change, everything else uses the built-in defaults:
+Create `/mnt/tank/configs/colanode/config.json` first, replacing `your-server-ip` with your server's IP:
 
 ```json
 {
-  "name": "Colanode Local",
-  "cors": {
-    "origin": "http://your-server-ip:4000"
-  },
-  "account": {
-    "verificationType": "automatic"
-  },
-  "storage": {
-    "provider": {
-      "type": "file",
-      "directory": "/var/lib/colanode/storage"
-    }
-  }
+  "cors": { "origin": "http://your-server-ip:4000" },
+  "storage": { "provider": { "type": "file", "directory": "/var/lib/colanode/storage" } }
 }
 ```
-
-Replace `your-server-ip` with your server's IP (or your public URL for the web UI if you use a reverse proxy). Storage limits, SMTP and the other options are also set in this file. See upstream's [config.example.json](https://github.com/colanode/colanode/blob/main/apps/server/config.example.json) and the [configuration docs](https://colanode.com/docs/self-hosting/configuration/).
 
 ```yaml
 services:
@@ -101,7 +88,7 @@ services:
 1. Generate two passwords with `openssl rand -hex 24`. Replace both `CHANGEME_DB_PASSWORD` values with the first and both `CHANGEME_VALKEY_PASSWORD` values with the second
 2. Deploy the stack
 
-> **Upgrading from a pre-0.4 setup?** Colanode now ignores the old `SERVER_NAME`, `ACCOUNT_VERIFICATION_TYPE`, `SERVER_CORS_ORIGIN`, `STORAGE_*`, `USER_*` and `SMTP_*` environment variables. Only `POSTGRES_URL` and `REDIS_URL` are still read. Move those settings into `config.json` as shown above. The 0.4 update also reset the apps' local data, so you have to log in again and let them resync. See the [v0.4.0 release notes](https://github.com/colanode/colanode/releases/tag/v0.4.0).
+> Upgrading from pre-0.4? Move your settings from env vars into `config.json`; see the [v0.4.0 release notes](https://github.com/colanode/colanode/releases/tag/v0.4.0).
 {.is-warning}
 
 # 2 · Setting Up
