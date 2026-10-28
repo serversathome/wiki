@@ -41,7 +41,7 @@ services:
 1. Generate an encryption password with `openssl rand -hex 32` and paste it in place of `CHANGEME`
 2. Deploy the stack
 
-> `BICHON_ENCRYPT_PASSWORD` encrypts the IMAP passwords and OAuth tokens Bichon stores. Save it somewhere safe. If you lose or change it, Bichon can no longer read your saved account credentials.
+> Save this value; if you lose or change it, saved account credentials can't be decrypted.
 {.is-warning}
 
 # 2 · Logging In
