@@ -17,7 +17,7 @@ Key features include stream geolocation mapping, trust scoring, impossible trave
 <div class="glance">
   <div><span>Port</span><b><code>3000</code></b></div>
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>3 services (or 1 all-in-one)</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
     <a href="https://github.com/connorgallopo/tracearr"><i class="mdi mdi-github"></i>Project</a>
@@ -28,81 +28,7 @@ Key features include stream geolocation mapping, trust scoring, impossible trave
 # {.tabset}
 ## <img src="/docker.png" class="tab-icon"> Docker
 
-The recommended upstream deployment runs Tracearr with a separate TimescaleDB (PostgreSQL 18) and Redis container.
-
-```yaml
-services:
-  tracearr:
-    image: ghcr.io/connorgallopo/tracearr:latest
-    container_name: tracearr
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
-      - HOST=0.0.0.0
-      - TZ=America/New_York
-      - DATABASE_URL=postgres://tracearr:CHANGE_ME_DB_PASSWORD@timescale:5432/tracearr
-      - REDIS_URL=redis://redis:6379
-      - JWT_SECRET=CHANGE_ME # generate with: openssl rand -hex 32
-      - COOKIE_SECRET=CHANGE_ME # generate with: openssl rand -hex 32
-      - LOG_LEVEL=info
-    depends_on:
-      timescale:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    volumes:
-      - /mnt/tank/configs/tracearr/backup:/data/backup
-      - /mnt/tank/configs/tracearr/image-cache:/data/tracearr/image-cache
-    restart: unless-stopped
-
-  timescale:
-    image: timescale/timescaledb-ha:pg18.4-ts2.29.1
-    container_name: tracearr-db
-    shm_size: 512mb
-    ulimits:
-      nofile:
-        soft: 65536
-        hard: 65536
-    command: postgres -c timescaledb.license=timescale -c timescaledb.max_tuples_decompressed_per_dml_transaction=100000 -c max_locks_per_transaction=4096 -c timescaledb.telemetry_level=off -c max_connections=150
-    environment:
-      - POSTGRES_USER=tracearr
-      - POSTGRES_PASSWORD=CHANGE_ME_DB_PASSWORD
-      - POSTGRES_DB=tracearr
-    volumes:
-      - /mnt/tank/configs/tracearr/db:/home/postgres/pgdata/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U tracearr"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    restart: unless-stopped
-
-  redis:
-    image: redis:8-alpine
-    container_name: tracearr-redis
-    command: redis-server --appendonly yes
-    volumes:
-      - /mnt/tank/configs/tracearr/redis:/data
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    restart: unless-stopped
-```
-
-1. Generate the two secrets with `openssl rand -hex 32` (run it twice, one value each for `JWT_SECRET` and `COOKIE_SECRET`)
-2. Replace `CHANGE_ME_DB_PASSWORD` in both places with the same strong password
-3. Adjust `TZ` to match your timezone
-4. Deploy the stack and open `http://YOUR_SERVER_IP:3000`
-
-> The `timescaledb-ha` image runs as UID 1000, so make sure `/mnt/tank/configs/tracearr/db` is owned by UID 1000 before deploying. PostgreSQL 18 data is not compatible with PostgreSQL 15/16, so point this at a new, empty folder.
-{.is-info}
-
-### All-in-one (supervised) image
-
-The `supervised` image bundles Tracearr, TimescaleDB, and Redis into a single container, and secrets are auto-generated on first run. Upstream now describes it as **designed for Unraid and bare-metal hosts only**, and not recommended for VMs or nested containers.
+The `supervised` image bundles Tracearr, TimescaleDB, and Redis into a single container with zero configuration — secrets are auto-generated on first run.
 
 ```yaml
 services:
@@ -121,10 +47,9 @@ services:
       - TZ=America/New_York
       - LOG_LEVEL=info
     volumes:
-      - tracearr_postgres:/data/postgres
-      - tracearr_redis:/data/redis
-      - tracearr_data:/data/tracearr
-      - tracearr_backups:/data/backup
+      - /mnt/tank/configs/tracearr/postgres:/data/postgres
+      - /mnt/tank/configs/tracearr/redis:/data/redis
+      - /mnt/tank/configs/tracearr/data:/data/tracearr
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:3000/health"]
@@ -132,26 +57,14 @@ services:
       timeout: 10s
       start_period: 60s
       retries: 3
-
-volumes:
-  tracearr_postgres:
-  tracearr_redis:
-  tracearr_data:
-  tracearr_backups:
 ```
 
-> The supervised image requires a minimum of **3 GB of RAM** (`mem_limit`) since it bundles PostgreSQL (TimescaleDB), Redis, and Node.js in one container. The `shm_size` and `ulimits` settings are required for TimescaleDB to function properly. Upstream recommends Docker-managed volumes here, as shown, because bind mounts cause permission issues with the bundled PostgreSQL and Redis.
-{.is-info}
+1. Adjust `TZ` to match your timezone
+2. Deploy the stack and open `http://YOUR_SERVER_IP:3000`
 
-> **Upgrading an existing all-in-one install?** Earlier versions of this page used `/mnt/tank/configs/tracearr/*` bind mounts. If yours did, keep those mounts instead of switching to the named volumes above, or Tracearr starts empty and your history stays behind in the old folders. Use these lines under `volumes:` and leave out the top-level `volumes:` block:
-> ```yaml
->       - /mnt/tank/configs/tracearr/postgres:/data/postgres
->       - /mnt/tank/configs/tracearr/redis:/data/redis
->       - /mnt/tank/configs/tracearr/data:/data/tracearr
->       - /mnt/tank/configs/tracearr/backup:/data/backup
-> ```
-> The `backup` folder is new: create it and make it owned by UID 1001 (the image's `tracearr` user), for example `mkdir -p /mnt/tank/configs/tracearr/backup && chown 1001 /mnt/tank/configs/tracearr/backup`.
-{.is-warning}
+
+> The supervised image requires a minimum of **3 GB of RAM** (`mem_limit`) since it bundles PostgreSQL (TimescaleDB), Redis, and Node.js in one container. The `shm_size` and `ulimits` settings are required for TimescaleDB to function properly.
+{.is-info}
 
 
 ### Docker Tags
