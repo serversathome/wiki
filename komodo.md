@@ -55,7 +55,7 @@ With Komodo you can:
 ```yaml
 services:
   mongo:
-    image: mongo
+    image: mongo:9
     labels:
       komodo.skip: # Prevent Komodo from stopping with StopAllContainers
     command: --quiet --wiredTigerCacheSizeGB 0.25
@@ -132,6 +132,9 @@ services:
 > `PERIPHERY_ROOT_DIRECTORY` must match the path you mount, and the path must be the same inside and outside the container. All your stacks and repos need to live under it.
 {.is-info}
 
+> `mongo` is pinned to major version `9` (what upstream's unpinned `mongo` currently resolves to), so a future MongoDB major can't arrive on its own with a re-pull. If your existing install was created on an older MongoDB (check with `docker compose exec mongo mongod --version`), pin that major instead, for example `mongo:7` or `mongo:8`. MongoDB only upgrades one major version at a time, so a 7.x database won't start on 9. Back up first and follow MongoDB's upgrade steps for each major.
+{.is-warning}
+
 ## <img src="/docker.png" class="tab-icon"> Stacks Importer
 
 > `komodo-import` is an early-stage community tool that hasn't been updated since September 2025. It hasn't been confirmed to work with Komodo v2.
@@ -162,7 +165,7 @@ Komodo should now be accessible on the specified port and navigating to `http://
 
 # 3 · Importing Existing Stacks
 1. Edit your Komodo settings and add **Additional Storage**
-	a. Set **Type** to `Host Path`
+  a. Set **Type** to `Host Path`
   b. Set the **Mount Path** and **Host Path** to `/mnt/tank/stacks` or whatever your stacks directory is
 1. Navigate to **Settings → Profile** tab in Komodo and create a **New API Key**
 1. Run the **Stacks Importer** docker container above, pasting in the API keys you just created
