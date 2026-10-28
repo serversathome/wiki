@@ -43,10 +43,10 @@ services:
     device_cgroup_rules:
       - 'c 189:* rwm'
     volumes:
-      - ./Nutify/logs:/app/nutify/logs
-      - ./Nutify/instance:/app/nutify/instance
-      - ./Nutify/ssl:/app/ssl
-      - ./Nutify/etc/nut:/etc/nut
+      - /mnt/tank/configs/nutify/logs:/app/nutify/logs
+      - /mnt/tank/configs/nutify/instance:/app/nutify/instance
+      - /mnt/tank/configs/nutify/ssl:/app/ssl
+      - /mnt/tank/configs/nutify/etc/nut:/etc/nut
       - /dev/bus/usb:/dev/bus/usb:rw  # USB devices for nut-scanner/NUT
       - /run/udev:/run/udev:ro        # Access to udev events
     environment:
@@ -63,7 +63,7 @@ services:
     ports:
       - "3493:3493"
       - "5050:5050"
-      - "443:443"
+      - "5443:443"                  # host 443 is the TrueNAS web UI
     restart: unless-stopped
 ```
 
