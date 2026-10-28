@@ -2,7 +2,7 @@
 title: Pingora Proxy Manager
 description: A guide to deploying Pingora Proxy Manager
 published: true
-date: 2026-01-15T15:30:51.361Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:19.270Z
@@ -31,6 +31,12 @@ Simple, Modern, and Fast. Now supports Wildcard SSL & TCP/UDP Streams!
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Pingora Proxy Manager
+Generate a JWT secret and paste it into `JWT_SECRET`:
+
+```bash
+openssl rand -hex 32
+```
+
 ```yaml
 services:
   pingora-proxy:
@@ -44,11 +50,16 @@ services:
       # - "443:443" 
     volumes:
       - /mnt/tank/configs/pingora/data:/app/data
-      - /mnt/tank/configs/pingora:/app/logs
+      - /mnt/tank/configs/pingora/letsencrypt:/etc/letsencrypt   # keep this so issued certs survive a recreate
+      - /mnt/tank/configs/pingora/logs:/app/logs
     environment:
-      - JWT_SECRET=changeme_in_production_please
+      - JWT_SECRET=your_generated_secret
       - RUST_LOG=info
+      - PPM_TRUSTED_PROXY_IPS=127.0.0.1
 ```
+
+> Host port **80** is used by the TrueNAS web UI by default. Before deploying, move the TrueNAS UI to other ports (**System → General Settings → GUI**), or change `80:8080` to a free host port.
+{.is-warning}
 
 # 2 · Logging In
 1. Navigate to `http://IP:81` to get to the dashboard
