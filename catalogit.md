@@ -124,10 +124,7 @@ services:
     restart: unless-stopped
 ```
 
-> The official `minio/minio` image has been removed from Docker Hub, so CatalogIT now ships with [Silo](https://github.com/pgsty/silo), the community-maintained MinIO fork. It is a drop-in replacement: the service is still called `minio` and all the `MINIO_*` variables stay the same.
-{.is-info}
-
-> **Upgrading an existing install from `minio/minio`?** Back up PostgreSQL and copy the whole `/mnt/tank/configs/catalogit/minio` folder (including `.minio.sys`) before switching images. The switch changes stored IAM state and can't be rolled back by just going back to the old image. Follow upstream's [Silo upgrade notes](https://github.com/jonymaster/catalogIT/blob/main/docs/releases/next.md).
+> **Upgrading from `minio/minio`?** Back up Postgres and the whole `minio` folder first; the switch can't be undone ([upstream notes](https://github.com/jonymaster/catalogIT/blob/main/docs/releases/next.md)).
 {.is-warning}
 
 
