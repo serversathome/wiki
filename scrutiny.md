@@ -2,7 +2,7 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2026-10-16T08:56:36.551Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:26.409Z
@@ -22,8 +22,8 @@ This page covers the **Starosdev fork** (`ghcr.io/starosdev/scrutiny`), which is
 | Image | `ghcr.io/analogj/scrutiny` | `ghcr.io/starosdev/scrutiny` |
 
 
-> **Migrating from AnalogJ?** Just swap the image name. Your existing SQLite database, InfluxDB data, `scrutiny.yaml` and `collector.yaml` are all fully compatible — no changes needed.
-{.is-success}
+> **Migrating from AnalogJ, or upgrading an existing omnibus install?** Your `scrutiny.yaml`, `collector.yaml` and SQLite database carry over, but the fork now ships **InfluxDB 2.9.1**. Before starting the new image: stop Scrutiny and back up the whole InfluxDB folder (`/mnt/tank/configs/scrutiny/influxdb2`) and `config/scrutiny.db`. Then add `- SCRUTINY_INFLUXDB_29_BACKUP_CONFIRMED=true` to the environment. The container refuses to start InfluxDB until that flag is set. Fresh installs don't need it. See the [upstream upgrade notes](https://github.com/starosdev/scrutiny#docker).
+{.is-warning}
 
 <div class="glance">
   <div><span>Port</span><b><code>8080</code></b></div>
@@ -91,6 +91,8 @@ services:
     image: influxdb:2.9.1
     container_name: scrutiny-influxdb
     restart: unless-stopped
+    environment:
+      - INFLUXD_USE_HASHED_TOKENS=false
     volumes:
       - /mnt/tank/configs/scrutiny/influxdb2:/var/lib/influxdb2
 
@@ -144,14 +146,19 @@ services:
       - web
 ```
 
+For spokes, upstream now recommends `ghcr.io/starosdev/scrutiny:latest-collector-omnibus`, which bundles the SMART, ZFS, MDADM, Btrfs, filesystem and performance collectors in one container (the extra collectors stay off until you set their schedule or run-on-startup variables). The separate `latest-collector` / `latest-collector-zfs` services above still work if you only want SMART and ZFS.
+
 On remote machines, deploy **only** the collector service(s) and point `COLLECTOR_API_ENDPOINT` at the IP of your web container. Give every machine its own `COLLECTOR_HOST_ID`, and use the same ID for that machine's SMART and ZFS collectors.
 
 | Image | Purpose |
 |-------|---------|
 | `:latest-omnibus` | Everything in one container |
 | `:latest-web` | Web UI + API only |
+| `:latest-collector-omnibus` | All collectors in one container (recommended for spokes) |
 | `:latest-collector` | SMART collector (one per server) |
 | `:latest-collector-zfs` | ZFS pool health collector (one per ZFS server) |
+| `:latest-collector-mdadm` | Linux software RAID (mdadm) collector |
+| `:latest-collector-btrfs` | Btrfs filesystem health collector |
 | `:latest-collector-performance` | fio benchmark collector (heavy disk I/O, schedule it off-hours) |
 
 
