@@ -2,7 +2,7 @@
 title: Nutify
 description: A guide to deploying Nutify
 published: true
-date: 2026-01-15T15:30:31.166Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:52.884Z
@@ -27,15 +27,19 @@ Nutify is a comprehensive monitoring system designed to track the health and per
 ```yaml
 services:
   nut:
-    image: dartsteven/nutify:amd64-latest
+    image: dartsteven/nutify:latest-amd64 # use the latest-<arch> tag matching your CPU
     container_name: Nutify
-    privileged: true
+    cap_drop:
+      - ALL
     cap_add:
-      - SYS_ADMIN
-      - SYS_RAWIO
-      - MKNOD
-    devices:
-      - /dev/bus/usb:/dev/bus/usb:rwm
+      - CHOWN
+      - DAC_OVERRIDE
+      - FOWNER
+      - KILL
+      - SETGID
+      - SETUID
+    security_opt:
+      - no-new-privileges:true
     device_cgroup_rules:
       - 'c 189:* rwm'
     volumes:
@@ -43,15 +47,27 @@ services:
       - ./Nutify/instance:/app/nutify/instance
       - ./Nutify/ssl:/app/ssl
       - ./Nutify/etc/nut:/etc/nut
-      - /dev:/dev:rw              # Full /dev access improves hotplug handling
-      - /run/udev:/run/udev:ro    # Access to udev events
+      - /dev/bus/usb:/dev/bus/usb:rw  # USB devices for nut-scanner/NUT
+      - /run/udev:/run/udev:ro        # Access to udev events
     environment:
-      - SECRET_KEY=test1234567890 # for password encryption and decryption in the database
-      - UDEV=1                    # Improve USB detection
+      - SECRET_KEY=<your-secret-key>  # required, generate with: openssl rand -hex 32
+      - NUTIFY_WEB_USER=nut
+      - NUT_SERVICE_USER=nut
+      - UDEV=1                        # Improve USB detection
+      - SKIP_PERMCHECK=true
+      - SSL_ENABLED=false             # set true only after mounting valid TLS files
+      - SOCKETIO_ALLOWED_ORIGINS=     # exact reverse-proxy origin(s), if you use one
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
     ports:
-      - 3493:3493
-      - 5050:5050
-      - 443:443
+      - "3493:3493"
+      - "5050:5050"
+      - "443:443"
     restart: unless-stopped
-    user: root
 ```
+
+> The old `amd64-latest` tag stopped updating in November 2025. Current images use `latest-<arch>` tags such as `latest-amd64`, `latest-raspberrypi5-arm64` or `latest-mac-arm64`. The compose above also follows upstream's hardened setup: no `privileged`, no full `/dev` mount and no `user: root`. `SECRET_KEY` is now required.
+{.is-warning}
+
+Navigate to `http://IP:5050` and follow the setup wizard.
