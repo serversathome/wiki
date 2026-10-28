@@ -27,7 +27,7 @@ Speedtest Tracker is a self-hosted application that monitors the performance and
 # {.tabset}
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
-1. Generate an app key by running `echo "base64:$(openssl rand -base64 32)"` in the TrueNAS shell and paste the whole output (including `base64:`) into the app key field
+1. Generate an app key by running `openssl rand -hex 16` in the TrueNAS shell
 1. Change the **Config Storage** to **Host Path**
 
 
@@ -44,19 +44,14 @@ services:
     environment:
       - PUID=568
       - PGID=568
-      - TZ=America/New_York
-      - APP_KEY= # Generate with: echo "base64:$(openssl rand -base64 32)"
+      - APP_KEY= # Generate with: openssl rand -hex 16
       - APP_URL=http://your-server-ip:8080
       - DB_CONNECTION=sqlite
-      - SPEEDTEST_SCHEDULE=0 */6 * * * # cron format, runs a test every 6 hours
-      - DISPLAY_TIMEZONE=America/New_York #optional
-      - PRUNE_RESULTS_OLDER_THAN=0 #optional, days to keep results (0 = keep forever)
+      - SPEEDTEST_SCHEDULE=0 */6 * * *
     volumes:
       - /mnt/tank/configs/speedtesttracker:/config
 ```
 
-> Generate your own `APP_KEY` with `echo "base64:$(openssl rand -base64 32)"` and paste the full output, `base64:` prefix included. Set `APP_URL` to the address you'll use to reach the app. Without `SPEEDTEST_SCHEDULE`, tests only run when you start them by hand.
-{.is-warning}
 # 2 · First Login
 The default user is `admin@example.com` and the default password is `password`. Change both right after your first login.
 
