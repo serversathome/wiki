@@ -2,7 +2,7 @@
 title: Transfer.zip
 description: A guide to deploy Transfer.zip
 published: true
-date: 2026-02-09T22:05:34.407Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T16:52:40.763Z
@@ -53,7 +53,7 @@ The script will:
 5. Update `docker-compose.yml` port bindings and `next/.env` with your IP and domain
 6. Build and deploy all containers, copy the public key into the worker volume, and verify services
 
-Once complete, skip to [Section 2 · Configuration](#2-configuration) for reverse proxy setup.
+Once complete, create your account as shown in [1.6 Create an Account](#16-create-an-account), then go to [Section 2 · Configuration](#2-configuration) for reverse proxy setup.
 
 > 
 > If you prefer to deploy manually or need to customize the process, follow sections 1.1 through 1.5 below instead.
@@ -189,6 +189,15 @@ volumes:
 > If your CPU does not support AVX instructions, use `mongo:4.4` instead of `mongo:8.0-noble`.
 {.is-warning}
 
+## 1.6 Create an Account
+
+Account creation is not supported in the UI when self-hosting. With the stack running, create your account from the repository folder:
+
+```bash
+cd /mnt/tank/stacks/transfer-zip-web
+./create-account.sh
+```
+
 # 2 · Configuration
 
 ## 2.1 Reverse Proxy Setup
@@ -321,6 +330,9 @@ Add the `/ws` route **first**, then the catch-all:
 **Quick Transfers** stream files directly between browsers. If a direct WebRTC connection cannot be established (due to firewalls), the signaling server acts as a relay. For files larger than 10MB, the relay is forced for performance reasons.
 
 **Stored Transfers** upload files to the server using the tus protocol, which supports resumable and chunked uploads. Files are deleted after the transfer expiry date.
+
+> Upstream's self-hosting guide says Stored Transfers need a separate [transfer.zip-node](https://github.com/robinkarlberg/transfer.zip-node) server, which handles the uploads and zip bundles. In that flow you run the main `worker` once to print its public key, paste it into `keys/public.pem` in the node repo, deploy the node, and then add the node's public URL to `next/conf.json` on the main server. If Stored Transfers don't work with the setup above, follow the [upstream guide](https://github.com/robinkarlberg/transfer.zip-web/blob/main/SELFHOSTING.md#setting-up-stored-transfers). Quick Transfers work without it.
+{.is-info}
 
 ## 2.3 Custom Branding
 
