@@ -2,7 +2,7 @@
 title: Recyclarr
 description: A guide to installing Recyclarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-01-15T15:27:48.121Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:49.417Z
@@ -29,20 +29,19 @@ Recyclarr is a command-line application that will automatically synchronize reco
 ```yaml
 services:
   recyclarr:
-    image: ghcr.io/recyclarr/recyclarr:latest
+    image: ghcr.io/recyclarr/recyclarr:8
     user: 568:568
     container_name: recyclarr
     restart: unless-stopped
-    build:
-      context: .
-      args:
-        - TARGETARCH=amd64
     volumes:
       - /mnt/tank/configs/recyclarr:/config
     environment:
       CRON_SCHEDULE: 0 0 * * *
       TZ: America/New_York
 ```
+
+> Recyclarr does not publish a `latest` tag anymore. Use the major version tag (`8`), which still gets feature and bug fix updates. Moving to a new major version is a manual step because it can contain breaking changes.
+{.is-info}
 
 ### Permissions & Folder Structure
 - **PUID / PGID**: Ensure you use a user/group with the correct permissions for accessing media folders. TrueNAS SCALE defaults to 568:568 for apps.
@@ -66,6 +65,9 @@ This is the file within Recyclarr which tells it what to sync to Sonarr/Radarr. 
 > The assumption is your devices are not compatible with HDR or Dolby Vision. If they are, uncomment out the lines in the .yml file below where instructed
 {.is-info}
 
+> **Upgrading from Recyclarr v7?** v8 removed the official `include:` templates and the `replace_existing_custom_formats` option, so old configs will fail. The config below uses the new guide-backed `quality_profiles` (`trash_id`) instead. If Sonarr/Radarr already have these profiles from v7, follow the adoption steps in the [v8 upgrade guide](https://recyclarr.dev/guide/upgrade-guide/v8.0/) so you don't end up with duplicate profiles.
+{.is-warning}
+
 Copy the code below into a text editor and edit the lines for your specific instance URL and API key. Note, leave a space between the colon and the API key or the sync will fail.
 
 <details><summary><strong>Show me the code!</strong></summary>
@@ -74,18 +76,18 @@ Copy the code below into a text editor and edit the lines for your specific inst
 sonarr:
   web-1080p-v4:
     base_url: http://sonarr:8989
-    api_key: 
+    api_key:
     delete_old_custom_formats: true
-    replace_existing_custom_formats: true
-    include:
-      # Comment out any of the following includes to disable them
-      - template: sonarr-quality-definition-series
-      - template: sonarr-v4-quality-profile-web-1080p
-      - template: sonarr-v4-custom-formats-web-1080p
-      - template: sonarr-v4-quality-profile-web-2160p
-      - template: sonarr-v4-custom-formats-web-2160p
+    quality_definition:
+      type: series
+    # Guide-backed quality profiles. These replace the old include templates and pull in
+    # the matching qualities, custom formats and scores straight from the TRaSH guides.
+    # Comment out either profile to disable it.
+    quality_profiles:
+      - trash_id: 72dae194fc92bf828f32cde7744e51a1 # WEB-1080p
+      - trash_id: d1498e7d189fbe6c7110ceaabb7473e6 # WEB-2160p
 
-# Custom Formats: https://recyclarr.dev/wiki/yaml/config-reference/custom-formats/
+# Custom Formats: https://recyclarr.dev/reference/configuration/custom-formats/
     custom_formats:
       # HDR Formats
       - trash_ids:
@@ -107,16 +109,16 @@ sonarr:
         assign_scores_to:
           - name: WEB-2160p
 
-      - trash_ids:
-          # Uncomment the next six lines to allow x265 HD releases with HDR/DV
-          # - 47435ece6b99a0b477caf360e79ba0bb # x265 (HD)
-        # assign_scores_to:
-          # - name: WEB-2160p
-            # score: 0
+      # Uncomment the next nine lines to allow x265 HD releases with HDR/DV
       # - trash_ids:
-          # - 9b64dff695c2115facf1b6ea59c9bd07 # x265 (no HDR/DV)
-        assign_scores_to:
-          - name: WEB-2160p
+      #     - 47435ece6b99a0b477caf360e79ba0bb # x265 (HD)
+      #   assign_scores_to:
+      #     - name: WEB-2160p
+      #       score: 0
+      # - trash_ids:
+      #     - 9b64dff695c2115facf1b6ea59c9bd07 # x265 (no HDR/DV)
+      #   assign_scores_to:
+      #     - name: WEB-2160p
 
       - trash_ids:
           - 2016d1676f5ee13a5b7257ff86ac9a93 # SDR
@@ -134,54 +136,51 @@ sonarr:
         assign_scores_to:
           - name: WEB-1080p
 
-      - trash_ids:
-          # Uncomment the next six lines to allow x265 HD releases with HDR/DV
-          # - 47435ece6b99a0b477caf360e79ba0bb # x265 (HD)
-        # assign_scores_to:
-          # - name: WEB-1080p
-            # score: 0
+      # Uncomment the next nine lines to allow x265 HD releases with HDR/DV
       # - trash_ids:
-          # - 9b64dff695c2115facf1b6ea59c9bd07 # x265 (no HDR/DV)
-        assign_scores_to:
-          - name: WEB-1080p
+      #     - 47435ece6b99a0b477caf360e79ba0bb # x265 (HD)
+      #   assign_scores_to:
+      #     - name: WEB-1080p
+      #       score: 0
+      # - trash_ids:
+      #     - 9b64dff695c2115facf1b6ea59c9bd07 # x265 (no HDR/DV)
+      #   assign_scores_to:
+      #     - name: WEB-1080p
 
 # Configuration specific to Radarr.
 radarr:
  uhd-bluray-web:
     base_url: http://radarr:7878
-    api_key: 
+    api_key:
     delete_old_custom_formats: true
-    replace_existing_custom_formats: true
-    include:
-     # Comment out any of the following includes to disable them
-     - template: radarr-quality-definition-movie
-     - template: radarr-quality-profile-uhd-bluray-web
-     - template: radarr-custom-formats-uhd-bluray-web
-     - template: radarr-quality-definition-movie
-     - template: radarr-quality-profile-hd-bluray-web
-     - template: radarr-custom-formats-hd-bluray-web
+    quality_definition:
+      type: movie
+    # Guide-backed quality profiles. Comment out either profile to disable it.
+    quality_profiles:
+      - trash_id: 64fb5f9858489bdac2af690e27c8f42f # UHD Bluray + WEB
+      - trash_id: d1d67249d3890e49bc12e275d989a7e9 # HD Bluray + WEB
 
-# Custom Formats: https://recyclarr.dev/wiki/yaml/config-reference/custom-formats/
+# Custom Formats: https://recyclarr.dev/reference/configuration/custom-formats/
     custom_formats:
      # Audio
-     - trash_ids:
-         # Uncomment the next section to enable Advanced Audio Formats
-         # - 496f355514737f7d83bf7aa4d24f8169 # TrueHD Atmos
-         # - 2f22d89048b01681dde8afe203bf2e95 # DTS X
-         # - 417804f7f2c4308c1f4c5d380d4c4475 # ATMOS (undefined)
-         # - 1af239278386be2919e1bcee0bde047e # DD+ ATMOS
-         # - 3cafb66171b47f226146a0770576870f # TrueHD
-         # - dcf3ec6938fa32445f590a4da84256cd # DTS-HD MA
-         # - a570d4a0e56a2874b64e5bfa55202a1b # FLAC
-         # - e7c2fcae07cbada050a0af3357491d7b # PCM
-         # - 8e109e50e0a0b83a5098b056e13bf6db # DTS-HD HRA
-         # - 185f1dd7264c4562b9022d963ac37424 # DD+
-         # - f9f847ac70a0af62ea4a08280b859636 # DTS-ES
-         # - 1c1a4c5e823891c75bc50380a6866f73 # DTS
-         # - 240770601cc226190c367ef59aba7463 # AAC
-         # - c2998bd0d90ed5621d8df281e839436e # DD
-       assign_scores_to:
-         - name: UHD Bluray + WEB
+     # Uncomment the next section (and its assign_scores_to) to enable Advanced Audio Formats
+     # - trash_ids:
+     #     - 496f355514737f7d83bf7aa4d24f8169 # TrueHD Atmos
+     #     - 2f22d89048b01681dde8afe203bf2e95 # DTS X
+     #     - 417804f7f2c4308c1f4c5d380d4c4475 # ATMOS (undefined)
+     #     - 1af239278386be2919e1bcee0bde047e # DD+ ATMOS
+     #     - 3cafb66171b47f226146a0770576870f # TrueHD
+     #     - dcf3ec6938fa32445f590a4da84256cd # DTS-HD MA
+     #     - a570d4a0e56a2874b64e5bfa55202a1b # FLAC
+     #     - e7c2fcae07cbada050a0af3357491d7b # PCM
+     #     - 8e109e50e0a0b83a5098b056e13bf6db # DTS-HD HRA
+     #     - 185f1dd7264c4562b9022d963ac37424 # DD+
+     #     - f9f847ac70a0af62ea4a08280b859636 # DTS-ES
+     #     - 1c1a4c5e823891c75bc50380a6866f73 # DTS
+     #     - 240770601cc226190c367ef59aba7463 # AAC
+     #     - c2998bd0d90ed5621d8df281e839436e # DD
+     #   assign_scores_to:
+     #     - name: UHD Bluray + WEB
 
      # Movie Versions
      - trash_ids:
@@ -212,11 +211,9 @@ radarr:
            # score: 0 # Uncomment this line to disable prioritised IMAX Enhanced releases
 ```
 </details>
-To download this script use the command:
 
-```bash
-wget https://raw.githubusercontent.com/imjustleaving/ServersatHome/refs/heads/main/recyclarr.yml
-```
+> To find the `trash_id` of other TRaSH quality profiles, run `recyclarr list quality-profiles sonarr` (or `radarr`) in the container shell.
+{.is-info}
 
 ## 2.2 Syncing Recyclarr
 
