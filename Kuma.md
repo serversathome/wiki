@@ -2,7 +2,7 @@
 title: Uptime Kuma
 description: A guide to installing Uptime Kuma in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-01-15T15:27:36.806Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:35.330Z
@@ -31,7 +31,7 @@ Uptime Kuma is a web monitor tool that supports various monitors such as HTTP, D
 ```yaml
 services:
   uptime-kuma:
-    image: louislam/uptime-kuma:latest
+    image: louislam/uptime-kuma:2
     container_name: kuma
     volumes:
       - /mnt/tank/configs/kuma:/app/data
@@ -40,6 +40,9 @@ services:
       - 3001:3001
     restart: unless-stopped
 ```
+
+> **Upgrading from 1.x?** The `latest` tag still points to the old 1.x line, so switching to `:2` is a major upgrade. On first start, 2.x runs a one-time database migration that can take minutes to hours. Stop the container and back up `/mnt/tank/configs/kuma` first, then let the migration finish without interrupting it (watch `docker logs -f kuma`). See the [v1 to v2 migration guide](https://github.com/louislam/uptime-kuma/wiki/Migration-From-v1-To-v2).
+{.is-warning}
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
