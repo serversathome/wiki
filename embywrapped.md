@@ -2,7 +2,7 @@
 title: Emby Wrapped
 description: A guide to deploying Emby Wrapped
 published: true
-date: 2026-01-15T15:29:08.184Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:33.448Z
@@ -22,6 +22,9 @@ A beautiful, Spotify Wrapped-style year-in-review experience for your Emby media
   </div>
 </div>
 
+> **Prerequisite:** Emby Wrapped reads its stats from the **Playback Reporting** plugin. In Emby go to **Dashboard → Plugins → Catalog**, install **Playback Reporting** and restart Emby. Then create an API key under **Dashboard → API Keys**. The plugin only tracks plays from the moment it is installed.
+{.is-info}
+
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy 
 ```yaml
 services:
@@ -33,6 +36,9 @@ services:
     environment:
       - EMBY_URL=http://your-emby-server:8096
       - EMBY_API_KEY=your-api-key-here
-      - TMDB_API_KEY=
+      - TMDB_API_KEY=  # Optional: for enhanced poster images
+      - PUBLIC_URL=    # Optional: public URL for share links
+    volumes:
+      - /mnt/tank/configs/emby-wrapped/music:/app/static/music:ro  # Optional: MP3s for custom background music
     restart: unless-stopped
 ```
