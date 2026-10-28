@@ -2,7 +2,7 @@
 title: Folder Structure
 description: Recommended folder structure to allow for hardlinks within the arr stack
 published: true
-date: 2026-10-27T02:57:07.798Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:29.149Z
@@ -95,7 +95,8 @@ tank
  │   └── tracearr
  │        ├── postgres
  │        ├── redis
- │        └── data
+ │        ├── data
+ │        └── backup
  ├── stacks
  │   ├── qbittorrent
  │   │    └── compose.yaml
@@ -118,7 +119,7 @@ All permissions are set to the following:
 | **Group ID (GID)** | apps (568) |
 
 > **Permissions**
-The script sets `770` POSIX permissions so that the owner and group have full access (r/w/x), while “others” have no access. This helps avoid permissions errors while keeping things secure. The one exception is `configs/seerr`, which is owned by UID 1000 because the Seerr container always runs as that user. Tracearr's `postgres`, `redis` and `data` folders are created once and then left to the container, which owns them for its internal database users.
+The script sets `770` POSIX permissions so that the owner and group have full access (r/w/x), while “others” have no access. This helps avoid permissions errors while keeping things secure. The one exception is `configs/seerr`, which is owned by UID 1000 because the Seerr container always runs as that user. Tracearr's `postgres`, `redis` and `data` folders are created once and then left to the container, which owns them for its internal database users. Its `backup` folder (`configs/tracearr/backup`, mounted at `/data/backup`) is created owned by UID 1001 (group `apps`), the image's `tracearr` user, because the container does not take ownership of it.
 {.is-info}
 
 ## 2.1 Running the Script
