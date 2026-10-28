@@ -199,7 +199,7 @@ openssl rand -hex 32
 {.is-info}
 
 > 
-> The TrueNAS app automatically includes Redis and generates a secret key for you.
+> The TrueNAS app automatically includes a Valkey (Redis-compatible) container and generates a secret key for you.
 {.is-success}
 
 # 2 · Configuration
