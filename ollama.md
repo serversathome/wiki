@@ -2,7 +2,7 @@
 title: Ollama
 description: A guide to deploying Ollama
 published: true
-date: 2026-06-15T15:19:33.594Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-15T14:56:05.778Z
@@ -12,7 +12,7 @@ dateCreated: 2026-06-15T14:56:05.778Z
 
 **Ollama** is a self-hosted runtime for running large language models locally. It pulls quantized open-weight models (Llama 3.x, Mistral, Gemma, Qwen, Phi, DeepSeek, and many more) and serves them over a simple REST API on port `11434`, with a built-in CLI for pulling and chatting with models. It handles model storage, GPU offload, and concurrency for you, so you get a local, private, OpenAI-style endpoint without sending a single token to the cloud.
 
-Ollama has no web interface of its own — it's an API and CLI. Pair it with **Open WebUI** (covered in section 3) for a ChatGPT-style frontend.
+Ollama has no web interface of its own — it's an API and CLI. Pair it with **Open WebUI** (covered in section 2.4) for a ChatGPT-style frontend.
 
 > 
 > Ollama runs models on CPU by default, but performance is dramatically better with a GPU. NVIDIA cards need the **NVIDIA Container Toolkit** installed on the host before the container can see the GPU.
@@ -76,8 +76,9 @@ Ollama is available as a **Community** train app in the TrueNAS catalog.
 2. Click **Discover Apps** and search for **"Ollama"**
 3. Click **Install**
 4. Configure the following:
-   - **Web Port**: `11434` (or your preferred host port)
-   - **Storage** → **Models Storage**: set to a **Host Path** of `/mnt/tank/configs/ollama` so models persist on your pool
+   - **Image Selector**: leave on the default image, or choose the ROCm image if you have an AMD GPU
+   - **API Port**: `11434` (or your preferred host port)
+   - **Storage** → **Ollama Data Storage**: set to a **Host Path** of `/mnt/tank/configs/ollama` so models persist on your pool
    - **Resources** → enable **GPU Passthrough** and select your NVIDIA device if you have one
 5. Click **Install** / **Save**
 
