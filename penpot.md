@@ -16,7 +16,7 @@ Penpot is the first open-source design tool for design and code collaboration. D
 <div class="glance">
   <div><span>Port</span><b><code>9001</code></b></div>
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>8 services</b></div>
+  <div><span>Containers</span><b>6 services</b></div>
   <div><span>Depends on</span><b>Postgres and Valkey</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
 </div>
@@ -40,34 +40,23 @@ Penpot is the first open-source design tool for design and code collaboration. D
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
 
-Generate a secret key and paste it in place of `change-this-insecure-key`:
-
-```bash
-python3 -c "import secrets; print(secrets.token_urlsafe(64))"
-```
+Generate a secret key with `openssl rand -hex 32` and paste it in place of both `change-this-insecure-key` values:
 
 ```yaml
 x-flags: &penpot-flags
-  PENPOT_FLAGS: disable-email-verification enable-smtp enable-prepl-server disable-secure-session-cookies enable-mcp enable-admin-console
+  PENPOT_FLAGS: disable-email-verification enable-smtp enable-prepl-server disable-secure-session-cookies
 
 x-uri: &penpot-public-uri
   PENPOT_PUBLIC_URI: http://localhost:9001
 
 x-body-size: &penpot-http-body-size
-  PENPOT_HTTP_SERVER_MAX_BODY_SIZE: 367001600
+  PENPOT_HTTP_SERVER_MAX_BODY_SIZE: 31457280
   PENPOT_HTTP_SERVER_MAX_MULTIPART_BODY_SIZE: 367001600
 
-x-secret-key: &penpot-secret-key
-  PENPOT_SECRET_KEY: change-this-insecure-key
-
-x-database: &penpot-database
-  PENPOT_DATABASE_URI: postgresql://penpot-postgres/penpot
-  PENPOT_DATABASE_USERNAME: penpot
-  PENPOT_DATABASE_PASSWORD: penpot
 
 services:
   penpot-frontend:
-    image: penpotapp/frontend:2.18
+    image: penpotapp/frontend:latest
     restart: unless-stopped
     ports:
       - 9001:8080
@@ -77,16 +66,13 @@ services:
 
     depends_on:
       - penpot-backend
-      - penpot-admin-console
-      - penpot-mcp
       - penpot-exporter
 
     environment:
-      << : [*penpot-flags, *penpot-http-body-size, *penpot-public-uri]
-      PENPOT_ADMIN_CONSOLE_URI: http://penpot-admin-console:3000
+      << : [*penpot-flags, *penpot-http-body-size]
 
   penpot-backend:
-    image: penpotapp/backend:2.18
+    image: penpotapp/backend:latest
     restart: unless-stopped
 
     volumes:
@@ -99,47 +85,37 @@ services:
         condition: service_healthy
 
     environment:
-      << : [*penpot-flags, *penpot-public-uri, *penpot-http-body-size, *penpot-secret-key, *penpot-database]
+      << : [*penpot-flags, *penpot-public-uri, *penpot-http-body-size]
 
-      PENPOT_ADMIN_CONSOLE_URI: http://penpot-admin-console:3000
+      PENPOT_SECRET_KEY: change-this-insecure-key
 
       PENPOT_PREPL_HOST: 0.0.0.0
 
+      PENPOT_DATABASE_URI: postgresql://penpot-postgres/penpot
+      PENPOT_DATABASE_USERNAME: penpot
+      PENPOT_DATABASE_PASSWORD: penpot
+
       PENPOT_REDIS_URI: redis://penpot-valkey/0
 
-      PENPOT_OBJECTS_STORAGE_BACKEND: fs
-      PENPOT_OBJECTS_STORAGE_FS_DIRECTORY: /opt/data/assets
+      PENPOT_ASSETS_STORAGE_BACKEND: assets-fs
+      PENPOT_STORAGE_ASSETS_FS_DIRECTORY: /opt/data/assets
 
-      PENPOT_TELEMETRY_ENABLED: "false"
+
+      PENPOT_TELEMETRY_ENABLED: false
       PENPOT_TELEMETRY_REFERER: compose
+
 
       PENPOT_SMTP_DEFAULT_FROM: no-reply@example.com
       PENPOT_SMTP_DEFAULT_REPLY_TO: no-reply@example.com
-      PENPOT_SMTP_HOST: penpot-mailpit
+      PENPOT_SMTP_HOST: penpot-mailcatch
       PENPOT_SMTP_PORT: 1025
       PENPOT_SMTP_USERNAME:
       PENPOT_SMTP_PASSWORD:
-      PENPOT_SMTP_TLS: "false"
-      PENPOT_SMTP_SSL: "false"
-
-  penpot-admin-console:
-    image: penpotapp/admin-console:2.18
-    restart: unless-stopped
-
-    depends_on:
-      penpot-postgres:
-        condition: service_healthy
-
-    environment:
-      << : [*penpot-public-uri, *penpot-secret-key, *penpot-database]
-      PENPOT_INTERNAL_URI: http://penpot-frontend:8080
-
-  penpot-mcp:
-    image: penpotapp/mcp:2.18
-    restart: unless-stopped
+      PENPOT_SMTP_TLS: false
+      PENPOT_SMTP_SSL: false
 
   penpot-exporter:
-    image: penpotapp/exporter:2.18
+    image: penpotapp/exporter:latest
     restart: unless-stopped
 
     depends_on:
@@ -147,8 +123,8 @@ services:
         condition: service_healthy
 
     environment:
-      << : [*penpot-flags, *penpot-secret-key, *penpot-public-uri]
-      PENPOT_INTERNAL_URI: http://penpot-frontend:8080
+      PENPOT_SECRET_KEY: change-this-insecure-key # same value as the backend's
+      PENPOT_PUBLIC_URI: http://penpot-frontend:8080
       PENPOT_REDIS_URI: redis://penpot-valkey/0
 
   penpot-postgres:
@@ -183,17 +159,12 @@ services:
       retries: 5
       start_period: 3s
 
-    environment:
-      - VALKEY_EXTRA_FLAGS=--maxmemory 128mb --maxmemory-policy volatile-lfu
 
-  penpot-mailpit:
-    image: axllent/mailpit:v1
+  penpot-mailcatch:
+    image: sj26/mailcatcher:latest
     restart: unless-stopped
     expose:
       - '1025'
     ports:
-      - "8025:8025"
+      - "1080:1080"
 ```
-
-> Sent emails (sign-ups, invites) land in Mailpit at `http://IP:8025` until you configure a real SMTP provider.
-{.is-info}
