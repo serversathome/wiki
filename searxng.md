@@ -2,7 +2,7 @@
 title: SearXNG
 description: A guide to deploying Searxng
 published: true
-date: 2026-04-14T10:35:00.129Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-22T12:08:48.277Z
@@ -18,7 +18,7 @@ SearXNG is a community-driven fork of the original SearX project, started in 202
   <div><span>Port</span><b><code>5080</code></b></div>
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
   <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Redis</b></div>
+  <div><span>Depends on</span><b>Valkey</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
     <a href="https://github.com/searxng/searxng"><i class="mdi mdi-github"></i>Project</a>
@@ -39,11 +39,15 @@ services:
     environment:
       - SEARXNG_BASE_URL=http://localhost:5080/
       - SEARXNG_SECRET=${SEARXNG_SECRET}
+      - SEARXNG_VALKEY_URL=valkey://valkey:6379/0
     restart: unless-stopped
     ports:
       - "5080:8080"
     volumes:
       - /mnt/tank/configs/searxng:/etc/searxng:rw
+      - /mnt/tank/configs/searxng/cache:/var/cache/searxng
+    depends_on:
+      - valkey
     cap_drop:
       - ALL
     cap_add:
@@ -57,13 +61,13 @@ services:
         max-size: "1m"
         max-file: "1"
 
-  redis:
-    image: redis:alpine
-    container_name: searxng-redis
-    command: redis-server --save "" --appendonly "no"
+  valkey:
+    image: valkey/valkey:9-alpine
+    container_name: searxng-valkey
+    command: valkey-server --save "" --appendonly "no"
     restart: unless-stopped
     tmpfs:
-      - /var/lib/redis
+      - /data
     cap_drop:
       - ALL
     cap_add:
@@ -78,6 +82,10 @@ openssl rand -hex 32
 ```
 2. Set the `SEARXNG_SECRET` environment variable with the generated key. You can either replace `${SEARXNG_SECRET}` directly or create a `.env` file in the same directory.
 3. If you plan to access SearXNG from a domain name, update `SEARXNG_BASE_URL` to match (e.g., `https://search.yourdomain.com/`).
+
+> 
+> SearXNG has switched from Redis to **Valkey**. `SEARXNG_VALKEY_URL` is what actually connects SearXNG to it (used by the bot limiter); without it the database container sits unused. Upstream's official compose now lives in the main repo: [container/docker-compose.yml](https://github.com/searxng/searxng/blob/master/container/docker-compose.yml) (the old `searxng-docker` repo is superseded).
+{.is-info}
 
 > 
 > The `cap_drop: ALL` with selective `cap_add` follows the principle of least privilege, limiting what the container can do on the host system.
@@ -120,9 +128,11 @@ services:
     environment:
       - SEARXNG_BASE_URL=http://localhost:5080/
       - SEARXNG_SECRET=${SEARXNG_SECRET}
+      - SEARXNG_VALKEY_URL=valkey://localhost:6379/0
     restart: unless-stopped
     volumes:
       - /mnt/tank/configs/searxng:/etc/searxng:rw
+      - /mnt/tank/configs/searxng/cache:/var/cache/searxng
     cap_drop:
       - ALL
     cap_add:
@@ -136,16 +146,16 @@ services:
         max-size: "1m"
         max-file: "1"
 
-  redis:
-    image: redis:alpine
-    container_name: searxng-redis
+  valkey:
+    image: valkey/valkey:9-alpine
+    container_name: searxng-valkey
     network_mode: "service:gluetun"
     depends_on:
       - gluetun
-    command: redis-server --save "" --appendonly "no"
+    command: valkey-server --save "" --appendonly "no"
     restart: unless-stopped
     tmpfs:
-      - /var/lib/redis
+      - /data
     cap_drop:
       - ALL
     cap_add:
@@ -163,7 +173,7 @@ openssl rand -hex 32
 4. The `ports` mapping is on the **Gluetun container**, not SearXNG — because SearXNG uses `network_mode: "service:gluetun"`, all its traffic flows through the VPN tunnel.
 
 > 
-> **How this works:** `network_mode: "service:gluetun"` forces SearXNG and Redis to share Gluetun's network stack. All outbound connections from SearXNG — every query to Google, Bing, Brave, etc. — go through the VPN tunnel. If the VPN drops, the built-in killswitch in Gluetun blocks all traffic, so no queries ever leak your real IP.
+> **How this works:** `network_mode: "service:gluetun"` forces SearXNG and Valkey to share Gluetun's network stack. All outbound connections from SearXNG — every query to Google, Bing, Brave, etc. — go through the VPN tunnel. If the VPN drops, the built-in killswitch in Gluetun blocks all traffic, so no queries ever leak your real IP.
 {.is-info}
 
 > 
@@ -239,6 +249,9 @@ server:
   secret_key: "your-generated-key"
   base_url: "http://localhost:5080/"
 
+valkey:
+  url: valkey://valkey:6379/0   # overridden by SEARXNG_VALKEY_URL
+
 ui:
   default_theme: simple
   theme_args:
@@ -255,7 +268,9 @@ ui:
 |----------|-------------|---------|
 | `SEARXNG_SECRET` | Cryptographic secret key for sessions | *required* |
 | `SEARXNG_BASE_URL` | Public URL of your instance | `http://localhost:5080/` |
-| `BIND_ADDRESS` | Address and port to bind inside container | `[::]:8080` |
+| `SEARXNG_VALKEY_URL` | Valkey connection URL | *unset* |
+| `SEARXNG_PORT` | Port to listen on inside the container (alias for `GRANIAN_PORT`) | `8080` |
+| `GRANIAN_HOST` | Address to bind inside the container | `::` |
 | `SEARXNG_SETTINGS_PATH` | Path to settings file inside container | `/etc/searxng/settings.yml` |
 {.dense}
 
