@@ -2,7 +2,7 @@
 title: Pi-Dash
 description: A guide to deploying Pi-Dash
 published: true
-date: 2026-01-15T15:30:46.740Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:12.626Z
@@ -31,8 +31,10 @@ services:
     ports:
       - 5002:5001
     volumes:
-      - /mnt/tank/configs/pidash/config.json:/app/config.json
-      - /mnt/tank/configs/pidash/manifest.json:/app/manifest.json
+      - /mnt/tank/configs/pidash/config.json:/app/config.json:ro
+      # Optional: create manifest.json first (section 1.2), then uncomment
+      # - /mnt/tank/configs/pidash/manifest.json:/app/manifest.json:ro
+    restart: unless-stopped
 ```
 
 ## 1.1 Config File
@@ -59,9 +61,15 @@ services:
 }
 ```
 
-## 1.2 Manifest File
-> This file needs to be placed in `/mnt/tank/configs/pidash/manifest.json`
+> `address` is the base URL of the Pi-hole only, so leave off `/admin` and `/api`. Certificates aren't verified by default; add `"verify_ssl": true` (or a CA bundle path) per instance if your Pi-holes use trusted certs.
 {.is-info}
+
+## 1.2 Manifest File (Optional)
+> Only needed if you want to customize the app manifest. Without it, Pi-Dash uses its built-in manifest. If you use it, place it in `/mnt/tank/configs/pidash/manifest.json` **before** uncommenting the mount, or Docker creates an empty folder in its place.
+{.is-info}
+
+> Icons on a host with an untrusted self-signed certificate (like `https://pi.hole`) can block the install prompt. Prefer a relative path or a publicly trusted HTTPS URL.
+{.is-warning}
 ```json
 {
   "name": "Pi-Dash",
