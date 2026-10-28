@@ -2,7 +2,7 @@
 title: WYGIWYH
 description: A guide to deploying WYGIWYH
 published: true
-date: 2026-01-15T15:32:39.603Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:45.123Z
@@ -12,7 +12,7 @@ dateCreated: 2026-01-15T15:09:45.123Z
 WYGIWYH (What You Get Is What You Have) is a powerful, principles-first finance tracker designed for people who prefer a no-budget, straightforward approach to managing their money. With features like multi-currency support, customizable transactions, and a built-in dollar-cost averaging tracker, WYGIWYH helps you take control of your finances with simplicity and flexibility.
 
 <div class="glance">
-  <div><span>Port</span><b><code>8000</code></b></div>
+  <div><span>Port</span><b><code>9005</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
   <div><span>Containers</span><b>2 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
@@ -29,6 +29,8 @@ services:
       - "${OUTBOUND_PORT:-8000}:${INTERNAL_PORT:-8000}"
     env_file:
       - .env
+    volumes:
+      - /mnt/tank/configs/wygiwyh/attachments:/usr/src/app/attachments/
     depends_on:
       - db
     restart: unless-stopped
@@ -46,7 +48,7 @@ services:
 ```
 
 ## env File
-```yaml
+```env
 SERVER_NAME=wygiwyh_server
 DB_NAME=wygiwyh_pg
 
@@ -55,14 +57,14 @@ TZ=UTC # Change to your timezone. This only affects some async tasks.
 DEBUG=false
 URL = https://...
 HTTPS_ENABLED=true
-SECRET_KEY=dfmklnldb0rgjdkflj
+SECRET_KEY=<GENERATE A SAFE SECRET KEY AND PLACE IT HERE> # e.g. openssl rand -hex 32
 DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
 OUTBOUND_PORT=9005
 
 # Uncomment these variables to automatically create an admin account using these credentials on startup.
 # After your first successfull login you can remove these variables from your file for safety reasons.
-ADMIN_EMAIL=admin@admin.com
-ADMIN_PASSWORD=admin
+#ADMIN_EMAIL=<ENTER YOUR EMAIL>
+#ADMIN_PASSWORD=<YOUR SAFE PASSWORD>
 
 SQL_DATABASE=wygiwyh
 SQL_USER=wygiwyh
@@ -88,3 +90,10 @@ TASK_WORKERS=1 # This only work if you're using the single container option. Inc
 #OIDC_SERVER_URL=""
 #OIDC_ALLOW_SIGNUP=true
 ```
+
+1. Generate a `SECRET_KEY` with `openssl rand -hex 32` and paste the output into the `.env` file.
+1. To create an admin account on first start, uncomment `ADMIN_EMAIL` and `ADMIN_PASSWORD` and fill in your own values. Remove them again after your first login.
+1. The UI is published on host port `9005` (set by `OUTBOUND_PORT`), so open `http://YOUR-SERVER-IP:9005`.
+
+> The `attachments` volume keeps uploaded transaction attachments. Without it, they are lost whenever the container is recreated.
+{.is-info}
