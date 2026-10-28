@@ -2,7 +2,7 @@
 title: Obsidian
 description: A guide to installing containerized Obsidian
 published: true
-date: 2026-01-25T20:27:15.573Z
+date: 2026-10-28T12:00:00.000Z
 tags: productivity, docker
 editor: markdown
 dateCreated: 2026-01-25T18:18:10.690Z
@@ -12,7 +12,7 @@ dateCreated: 2026-01-25T18:18:10.690Z
 
 Obsidian is an application which facilitates note-taking, organization, relational thinking, and brainstorming with an ecosystem of available plugins to extend its utility even further. 
 
-Many may elect to use a more "conventional" method of running Obsidian as a local application and then synchronizing the files by your method of choice (for example: via Syncthing) but it is also an option to just have it in a container. The default installation does not appear to implement any type of login, so exposing this container to the internet, without benefit of at least a secure vpn or the like, would be **highly** advised against.
+Many may elect to use a more "conventional" method of running Obsidian as a local application and then synchronizing the files by your method of choice (for example: via Syncthing) but it is also an option to just have it in a container. The default installation has no login unless you set the optional `CUSTOM_USER` and `PASSWORD` variables, which enable HTTP basic auth. Even then, that login is only meant to keep the kids out, so exposing this container to the internet, without benefit of at least a secure vpn or the like, would be **highly** advised against.
 
 <div class="glance">
   <div><span>Port</span><b><code>3001</code></b></div>
@@ -36,6 +36,8 @@ services:
       - PUID=568
       - PGID=568
       - TZ=Etc/UTC
+      - CUSTOM_USER=admin #optional, enables basic auth
+      - PASSWORD=<strong password> #optional, enables basic auth
     volumes:
       - /mnt/tank/configs/obsidian:/config
       - /mnt/tank/vaults:/vaults #optional
@@ -53,4 +55,7 @@ services:
 
 # 2 · Accessing Obsidian
 
-Navigate to `http://{serverIP}:3001` or whichever port you designated and you will be presented with the Welcome screen for Obsidian.
+Navigate to `https://{serverIP}:3001` or whichever port you designated. HTTPS is required since the image moved to Selkies (July 2025), and plain `http://` on 3001 will not load. Your browser will warn about the self-signed certificate; accept it and you will be presented with the Welcome screen for Obsidian.
+
+> If the desktop doesn't render on older hardware or GPUs, add `- PIXELFLUX_WAYLAND=false` to the environment to turn off the default Wayland mode.
+{.is-info}
