@@ -77,7 +77,7 @@ services:
 2. Change `CHANGE_ME_DB` in **both** services to the same strong password
 3. Replace `git.serversatho.me` with your own hostname everywhere it appears
 
-> `:17` is the current stable major. Forgejo 16 reaches end of life on 29 October 2026 and 17 is supported until 28 January 2027. If you'd rather upgrade less often, pin `:15`, the LTS release supported until 15 July 2027. See the [release schedule](https://forgejo.org/docs/latest/admin/release-schedule/) and read the [release notes](https://codeberg.org/forgejo/forgejo/releases) before you bump a major version.
+> `:17` is the current stable major. Forgejo 16 reaches end of life on 29 October 2026 and 17 is supported until 28 January 2027. If you'd rather upgrade less often, pin `:15`, the LTS release supported until 15 July 2027 (new installs only; you can't move an existing 16 or 17 instance back to 15, because its database has already been migrated). See the [release schedule](https://forgejo.org/docs/latest/admin/release-schedule/) and read the [release notes](https://codeberg.org/forgejo/forgejo/releases) before you bump a major version.
 {.is-info}
 
 
