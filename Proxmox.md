@@ -2,7 +2,7 @@
 title: Proxmox
 description: An overview of the Proxmox hypervisor
 published: true
-date: 2026-06-29T10:46:32.480Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:47.218Z
@@ -20,7 +20,7 @@ I am a big proponent of Ubuntu Server for its simplicity, ease of use, and commu
 
 There is a [repository](https://community-scripts.github.io/ProxmoxVE/) maintained by the community which hosts one-line commands to help automate many of Proxmox's functions. That isn't to say the Proxmox GUI isn't useful, but there are many steps to creating some things which new users may get lost on. These scripts make life a lot simpler and faster for LXC and VM creation, as well as house keeping tasks for the hypervisor itself.
 
-From Tteck: 
+From the community-scripts project (originally started by tteck):
 
 > These scripts empower users to create a Linux container or virtual machine interactively, providing choices for both simple and advanced configurations. The basic setup adheres to default settings, while the advanced setup gives users the ability to customize these defaults.
 > 
@@ -28,11 +28,11 @@ From Tteck: 
 
 ## 3.1 Update on tteck
 
-tteck has released a statement that due to his health the repo will no longer be getting maintenance. Read about it [here](https://servers.hydrology.cc/farewell-to-tteck/).
+tteck, who created these scripts, passed away in 2024. Read about it [here](https://servers.hydrology.cc/farewell-to-tteck/). The scripts are now actively maintained by the [community-scripts](https://github.com/community-scripts/ProxmoxVE) team, and that is where all of the commands below come from.
 
 # 4 · Scripts
 
-There are probably over 100 scripts in Tteck's repo. Below are the ones I use most frequently, because after I install Proxmox and do some housekeeping, I deploy the Docker-Alpine LXC container and then use Portainer within that for my containers. You can run separate containers for all of your docker apps if you want; I do this because its easier. 
+There are probably over 100 scripts in the community-scripts repo. Below are the ones I use most frequently, because after I install Proxmox and do some housekeeping, I deploy the Docker-Alpine LXC container and then use Portainer within that for my containers. You can run separate containers for all of your docker apps if you want; I do this because its easier. 
 
 For reference, my alpine-docker container is running Portainer + 20 docker containers and it uses less than 2 GB of RAM. My entire Proxmox node uses 3 GB of RAM.
 # {.tabset}
@@ -101,7 +101,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/Proxmo
 
 ## Docker LXC
 
-### Options to Install Portainer and/or Docker Compose V2
+### Docker LXC (Debian 13 or Alpine)
 
 [Docker](https://www.docker.com/) is an open-source project for automating the deployment of applications as portable, self-sufficient containers.
 
@@ -114,18 +114,19 @@ To create a new Proxmox VE Docker LXC, run the command below in the **Proxmox VE
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/docker.sh)"
 ```
 
-⚡ Default Settings: 2GB RAM - 4GB Storage - 2vCPU ⚡
+The script asks you to **Choose the container OS**:
 
-As an alternative option, you can use Alpine Linux and the Docker package to create a Docker LXC container with faster creation time and minimal system resource usage.   
- 
+- **Debian 13**: ⚡ Default Settings: 2GB RAM - 4GB Storage - 2vCPU ⚡
+- **Alpine** (smaller footprint, faster creation time and minimal system resource usage): ⚡ Default Settings: 1GB RAM - 2GB Storage - 1vCPU ⚡
 
-To create a new Proxmox VE Alpine-Docker LXC, run the command below in the **Proxmox VE Shell**.   
+> The separate `alpine-docker.sh` script no longer exists. Alpine is now an option inside `docker.sh`.
+{.is-info}
+
+The script will ask if you want to add Docker Compose. Portainer is no longer installed by this script; it now has its own addon script. To install Portainer, run this command inside the Docker LXC once it is created:
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/alpine-docker.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/addon/portainer.sh)"
 ```
 
-⚡ Default Settings: 1GB RAM - 2GB Storage - 1vCPU ⚡
-> 
 > Run Compose V2 by replacing the hyphen (-) with a space, using docker compose, instead of docker-compose
 {.is-warning}
 
@@ -178,7 +179,7 @@ A note for those using a CF tunnel to connect to your WebUI, make these changes 
 
 # ![](/youtube.png){class="tab-icon"} 7 · Video
 
-To see an example of deploying a docker LXC with a tteck script, go here.
+To see an example of deploying a docker LXC with a tteck (now community-scripts) script, go here.
 
 [https://youtu.be/ybDX3onvkis](https://youtu.be/ybDX3onvkis)
 
