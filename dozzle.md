@@ -2,7 +2,7 @@
 title: Dozzle
 description: A guide to deploying Dozzle on TrueNAS Scale and via Docker Compose
 published: true
-date: 2026-10-28T10:13:22.924Z
+date: 2026-10-28T10:15:22.083Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:29.434Z
@@ -367,3 +367,4 @@ services:
 
 # <img src="/youtube.png" class="tab-icon"> 6 · Video
 
+https://youtu.be/esZJz8so4f0
