@@ -2,7 +2,7 @@
 title: Cal.diy
 description: A guide to deploying Cal.diy
 published: true
-date: 2026-04-15T17:47:50.625Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-07T11:20:08.256Z
@@ -12,7 +12,10 @@ dateCreated: 2026-03-07T11:20:08.256Z
 
 **Cal.diy** is the open-source community edition of Cal.com, a scheduling platform that lets you create bookable event types, sync with your existing calendars, and accept payments through Stripe. In April 2026, Cal.com moved its commercial product to closed source and released Cal.diy under the MIT license as the self-hostable fork for the community. It's a self-hosted alternative to Calendly with full control over your data, making it ideal for consultants, creators, and freelancers who want a professional booking page without handing their schedule to a third party.
 
-> **Migrating from the old `calcom/cal.com` image?** Back up your database directory first, then swap the image to `calcom/cal.diy:latest`. Your environment variables and data are compatible. Enterprise-only features (Teams, Organizations, Workflows, SSO/SAML, Insights) are no longer available in Cal.diy. See [Cal.com's announcement](https://cal.com/blog/calcom-v6-4) for full details.
+> Upstream's own warning: Cal.diy is to be used at your own risk and is "strictly recommended for personal, non-production use". Self-hosting it means you are responsible for securing the server, the database and the payment keys you put in it. Keep that in mind before taking paid bookings through it.
+{.is-danger}
+
+> **Migrating from the old `calcom/cal.com` image?** Back up your database directory first, then switch to the build-from-source setup below in place of the old image. Your environment variables and data are compatible. Enterprise-only features (Teams, Organizations, Workflows, SSO/SAML, Insights) are no longer available in Cal.diy. See [Cal.com's announcement](https://cal.com/blog/calcom-v6-4) for full details.
 {.is-warning}
 
 <div class="glance">
@@ -28,6 +31,16 @@ dateCreated: 2026-03-07T11:20:08.256Z
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Cal.diy
 
+> There is currently **no prebuilt Cal.diy image**. The `calcom/cal.diy` repository on Docker Hub exists but has no tags, so `calcom/cal.diy:latest` cannot be pulled. Upstream's own compose builds the image from source, and so does the setup below. The last prebuilt image is `calcom/cal.com:v6.2.0` (March 2026) if you would rather stay on that until an official Cal.diy image is published.
+{.is-warning}
+
+Clone the source next to your config folders first. The `--recursive` flag is required:
+
+```bash
+mkdir -p /mnt/tank/configs/calcom
+cd /mnt/tank/configs/calcom
+git clone --recursive https://github.com/calcom/cal.diy.git source
+```
 
 ```yaml
 services:
@@ -50,7 +63,14 @@ services:
       retries: 10
 
   calcom:
-    image: calcom/cal.diy:latest
+    build:
+      context: /mnt/tank/configs/calcom/source
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_WEBAPP_URL: ${CALCOM_URL}
+        CALCOM_TELEMETRY_DISABLED: 1
+        DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@calcom-db:5432/${POSTGRES_DB}
+    image: cal.diy:local
     container_name: calcom
     restart: unless-stopped
     depends_on:
@@ -65,6 +85,7 @@ services:
       - CALENDSO_ENCRYPTION_KEY=${CALENDSO_ENCRYPTION_KEY}
       - CALCOM_TELEMETRY_DISABLED=1
       # --- Database ---
+      - DATABASE_HOST=calcom-db:5432
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@calcom-db:5432/${POSTGRES_DB}
       - DATABASE_DIRECT_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@calcom-db:5432/${POSTGRES_DB}
       # --- Email (SMTP) ---
@@ -85,6 +106,9 @@ services:
       # --- Push Notifications (VAPID) ---
       - NEXT_PUBLIC_VAPID_PUBLIC_KEY=${VAPID_PUBLIC_KEY}
       - VAPID_PRIVATE_KEY=${VAPID_PRIVATE_KEY}
+      # --- Cal Video (Daily.co) ---
+      - DAILY_API_KEY=${DAILY_API_KEY}
+      - DAILY_SCALE_PLAN=${DAILY_SCALE_PLAN:-false}
     volumes:
       - /mnt/tank/configs/calcom/config:/app/config
 ```
@@ -126,10 +150,14 @@ GOOGLE_API_CREDENTIALS={"client_id":"XXXXX.apps.googleusercontent.com","client_s
 # --- Push Notifications (VAPID) ---
 VAPID_PUBLIC_KEY=CHANGE_ME_GENERATE_WITH_WEB_PUSH
 VAPID_PRIVATE_KEY=CHANGE_ME_GENERATE_WITH_WEB_PUSH
+
+# --- Cal Video (Daily.co) ---
+DAILY_API_KEY=
+DAILY_SCALE_PLAN=false
 ```
 
 
-> Cal.diy uses `latest` here for simplicity, but consider pinning to a specific version tag (e.g., `calcom/cal.diy:v6.2.0`) for more predictable updates. Check available tags at [DockerHub](https://hub.docker.com/r/calcom/cal.diy/tags).
+> The first deploy builds the image, which takes a while and needs plenty of RAM (the build reserves about 6 GB for Node). To update, run `git pull` inside `/mnt/tank/configs/calcom/source`, then `docker compose build calcom` and `docker compose up -d`.
 {.is-info}
 
 # 2 · Configuration
