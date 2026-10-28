@@ -2,7 +2,7 @@
 title: Media Manager
 description: A guide to deploying Media Manager via docker
 published: true
-date: 2026-05-22T06:35:03.001Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:23.142Z
@@ -26,7 +26,7 @@ MediaManager is modern software to manage your TV and movie library. It is desig
 ```yaml
 services:
   mediamanager:
-    image: ghcr.io/maxdorninger/mediamanager/mediamanager:latest
+    image: quay.io/maxdorninger/mediamanager:latest
     container_name: mediamanager
     restart: unless-stopped
     ports:
@@ -37,7 +37,10 @@ services:
       - /mnt/tank/media:/data/
       - /mnt/tank/configs/mediamanager:/app/config/
       - /mnt/tank/configs/mediamanager/images/:/data/images/
-      
+    depends_on:
+      db:
+        condition: service_healthy
+
   db:
     container_name: mediamanager_postgres
     image: postgres:17
@@ -56,6 +59,9 @@ services:
 
 ```
 
+> The image is published on both Quay.io (`quay.io/maxdorninger/mediamanager`, now the primary registry) and GHCR (`ghcr.io/maxdorninger/mediamanager/mediamanager`). They are built from the same source with the same tags, so either works.
+{.is-info}
+
 > Read the [official documentation!](https://maxdorninger.github.io/MediaManager/latest/)
 {.is-success}
 
@@ -66,14 +72,25 @@ services:
     nano /mnt/tank/configs/mediamanager/config.toml
     ```
 1. Edit the `frontend_url` and `cors_urls` lines by removing `localhost` and adding the IP of your server
+1. In the `[auth]` section, replace `admin@example.com` in `admin_emails` with your own email **before the first start**. The first email in this list becomes the default admin account
+1. In the `[auth]` section, set `token_secret` to a random string. Generate one with:
+    ```bash
+    openssl rand -hex 32
+    ```
 1. Add the qBittorrent URL, username and password and set to `true`
 1. Add the Prowlarr URL and API key and set to `true`
 1. Restart the docker container
 
 # 3 · Logging In
-1. Navigate to `http://IP:8000`
-1. Click the **Registration** link to sign up
-1. Use the `admin@example.com` email with a strong password
+1. On first start MediaManager creates a default admin user and prints its credentials in the container logs:
+    ```bash
+    docker logs mediamanager
+    ```
+1. Navigate to `http://IP:8000` and log in with those credentials
+1. Change the admin password after your first login
+
+> Newer releases ship with sign-up disabled (`registration_enabled = false` in `config.toml`). To let other people register accounts, set `registration_enabled = true` in the `[auth]` section and restart the container.
+{.is-info}
 
 # <img src="/patreon-light.png" class="tab-icon"> 4 · Video
 
