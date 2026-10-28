@@ -34,7 +34,7 @@ sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 ```
 
-Or use this script, which does the same thing using Docker's older keyring method (still works) [/docker-install.sh](/docker-install.sh)
+Or use the [install-docker.sh](https://github.com/serversathome/ServersatHome/blob/main/install-docker.sh) script, which runs the same steps (the `docker.asc` key and a deb822 `docker.sources` file) and works on Ubuntu or Debian. It also removes an old `docker.list` / `docker.gpg` setup left by earlier versions.
 
 Or execute: 
 ```bash
