@@ -27,6 +27,10 @@ Easily back up, organize, and manage your photos on your own server. Immich help
 </div>
 
 # 1 · Deploy Immich
+
+> Upgrading from before v1.133? Do the VectorChord migration first (see the [v3.0.0 release notes](https://github.com/immich-app/immich/releases/tag/v3.0.0)).
+{.is-warning}
+
 # {.tabset}
 
 ## Custom Builder
@@ -126,9 +130,6 @@ DB_DATABASE_NAME=immich
 {.is-danger}
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
-
-> **Upgrading an older install?** Immich v3 dropped support for the old `pgvecto.rs` vector extension. If you ran Immich before v1.133.0 and haven't completed the VectorChord migration yet, do that first, following the migration guide linked in the [v3.0.0 release notes](https://github.com/immich-app/immich/releases/tag/v3.0.0).
-{.is-warning}
 
 ### Folder Structure
 ```xml
@@ -237,9 +238,6 @@ MACHINE_LEARNING_MODEL_TTL_POLL_S=0
 {.is-danger}
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
-
-> **Upgrading an older install?** Immich v3 dropped support for the old `pgvecto.rs` vector extension. If you ran Immich before v1.133.0 and haven't completed the VectorChord migration yet, do that first, following the migration guide linked in the [v3.0.0 release notes](https://github.com/immich-app/immich/releases/tag/v3.0.0).
-{.is-warning}
 
 > In case you want to use multiple gpus see: [https://docs.immich.app/features/ml-hardware-acceleration#multi-gpu](https://docs.immich.app/features/ml-hardware-acceleration#multi-gpu)
 > The GPU must have compute capability 5.2 or greater.
@@ -359,9 +357,6 @@ MACHINE_LEARNING_MODEL_TTL_POLL_S=0
 {.is-danger}
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
-
-> **Upgrading an older install?** Immich v3 dropped support for the old `pgvecto.rs` vector extension. If you ran Immich before v1.133.0 and haven't completed the VectorChord migration yet, do that first, following the migration guide linked in the [v3.0.0 release notes](https://github.com/immich-app/immich/releases/tag/v3.0.0).
-{.is-warning}
 
 
 ### Folder Structure
@@ -486,9 +481,6 @@ MACHINE_LEARNING_MODEL_TTL_POLL_S=0
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
 
-> **Upgrading an older install?** Immich v3 dropped support for the old `pgvecto.rs` vector extension. If you ran Immich before v1.133.0 and haven't completed the VectorChord migration yet, do that first, following the migration guide linked in the [v3.0.0 release notes](https://github.com/immich-app/immich/releases/tag/v3.0.0).
-{.is-warning}
-
 
 ### Folder Structure
 
@@ -596,9 +588,6 @@ DB_DATABASE_NAME=immich
 {.is-danger}
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
-
-> **Upgrading an older install?** Immich v3 dropped support for the old `pgvecto.rs` vector extension. If you ran Immich before v1.133.0 and haven't completed the VectorChord migration yet, do that first, following the migration guide linked in the [v3.0.0 release notes](https://github.com/immich-app/immich/releases/tag/v3.0.0).
-{.is-warning}
 
 ### Folder Structure
 ```xml
