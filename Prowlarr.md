@@ -148,7 +148,7 @@ Edit the indexer you want routed through the VPN, add the `vpn` tag, and save. O
 
 ## 3.4 FlareSolverr-Backed Indexers
 
-If the indexer relies on FlareSolverr to bypass Cloudflare, the HTTP proxy approach won't work alone — FlareSolverr itself makes the outbound request, so Prowlarr's proxy setting is bypassed. To route FlareSolverr through Gluetun, use `network_mode` on the FlareSolverr container instead:
+If the indexer relies on FlareSolverr to bypass Cloudflare, the HTTP proxy approach won't work alone — FlareSolverr itself makes the outbound request, so Prowlarr's proxy setting is bypassed. To route FlareSolverr through Gluetun, add it to the same compose stack as your `gluetun` service and use `network_mode` on the FlareSolverr container instead:
 
 ```yaml
 services:
