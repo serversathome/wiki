@@ -2,7 +2,7 @@
 title: Jellyfin
 description: A guide to deploying Jellyfin on TrueNAS as well as Docker
 published: true
-date: 2026-01-18T10:55:31.854Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:36.259Z
@@ -54,15 +54,15 @@ services:
 
 ### Permissions & Folder Structure
 - **PUID / PGID**: Ensure you use a user/group with the correct permissions for accessing media folders. TrueNAS SCALE defaults to 568:568 for apps.
-- **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/emby
+- **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/jellyfin
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
-1. Check the **Jellyfin Server Storage** box to **Enable Host Path for Jellyfin Server Config Volume** and select the correct path as described in the [Folder-Structure](/Folder-Structure) guide.
-1. Click the **Add** button for **Jellyfin Server Extra Host Path Volumes** to pass the `media` directory into the container as **/media**.
-1. Scroll to the **Resource Configuration** section and locate the checkbox for your GPU. If you do not see one, make sure to select the checkbox in **Apps → Configuration → Settings → Install NVIDIA Drivers**.
+1. Under **Storage Configuration**, set **Jellyfin Config Storage** and **Jellyfin Cache Storage** to **Type: Host Path** and select the correct paths as described in the [Folder-Structure](/Folder-Structure) guide.
+1. Under **Additional Storage**, click **Add**, set **Type: Host Path**, set the **Mount Path** to **/media** and select your `media` directory.
+1. Scroll to **Resources Configuration** and select your GPU under **GPU Configuration**. If you do not see one, make sure to select the checkbox in **Apps → Configuration → Settings → Install NVIDIA Drivers**.
 
 > Check out [the new docs](https://apps.truenas.com/resources/deploy-jellyfin) from TrueNAS
 {.is-success}
