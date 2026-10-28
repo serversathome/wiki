@@ -2,7 +2,7 @@
 title: Cloudflare DDNS
 description: A guide to installing Cloudflare DDNS Updater in Docker
 published: true
-date: 2026-03-08T18:56:12.506Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:46.034Z
@@ -18,7 +18,7 @@ A feature-rich and robust Cloudflare DDNS updater with a small footprint. The pr
   <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://docs.portainer.io/user/docker/containers/logs"><i class="mdi mdi-book-open-variant"></i>Docs</a>
+    <a href="https://github.com/favonia/cloudflare-ddns"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 
@@ -27,7 +27,7 @@ A feature-rich and robust Cloudflare DDNS updater with a small footprint. The pr
 ```yaml
 services:
   cloudflare-ddns:
-    image: favonia/cloudflare-ddns:edge
+    image: favonia/cloudflare-ddns:1
     network_mode: host
     # This bypasses network isolation and makes IPv6 easier (optional; see below)
     restart: unless-stopped
@@ -50,12 +50,12 @@ services:
 | --- | --- |
 | Cloudflare API Token | The value of `CLOUDFLARE_API_TOKEN` should be an API token (not an API key), which can be obtained from the [API Tokens page](https://dash.cloudflare.com/profile/api-tokens). Use the **Edit zone DNS** template to create a token. The less secure API key authentication is deliberately not supported. There is an optional feature (available since version 1.14.0) that lets you maintain a [WAF list](https://developers.cloudflare.com/waf/tools/lists/custom-lists/) of detected IP addresses. To use this feature, edit the token and grant it the **Account - Account Filter Lists - Edit** permission. If you only need to update WAF lists, not DNS records, you can remove the **Zone - DNS - Edit** permission. Refer to the detailed documentation below for information on updating WAF lists. | 
 | Domains | The value of DOMAINS should be a list of fully qualified domain names (FQDNs) separated by commas. For example, `DOMAINS=example.org,www.example.org,example.io` instructs the updater to manage the domains `example.org`, `www.example.org`, and `example.io`. These domains do not have to share the same DNS zone---the updater will take care of the DNS zones behind the scene. |
-| Proxied=true |  The setting `PROXIED=true` instructs Cloudflare to cache webpages and hide your IP addresses. If you wish to bypass that and expose your actual IP addresses, remove `PROXIED=true`. If your traffic is not HTTP(S), then Cloudflare cannot proxy it and you should probably turn off the proxying by removing `PROXIED=true`. The default value of `PROXIED` is false. |
+| Proxied=true |  The setting `PROXIED=true` instructs Cloudflare to cache webpages and hide your IP addresses. If you wish to bypass that and expose your actual IP addresses, remove `PROXIED=true`. If your traffic is not HTTP(S), then Cloudflare cannot proxy it and you should probably turn off the proxying by removing `PROXIED=true`. The default value of `PROXIED` is false. Note that `PROXIED=true` does not change the proxy status of records that already exist; change those manually on the Cloudflare DNS Records page. |
 | IP6_PROVIDER=none | The updater, by default, will attempt to update DNS records for both IPv4 and IPv6, and there is no harm in leaving the automatic detection on even if your network does not work for one of them. However, if you want to disable IPv6 entirely (perhaps to avoid seeing the detection errors), add `IP6_PROVIDER=none`.  |
 
 
 
-> You need to add you Cloudflare token to the line `CF_API_TOKEN=` which can be found by going to your Cloudflare dashboard, clicking on **Websites** > go to the domain you purchased > API (in the bottom right)
+> You need to add your Cloudflare token to the line `CLOUDFLARE_API_TOKEN=`. Create one on the [API Tokens page](https://dash.cloudflare.com/profile/api-tokens) of your Cloudflare dashboard
 {.is-warning}
 
 
@@ -92,7 +92,7 @@ The updater does not itself add timestamps because all major systems already tim
 
 ## Why did the updater detect a public IP address different from the WAN IP address on my router?
 
-Is your “public” IP address on your router between 100.64.0.0 and 100.127.255.255? If so, you are within your ISP’s [CGNAT (Carrier-grade NAT)](https://en.wikipedia.org/wiki/Carrier-grade_NAT). In practice, there is no way for DDNS to work with CGNAT, because your ISP does not give you a real public IP address, nor does it allow you to forward IP packages to your router using cool protocols such as [Port Control Protocol](https://en.wikipedia.org/wiki/Port_Control_Protocol). You have to give up DDNS or switch to another ISP. You may consider other services such as [Cloudflare Tunnel](/CloudflareTunnels)https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) that can work around CGNAT.
+Is your “public” IP address on your router between 100.64.0.0 and 100.127.255.255? If so, you are within your ISP’s [CGNAT (Carrier-grade NAT)](https://en.wikipedia.org/wiki/Carrier-grade_NAT). In practice, there is no way for DDNS to work with CGNAT, because your ISP does not give you a real public IP address, nor does it allow you to forward IP packages to your router using cool protocols such as [Port Control Protocol](https://en.wikipedia.org/wiki/Port_Control_Protocol). You have to give up DDNS or switch to another ISP. You may consider other services such as [Cloudflare Tunnel](/CloudflareTunnels) ([Cloudflare docs](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/)) that can work around CGNAT.
 
 
 ## Help! I got exec /bin/ddns: operation not permitted
