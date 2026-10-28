@@ -39,9 +39,9 @@ services:
     environment:
       - GLUETUN_CONTROL_URL=http://gluetun:8000
       # Gluetun requires auth. Uncomment ONE option to match your Gluetun config:
-      # API key (Gluetun: HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE='{"auth":"apikey","apikey":"yourtoken"}')
+      # API key (on Gluetun: - 'HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE={"auth":"apikey","apikey":"yourtoken"}')
       #- GLUETUN_API_KEY=yourtoken
-      # HTTP Basic auth (Gluetun: HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE='{"auth":"basic","username":"username","password":"password"}')
+      # HTTP Basic auth (on Gluetun: - 'HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE={"auth":"basic","username":"username","password":"password"}')
       #- GLUETUN_USER=username
       #- GLUETUN_PASSWORD=password
     networks:
@@ -103,8 +103,11 @@ For several VPNs, replace `GLUETUN_CONTROL_URL` with numbered variables:
 
 All of Gluetun's control server routes are private by default and **require** authentication. Configure it on the **Gluetun** container, either with the `HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE` environment variable or with a `config.toml` mounted at `/gluetun/auth/config.toml` (see the [Gluetun control server docs](https://github.com/qdm12/gluetun-wiki/blob/main/setup/advanced/control-server.md)). Then give Gluetun WebUI the matching credentials:
 
-- **API Key Auth** — In Gluetun set `HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE='{"auth":"apikey","apikey":"yourtoken"}'`, then set `GLUETUN_API_KEY=yourtoken` here. Generate a key with `docker run --rm qmcgaw/gluetun genkey`.
-- **HTTP Basic Auth** — In Gluetun set `HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE='{"auth":"basic","username":"username","password":"password"}'`, then set `GLUETUN_USER` and `GLUETUN_PASSWORD` here.
+- **API Key Auth** — In Gluetun's `environment:` add `- 'HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE={"auth":"apikey","apikey":"yourtoken"}'`, then set `GLUETUN_API_KEY=yourtoken` here. Generate a key with `docker run --rm qmcgaw/gluetun genkey`.
+- **HTTP Basic Auth** — In Gluetun's `environment:` add `- 'HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE={"auth":"basic","username":"username","password":"password"}'`, then set `GLUETUN_USER` and `GLUETUN_PASSWORD` here.
+
+> Quote the **whole** list item as shown, with the single quotes outside the variable name. Writing `- HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE='{...}'` (the `docker run -e` form) makes the quotes part of the value, and Gluetun fails to parse the JSON.
+{.is-warning}
 
 > 
 > If you expose this service beyond localhost, place it behind a reverse proxy with authentication (Nginx Proxy Manager, Caddy, Traefik, etc.). The VPN start/stop endpoints have no UI-layer authentication by default.
