@@ -2,7 +2,7 @@
 title: Reclaimerr
 description: A guide to deploying Reclaimerr
 published: true
-date: 2026-05-05T19:28:02.393Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-16T20:23:27.413Z
@@ -10,10 +10,10 @@ dateCreated: 2026-04-16T20:23:27.413Z
 
 # <img src="/reclaimerr.png" class="tab-icon"> What is Reclaimerr?
 
-**Reclaimerr** is a self-hosted tool that helps you automatically identify and clean up unwatched, low-rated, or stale media in your Jellyfin and/or Plex library so you can reclaim disk space. Think of it as Seerr in reverse — instead of requesting new media, you're cleaning up what's already there. Reclaimerr supports rule-based filtering, a protection system to safeguard favorites, optional Sonarr/Radarr/Seerr integration, and notifications through Apprise.
+**Reclaimerr** is a self-hosted tool that helps you automatically identify and clean up unwatched, low-rated, or stale media in your Jellyfin, Plex, and/or Emby library so you can reclaim disk space. Think of it as Seerr in reverse — instead of requesting new media, you're cleaning up what's already there. Reclaimerr supports rule-based filtering, a protection system to safeguard favorites, optional Sonarr/Radarr/Seerr integration, and notifications through Apprise.
 
 > 
-> Reclaimerr is currently in **beta**. While in beta, automatic deletion is intentionally disabled — deletions must be processed manually through the UI or API. Automatic deletion will be added as an opt-in feature once the project matures.
+> Automatic deletion is **opt-in**. Nothing is deleted automatically until you enable the `Delete Cleanup Candidates` task under **Tasks**. Review your rules and task schedule before turning it on.
 {.is-warning}
 
 <div class="glance">
@@ -41,6 +41,7 @@ services:
     env_file: ".env"
     volumes:
       - /mnt/tank/configs/reclaimerr:/app/data
+      - /mnt/tank/media:/media
     ports:
       - "8000:8000"
 ```
@@ -54,7 +55,15 @@ DATA_DIR=./data
 # API configuration
 API_HOST=0.0.0.0
 API_PORT=8000
-CORS_ORIGINS=http://localhost:3000
+
+# container user, timezone and file permissions
+TZ=America/New_York
+PUID=568
+PGID=568
+UMASK=022
+
+# IP/CIDR of your reverse proxy, so Reclaimerr trusts its X-Forwarded-* headers
+PROXY_TRUSTED_HOSTS=127.0.0.1,::1
 
 # secrets — leave blank to auto-generate stable values on first launch (recommended),
 # or set your own (min 32 characters, e.g. `openssl rand -hex 32`)
@@ -70,18 +79,18 @@ CORS_ORIGINS=http://localhost:3000
 
 
 > 
-> Leave `JWT_SECRET` and `ENCRYPTION_KEY` **blank** on first launch. Reclaimerr will auto-generate stable values for you. Only set them manually if you have a specific reason to.
+> Leave `JWT_SECRET` and `ENCRYPTION_KEY` **blank** on first launch. Reclaimerr will auto-generate stable values and save them to `secrets.env` in the data folder (`/mnt/tank/configs/reclaimerr/secrets.env`). Back that file up with the rest of the data folder, or existing sessions and encrypted settings stop working after a restore.
 {.is-info}
 
 > 
-> Update `CORS_ORIGINS` to match the URL you'll use to access Reclaimerr. If you're serving it behind a reverse proxy with a custom domain, point this at that domain.
+> Mount your media at the **same container path** your media server uses (this guide uses `/media`), plus any destination folder you plan to use for move-based cleanup. If Reclaimerr sits behind a reverse proxy, set `PROXY_TRUSTED_HOSTS` to the proxy's IP or CIDR.
 {.is-info}
 
 # 2 · Configuration
 
 ## 2.1 Media Server Setup
 
-Reclaimerr supports both **Jellyfin** and **Plex** — and you can connect both at the same time.
+Reclaimerr supports **Jellyfin**, **Plex**, and **Emby**, and you can connect more than one at the same time.
 
 - Designate one server as the **main** server (source of truth for the library).
 - The other server is used as a supplemental data source for watch history.
@@ -91,7 +100,7 @@ Navigate to **Settings → Servers** to add your media server(s). You'll need:
 
 | Field | Value |
 |-------|-------|
-| Server Type | Jellyfin or Plex |
+| Server Type | Jellyfin, Plex, or Emby |
 | URL | `http://<server-ip>:<port>` |
 | API Key / Token | From your media server's settings |
 
@@ -103,7 +112,7 @@ Reclaimerr works **without** Sonarr and Radarr, but integrating them gives you c
 When the arrs are configured:
 - Deletions are processed through Sonarr/Radarr first (properly unmonitoring/removing the media)
 - Falls back to the main media server only if needed
-- Optionally removes requests from Jellyseerr or Overseerr to keep your ecosystem in sync
+- Optionally removes requests from Seerr to keep your ecosystem in sync
 
 Navigate to **Settings → Integrations** and add your arr stack URLs and API keys.
 
@@ -155,7 +164,7 @@ Reclaimerr supports multi-user setups with a permission system. Add users under 
 - Viewing reports
 
 > 
-> Always test your rules on a small subset of your library first. While automatic deletion is disabled during beta, a misconfigured rule can still flag items you'd rather keep — use the protection system liberally until you trust your rules.
+> Always test your rules on a small subset of your library first. Even before you opt in to automatic deletion, a misconfigured rule can still flag items you'd rather keep — use the protection system liberally until you trust your rules.
 {.is-warning}
 
 
