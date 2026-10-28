@@ -55,10 +55,10 @@ DB_NAME=wygiwyh_pg
 TZ=UTC # Change to your timezone. This only affects some async tasks.
 
 DEBUG=false
-URL = https://...
-HTTPS_ENABLED=true
+URL=http://YOUR-SERVER-IP:9005 # Every address you open WYGIWYH at, separated by spaces (e.g. add https://wygiwyh.yourdomain.com)
+HTTPS_ENABLED=false # Set to true only when you reach WYGIWYH over HTTPS (behind a reverse proxy)
 SECRET_KEY=<GENERATE A SAFE SECRET KEY AND PLACE IT HERE> # e.g. openssl rand -hex 32
-DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1] YOUR-SERVER-IP # Add your domain here too if you use one
 OUTBOUND_PORT=9005
 
 # Uncomment these variables to automatically create an admin account using these credentials on startup.
@@ -93,7 +93,11 @@ TASK_WORKERS=1 # This only work if you're using the single container option. Inc
 
 1. Generate a `SECRET_KEY` with `openssl rand -hex 32` and paste the output into the `.env` file.
 1. To create an admin account on first start, uncomment `ADMIN_EMAIL` and `ADMIN_PASSWORD` and fill in your own values. Remove them again after your first login.
+1. Replace `YOUR-SERVER-IP` in `URL` and `DJANGO_ALLOWED_HOSTS` with your server's IP address. Django rejects any address that isn't in `DJANGO_ALLOWED_HOSTS` (a 400 error), and form posts from any origin that isn't in `URL` fail the CSRF check.
 1. The UI is published on host port `9005` (set by `OUTBOUND_PORT`), so open `http://YOUR-SERVER-IP:9005`.
+
+> `HTTPS_ENABLED=false` is for plain-HTTP access on your LAN. With `true`, the login cookie is marked secure and browsers won't send it over `http://`, so you can't log in. Once WYGIWYH is behind a reverse proxy with HTTPS, set `HTTPS_ENABLED=true` and add your `https://` domain to `URL` and the domain to `DJANGO_ALLOWED_HOSTS`.
+{.is-warning}
 
 > The `attachments` volume keeps uploaded transaction attachments. Without it, they are lost whenever the container is recreated.
 {.is-info}
