@@ -2,7 +2,7 @@
 title: Cinephage
 description: A guide to deploying Cinephage
 published: true
-date: 2026-02-26T16:28:22.385Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:39.889Z
@@ -35,9 +35,11 @@ Key highlights include `.strm` file support for streaming without downloading, T
 ```yaml
 services:
   cinephage:
-    image: ghcr.io/moldytaint/cinephage:latest
+    image: ghcr.io/moldytaint/cinephage:0.10
     container_name: cinephage
     restart: unless-stopped
+    init: true
+    shm_size: 256m  # headless Firefox for captcha solving crashes with the 64MB default
     security_opt:
       - no-new-privileges:true
     ports:
@@ -47,10 +49,19 @@ services:
       - PGID=568
       - TZ=America/New_York
       - ORIGIN=http://10.99.0.242:3000
+      - BETTER_AUTH_SECRET=CHANGEME
+      - BETTER_AUTH_URL=http://10.99.0.242:3000
     volumes:
       - /mnt/tank/configs/cinephage:/config
       - /mnt/tank/media:/media
 ```
+1. Generate a secret with `openssl rand -base64 32` and paste it in place of `CHANGEME`. `BETTER_AUTH_SECRET` is required: it signs sessions and encrypts API keys
+2. Replace `10.99.0.242` in `ORIGIN` and `BETTER_AUTH_URL` with your server's IP, or with your public URL if you use a reverse proxy
+3. Deploy the stack
+
+> The `latest` tag currently can't be pulled (it returns "not found" on GHCR), so the compose pins the `0.10` release line. Switch back to `latest` once upstream republishes it.
+{.is-info}
+
 > 
 > Both Cinephage and your download client must mount the **same download directory** for imports to work correctly.
 {.is-warning}
