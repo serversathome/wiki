@@ -2,7 +2,7 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: 2026-05-13T11:55:47.891Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:03.838Z
@@ -63,14 +63,19 @@ wget -q -O headscale.sh https://raw.githubusercontent.com/serversathome/Serversa
 
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
+> **Upgrading an existing install from 0.28?** Headscale only allows upgrades one minor version at a time (0.28 → 0.29, then 0.29 → 0.30), so back up `./lib` first. Headscale 0.29 also **refuses to start** if `randomize_client_port` is still in `config.yaml`. Delete that line (or move it to a policy file as `"randomizeClientPort": true`) and rename `ephemeral_node_inactivity_timeout` to `node.ephemeral.inactivity_timeout` as shown below **before** bumping the image. See the [changelog](https://github.com/juanfont/headscale/blob/main/CHANGELOG.md) for details. If you installed with the script, apply the same changes to its generated `config.yaml`.
+{.is-warning}
+
 ### Headscale Container
 ```yaml
 services:
   headscale:
-    image: 'headscale/headscale:0.28.0'
+    image: 'headscale/headscale:0.29.6'
     container_name: 'headscale'
     restart: 'unless-stopped'
     command: 'serve'
+    ports:
+      - "3478:3478/udp" # embedded DERP STUN
     read_only: true
     tmpfs:
       - /var/run/headscale
@@ -94,7 +99,7 @@ services:
       - "traefik.http.services.headscale.loadbalancer.server.port=8080"
 
   headscale-ui:
-    image: 'ghcr.io/gurucomputing/headscale-ui:2025.08.23'
+    image: 'ghcr.io/gurucomputing/headscale-ui:2026.03.17'
     container_name: 'headscale-ui'
     restart: 'unless-stopped'
     labels:
@@ -106,7 +111,7 @@ services:
       - "traefik.http.routers.headscale-ui.tls.certresolver=myresolver"
 
   traefik:
-    image: "traefik:v3.3"
+    image: "traefik:v3.7"
     container_name: "traefik"
     restart: "unless-stopped"
     command:
@@ -123,7 +128,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "3478:3478/udp"
     volumes:
       - "./letsencrypt:/letsencrypt"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
@@ -170,7 +174,10 @@ derp:
   update_frequency: 3h
 
 disable_check_updates: false
-ephemeral_node_inactivity_timeout: 30m
+
+node:
+  ephemeral:
+    inactivity_timeout: 30m
 
 database:
   type: sqlite
@@ -222,8 +229,6 @@ unix_socket_permission: "0770"
 logtail:
   enabled: false
 
-randomize_client_port: false
-
 taildrop:
   enabled: true
 ```
@@ -251,7 +256,7 @@ To connect a device to your headscale instance:
 tailscale up --login-server=https://your.domain.com
 ```
 
-> On first connection, you'll need to create a user and register the node. Run `docker exec headscale headscale users create myuser` to create a user, then follow the registration URL shown in the Tailscale client output.
+> On first connection, you'll need to create a user and register the node. Run `docker exec headscale headscale users create myuser` to create a user, then follow the registration URL shown in the Tailscale client output. It gives you a `headscale auth register --auth-id <id> --user <user>` command to run (this replaces the deprecated `headscale nodes register`).
 {.is-info}
 
 # 6 · Useful Commands
@@ -262,7 +267,8 @@ tailscale up --login-server=https://your.domain.com
 | `docker exec headscale headscale nodes list` | List all connected nodes |
 | `docker exec headscale headscale apikeys create` | Generate a new API key |
 | `docker exec headscale headscale apikeys list` | List existing API keys |
-| `docker exec headscale headscale preauthkeys create --user <name>` | Create a pre-auth key |
+| `docker exec headscale headscale preauthkeys create --user <id>` | Create a pre-auth key (`--user` takes the numeric user ID from `users list`) |
+| `docker exec headscale headscale auth register --auth-id <id> --user <user>` | Register a node from its login URL |
 {.dense}
 
 # <img src="/youtube.png" class="tab-icon"> 7 · Video
