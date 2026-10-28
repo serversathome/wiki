@@ -2,19 +2,19 @@
 title: Noton
 description: A guide to deploying Noton
 published: true
-date: 2026-01-15T15:30:29.454Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:50.817Z
 ---
 
 # <img src="/noton.png" class="tab-icon"> What is Noton?
-A free and open documentation platform built with Laravel and Filament, enhanced by Ollama for local AI features, focused on clarity, structure, and self-hosted simplicity. 
+A free-for-internal-use documentation platform (Functional Source License 1.1; competing commercial use is not allowed) built with Laravel and Filament, enhanced by Ollama for local AI features, focused on clarity, structure, and self-hosted simplicity. 
 
 <div class="glance">
   <div><span>Port</span><b><code>6686</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Containers</span><b>3 services</b></div>
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
@@ -43,10 +43,12 @@ services:
       DB_DATABASE: noton_database
       DB_USERNAME: noton_user
       DB_PASSWORD: noton_password
-      OLLAMA_BASE_URL: http://ollama:11434
+      AI_PROVIDER: ollama
+      OLLAMA_BASE_URL: http://ollama:11434 # or point at an existing Ollama server
       OLLAMA_MODEL: llama3.1:8b
-      OLLAMA_TIMEOUT: 60
+      OLLAMA_TIMEOUT: 600
       OLLAMA_PULL_TIMEOUT: 600
+      OLLAMA_KEEP_ALIVE: 1h
     volumes:
       - /mnt/tank/configs/noton/uploads:/srv/www/storage/app/public
   postgres:
@@ -59,4 +61,16 @@ services:
       POSTGRES_PASSWORD: noton_password
     volumes:
       - /mnt/tank/configs/noton/db:/var/lib/postgresql/data
+  ollama:
+    container_name: ollama
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    volumes:
+      - /mnt/tank/configs/noton/ollama:/root/.ollama
 ```
+
+> If you already run Ollama elsewhere, remove the `ollama` service and set `OLLAMA_BASE_URL` to that server (e.g. `http://IP:11434`). To use OpenClaw instead, set `AI_PROVIDER: openclaw` and `OPENCLAW_BASE_URL` to your OpenClaw Gateway.
+{.is-info}
+
+1. Navigate to `http://IP:6686`
+1. Register the first user. This account is automatically assigned the admin role
