@@ -2,7 +2,7 @@
 title: Prismarr
 description: A guide to deploying Prismarr
 published: true
-date: 2026-05-23T18:03:30.423Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-28T00:21:28.596Z
@@ -10,7 +10,7 @@ dateCreated: 2026-04-28T00:21:28.596Z
 
 # What is Prismarr?
 
-**Prismarr** is a self-hosted media dashboard that unifies Radarr, Sonarr, Prowlarr, Jellyseerr, qBittorrent and TMDb into a single Symfony 8 interface. Instead of juggling six browser tabs to manage your library, Prismarr gives you one search bar across the local library and TMDb, one calendar that merges movie and episode releases, one dashboard that surfaces what matters today, and one settings page where every API key lives.
+**Prismarr** is a self-hosted media dashboard that unifies Radarr, Sonarr, Prowlarr, Seerr (formerly Jellyseerr), your download clients and TMDb into a single Symfony 8 interface. Instead of juggling six browser tabs to manage your library, Prismarr gives you one search bar across the local library and TMDb, one calendar that merges movie and episode releases, one dashboard that surfaces what matters today, and one settings page where every API key lives.
 
 It's not a replacement for your existing \*arr stack — Radarr and Sonarr keep doing what they do best. Prismarr sits on top as the unified control surface, consuming the APIs of services you already run. The whole thing ships as a single Docker container with embedded SQLite (no external database, no Redis, no per-service `.env` files), is multi-arch (amd64 + arm64), and is licensed AGPL-3.0.
 
@@ -41,7 +41,7 @@ services:
 
 ## 2.1 Setup Wizard
 
-The first time you open Prismarr, the wizard at `/setup` walks you through the seven steps in order. You can skip optional services (TMDb, qBittorrent, Gluetun) and add them later from the admin settings page.
+The first time you open `http://IP:7070`, the wizard at `/setup` asks for the interface language and creates the admin account. It then opens `/admin/settings` on the **Services** section, where you add TMDb, Radarr, Sonarr, Prowlarr, Seerr, your download clients and any optional services.
 
 Every API key, password, and service URL is stored in the SQLite database (`setting` table) — never in environment variables, never in any committable file. The export feature strips every key matching `api_key`, `password`, or `secret`, so sharing your config is safe.
 
@@ -49,7 +49,7 @@ Every API key, password, and service URL is stored in the SQLite database (`sett
 
 Once setup is complete, head to `/admin/settings` (admin only) to manage:
 
-- **Services** — add, remove, or update Radarr / Sonarr / Prowlarr / Jellyseerr / qBittorrent / TMDb credentials and URLs
+- **Services** — add, remove, or update Radarr / Sonarr / Prowlarr / Seerr / TMDb credentials and URLs, download clients (qBittorrent, Deluge, Transmission, SABnzbd, NZBGet, optional Gluetun), and optional activity sources (Tautulli, Tracearr, Emby)
 - **Display preferences** — theme color, UI density, toasts, timezone, date/time format, qBittorrent auto-refresh interval, default home page
 - **Languages** — English (source) and French (full ICU plural support); easy to add more by duplicating the YAML file and translating
 - **Backup** — export the full settings JSON (credentials stripped) for portability
