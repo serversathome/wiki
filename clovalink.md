@@ -48,10 +48,6 @@ services:
       - CLAMAV_ENABLED=true
       - CLAMAV_HOST=clovalink-clamav
       - CLAMAV_PORT=3310
-      # Optional: encrypt files at rest on local storage (openssl rand -base64 32)
-      # - ENCRYPTION_KEY=CHANGEME_ENCRYPTION_KEY
-      # Optional: required for scheduled auto-backups (openssl rand -base64 48)
-      # - BACKUP_MASTER_KEY=CHANGEME_BACKUP_MASTER_KEY
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -95,22 +91,12 @@ services:
     restart: unless-stopped
     volumes:
       - /mnt/tank/configs/clovalink/clamav:/var/lib/clamav
-    healthcheck:
-      test: ["CMD", "clamdscan", "--ping", "1"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 120s
 ```
 
 1. Generate a secure JWT secret: `openssl rand -base64 32`
 2. Replace `CHANGEME_JWT_SECRET` with your generated value
 3. Generate a database password with `openssl rand -hex 24` and replace both `CHANGEME_DB_PASSWORD` values with it
 4. Update `CORS_ALLOWED_ORIGINS` to your actual domain
-5. Optional: uncomment `ENCRYPTION_KEY` to encrypt uploaded files at rest, and `BACKUP_MASTER_KEY` if you want scheduled auto-backups
-
-> If you set `ENCRYPTION_KEY`, back it up somewhere safe. Losing it means losing access to every encrypted file.
-{.is-warning}
 
 > 
 > ClamAV takes 2-3 minutes on first start to download virus definitions. The backend will wait for it to be ready.
@@ -179,8 +165,6 @@ CLAMAV_ENABLED=false
 | `STORAGE_TYPE` | `local` or `s3` |
 | `CORS_ALLOWED_ORIGINS` | Comma-separated allowed origins |
 | `CLAMAV_ENABLED` | Enable/disable virus scanning |
-| `ENCRYPTION_KEY` | Optional. Base64 32-byte key for at-rest encryption of local storage |
-| `BACKUP_MASTER_KEY` | Optional. Required for scheduled auto-backups |
 {.dense}
 
 # <img src="/youtube.png" class="tab-icon"> 3 · Video

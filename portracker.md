@@ -54,13 +54,12 @@ services:
       - DATABASE_PATH=/data/portracker.db
       - PORT=4999
       - ENABLE_AUTH=true
-      - SESSION_SECRET=your_generated_secret   # openssl rand -hex 32
       # Optional: For enhanced TrueNAS features
       # - TRUENAS_API_KEY=your-api-key-here
       # - TRUENAS_WS_BASE=wss://10.99.0.191:444
 ```
 
-> With `ENABLE_AUTH=true`, the first visit to `http://IP:4999` opens a setup wizard to create the admin account. Keep auth on: without it, anyone who can reach Portracker gets admin-level control, and this container has the Docker socket and host PID access.
+> Keep `ENABLE_AUTH=true`: this container has the Docker socket and host PID access. Your first visit to `http://IP:4999` asks you to create the admin account.
 {.is-warning}
 
 # 2 · Integrating With TrueNAS

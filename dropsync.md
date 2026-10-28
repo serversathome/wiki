@@ -31,24 +31,7 @@ services:
       - "3000:3000"
 ```
 
-To use your own TURN server, build the image from source instead, because the `VITE_TURN_*` values are baked in at build time. Clone the repo and create a `.env.production` file in it (not `.env`, which the repo's `.dockerignore` keeps out of Docker builds):
-
-```bash
-git clone https://github.com/ivucicev/DropSync.git /mnt/tank/configs/dropsync/src
-cat > /mnt/tank/configs/dropsync/src/.env.production <<'END'
-VITE_TURN_URL=turn.yourdomain.com
-VITE_TURN_USERNAME=dropsync
-VITE_TURN_CREDENTIAL=your_turn_password
-END
-```
-
-Then replace the `image:` line in the compose above with:
-
-```yaml
-    build: /mnt/tank/configs/dropsync/src
-```
-
-> DropSync uses WebRTC for direct peer-to-peer transfers. This works well between desktop browsers on standard home/broadband networks, but mobile networks (5G/LTE) use Carrier-Grade NAT (CGNAT). The image falls back to the free, rate-limited Open Relay TURN server; for reliable 5G/LTE use, build with your own TURN server (`VITE_TURN_*` values above).
+> DropSync uses WebRTC for direct peer-to-peer transfers. This works well between desktop browsers on standard home/broadband networks, but **does not reliably work on mobile networks (5G/LTE)** due to Carrier-Grade NAT (CGNAT). For reliable 5G/LTE transfers you need your own TURN server, which means building the image yourself. See [upstream](https://github.com/ivucicev/DropSync).
 {.is-warning}
 
 # 2 · Configuration

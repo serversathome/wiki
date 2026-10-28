@@ -117,14 +117,11 @@ MINIO_USER=minio-user-changeme
 MINIO_PASSWORD=changeme
 ```
 
-> Don't reuse the example values. Generate your own with `openssl rand -base64 21 | tr -d '/+='` (run it once each for `POSTGRES_PASSWORD`, `MINIO_PASSWORD` and the suffix of `MINIO_USER`). You'll paste the same values into `museum.yaml` below.
-{.is-warning}
-
 ## 1.3 Museum.yaml
 > For `museum.yaml` below, replace `${IP}` with the address of your server!
 {.is-danger}
 
-> Replace every `<...>` placeholder with your own values. `<POSTGRES_PASSWORD>`, `<MINIO_USER>` and `<MINIO_PASSWORD>` must match your `.env` file. Generate the keys with:
+> Replace the `changeme` values in `.env` (e.g. `openssl rand -hex 16`), and fill each `<...>` below: `<POSTGRES_PASSWORD>`, `<MINIO_USER>` and `<MINIO_PASSWORD>` must match `.env`. Generate the keys with:
 > - `encryption`: `head -c 32 /dev/urandom | base64`
 > - `hash`: `head -c 64 /dev/urandom | base64 | tr -d '\n'`
 > - `jwt secret`: `head -c 32 /dev/urandom | base64 | tr '+/' '-_'`
@@ -180,11 +177,6 @@ apps:
     # Set this to the URL where your accounts web app is running, primarily used for
     # passkey based 2FA.
     accounts: http://${IP}:3001
-    # Optional apps (expose the matching port on the web service first)
-    # embed-albums: http://${IP}:3006
-    # public-locker: http://${IP}:3005
-    # public-paste: http://${IP}:3008
-    # public-memories: http://${IP}:3010
 
 key:
       encryption: <generated-encryption-key>
@@ -205,16 +197,7 @@ jwt:
 1. Click "Continue with free plan 10 GB free forever"
 
 # 3 · Removing Storage Limits
-The official way is the [Ente CLI](https://github.com/ente/ente/tree/main/cli). The first account registered on your server is treated as admin until you [whitelist admins](https://ente.com/help/self-hosting/administration/users#whitelist-admins) in `museum.yaml`, so register your own account first.
-
-```bash
-ente account login --account home-server --app photos --host http://{IP}:8080
-ente admin user update-subscription you@example.com --no-limit --account home-server
-```
-
-`--no-limit` sets 100 TB of storage and an expiry 100 years out. See the upstream [CLI administration docs](https://ente.com/help/cli/admin) for other options.
-
-**Alternative (direct SQL):** in the TrueNAS shell, run this command **as root**:
+1. In the TrueNAS shell, run this command **as root**:
 ```bash
 docker exec -i ente-postgres-1 psql -U pguser -d ente_db -c "INSERT INTO storage_bonus (bonus_id, user_id, storage, type, valid_till) VALUES ('self-hosted-myself', (SELECT user_id FROM users LIMIT 1), 109951162777600, 'ADD_ON_SUPPORT', 0) ON CONFLICT (bonus_id) DO UPDATE SET storage = EXCLUDED.storage;"
 ```

@@ -39,8 +39,8 @@ services:
    environment:
      database__client: mysql
      database__connection__host: db
-     database__connection__user: ghost
-     database__connection__password: your-db-password
+     database__connection__user: root
+     database__connection__password: your-root-password
      database__connection__database: ghost
      url: https://example.com # this url value is just an example, and is likely wrong for your environment!
      TZ: America/New_York
@@ -58,29 +58,23 @@ services:
      - /mnt/tank/configs/ghost/content:/var/lib/ghost/content
 
  db:
-   image: mysql:8.0.44
+   image: mysql:8.0
    container_name: ghost_db
    restart: unless-stopped
    environment:
      MYSQL_ROOT_PASSWORD: your-root-password
-     MYSQL_USER: ghost
-     MYSQL_PASSWORD: your-db-password
-     MYSQL_DATABASE: ghost
    volumes:
      - /mnt/tank/configs/ghost/db:/var/lib/mysql
 ```
 
-1. Change all the default passwords (generate them with `openssl rand -hex 24`). `database__connection__password` in the ghost service must match `MYSQL_PASSWORD` in the db service.
+1. Change the default password (generate one with `openssl rand -hex 24`). `database__connection__password` in the ghost service must match `MYSQL_ROOT_PASSWORD` in the db service.
 1. Update the `url` field to match your FQDN
 
 > You can deploy as many of these containers as you want for each website you want to host. Be sure to change the external port for each one. 
 {.is-info}
 
-> **Upgrading from an older version of this guide?** It used `ghost:5-alpine`, which no longer gets updates. Before switching to `ghost:6-alpine`, back up `/mnt/tank/configs/ghost` and read Ghost's [update guide](https://docs.ghost.org/update/) and the [Ghost 6.0 changelog](https://ghost.org/changelog/6/). The `MYSQL_USER`/`MYSQL_PASSWORD` user is only created on a fresh database, so if your existing database was set up with `root`, keep `database__connection__user: root` and your old password.
+> Upgrading from an older version of this guide? Back up `/mnt/tank/configs/ghost`, read the Ghost 6 [update guide](https://docs.ghost.org/update/), and either keep your old content mount line or move everything except `db` into `content/`.
 {.is-warning}
-
-> **Existing installs:** older versions of this guide mounted Ghost's content at `/mnt/tank/configs/ghost` with the database nested inside it at `/mnt/tank/configs/ghost/db`. The compose above keeps them apart (`ghost/content` and `ghost/db`) so Ghost's ownership changes can't touch MySQL's files. If you deployed the old layout, either keep your original `/mnt/tank/configs/ghost:/var/lib/ghost/content` line, or stop the stack and move everything except `db` into a new `content` folder before redeploying.
-{.is-info}
 
 
 # 2 · Logging In

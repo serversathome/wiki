@@ -75,7 +75,7 @@ services:
     restart: unless-stopped
 ```
 
-> **Upgrading from v1.x?** v2.0.0 added multi-host agents (a separate, opt-in `volumevault-agent` image; existing installs keep working as a single host). Back up `/mnt/tank/configs/volumevault` and your `APP_KEY` before changing the tag, and read the [release notes](https://github.com/Darkdragon14/VolumeVault/releases) for any migration steps. Keep the same `APP_KEY` and storage folder when you recreate the container.
+> **Upgrading from v1.x?** Back up `/mnt/tank/configs/volumevault` and keep the same `APP_KEY` ([release notes](https://github.com/Darkdragon14/VolumeVault/releases)).
 {.is-warning}
 
 
@@ -119,6 +119,3 @@ VolumeVault issues Sanctum API tokens for automation — trigger backups, read j
 ## 2.7 Reverse Proxy
 
 Set `APP_URL` to your public HTTPS URL and front the container with your usual proxy (Cloudflare Tunnel or Nginx pointing at `:8080`). If your proxy sits in front, you may also need `TRUSTED_PROXIES` set so Laravel honors the forwarded scheme/host. Given the socket access, keep this behind authentication and avoid exposing it publicly without a good reason.
-
-> When VolumeVault is served over HTTPS, also set `SESSION_SECURE_COOKIE: "true"` so the session cookie is only sent over HTTPS. Leave it off for plain-HTTP or LAN-only access, because enabling it without TLS breaks login.
-{.is-info}

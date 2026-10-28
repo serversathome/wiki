@@ -185,8 +185,8 @@ chithi.yourdomain.com {
 > Without the `Cross-Origin-Opener-Policy` and `Cross-Origin-Embedder-Policy` headers, Chithi's web workers will not load and encryption in the browser fails. Upstream also has ready-made versions of this setup with Caddy, NGINX or Traefik included in the [deployment docs](https://github.com/chithi-dev/chithi/tree/main/apps/docs/docs/deployments/docker/basic).
 {.is-warning}
 
-> Don't use the `docker-compose.yml` in the root of the Chithi repo. It only contains the databases (no app), and publishes pgAdmin with `admin@example.com` / `admin` plus the Postgres and Redis ports to your network.
-{.is-danger}
+> Don't use the `docker-compose.yml` in the root of the Chithi repo; it only contains the databases, not the app.
+{.is-warning}
 
 # 2 · First Login
 

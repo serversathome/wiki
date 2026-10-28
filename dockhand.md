@@ -98,11 +98,7 @@ Dockhand manages multiple Docker hosts from one dashboard. Each host is an **Env
 
 ## 3.1 Hawser Agent (Remote Hosts)
 
-On each remote machine, install Docker and deploy the Hawser agent. Hawser has two modes. Pick the one that fits the host:
-
-### Hawser mode {.tabset}
-#### Standard mode (LAN)
-Dockhand connects **in** to the agent on port `2376`. A `TOKEN` is required: without one, the agent refuses to start.
+On each remote machine, install Docker and deploy the Hawser agent. A `TOKEN` is required: without one, the agent refuses to start.
 
 ```yaml
 services:
@@ -112,36 +108,13 @@ services:
     environment:
       - TOKEN=change-me                 # openssl rand -hex 32
       - AGENT_NAME=remote-node-1        # optional friendly name
-      - STACKS_DIR=/mnt/tank/stacks
     ports:
       - "2376:2376"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /mnt/tank/stacks:/mnt/tank/stacks   # same path in and out
     restart: unless-stopped
 ```
 
 Then back in Dockhand, add the environment using the remote host's IP, the agent port (`2376`), and the same token. Once the connection test passes, the host appears in your dashboard alongside the others.
 
-#### Edge mode (NAT / VPS)
-The agent dials **out** to Dockhand over a WebSocket. Add a Hawser Edge environment in Dockhand first to get its token.
-
-```yaml
-services:
-  hawser:
-    image: ghcr.io/finsys/hawser:latest
-    container_name: hawser
-    environment:
-      - DOCKHAND_SERVER_URL=wss://dockhand.example.com/api/hawser/connect
-      - TOKEN=<token from Dockhand>
-      - AGENT_NAME=remote-node-1        # optional friendly name
-      - STACKS_DIR=/mnt/tank/stacks
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /mnt/tank/stacks:/mnt/tank/stacks   # same path in and out
-    restart: unless-stopped
-```
-
-> 
-> In Edge mode Hawser dials **out** to Dockhand, so the remote host needs no inbound firewall rules or port forwards — handy for NetBird-meshed or NAT'd nodes.
-{.is-success}
+For hosts behind NAT, Hawser also has an Edge mode that dials out to Dockhand. See the [Hawser README](https://github.com/Finsys/hawser).

@@ -38,8 +38,6 @@ services:
     image: swalabtech/journiv-app:latest
 ```
 
-> `ALLOW_INSECURE_COOKIE_AUTH_OVER_HTTP=true` is needed to log in over plain HTTP from another device on your LAN. Only use it on a trusted home network. If you put Journiv behind a reverse proxy, remove that line and set `DOMAIN_SCHEME=https` and `DOMAIN_NAME=journiv.example.com` instead.
+> `ALLOW_INSECURE_COOKIE_AUTH_OVER_HTTP=true` allows login over plain HTTP on your LAN; behind a reverse proxy, remove it and set `DOMAIN_SCHEME=https`.
+> This minimal setup doesn't process media uploads or imports; for those, use the [full upstream compose](https://github.com/journiv/journiv-app/blob/main/docker-compose.yml).
 {.is-warning}
-
-> This single-container setup is the **minimal** version of Journiv. Uploaded images, videos and audio will stay at **Processing**, and import/export jobs won't run, without a Valkey/Redis broker and a Celery worker. For those features, use the [complete upstream Docker Compose file](https://github.com/journiv/journiv-app/blob/main/docker-compose.yml), which adds PostgreSQL, Valkey and the Celery services.
-{.is-info}

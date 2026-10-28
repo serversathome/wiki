@@ -48,7 +48,6 @@ services:
       - OC_URL=https://cloud.yourdomain.com
       - IDM_CREATE_DEMO_USERS=false
       - IDM_ADMIN_PASSWORD=<strong password> # used by init on first start only
-      - PROXY_HTTP_ADDR=0.0.0.0:9200
     restart: unless-stopped
 ```
 
@@ -80,7 +79,6 @@ Log in as `admin` with the `IDM_ADMIN_PASSWORD` you set. You can change it later
    - **Config Storage** → **Host Path**: `/mnt/tank/configs/opencloud/config`
    - **Data Storage** → **Host Path**: `/mnt/tank/configs/opencloud/data`
    - **Radicale Data Storage** → **Host Path**: `/mnt/tank/configs/opencloud/radicale`
-   - Optional: **Full Text Search** (Tika), **Yjs (Real-time Collaboration)** and **Collaboration** (Collabora)
 5. Click **Save**
 6. Log in as `admin` / `admin` and **change the password immediately**. The TrueNAS app has no admin password field and always initializes the admin account with `admin`
 

@@ -26,7 +26,7 @@ MediaManager is modern software to manage your TV and movie library. It is desig
 ```yaml
 services:
   mediamanager:
-    image: quay.io/maxdorninger/mediamanager:latest
+    image: ghcr.io/maxdorninger/mediamanager/mediamanager:latest
     container_name: mediamanager
     restart: unless-stopped
     ports:
@@ -37,10 +37,7 @@ services:
       - /mnt/tank/media:/data/
       - /mnt/tank/configs/mediamanager:/app/config/
       - /mnt/tank/configs/mediamanager/images/:/data/images/
-    depends_on:
-      db:
-        condition: service_healthy
-
+      
   db:
     container_name: mediamanager_postgres
     image: postgres:17
@@ -58,9 +55,6 @@ services:
       POSTGRES_PASSWORD: MediaManager
 
 ```
-
-> The image is published on both Quay.io (`quay.io/maxdorninger/mediamanager`, now the primary registry) and GHCR (`ghcr.io/maxdorninger/mediamanager/mediamanager`). They are built from the same source with the same tags, so either works.
-{.is-info}
 
 > Read the [official documentation!](https://maxdorninger.github.io/MediaManager/latest/)
 {.is-success}

@@ -40,15 +40,9 @@ The container runs as UID **1000** (`appuser`), so give the config folder to tha
 chown -R 1000:1000 /mnt/tank/configs/sonarranalyzer
 ```
 
-> `/app/data` holds `.master.key`, which encrypts the Sonarr API keys stored in the database. Back it up together with the rest of the folder. Without it, the saved API keys can't be decrypted.
-{.is-warning}
-
 # 2 · First Run
 1. Navigate to `http://IP:8501`
 1. On first launch you'll see the **Create Admin Account** screen. Pick a username (min 3 characters) and password (min 8 characters)
 1. Log in with the new admin account
 1. Go to **Configuration** in the sidebar and add your Sonarr instance (name, **Sonarr URL**, **API Key**), then click **Save Instance**
 1. Activate the instance and run your first analysis
-
-> Sonarr Analyzer has no protection for public exposure. Don't publish port 8501 directly to the internet.
-{.is-info}

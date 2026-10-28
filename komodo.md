@@ -49,13 +49,13 @@ With Komodo you can:
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose
 
-> **Upgrading from Komodo 1.x?** The v2 images are only published under the `:2` tag (`:latest` is deprecated and stuck on 1.19). v2 replaces passkeys with auto-generated key pairs, and Periphery now connects out to Core, so a 1.x compose won't work as-is. Back up your database and read the [v2.0.0 release notes](https://github.com/moghtech/komodo/releases/tag/v2.0.0) before upgrading.
+> Upgrading from Komodo 1.x? v2 isn't drop-in. Read the [v2.0.0 release notes](https://github.com/moghtech/komodo/releases/tag/v2.0.0) first.
 {.is-warning}
 
 ```yaml
 services:
   mongo:
-    image: mongo:9
+    image: mongo
     labels:
       komodo.skip: # Prevent Komodo from stopping with StopAllContainers
     command: --quiet --wiredTigerCacheSizeGB 0.25
@@ -129,16 +129,7 @@ services:
       - /mnt/tank/configs/komodo/etc:/mnt/tank/configs/komodo/etc
 ```
 
-> `PERIPHERY_ROOT_DIRECTORY` must match the path you mount, and the path must be the same inside and outside the container. All your stacks and repos need to live under it.
-{.is-info}
-
-> `mongo` is pinned to major version `9` (what upstream's unpinned `mongo` currently resolves to), so a future MongoDB major can't arrive on its own with a re-pull. If your existing install was created on an older MongoDB (check with `docker compose exec mongo mongod --version`), pin that major instead, for example `mongo:7` or `mongo:8`. MongoDB only upgrades one major version at a time, so a 7.x database won't start on 9. Back up first and follow MongoDB's upgrade steps for each major.
-{.is-warning}
-
 ## <img src="/docker.png" class="tab-icon"> Stacks Importer
-
-> `komodo-import` is an early-stage community tool that hasn't been updated since September 2025. It hasn't been confirmed to work with Komodo v2.
-{.is-warning}
 
 ```yaml
 services:
