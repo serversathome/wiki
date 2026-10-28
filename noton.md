@@ -43,12 +43,9 @@ services:
       DB_DATABASE: noton_database
       DB_USERNAME: noton_user
       DB_PASSWORD: noton_password
-      AI_PROVIDER: ollama
-      OLLAMA_BASE_URL: http://ollama:11434 # or point at an existing Ollama server
+      OLLAMA_BASE_URL: http://ollama:11434
       OLLAMA_MODEL: llama3.1:8b
-      OLLAMA_TIMEOUT: 600
       OLLAMA_PULL_TIMEOUT: 600
-      OLLAMA_KEEP_ALIVE: 1h
     volumes:
       - /mnt/tank/configs/noton/uploads:/srv/www/storage/app/public
   postgres:
@@ -69,7 +66,7 @@ services:
       - /mnt/tank/configs/noton/ollama:/root/.ollama
 ```
 
-> If you already run Ollama elsewhere, remove the `ollama` service and set `OLLAMA_BASE_URL` to that server (e.g. `http://IP:11434`). To use OpenClaw instead, set `AI_PROVIDER: openclaw` and `OPENCLAW_BASE_URL` to your OpenClaw Gateway.
+> Already run Ollama? Remove the `ollama` service and point `OLLAMA_BASE_URL` at it.
 {.is-info}
 
 1. Navigate to `http://IP:6686`
