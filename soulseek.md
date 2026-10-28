@@ -2,7 +2,7 @@
 title: Soulseek
 description: A guide to deploying the SLSKD daemon via docker compose
 published: true
-date: 2026-01-15T15:31:53.073Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:40.062Z
@@ -55,9 +55,11 @@ services:
       # Optional paths (leave blank to use /downloads & /incomplete inside /app)
       SLSKD_DOWNLOADS_DIR: /music/downloads
       SLSKD_INCOMPLETE_DIR: /music/incomplete
+      # Share your library folder, not the download/incomplete folders above
+      SLSKD_SHARED_DIR: /music/library
     ports:
-      - 5030:5030   # Web‑UI
-      - 5031:5031   # WebSocket API
+      - 5030:5030   # Web‑UI (HTTP)
+      - 5031:5031   # Web‑UI (HTTPS, self-signed certificate)
       - 50300:50300 # P2P listen
     volumes:
       - /mnt/tank/configs/soulseek:/app
@@ -90,8 +92,8 @@ services:
       SERVER_COUNTRIES: CA
       FIREWALL_VPN_INPUT_PORTS: 50300
     ports:
-      - 5030:5030     # slskd web‑UI
-      - 5031:5031
+      - 5030:5030     # slskd web‑UI (HTTP)
+      - 5031:5031     # slskd web‑UI (HTTPS, self-signed)
       - 50300:50300   # P2P port (UDP/TCP inside tunnel)
     restart: unless-stopped
 
@@ -104,6 +106,7 @@ services:
       SLSKD_SLSK_LISTEN_PORT: 50300
       SLSKD_DOWNLOADS_DIR: /music/downloads
       SLSKD_INCOMPLETE_DIR: /music/incomplete
+      SLSKD_SHARED_DIR: /music/library
     volumes:
       - /mnt/tank/configs/soulseek:/app
       - /mnt/tank/media/music:/music
@@ -121,18 +124,34 @@ services:
    * `soulseek.password: YOUR_PASS`
    * *(optional)* `soulseek.description: "Hi, enjoy the tunes!"`
 3. **Save → Restart daemon**.  Watch logs until **Connected to server** appears.
-4. Under **Shares → Directories** add `/music` or any sub‑folders you want to share.
+4. The compose already shares `/music/library` via `SLSKD_SHARED_DIR` (change it to wherever your library sits under `/music`). Avoid sharing all of `/music`, since that also shares the `downloads` and `incomplete` folders.
 
 ---
 
 # 3 · Advanced Tweaks
 
-| Option                  | Recommended   | Why                            |
-| ----------------------- | ------------- | ------------------------------ |
-| **listen\_port\_range** | `50300-50310` | Avoid ISP‑blocked default 2234 |
-| **max\_uploads**        | `3`           | Prevent bandwidth hogging      |
-| **download\_slots**     | `6`           | Balanced performance           |
-| **skip\_extensions**    | `.log,.nfo`   | Saves space                    |
+Set these in `slskd.yml` (**System → Options**) or with the matching environment variable. Slot changes need a daemon restart.
+
+| slskd.yml key | Env variable | Example | Why |
+| ------------- | ------------ | ------- | --- |
+| `soulseek.listen_port` | `SLSKD_SLSK_LISTEN_PORT` | `50300` | Incoming P2P port; must match your port forward |
+| `transfers.upload.slots` | `SLSKD_UPLOAD_SLOTS` | `3` | Prevent bandwidth hogging |
+| `transfers.download.slots` | `SLSKD_DOWNLOAD_SLOTS` | `6` | Balanced performance |
+| `shares.filters` | `SLSKD_SHARE_FILTER` | `\.log$`, `\.nfo$` | Regex list of files to leave out of your shares |
+
+```yaml
+soulseek:
+  listen_port: 50300
+transfers:
+  upload:
+    slots: 3
+  download:
+    slots: 6
+shares:
+  filters:
+    - \.log$
+    - \.nfo$
+```
 
 ---
 
