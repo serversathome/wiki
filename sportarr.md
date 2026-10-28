@@ -2,7 +2,7 @@
 title: Sportarr
 description: A guide to deploying Sportarr
 published: true
-date: 2026-09-10T12:12:09.278Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-10T16:23:09.485Z
@@ -95,13 +95,18 @@ For older Plex versions, download the legacy bundle from the Sportarr UI (**Sett
 
 ### Jellyfin
 
-1. Download the plugin DLL from [Sportarr releases](https://github.com/Sportarr/Sportarr/releases)
-1. Copy the DLL to your Jellyfin plugins directory:
-	a. `cd` into your Jellyfin plugins directory `cd /mnt/tank/configs/jellyfin/data/plugins/configurations`
-  b. use the `wget` command to copy the file from the github link `wget [url-goes here]`
-1. Unzip the file using `unzip [filename]`
+Requires **Jellyfin 10.9 or later**. The recommended method is the Sportarr plugin repository:
+
+1. In Jellyfin, go to **Dashboard → Plugins → Repositories**, click **Add**, and name it `Sportarr`
+1. Set the repository URL to `https://raw.githubusercontent.com/Sportarr/Sportarr/main/agents/jellyfin/manifest.json` and save
+1. Open the **Catalog** tab and install **Sportarr** under **Metadata**
 1. Restart Jellyfin
-1. Create a library → select **Shows** → add your sports folder → enable **Sportarr** under Metadata Downloaders
+1. Create a library → select **Shows** → add your sports folder → under both **Metadata Downloaders** and **Image Fetchers**, enable **Sportarr** and drag it to the top of each list
+1. *(Optional)* Under **Dashboard → Plugins → Sportarr**, the API URL defaults to `https://sportarr.net`. Change it to your own instance (e.g. `http://your-server-ip:1867`) and click **Test Connection** if you want metadata served from your install
+
+> 
+> **Manual install (fallback):** download the `sportarr-jellyfin-plugin_*.zip` from [Sportarr releases](https://github.com/Sportarr/Sportarr/releases) and extract it into `/mnt/tank/configs/jellyfin/data/plugins/Sportarr/` (the `Sportarr` folder inside Jellyfin's plugins directory, **not** `plugins/configurations`), then restart Jellyfin.
+{.is-info}
 
 ### Emby
 
