@@ -2,7 +2,7 @@
 title: Invoicerr
 description: A guide to deploying Invoicerr
 published: true
-date: 2026-01-15T15:29:41.918Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:30.658Z
@@ -35,17 +35,21 @@ Invoicerr is a simple, open-source invoicing application designed to help freela
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://github.com/impre-visible/invoicerr"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/invoicerr-app/invoicerr"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 
 
 
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Invoicerr
+
+> The project moved to [invoicerr-app/invoicerr](https://github.com/invoicerr-app/invoicerr), and the old `ghcr.io/impre-visible/invoicerr` image no longer gets updates. This compose is pinned to the latest stable v1 release. Version 2 (currently in alpha) changes the setup: it requires Redis, a `BETTER_AUTH_SECRET`, a `/data` volume for documents, and uses `OIDC_DISCOVERY_URL` instead of the individual OIDC endpoints. Don't move to v2 tags with this compose.
+{.is-warning}
+
 ```yaml
 services:
   invoicerr:
-    image: ghcr.io/impre-visible/invoicerr:v1.4.0i
+    image: ghcr.io/invoicerr-app/invoicerr:v1.4.5c
     ports:
       - 8001:80
     environment:
@@ -54,26 +58,26 @@ services:
       - CORS_ORIGINS=http://10.99.0.242:8001,https://invoicerr.example.com
       # Required for email features
       - SMTP_HOST=smtp-relay.example.com
-      - SMTP_USER="username@example.com"
-      - SMTP_FROM="user-from@example.com" # Not required if SMTP_USER is the same as SMTP_FROM
-      - SMTP_PASSWORD="your_smtp_password"
+      - SMTP_USER=username@example.com
+      - SMTP_FROM=user-from@example.com # Not required if SMTP_USER is the same as SMTP_FROM
+      - SMTP_PASSWORD=your_smtp_password
       - SMTP_PORT=587 # Change this to your SMTP port (default is 587 for TLS)
       - SMTP_SECURE=false # Set to true if your SMTP server requires a secure connection (default is false)
       # OIDC Configuration (example for Authentik)
-      - OIDC_ISSUER="https://auth.chevrier.dev"
-      - OIDC_NAME="Pocket ID"
+      - OIDC_ISSUER=https://auth.example.com
+      - OIDC_NAME=Pocket ID
       # Endpoints for OIDC
-      - OIDC_AUTHORIZATION_ENDPOINT="https://auth.chevrier.dev/authorize"
-      - OIDC_TOKEN_ENDPOINT="https://auth.chevrier.dev/token"
-      - OIDC_USERINFO_ENDPOINT="https://auth.chevrier.dev/userinfo"
-      - OIDC_TOKEN_REVOKE_ENDPOINT="https://auth.chevrier.dev/revoke"
-      - OIDC_END_SESSION_ENDPOINT="https://auth.chevrier.dev/end_session"
-      - OIDC_JWKS_URI="https://auth.chevrier.dev/.well-known/jwks.json"
+      - OIDC_AUTHORIZATION_ENDPOINT=https://auth.example.com/authorize
+      - OIDC_TOKEN_ENDPOINT=https://auth.example.com/token
+      - OIDC_USERINFO_ENDPOINT=https://auth.example.com/userinfo
+      - OIDC_TOKEN_REVOKE_ENDPOINT=https://auth.example.com/revoke
+      - OIDC_END_SESSION_ENDPOINT=https://auth.example.com/end_session
+      - OIDC_JWKS_URI=https://auth.example.com/.well-known/jwks.json
       # Client ID and Secret for OIDC
-      - OIDC_CLIENT_ID="your-client-id"
-      - OIDC_CLIENT_SECRET="your-client-secret"
+      - OIDC_CLIENT_ID=your-client-id
+      - OIDC_CLIENT_SECRET=your-client-secret
       # Optional, but recommended for docker deployments
-      - JWT_SECRET="your_jwt_secret"
+      - JWT_SECRET=your_jwt_secret # generate with: openssl rand -hex 32
     depends_on:
       - invoicerr_db
   invoicerr_db:
