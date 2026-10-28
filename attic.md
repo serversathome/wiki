@@ -2,7 +2,7 @@
 title: Attic
 description: A guide to deploying Attic
 published: true
-date: 2026-09-28T18:02:18.858Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-28T18:01:07.684Z
@@ -60,6 +60,7 @@ services:
       # Optional import sources
       - ATTIC_GOOGLE_BOOKS_API_KEY=
       - ATTIC_TMDB_API_KEY=
+      - ATTIC_REBRICKABLE_API_KEY=
       - ATTIC_BGG_API_KEY=
       - ATTIC_IGDB_CLIENT_ID=
       - ATTIC_IGDB_CLIENT_SECRET=
@@ -112,7 +113,7 @@ services:
 
 ## 2.2 Import Sources
 
-Attic can pull metadata and cover art for books, movies, TV, board games and video games. Each source is optional:
+Attic can pull metadata and cover art for books, movies, TV, board games, video games and LEGO. Each source is optional:
 
 | Source | Variable | Notes |
 |--------|----------|-------|
@@ -120,6 +121,7 @@ Attic can pull metadata and cover art for books, movies, TV, board games and vid
 | TMDB | `ATTIC_TMDB_API_KEY` | Movies and TV |
 | BoardGameGeek | `ATTIC_BGG_API_KEY` | Board games |
 | IGDB | `ATTIC_IGDB_CLIENT_ID` and `ATTIC_IGDB_CLIENT_SECRET` | Both come from a Twitch developer application |
+| Rebrickable | `ATTIC_REBRICKABLE_API_KEY` | LEGO sets and minifigures. Free key from [rebrickable.com/api](https://rebrickable.com/api/) |
 {.dense}
 
 ## 2.3 Collections and Saved Filters
