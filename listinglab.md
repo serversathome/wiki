@@ -2,7 +2,7 @@
 title: Listing Lab
 description: A guide to deploy Listing Lab
 published: true
-date: 2026-01-15T15:29:59.281Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:06:01.751Z
@@ -108,4 +108,4 @@ services:
 1. Click the **Security** tab, and generate a new API key
 1. If you are prompted for a password, enter the password you used to login (`admin` by default)
 1. Add a persisistent key, and click **Save**
-1. Paste the key into the docker compose line 59 `ODOO_API_KEY:`
+1. Paste the key into the `ODOO_API_KEY:` line of the docker compose
