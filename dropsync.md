@@ -2,7 +2,7 @@
 title: DropSync
 description: A guide to deploying DropSync
 published: true
-date: 2026-03-21T11:26:45.121Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-21T11:26:27.867Z
@@ -16,13 +16,13 @@ dateCreated: 2026-03-21T11:26:27.867Z
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy DropSync
 
 
-> DropSync does not have a pre-built Docker image on Docker Hub. The compose file below builds the image locally from source.
+> DropSync publishes a prebuilt image on GitHub Container Registry. Only the `main` tag exists (there is no `latest` tag).
 {.is-info}
 
 ```yaml
 services:
   dropsync:
-    build: https://github.com/ivucicev/DropSync.git
+    image: ghcr.io/ivucicev/dropsync:main
     container_name: dropsync
     environment:
       - NODE_ENV=production
@@ -31,8 +31,24 @@ services:
       - "3000:3000"
 ```
 
+To use your own TURN server, build the image from source instead, because the `VITE_TURN_*` values are baked in at build time. Clone the repo and create a `.env.production` file in it (not `.env`, which the repo's `.dockerignore` keeps out of Docker builds):
 
-> DropSync uses WebRTC for direct peer-to-peer transfers. This works well between desktop browsers on standard home/broadband networks, but **does not reliably work on mobile networks (5G/LTE)** due to Carrier-Grade NAT (CGNAT).
+```bash
+git clone https://github.com/ivucicev/DropSync.git /mnt/tank/configs/dropsync/src
+cat > /mnt/tank/configs/dropsync/src/.env.production <<'END'
+VITE_TURN_URL=turn.yourdomain.com
+VITE_TURN_USERNAME=dropsync
+VITE_TURN_CREDENTIAL=your_turn_password
+END
+```
+
+Then replace the `image:` line in the compose above with:
+
+```yaml
+    build: /mnt/tank/configs/dropsync/src
+```
+
+> DropSync uses WebRTC for direct peer-to-peer transfers. This works well between desktop browsers on standard home/broadband networks, but mobile networks (5G/LTE) use Carrier-Grade NAT (CGNAT). The image falls back to the free, rate-limited Open Relay TURN server; for reliable 5G/LTE use, build with your own TURN server (`VITE_TURN_*` values above).
 {.is-warning}
 
 # 2 · Configuration
