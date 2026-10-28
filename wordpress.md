@@ -2,7 +2,7 @@
 title: Wordpress
 description: A guide to installing Wordpress on TrueNAS and in docker via compose
 published: true
-date: 2026-01-15T15:32:38.071Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:42.750Z
@@ -51,7 +51,7 @@ services:
      - ./wordpress:/var/www/html
 
  db:
-   image: mysql:8.0
+   image: mysql:8.4
    restart: unless-stopped
    container_name: wordpress-db
    environment:
@@ -67,6 +67,9 @@ services:
 > 
 > You can deploy as many of these containers as you want for each website you want to host. Be sure to change the external port and the container names for each one. 
 {.is-info}
+
+> MySQL 8.0 has reached end of life and no longer gets updates, so this compose uses `mysql:8.4` (the current LTS). If you already run `mysql:8.0`, back up your `./db` folder (or take a `mysqldump`) first, then change the tag to `8.4` and redeploy. MySQL upgrades the data directory in place on first start. See the [MySQL upgrade notes](https://dev.mysql.com/doc/refman/8.4/en/upgrading.html).
+{.is-warning}
 
 
 # Wordpress Configuration
