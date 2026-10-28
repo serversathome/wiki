@@ -2,7 +2,7 @@
 title: NextDNS
 description: A guide to configuring NextDNS
 published: true
-date: 2026-09-07T12:46:32.812Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-02T09:57:01.133Z
@@ -98,16 +98,14 @@ If the gateway has no DDNS section, skip router setup entirely rather than leavi
 ```yaml
 services:
   nextdns:
-    image: ghcr.io/nextdns/nextdns:latest
+    image: nextdns/nextdns:latest
     container_name: nextdns
     network_mode: host
     restart: unless-stopped
-    command: run -config <your-config-id> -listen :53 -report-client-info
-    volumes:
-      - /mnt/tank/configs/nextdns:/etc/nextdns
+    command: run -profile <your-config-id> -listen :53 -report-client-info
 ```
 
-Verify the current image tag and CLI flags against the upstream repo before deploying.
+The CLI image is published on Docker Hub as `nextdns/nextdns` and is configured entirely through command flags. The older `-config` flag is deprecated in favor of `-profile`. See the upstream [Docker wiki page](https://github.com/nextdns/nextdns/wiki/Docker) for more options.
 
 # 3 · Configuration
 
