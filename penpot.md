@@ -29,7 +29,7 @@ Penpot is the first open-source design tool for design and code collaboration. D
 1. Set the **Public URI** to the IP:Port of your server
 1. Set a **Database Password**
 1. Set a **Redis Password**
-1. Set a **Secret Key** (generate one with `openssl rand -base64 64`)
+1. Set a **Secret Key** (generate one with `openssl rand -hex 32`)
 1. Set the **Penpot Assets Storage** to **Host Path**
 1. Set the **Penpot Postgres Data Storage** to **Host Path**
 
