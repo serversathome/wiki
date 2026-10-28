@@ -2,7 +2,7 @@
 title: Emby
 description: A guide to installing Emby in TrueNAS as well as docker via compose
 published: true
-date: 2026-01-15T15:27:28.749Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:02:25.173Z
@@ -43,9 +43,10 @@ services:
     volumes:
       - /mnt/tank/configs/emby:/config
       - /mnt/tank/media:/media
-    ports:
-      - 8096:8096 # HTTP port
-      - 8920:8920 # HTTPS port
+    # ports are ignored with network_mode: host; Emby listens on 8096 (HTTP) and 8920 (HTTPS) directly
+    # ports:
+    #   - 8096:8096 # HTTP port
+    #   - 8920:8920 # HTTPS port
 
     restart: unless-stopped
 ```
@@ -68,6 +69,9 @@ services:
 1. Check the **Emby Server Storage** box to **Enable Host Path for Emby Server Config Volume** and select the correct path as described in the [Folder-Structure](/Folder-Structure) guide. 
 1. Click the **Add** button for **Emby Server Extra Host Path Volumes** to pass the `media` directory into the container as **/media**.
 1. Scroll to the **Resource Configuration** section and locate the checkbox for your GPU. If you do not see one, make sure to select the checkbox in **Apps → Configuration → Settings → Install NVIDIA Drivers**.
+
+> TrueNAS 25.10+ uses NVIDIA's open kernel modules, which only support Turing and newer GPUs (GTX 16xx / RTX 20xx and newer). Older Maxwell, Pascal and Volta cards (GTX 9xx/10xx, Quadro/Tesla M and P) are no longer supported and will not transcode.
+{.is-warning}
 
 > Check out [the new docs](https://apps.truenas.com/resources/deploy-emby) from TrueNAS
 {.is-success}
