@@ -2,7 +2,7 @@
 title: Cantinarr
 description: A guide to deploying Cantinarr
 published: true
-date: 2026-09-10T13:52:24.252Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-09-08T15:19:38.173Z
@@ -41,7 +41,7 @@ services:
       - CANTINARR_PUSH_GATEWAY_URL=https://push.cantinarr.com
       # Origin your arrs POST webhooks back to. Set this when Cantinarr sits
       # behind a reverse proxy or on a different network than the arrs.
-      # - CANTINARR_PUBLIC_URL=http://cantinarr:8585
+      # - CANTINARR_ARR_CALLBACK_URL=http://cantinarr:8585
       - CANTINARR_MEDIA_ROOTS=/media
       - PUID=568
       - PGID=568
@@ -129,7 +129,7 @@ Each user can bring their own Anthropic, OpenAI, Gemini, or xAI key, or you can 
 
 The server also exposes an MCP endpoint at `/mcp` with OAuth discovery, browser and passkey login, and a per-tool on/off list under **Settings > AI Tools**. That means Claude Desktop, Claude Code, or any other MCP client can search your library, check availability, and file requests against your own server.
 
-> MCP clients authenticate over inbound OAuth, which needs a secure context for passkeys. On a plain HTTP deployment, give the account a password under **Settings > Users** instead. Behind a reverse proxy, set `CANTINARR_OAUTH_ISSUER` to your external HTTPS origin and keep it stable, since changing it forces every MCP client to reconnect.
+> MCP clients authenticate over inbound OAuth, which needs a secure context for passkeys. On a plain HTTP deployment, give the account a password under **Settings > Users** instead. Behind a reverse proxy, set `CANTINARR_OAUTH_ISSUER` to your external HTTPS origin and keep it stable, since changing it forces every MCP client to reconnect. Browser-based MCP clients from another origin also need that origin listed in `CANTINARR_MCP_ALLOWED_ORIGINS`.
 {.is-info}
 
 
@@ -143,6 +143,7 @@ Everything below is optional. Credentials are managed in the UI, not here.
 | `CANTINARR_SERVER_NAME` | `Cantinarr` | Display name shown in clients |
 | `CANTINARR_ARR_CALLBACK_URL` | request origin | Origin the \*arrs POST webhooks back to. Must be reachable **from the \*arr containers** |
 | `CANTINARR_OAUTH_ISSUER` | request origin | External HTTPS origin for inbound MCP OAuth. Set it behind a proxy and keep it stable |
+| `CANTINARR_MCP_ALLOWED_ORIGINS` | unset | Extra browser origins allowed to call `/mcp`. Without it or `CANTINARR_OAUTH_ISSUER`, browser requests that send an `Origin` header are rejected |
 | `CANTINARR_ENCRYPTION_KEY` | auto-generated | Base64 32-byte key for secrets at rest. Defaults to `/config/encryption.key` |
 | `CANTINARR_MEDIA_ROOTS` | unset | Comma-separated absolute paths allowed for completed-media downloads. Empty disables the feature |
 | `CANTINARR_PUSH_GATEWAY_URL` | unset | Setting it enables push notifications and auto-enrolls on first start |
