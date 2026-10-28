@@ -2,7 +2,7 @@
 title: PhotoPrism
 description: A guide to deploying PhotoPrism
 published: true
-date: 2026-01-15T15:30:43.462Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:08.400Z
@@ -71,7 +71,6 @@ services:
       PHOTOPRISM_DISABLE_SETTINGS: "false"        
       PHOTOPRISM_DISABLE_TENSORFLOW: "false"      
       PHOTOPRISM_DISABLE_FACES: "false"              
-      PHOTOPRISM_DISABLE_CLASSIFICATION: "false"    
       PHOTOPRISM_DISABLE_VECTORS: "false"        
       PHOTOPRISM_DISABLE_RAW: "false"              
       PHOTOPRISM_RAW_PRESETS: "false"             
@@ -94,7 +93,7 @@ services:
       PHOTOPRISM_DATABASE_NAME: "photoprism"        
       PHOTOPRISM_DATABASE_USER: "photoprism"        
       PHOTOPRISM_DATABASE_PASSWORD: "insecure"      
-      PHOTOPRISM_INIT: "https tensorflow"           
+      PHOTOPRISM_INIT: "https"           
       PHOTOPRISM_VISION_API: "false"              
       PHOTOPRISM_VISION_URI: ""                      
       PHOTOPRISM_VISION_KEY: ""                     
