@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2026-01-15T15:29:09.855Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:35.538Z
@@ -19,7 +19,7 @@ Ente Photos is the private, secure photo storage app with end-to-end encryption.
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
-    <a href="https://github.com/ente-io/ente"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/ente/ente"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 
@@ -30,7 +30,7 @@ Ente Photos requires a normal docker compose file and in the **same folder** an 
 ```yaml
 services:
   museum:
-    image: ghcr.io/ente-io/server
+    image: ghcr.io/ente/server
     ports:
       - "${PORT}:8080" # API
     depends_on:
@@ -40,11 +40,11 @@ services:
       - "./museum.yaml:/museum.yaml"
       - "${CONFIG_DIR}/data:/data"
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://127.0.0.1:8080/ping"]
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/ping"]
       interval: 60s
       timeout: 5s
       retries: 3
-      start_period: 5s
+      start_period: 120s
 
   # Resolve "localhost:3200" in the museum container to the minio container.
   socat:
@@ -55,7 +55,7 @@ services:
     command: "TCP-LISTEN:3200,fork,reuseaddr TCP:minio:3200"
 
   web:
-    image: ghcr.io/ente-io/web
+    image: ghcr.io/ente/web
     ports:
       - "3000:3000" # Photos web app
       - "3002:3002" # Public albums
@@ -67,7 +67,7 @@ services:
     image: postgres:15
     environment:
       POSTGRES_USER: pguser
-      POSTGRES_PASSWORD: eXa6yOupIVyGXe02XnwTJX8ZjsfX
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ente_db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -q -d ente_db -U pguser"]
@@ -79,12 +79,12 @@ services:
       - "${CONFIG_DIR}/postgres-data:/var/lib/postgresql/data"
 
   minio:
-    image: minio/minio
+    image: pgsty/silo # MinIO-compatible, replaces the discontinued minio/minio image
     ports:
       - 3200:3200 # MinIO API
     environment:
-      MINIO_ROOT_USER: minio-user-Av/ztrFm
-      MINIO_ROOT_PASSWORD: Jczt/BEywUms1wRKJ8BbaMmaxyGy
+      MINIO_ROOT_USER: ${MINIO_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_PASSWORD}
     command: server /data --address ":3200" --console-address ":3201"
     volumes:
       - ${CONFIG_DIR}/minio-data:/data
@@ -93,7 +93,7 @@ services:
           sh -c '
           #!/bin/sh
 
-          while ! mc alias set h0 http://minio:3200 minio-user-Av/ztrFm Jczt/BEywUms1wRKJ8BbaMmaxyGy 2>/dev/null
+          while ! mc alias set h0 http://minio:3200 ${MINIO_USER} ${MINIO_PASSWORD} 2>/dev/null
           do
             echo "Waiting for minio..."
             sleep 0.5
@@ -108,15 +108,27 @@ services:
 ```
 
 ## 1.2 env File
-```yaml
+```env
 CONFIG_DIR=/mnt/tank/configs/ente
 IP=http://10.99.0.242
 PORT=8080
+POSTGRES_PASSWORD=changeme
+MINIO_USER=minio-user-changeme
+MINIO_PASSWORD=changeme
 ```
+
+> Don't reuse the example values. Generate your own with `openssl rand -base64 21 | tr -d '/+='` (run it once each for `POSTGRES_PASSWORD`, `MINIO_PASSWORD` and the suffix of `MINIO_USER`). You'll paste the same values into `museum.yaml` below.
+{.is-warning}
 
 ## 1.3 Museum.yaml
 > For `museum.yaml` below, replace `${IP}` with the address of your server!
 {.is-danger}
+
+> Replace every `<...>` placeholder with your own values. `<POSTGRES_PASSWORD>`, `<MINIO_USER>` and `<MINIO_PASSWORD>` must match your `.env` file. Generate the keys with:
+> - `encryption`: `head -c 32 /dev/urandom | base64`
+> - `hash`: `head -c 64 /dev/urandom | base64 | tr -d '\n'`
+> - `jwt secret`: `head -c 32 /dev/urandom | base64 | tr '+/' '-_'`
+{.is-warning}
 
 ```yaml
 db:
@@ -124,7 +136,7 @@ db:
       port: 5432
       name: ente_db
       user: pguser
-      password: eXa6yOupIVyGXe02XnwTJX8ZjsfX
+      password: <POSTGRES_PASSWORD>
 
 s3:
       # Top-level configuration for buckets, you can override by specifying these configuration in the desired bucket.
@@ -136,16 +148,16 @@ s3:
          # Uncomment the below configuration to override the top-level configuration
          # are_local_buckets: true
          # use_path_style_urls: true
-         key: minio-user-Av/ztrFm
-         secret: Jczt/BEywUms1wRKJ8BbaMmaxyGy
+         key: <MINIO_USER>
+         secret: <MINIO_PASSWORD>
          endpoint: ${IP}:3200
          region: eu-central-2
          bucket: b2-eu-cen
       wasabi-eu-central-2-v3:
          # are_local_buckets: true
          # use_path_style_urls: true
-         key: minio-user-Av/ztrFm
-         secret: Jczt/BEywUms1wRKJ8BbaMmaxyGy
+         key: <MINIO_USER>
+         secret: <MINIO_PASSWORD>
          endpoint: ${IP}:3200
          region: eu-central-2
          bucket: wasabi-eu-central-2-v3
@@ -153,8 +165,8 @@ s3:
       scw-eu-fr-v3:
          # are_local_buckets: true
          # use_path_style_urls: true
-         key: minio-user-Av/ztrFm
-         secret: Jczt/BEywUms1wRKJ8BbaMmaxyGy
+         key: <MINIO_USER>
+         secret: <MINIO_PASSWORD>
          endpoint: ${IP}:3200
          region: eu-central-2
          bucket: scw-eu-fr-v3
@@ -168,13 +180,18 @@ apps:
     # Set this to the URL where your accounts web app is running, primarily used for
     # passkey based 2FA.
     accounts: http://${IP}:3001
+    # Optional apps (expose the matching port on the web service first)
+    # embed-albums: http://${IP}:3006
+    # public-locker: http://${IP}:3005
+    # public-paste: http://${IP}:3008
+    # public-memories: http://${IP}:3010
 
 key:
-      encryption: OSszWn1D13RxVsLp4b5TZuICvlt9JSWKwyP4YpFxCDc=
-      hash: xvSPIxUuZ8Rmn2EHlDHMYqIM6w64niPbFjbGscUmCfcIHo4txT/6eXIro0oxPlkLuWrEBMS28Ctom+f0Klifrw==
+      encryption: <generated-encryption-key>
+      hash: <generated-hash-key>
 
 jwt:
-      secret: rV48t6COlobRUUUWUnD8vSdsXA_dXa2s_Xmt9A_TCqM=
+      secret: <generated-jwt-secret>
 ```
 # 2 · Signing Up
 1. Navigate to `http://{IP}:3000` 
@@ -188,7 +205,16 @@ jwt:
 1. Click "Continue with free plan 10 GB free forever"
 
 # 3 · Removing Storage Limits
-1. In the TrueNAS shell, run this command **as root**:
+The official way is the [Ente CLI](https://github.com/ente/ente/tree/main/cli). The first account registered on your server is treated as admin until you [whitelist admins](https://ente.com/help/self-hosting/administration/users#whitelist-admins) in `museum.yaml`, so register your own account first.
+
+```bash
+ente account login --account home-server --app photos --host http://{IP}:8080
+ente admin user update-subscription you@example.com --no-limit --account home-server
+```
+
+`--no-limit` sets 100 TB of storage and an expiry 100 years out. See the upstream [CLI administration docs](https://ente.com/help/cli/admin) for other options.
+
+**Alternative (direct SQL):** in the TrueNAS shell, run this command **as root**:
 ```bash
 docker exec -i ente-postgres-1 psql -U pguser -d ente_db -c "INSERT INTO storage_bonus (bonus_id, user_id, storage, type, valid_till) VALUES ('self-hosted-myself', (SELECT user_id FROM users LIMIT 1), 109951162777600, 'ADD_ON_SUPPORT', 0) ON CONFLICT (bonus_id) DO UPDATE SET storage = EXCLUDED.storage;"
 ```
