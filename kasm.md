@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-04-14T10:36:37.981Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T10:19:47.919Z
@@ -40,7 +40,7 @@ Create a new VM for the Kasm control plane:
 | Memory | 4096MB minimum |
 | Network Model | VirtIO (paravirtualized) |
 
-> Get the Ubuntu ISO file [here](https://releases.ubuntu.com/24.04.4/ubuntu-24.04.4-live-server-amd64.iso)
+> Get the Ubuntu ISO file [here](https://releases.ubuntu.com/24.04.5/ubuntu-24.04.5-live-server-amd64.iso)
 {.is-info}
 
 ## 1.2 Install Ubuntu & Kasm
@@ -52,13 +52,13 @@ Create a new VM for the Kasm control plane:
     ```bash
     curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh && \
     cd /tmp && \
-    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_1.18.1.tar.gz && \
-    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_service_images_amd64_1.18.1.tar.gz && \
-    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_workspace_images_amd64_1.18.1.tar.gz && \
-    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_network_plugin_images_amd64_1.18.1.tar.gz && \
-    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_logging_plugin_images_amd64_1.18.1.tar.gz && \
-    tar -xf kasm_release_1.18.1.tar.gz && \
-    sudo bash kasm_release/install.sh --offline-workspaces /tmp/kasm_release_workspace_images_amd64_1.18.1.tar.gz --offline-service /tmp/kasm_release_service_images_amd64_1.18.1.tar.gz --offline-network-plugin /tmp/kasm_release_network_plugin_images_amd64_1.18.1.tar.gz --offline-logger-plugin /tmp/kasm_release_logging_plugin_images_amd64_1.18.1.tar.gz
+    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_1.19.0.tar.gz && \
+    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_service_images_amd64_1.19.0.tar.gz && \
+    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_workspace_images_amd64_1.19.0.tar.gz && \
+    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_network_plugin_images_amd64_1.5.tar.gz && \
+    curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_logging_plugin_images_amd64_1.1.tar.gz && \
+    tar -xf kasm_release_1.19.0.tar.gz && \
+    sudo bash kasm_release/install.sh --offline-workspaces /tmp/kasm_release_workspace_images_amd64_1.19.0.tar.gz --offline-service /tmp/kasm_release_service_images_amd64_1.19.0.tar.gz --offline-network-plugin /tmp/kasm_release_network_plugin_images_amd64_1.5.tar.gz --offline-logger-plugin /tmp/kasm_release_logging_plugin_images_amd64_1.1.tar.gz
     ```
 
 1. Follow the prompts and note the admin credentials displayed at the end
@@ -267,7 +267,7 @@ Click **Next** to configure the VM Provider.
 1. Get the latest startup script from Kasm's GitHub:
 
     ```
-    https://github.com/kasmtech/workspaces-autoscale-startup-scripts/blob/release/1.18.1/docker_agents/ubuntu.sh
+    https://github.com/kasmtech/workspaces-autoscale-startup-scripts/blob/release/1.19.0/docker_agents/ubuntu.sh
     ```
 
 1. Click **Finish**.
