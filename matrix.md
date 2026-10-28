@@ -2,7 +2,7 @@
 title: Matrix Server
 description: A guide to deploying a Matrix server
 published: true
-date: 2026-04-02T17:35:48.318Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-17T13:27:24.544Z
@@ -123,6 +123,36 @@ enable_registration: false
 ```
 
 To get reCAPTCHA keys, go to [Google reCAPTCHA Admin](https://www.google.com/recaptcha/admin), create a new site with **Challenge (v2)** — "I'm not a robot" checkbox, and add `matrix.yourdomain.com` as a domain.
+
+### 1.2b MatrixRTC Settings (for voice/video)
+
+If you plan to use LiveKit for voice/video calling (section 3), also add these to `homeserver.yaml`. Element Call and Element X need them, and calls fail without them:
+
+```yaml
+experimental_features:
+  msc3266_enabled: true   # Room summary API (knocking over federation)
+  msc4143_enabled: true   # MatrixRTC transports endpoint
+  msc4222_enabled: true   # sync v2 state_after
+
+# Delayed events (MSC4140)
+max_event_delay_duration: 24h
+
+rc_message:
+  per_second: 0.5
+  burst_count: 30
+
+rc_delayed_event_mgmt:
+  per_second: 1
+  burst_count: 20
+
+matrix_rtc:
+  transports:
+    - type: livekit
+      livekit_service_url: https://rtc.yourdomain.com
+```
+
+> `matrix_rtc.transports` is how current clients discover your LiveKit SFU (through Synapse's `/_matrix/client/unstable/org.matrix.msc4143/rtc/transports` endpoint). Synapse 1.161+ also supports a newer `url` property that requires running lk-jwt-service as an application service; `livekit_service_url` still works and keeps older clients compatible. See the [Element Call self-hosting guide](https://github.com/element-hq/element-call/blob/livekit/docs/self_hosting.md) for details.
+{.is-info}
 
 ## 1.3 Docker Compose — Synapse Stack
 
@@ -246,7 +276,7 @@ Make sure CORS headers are set — the `client` file **must** return `Access-Con
 ```
 
 > 
-> The `rtc_foci` entry is what tells Matrix clients where to find the LiveKit SFU for voice/video calls. Without this, calls will not work.
+> Current clients find the LiveKit SFU through Synapse's `matrix_rtc.transports` setting (section 1.2b), which is now the primary discovery method. Keep the `rtc_foci` entry as a fallback for older clients.
 {.is-warning}
 
 You can verify everything works by visiting `https://yourdomain.com/.well-known/matrix/client` in your browser — you should see the JSON response.
@@ -329,6 +359,10 @@ turn:
   udp_port: 3478
 keys:
   your-api-key: your-api-secret
+webhook:
+  api_key: your-api-key   # must match LIVEKIT_KEY below
+  urls:
+    - http://localhost:8081/sfu_webhook
 logging:
   level: info
 ```
@@ -381,17 +415,17 @@ Add two routes to the Cloudflare Tunnel running on the VPS. Because lk-jwt-servi
 
 | Hostname | Path | Service | Purpose |
 |----------|------|---------|---------|
-| `rtc.yourdomain.com` | `/sfu/get` | `http://localhost:8081` | lk-jwt-service (MatrixRTC auth) |
+| `rtc.yourdomain.com` | `^/(sfu/get\|get_token\|delegate_delayed_leave\|sfu_webhook\|healthz)` | `http://localhost:8081` | lk-jwt-service (MatrixRTC auth) |
 | `rtc.yourdomain.com` | `/*` (catch-all) | `http://localhost:7880` | LiveKit WebSocket signaling |
 
 > 
-> In the Cloudflare Zero Trust dashboard, add `rtc.yourdomain.com` as a public hostname twice — once with the path `/sfu/get` pointing to `http://localhost:8081`, and once without a path (catch-all) pointing to `http://localhost:7880`. The `/sfu/get` route must be listed **first** so it takes priority. Both services are reachable on localhost because they use `network_mode: host`.
+> In the Cloudflare Zero Trust dashboard, add `rtc.yourdomain.com` as a public hostname twice — once with the path `^/(sfu/get|get_token|delegate_delayed_leave|sfu_webhook|healthz)` pointing to `http://localhost:8081`, and once without a path (catch-all) pointing to `http://localhost:7880`. The lk-jwt-service route must be listed **first** so it takes priority. Newer clients request tokens from `/get_token` instead of `/sfu/get`, so routing only `/sfu/get` is no longer enough. Both services are reachable on localhost because they use `network_mode: host`.
 {.is-warning}
 
 ## 3.5 How Calls Work
 
-1. Client reads `/.well-known/matrix/client` from `yourdomain.com` and discovers the LiveKit URL (`rtc.yourdomain.com`)
-2. Client requests a JWT from lk-jwt-service at `https://rtc.yourdomain.com/sfu/get`, providing an OpenID token from Synapse
+1. Client asks Synapse for its MatrixRTC transports (or, on older clients, reads `rtc_foci` from `/.well-known/matrix/client`) and discovers the LiveKit URL (`rtc.yourdomain.com`)
+2. Client requests a JWT from lk-jwt-service at `https://rtc.yourdomain.com/get_token` (older clients use `/sfu/get`), providing an OpenID token from Synapse
 3. lk-jwt-service validates the token against Synapse and returns a signed LiveKit JWT
 4. Client connects to the LiveKit SFU using the JWT over WebSocket (through the Cloudflare Tunnel)
 5. Voice/video media flows directly over UDP between the client and LiveKit on the VPS public IP
@@ -404,6 +438,13 @@ Test signaling:
 ```bash
 curl https://rtc.yourdomain.com
 # Should return: OK
+```
+
+Test lk-jwt-service:
+
+```bash
+curl https://rtc.yourdomain.com/healthz
+# Should return HTTP 200
 ```
 
 # 4 · Configuration Reference
