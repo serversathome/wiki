@@ -2,7 +2,7 @@
 title: OptiStack
 description: A guide to deploying OptiStack
 published: true
-date: 2026-02-03T17:41:26.170Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-03T17:40:33.481Z
@@ -70,6 +70,14 @@ OptiStack supports AI-powered interaction checking via OpenRouter (cloud) or Oll
 - OLLAMA_URL=http://host.docker.internal:11434
 - OLLAMA_MODEL=llama3.1:8b
 ```
+
+On Linux (including TrueNAS) `host.docker.internal` only resolves if you also add this to the `optistack` service. Alternatively, use your server's IP in `OLLAMA_URL`:
+```yaml
+extra_hosts:
+  - "host.docker.internal:host-gateway"
+```
+
+**SSO (optional):** OptiStack also supports OIDC login via `OIDC_ISSUER`, `OIDC_CLIENT_ID`, `OIDC_CLIENT_SECRET` and `OIDC_CALLBACK_URL` (plus the auth, token and userinfo URLs). See the upstream [`.env.example`](https://github.com/tylermiranda/optistack/blob/main/.env.example).
 
 > If no AI provider is configured, AI features are hidden from the UI
 {.is-info}
