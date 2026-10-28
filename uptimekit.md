@@ -22,9 +22,6 @@ A simple uptime monitoring dashboard to keep track of your websites and APIs. Ge
   </div>
 </div>
 
-> This project has been quiet lately (last code change: November 2025). It still builds from source, but it may not get fixes for future issues.
-{.is-info}
-
 # <img src="/docker.png" class="tab-icon"> 1 · Deploy Uptime Kit
 1. Navigate to your `stacks` directory in the TrueNAS shell
 1. Run these commands as root:
@@ -36,5 +33,5 @@ A simple uptime monitoring dashboard to keep track of your websites and APIs. Ge
 1. Start the stack
 1. Open the dashboard at `http://YOUR-SERVER-IP:5173`
 
-> The repo's compose publishes the frontend on `5173` and the backend API on `3000`. Port 3000 is used by lots of other apps. The frontend reaches the backend over the internal Docker network, so if 3000 is already taken, change the backend's host port in `uptimekit/docker-compose.yml` (for example `"3010:3000"`) before starting the stack.
+> If port 3000 is taken, change the backend's host port in the repo's compose.
 {.is-warning}
