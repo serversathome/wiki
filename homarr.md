@@ -2,7 +2,7 @@
 title: Homarr
 description: A guide to deploying Homarr
 published: true
-date: 2026-10-05T17:12:38.572Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:10.051Z
@@ -49,7 +49,7 @@ services:
     environment:
       - SECRET_ENCRYPTION_KEY=your_64_character_hex_string
       - PUID=568
-      - PGID=999
+      - PGID=568 # set to the docker.sock GID if mounting the socket (see below)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /mnt/tank/configs/homarr:/appdata
@@ -60,7 +60,7 @@ services:
 3. Create the config folder and hand it to the apps user before the first start:
 
 ```bash
-mkdir -p /mnt/tank/configs/homarr/appdata
+mkdir -p /mnt/tank/configs/homarr
 chown -R 568:568 /mnt/tank/configs/homarr
 ```
 
@@ -83,7 +83,7 @@ chown -R 568:568 /mnt/tank/configs/homarr
    - **Homarr Data Storage**: Type **Host Path**, path `/mnt/tank/configs/homarr`
 5. Click **Install**
 
-> As of early October 2026 the TrueNAS catalog still ships Homarr v1.77.2. When the catalog moves to v2, updating the app from the **Installed** screen runs the database migration automatically. If you want v2 right now, deploy it with the Docker compose above using **Install via YAML**.
+> The TrueNAS catalog app now ships Homarr v2. If you're still on a v1.x install, updating the app from the **Installed** screen runs the database migration automatically. Back up your app data first.
 {.is-info}
 
 # 2 · Configuration
