@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-04-29T16:30:17.945Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:35.530Z
@@ -22,27 +22,27 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
 
 ## 2.1 Prerequisites
 
-1. Go to **Virtualization → Containers → Global Configuration** and set:
-    - **Preferred Pool** = the pool you want container rootfs on
-    - **Bridge** = the bridge your LAN is on (e.g. `br1`). If you don't have one yet, make one in **Network → Interfaces** first.
+1. Go to **Containers**, click **Configuration → Settings** and set:
+    - **Preferred Pool** = the pool you want container rootfs on (optional; if it's not set, TrueNAS asks for a **Pool** when you create the container)
+    - **Default Network → Bridge** = the bridge your LAN is on (e.g. `br1`). If you don't have one yet, make one in **Network → Interfaces** first.
     
 ## 2.2 Create Dataset & Container
 1. Create a dataset for game server volumes: **Datasets → Add Dataset**, parent = your pool, name = `pterodactyl`, preset = **Generic**, save. No permission changes needed — the container runs privileged and Wings will manage ownership itself.
-1. Create the container: **Virtualization → Containers → Add**
+1. Create the container: **Containers → Create New Container**
     - **Name**: `pterodactyl`
     - **Autostart**: on
     - **Image**: browse catalog → **debian / trixie / amd64 / default**
     - Click the **Advanced Options** button
-    - **Idmap**: `Privileged`
-    - **Capabilities**: `Allow All`
-    - **Save**
-    - Under **Filesystem Devices**, click **Add → Filesystem** and fill in:
+    - **ID Map Type**: `Privileged`
+    - **Capabilities Policy**: `ALLOW`
+    - **Create**
+    - In the **Filesystem Devices** card, click **Add** and fill in:
 
         | Field | Value |
         | --- | --- |
-        | `Source` | `/mnt/<pool>/pterodactyl` (the host path) |
-        | `Target` | `/var/lib/pterodactyl/volumes` (where Wings stores game-server data) |
-		
+        | `Host Directory Source` | `/mnt/<pool>/pterodactyl` (the host path) |
+        | `Container Mount Path` | `/var/lib/pterodactyl/volumes` (where Wings stores game-server data) |
+
     - **Start** the container
 
 1. Click your container → **Shell** and paste this to prep it:
@@ -61,7 +61,7 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
       curl -o /tmp/ptero-install.sh https://pterodactyl-installer.se && bash /tmp/ptero-install.sh   
     ```
 1. In the menu, pick **Install both [2]**. Answer its prompts:
-		
+
     - **Database name**: `panel` (use default)
     - **Database username**: `pterodactyl` (use default)
     - **Password**: set a strong password
@@ -69,13 +69,13 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
     - **Email (Let's Encrypt & Pterodactyl)**: enter any email
     - **Email (initial admin account)**: enter any email
     - **Username**: enter a username
-    - **Frist name**: the first name of the admin user
+    - **First name**: the first name of the admin user
     - **Last name**: last name of the admin user
     - **Password**: password for the admin user
     - **FQDN**: your domain, or just the container's LAN IP if you're LAN-only
     - **Configure UFW**: `no` (default)
     
-		
+
 1. After Panel is installed it will ask if you would like to proceed and install Wings. Say `yes` then answer:
 
      - **Are you sure you want to proceed?**: `yes` 
@@ -117,7 +117,7 @@ This tells the Panel that Wings (on the same container) is the place to run game
 1. Back in the container shell, paste the command
 1. Next paste this to start and enable Wings:
     ```bash
-		systemctl enable --now wings && systemctl status wings --no-pager | head
+    systemctl enable --now wings && systemctl status wings --no-pager | head
     ```
 
 If you refresh the Nodes page in the Panel, the node should now have a green heart.
