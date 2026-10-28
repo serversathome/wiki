@@ -2,7 +2,7 @@
 title: Dozzle
 description: A guide to deploying Dozzle on TrueNAS Scale and via Docker Compose
 published: true
-date: 2026-10-06T15:51:04.069Z
+date: 2026-10-28T10:13:22.924Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:29.434Z
@@ -45,6 +45,7 @@ services:
       - "999"
     environment:
       - TZ=America/New_York
+      - DOZZLE_ENABLE_ACTIONS=true
     ports:
       - "8888:8080"
     volumes:
