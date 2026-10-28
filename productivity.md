@@ -93,7 +93,6 @@ dateCreated: 2026-01-15T15:07:28.852Z
 
 # Health and fitness {.sec .apps}
 - [openGym<br>*Private gym and body-weight tracker*](/opengym)
-- [Fitness Logger<br>*Log workouts and see progression*](/fitnesslogger)
 - [<img src="/neohabit.png"> Neohabit<br>*Flexible habit tracking with heatmaps*](/neohabit)
 - [<img src="/optistack.png"> OptiStack<br>*Supplement and medication tracking*](/optistack)
 - [Mediqux<br>*Local medical record keeping*](/mediqux)
@@ -108,7 +107,6 @@ dateCreated: 2026-01-15T15:07:28.852Z
 
 # Work and projects {.sec .apps}
 - [<img src="/kan.png"> Kan<br>*Open source Trello*](/kanbn)
-- [<img src="/syncwave.png"> Syncwave<br>*Real-time kanban board*](/syncwave)
 - [<img src="/colanode.png"> Colanode<br>*Slack and Notion style workspace*](/colanode)
 - [<img src="/matrix.png"> Matrix<br>*Federated chat you own end to end*](/matrix)
 - [elm.chat<br>*Disposable encrypted chat rooms*](/elmchat)
