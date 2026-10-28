@@ -143,6 +143,16 @@ volumes:
 > The supervised image requires a minimum of **3 GB of RAM** (`mem_limit`) since it bundles PostgreSQL (TimescaleDB), Redis, and Node.js in one container. The `shm_size` and `ulimits` settings are required for TimescaleDB to function properly. Upstream recommends Docker-managed volumes here, as shown, because bind mounts cause permission issues with the bundled PostgreSQL and Redis.
 {.is-info}
 
+> **Upgrading an existing all-in-one install?** Earlier versions of this page used `/mnt/tank/configs/tracearr/*` bind mounts. If yours did, keep those mounts instead of switching to the named volumes above, or Tracearr starts empty and your history stays behind in the old folders. Use these lines under `volumes:` and leave out the top-level `volumes:` block:
+> ```yaml
+>       - /mnt/tank/configs/tracearr/postgres:/data/postgres
+>       - /mnt/tank/configs/tracearr/redis:/data/redis
+>       - /mnt/tank/configs/tracearr/data:/data/tracearr
+>       - /mnt/tank/configs/tracearr/backup:/data/backup
+> ```
+> The `backup` folder is new: create it and make it owned by UID 1001 (the image's `tracearr` user), for example `mkdir -p /mnt/tank/configs/tracearr/backup && chown 1001 /mnt/tank/configs/tracearr/backup`.
+{.is-warning}
+
 
 ### Docker Tags
 
