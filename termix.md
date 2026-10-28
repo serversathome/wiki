@@ -2,7 +2,7 @@
 title: Termix
 description: A guide to deploying Termix
 published: true
-date: 2026-07-20T19:05:59.810Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-05-06T22:04:27.210Z
@@ -15,10 +15,10 @@ dateCreated: 2026-05-06T22:04:27.210Z
 <div class="glance">
   <div><span>Port</span><b><code>8080</code></b></div>
   <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
+  <div><span>Containers</span><b>1 service</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
-    <a href="https://github.com/lukegus/termix"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/Termix-SSH/Termix"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/KOXUqb6okow"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>
@@ -30,7 +30,7 @@ dateCreated: 2026-05-06T22:04:27.210Z
 ```yaml
 services:
   termix:
-    image: ghcr.io/lukegus/termix:latest
+    image: ghcr.io/termix-ssh/termix:latest
     container_name: termix
     restart: unless-stopped
     ports:
@@ -39,19 +39,12 @@ services:
       - /mnt/tank/configs/termix:/app/data
     environment:
       PORT: "8080"
-
-  guacd:
-    image: guacamole/guacd:1.6.0
-    container_name: guacd
-    restart: unless-stopped
-
 ```
 
-The `guacd` sidecar is required for RDP, VNC, and Telnet support. If you only plan to use SSH, you can omit `guacd`.
+Remote desktop (RDP, VNC, and Telnet) is now built into Termix, so no `guacd` sidecar is needed. Since v26.10.2 the upstream compose files no longer start a `guacd` container. If you deployed the older two-service compose, you can remove the `guacd` service.
 
-
-> Pin the `guacd` tag to a specific version (`1.6.0` shown above). The Guacamole protocol can change between major versions and Termix is built against a specific guacd release — using `:latest` can silently break remote desktop connections after a guacd upgrade.
-{.is-warning}
+> The project moved from `lukegus/termix` to the `Termix-SSH` organization. The old `ghcr.io/lukegus/termix` image is still published, but `ghcr.io/termix-ssh/termix` is the upstream name going forward.
+{.is-info}
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
 
@@ -61,11 +54,10 @@ The `guacd` sidecar is required for RDP, VNC, and Telnet support. If you only pl
 4. Configure the following settings:
    - **Web Port**: `8080` (or your preferred port)
    - **Storage → App Data**: Host Path → `/mnt/tank/configs/termix`
-   - **Network → Guacamole Daemon**: leave enabled to support RDP/VNC/Telnet
 5. Click **Install**
 
 > 
-> The TrueNAS app runs Termix as UID/GID 1000 and `guacd` as UID/GID 568. Make sure `/mnt/tank/configs/termix` is writable by both, or use the dataset Apps preset and set ownership to UID 1000.
+> The TrueNAS app runs Termix as UID/GID 1000. Make sure `/mnt/tank/configs/termix` is writable by UID 1000, or use the dataset Apps preset and set ownership to UID 1000.
 {.is-info}
 
 # 2 · Initial Setup
@@ -73,6 +65,8 @@ The `guacd` sidecar is required for RDP, VNC, and Telnet support. If you only pl
 ## 2.1 Create Admin Account
 
 Open `http://your-server:8080` in your browser. The first user you register becomes the admin account — there is no default username or password.
+
+On first run Termix also asks you to pick plugins. The SSH terminal, remote desktop, file manager, Docker and metrics features are all plugins now, so turn on the ones you need (including remote desktop if you want RDP/VNC/Telnet). Admins can change this later from the **Plugins** tab.
 
 > 
 > Register the admin account immediately after deployment. Until you do, the registration endpoint is open and anyone with network access can claim admin.
@@ -84,7 +78,7 @@ Open `http://your-server:8080` in your browser. The first user you register beco
 
 Click **+ New Host** in the sidebar and pick the connection type. 
 
-For RDP, set **Security mode** to `any` as a default — it lets `guacd` negotiate NLA, RDP, or TLS automatically. If a host fails to connect, switch to a specific mode like `nla` or `rdp`. Enable **Ignore Cert** for any RDP host using a self-signed certificate (most do).
+For RDP, set **Security mode** to `any` as a default — it lets Termix negotiate NLA, RDP, or TLS automatically. If a host fails to connect, switch to a specific mode like `nla` or `rdp`. Enable **Ignore Cert** for any RDP host using a self-signed certificate (most do).
 
 
 # 4 · Remote Desktop Setup
@@ -94,7 +88,7 @@ For RDP, set **Security mode** to `any` as a default — it lets `guacd` negotia
 For each Windows machine you want to RDP into:
 
 1. **Settings → System → Remote Desktop** → toggle on (requires Pro, Enterprise, or Education edition)
-2. Leave **Network Level Authentication** enabled — `guacd` handles NLA
+2. Leave **Network Level Authentication** enabled — Termix handles NLA
 3. Confirm the user account has a password set (RDP rejects blank passwords by default)
 4. Set **Power & battery → Plugged in: Never sleep** to prevent the machine from dropping the connection
 5. Reserve the IP in your DHCP server so it doesn't shift
