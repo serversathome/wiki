@@ -34,20 +34,9 @@ services:
       - /mnt/tank/configs/sprouttrack/db:/db
       - /mnt/tank/configs/sprouttrack/env:/app/env
       - /mnt/tank/configs/sprouttrack/files:/app/Files
-    environment:
-      - NODE_ENV=production
-      - DATABASE_PROVIDER=sqlite
-      - ENABLE_NOTIFICATIONS=true
-      - APP_URL=http://your-server-ip:3000
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
 ```
 
-> The `env` folder holds the app's generated `.env` file and encryption keys. Back it up together with `db`. Optional push-notification settings (`VAPID_*`, `ROOT_DOMAIN`) and PostgreSQL support are covered in the [upstream Docker docs](https://github.com/Oak-and-Sprout/sprout-track/blob/main/documentation/Admin-Documentation/docker-deployment.md).
+> Back up all three folders.
 {.is-info}
 
 # 2 · First Login
