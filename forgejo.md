@@ -2,7 +2,7 @@
 title: Forgejo
 description: A guide to deploying Forgejo
 published: true
-date: 2026-09-02T10:39:53.290Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-25T18:25:30.503Z
@@ -32,7 +32,7 @@ dateCreated: 2026-08-25T18:25:30.503Z
 ```yaml
 services:
   forgejo:
-    image: codeberg.org/forgejo/forgejo:16
+    image: codeberg.org/forgejo/forgejo:17
     container_name: forgejo
     depends_on:
       - forgejo-db
@@ -77,6 +77,9 @@ services:
 2. Change `CHANGE_ME_DB` in **both** services to the same strong password
 3. Replace `git.serversatho.me` with your own hostname everywhere it appears
 
+> `:17` is the current stable major. Forgejo 16 reaches end of life on 29 October 2026 and 17 is supported until 28 January 2027. If you'd rather upgrade less often, pin `:15`, the LTS release supported until 15 July 2027. See the [release schedule](https://forgejo.org/docs/latest/admin/release-schedule/) and read the [release notes](https://codeberg.org/forgejo/forgejo/releases) before you bump a major version.
+{.is-info}
+
 
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
@@ -93,6 +96,9 @@ Forgejo is in the **Community** train of the TrueNAS Apps catalog.
 4. Click **Save**
 5. Under the app's config, disable SSH if the option is offered
 
+> The TrueNAS app uses the **rootless** Forgejo image, so its paths differ from the Docker tab: data lives at `/var/lib/gitea` and the config file is `/etc/gitea/app.ini` inside the container (not `/data/gitea/conf/app.ini`).
+{.is-info}
+
 # 2 · First Run
 
 ## 2.1 Complete the installer
@@ -107,7 +113,7 @@ Create your admin account here, as a local username and password account.
 
 ## 2.2 Lock the installer
 
-Once setup completes, confirm `INSTALL_LOCK = true` in `/mnt/tank/configs/forgejo/data/gitea/conf/app.ini`. The installer should never be reachable again.
+Once setup completes, confirm `INSTALL_LOCK = true` in `/mnt/tank/configs/forgejo/data/gitea/conf/app.ini` (on the TrueNAS app, check `/etc/gitea/app.ini` from the app's shell instead). The installer should never be reachable again.
 
 ## 2.3 HTTPS is the only clone method
 
@@ -279,7 +285,7 @@ Add to your Forgejo environment and restart:
       - FORGEJO__actions__DEFAULT_ACTIONS_URL=https://data.forgejo.org
 ```
  
-Both are already the defaults in Forgejo 16, setting them explicitly just makes the intent visible.
+Both are already the defaults in Forgejo 17, setting them explicitly just makes the intent visible.
  
 Now create the runner identity: **Site Administration** → **Actions** → **Runners** → **Create new Runner**. Give it a name, hit **Create**, and Forgejo shows you a **UUID** and a **Token**. Copy both, the token is only shown once. Section 7.5 pastes them into the runner's config file.
  
