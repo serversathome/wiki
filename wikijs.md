@@ -2,7 +2,7 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: 2026-03-15T15:44:09.372Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:35.215Z
@@ -42,7 +42,7 @@ services:
    volumes:
      - /mnt/tank/configs/wikijs:/var/lib/postgresql/data
  wiki:
-   image: ghcr.io/requarks/wiki:latest
+   image: ghcr.io/requarks/wiki:2
    container_name: wikijs
    depends_on:
      - db
@@ -59,6 +59,7 @@ services:
 ```
 
 1. Change all the default user names and passwords. Make sure when you change them in the wiki service you mirror those changes in the db service. 
+
 > 
 > You can deploy as many of these containers as you want for each wiki you want to host. Be sure to change the external port for each one.
 {.is-info}
@@ -155,7 +156,7 @@ To show the video player when inserting YouTube links, you must make the followi
 2. Enter the command:
    ```bash
    ssh-keygen -t rsa -b 4096
-	 ```
+   ```
 3. When prompted to save the generated file, enter a path which can be accessed by Wiki.js *(e.g. `/etc/wiki/github.pem`)* and press **Enter**.
 4. Leave the passphrase empty and press **Enter** twice. Password-protected keys will NOT work.
 
