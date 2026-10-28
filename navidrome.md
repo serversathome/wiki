@@ -65,7 +65,8 @@ services:
 * **Volumes** – `/data` stores library cache & artwork, `/music` is read‑only music share.
   📌 See the [Folder‑Structure](/Folder-Structure) guide.
 
-> Official env‑vars list: [Navidrome Docker Docs](https://www.navidrome.org/docs/usage/configuration/options/) {.is-info}
+> Official env‑vars list: [Navidrome Docker Docs](https://www.navidrome.org/docs/usage/configuration/options/)
+{.is-info}
 
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
