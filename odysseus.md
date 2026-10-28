@@ -2,7 +2,7 @@
 title: Odysseus
 description: A guide to deploying Odysseus
 published: true
-date: 2026-06-15T18:26:27.323Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-05T20:38:01.780Z
@@ -23,10 +23,13 @@ Open the TrueNAS shell (or SSH in) and run:
 ```bash
 
 cd /mnt/tank/stacks
-git clone https://github.com/pewdiepie-archdaemon/odysseus.git
+git clone -b main https://github.com/odysseus-dev/odysseus.git
 cd odysseus
 cp .env.example .env
 ```
+
+> The project moved from `pewdiepie-archdaemon/odysseus` to [`odysseus-dev/odysseus`](https://github.com/odysseus-dev/odysseus). The default branch is now `dev` (newest changes); `-b main` checks out the more curated branch.
+{.is-info}
 
 Now edit the `.env` file and set the values you care about (see the table in section 2), then build and start the stack:
 
@@ -34,7 +37,7 @@ Now edit the `.env` file and set the values you care about (see the table in sec
 docker compose up -d --build
 ```
 
-The first build takes a few minutes while it pulls images and compiles the app. When it's done, all four containers should report healthy.
+The compose file pulls the prebuilt `ghcr.io/odysseus-dev/odysseus:latest` image and only builds locally if the pull fails, so the first start is usually quick. When it's done, all four containers should report healthy. For a stable setup, pin a specific build with `ODYSSEUS_IMAGE=ghcr.io/odysseus-dev/odysseus:X.Y.Z-<sha>` in `.env`.
 
 
 
@@ -50,8 +53,9 @@ Edit these in the `.env` file **before** your first `docker compose up`:
 
 | Setting | What it does | Recommended |
 |---------|--------------|-------------|
-| `APP_PORT` | Web UI port on the host | `7000` (change if taken) |
+| `APP_PORT` | Web UI port on the host | Default is `7011` (change if taken) |
 | `APP_BIND` | Which addresses can reach the UI. `127.0.0.1` = this server only; `0.0.0.0` = your whole LAN | `0.0.0.0` for home-network access |
+| `ALLOWED_ORIGINS` | Browser origins allowed to talk to the app. Defaults to `localhost` only | `http://<server-ip>:7011` (your LAN URL) when `APP_BIND=0.0.0.0` |
 | `AUTH_ENABLED` | Login requirement | **Always `true`** |
 | `LOCALHOST_BYPASS` | Dev-only auth skip for loopback | **Keep `false`** |
 | `ODYSSEUS_ADMIN_USER` | Admin username | `admin` (default) |
@@ -119,7 +123,7 @@ docker compose exec odysseus rocm-smi        # AMD
 
 # 4 · Optional Extras (PDF / Office) — License Note
 
-You can build with extra document features (PDF viewer, Office extraction):
+If you build the image locally, you can include extra document features (PDF viewer, Office extraction):
 
 ```bash
 docker compose build --build-arg INSTALL_OPTIONAL=true
@@ -132,7 +136,7 @@ docker compose up -d
 To pull the latest code and rebuild:
 
 ```bash
-cd /mnt/bigdeal/stacks/odysseus
+cd /mnt/tank/stacks/odysseus
 git pull
 docker compose up -d --build
 ```
