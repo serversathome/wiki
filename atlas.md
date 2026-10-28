@@ -48,9 +48,7 @@ services:
       - FASTSCAN_INTERVAL=3600
       - DOCKERSCAN_INTERVAL=3600
       - DEEPSCAN_INTERVAL=7200
-      - ATLAS_ADMIN_USER=admin
       - ATLAS_ADMIN_PASSWORD=CHANGEME
-      - ATLAS_AUTH_TTL_SECONDS=86400
       # - SCAN_SUBNETS=192.168.1.0/24,10.0.0.0/24
     restart: unless-stopped
     volumes:
@@ -59,10 +57,10 @@ services:
 
 1. Deploy the stack
 2. Navigate to `http://your-server-ip:8888`
-3. Log in with the `ATLAS_ADMIN_USER` / `ATLAS_ADMIN_PASSWORD` you set
+3. Log in as `admin` with the `ATLAS_ADMIN_PASSWORD` you set
 4. Atlas will automatically begin scanning your network
 
-> Authentication is **off unless `ATLAS_ADMIN_PASSWORD` is set**. Without it, anyone on your network can open the UI and API, which run on the host network with the Docker socket mounted. Change `CHANGEME` to a strong password before deploying.
+> Set `ATLAS_ADMIN_PASSWORD`; without it the UI and API are open.
 {.is-warning}
 
 > 
@@ -80,9 +78,7 @@ services:
 | `FASTSCAN_INTERVAL` | Seconds between fast ARP scans | 3600 |
 | `DOCKERSCAN_INTERVAL` | Seconds between Docker container scans | 3600 |
 | `DEEPSCAN_INTERVAL` | Seconds between deep port scans | 7200 |
-| `ATLAS_ADMIN_USER` | Admin username for login (single user) | admin |
 | `ATLAS_ADMIN_PASSWORD` | Enables UI/API authentication when set (login password) | Disabled |
-| `ATLAS_AUTH_TTL_SECONDS` | Session lifetime in seconds | 86400 |
 | `SCAN_SUBNETS` | Comma-separated subnets to scan (auto-detects if not set) | Auto |
 {.dense}
 
