@@ -38,8 +38,6 @@ services:
     image: ghcr.io/moldytaint/cinephage:0.10
     container_name: cinephage
     restart: unless-stopped
-    init: true
-    shm_size: 256m  # headless Firefox for captcha solving crashes with the 64MB default
     security_opt:
       - no-new-privileges:true
     ports:
@@ -50,16 +48,15 @@ services:
       - TZ=America/New_York
       - ORIGIN=http://10.99.0.242:3000
       - BETTER_AUTH_SECRET=CHANGEME
-      - BETTER_AUTH_URL=http://10.99.0.242:3000
     volumes:
       - /mnt/tank/configs/cinephage:/config
       - /mnt/tank/media:/media
 ```
-1. Generate a secret with `openssl rand -base64 32` and paste it in place of `CHANGEME`. `BETTER_AUTH_SECRET` is required: it signs sessions and encrypts API keys
-2. Replace `10.99.0.242` in `ORIGIN` and `BETTER_AUTH_URL` with your server's IP, or with your public URL if you use a reverse proxy
+1. Replace `CHANGEME` with the output of `openssl rand -hex 32` (required)
+2. Replace `10.99.0.242` in `ORIGIN` with your server's IP, or your public URL if you use a reverse proxy
 3. Deploy the stack
 
-> The `latest` tag currently can't be pulled (it returns "not found" on GHCR), so the compose pins the `0.10` release line. Switch back to `latest` once upstream republishes it.
+> The `latest` tag can't currently be pulled from GHCR, so the compose pins `0.10`.
 {.is-info}
 
 > 
