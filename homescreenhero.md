@@ -2,7 +2,7 @@
 title: Homescreen Hero
 description: A guide to deploying Homescreen Hero
 published: true
-date: 2026-02-03T12:23:06.048Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-03T12:22:46.645Z
@@ -10,13 +10,13 @@ dateCreated: 2026-02-03T12:22:46.645Z
 
 # <img src="/homescreen-hero.png" class="tab-icon"> What is HomeScreen Hero?
 
-**HomeScreen Hero** is a self-hosted web app that keeps your Plex home screen fresh by automatically rotating collections on a schedule or manually via a modern FastAPI + React dashboard. Beyond collection rotation, it provides server insights, useful Plex management tools, and integrations with popular services like Trakt, Letterboxd, MDBList, Tautulli, and Overseerr.
+**HomeScreen Hero** is a self-hosted web app that keeps your Plex home screen fresh by automatically rotating collections on a schedule or manually via a modern FastAPI + React dashboard. Beyond collection rotation, it provides server insights, useful Plex management tools, and integrations with popular services like Trakt, Letterboxd, MDBList, TMDb, AniList, MyAnimeList, Tautulli, and Overseerr.
 
 **Key Features:**
 - Web Dashboard for managing your Plex Server and curating homescreens
 - Automated Collection Rotation with multiple strategies (random, weighted, LRU)
 - First-Time Setup Wizard for easy configuration
-- 3rd Party List Integrations (Trakt, Letterboxd, MDBLists)
+- 3rd Party List Integrations (Trakt, Letterboxd, MDBLists, TMDb, AniList, MAL), with auto-requests for missing items through Seerr
 - Widgets for Tautulli and Overseerr
 - Tools for managing Date Added timestamps, Watch History, and generating Unwatched Reports
 
@@ -38,7 +38,6 @@ services:
     image: trentferguson/homescreen-hero:latest
     container_name: homescreen-hero
     environment:
-      - HSH_PORT=8000
       - HSH_PLEX_URL=http://YOUR_PLEX_IP:32400
       - HSH_PLEX_TOKEN=your_plex_token
       # Optional: Enable authentication
@@ -47,6 +46,8 @@ services:
       # Optional: Integrations
       # - HSH_TRAKT_CLIENT_ID=your_trakt_client_id
       # - HSH_MDBLIST_API_KEY=your_mdblist_api_key
+      # - HSH_TMDB_API_KEY=your_tmdb_api_key
+      # - HSH_MAL_CLIENT_ID=your_mal_client_id
       # - HSH_TAUTULLI_API_KEY=your_tautulli_api_key
       # - HSH_TAUTULLI_BASE_URL=http://localhost:8181
       # - HSH_SEERR_API_KEY=your_seerr_api_key
@@ -73,18 +74,22 @@ services:
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `HSH_PORT` | Port for the web UI (default: 8000) | Yes |
+| `HSH_PORT` | Only used by upstream's compose as the **host** side of the port mapping. The container always listens on `8000`, so change the left side of `ports:` instead | No |
 | `HSH_PLEX_URL` | Your Plex server URL | Yes |
 | `HSH_PLEX_TOKEN` | Your Plex authentication token | Yes |
 | `HSH_AUTH_PASSWORD` | Password for web UI login | If auth enabled |
 | `HSH_AUTH_SECRET_KEY` | JWT secret for authentication | If auth enabled |
 | `HSH_TRAKT_CLIENT_ID` | Trakt API client ID | If Trakt enabled |
 | `HSH_MDBLIST_API_KEY` | MDBList API key | If MDBList enabled |
+| `HSH_TMDB_API_KEY` | TMDb API key | If TMDb enabled |
+| `HSH_MAL_CLIENT_ID` | MyAnimeList API client ID | If MAL enabled |
 | `HSH_TAUTULLI_API_KEY` | Tautulli API key | If Tautulli enabled |
 | `HSH_TAUTULLI_BASE_URL` | Tautulli URL (default: http://localhost:8181) | No |
 | `HSH_SEERR_API_KEY` | Overseerr/Jellyseerr API key | If Seerr enabled |
 | `HSH_SEERR_BASE_URL` | Overseerr URL (default: http://localhost:5055) | No |
 {.dense}
+
+Any `HSH_*` variable can also be read from a file (Docker secrets) by adding a `_FILE` suffix, e.g. `HSH_PLEX_TOKEN_FILE=/run/secrets/plex_token`. Don't set both `HSH_X` and `HSH_X_FILE`.
 
 ## Rotation Strategies
 
@@ -130,6 +135,15 @@ Create collections from curated MDBList lists. Get your API key from [MDBList Pr
 
 ## Letterboxd
 Import collections from public Letterboxd lists.
+
+## TMDb
+Sync collections from TMDb lists. Get your API key from [TMDb API Settings](https://www.themoviedb.org/settings/api).
+
+## AniList and MyAnimeList
+Sync collections from AniList and MAL lists. For MAL, create a Client ID at [MAL API Config](https://myanimelist.net/apiconfig).
+
+> Any list sync can automatically request missing items through your Seerr instance.
+{.is-info}
 
 ## Tautulli Widget
 Add a Tautulli widget to your dashboard for server activity insights. Find your API key in Tautulli Settings → Web Interface → API.
