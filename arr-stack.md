@@ -60,9 +60,6 @@ dateCreated: 2026-01-28T21:27:05.188Z
 {.links-list .arr}
 
 # Torrent management {.sec .arr}
-- [🧹 Arr Queue Cleaner<br>*Automated queue cleaner for Sonarr*](/arrqueuecleaner)
-- [<img src="/cleanuparr.png"> Cleanuparr<br>*Automated cleanup of unwanted and blocked files*](/cleanuparr)
-- [<img src="/cross-seed.png"> Cross-Seed<br>*Automatic torrent-link generator*](/crossseed)
 - [<img src="/maintainerr.png"> Maintainerr<br>*Maintenance tool for the Plex ecosystem*](/maintainerr)
 - [<img src="/autobrr.png"> Qui<br>*A fast, modern web interface for qBittorrent*](/qui)
 - [<img src="/unpackerr.png"> Unpackerr<br>*Extracts media and imports it into the \*arr apps*](/Unpackerr)
