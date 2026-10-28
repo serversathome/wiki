@@ -2,7 +2,7 @@
 title: Newtarr
 description: A guide to deploying Newtarr
 published: true
-date: 2026-04-20T13:08:40.526Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-14T00:05:42.713Z
@@ -30,7 +30,7 @@ The original Huntarr project was abandoned after the developer introduced teleme
 ```yaml
 services:
   newtarr:
-    image: ghcr.io/elfhosted/newtarr:v1.0.0
+    image: ghcr.io/elfhosted/newtarr:latest
     container_name: newtarr
     restart: unless-stopped
     ports:
@@ -40,6 +40,9 @@ services:
     environment:
       - TZ=America/New_York
 ```
+
+> If `docker pull ghcr.io/elfhosted/newtarr:latest` fails with an authentication error, build the image from source instead. Clone the repo with `git clone https://github.com/elfhosted/newtarr.git /mnt/tank/stacks/newtarr`, then replace the `image:` line above with `build: /mnt/tank/stacks/newtarr`.
+{.is-info}
 
 
 # 2 · Configuration
