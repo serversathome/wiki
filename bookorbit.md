@@ -2,7 +2,7 @@
 title: Bookorbit
 description: A guide to deploying Bookorbit
 published: true
-date: 2026-09-02T10:35:16.589Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-28T20:18:42.561Z
@@ -53,13 +53,16 @@ services:
       POSTGRES_PASSWORD: CHANGE_ME_DB_PASSWORD
       POSTGRES_DB: bookorbit
       JWT_SECRET: CHANGE_ME_JWT_SECRET
+      PODCAST_ENCRYPTION_KEY: CHANGE_ME_PODCAST_KEY
+      # BOOK_REQUEST_ENCRYPTION_KEY: CHANGE_ME_BOOK_REQUEST_KEY  # needed before download-client or indexer credentials can be saved
       SETUP_BOOTSTRAP_TOKEN: CHANGE_ME_BOOTSTRAP_TOKEN
       LIBRARY_BROWSE_ROOT: /books
       NODE_MAX_OLD_SPACE_SIZE: 2048
-      PUID: 1000
-      PGID: 1000
+      TZ: America/New_York
+      PUID: 568
+      PGID: 568
     volumes:
-      - /mnt/tank/media:/media
+      - /mnt/tank/media/books:/books
       - /mnt/tank/configs/bookorbit:/data
     depends_on:
       postgres:
@@ -84,16 +87,22 @@ services:
       start_period: 20s
 ```
 
-1. Generate the three secrets before deploying:
+1. Generate the secrets before deploying, each with its own value:
 
 ```bash
 openssl rand -hex 24   # POSTGRES_PASSWORD
 openssl rand -hex 32   # JWT_SECRET
+openssl rand -hex 32   # PODCAST_ENCRYPTION_KEY
 openssl rand -hex 16   # SETUP_BOOTSTRAP_TOKEN
+openssl rand -hex 32   # BOOK_REQUEST_ENCRYPTION_KEY (optional)
 ```
 
 2. Set `POSTGRES_PASSWORD` to the same value in **both** services or the app will not connect.
 3. Set `APP_URL` to the address you will actually browse to. It is used for Kobo sync endpoints and outbound email, so a wrong value here breaks device sync later.
+4. Point the `/books` volume at your library folder. That is the folder the library picker opens in.
+
+> **Upgrading an existing install?** Set `PODCAST_ENCRYPTION_KEY` to your current `JWT_SECRET` value at first, not a new random one, or existing podcast URLs stop working.
+{.is-warning}
 
 
 > `APP_URL` is baked into the Kobo sync URLs handed out to devices. If you plan to put BookOrbit behind a reverse proxy, set it to the final public hostname now rather than changing it after your devices are paired.
