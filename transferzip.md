@@ -15,7 +15,7 @@ dateCreated: 2026-02-09T16:52:40.763Z
 <div class="glance">
   <div><span>Port</span><b><code>9001</code></b></div>
   <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
+  <div><span>Containers</span><b>4 services</b></div>
   <div><span>Difficulty</span><b class="difficulty advanced">Advanced</b></div>
 </div>
 
@@ -29,7 +29,7 @@ The `transfer.zip-web` repository contains everything needed to self-host: the N
 
 ## 1.0 Automated Deployment (Recommended)
 
-A deployment script is available that handles the entire setup automatically — cloning the repo, generating environment files, fixing known build issues, creating JWT keys, detecting your host IP, and deploying all four containers.
+A deployment script is available that handles the entire setup automatically — cloning the repo, generating environment files, fixing known build issues, detecting your host IP, deploying all four containers, and checking the worker's key pair.
 
 Shell into your TrueNAS system and navigate to your stacks directory:
 
@@ -49,14 +49,15 @@ The script will:
 1. Auto-detect your TrueNAS host private IPv4
 2. Prompt you for a domain (or default to LAN-only access)
 3. Clone the repository and run `createenv.sh`
-4. Copy `conf.json.example`, patch the Dockerfile permissions bug, and generate JWT keys
-5. Update `docker-compose.yml` port bindings and `next/.env` with your IP and domain
-6. Build and deploy all containers, copy the public key into the worker volume, and verify services
+4. Copy `conf.json.example` and patch the Dockerfile permissions bug
+5. Bind the web (9001) and signaling (9002) ports to your IP, and update `next/.env` with your IP and domain. MongoDB stays bound to `127.0.0.1`.
+6. Build and deploy all containers and verify services
+7. Check the worker's own key pair (regenerating it if it's missing) and print the worker's public key, which you need for Stored Transfers
 
-Once complete, create your account as shown in [1.6 Create an Account](#16-create-an-account), then go to [Section 2 · Configuration](#2-configuration) for reverse proxy setup.
+Once complete, create your account as shown in [1.6 Create an Account](#h-16-create-an-account), then go to [Section 2 · Configuration](#h-2-configuration) for reverse proxy setup.
 
 > 
-> If you prefer to deploy manually or need to customize the process, follow sections 1.1 through 1.5 below instead.
+> If you prefer to deploy manually or need to customize the process, follow sections 1.1 through 1.6 below instead.
 {.is-info}
 
 ## 1.1 Clone the Repository
@@ -68,19 +69,18 @@ git clone https://github.com/robinkarlberg/transfer.zip-web.git transfer-zip-web
 
 ## 1.2 Configure Environment Files
 
+Run upstream's `createenv.sh`. It copies `.env`, `next/.env` and `next/conf.json` from their examples and sets a random `MONGO_INITDB_ROOT_PASSWORD`:
+
 ```bash
 cd /mnt/tank/stacks/transfer-zip-web
-cp .env.example .env
-cp next/.env.example next/.env
+./createenv.sh
 ```
 
-Edit `.env` and `next/.env` to configure your domain, MongoDB credentials, and other settings.
+Then edit `.env` and `next/.env` to configure your domain and other settings.
 
-Next, copy the example configuration file for the Next.js frontend. The Docker build will fail without this:
-
-```bash
-cp next/conf.json.example next/conf.json
-```
+> 
+> If you copy the example files by hand instead (`cp .env.example .env`, `cp next/.env.example next/.env`, `cp next/conf.json.example next/conf.json`), change `MONGO_INITDB_ROOT_PASSWORD` in `.env` yourself, or MongoDB is left with the example password `changeme`. `createenv.sh` stops without changing anything if `.env` already exists.
+{.is-info}
 
 > 
 > The build will fail with a `"/conf.json": not found` error if you skip this step.
@@ -99,36 +99,32 @@ sed -i 's|COPY --from=builder /app/public ./public|COPY --from=builder --chown=n
 > Without this fix, the `next` service will enter a restart loop with `EACCES: permission denied, scandir '/app/public/api'` errors.
 {.is-warning}
 
-## 1.4 Generate JWT Keys
+## 1.4 Deploy and Get the Worker's Public Key
 
-Transfer.zip uses JWT authentication between the API server and the worker. Generate a key pair:
+Build and start the stack:
 
 ```bash
 cd /mnt/tank/stacks/transfer-zip-web
-openssl genrsa -out private.pem 2048
-openssl rsa -in private.pem -pubout -out public.pem
+docker compose up -d --build
 ```
 
-The private key is used by the `next` service (configure the path in your `.env` or `next/.env`). The public key needs to be placed into the worker's Docker volume.
-
-First, deploy the stack to create the volume:
+Transfer.zip uses JWT authentication between the worker and the API servers. You don't need to create any keys: the worker image generates its own key pair in `/worker_data` (the `worker_data` volume), signs tokens with `private.pem`, and prints `public.pem` on startup. To read the public key (you need it for Stored Transfers, see [2.2](#h-22-transfer-modes)):
 
 ```bash
-docker compose up -d
-```
-
-Then copy the public key into the worker's Docker volume:
-
-```bash
-WORKER_VOL=$(docker volume inspect transfer-zip-web_worker_data --format '{{ .Mountpoint }}')
-cp public.pem "$WORKER_VOL/public.pem"
-chmod 644 "$WORKER_VOL/public.pem"
-docker compose restart worker
+docker compose exec worker cat /worker_data/public.pem
 ```
 
 > 
-> The worker will crash with `ENOENT: no such file or directory, open '/worker_data/public.pem'` until the public key is in place. This is expected on first deploy.
+> Don't generate keys with `openssl` or copy a `public.pem` into the worker volume by hand. The public key must match the worker's own `private.pem`, or tokens can't be verified.
 {.is-warning}
+
+> 
+> If the worker crashes with `ENOENT: no such file or directory, open '/worker_data/public.pem'` (an old or empty `worker_data` volume), regenerate the key pair and restart the worker:
+> ```bash
+> docker compose run --rm --no-deps -u 0 worker /app/docker-create-keys.sh
+> docker compose restart worker
+> ```
+{.is-info}
 
 ## 1.5 Docker Compose Overview
 
