@@ -2,7 +2,7 @@
 title: RomM
 description: A guide to deploying RomM on TrueNAS and Docker
 published: true
-date: 2026-09-28T10:36:49.460Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:07.432Z
@@ -11,7 +11,7 @@ dateCreated: 2026-01-15T15:08:07.432Z
 # ![](/romm.png){class="tab-icon"} What is RomM?
 RomM (ROM Manager) allows you to scan, enrich, browse and play your game collection with a clean and responsive interface. With support for multiple platforms, various naming schemes, and custom tags, RomM is a must-have for anyone who plays on emulators.
 
-RomM 5.x rebuilt the interface from the ground up with a universal input model that works with mouse, touch, keyboard and gamepad, and added per-user and per-group permissions, shared saves and savestates, server-side ROM patching, and emulator streaming. RomM 5.3 added a fully custom library structure, physical games (add a cartridge or disc by name or barcode), walkthroughs, a Jukebox soundtrack player, js-dos and PICO-8 in the browser, and automatic save sync.
+RomM 5.x rebuilt the interface from the ground up with a universal input model that works with mouse, touch, keyboard and gamepad, and added per-user and per-group permissions, shared saves and savestates, server-side ROM patching, and emulator streaming. RomM 5.3 added a fully custom library structure, physical games (add a cartridge or disc by name or barcode), walkthroughs, a Jukebox soundtrack player, js-dos and PICO-8 in the browser, and automatic save sync. RomM 5.4 tightened the proxy and CORS defaults (see section 2) and ships long-running database migrations on first start.
 
 <div class="glance">
   <div><span>Port</span><b><code>30061</code></b></div>
@@ -82,7 +82,7 @@ services:
             - /mnt/tank/media/romm/resources:/romm/resources
             - /mnt/tank/media/romm/assets:/romm/assets
             - /mnt/tank/configs/romm:/romm/config
-            - /mnt/tank/configs/romm/redis-data:/redis-data
+            - romm_redis_data:/redis-data
         ports:
             - 30061:8080
         depends_on:
@@ -109,6 +109,9 @@ services:
             interval: 10s
             timeout: 5s
             retries: 5
+
+volumes:
+    romm_redis_data:
 ```
 
 Before deploying, create the host directories and hand them to the `apps` user:
@@ -166,6 +169,9 @@ Platform folder names used by Batocera, RetroBat and ES-DE are recognized out of
 
 On first launch RomM drops you into a **Setup Wizard** rather than a login screen. The first account you create always receives the Admin role. Give the stack two or three minutes before the web UI answers, since it has to pull images, initialize the database, and run migrations.
 
+> **Upgrading to 5.4?** Give the first start **15-20 minutes** to finish its migrations (longer on large libraries, since several of them rewrite the `roms` table in batches). Do **not** restart the container while they run. See the [5.4.0 release notes](https://github.com/rommapp/romm/releases/tag/5.4.0).
+{.is-warning}
+
 # 2 · Reverse Proxy
 To put this behind [Nginx Proxy Manager](/nginx), use the following settings:
 # {.tabset}
@@ -194,6 +200,9 @@ Paste this in the box: `proxy_max_temp_file_size 0;`
 
 > Once you are serving over HTTPS, set `ROMM_SESSION_SECURE_COOKIE=true` and update `ROMM_BASE_URL` to your public hostname. Invite links are built from `ROMM_BASE_URL`, and RomM will not generate one while it points at `localhost` or another loopback address. HTTPS is also required for OIDC login and for installing RomM as a PWA.
 {.is-info}
+
+> Since 5.4, RomM only trusts `X-Forwarded-For` from loopback and private ranges (`FORWARDED_ALLOW_IPS`). NPM on your LAN works as-is, but a proxy on a public address has to be added to `FORWARDED_ALLOW_IPS`, or every request looks like it came from the proxy (and gets rate-limited as one client). `ROMM_CORS_ALLOWED_ORIGINS` is also empty by default now, which allows no cross-origin browser clients. List the origin of any companion web app that runs on a different domain.
+{.is-warning}
 
 
 # 3 · Metadata
