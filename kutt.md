@@ -2,7 +2,7 @@
 title: Kutt
 description: A guide to deploying Kutt
 published: true
-date: 2026-04-14T10:36:10.936Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-05T18:35:20.228Z
@@ -19,7 +19,7 @@ dateCreated: 2026-03-05T18:35:20.228Z
   <div><span>Depends on</span><b>Redis</b></div>
   <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
   <div class="glance-links">
-    <a href="https://github.com/thedevs-network/alfred-kutt"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/thedevs-network/kutt"><i class="mdi mdi-github"></i>Project</a>
     <a href="https://youtu.be/jJ-cydT3wB0"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
   </div>
 </div>
@@ -81,15 +81,15 @@ services:
     restart: unless-stopped
     depends_on:
       postgres:
-        condition: service_started
+        condition: service_healthy
       redis:
         condition: service_started
-    command: ["./wait-for-it.sh", "postgres:5432", "--", "npm", "start"]
     ports:
       - "3000:3000"
     volumes:
       - /mnt/tank/configs/kutt/custom:/kutt/custom
     environment:
+      - DB_CLIENT=pg
       - DB_HOST=postgres
       - DB_PORT=5432
       - DB_NAME=kutt
@@ -121,6 +121,11 @@ services:
       - POSTGRES_DB=kutt
     volumes:
       - /mnt/tank/configs/kutt/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kutt -d kutt"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 ```
 > You **must** change `JWT_SECRET` to a long random string before deploying. You can generate one with: `openssl rand -base64 32`
 {.is-danger}
