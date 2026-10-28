@@ -2,7 +2,7 @@
 title: Dashy
 description: A guide to deploying Dashy
 published: true
-date: 2026-01-15T15:28:52.998Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:04:14.446Z
@@ -31,18 +31,20 @@ services:
   dashy:
     container_name: Dashy
     image: lissy93/dashy
+    user: "568:568"
     volumes:
-       - /mnt/tank/configs/dashy:/app/user-data/
+      - /mnt/tank/configs/dashy:/app/user-data/
     ports:
       - 4000:8080
     environment:
       - NODE_ENV=production
-      - UID=568
-      - GID=568
     restart: unless-stopped
 ```
 
 ### Sample Config File
+> Save the sample below as `/mnt/tank/configs/dashy/conf.yml` **before** starting the container. Dashy needs a `conf.yml` in the mounted folder, and an empty folder hides the default config.
+{.is-warning}
+
 ```yaml
 
 appConfig:
