@@ -151,9 +151,6 @@ matrix_rtc:
       livekit_service_url: https://rtc.yourdomain.com
 ```
 
-> `matrix_rtc.transports` is how current clients discover your LiveKit SFU (through Synapse's `/_matrix/client/unstable/org.matrix.msc4143/rtc/transports` endpoint). Synapse 1.161+ also supports a newer `url` property that requires running lk-jwt-service as an application service; `livekit_service_url` still works and keeps older clients compatible. See the [Element Call self-hosting guide](https://github.com/element-hq/element-call/blob/livekit/docs/self_hosting.md) for details.
-{.is-info}
-
 ## 1.3 Docker Compose — Synapse Stack
 
 Deploy this in Dockge on TrueNAS:
@@ -359,10 +356,6 @@ turn:
   udp_port: 3478
 keys:
   your-api-key: your-api-secret
-webhook:
-  api_key: your-api-key   # must match LIVEKIT_KEY below
-  urls:
-    - http://localhost:8081/sfu_webhook
 logging:
   level: info
 ```
