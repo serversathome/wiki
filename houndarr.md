@@ -2,7 +2,7 @@
 title: Houndarr
 description: A guide to deploy Houndarr
 published: true
-date: 2026-03-27T14:32:54.955Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-27T14:32:54.954Z
@@ -42,14 +42,24 @@ services:
       - TZ=America/New_York
       - PUID=568
       - PGID=568
+      # Behind a reverse proxy (Nginx Proxy Manager, Caddy, Traefik, etc.):
+      # - HOUNDARR_SECURE_COOKIES=true           # set Secure flag on cookies when behind HTTPS
+      # - HOUNDARR_COOKIE_SAMESITE=lax           # lax (default) or strict
+      # - HOUNDARR_TRUSTED_PROXIES=172.18.0.0/16 # trust X-Forwarded-For from this proxy IP/subnet
+      # SSO proxy auth (Authelia, Authentik, oauth2-proxy, etc.), all three required together:
+      # - HOUNDARR_AUTH_MODE=proxy
+      # - HOUNDARR_AUTH_PROXY_HEADER=Remote-User # header your proxy sets (e.g. X-authentik-username)
+      # - HOUNDARR_TRUSTED_PROXIES=172.18.0.0/16 # only requests from this IP/subnet are trusted
 ```
+
+Open `http://<your-host>:8877` and create your admin account on the setup screen the first time you visit.
 
 
 # 2 · Configuration
 
 ## 2.1 Adding \*arr Instances
 
-1. Log in and navigate to **Settings**
+1. Log in with the admin account you created and navigate to **Settings**
 2. Click **Add Instance**
 3. Select the instance type: Radarr, Sonarr, Lidarr, Readarr, or Whisparr
 4. Enter the **URL** of your \*arr instance (e.g. `http://192.168.1.100:7878`)
@@ -86,6 +96,13 @@ Each instance has independent controls for missing and cutoff searches:
 | Cutoff Cooldown (days) | `21` | Min days before retrying the same cutoff item |
 | Cutoff Cap | `1` | Max successful cutoff searches per hour |
 
+
+Newer versions add more per-instance options:
+
+- **Library upgrades** — also search for items that already meet cutoff
+- **Search order** — `random` (default) spreads picks across the whole backlog each cycle; `chronological` walks oldest-first
+- **Time windows** — only run scheduled searches during configured hours
+- **Search context** — search by episode vs. season, album vs. artist, or book vs. author
 
 > 
 > Start with the defaults and increase one control at a time. Watch your logs for a full day before bumping further. Suggested order: Batch Size → Sleep → Hourly Cap → Cutoff Search (last).
