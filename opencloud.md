@@ -2,7 +2,7 @@
 title: OpenCloud
 description: A guide to deploying OpenCloud
 published: true
-date: 2026-04-14T10:37:50.621Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-03-22T11:56:59.012Z
@@ -47,23 +47,26 @@ services:
     environment:
       - OC_URL=https://cloud.yourdomain.com
       - IDM_CREATE_DEMO_USERS=false
+      - IDM_ADMIN_PASSWORD=<strong password> # used by init on first start only
+      - PROXY_HTTP_ADDR=0.0.0.0:9200
     restart: unless-stopped
 ```
 
 1. Replace `cloud.yourdomain.com` with your actual domain
-2. Set `IDM_CREATE_DEMO_USERS` to `true` if you want demo users for testing
+2. Set `IDM_ADMIN_PASSWORD` to a strong password for the `admin` user
+3. Set `IDM_CREATE_DEMO_USERS` to `true` if you want demo users for testing
 
 > 
-> On first start, `opencloud init` generates the config files and uses `INITIAL_ADMIN_PASSWORD` to set the admin credentials. The `|| true` ensures the container doesn't fail if already initialized on subsequent starts.
+> On first start, `opencloud init` generates the config files and uses `IDM_ADMIN_PASSWORD` to set the admin credentials. If you leave it out, a random password is generated and printed once in the container logs (`docker logs opencloud`). The `|| true` ensures the container doesn't fail if already initialized on subsequent starts.
 {.is-info}
 
 
 ### 1.1 Change the Admin Password
 
-The default admin password is set to `admin` in the compose file. **Change this immediately** after your first login by navigating to your profile settings in the OpenCloud web UI.
+Log in as `admin` with the `IDM_ADMIN_PASSWORD` you set. You can change it later by navigating to your profile settings in the OpenCloud web UI.
 
 > 
-> `INITIAL_ADMIN_PASSWORD` is only used on the very first start. After initialization, changing the value in the compose file has no effect — the password can only be changed through the OpenCloud web UI or CLI.
+> `IDM_ADMIN_PASSWORD` is only used on the very first start. After initialization, changing the value in the compose file has no effect — the password can only be changed through the OpenCloud web UI or CLI.
 {.is-warning}
 
 
@@ -73,15 +76,16 @@ The default admin password is set to `admin` in the compose file. **Change this 
 2. Search for **OpenCloud**
 3. Click **Install**
 4. Configure the following settings:
-   - **Admin Password**: Set a strong initial admin password
-   - **OpenCloud URL**: `https://cloud.yourdomain.com`
-   - **Host Path (Config)**: `/mnt/tank/configs/opencloud/config`
-   - **Host Path (Data)**: `/mnt/tank/configs/opencloud/data`
-   - **Host Path (Radicale Data)**: `/mnt/tank/configs/opencloud/radicale`
+   - **Application URL**: `https://cloud.yourdomain.com`
+   - **Config Storage** → **Host Path**: `/mnt/tank/configs/opencloud/config`
+   - **Data Storage** → **Host Path**: `/mnt/tank/configs/opencloud/data`
+   - **Radicale Data Storage** → **Host Path**: `/mnt/tank/configs/opencloud/radicale`
+   - Optional: **Full Text Search** (Tika), **Yjs (Real-time Collaboration)** and **Collaboration** (Collabora)
 5. Click **Save**
+6. Log in as `admin` / `admin` and **change the password immediately**. The TrueNAS app has no admin password field and always initializes the admin account with `admin`
 
 > 
-> The TrueNAS Community app (v4.0.3) includes Radicale (CalDAV/CardDAV) and Tika (full-text search) containers bundled in. You'll still need to configure your Cloudflare Tunnel to point to the exposed port.
+> The TrueNAS Community app includes Radicale (CalDAV/CardDAV) and Tika (full-text search) containers bundled in. You'll still need to configure your Cloudflare Tunnel to point to the exposed port.
 {.is-info}
 
 
