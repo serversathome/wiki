@@ -2,7 +2,7 @@
 title: Plex
 description: A guide to installing Plex in TrueNAS and via docker compose
 published: true
-date: 2026-08-26T09:33:31.565Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:21.349Z
@@ -56,7 +56,7 @@ services:
 
 
 ### Permissions & Folder Structure
-- **PLEX_UID / PLEX_GID**: Ensure you use a user/group with the correct permissions for accessing media folders. TrueNAS SCALE defaults to 568:568 for apps.
+- **PUID / PGID**: Ensure you use a user/group with the correct permissions for accessing media folders. TrueNAS SCALE defaults to 568:568 for apps.
 - **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/plex
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
@@ -65,9 +65,13 @@ services:
 {.is-info}
 ### GPU Transcode
 **NVIDIA**
-To enable transcoding from your nVidia GPU, uncomment out the lines in the compose file above.
+The compose file above already enables your nVidia GPU (`runtime: nvidia` and the `NVIDIA_*` variables).
 **Intel iGPU**
-To enable transcoding from your Intel iGPU, uncomment out the devices lines (under retstart) in the compose file above.
+To enable transcoding from your Intel iGPU, remove `runtime: nvidia` and the two `NVIDIA_*` lines, then add this under `restart:` in the compose file above:
+```yaml
+    devices:
+      - /dev/dri:/dev/dri
+```
 
 ## <img src="/docker.png" class="tab-icon"> Docker Compose AMD
 ```yaml
@@ -82,8 +86,6 @@ services:
       - TZ=America/New_York
       - VERSION=latest
       - DOCKER_MODS=jefflessard/plex-vaapi-amdgpu-mod
-      - LIBVA_DRIVERS_PATH=/vaapi-amdgpu/lib/dri 
-      - LD_LIBRARY_PATH=/vaapi-amdgpu/lib
       - PLEX_CLAIM= #optional
     group_add:
       - video
@@ -103,7 +105,7 @@ services:
 {.is-info}
 
 ### Permissions & Folder Structure
-- **PLEX_UID / PLEX_GID**: Ensure you use a user/group with the correct permissions for accessing media folders. TrueNAS SCALE defaults to 568:568 for apps.
+- **PUID / PGID**: Ensure you use a user/group with the correct permissions for accessing media folders. TrueNAS SCALE defaults to 568:568 for apps.
 - **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/plex
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
@@ -119,10 +121,10 @@ docker exec -it -e LIBVA_DRIVERS_PATH=/vaapi-amdgpu/lib/dri -e LD_LIBRARY_PATH=/
 In case the Plex can't access `/dev/dri/renderD128` add `rwx` permissions to owner and owner group:
 
 ```bash
-truenas_admin@truenas:$ sudo chown -R 770 /dev/dri
+truenas_admin@truenas:$ sudo chmod -R 770 /dev/dri
 ```
 
-> **IMPORTANT:** This is not persistent change so after reboot/shutdown you will have to run it `chown` command again!
+> **IMPORTANT:** This is not persistent change so after reboot/shutdown you will have to run the `chmod` command again!
 {.is-warning}
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
