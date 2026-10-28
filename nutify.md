@@ -55,19 +55,14 @@ services:
       - NUT_SERVICE_USER=nut
       - UDEV=1                        # Improve USB detection
       - SKIP_PERMCHECK=true
-      - SSL_ENABLED=false             # set true only after mounting valid TLS files
-      - SOCKETIO_ALLOWED_ORIGINS=     # exact reverse-proxy origin(s), if you use one
-    dns:
-      - 1.1.1.1
-      - 8.8.8.8
+      - SSL_ENABLED=false
     ports:
       - "3493:3493"
       - "5050:5050"
-      - "5443:443"                  # host 443 is the TrueNAS web UI
     restart: unless-stopped
 ```
 
-> The old `amd64-latest` tag stopped updating in November 2025. Current images use `latest-<arch>` tags such as `latest-amd64`, `latest-raspberrypi5-arm64` or `latest-mac-arm64`. The compose above also follows upstream's hardened setup: no `privileged`, no full `/dev` mount and no `user: root`. `SECRET_KEY` is now required.
+> The old `amd64-latest` tag stopped updating in November 2025; use the `latest-<arch>` tag for your CPU.
 {.is-warning}
 
 Navigate to `http://IP:5050` and follow the setup wizard.
