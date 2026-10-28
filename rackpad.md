@@ -2,7 +2,7 @@
 title: Rackpad
 description: A guide to deploying Rackpad
 published: true
-date: 2026-05-30T13:24:08.606Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-05-30T13:24:08.606Z
@@ -46,7 +46,7 @@ It also includes optional OIDC SSO (authorization-code + PKCE), admin-only JSON 
 ```yaml
 services:
   rackpad:
-    image: ghcr.io/kobii-git/rackpad:1.3.0
+    image: ghcr.io/kobii-git/rackpad:1.8.5
     container_name: rackpad
     init: true
     ports:
@@ -57,12 +57,12 @@ services:
       PORT: 3000
       DATABASE_PATH: /data/rackpad.db
       MONITOR_INTERVAL_MS: 300000
-      # Reverse-proxy hardening — see section 2.3:
+      # Reverse-proxy hardening (set these if you put Rackpad behind a proxy):
       TRUST_PROXY: 0
       TRUSTED_HOSTS: ""
       TRUSTED_ORIGINS: ""
       APP_URL: ""
-      # Optional OIDC SSO — see section 2.4:
+      # Optional OIDC SSO — see section 2.3:
       OIDC_ENABLED: 0
       OUI_AUTO_UPDATE: 1
       DISCOVERY_MAC_SCAN_MODE: auto
@@ -81,6 +81,9 @@ services:
       start_period: 10s
     restart: unless-stopped
 ```
+
+> **Upgrading from an older tag (e.g. 1.3.0)?** Rackpad migrates its SQLite schema on upgrade and downgrades aren't supported. Back up `/mnt/tank/configs/rackpad` first and read the upstream [upgrade precautions](https://github.com/kobii-git/rackpad/blob/main/INSTALL.md#before-upgrading-to-185) before bumping the tag.
+{.is-warning}
 
 Open `http://<your-host>:3000` and create the initial admin account — on first boot there are no users, so the first account you make becomes the admin. You'll then be asked whether to start empty or preload the expanded demo environment (handy for a first look).
 
