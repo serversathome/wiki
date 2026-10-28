@@ -79,7 +79,12 @@ services:
 > The password must be at least 8 characters long
 {.is-warning}
 
-> **Upgrading from 0.9.x or earlier?** v0.10.0 renamed the config env vars (each `.` is now `__`, e.g. `PHYLUM_DB__HOST`), moved data to `/var/lib/phylum`, and changed the storage layout. Update your compose as above, then migrate your data with `docker compose run --rm server admin migrate img previews` and `docker compose run --rm server admin migrate localstorage`. Read the [v0.10.0 release notes](https://codeberg.org/shroff/phylum/releases/tag/releases/v0.10.0) before upgrading.
+> **Upgrading from an older install?** Earlier versions of this page mounted `/mnt/tank/configs/phylum/storage:/app/storage`. v0.9.0 moved Phylum's data to `/var/lib/phylum` (with `config.yml` and `storage` inside it), and v0.10.0 renamed the config env vars (each `.` is now `__`, e.g. `PHYLUM_DB__HOST`) and changed the storage layout. Stop the stack, then move your old files into the new folder **before** you start it with the new compose:
+> ```bash
+> mkdir -p /mnt/tank/configs/phylum/data
+> mv /mnt/tank/configs/phylum/storage /mnt/tank/configs/phylum/data/storage
+> ```
+> Move `config.yml` into `/mnt/tank/configs/phylum/data/` as well if you have one. Then update your compose as above and migrate your data with `docker compose run --rm server admin migrate img previews` and `docker compose run --rm server admin migrate localstorage`. Read the [v0.9.0](https://codeberg.org/shroff/phylum/releases/tag/releases/v0.9.0) and [v0.10.0](https://codeberg.org/shroff/phylum/releases/tag/releases/v0.10.0) release notes before upgrading.
 {.is-warning}
 
 
