@@ -2,7 +2,7 @@
 title: JellyGlance
 description: A guide to deploy JellyGlance
 published: true
-date: 2026-08-05T20:28:45.437Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-05T20:28:45.437Z
@@ -23,7 +23,7 @@ The project is inspired by **Jellystat**, but adds request triage, per-user prof
   <div><span>Depends on</span><b>Postgres</b></div>
   <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
   <div class="glance-links">
-    <a href="https://github.com/nerdy-technician/jellyglance"><i class="mdi mdi-github"></i>Project</a>
+    <a href="https://github.com/JellyGlance/Server"><i class="mdi mdi-github"></i>Project</a>
   </div>
 </div>
 
@@ -51,7 +51,7 @@ services:
       retries: 5
 
   jellyglance:
-    image: ghcr.io/nerdy-technician/jellyglance:latest
+    image: ghcr.io/jellyglance/server:latest
     container_name: jellyglance
     restart: unless-stopped
     depends_on:
