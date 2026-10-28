@@ -26,7 +26,6 @@ Generate a JWT secret seed with `openssl rand -hex 32`, and replace the `change-
 services:
   punipuni:
     image: kowlown/punipuni:latest
-    container_name: punipuni
     restart: unless-stopped
     ports:
       - "8089:8080"
@@ -39,19 +38,14 @@ services:
       - PUNI_APPLICATION_DATABASE_NAME=puni
       - PUNI_APPLICATION_DATABASE_USERNAME=puni
       - PUNI_APPLICATION_DATABASE_PASSWORD=change-me
-      - PUNI_APPLICATION_DATABASE_SCHEMA=public
-      - PUNI_APPLICATION_WELCOME_PAGES_FOLDER_PATH=/welcome-pages
       - PUNI_JWT_JWT_SECRET_SEED=your_generated_secret
     volumes:
       - /mnt/tank/configs/punipuni/data:/var/puni/data
-      - /mnt/tank/configs/punipuni/welcome-pages:/welcome-pages
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
 
   postgres:
     image: postgres:17
-    container_name: punipuni-postgres
     restart: unless-stopped
     environment:
       - POSTGRES_DB=puni
@@ -59,13 +53,8 @@ services:
       - POSTGRES_PASSWORD=change-me
     volumes:
       - /mnt/tank/configs/punipuni/postgres:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U puni -d puni"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 ```
 
-> Log in at `http://IP:8089` with the `PUNI_ADMIN_EMAIL` and `PUNI_ADMIN_PASSWORD` you set. Postgres data now lives in `/mnt/tank/configs/punipuni/postgres`; if you deployed an older version of this guide, its database was in `/mnt/tank/configs/punipuni/` itself.
+> Log in at `http://IP:8089` with the `PUNI_ADMIN_EMAIL` and `PUNI_ADMIN_PASSWORD` you set. Older versions of this guide kept the database in `/mnt/tank/configs/punipuni/` itself, not `postgres/`.
 {.is-info}
 
