@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2026-07-09T21:18:33.584Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:08:11.759Z
@@ -49,10 +49,10 @@ services:
 ```
 
 1. If your pool is named something other than `tank`, change the left side of both volume paths.
-2. The `/data` mount should be the **parent of both your downloads and your media library** (e.g. `/mnt/tank/media` holds `downloads/`, `movies/`, `tv/`). Mapping one shared folder is what lets Sonarr and Radarr hardlink finished downloads instead of copying them.
+2. The `/media` mount should be the **parent of both your downloads and your media library** (e.g. `/mnt/tank/media` holds `downloads/`, `movies/`, `tv/`). Mapping one shared folder is what lets Sonarr and Radarr hardlink finished downloads instead of copying them.
 3. `PUID`/`PGID` `568` is the `apps` user on TrueNAS, matching the recommended dataset permissions.
 
-> Map the **same host folder to the same container path** in SABnzbd, Sonarr, and Radarr (`/data` everywhere). Mismatched paths are the number-one cause of imports silently failing.
+> Map the **same host folder to the same container path** in SABnzbd, Sonarr, and Radarr (`/media` everywhere). Mismatched paths are the number-one cause of imports silently failing.
 {.is-warning}
 
 ## <img src="/truenas.png" class="tab-icon"> TrueNAS
@@ -64,7 +64,7 @@ services:
    - **App Name**: `sabnzbd`
    - **WebUI Port**: `8080`
    - **Config Storage**: Host Path → `/mnt/tank/configs/sabnzbd`
-   - **Additional Storage**: Host Path `/mnt/tank/media` → Mount Path `/media` 
+   - **Additional Storage**: Host Path `/mnt/tank/media` → Mount Path `/media`
 5. Click **Install** and wait for the app to report **Running**.
 
 
@@ -100,8 +100,8 @@ They can't be the exact same path, but they can be two subfolders under one down
 
 | Folder | Value |
 |--------|-------|
-| Temporary Download Folder | `/data/downloads/incomplete` |
-| Completed Download Folder | `/data/downloads/complete` |
+| Temporary Download Folder | `/media/downloads/incomplete` |
+| Completed Download Folder | `/media/downloads/complete` |
 {.dense}
 
 > Keeping the completed folder on the **same dataset as your media library** lets Sonarr/Radarr **hardlink** on import (instant, no extra disk). Keeping the incomplete folder there too makes SABnzbd's own incomplete → complete move an instant rename instead of a copy.
@@ -115,7 +115,7 @@ Categories are optional, Sonarr and Radarr import by reading the finished path f
 2. Add a category `tv` and, in its folder field, type the plain relative name `tv`.
 3. Add a category `movies` with folder `movies`.
 
-SABnzbd nests each one under your Completed Download Folder automatically, so `tv` becomes `/data/downloads/complete/tv`. You don't pre-create the folders or re-point SABnzbd at them.
+SABnzbd nests each one under your Completed Download Folder automatically, so `tv` becomes `/media/downloads/complete/tv`. You don't pre-create the folders or re-point SABnzbd at them.
 
 > Use a **plain relative name** (`tv`), not a full path. An absolute path in the folder field overrides the completed folder and sends that category elsewhere.
 {.is-warning}
@@ -133,7 +133,7 @@ Grab your API key from **Config → General → API Key**, then in each *arr:
 4. **Category**: `tv` in Sonarr, `movies` in Radarr.
 5. **Test**, then **Save**.
 
-> Make sure SABnzbd, Sonarr, and Radarr all resolve `/data` to the same host folder. If SAB reports a completed path the *arrs can't see, imports fail even though the download succeeded.
+> Make sure SABnzbd, Sonarr, and Radarr all resolve `/media` to the same host folder. If SAB reports a completed path the *arrs can't see, imports fail even though the download succeeded.
 {.is-danger}
 
 ## 2.5 Connect to Prowlarr
