@@ -72,7 +72,8 @@ services:
 * **PUID / PGID** — match media owner (TrueNAS default **568:568**).
 * **Volumes** — configs in `/mnt/tank/configs/soulseek`, library in `/mnt/tank/media/music`.
 
-> ⚠️ Soulseek exposes your IP.  Consider the VPN stack below for safety. {.is-warning}
+> ⚠️ Soulseek exposes your IP.  Consider the VPN stack below for safety.
+{.is-warning}
 
 ---
 
