@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-10-21T14:49:51.180Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:07:30.974Z
@@ -57,8 +57,24 @@ services:
       - TZ=America/New_York
       # Uncomment ORIGIN if accessing through a reverse proxy (required for OIDC)
       #- ORIGIN=https://profilarr.yourdomain.com
+      # Optional parser: uncomment these and the parser service below
+      #- PARSER_HOST=parser
+      #- PARSER_PORT=5000
+    #depends_on:
+    #  parser:
+    #    condition: service_healthy
 
+  # Optional - only needed for custom format / quality profile testing
+  #parser:
+  #  image: ghcr.io/dictionarry-hub/profilarr-parser:latest
+  #  container_name: profilarr-parser
+  #  restart: unless-stopped
+  #  expose:
+  #    - '5000'
 ```
+
+> The optional **parser** service is only needed for custom format and quality profile testing. Linking, syncing, and everything else work without it. Keep both images on the same tag.
+{.is-info}
 
 
 
