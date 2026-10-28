@@ -2,7 +2,7 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: 2026-09-11T12:40:39.093Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:05:25.101Z
@@ -87,9 +87,9 @@ services:
 
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
+    image: docker.io/valkey/valkey:9@sha256:c123e3715db63d06d4ad6964884037aa0d5d4d703939b9929954112889708e1d
     healthcheck:
-      test: redis-cli ping || exit 1
+      test: redis-cli ping | grep -q PONG || exit 1
     restart: unless-stopped
 
   database:
@@ -115,17 +115,20 @@ volumes:
 
  ```yaml
 UPLOAD_LOCATION=/mnt/tank/configs/immich/uploads
-IMMICH_VERSION=release
+IMMICH_VERSION=v3
 DB_DATA_LOCATION=/mnt/tank/configs/immich/db
 DB_PASSWORD=postgres
 DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
  ```
 
-> Make sure to change the `DB_PASSWORD` to something random!
+> Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
 {.is-danger}
 
-Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/).
+Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
+
+> **Upgrading an older install?** Immich v3 dropped support for the old `pgvecto.rs` vector extension. If you ran Immich before v1.133.0 and haven't completed the VectorChord migration yet, do that first, following the migration guide linked in the [v3.0.0 release notes](https://github.com/immich-app/immich/releases/tag/v3.0.0).
+{.is-warning}
 
 ### Folder Structure
 ```xml
@@ -193,9 +196,9 @@ services:
 
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
+    image: docker.io/valkey/valkey:9@sha256:c123e3715db63d06d4ad6964884037aa0d5d4d703939b9929954112889708e1d
     healthcheck:
-      test: redis-cli ping || exit 1
+      test: redis-cli ping | grep -q PONG || exit 1
     restart: unless-stopped
 
   database:
@@ -221,7 +224,7 @@ volumes:
 
  ```yaml
 UPLOAD_LOCATION=/mnt/tank/configs/immich/uploads
-IMMICH_VERSION=release
+IMMICH_VERSION=v3
 DB_DATA_LOCATION=/mnt/tank/configs/immich/db
 DB_PASSWORD=postgres
 DB_USERNAME=postgres
@@ -230,10 +233,13 @@ MACHINE_LEARNING_MODEL_TTL=0
 MACHINE_LEARNING_MODEL_TTL_POLL_S=0
  ```
 
-> Make sure to change the `DB_PASSWORD` to something random!
+> Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
 {.is-danger}
 
-Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/).
+Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
+
+> **Upgrading an older install?** Immich v3 dropped support for the old `pgvecto.rs` vector extension. If you ran Immich before v1.133.0 and haven't completed the VectorChord migration yet, do that first, following the migration guide linked in the [v3.0.0 release notes](https://github.com/immich-app/immich/releases/tag/v3.0.0).
+{.is-warning}
 
 > In case you want to use multiple gpus see: [https://docs.immich.app/features/ml-hardware-acceleration#multi-gpu](https://docs.immich.app/features/ml-hardware-acceleration#multi-gpu)
 > The GPU must have compute capability 5.2 or greater.
@@ -307,9 +313,9 @@ services:
 
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
+    image: docker.io/valkey/valkey:9@sha256:c123e3715db63d06d4ad6964884037aa0d5d4d703939b9929954112889708e1d
     healthcheck:
-      test: redis-cli ping || exit 1
+      test: redis-cli ping | grep -q PONG || exit 1
     restart: unless-stopped
 
   database:
@@ -340,7 +346,7 @@ volumes:
 
  ```yaml
 UPLOAD_LOCATION=/mnt/tank/configs/immich/uploads
-IMMICH_VERSION=release
+IMMICH_VERSION=v3
 DB_DATA_LOCATION=/mnt/tank/configs/immich/db
 DB_PASSWORD=postgres
 DB_USERNAME=postgres
@@ -349,10 +355,13 @@ MACHINE_LEARNING_MODEL_TTL=0
 MACHINE_LEARNING_MODEL_TTL_POLL_S=0
  ```
 
-> Make sure to change the `DB_PASSWORD` to something random!
+> Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
 {.is-danger}
 
-Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/).
+Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
+
+> **Upgrading an older install?** Immich v3 dropped support for the old `pgvecto.rs` vector extension. If you ran Immich before v1.133.0 and haven't completed the VectorChord migration yet, do that first, following the migration guide linked in the [v3.0.0 release notes](https://github.com/immich-app/immich/releases/tag/v3.0.0).
+{.is-warning}
 
 
 ### Folder Structure
@@ -430,9 +439,9 @@ services:
 
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
+    image: docker.io/valkey/valkey:9@sha256:c123e3715db63d06d4ad6964884037aa0d5d4d703939b9929954112889708e1d
     healthcheck:
-      test: redis-cli ping || exit 1
+      test: redis-cli ping | grep -q PONG || exit 1
     restart: unless-stopped
 
   database:
@@ -463,7 +472,7 @@ volumes:
 
  ```yaml
 UPLOAD_LOCATION=/mnt/tank/configs/immich/uploads
-IMMICH_VERSION=release
+IMMICH_VERSION=v3
 DB_DATA_LOCATION=/mnt/tank/configs/immich/db
 DB_PASSWORD=postgres
 DB_USERNAME=postgres
@@ -472,10 +481,13 @@ MACHINE_LEARNING_MODEL_TTL=0
 MACHINE_LEARNING_MODEL_TTL_POLL_S=0
  ```
 
-> Make sure to change the `DB_PASSWORD` to something random!
+> Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
 {.is-danger}
 
-Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/).
+Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
+
+> **Upgrading an older install?** Immich v3 dropped support for the old `pgvecto.rs` vector extension. If you ran Immich before v1.133.0 and haven't completed the VectorChord migration yet, do that first, following the migration guide linked in the [v3.0.0 release notes](https://github.com/immich-app/immich/releases/tag/v3.0.0).
+{.is-warning}
 
 
 ### Folder Structure
@@ -539,9 +551,9 @@ services:
 
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
+    image: docker.io/valkey/valkey:9@sha256:c123e3715db63d06d4ad6964884037aa0d5d4d703939b9929954112889708e1d
     healthcheck:
-      test: redis-cli ping || exit 1
+      test: redis-cli ping | grep -q PONG || exit 1
     restart: unless-stopped
 
   database:
@@ -573,17 +585,20 @@ volumes:
 
  ```yaml
 UPLOAD_LOCATION=/mnt/tank/configs/immich/uploads
-IMMICH_VERSION=release
+IMMICH_VERSION=v3
 DB_DATA_LOCATION=/mnt/tank/configs/immich/db
 DB_PASSWORD=postgres
 DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
  ```
 
-> Make sure to change the `DB_PASSWORD` to something random!
+> Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
 {.is-danger}
 
-Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/).
+Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
+
+> **Upgrading an older install?** Immich v3 dropped support for the old `pgvecto.rs` vector extension. If you ran Immich before v1.133.0 and haven't completed the VectorChord migration yet, do that first, following the migration guide linked in the [v3.0.0 release notes](https://github.com/immich-app/immich/releases/tag/v3.0.0).
+{.is-warning}
 
 ### Folder Structure
 ```xml
@@ -625,7 +640,7 @@ tank
         ├── uploads [dataset]
         └── db [dataset]
 ```
-You need to migrate to the new datasets, where `data` has the sub-directories `{backups, library, profile, thumbs, encoded_video, upload}`. **Sub-directory naming is important**, and will break the app if not done correctly. I am calling the new parent dataset `immich1` for clarity.
+You need to migrate to the new datasets, where `data` has the sub-directories `{backups, library, profile, thumbs, encoded-video, upload}`. **Sub-directory naming is important**, and will break the app if not done correctly. I am calling the new parent dataset `immich1` for clarity.
 ```xml
 tank
  └── configs
@@ -635,7 +650,7 @@ tank
              ├── library [directory]
              ├── profile [directory]
              ├── thumbs [directory]
-             ├── encoded_video [directory]
+             ├── encoded-video [directory]
              └── upload [directory]
         └── db [dataset]
 ```
@@ -653,9 +668,9 @@ tank
     rsync -avhz --progress /mnt/tank/configs/immich/db/ /mnt/tank/configs/immich1/db/
     ```
 1. Edit Immich app
-a. Scroll down to **Storage Configuration** and uncheck the box **Use Old Storage Configuration (Deprecated)**
-b. Set the **Data Storage** to the new dataset `/mnt/tank/immich1/data`
-c. Set the **Postgres Data Storage** to the new dataset `/mnt/tank/immich1/db` and be sure to check the **Automatic Permissions** checkbox
+a. Scroll down to **Storage Configuration**. Older versions of the app had a **Use Old Storage Configuration (Deprecated)** checkbox; if you still see it, uncheck it (current versions of the app no longer have this option)
+b. Set the **Data Storage** to the new dataset `/mnt/tank/configs/immich1/data`
+c. Set the **Postgres Data Storage** to the new dataset `/mnt/tank/configs/immich1/db` and be sure to check the **Automatic Permissions** checkbox
 d. Click the blue **Update** button
 1. Once all running, you can remove the old dataset `immich`
 
