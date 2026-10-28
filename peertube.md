@@ -71,7 +71,7 @@ networks:
         - subnet: fdab:e4b3:21a2:ef1b::/64
 ```
 
-> **Upgrading an existing install?** The old `production-bookworm` tag stopped at PeerTube 7.3.0 in December 2025; current images are Debian trixie based and tagged `production` (v8.x). Read the [PeerTube upgrade notes](https://docs.joinpeertube.org/install/docker) and the v8 changelog before switching. Postgres also moves from 13 (end of life) to 17, and a major Postgres version can't just be swapped: dump the database first (`docker compose exec postgres pg_dumpall -U <POSTGRES_USER> > peertube.sql`), start Postgres 17 with an empty `/mnt/tank/configs/peertube/db` folder, then restore the dump before starting PeerTube. Keep the old folder until you have confirmed it works.
+> **Upgrading an existing install?** The old `production-bookworm` tag stopped at PeerTube 7.3.0 in December 2025; current images are Debian trixie based and tagged `production` (v8.x). Read the [PeerTube upgrade notes](https://docs.joinpeertube.org/install/docker) and the v8 changelog before switching. Postgres also moves from 13 (end of life) to 17, and a major Postgres version can't just be swapped: dump the database first (`docker compose exec postgres pg_dumpall -U <POSTGRES_USER> > peertube.sql`), start Postgres 17 with an empty `/mnt/tank/configs/peertube/db` folder, then restore the dump before starting PeerTube. Keep the old folder until you have confirmed it works. Also keep your existing `POSTGRES_USER` in the `.env` below: older versions of this page used `POSTGRES_USER=admin`, and switching it to `peertube` on an existing database means PeerTube logs in as a role that doesn't own its data.
 {.is-warning}
 
 ## 1.1 env File
