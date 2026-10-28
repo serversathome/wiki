@@ -2,7 +2,7 @@
 title: Tugtainer
 description: A guide to deploying Tugtainer
 published: true
-date: 2026-07-01T01:24:10.483Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:09:08.384Z
@@ -44,6 +44,8 @@ services:
     environment:
       AGENT_SECRET: CHANGE_ME!
       TZ: America/New_York
+      # Uncomment for remote agents on your LAN (see section 4):
+      # AGENT_ALLOW_NETWORKS: "192.168.1.0/24"
     volumes:
       - /mnt/tank/configs/tugtainer:/tugtainer
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -76,6 +78,12 @@ services:
       PING: 1
       POST: 1
       VERSION: 1
+      ALLOW_LOGS: 1
+      ALLOW_START: 1
+      ALLOW_STOP: 1
+      ALLOW_RESTARTS: 1
+      ALLOW_PAUSE: 1
+      ALLOW_UNPAUSE: 1
       LOG_LEVEL: warning
       TZ: America/New_York
     volumes:
@@ -98,6 +106,8 @@ services:
       AGENT_SECRET: CHANGE_ME!
       DOCKER_HOST: tcp://socket-proxy:2375
       TZ: America/New_York
+      # Uncomment for remote agents on your LAN (see section 4):
+      # AGENT_ALLOW_NETWORKS: "192.168.1.0/24"
     volumes:
       - /mnt/tank/configs/tugtainer:/tugtainer
     networks:
@@ -109,7 +119,8 @@ services:
       dev.quenary.tugtainer.protected: "true"
 ```
 
-- `CONTAINERS`, `IMAGES`, `POST`, `INFO`, `PING` are the minimum for the **check** feature; `NETWORKS` is needed for the **update** feature.
+- `AGENT_SECRET` is **required**. Replace `CHANGE_ME!` with a strong, unique value, e.g. from `openssl rand -hex 32`.
+- `CONTAINERS`, `IMAGES`, `POST`, `INFO`, `PING` are the minimum for the **check** feature; `NETWORKS` is needed for the **update** feature. `ALLOW_LOGS` enables the logs view, and `ALLOW_START`/`ALLOW_STOP`/`ALLOW_RESTARTS`/`ALLOW_PAUSE`/`ALLOW_UNPAUSE` enable the container controls.
 - `DOCKER_HOST` points Tugtainer at the proxy over the Compose network. The service name `socket-proxy` resolves even though the container is named `tugtainer-socket-proxy`, so it won't collide with a socket-proxy in another stack.
 
 > The proxy container is marked `protected` so Tugtainer can't try to update the thing it depends on to reach Docker.
@@ -152,7 +163,7 @@ Two labels control how Tugtainer treats a container. Add them under `labels:` in
 | `dev.quenary.tugtainer.depends_on="db,cache"` | Declares a dependency on other containers by name, even outside the same Compose project.                                                            |
 {.dense}
 
-> You **cannot** update an **agent** or a **socket-proxy** from inside Tugtainer — they're how it talks to Docker. Don't put them in a Compose project alongside containers you auto-update, or the update will error. Mark them `protected` and recreate them manually (or with Portainer/Dockge).
+> You **cannot** update an **agent** or a **socket-proxy** from inside Tugtainer — they're how it talks to Docker. Don't put them in a Compose project alongside containers you auto-update, or the update will error. Mark them `protected` and recreate them manually (or with Portainer/Dockge). The Tugtainer app container itself can now update itself from the UI with the opt-in [self-update](https://github.com/Quenary/tugtainer/blob/main/docs/SELF_UPDATE.md) feature.
 {.is-warning}
 
 # 4 · Remote Hosts (Agent)
@@ -177,6 +188,7 @@ services:
 ```
 
 - The remote machine must be reachable from the primary instance.
+- Agent URLs on private or reserved networks are **blocked by default**; only the built-in agent at `127.0.0.1:8001` is allowed. For an agent on your LAN, set `AGENT_ALLOW_NETWORKS` (e.g. `192.168.1.0/24`) and/or `AGENT_ALLOW_ENDPOINTS` (e.g. `10.0.0.5:9413`) on the **primary** instance and redeploy it.
 - The backend and agent talk over **HTTP** — put a reverse proxy in front for HTTPS.
 - **AGENT_SECRET** signs backend↔agent requests; set it per host in the UI (even for the local agent).
 - The agent supports the same socket-proxy approach — drop the socket mount and set `DOCKER_HOST: tcp://socket-proxy:2375` instead.
@@ -187,7 +199,7 @@ Tugtainer uses **password auth by default**. The password is stored as an encryp
 
 ## 5.1 Password (default)
 
-Nothing to configure — set a password on first login. A couple of env vars are worth setting anyway:
+On the first start, grab the one-time setup code from the container logs (`docker logs tugtainer`) and set your password within **5 minutes**. If the code expires, restart the container to get a new one. A couple of env vars are worth setting anyway:
 
 - **`JWT_SECRET_KEY`** — set this to a fixed value. Otherwise it's regenerated on every restart and you're logged out each time the container bounces.
 - **`HTTPS=true`** — enables strict, HTTPS-only cookies. Set this when you front Tugtainer with a reverse proxy or tunnel.
@@ -240,14 +252,16 @@ The Docker CLI inside the container handles authentication from there. You can a
 
 # 7 · Environment Variables
 
-None are required, but these are the ones you'll actually reach for. The full list lives in the project's `.env.example`.
+Most are optional, but **`AGENT_SECRET` is required**. These are the ones you'll actually reach for. The full list lives in the project's `.env.example`.
 
 | Variable            | Applies to | Default            | Purpose                                                                    |
 | ------------------- | ---------- | ------------------ | -------------------------------------------------------------------------- |
 | `TZ`                | app, agent | UTC                | Timezone for schedules and logs.                                           |
 | `LOG_LEVEL`         | app, agent | `warning`          | `critical`, `error`, `warning`, `info`, `debug`, `trace`.                  |
 | `AGENT_ENABLED`     | app        | `true`             | Set `false` to disable the built-in agent (e.g. host with no socket access). |
-| `AGENT_SECRET`      | app, agent | empty              | Signs backend↔agent requests. Also set it per host in the UI.              |
+| `AGENT_SECRET`      | app, agent | empty              | **Required.** Signs backend↔agent requests. Also set it per host in the UI. |
+| `AGENT_ALLOW_NETWORKS` | app     | empty              | Networks allowed for agent host URLs, e.g. `192.168.1.0/24`. Needed for LAN agents. |
+| `AGENT_ALLOW_ENDPOINTS` | app    | `127.0.0.1:8001`   | Exact `host:port` endpoints allowed for agents (more precise alternative). |
 | `DOCKER_HOST`       | app, agent | empty              | Point at a socket-proxy, e.g. `tcp://socket-proxy:2375`.                    |
 | `DOCKER_CONFIG`     | app, agent | `~/.docker`        | Location of Docker client config (private registries).                     |
 | `DISABLE_AUTH`      | app        | `false`            | Turn off authentication entirely (front it with something else).           |
