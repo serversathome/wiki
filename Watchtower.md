@@ -2,7 +2,7 @@
 title: Watchtower
 description: A guide on how to install Watchtower for container updates
 published: true
-date: 2026-10-28T09:48:25.438Z
+date: 2026-10-28T12:00:00.000Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-15T15:03:01.108Z
@@ -37,11 +37,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 ```
 
-> I have added some custom environment variables to this compose file. For a full explanation of all possible variables, [see the docs](https://watchtower.nickfedor.com/v1.11.8/configuration/arguments/)
+> I have added some custom environment variables to this compose file. For a full explanation of all possible variables, [see the docs](https://watchtower.nickfedor.com/latest/)
 {.is-info}
 
-> Watchtower does not update apps from the TrueNAS catalog. To skip those, add this line to the `environment` section with the container names:
-> `- WATCHTOWER_DISABLE_CONTAINERS=`
+> Watchtower should not update apps from the TrueNAS catalog. The compose above already skips them (their containers are named `ix-*`) with the regex in `WATCHTOWER_DISABLE_CONTAINERS=^ix-.*`.
 {.is-warning}
 
 
