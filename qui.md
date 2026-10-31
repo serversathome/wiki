@@ -51,7 +51,7 @@ services:
 ## 2.1 Add Indexers
 
 1. Navigate to **Settings → Indexers**
-1. Click **1-click sync** to import from Prowlarr or Jackett
+1. Click **Discover**, enter your Prowlarr or Jackett URL and API key, then select the indexers to import
 
 > **Only sync your private trackers!** Public trackers aren't useful for cross-seeding and will cause rate limit errors.
 {.is-warning}
@@ -65,40 +65,84 @@ This enables IMDb/TMDb ID lookups for better cross-seed match accuracy.
 
 # 3 · Configure Cross-Seed
 
-Cross-seeding allows you to seed the same content on multiple trackers automatically. Qui finds cross-seeds four ways:
+Cross-seeding allows you to seed the same content on multiple trackers automatically. Everything lives on the **Cross-Seed** page, which has a sidebar split into three groups:
 
-- **Library Scan** searches your trackers for everything you already seed. This is how your existing library gets cross-seeded.
-- **RSS Automation** watches your trackers' feeds for new uploads that match something you already have.
-- **Auto-search on completion** searches for cross-seeds as soon as a new download finishes.
-- **Dir Scan** (optional) searches your trackers for media already on disk, even if it's no longer in qBittorrent.
+- **Sources**: how qui finds cross-seeds (**RSS**, **Webhook**, **Completion**, **Library**, **Directories**)
+- **Matching**: **Season packs** and **Matching rules**
+- **Injection**: **Categories and tags** and **After injection**
 
-## 3.1 Rules Tab
+Set up the global settings (3.1 to 3.3) first, then turn on the sources you want (3.4 onward). Each card has its own **Save Changes** button, so save before moving to the next tab.
 
-1. Navigate to **Cross-Seed → Rules**
-1. Expand **Hardlink / Reflink Mode** and select your instance
+## 3.1 Hardlink Mode
+
+1. Navigate to **Cross-Seed → After injection**
+1. Expand **Hardlink / Reflink Mode** and expand your instance
 1. Set **Cross-seed mode** to **Hardlink**
-1. Set **Base directory** to a folder on the same filesystem as your downloads (e.g., `/media/downloads/crossseed`)
-1. Set **Directory organization** to **Flat**
-1. Under **Categories**, select **Category affix** with Suffix: `.cross`
-1. Set **Size Mismatch Tolerance** to `0` (or `0.1%`)
-1. Toggle **Piece Boundary Safety Check** on
+1. Set **Base directories** to a folder on the same filesystem as your downloads (e.g., `/media/downloads/crossseed`)
+1. Set **Directory organization** to **Flat (all in base directory)**
+1. Click **Save Changes**
 
-> Reflink mode is safer if your filesystem supports it (ZFS, Btrfs). It creates copy-on-write clones so any writes don't affect your original files.
+> Reflink mode is safer if your filesystem supports it (Btrfs, or XFS with `reflink=1`). Check with `df -T /path`. It creates copy-on-write clones so any writes don't affect your original files.
 {.is-info}
 
-> The piece boundary check matters most in **Hardlink** mode. It blocks cross-seeds whose extra files share pieces with your content, which could otherwise let qBittorrent overwrite your existing data.
+> Hardlink and reflink modes need **Local Filesystem Access** turned on for the instance (step 2).
 {.is-warning}
 
-## 3.2 Library Scan (Existing Library)
+## 3.2 Matching Rules
+
+1. Navigate to **Cross-Seed → Matching rules**
+1. Under **Safety & validation**, toggle the **Piece boundary safety check** on
+1. Click **Save Changes**
+
+> The piece boundary check is **off by default**. It matters most in **Hardlink** mode. It blocks cross-seeds whose extra files share pieces with your content, which could otherwise let qBittorrent overwrite your existing data.
+{.is-warning}
+
+## 3.3 Categories
+
+1. Navigate to **Cross-Seed → Categories and tags**
+1. Select **Category affix**, choose **Suffix**, and enter `.cross`
+1. Click **Save Changes**
+
+> Every source tags its cross-seeds with `cross-seed` by default. You can change the tags on each source's tab, but leave `cross-seed` in place. The steps below rely on it.
+{.is-info}
+
+## 3.4 RSS Automation
+
+RSS watches your trackers' feeds for new uploads that match something you already have.
+
+1. Navigate to **Cross-Seed → RSS**
+1. Toggle **Enable RSS automation** on
+1. Set **RSS run interval (minutes)** to `60`-`120`
+1. Select your qBit instance under **Target instances**
+1. Leave **Target indexers** empty to use all enabled indexers
+1. Add `cross-seed` to **Exclude tags**
+1. Click **Save RSS automation settings**
+
+> Excluding the `cross-seed` tag makes qui match against your original torrents instead of existing cross-seeds.
+{.is-info}
+
+## 3.5 Auto-search on Completion
+
+Completion search looks for cross-seeds as soon as a new download finishes.
+
+1. Navigate to **Cross-Seed → Completion**
+1. In the **Auto-search on completion** card, toggle your qBit instance **On**
+1. Expand the instance and add `cross-seed` to the **Exclude filters** tags
+1. Save the instance settings
+
+> New cross-seeds finish a recheck after they're added, which counts as a completion. Excluding the `cross-seed` tag stops every cross-seed from triggering another search.
+{.is-info}
+
+## 3.6 Library Scan (Existing Library)
 
 RSS only sees new uploads, so it will never find matches for content you already have. Run a Library Scan once to backfill your existing library.
 
-1. Navigate to **Cross-Seed → Scan**
-1. Select your qBit instance
+1. Navigate to **Cross-Seed → Library**
+1. Select your qBit instance as the **Source instance**
 1. Under **Categories**, select your \*arr categories (e.g. `radarr` and `sonarr`, or `movies` and `tv`)
-1. Set **Interval** to `60` seconds
-1. Set **Cooldown** to `7` days
-1. Click **Start**
+1. Set **Interval between torrents (seconds)** to `60`
+1. Set **Cooldown (minutes)** to `10080` (7 days)
+1. Click **Start run**
 
 > Library Scan queries every indexer for every torrent. At 60 seconds per torrent, 1,000 torrents takes about 17 hours. Run it once, then rerun it occasionally to catch older content that shows up on new trackers. RSS handles everything new.
 {.is-warning}
@@ -106,36 +150,16 @@ RSS only sees new uploads, so it will never find matches for content you already
 > Only select your original categories here. Your `.cross` categories hold cross-seeds of the same content, so scanning them just repeats the work.
 {.is-info}
 
-## 3.3 RSS Automation
-
-1. Navigate to **Cross-Seed → Auto**
-1. Toggle **Enable RSS automation** on
-1. Set **RSS run interval** to 60-120 minutes
-1. Select your qBit instance under **Target instances**
-1. Leave **Target indexers** empty to use all enabled indexers
-1. Add `cross-seed` to **Exclude tags**
-1. Click **Save RSS automation settings**
-
-> RSS compares new uploads in your trackers' feeds against torrents you already have. Excluding the `cross-seed` tag makes qui match against your original torrents instead of existing cross-seeds. Qui tags every cross-seed with `cross-seed` by default, so this works no matter what your categories are called.
-{.is-info}
-
-## 3.4 Auto-search on Completion
-
-1. Toggle your qBit instance **On**
-1. Expand the instance settings
-1. Add `cross-seed` to **Exclude tags**
-
-> New cross-seeds finish a recheck after they're added, which counts as a completion. Excluding the `cross-seed` tag stops every cross-seed from triggering another search.
-{.is-info}
-
-## 3.5 Dir Scan (Optional)
+## 3.7 Dir Scan (Optional)
 
 Library Scan only looks at torrents in qBittorrent. Dir Scan looks at files on disk instead, so it can cross-seed content you removed from qBittorrent or never downloaded by torrent. It needs **Local Filesystem Access** on the target instance and read access to the folder.
 
 ### Global Settings
 
-1. Navigate to **Cross-Seed → Directories** and open **Dir Scan Settings**
-1. Set **Match Mode** to **Strict** (use **Flexible** only if your files have been renamed)
+1. Navigate to **Cross-Seed → Directories**
+1. Toggle the **Directory Scanner** switch to **Enabled**
+1. Click **Settings** to open **Directory Scanner Settings**
+1. Set **Match Mode** to **Strict (name + size)** (use **Flexible** only if your files have been renamed)
 1. Set **Size Tolerance (%)** to `0`
 1. Leave **Allow partial matches** off
 1. Leave **Download missing files** on (the default)
@@ -143,10 +167,11 @@ Library Scan only looks at torrents in qBittorrent. Dir Scan looks at files on d
 1. Leave **Start torrents paused** off
 1. Set **Max searchees per run** to `0` (unlimited), or a smaller number to spread a large first scan across several runs
 1. Set **Only process items changed within the last (days)** to `0` to scan everything, or a number of days to skip old content
-1. Set **Default Tags** to `cross-seed`
 1. Set **Default Category** to a category for these cross-seeds (e.g. `dirscan.cross`)
+1. Set **Tags** to `cross-seed`
+1. Click **Save**
 
-> Dir Scan adds torrents with an explicit save path and AutoTMM off. The **Category affix** and tag settings on the Rules tab don't apply here, so the category and tags come only from these settings. Adding the `cross-seed` tag keeps the RSS and completion exclude rules working.
+> Dir Scan adds torrents with an explicit save path and AutoTMM off. The **Category affix** and the source tags from the other tabs don't apply here, so the category and tags come only from these settings. Adding the `cross-seed` tag keeps the RSS and completion exclude rules working.
 {.is-info}
 
 > Leave partial matches off unless you need them. With partial matches on, qBittorrent can download missing files (like `.nfo` or subtitles) into the scanned folder.
@@ -154,12 +179,16 @@ Library Scan only looks at torrents in qBittorrent. Dir Scan looks at files on d
 
 ### Add a Directory
 
-1. Add a directory and set **Directory Path** to a single category folder (e.g. `/media/downloads/movies`)
+1. Click **Add Directory** and set **Directory Path** to a single category folder (e.g. `/media/downloads/movies`)
 1. Leave **qBittorrent Path Prefix** empty. The compose above mounts `/media` the same way as qBittorrent
 1. Select your qBit instance as the **Target qBittorrent Instance**
-1. Set **Scan Interval** to `1440` minutes (24 hours, the default)
+1. Set **Scan Interval (minutes)** to `1440` (24 hours, the default)
 1. For TV folders, toggle **Skip individual episodes** on to search for season packs
-1. Repeat for each category folder, then click **Scan Now**
+1. Click **Add Directory** to save it
+1. Repeat for each category folder, then click the ▶ play button on a directory card to start a scan
+
+> Set up hardlink or reflink mode (3.1) first. In regular mode, Dir Scan warns that the orphan scanner will treat the folder as a scan root and flag any unmatched files as orphans.
+{.is-warning}
 
 > Each item directly inside the path is searched as one release. Add one entry per category folder (movies, TV, music). Don't point it at a parent folder that holds several categories, or at a single release folder.
 {.is-info}
