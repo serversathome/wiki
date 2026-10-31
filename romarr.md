@@ -32,7 +32,7 @@ dateCreated: 2026-10-31T12:00:00.000Z
 ```yaml
 services:
   romarr:
-    image: ghcr.io/blizzhacker/romarr:1.8.0
+    image: ghcr.io/blizzhacker/romarr:latest
     container_name: romarr
     restart: unless-stopped
     ports:

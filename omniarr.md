@@ -33,7 +33,7 @@ dateCreated: 2026-10-31T12:00:00.000Z
 ```yaml
 services:
   omniarr:
-    image: wonderalice/omniarr:1.2.2
+    image: wonderalice/omniarr:latest
     container_name: omniarr
     restart: unless-stopped
     ports:
@@ -51,7 +51,7 @@ services:
 > OmniArr keeps everything (admin password, API keys, integration settings) in a single encrypted file inside `/app/data`. If that folder is not mounted, every setting is lost the next time the container is recreated.
 {.is-warning}
 
-> OmniArr is distributed as a private project, not under an open source license. Pin a version tag like `1.2.2` and read the changelog before upgrading.
+> OmniArr is distributed as a private project, not under an open source license.
 {.is-info}
 
 # 2 · Configuration

@@ -34,7 +34,7 @@ dateCreated: 2026-10-31T12:00:00.000Z
 ```yaml
 services:
   uptime-kotlin:
-    image: ghcr.io/theomeunier/uptime-kotlin:1.5.0
+    image: ghcr.io/theomeunier/uptime-kotlin:latest
     container_name: uptime-kotlin
     restart: unless-stopped
     mem_limit: 512m

@@ -34,7 +34,7 @@ dateCreated: 2026-10-31T12:00:00.000Z
 ```yaml
 services:
   hi-events:
-    image: daveearley/hi.events-all-in-one:v2.0.0
+    image: daveearley/hi.events-all-in-one:latest
     container_name: hi-events
     restart: unless-stopped
     ports:

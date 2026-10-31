@@ -33,7 +33,7 @@ dateCreated: 2026-10-31T12:00:00.000Z
 ```yaml
 services:
   dashbrr:
-    image: ghcr.io/autobrr/dashbrr:v0.7.0
+    image: ghcr.io/autobrr/dashbrr:latest
     container_name: dashbrr
     restart: unless-stopped
     user: "568:568"
