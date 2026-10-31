@@ -65,11 +65,12 @@ This enables IMDb/TMDb ID lookups for better cross-seed match accuracy.
 
 # 3 · Configure Cross-Seed
 
-Cross-seeding allows you to seed the same content on multiple trackers automatically. Qui finds cross-seeds three ways, and you want all three:
+Cross-seeding allows you to seed the same content on multiple trackers automatically. Qui finds cross-seeds four ways:
 
 - **Library Scan** searches your trackers for everything you already seed. This is how your existing library gets cross-seeded.
 - **RSS Automation** watches your trackers' feeds for new uploads that match something you already have.
 - **Auto-search on completion** searches for cross-seeds as soon as a new download finishes.
+- **Dir Scan** (optional) searches your trackers for media already on disk, even if it's no longer in qBittorrent.
 
 ## 3.1 Rules Tab
 
@@ -126,6 +127,45 @@ RSS only sees new uploads, so it will never find matches for content you already
 
 > New cross-seeds finish a recheck after they're added, which counts as a completion. Excluding the `cross-seed` tag stops every cross-seed from triggering another search.
 {.is-info}
+
+## 3.5 Dir Scan (Optional)
+
+Library Scan only looks at torrents in qBittorrent. Dir Scan looks at files on disk instead, so it can cross-seed content you removed from qBittorrent or never downloaded by torrent. It needs **Local Filesystem Access** on the target instance and read access to the folder.
+
+### Global Settings
+
+1. Navigate to **Cross-Seed → Directories** and open **Dir Scan Settings**
+1. Set **Match Mode** to **Strict** (use **Flexible** only if your files have been renamed)
+1. Set **Size Tolerance (%)** to `0`
+1. Leave **Allow partial matches** off
+1. Leave **Download missing files** on (the default)
+1. Leave **Skip piece boundary safety check** off
+1. Leave **Start torrents paused** off
+1. Set **Max searchees per run** to `0` (unlimited), or a smaller number to spread a large first scan across several runs
+1. Set **Only process items changed within the last (days)** to `0` to scan everything, or a number of days to skip old content
+1. Set **Default Tags** to `cross-seed`
+1. Set **Default Category** to a category for these cross-seeds (e.g. `dirscan.cross`)
+
+> Dir Scan adds torrents with an explicit save path and AutoTMM off. The **Category affix** and tag settings on the Rules tab don't apply here, so the category and tags come only from these settings. Adding the `cross-seed` tag keeps the RSS and completion exclude rules working.
+{.is-info}
+
+> Leave partial matches off unless you need them. With partial matches on, qBittorrent can download missing files (like `.nfo` or subtitles) into the scanned folder.
+{.is-warning}
+
+### Add a Directory
+
+1. Add a directory and set **Directory Path** to a single category folder (e.g. `/media/downloads/movies`)
+1. Leave **qBittorrent Path Prefix** empty. The compose above mounts `/media` the same way as qBittorrent
+1. Select your qBit instance as the **Target qBittorrent Instance**
+1. Set **Scan Interval** to `1440` minutes (24 hours, the default)
+1. For TV folders, toggle **Skip individual episodes** on to search for season packs
+1. Repeat for each category folder, then click **Scan Now**
+
+> Each item directly inside the path is searched as one release. Add one entry per category folder (movies, TV, music). Don't point it at a parent folder that holds several categories, or at a single release folder.
+{.is-info}
+
+> Dir Scan waits 60 seconds between searches, so the first scan of a large folder can take hours or days. Scanning your downloads folder is safer than scanning your \*arr library folders.
+{.is-warning}
 
 # 4 · Configure Automations
 
