@@ -1,5 +1,5 @@
 ---
-title: *Arr Stack
+title: '*Arr Stack'
 description: 
 published: true
 date: 2026-10-28T12:00:00.000Z
@@ -49,13 +49,9 @@ dateCreated: 2026-01-28T21:27:05.188Z
 - [<img src="/slskd.png"> Soulseek<br>*Music-sharing network*](/soulseek)
 - [🔍 Suggestarr<br>*Automated recommendations based on watch activity*](/suggestarr)
 - [<img src="/tasterr.svg"> Tasterr<br>*Netflix-style discovery and requests on top of Seerr*](/tasterr)
-
 {.links-list .arr}
 
 # Books {.sec .arr}
-
-
-
 - [<img src="/chaptarr.png"> Chaptarr<br>*Book collection manager, the Readarr successor*](/chaptarr)
 {.links-list .arr}
 
