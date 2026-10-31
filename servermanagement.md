@@ -38,6 +38,7 @@ dateCreated: 2026-01-15T15:08:30.750Z
 - [<img src="/scrutiny-light.png"> Scrutiny<br>*SMART drive health with history*](/scrutiny)
 - [<img src="/uptime-kuma.png"> Uptime Kuma<br>*Uptime monitoring and status pages*](/Kuma)
 - [<img src="/uptimekit.png"> Uptime Kit<br>*Simple uptime dashboard for sites and APIs*](/uptimekit)
+- [<img src="/uptime-kotlin.png"> Uptime Kotlin<br>*Lightweight uptime monitor with status pages*](/uptime-kotlin)
 - [<img src="/checkcle.png"> Checkcle<br>*Full-stack monitoring with incident tracking*](/checkcle)
 - [GPU Hot<br>*Real-time NVIDIA GPU monitoring*](/gpuhot)
 - [<img src="/nutify.png"> Nutify<br>*UPS health and battery monitoring*](/nutify)

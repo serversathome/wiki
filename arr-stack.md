@@ -33,6 +33,7 @@ dateCreated: 2026-01-28T21:27:05.188Z
 - [<img src="/mediamanager.png"> Media Manager<br>*Media manager and requester*](/mediamanager)
 - [<img src="/prowlarr.png"> Prowlarr<br>*Indexer manager and proxy for the \*arr apps*](/Prowlarr)
 - [<img src="/radarr.png"> Radarr<br>*Movie organizer for Usenet and torrent users*](/radarr)
+- [<img src="/romarr.png"> ROMarr<br>*The \*arr for retro games and ROMs*](/romarr)
 - [<img src="/sonarr.png"> Sonarr<br>*TV organizer for Usenet and torrent users*](/Sonarr)
 - [<img src="/sportarr.png"> Sportarr<br>*A PVR for sports, built like Sonarr*](/sportarr)
 {.links-list .arr}
@@ -43,6 +44,7 @@ dateCreated: 2026-01-28T21:27:05.188Z
 - [<img src="/boxarr.png"> Boxarr<br>*Monitors weekly box office charts*](/boxarr)
 - [📋 Listseerr<br>*Request everything on a list straight into Seerr*](/listseerr)
 - [<img src="/ombi.png"> Ombi<br>*Media request and discovery manager*](/ombi)
+- [🎬 OmniArr<br>*Jellyfin discovery and requests for Sonarr and Radarr*](/omniarr)
 - [<img src="/pulsarr.png"> Pulsarr<br>*Plex watchlist monitoring, routing and notifications*](/pulsarr)
 - [<img src="/seerr.png"> Seerr<br>*Media request and discovery manager*](/seerr)
 - [🍷 Sommelierr<br>*Random content recommender*](/sommelierr)
@@ -71,6 +73,7 @@ dateCreated: 2026-01-28T21:27:05.188Z
 {.links-list .arr}
 
 # Stats and dashboards {.sec .arr}
+- [<img src="/dashbrr.png"> Dashbrr<br>*Live dashboard for your media and \*arr stack*](/dashbrr)
 - [🗂️ Prismarr<br>*One interface over Radarr, Sonarr, Prowlarr and more*](/prismarr)
 - [📊 Sonarr Analyzer<br>*Average episode size per series*](/sonarranalyzer)
 - [💾 Sortarr<br>*Storage insights across Sonarr and Radarr*](/sortarr)

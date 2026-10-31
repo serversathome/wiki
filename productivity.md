@@ -121,6 +121,7 @@ dateCreated: 2026-01-15T15:07:28.852Z
 - [<img src="/journiv.png"> Journiv<br>*Private journalling*](/journiv)
 - [Openresto<br>*Restaurant booking management*](/openresto)
 - [<img src="/calnode.png"> Calnode<br>*Calendly alternative in a single binary*](/calnode)
+- [<img src="/hi-events.png"> Hi.Events<br>*Ticketing and event management, an Eventbrite alternative*](/hi-events)
 {.links-list .apps}
 
 # Automation and dev {.sec .apps}
