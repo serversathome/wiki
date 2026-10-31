@@ -97,7 +97,3 @@ services:
 
 > Browser push notifications only work over HTTPS or on `localhost`. Put Uptime Kotlin behind your reverse proxy if you want them.
 {.is-info}
-
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-
-*No video yet, check back soon!*

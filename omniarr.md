@@ -78,7 +78,3 @@ services:
 
 ## 2.3 User Logins
 Once Jellyfin is connected, everyone else signs in by picking their Jellyfin profile on the login screen and entering their normal Jellyfin password. Sessions last 12 hours.
-
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-
-*No video yet, check back soon!*

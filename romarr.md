@@ -82,7 +82,3 @@ services:
 
 > Already have ROMs on disk? The **Setup Guide** under Settings has an "I already have ROMs" path that scans `/downloads` and imports what it finds, no indexer needed.
 {.is-success}
-
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-
-*No video yet, check back soon!*

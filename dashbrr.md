@@ -93,7 +93,3 @@ To sign in through Authentik, Pocket ID or another OIDC provider, add these to t
 ```
 
 The login page then shows an OIDC button alongside the built-in login.
-
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-
-*No video yet, check back soon!*
