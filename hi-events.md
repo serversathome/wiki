@@ -34,7 +34,7 @@ dateCreated: 2026-10-31T12:00:00.000Z
 ```yaml
 services:
   hi-events:
-    image: daveearley/hi.events-all-in-one:v2.0.0
+    image: daveearley/hi.events-all-in-one:latest
     container_name: hi-events
     restart: unless-stopped
     ports:
@@ -160,7 +160,3 @@ Free events work without Stripe. To sell paid tickets:
 
 > Hi.Events is AGPL licensed with one extra term: the "Powered by Hi.Events" footer must stay unless you buy a commercial license. Reserved seating and the box office are Enterprise features that need a license key.
 {.is-info}
-
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-
-*No video yet, check back soon!*

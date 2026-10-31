@@ -34,7 +34,7 @@ dateCreated: 2026-10-31T12:00:00.000Z
 ```yaml
 services:
   uptime-kotlin:
-    image: ghcr.io/theomeunier/uptime-kotlin:1.5.0
+    image: ghcr.io/theomeunier/uptime-kotlin:latest
     container_name: uptime-kotlin
     restart: unless-stopped
     mem_limit: 512m
@@ -97,7 +97,3 @@ services:
 
 > Browser push notifications only work over HTTPS or on `localhost`. Put Uptime Kotlin behind your reverse proxy if you want them.
 {.is-info}
-
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-
-*No video yet, check back soon!*
