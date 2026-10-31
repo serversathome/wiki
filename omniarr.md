@@ -8,7 +8,7 @@ editor: markdown
 dateCreated: 2026-10-31T12:00:00.000Z
 ---
 
-# <img src="/omniarr.png" class="tab-icon"> What is OmniArr?
+# What is OmniArr?
 
 **OmniArr** is a media discovery and request dashboard for Jellyfin households. It brings Jellyfin, Sonarr, Radarr and TMDb together in one interface, so your users can browse the library, find something new, request it and watch it download without ever touching the \*arr apps.
 

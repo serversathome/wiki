@@ -44,7 +44,7 @@ dateCreated: 2026-01-28T21:27:05.188Z
 - [<img src="/boxarr.png"> Boxarr<br>*Monitors weekly box office charts*](/boxarr)
 - [📋 Listseerr<br>*Request everything on a list straight into Seerr*](/listseerr)
 - [<img src="/ombi.png"> Ombi<br>*Media request and discovery manager*](/ombi)
-- [🎬 OmniArr<br>*Jellyfin discovery and requests for Sonarr and Radarr*](/omniarr)
+- [OmniArr<br>*Jellyfin discovery and requests for Sonarr and Radarr*](/omniarr)
 - [<img src="/pulsarr.png"> Pulsarr<br>*Plex watchlist monitoring, routing and notifications*](/pulsarr)
 - [<img src="/seerr.png"> Seerr<br>*Media request and discovery manager*](/seerr)
 - [🍷 Sommelierr<br>*Random content recommender*](/sommelierr)
