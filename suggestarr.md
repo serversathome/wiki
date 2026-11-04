@@ -2,7 +2,7 @@
 title: Suggestarr
 description: A guide to deploying the Suggestarr container in docker
 published: true
-date: '2026-11-04T16:23:33.682Z'
+date: '2026-11-04T23:31:44.555Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:08:48.830Z'
@@ -42,16 +42,19 @@ In order for Suggestarr to request media, it needs a **Local User** in Seerr.
 
 This is necessary for Suggestarr to be able to browse media to recommend content.
 
+::block-steps
 1. Navigate to [TMDB](https://www.themoviedb.org/)
 1. Create a login
 1. Navigate to the user menu (circle in the top right corner)
 1. Select **Settings → API**
 1. Create an API Key
+::
 
 # 4 · Suggestarr Configuration
 
 Navigate to your server IP and port 5000.
 
+::block-steps
 1. Create the first **admin account**
 1. Follow the setup wizard and enter the TMDB API Key you just created
 1. Select the media server you use (Plex, Jellyfin, or Emby) and enter its URL and API Key/token
@@ -61,6 +64,7 @@ Navigate to your server IP and port 5000.
 1. Have each user link their media server account from their **Profile**
 1. Go to the **Jobs** page and create a job. Select the parameters of the content you would like. I suggest changing the **Region**, **Content**, **Release Year**, and probably **Number of Seasons**, and set a schedule
 1. Run the job as a dry run first and check the results in Seerr before turning on full automation
+::
 
 > [!NOTE]
 > Use your server's IP (not `localhost`) for the media server and Seerr URLs. Inside the container, `localhost` points at SuggestArr itself.
