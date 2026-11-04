@@ -2,7 +2,7 @@
 title: Uptime Kotlin
 description: A guide to deploying Uptime Kotlin
 published: true
-date: '2026-11-04T16:24:18.359Z'
+date: '2026-11-04T23:32:22.505Z'
 tags: []
 editor: markdown
 dateCreated: '2026-10-31T10:33:18.459Z'
@@ -50,6 +50,7 @@ services:
       - /mnt/tank/configs/uptime-kotlin/postgres:/var/lib/postgresql
 ```
 
+::block-steps
 1. Generate a master key in the TrueNAS shell and paste it into `ENCRYPTION_MASTER_KEY`:
     ```bash
     openssl rand -base64 32
@@ -57,6 +58,7 @@ services:
 1. Change both `CHANGE_ME` passwords. `QUARKUS_DATASOURCE_PASSWORD` must match `POSTGRES_PASSWORD`
 1. Set `TZ` to your timezone
 1. Deploy the stack and open `http://YOUR-SERVER-IP:8080`
+::
 
 > [!CAUTION]
 > The master key encrypts every stored secret (notification tokens, database passwords for monitors and the login signing key). Save it in your password manager. If you lose it, those secrets cannot be recovered.
@@ -74,14 +76,20 @@ services:
 1. Enter your name, email and a password of at least 8 characters
 
 ## 2.2 Add Monitors
+
+::block-steps
 1. Click **New Monitor** and pick the check type (HTTP, TCP, ping, DNS and so on)
 1. Enter the target and the check interval
 1. Save, and the monitor starts reporting on the dashboard right away
+::
 
 ## 2.3 Notifications and Status Pages
+
+::block-steps
 1. Add a notification channel (Discord, ntfy, Gotify, email and others) and attach it to your monitors
 1. Optionally enable reminders so you keep getting pinged while a service stays down
 1. Create a **Status Page**, pick which monitors to show and choose a grid or list layout
+::
 
 > [!NOTE]
 > Browser push notifications only work over HTTPS or on `localhost`. Put Uptime Kotlin behind your reverse proxy if you want them.
