@@ -2,7 +2,7 @@
 title: Bichon
 description: A guide to deploying Bichon
 published: true
-date: '2026-11-04T16:23:19.783Z'
+date: '2026-11-04T23:31:32.979Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:03:27.886Z'
@@ -35,7 +35,10 @@ services:
 > Save this value; if you lose or change it, saved account credentials can't be decrypted.
 
 # 2 · Logging In
+
+::block-steps
 1. Browse to `http://your-server-ip:15630`
 2. Log in with username `admin` and password `admin@bichon`
 3. Change the password right away under **Settings → Profile**
+::
 
