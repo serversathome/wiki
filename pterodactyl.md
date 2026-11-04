@@ -2,7 +2,7 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: '2026-11-04T15:58:45.886Z'
+date: '2026-11-04T23:31:50.467Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:35.530Z'
@@ -26,6 +26,8 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
     - **Default Network → Bridge** = the bridge your LAN is on (e.g. `br1`). If you don't have one yet, make one in **Network → Interfaces** first.
     
 ## 2.2 Create Dataset & Container
+
+::block-steps
 1. Create a dataset for game server volumes: **Datasets → Add Dataset**, parent = your pool, name = `pterodactyl`, preset = **Generic**, save. No permission changes needed — the container runs privileged and Wings will manage ownership itself.
 1. Create the container: **Containers → Create New Container**
     - **Name**: `pterodactyl`
@@ -53,8 +55,11 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
     apt install -y curl ca-certificates
     EOF
     ```
+::
 
 ## 2.3 Install Pterodactyl & Wings
+
+::block-steps
 1. Then run the Pterodactyl installer:
     ```bash
       curl -o /tmp/ptero-install.sh https://pterodactyl-installer.se && bash /tmp/ptero-install.sh   
@@ -87,10 +92,12 @@ Under the hood, **Wings** (the daemon) runs each game server inside its own Dock
      - **Configure HTTPS**: `no` (default)
      
 1. When it finishes it prints the URL for the Panel. Log in as the admin user you just created.
+::
 
 # 3 · Add Your Node in the Panel
 This tells the Panel that Wings (on the same container) is the place to run game servers.
 
+::block-steps
 1. Navigate to **Locations** in the left sidebar and create a location with and short code
 1. Panel → **Admin** (gear icon) → **Nodes** → **Create New**
 
@@ -118,22 +125,28 @@ This tells the Panel that Wings (on the same container) is the place to run game
     ```bash
     systemctl enable --now wings && systemctl status wings --no-pager | head
     ```
+::
 
 If you refresh the Nodes page in the Panel, the node should now have a green heart.
 
 # 4 · Add Allocations (IP:Port pairs for game servers)
 Each game server needs at least one IP:port allocation.
 
+::block-steps
 1. Node → **Allocation** tab → **Assign New Allocations**
 1. **IP Address**: the container's LAN IP
 1. **Ports**: a range for game servers (e.g. `25565-25575` for Minecraft, or a wider range). You can add more later.
 1. **Submit**
+::
 
 # 5 · Create Your First Server
+
+::block-steps
 1. Panel → **Servers** → **Create New**
 1. Pick an owner, a Node, an Allocation, and a game Egg (Minecraft Java Vanilla is a safe first test — Pterodactyl ships with it by default).
 1. Give it RAM/CPU/disk limits, hit **Create**.
 1. Watch Wings pull the Docker image, install the server files, and start it up.
+::
 
 # 6 · Router / Firewall
 Because the container is on your LAN bridge (not NATed), its IP is reachable from your LAN directly. To expose game servers to the internet, forward the allocation ports on your router to the container's IP (no port-forward magic needed on TrueNAS itself). 
