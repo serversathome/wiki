@@ -2,7 +2,7 @@
 title: Seafile
 description: A guide to deploying Seafile
 published: true
-date: '2026-11-04T16:24:09.469Z'
+date: '2026-11-04T23:32:11.624Z'
 tags: []
 editor: markdown
 dateCreated: '2026-04-18T12:46:01.658Z'
@@ -173,10 +173,12 @@ Log in at your Seafile URL with the `INIT_SEAFILE_ADMIN_EMAIL` and `INIT_SEAFILE
 
 A **library** is Seafile's unit of storage — equivalent to a folder that you can sync, share, or encrypt independently. From the main view:
 
+::block-steps
 1. Click **New Library**
 2. Give it a name (e.g. `Documents`, `Photos`)
 3. Optionally enable **encryption** with a password (client-side, zero-knowledge — even the admin can't read it)
 4. Click **Submit**
+::
 
 > [!NOTE]
 > Encrypted libraries cannot be previewed in the web UI or indexed for search. If you want full-text search or online editing, leave encryption off and rely on transport (HTTPS) and at-rest (ZFS encryption) protection instead.
