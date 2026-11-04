@@ -2,7 +2,7 @@
 title: Atlas
 description: A guide to deploying Atlas
 published: true
-date: '2026-11-04T16:23:57.107Z'
+date: '2026-11-04T23:31:59.861Z'
 tags: []
 editor: markdown
 dateCreated: '2026-02-03T13:49:34.086Z'
@@ -46,10 +46,12 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 ```
 
+::block-steps
 1. Deploy the stack
 2. Navigate to `http://your-server-ip:8888`
 3. Log in as `admin` with the `ATLAS_ADMIN_PASSWORD` you set
 4. Atlas will automatically begin scanning your network
+::
 
 > [!WARNING]
 > Set `ATLAS_ADMIN_PASSWORD`; without it the UI and API are open.
