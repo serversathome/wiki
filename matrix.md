@@ -2,7 +2,7 @@
 title: Matrix Server
 description: A guide to deploying a Matrix server
 published: true
-date: '2026-11-04T16:24:19.248Z'
+date: '2026-11-04T23:32:20.739Z'
 tags: []
 editor: markdown
 dateCreated: '2026-03-17T13:27:24.544Z'
@@ -400,12 +400,14 @@ Add two routes to the Cloudflare Tunnel running on the VPS. Because lk-jwt-servi
 
 ## 3.5 How Calls Work
 
+::block-steps
 1. Client asks Synapse for its MatrixRTC transports (or, on older clients, reads `rtc_foci` from `/.well-known/matrix/client`) and discovers the LiveKit URL (`rtc.yourdomain.com`)
 2. Client requests a JWT from lk-jwt-service at `https://rtc.yourdomain.com/get_token` (older clients use `/sfu/get`), providing an OpenID token from Synapse
 3. lk-jwt-service validates the token against Synapse and returns a signed LiveKit JWT
 4. Client connects to the LiveKit SFU using the JWT over WebSocket (through the Cloudflare Tunnel)
 5. Voice/video media flows directly over UDP between the client and LiveKit on the VPS public IP
 6. Your home IP is never exposed — all signaling goes through tunnels, all media goes through the VPS
+::
 
 ## 3.6 Verify
 
@@ -456,8 +458,10 @@ curl https://rtc.yourdomain.com/healthz
 
 Once deployed, verify federation is working:
 
+::block-steps
 1. Visit the [Matrix Federation Tester](https://federationtester.matrix.org/) and enter `yourdomain.com`
 2. Confirm it resolves to `matrix.yourdomain.com:443` via `.well-known`
 3. Check that the server responds with valid TLS (handled by Cloudflare)
+::
 
 
