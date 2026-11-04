@@ -2,7 +2,7 @@
 title: Nextcloud
 description: A guide to deploying Nextcloud on TrueNAS Scale and via docker compose
 published: true
-date: '2026-11-04T16:24:06.474Z'
+date: '2026-11-04T23:32:08.376Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:06:39.801Z'
@@ -39,6 +39,7 @@ I have changed the **PUID** and **PGID** to the TrueNAS `apps` user and group. I
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 ![](/screenshot-from-2024-11-06-11-06-46.png)
 
+::block-steps
 1. Under the **Nextcloud Configuration** add the **ffmpeg, smbclinet, and ocrmypdf** packages
 1. Add a **Tesseract Language Codes** set to **eng** (if you speak english)
 1. When doing the deployment, make sure to use secure passwords for the **Admin User**, **Admin Password**, **Redis Password**, and **Database Password**
@@ -46,6 +47,7 @@ I have changed the **PUID** and **PGID** to the TrueNAS `apps` user and group. I
 1. The **Host** should be the FQDN you plan to use (like nextcloud.example.com)
 
 1. For the **Storage Configuration** make either datasets or subdirectories for the AppData Storage, User Data Storage and Postgres Data Storage. They all must be in separate directories. 
+::
 
 > [!CAUTION]
 > When setting the hostpath for the Postgres dataset make sure to check the box for **Automatic Permissions** or the app won't launch!
@@ -118,9 +120,12 @@ Once that is enabled navigate to **Administration Settings** → **External Stor
 ## 3.3 Logging in With Your Phone
 
 To access the fastest way via mobile, use a QR code to login. To generate the QR code:
+
+::block-steps
 1. Navigate to **Administration Setings → Security**
 1. At the bottom, add an **App name** then click the blue button next to it to **Create a new app password**
 1. Click the button to **Show QR code for mobile apps**
+::
 
 # 4 · Office Suite Overview
 
@@ -212,9 +217,11 @@ The connection must work in **both** directions: the browser and Nextcloud must 
 
 ### 4.2.3 Nextcloud Settings
 
+::block-steps
 1. Go to **Apps → Office** and select the **Nextcloud Office (Powered by Euro-Office)** card. Install the connector if prompted.
 2. Open **Administration Settings → Office** and set the **Document Server address** to your proxy FQDN (e.g. `https://office.example.com/`). Use the public FQDN, not a LAN IP — the connector blocks local addresses by default.
 3. Enter the **Secret key (JWT)** matching your compose `JWT_SECRET` and save. You should see a green "server is reachable" confirmation.
+::
 
 
 
