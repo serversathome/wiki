@@ -2,7 +2,7 @@
 title: Dockhand
 description: A guide to depoying Dockhand
 published: true
-date: '2026-11-04T16:17:07.147Z'
+date: '2026-11-04T23:32:08.621Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:04:20.950Z'
@@ -46,6 +46,7 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Dockhand is in the **Community** train of the TrueNAS Apps catalog (maintained by iX), so you can install it from the UI:
 
+::block-steps
 1. Go to **Apps** → **Discover** and search for **Dockhand**.
 2. Click **Install**.
 3. Configure the key settings:
@@ -55,6 +56,7 @@ Dockhand is in the **Community** train of the TrueNAS Apps catalog (maintained b
    - **Resources** — the memory limit defaults to 4096 MB; adjust to taste.
 4. Click **Install** and wait for the app to report **Running**.
 5. Open the **Web UI** from the app's card.
+::
 
 ::
 
@@ -64,10 +66,12 @@ Dockhand is in the **Community** train of the TrueNAS Apps catalog (maintained b
 
 By default a fresh Dockhand instance starts with **authentication OFF** — anyone who can reach the port has full control of your Docker hosts. Lock it down before exposing it anywhere:
 
+::block-steps
 1. In the left sidebar, open **Settings** → **Authentication** → **Users**.
 2. Click **Add User** and create your admin account (username + password).
 3. Back on the Authentication screen, flip the **Authentication** toggle from **OFF** to **ON**.
 4. Sign out and confirm you're prompted to log in.
+::
 
 > [!CAUTION]
 > Never expose a no-auth Dockhand instance to the internet or an untrusted LAN. Access to the Docker socket is effectively root on the host. Keep it behind your reverse proxy / Zero Trust and only enable it after auth is on.
