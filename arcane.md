@@ -2,7 +2,7 @@
 title: Arcane
 description: A guide to deploying Arcane in docker
 published: true
-date: '2026-11-04T16:23:15.874Z'
+date: '2026-11-04T23:31:29.501Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:03:09.587Z'
@@ -61,6 +61,7 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Arcane is in the TrueNAS **Community** train.
 
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI and click **Discover Apps**.
 2. Search for **Arcane** and click **Install**.
 3. Configure the key settings:
@@ -71,6 +72,7 @@ Arcane is in the TrueNAS **Community** train.
    - **Docker Socket**: the app mounts `/var/run/docker.sock` automatically.
 4. The app runs as user/group **568** (the `apps` group) by default.
 5. Click **Install** and wait for the **Running** state.
+::
 
 ::
 
