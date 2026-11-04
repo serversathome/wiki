@@ -2,7 +2,7 @@
 title: Sportarr
 description: A guide to deploying Sportarr
 published: true
-date: '2026-11-04T16:23:30.564Z'
+date: '2026-11-04T23:31:30.182Z'
 tags: []
 editor: markdown
 dateCreated: '2026-02-10T16:23:09.485Z'
@@ -54,6 +54,7 @@ After deployment, navigate to `http://your-server-ip:1867` and configure the fol
 
 If you use [Prowlarr](/Prowlarr), you can sync your indexers automatically. Sportarr isn't listed as its own app in Prowlarr yet, but the **Sonarr** option works since Sportarr exposes a compatible API:
 
+::block-steps
 1. In Sportarr, go to **Settings → General** and copy your **API Key**
 2. In Prowlarr, go to **Settings → Apps → Add Application**
 3. Select **Sonarr** as the application type
@@ -62,6 +63,7 @@ If you use [Prowlarr](/Prowlarr), you can sync your indexers automatically. Spor
 6. Select **TV (5000)** categories for sync — this includes TV/HD (5040), TV/UHD (5045), and TV/Sport (5060)
 7. Click **Test**, then **Save**
 8. Indexers will sync automatically and stay updated
+::
 
 ## 2.3 Media Server Integration
 
@@ -71,12 +73,14 @@ Sportarr provides metadata agents for Plex, Jellyfin, and Emby that fetch poster
 
 For **Plex 1.43.0+**, use the new Custom Metadata Provider system. No plugin installation required:
 
+::block-steps
 1. Open **Plex Web** and go to **Settings → Metadata Agents**
 2. Click **+ Add Provider**
 3. Enter the URL: `https://sportarr.net/plex`
 4. Click **+ Add Agent** and give it a name (e.g., "Sportarr")
 5. **Restart Plex Media Server**
 6. Create a **TV Shows** library, select your sports folder, and choose the **Sportarr** agent
+::
 
 ### Plex — Legacy Bundle Agent
 
@@ -89,12 +93,14 @@ For older Plex versions, download the legacy bundle from the Sportarr UI (**Sett
 
 Requires **Jellyfin 10.9 or later**. The recommended method is the Sportarr plugin repository:
 
+::block-steps
 1. In Jellyfin, go to **Dashboard → Plugins → Repositories**, click **Add**, and name it `Sportarr`
 1. Set the repository URL to `https://raw.githubusercontent.com/Sportarr/Sportarr/main/agents/jellyfin/manifest.json` and save
 1. Open the **Catalog** tab and install **Sportarr** under **Metadata**
 1. Restart Jellyfin
 1. Create a library → select **Shows** → add your sports folder → under both **Metadata Downloaders** and **Image Fetchers**, enable **Sportarr** and drag it to the top of each list
 1. *(Optional)* Under **Dashboard → Plugins → Sportarr**, the API URL defaults to `https://sportarr.net`. Change it to your own instance (e.g. `http://your-server-ip:1867`) and click **Test Connection** if you want metadata served from your install
+::
 
 > [!NOTE]
 > **Manual install (fallback):** download the `sportarr-jellyfin-plugin_*.zip` from [Sportarr releases](https://github.com/Sportarr/Sportarr/releases) and extract it into `/mnt/tank/configs/jellyfin/data/plugins/Sportarr/` (the `Sportarr` folder inside Jellyfin's plugins directory, **not** `plugins/configurations`), then restart Jellyfin.
