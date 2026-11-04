@@ -2,7 +2,7 @@
 title: Umami
 description: A guide to installing Umami in docker via compose
 published: true
-date: '2026-11-04T16:18:03.858Z'
+date: '2026-11-04T23:31:46.717Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:10.553Z'
@@ -15,10 +15,13 @@ Umami is a simple, fast, privacy-focused, open-source analytics solution. Umami 
 # 1 · Deploy Umami
 :::block-tabs
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Set a **Database Password**
 1. Set an **App Secret**
 1. Set the **WebUI Port** to `3002`
 1. Set the **Postgres Data Storage** to **Host Path** and select the box for **Automatic Permissions**
+::
 
 ::
 
