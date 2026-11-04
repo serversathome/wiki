@@ -2,7 +2,7 @@
 title: Ollama
 description: A guide to deploying Ollama
 published: true
-date: '2026-11-04T16:17:36.529Z'
+date: '2026-11-04T23:31:34.373Z'
 tags: []
 editor: markdown
 dateCreated: '2026-06-15T14:56:05.778Z'
@@ -43,6 +43,7 @@ services:
     #           capabilities: [gpu]
 ```
 
+::block-steps
 1. The model store lives at `/root/.ollama` inside the container — keep it on persistent storage or every restart re-downloads your models.
 2. The API listens on `http://<host-ip>:11434`. Test it once the container is up:
    ```bash
@@ -53,6 +54,7 @@ services:
    docker exec -it ollama ollama pull llama3.2
    docker exec -it ollama ollama run llama3.2 "Say hello in one sentence"
    ```
+::
 
 > [!WARNING]
 > The volume mount is the one thing you cannot skip. Models are multiple GB each — without persistence you re-download them on every container recreate.
@@ -62,6 +64,7 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Ollama is available as a **Community** train app in the TrueNAS catalog.
 
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI
 2. Click **Discover Apps** and search for **"Ollama"**
 3. Click **Install**
@@ -71,6 +74,7 @@ Ollama is available as a **Community** train app in the TrueNAS catalog.
    - **Storage** → **Ollama Data Storage**: set to a **Host Path** of `/mnt/tank/configs/ollama` so models persist on your pool
    - **Resources** → enable **GPU Passthrough** and select your NVIDIA device if you have one
 5. Click **Install** / **Save**
+::
 
 > [!NOTE]
 > Requires TrueNAS **24.10.2.2 (Electric Eel)** or newer. The catalog app maps the internal `/root/.ollama` model directory for you — point its host path at your `tank` pool, not the default ix-applications dataset, if you want easy backups.
@@ -196,11 +200,13 @@ Press <kbd>S</kbd> to open hardware simulation and type in a VRAM figure (e.g. a
  
 ## 3.4 Pull the Best Model with the `d` Key
  
+::block-steps
 1. Navigate to a model with the arrow keys or <kbd>j</kbd> / <kbd>k</kbd>. Use <kbd>/</kbd> to search or <kbd>s</kbd> to cycle the sort column.
 2. With your pick highlighted, press <kbd>d</kbd>. llmfit sends a `POST /api/pull` to Ollama and shows an animated progress bar on the row.
 3. The download runs *inside* the Ollama container and lands in your `/mnt/tank/configs/ollama` volume — llmfit is only the trigger.
 4. When it completes, the row gains a green **✓** in the **Inst** column, and the model appears automatically in the Open WebUI dropdown (section 2.4), ready to chat.
 Common keys in the model table:
+::
  
 | Key | Action |
 |-----|--------|
