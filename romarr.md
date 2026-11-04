@@ -2,7 +2,7 @@
 title: ROMarr
 description: A guide to deploying ROMarr
 published: true
-date: '2026-11-04T16:23:22.702Z'
+date: '2026-11-04T23:31:48.495Z'
 tags: []
 editor: markdown
 dateCreated: '2026-10-31T10:33:15.904Z'
@@ -41,9 +41,11 @@ services:
       - /mnt/tank/media/downloads:/downloads
 ```
 
+::block-steps
 1. Point the `/roms` volume at the folder your library scans. The path above matches the [RomM guide](/romm), where platforms live in `library/roms/{platform}`
 1. Set `LIBRARY_URL` to your RomM address. Not using RomM? Set `LIBRARY_KIND=folder` and remove `LIBRARY_URL`
 1. Deploy the stack and open `http://YOUR-SERVER-IP:6868`
+::
 
 > [!WARNING]
 > The `/downloads` path must match what your download client reports, character for character. If qBittorrent saves to `/downloads/complete/game.zip`, ROMarr must see the same file at that path. Otherwise add a remote path mapping under **Settings → Media Management**.
@@ -54,9 +56,12 @@ services:
 # 2 · Configuration
 
 ## 2.1 Claim Your Install
+
+::block-steps
 1. The first visit asks you to set a password. There are no default credentials
 1. Do this right after deploying, since a fresh install belongs to whoever opens it first
 1. Optional: enable TOTP two-factor login under **Settings → General**
+::
 
 ## 2.2 Connect Your Library
 1. Go to **Settings → Libraries**
@@ -66,9 +71,12 @@ services:
 > Create a dedicated RomM user for ROMarr instead of using your admin account. It only needs to read the library and trigger a rescan, so give it the task permission in RomM or imports will never show up.
 
 ## 2.3 Download Clients and Indexers
+
+::block-steps
 1. **Settings → Download Clients**: add qBittorrent, SABnzbd or another client and click **Test**. Each protocol needs its own client, so adding qBittorrent does not cover Usenet releases
 1. **Settings → Indexers**: add your Prowlarr URL and API key, or add Torznab/Newznab indexers directly
 1. Use **Interactive Search** on a game for your first grab and follow it in **Queue** and **History**
+::
 
 > [!TIP]
 > Already have ROMs on disk? The **Setup Guide** under Settings has an "I already have ROMs" path that scans `/downloads` and imports what it finds, no indexer needed.
