@@ -2,7 +2,7 @@
 title: Boxarr
 description: A guide to deploying Boxarr
 published: true
-date: '2026-11-04T16:23:16.838Z'
+date: '2026-11-04T23:31:40.593Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:03:34.981Z'
@@ -28,12 +28,15 @@ services:
 ```
 
 # 2 · Boxarr Configuration
+
+::block-steps
 1. Enter Radarr URL as `http://IP:port`
 1. Enter Radarr **API Key**
 1. Select Radarr **Root Folder**
 1. Select **Default Quality Profile**
 1. Select number of movies per week
 1. Click **Save Configuration**
+::
 
 # 3 · Find Movies
 
