@@ -2,7 +2,7 @@
 title: Duplicati
 description: A guide to deploying Duplicati on TrueNAS as well as via docker compose
 published: true
-date: '2026-11-04T16:23:22.042Z'
+date: '2026-11-04T23:31:35.120Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:04:31.421Z'
@@ -15,6 +15,8 @@ Duplicati is an open-source backup client that securely stores encrypted, increm
 # 1 · Deploy Duplicati
 :::block-tabs
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Set a **Password**
 1. Set an **Encryption Key** to enable encryption (optional)
 1. Change the **Data Storage** to *Host Path*
@@ -26,6 +28,7 @@ c. Select a **Host Path**
 a. Change the **Type** to *Host Path*
 b. Set the **Mount Path** to `/source`
 c. Select a **Host Path**
+::
 
 ::
 
@@ -58,6 +61,8 @@ services:
 # 2 · Duplicati Configuration
 
 ## 2.1 Adding a Backup
+
+::block-steps
 1. Click **Add backup**, then choose **Add a new backup**
 1. Under **Basic configuration**, give it a **Name** and optionally set an encryption passphrase
 1. For **Source data**, expand **Computer** and navigate to `/source` and select directories for backup, then click **Continue**
@@ -65,22 +70,29 @@ services:
 1. Configure your **Schedule**, then click **Continue**
 1. Under **Retention and miscellaneous**, select a **Remote Volume Size** and a **Backup Retention** period
 1. Click **Submit**
+::
 
 > [!NOTE]
 > In Duplicati versions before 2.4.0.1, the storage destination step comes before source data.
 
 ## 2.2 Data Restoration
+
+::block-steps
 1. Click **Restore** in the left pane
 1. Select files for restoration
 1. Click **Continue**
 1. Select destination of the files and file handling options
 1. Check the box for **Restore read/write permissions**
 1. Click **Restore**
+::
 
 ## 2.3 Remote Management
+
+::block-steps
 1. In the local Duplicati web interface, click **Click to register** in the top-right corner
 1. Sign in to the Duplicati Console if prompted, and accept adding the machine to your account
 1. The machine now shows up in the Duplicati Console, where you can manage it remotely
+::
 
 
 # :logos:youtube-icon: 3 · Video
