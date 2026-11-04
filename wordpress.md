@@ -2,7 +2,7 @@
 title: Wordpress
 description: A guide to installing Wordpress on TrueNAS and in docker via compose
 published: true
-date: '2026-11-04T16:18:08.065Z'
+date: '2026-11-04T23:32:21.096Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:42.750Z'
@@ -16,10 +16,13 @@ WordPress is a web content management system. It was originally created as a too
 # Installation
 :::block-tabs
 ::block-tab{label="TrueNAS"}
+
+::block-steps
 1. Set your **Database Password** to something secure
 1. Set your **Root Database Password** to something secure
 1. In **Network Configuration → WebUI Port** set the **Port Bind Mode** to `Publish port on the host for external access`
 1. Set the **Storage Configuration** to `Host Path` for **Wordpress Data Storage** and **Wordpress Maria DB Storage**
+::
 
 ::
 
@@ -79,6 +82,7 @@ To run Wordpress behind a reverse proxy, go into the settings and change the URL
 
 If you are using [Umami](/umami) to monitor web traffic, install the Umami plugin. 
 
+::block-steps
 1. Navigate to Plugins > Add New Plugin > Search Plugins
 ![](/screenshot-from-2024-06-30-17-36-45.png)
 
@@ -86,5 +90,6 @@ If you are using [Umami](/umami) to monitor web traffic, install the Umami plugi
 1. Navigate to plugins > Integrate Umami > Settings
 1. Use the information about the website you add to Umami to fill in this information:
 ![](/screenshot-from-2024-06-30-17-39-35.png)
+::
 
 
