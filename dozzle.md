@@ -2,7 +2,7 @@
 title: Dozzle
 description: A guide to deploying Dozzle on TrueNAS Scale and via Docker Compose
 published: true
-date: '2026-11-04T16:24:12.991Z'
+date: '2026-11-04T23:32:18.596Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:04:29.434Z'
@@ -40,9 +40,11 @@ services:
     restart: unless-stopped
 ```
 
+::block-steps
 1. Change `TZ` to your timezone. Dozzle uses it for the auto-update schedule.
 2. Deploy the stack and open `http://your-server-ip:8888`.
 3. The setup wizard opens on first launch. Continue to section 2.
+::
 
 > [!WARNING]
 > Because Dozzle runs as `568:568` instead of root, it needs to join the group that owns the Docker socket. That group is `999` on a standard TrueNAS install. Confirm yours with `stat -c '%g' /var/run/docker.sock` and put that number under `group_add`. If Dozzle shows no containers, this is the reason.
@@ -55,6 +57,7 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Create the dataset or folder `/mnt/tank/configs/dozzle` and set its owner to `apps` (568:568) before you start.
 
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI and click **Discover Apps**
 2. Search for "Dozzle" and click **Install**
 3. Configure the following settings:
@@ -69,6 +72,7 @@ Create the dataset or folder `/mnt/tank/configs/dozzle` and set its owner to `ap
 4. Optional, for host uptime and load: add a second **Additional Storage** entry with **Type** Host Path, **Mount Path** `/host/proc`, **Host Path** `/proc`, and **Read Only** checked. If TrueNAS refuses a path outside your pools, skip this step.
 5. Click **Install**
 6. Open `http://your-truenas-ip:8888` and the setup wizard will greet you. Continue to section 2.
+::
 
 > [!WARNING]
 > The TrueNAS app does not create a `/data` volume on its own. Without the Additional Storage entry above, your login, users and wizard settings are wiped every time the app updates.
@@ -255,12 +259,14 @@ Dozzle can watch your containers and ping you when something goes wrong. Everyth
  
 You need somewhere to send alerts before you can create one. This example uses a Discord channel.
  
+::block-steps
 1. In Discord, open your server settings and go to **Integrations** > **Webhooks**
 2. Click **New Webhook**, pick the channel (a private `#alerts` channel works well) and click **Copy Webhook URL**
 3. In Dozzle, open **Notifications** and click **Add Destination**
 4. Choose **Webhook**, paste the URL and select the **Discord** template
 5. Click **Test** and check that the message lands in Discord, then **Save**
 Dozzle also ships templates for **Slack** and **ntfy**. The **Custom** template sends plain JSON, which makes it easy to point at an n8n webhook or anything else that accepts an HTTP POST.
+::
  
 ## 4.2 Create an Alert
  
