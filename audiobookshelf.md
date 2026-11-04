@@ -2,7 +2,7 @@
 title: Audiobookshelf
 description: A guide to deploying Audiobookshelf
 published: true
-date: '2026-11-04T16:16:51.289Z'
+date: '2026-11-04T23:31:39.352Z'
 tags: []
 editor: markdown
 dateCreated: '2026-08-14T11:19:57.749Z'
@@ -54,6 +54,7 @@ Browse to `http://YOUR-SERVER-IP:13378` and create the root account on first lau
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Audiobookshelf is in the **Community** train of the TrueNAS Apps catalog. Requires TrueNAS 24.10.2.2 or newer.
 
+::block-steps
 1. Navigate to **Apps** → **Discover Apps** in the TrueNAS UI
 2. Search for **Audiobookshelf** and click **Install**
 3. Configure the following:
@@ -63,6 +64,7 @@ Audiobookshelf is in the **Community** train of the TrueNAS Apps catalog. Requir
    - **Metadata Storage**: Host Path → `/mnt/tank/configs/audiobookshelf/metadata`
    - **Additional Storage**: Host Path → `/mnt/tank/media` mounted at `/media`
 4. Click **Install** and wait for the app to report **Running**
+::
 
 ::
 
@@ -72,9 +74,11 @@ Audiobookshelf is in the **Community** train of the TrueNAS Apps catalog. Requir
 
 ## 2.1 Create your libraries
 
+::block-steps
 1. Click the account icon → **Settings** → **Libraries** → **Add Library**
 2. Name it, pick the **Book** media type, and set the folder to `/media/books/audiobooks`
 3. Repeat for ebooks at `/media/books/ebooks`, or add it as a second folder on the same library
+::
 
 Podcasts need their own library with the **Podcast** media type — books and podcasts cannot share one.
 
