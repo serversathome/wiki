@@ -2,7 +2,7 @@
 title: readme
 description: ''
 published: true
-date: '2026-10-28T14:13:53.536Z'
+date: '2026-11-04T23:31:34.645Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:08:00.302Z'
@@ -27,9 +27,11 @@ We encourage contributions from the community!
 
 ### ✅ Edit Right Here on GitHub
 
+::block-steps
 1. Fork this repo or edit files directly in your browser
 2. Submit a pull request with your changes
 3. Once approved, your edits will automatically appear on [wiki.serversatho.me](https://wiki.serversatho.me)
+::
 
 > 📢 **You do not need to use the Wiki.js UI** to contribute. GitHub is now the primary editing interface for this wiki.
 
