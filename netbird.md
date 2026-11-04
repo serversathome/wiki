@@ -2,7 +2,7 @@
 title: Netbird
 description: A guide to installing and using Netbird
 published: true
-date: '2026-11-04T16:24:05.798Z'
+date: '2026-11-04T23:32:07.266Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:06:37.607Z'
@@ -27,7 +27,9 @@ A Setup Key acts like a temporary password that allows your server to authentica
 > > **Security Warning:** Do not set the expiry to `0` (never expire). If an infinite, reusable key is ever leaked, anyone can join your private network.
 > Your server will *not* disconnect when this key expires! Setup keys are only used for the initial installation; after that, NetBird uses secure, auto-rotating WireGuard keys.
 
+::block-steps
 5. Click **Create Setup Key** and copy the generated key to your clipboard.
+::
 
 ## 1.2 Install the NetBird Agent
 
@@ -92,6 +94,7 @@ Start with a shared cluster to get going in minutes, then graduate to your own c
 ## 2.1 Custom Domains
 By default, NetBird assigns your proxy services to a provided cloud domain. However, if you own your own domain (e.g., `yourdomain.com`), you can attach it to NetBird to make your services look cleaner and easier to remember.
 
+::block-steps
 1. **Add the Domain to NetBird:**
    * In the NetBird dashboard, navigate to the **Reverse Proxy > Custom Domains** tab.
    * Click **Add Domain** and enter your root domain (e.g., `yourdomain.com`).
@@ -109,12 +112,14 @@ By default, NetBird assigns your proxy services to a provided cloud domain. Howe
 3. **Verify and Wait:**
    * Head back to the NetBird dashboard and click **Verify**. 
    * **Wait for propagation:** DNS changes can take anywhere from 5 minutes to a few hours to propagate globally. Once verified, NetBird will status will update to "Active" and automatically secure your domain with a free SSL certificate.
+::
 
 Once your custom domain is active, it will be available in the dropdown menu when creating new routes in the **Services** tab.
 
 ## 2.2 Services
 Once your server is connected to the NetBird mesh, you can expose its local applications to the internet without opening any ports on your router.
 
+::block-steps
 1. In the NetBird dashboard, navigate to the **Reverse Proxy > Services** tab.
 2. Click the **Add Service** button. This will open a configuration window with several steps:
 
@@ -132,6 +137,8 @@ Once your server is connected to the NetBird mesh, you can expose its local appl
 
 3. Click **Add Service** to finalize the setup. 
 4. **Wait a few minutes.** NetBird needs a moment to provision the service globally and automatically generate your free SSL (HTTPS) certificate. 
+::
+
 > [!NOTE]
 > **Tip:** Once the service status shows as active, you can test it by visiting your new URL (e.g., `https://jellyfin.yourdomain.com`) from a device that is *not* connected to your local network!
 
@@ -139,6 +146,7 @@ Once your server is connected to the NetBird mesh, you can expose its local appl
 ## 2.3 Authentication
 While applications like Jellyfin manage their own users and login screens (meaning you skip this step), many self-hosted tools (like network dashboards, basic web servers, or admin panels) lack strong built-in security. NetBird allows you to put an identity layer in front of these routes, forcing visitors to authenticate before they can even reach the application.
 
+::block-steps
 1. **Access the Authentication Settings:**
    * You can configure this during the initial `Add Service` wizard, or by clicking **Edit** on an existing route in the **Reverse Proxy > Services** tab.
    * Navigate to the **Authentication** tab.
@@ -152,6 +160,8 @@ While applications like Jellyfin manage their own users and login screens (meani
 
 3. **Save and Apply:**
    * Once you've configured your desired method, click the orange **Save Changes** button. The new security rules will apply to your proxy route within minutes.
+::
+
 > [!TIP]
 > **💡 What does the user experience?** 
 > When a user navigates to a protected URL (e.g., `https://admin.yourdomain.com`), they won't see your application right away. Instead, they are stopped by a secure NetBird interception screen asking for the required SSO login, Password, or PIN. Once they successfully authenticate, they are forwarded to your actual backend application.
@@ -190,6 +200,7 @@ The rest of this section sets up an **account cluster**. If you just want a shar
 ### 2.4.2 Setup Walkthrough
 The dashboard provides a wizard that generates the proxy token, shows the DNS records to add, and emits a ready-to-run command.
 
+::block-steps
 1. **Open the wizard.** Navigate to **Reverse Proxy > Clusters**. The table lists every cluster your account can reach. Click **Setup Self-Hosted Cluster**.
 
 2. **Choose your domain.** In the **Domain** tab, enter the domain this cluster will be reachable on, e.g., `proxy.yourdomain.com`. This becomes the proxy's `NB_PROXY_DOMAIN` and the suffix of every service URL hosted on it (`{subdomain}.proxy.yourdomain.com`). Click **Continue**.
@@ -227,6 +238,7 @@ The dashboard provides a wizard that generates the proxy token, shows the DNS re
    ```
 
    Paste the generated token into the `NB_PROXY_TOKEN=` line and set `NB_PROXY_DOMAIN` to the domain from Step 2. On NetBird Cloud, leave `NB_PROXY_MANAGEMENT_ADDRESS` as `https://api.netbird.io`; on a self-hosted management server, use your own management URL.
+::
 
 > [!CAUTION]
 > **Copy the token now.** The plain token is shown **only once**, at the moment it's generated. Store it somewhere safe before closing the modal. If you lose it, revoke it and generate a new one.
@@ -241,9 +253,11 @@ The dashboard provides a wizard that generates the proxy token, shows the DNS re
 ### 2.4.3 Using Your Cluster for Services
 Once the cluster is connected, your BYOP domain shows up as a normal **Cluster** option in the service-creation flow:
 
+::block-steps
 1. Go to **Reverse Proxy > Services > Add Service**.
 2. Choose a subdomain and pick your BYOP domain (`proxy.yourdomain.com`) as the base domain.
 3. Configure targets, authentication, and access restrictions exactly as in [Section 2.2](#h-22-services) and [Section 2.3](#h-23-authentication).
+::
 
 Traffic to `subdomain.proxy.yourdomain.com` is now received by *your* proxy, terminated locally with a Let's Encrypt certificate, and forwarded over WireGuard to the target peer.
 
