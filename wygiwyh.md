@@ -2,7 +2,7 @@
 title: WYGIWYH
 description: A guide to deploying WYGIWYH
 published: true
-date: '2026-11-04T16:23:52.834Z'
+date: '2026-11-04T23:31:58.432Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:45.123Z'
@@ -83,8 +83,10 @@ TASK_WORKERS=1 # This only work if you're using the single container option. Inc
 #OIDC_ALLOW_SIGNUP=true
 ```
 
+::block-steps
 1. Generate a `SECRET_KEY` with `openssl rand -hex 32` and paste the output into the `.env` file.
 1. To create an admin account on first start, uncomment `ADMIN_EMAIL` and `ADMIN_PASSWORD` and fill in your own values. Remove them again after your first login.
 1. Replace `YOUR-SERVER-IP` in `URL` and `DJANGO_ALLOWED_HOSTS` with your server's IP address.
 1. The UI is published on host port `9005` (set by `OUTBOUND_PORT`), so open `http://YOUR-SERVER-IP:9005`.
+::
 
