@@ -2,7 +2,7 @@
 title: Moonfin
 description: A guide to dpeloying Moonfin
 published: true
-date: '2026-11-04T15:58:27.376Z'
+date: '2026-11-04T23:32:04.463Z'
 tags: []
 editor: markdown
 dateCreated: '2026-04-27T17:52:32.472Z'
@@ -43,6 +43,7 @@ The Android client supports Android 6.0+ phones and TVs, Nvidia Shield, Fire TV 
 
 **Sideload (optional)**
 
+::block-steps
 1. Download the latest APK from the [Moonfin-Core Releases page](https://github.com/Moonfin-Client/Moonfin-Core/releases).
 2. On your TV device, enable **Unknown Sources** or **Install Unknown Apps** in Settings.
 3. Transfer the APK using one of:
@@ -51,6 +52,7 @@ The Android client supports Android 6.0+ phones and TVs, Nvidia Shield, Fire TV 
    - **Downloader** app (Fire TV) using the GitHub release URL
 4. Open the APK and follow the install prompts.
 5. Launch Moonfin and connect to your Jellyfin / Emby server.
+::
 
 ::
 
@@ -63,6 +65,7 @@ Install Moonfin from the [Roku Channel Store](https://channelstore.roku.com/deta
 
 **Sideload (optional)**
 
+::block-steps
 1. On your Roku, navigate to **Settings → System → Advanced system settings → Developer options** and enable **Developer mode**. Note the IP address shown.
 2. Set a developer username and password during the activation process.
 3. Reboot the Roku when prompted.
@@ -71,6 +74,7 @@ Install Moonfin from the [Roku Channel Store](https://channelstore.roku.com/deta
 6. Log in with your developer credentials.
 7. Click **Upload**, select the ZIP file, then click **Install**.
 8. Launch Moonfin from the Roku home screen.
+::
 
 > [!WARNING]
 > Roku developer mode requires factory-reset-level access. Only enable it on devices you control, and never enter your developer credentials on untrusted networks.
@@ -80,6 +84,7 @@ Install Moonfin from the [Roku Channel Store](https://channelstore.roku.com/deta
 ::block-tab{label="Samsung TV (Tizen)"}
 For Samsung Smart TVs running Tizen 4.0 or newer (2016+ models). Tizen 5.5+ is recommended for the best performance.
 
+::block-steps
 1. Download the latest WGT package from the [Smart-TV Releases page](https://github.com/Moonfin-Client/Smart-TV/releases).
 2. The easiest install method is the [Samsung Jellyfin Installer](https://github.com/PatrickSt1991/Samsung-Jellyfin-Installer) — it handles certificate generation and TV pairing automatically.
 3. Alternatively, install via **Tizen Studio**:
@@ -89,6 +94,7 @@ For Samsung Smart TVs running Tizen 4.0 or newer (2016+ models). Tizen 5.5+ is r
    - Connect Tizen Studio to your TV's IP and use **Permit to install applications**
    - Use **Install** in the Device Manager to push the WGT
 4. Launch Moonfin from the Apps screen on your TV.
+::
 
 > [!WARNING]
 > Samsung's developer certificates expire after a fixed period (typically 1–2 years). If Moonfin disappears or refuses to launch after that time, you'll need to re-sign and reinstall the WGT.
@@ -104,12 +110,14 @@ If your TV has the webOS Homebrew Channel, install Moonfin from the [webOS Homeb
 
 **Developer Mode sideload**
 
+::block-steps
 1. Download the latest IPK package from the [Smart-TV Releases page](https://github.com/Moonfin-Client/Smart-TV/releases).
 2. On your TV, sign in with an [LG Developer account](https://webostv.developer.lge.com/) and install the **Developer Mode** app from the LG Content Store.
 3. Open the Developer Mode app, log in, and toggle **Dev Mode Status** on. Note the IP address and Passphrase.
 4. On a computer, install [webOS Dev Manager](https://github.com/webosbrew/dev-manager-desktop) (community-maintained GUI).
 5. Add your TV in Dev Manager using the IP and Passphrase, then use **Install** to push the IPK.
 6. Launch Moonfin from the LG home screen.
+::
 
 > [!WARNING]
 > Developer mode on WebOS expires every 50 hours by default. The TV will warn you to extend the session — just open the Dev Mode app and tap **Check for Updates** to reset the timer.
@@ -141,11 +149,13 @@ brew install --cask moonfin
 
 On first launch, every Moonfin client walks through the same connection flow:
 
+::block-steps
 1. Choose **Add Server** on the welcome screen.
 2. Enter your Jellyfin or Emby server URL (e.g., `http://192.168.1.100:8096` or `https://jellyfin.example.com`).
 3. Moonfin auto-detects whether the server is Jellyfin or Emby — no manual toggle needed.
 4. Sign in with your existing Jellyfin / Emby username and password.
 5. Choose your default user profile and you're done.
+::
 
 > [!TIP]
 > Moonfin supports **Cross-Server Content Playback** — add multiple Jellyfin/Emby servers and Moonfin will present a unified library that lets you switch and play across them without re-authenticating.
@@ -156,10 +166,12 @@ Moonfin's headline feature is native Jellyseerr support — browse trending cont
 
 Seerr support requires the **Moonbase** server plugin, which upstream also strongly recommends for all users (it handles settings sync, the Seerr proxy, MDBList/TMDB and the hosted web app).
 
+::block-steps
 1. Install the [Moonbase plugin](https://github.com/Moonfin-Client/Plugin) on your Jellyfin server.
 2. In the Jellyfin admin dashboard, go to **Dashboard → Plugins → Moonfin** and configure your Jellyseerr/Seerr URL and API key.
 3. In your Moonfin client, go to **Settings → Plugin** and enable **Plugin Sync**.
 4. Jellyseerr is now configured automatically — all requests are proxied through your Jellyfin server, so the client never needs direct access to Jellyseerr.
+::
 
 
 # 4 · Updates & Maintenance
