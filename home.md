@@ -2,7 +2,7 @@
 title: Home
 description: This is the official wiki for Servers@Home
 published: true
-date: '2026-11-04T15:55:40.951Z'
+date: '2026-11-04T22:59:30.443Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:05:13.120Z'
@@ -10,7 +10,7 @@ dateCreated: '2026-01-15T15:05:13.120Z'
 
 Your guide to self-hosting, homelabs, and taking control of your data. Tested guides, open source solutions, privacy-respecting infrastructure.
 
-*247 guides · maintained by Evan and contributors like you*
+*250+ guides · maintained by Evan and contributors like you*
 
 > [!NOTE]
 > Use the sidebar or the search bar at the top to find guides. On mobile, tap the blue menu icon ☰ at the bottom-left.
