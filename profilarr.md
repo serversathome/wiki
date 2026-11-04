@@ -2,7 +2,7 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: '2026-11-04T16:23:27.101Z'
+date: '2026-11-04T23:31:40.057Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:30.974Z'
@@ -65,6 +65,8 @@ services:
 ::
 
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for **Profilarr** (Community train; app version 2.0.2 or newer ships Profilarr 2.0.4+)
 3. Click **Install**
@@ -74,6 +76,7 @@ services:
    - **WebUI Port**: `6868`
    - **Timezone**: `America/New_York`
 5. Click **Install**
+::
 
 
 
@@ -90,11 +93,13 @@ services:
 
 # 2 · First Login
 
+::block-steps
 1. Open `http://your-server:6868` in your browser
 2. On first launch, Profilarr's in-app onboarding walks you through everything. Set your **username and password** when prompted and the wizard handles the rest
 3. (Optional) Authentication is controlled by the `AUTH` environment variable:
    - `AUTH=on` (the default) uses username and password login. To add **SSO** with your IdP (Authelia, Authentik, Google, etc.), keep `AUTH=on` and also set `OIDC_CLIENT_ID`, `OIDC_CLIENT_SECRET`, `OIDC_DISCOVERY_URL`, and `ORIGIN`. Password and SSO login then work side by side. The redirect URL is `{ORIGIN}/auth/oidc/callback`
    - `AUTH=off` to disable auth entirely, only if Profilarr sits behind your own reverse proxy that handles authentication
+::
 
 
 You can re-run the onboarding flow any time from **Settings → Onboarding**, and pick which page Profilarr opens to by default.
@@ -121,6 +126,7 @@ v2 supports **multiple databases at once**, so you can mix profiles from differe
 
 # 4 · Link Your Arrs
 
+::block-steps
 1. Navigate to **Arrs** on the left sidebar
 2. Click **+** to add a new instance
 3. Fill in:
@@ -130,6 +136,7 @@ v2 supports **multiple databases at once**, so you can mix profiles from differe
    - **API Key**: from Radarr/Sonarr → **Settings → General → API Key**
    - **Basic Auth** (optional): username and password, only if the Arr sits behind a reverse proxy that requires a login
 4. Click **Test** to verify, then **Save** at the top right
+::
 
 Repeat for every Arr instance you want Profilarr to manage. v2 cleanly handles cloned 1080p / 4K Radarr setups even when they share an API key.
 
@@ -151,15 +158,19 @@ This is the easiest way to spot mis-tagged or mis-scored items before they bite 
 
 Sync is triggered per Arr from the **Arrs** view (or scheduled, see section 7).
 
+::block-steps
 1. Open an Arr in the **Arrs** view
 2. Review what's queued to push (Profilarr shows a diff)
 3. Click **Sync** to apply
+::
 
 After syncing, head into Radarr/Sonarr and:
 
+::block-steps
 1. Open **Movies** / **Series**
 2. Select all → **Edit → Quality Profile** → pick your new Profilarr profile
 3. Trigger an **Interactive Search** or **Cut-off Unmet** search to upgrade your existing files, or let Profilarr's Upgrades (section 4.4) work through them over time
+::
 
 ## 4.3 Arr Drift Detection
 
