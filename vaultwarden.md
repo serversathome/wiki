@@ -2,7 +2,7 @@
 title: Vaultwarden
 description: A guide to installing Vaultwarden in docker via compose
 published: true
-date: '2026-11-04T16:23:52.461Z'
+date: '2026-11-04T23:31:57.011Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:17.568Z'
@@ -15,11 +15,14 @@ Vaultwarden is a free and secure password manager that works on any device and p
 # 1 · Deploy Vaultwarden
 :::block-tabs
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Set the **Database Password** to something secure
 1. Set the **Admin Token** to enable to admin console
 1. Set the **Certificate ID** to `truenas_default Certificate`
 1. Set the **Vaultwarden Data Storage** to **Host Path**
 1. Set the **Vaultwarden Postgres Data Storage** to **Host Path** and select the box for **Automatic Permissions**
+::
 
 ::
 
@@ -53,6 +56,8 @@ Your Vaultwarden server is now ready on whatever port you specified. However, do
 # 3 · Admin Controls
 
 After you have created your account, to prevent other users from doing so on your server, you must disable to ability to create new account from the admin panel. 
+
+::block-steps
 1. Generate a hashed admin token with Vaultwarden's built-in generator. It asks for a password (this is what you will type on the admin page) and prints an Argon2 string starting with `$argon2id$`:
    ```bash
    docker exec -it vaultwarden /vaultwarden hash
@@ -60,6 +65,8 @@ After you have created your account, to prevent other users from doing so on you
 1. Go back to your compose file, uncomment the `ADMIN_TOKEN` line, paste the hash in single quotes, and change every `$` to `$$` so compose doesn't treat them as variables. Then relaunch your container
 1. Navigate to https://{yourFQDN}.com/admin and uncheck the box that says *Allow new signups*. When you are done, scroll to the bottom and click **Save**
 1. Now comment the `ADMIN_TOKEN` line back out and restart the container. 
+::
+
 > [!WARNING]
 > To fully disable to Admin panel, you need to remove the line for the admin token from the config.json file within the container.
 
