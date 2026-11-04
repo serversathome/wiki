@@ -2,7 +2,7 @@
 title: Sharely
 description: A guide to deploying Sharely
 published: true
-date: '2026-11-04T16:24:01.710Z'
+date: '2026-11-04T23:32:03.804Z'
 tags: []
 editor: markdown
 dateCreated: '2026-05-30T10:09:48.539Z'
@@ -132,16 +132,20 @@ openssl rand -hex 32
 
 ## 2.1 First Login & API Key
 
+::block-steps
 1. Browse to your instance, enter the setup token from `docker compose logs app`, and create the **admin** account
 2. Go to **Settings → API Key** to grab your Bearer token for API/ShareX uploads
 3. If you don't want open sign-ups, set `ALLOW_REGISTRATION=false` and create users from **Admin → Users**
+::
 
 ## 2.2 ShareX Setup
 
+::block-steps
 1. Log in and open the **Upload** page
 2. Click **Download ShareX Config**
 3. Open the downloaded `.sxcu` file — ShareX imports it automatically
 4. Screenshots and uploads now go straight to your instance
+::
 
 ShareX receives a `deletionUrl` in each upload response, so it can delete files later without re-authenticating.
 
