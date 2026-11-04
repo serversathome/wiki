@@ -2,7 +2,7 @@
 title: Cantinarr
 description: A guide to deploying Cantinarr
 published: true
-date: '2026-11-04T16:23:48.376Z'
+date: '2026-11-04T23:31:55.213Z'
 tags: []
 editor: markdown
 dateCreated: '2026-09-08T15:19:38.173Z'
@@ -43,6 +43,7 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Cantinarr is in the **Community** train of the TrueNAS apps catalog.
 
+::block-steps
 1. Go to **Apps** in the TrueNAS UI and search for **Cantinarr**
 2. Click **Install**
 3. Under **Cantinarr Configuration**:
@@ -52,6 +53,7 @@ Cantinarr is in the **Community** train of the TrueNAS apps catalog.
 5. Under **Storage Configuration**, set **Config Storage** to a **Host Path** such as `/mnt/tank/configs/cantinarr` if you want it outside an ixVolume, so it lands in your normal snapshot and replication tasks
 6. To enable completed-media downloads, add an **Additional Storage** entry pointing at your media dataset, tick **Read Only**, and set the mount path to `/media`. Then add an environment variable `CANTINARR_MEDIA_ROOTS` with the value `/media`
 7. Click **Install** and open the app once it reports **Running**
+::
 
 > [!NOTE]
 > The app runs as user and group `568` (the `apps` account). If you use a host path for config, make sure that account owns it or the container will not start.
