@@ -2,7 +2,7 @@
 title: Homarr
 description: A guide to deploying Homarr
 published: true
-date: '2026-11-04T16:17:17.490Z'
+date: '2026-11-04T23:31:56.153Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:05:10.051Z'
@@ -42,9 +42,11 @@ services:
       - /mnt/tank/configs/homarr:/appdata
 ```
 
+::block-steps
 1. Generate a secret encryption key using `openssl rand -hex 32`
 2. Replace `your_64_character_hex_string` with your generated key
 3. Create the config folder and hand it to the apps user before the first start:
+::
 
 ```bash
 mkdir -p /mnt/tank/configs/homarr
@@ -60,6 +62,8 @@ chown -R 568:568 /mnt/tank/configs/homarr
 ::
 
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for "**Homarr**" (Community train)
 3. Click **Install**
@@ -70,6 +74,7 @@ chown -R 568:568 /mnt/tank/configs/homarr
    - **WebUI Port**: `7575` (default)
    - **Homarr Data Storage**: Type **Host Path**, path `/mnt/tank/configs/homarr`
 5. Click **Install**
+::
 
 > [!NOTE]
 > The TrueNAS catalog app now ships Homarr v2. If you're still on a v1.x install, updating the app from the **Installed** screen runs the database migration automatically. Back up your app data first.
@@ -84,12 +89,14 @@ chown -R 568:568 /mnt/tank/configs/homarr
 
 Browse to `http://<server-ip>:7575`. A fresh install redirects to the setup studio, where you can choose **Get started** or **Restore backup** (for a compatible SQLite backup). Setup is split into six stages:
 
+::block-steps
 1. **Essentials** - Language, theme, your usual server address and the analytics preference
 2. **Discover** - Shows which capabilities Homarr can reach (database, Docker, Kubernetes, Assistant, Workshop)
 3. **Connect** - Import services Homarr detected or add integrations by hand. Anything unfinished can be skipped
 4. **Board** - Board name, colors, corner radius, column count and optional sidebars
 5. **Extend** - Optionally connect Workshop, set up an Assistant provider or review the MCP endpoint
 6. **Review** - Check the summary, then build the board
+::
 
 Integrations, Workshop, Assistant and MCP are all optional. Skip them if you just want a working board and come back later.
 
@@ -110,11 +117,13 @@ Integrations, Workshop, Assistant and MCP are all optional. Skip them if you jus
 
 ## 2.3 Building Your Board
 
+::block-steps
 1. Enter edit mode from the board header
 2. Open the add-content menu to create an **App**, **Integration**, **Widget** or **Container** without leaving the board
 3. When adding apps, click one to add it immediately, or choose **Select multiple** to add several at once
 4. Drag and resize items. Homarr previews the move and only saves valid layouts, so a bad drop rolls back instead of scrambling the board
 5. Save the board to keep the layout
+::
 
 A few things worth knowing in the new editor:
 
