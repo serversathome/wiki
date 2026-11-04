@@ -2,7 +2,7 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: '2026-11-04T16:24:01.523Z'
+date: '2026-11-04T23:32:05.011Z'
 tags: []
 editor: markdown
 dateCreated: '2026-02-14T20:08:17.652Z'
@@ -49,12 +49,15 @@ services:
 ::
 
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for **Seerr**
 3. Click **Install**
 4. Configure the following settings:
    - **Host Path**: `/mnt/tank/configs/seerr`
 5. Click **Save**
+::
 
 > [!TIP]
 > The TrueNAS app runs as user/group **568** (the standard `apps` user), so permissions work the same as the rest of your arr stack. No special ownership changes are needed.
@@ -88,6 +91,7 @@ If you're coming from Jellyseerr or Overseerr, the migration to Seerr is mostly 
 > [!CAUTION]
 > Do **not** point Seerr at your existing Jellyseerr/Overseerr dataset. Create a new dataset and copy your data into it. This keeps your Jellyseerr install intact as a rollback option.
 
+::block-steps
 1. Stop the Jellyseerr container in Dockge or in the TrueNAS shell run:
 
     ```bash
@@ -103,8 +107,11 @@ If you're coming from Jellyseerr or Overseerr, the migration to Seerr is mostly 
     ```
 
     > Note the trailing slash on the source path — this copies the **contents** of the directory, not the directory itself.
+::
+
 <!-- {blockquote:.is-warning} -->
 
+::block-steps
 1. Set ownership to UID 1000
 
     Jellyseerr ran as root, so the copied files will be owned by `root:root`. Seerr runs as UID 1000 internally and needs ownership of these files. Run this command in the TrueNAS shell:
@@ -129,18 +136,21 @@ If you're coming from Jellyseerr or Overseerr, the migration to Seerr is mostly 
 1. Verify the migration
 
     Navigate to `http://your-server-ip:5055` and confirm your settings, users, and request history carried over. Once you're satisfied everything is working, you can remove the old Jellyseerr container and dataset at your discretion.
+::
 
 ::
 
 ::block-tab{label="TrueNAS (Host Path)" icon="simple-icons:truenas"}
 If your Jellyseerr/Overseerr TrueNAS app was configured with a **Host Path**, the migration is straightforward — just point Seerr at the same path.
 
+::block-steps
 1. Stop the **Jellyseerr** app in the TrueNAS UI
 2. Install the **Seerr** app from the TrueNAS app catalog
 3. Set the **Host Path** to the same path your Jellyseerr app was using (e.g., `/mnt/tank/configs/jellyseerr`)
 4. Start the Seerr app — it will automatically migrate your Jellyseerr database on first boot
 5. Verify your settings, users, and request history carried over
 6. Delete the old Jellyseerr app
+::
 
 ::
 
@@ -150,6 +160,7 @@ If your Jellyseerr/Overseerr TrueNAS app was using **ixVolume** storage, you'll 
 > [!NOTE]
 > If you're not sure whether you used Host Path or ixVolume, check your Jellyseerr app configuration in the TrueNAS UI under **Apps → Jellyseerr → Edit**. If you see a path like `/mnt/tank/configs/jellyseerr`, you're using Host Path. If you don't see an explicit path, you're using ixVolume.
 
+::block-steps
 1. Stop the **Jellyseerr** app in the TrueNAS UI
 
 1. Create a new dataset for Seerr
@@ -169,13 +180,17 @@ If your Jellyseerr/Overseerr TrueNAS app was using **ixVolume** storage, you'll 
     ```
 
     > If you were running **Overseerr** instead of Jellyseerr, replace `jellyseerr` with `overseerr` in the path above.
+::
+
 <!-- {blockquote:.is-warning} -->
 
+::block-steps
 1. Install the **Seerr** app from the TrueNAS app catalog and set the **Host Path** to `/mnt/tank/configs/seerr`
 
 1. Start the Seerr app — it will automatically migrate your database on first boot
 
 1. Verify your settings, users, and request history carried over, then delete the old Jellyseerr app
+::
 
 ::
 
@@ -185,40 +200,44 @@ If your Jellyseerr/Overseerr TrueNAS app was using **ixVolume** storage, you'll 
 
 ## 4.1 Signing In
 
+::block-steps
 1. Select your media server type — **Jellyfin**, **Emby**, or **Plex**
 1. Enter the IP address and port for your media server and sign in with your credentials
 1. The email address you use doesn't matter — feel free to use a throwaway
 1. Click **Continue**
 1. Click the button to **Sync Libraries** and when you get the option, enable both **TV** and **Movies**, then click **Start Scan** and **Continue**
+::
 
 ## 4.2 Adding Radarr / Sonarr
 
+::block-steps
 6. Click the area to **Add Radarr Server** (or **Sonarr Server**). Fill in the following fields:
 
-|   Field  | Value    |
-| --- | --- |
-| **Default Server** | check this box if you are only running one instance of Radarr/Sonarr |
-| **4K Server** | for advanced users who run separate servers for 4K and 1080p content |
-| **Server Name** | usually just "Radarr" or "Sonarr" |
-| **Host or IP Address** | IP of the Radarr or Sonarr server |
-| **Port** | port of the Radarr or Sonarr server |
-| **Use SSL** | leave this unchecked |
-| **API Key** | API key for Radarr or Sonarr |
+   |   Field  | Value    |
+   | --- | --- |
+   | **Default Server** | check this box if you are only running one instance of Radarr/Sonarr |
+   | **4K Server** | for advanced users who run separate servers for 4K and 1080p content |
+   | **Server Name** | usually just "Radarr" or "Sonarr" |
+   | **Host or IP Address** | IP of the Radarr or Sonarr server |
+   | **Port** | port of the Radarr or Sonarr server |
+   | **Use SSL** | leave this unchecked |
+   | **API Key** | API key for Radarr or Sonarr |
 
 7. After you populate these values, click **Test** at the bottom. Now you should be able to fill in the rest of the fields:
 
-|   Field  |   Value  |
-| --- | --- |
-| **URL Base** | leave this blank |
-| **Quality Profile** | select the quality profile content will be downloaded with by default |
-| **Root Folder** | there should only be one option here — select the folder you set up for Radarr/Sonarr |
-| **Minimum Availability** | change this to **Announced** |
-| **Tags** | leave blank |
-| **External URL** | leave blank |
-| **Enable Scan** | check this box |
-| **Enable Automatic Search** | check this box |
+   |   Field  |   Value  |
+   | --- | --- |
+   | **URL Base** | leave this blank |
+   | **Quality Profile** | select the quality profile content will be downloaded with by default |
+   | **Root Folder** | there should only be one option here — select the folder you set up for Radarr/Sonarr |
+   | **Minimum Availability** | change this to **Announced** |
+   | **Tags** | leave blank |
+   | **External URL** | leave blank |
+   | **Enable Scan** | check this box |
+   | **Enable Automatic Search** | check this box |
 
 8. Click **Add Server** at the bottom. Repeat the same process for Sonarr.
+::
 
 ## 4.3 PostgreSQL (Optional)
 
