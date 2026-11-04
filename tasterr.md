@@ -2,7 +2,7 @@
 title: Tasterr
 description: A guide to deploying Tasterr
 published: true
-date: '2026-11-04T16:23:47.786Z'
+date: '2026-11-04T23:31:51.678Z'
 tags: []
 editor: markdown
 dateCreated: '2026-09-28T18:06:40.122Z'
@@ -19,9 +19,11 @@ dateCreated: '2026-09-28T18:06:40.122Z'
 
 ## 1.1 Gather Your Keys
 
+::block-steps
 1. **Seerr API key**: in Seerr, go to **Settings** > **General** and copy the API key
 2. **TMDB API key**: create a free account at themoviedb.org, then go to **Settings** > **API** and copy the v3 API key
 3. **Tasterr secret key**: generate one in the TrueNAS shell. This encrypts stored Plex tokens
+::
 
 ```bash
 openssl rand -base64 32
@@ -50,18 +52,22 @@ services:
     restart: unless-stopped
 ```
 
+::block-steps
 1. Fill in the three keys
 2. `SEERR_INTERNAL_URL` is how the Tasterr container reaches Seerr. Your server's LAN IP and Seerr's port works without any shared Docker network
 3. `SEERR_EXTERNAL_URL` is the address your household's browsers use for Seerr. If Seerr is behind a Cloudflare Tunnel, use that public URL here
 4. Deploy the stack. The SQLite database is created and migrated automatically on first boot
+::
 
 # 2 · Configuration
 
 ## 2.1 Initial Setup
 
+::block-steps
 1. Browse to `http://your-server-ip:8000`
 2. Sign in with an existing Seerr account, or with Plex if Seerr uses Plex sign-in
 3. Sign in as a **Seerr administrator** and open **Settings** to choose your region, the streaming services you pay for, which discovery rails appear on the home page, and the theme and accent color
+::
 
 Each person should sign in with their own account. Taste profiles and requests are tracked per user.
 
