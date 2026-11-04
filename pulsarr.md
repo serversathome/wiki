@@ -2,7 +2,7 @@
 title: Pulsarr
 description: A guide to deploying Pulsarr via docker
 published: true
-date: '2026-11-04T16:17:46.562Z'
+date: '2026-11-04T23:31:36.446Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:37.846Z'
@@ -100,6 +100,7 @@ appriseUrl=http://host-ip-address:8000
 > Read the [official documentation](https://jamcalli.github.io/Pulsarr/docs/intro)
 
 
+::block-steps
 1. Access the web interface at `http://your-server:3003`
 1. Create an admin account
 1. Enter your [Plex token](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/)
@@ -108,6 +109,7 @@ appriseUrl=http://host-ip-address:8000
     b. Configure default quality profiles and root folders
 1. Set sync permissions for any friends' watchlists you'd like to include (Ensure users have their [Account Visibility](https://app.plex.tv/desktop/#!/settings/account) set to 'Friends Only' or 'Friends of Friends')
 1. Head to the **Dashboard** page and click on the Start button next to the Main Workflow heading
+::
 
 # ![](/_files/patreon-light.png =28x) 3 · Video
 [![](/2025-07-06-automate-your-plex-watchlist-wit-promo-card.png)](https://www.patreon.com/posts/automate-your-133499239)
