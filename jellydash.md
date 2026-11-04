@@ -2,7 +2,7 @@
 title: Jellydash
 description: A guide to deploying Jellydash
 published: true
-date: '2026-11-04T16:24:16.249Z'
+date: '2026-11-04T23:32:17.215Z'
 tags: []
 editor: markdown
 dateCreated: '2026-08-28T20:28:41.792Z'
@@ -80,18 +80,22 @@ services:
       - /mnt/tank/configs/jellydash/db:/var/lib/mysql
 ```
 
+::block-steps
 1. Replace both instances of `DB_PASS` / `MARIADB_PASSWORD` with the same strong password
 2. Point `JELLYFIN_URL` at your Jellyfin server
 3. Drop in your Jellyfin API token (see **2.1** below)
+::
 
 
 # 2 · Configuration
 
 ## 2.1 Jellyfin API Key
 
+::block-steps
 1. In Jellyfin, go to **Dashboard → Advanced → API Keys**
 2. Click **+** and name the key `Jellydash`
 3. Copy the key into `JELLYFIN_API_TOKEN`
+::
 
 > [!WARNING]
 > Use an **admin-level** key. Some statistics need to read library paths and will come back empty otherwise.
