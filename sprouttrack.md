@@ -2,26 +2,16 @@
 title: Sprout Track
 description: A guide to deploying Sprout Track
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:38.954Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:08:46.645Z
+dateCreated: '2026-01-15T15:08:46.645Z'
 ---
 
-# <img src="/sprout-track.png" class="tab-icon"> What is Sprout Track?
+# What is Sprout Track?
 An application for tracking baby activities, milestones, and development.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/Oak-and-Sprout/sprout-track"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Sprout Track
+# :logos:docker-icon: 1 · Deploy Sprout Track
 ```yaml
 services:
   sprout-track:
@@ -36,17 +26,17 @@ services:
       - /mnt/tank/configs/sprouttrack/files:/app/Files
 ```
 
+> [!NOTE]
 > Back up all three folders.
-{.is-info}
 
 # 2 · First Login
 Navigate to `http://IP:3000` to start the setup wizard.
 
+> [!TIP]
 > The default security PIN after setup is: 111222
-{.is-success}
 
+> [!WARNING]
 > The admin area at `/family-manager` uses the default password `admin`. Change it right after setup.
-{.is-warning}
 
 1. Enter a **Family Name**
 1. Enter a **Family URL**
@@ -55,4 +45,5 @@ Navigate to `http://IP:3000` to start the setup wizard.
 1. Click **Next**
 1. Enter your baby's information
 1. Click **Complete Setup**
+
 

@@ -2,19 +2,19 @@
 title: Notifications
 description: Learn how to setup notifications for all of your services!
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:16.309Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:02:39.274Z
+dateCreated: '2026-01-15T15:02:39.274Z'
 ---
 
-# <img src="/gotify.png" class="tab-icon"> Gotify
+# Gotify
 
+> [!NOTE]
 > I am moving away from Discord in favor of [Gotify](/gotify). Unfortunately, I'm told there is no mobile app for iOS. Unpackerr 1.0 now detects Gotify webhook URLs automatically, so it can send to Gotify too. Other than that, I like it much more.
-{.is-info}
 
 
-# <img src="/discord.png" class="tab-icon"> Discord
+# :logos:discord-icon: Discord
 
 There are so many ways to get notifications, there could be an entire wiki dedicated to that alone. For simplicity's sake, we are going to go with Discord here. The prerequisite here is that you have signed up for a Discord account.
 
@@ -36,7 +36,7 @@ Start by launching Discord and set up a private server, calling it whatever you 
 
 4. Paste that to a text doc somewhere because we will need it later. 
 
-# <img src="/truenas.png" class="tab-icon"> TrueNAS
+# :simple-icons:truenas: TrueNAS
 
 Now that we have a Discord server to push to, let's enable TrueNAS to notify us of alerts.
 
@@ -51,7 +51,7 @@ Now that we have a Discord server to push to, let's enable TrueNAS to notify us 
 
 ![](https://wiki.hydrology.cc/screenshot_from_2024-02-12_17-38-44.png)
 
-# <img src="/radarr.png" class="tab-icon"><img src="/sonarr.png" class="tab-icon"><img src="/prowlarr.png" class="tab-icon"> Radarr/Sonarr/Prowlarr
+# :simple-icons:radarr: :simple-icons:sonarr: ![](/_files/prowlarr.png =28x) Radarr/Sonarr/Prowlarr
 
 Since all the \*arrs are basically the same UI, we will follow the same steps for all of them.
 
@@ -61,11 +61,11 @@ Since all the \*arrs are basically the same UI, we will follow the same steps fo
 ![](https://wiki.hydrology.cc/screenshot_from_2024-02-12_17-44-43.png)
 
 3. Paste the webhook to the **Webhook URL** box
+> [!NOTE]
 > I suggest you deselect some of the check boxes though, otherwise you will be getting alerts all the time. Usually I just have grab, import, added, health issue, and manual interaction to keep the noise down.
-{.is-info}
 
 
-# <img src="/unpackerr.png" class="tab-icon"> Unpackerr
+# ![](/_files/unpackerr.png =28x) Unpackerr
 
 Unpackerr 1.0 has a web UI on port `5656`, and you can add your Discord webhook from its **Settings** page. Unpackerr detects the template (Discord, Gotify, Slack, Telegram, ntfy and others) from the URL, so you no longer need to set one.
 
@@ -96,17 +96,17 @@ In TrueNAS, we only need to add 2 values in the *Extra Environment Variables* fo
 | UN_WEBHOOK_0_NAME | Unpackerr/Discord |
 
 
-# <img src="/seerr.png" class="tab-icon"> Seerr
+# ![](/_files/seerr.png =28x) Seerr
 
 1. Navigate to **Settings** > **Notifications** > **Discord** 
 1. Paste your webhook in the correct box.
 
 ![](https://wiki.hydrology.cc/screenshot_from_2024-02-12_17-56-50.png)
 
-# <img src="/emby.png" class="tab-icon"> Emby
+# :simple-icons:emby: Emby
 
+> [!CAUTION]
 > If you do not have the Premium version of Emby, this will not work because it requires an add-on
-{.is-danger}
 
 1. Navigate to **Settings** > **Advanced** > **Plugins**
 1. Click the tab at the top to select **Catalog**
@@ -127,7 +127,7 @@ In TrueNAS, we only need to add 2 values in the *Extra Environment Variables* fo
 
 6. Click **Save** 
 
-# <img src="/uptime-kuma.png" class="tab-icon"> Uptime Kuma
+# :simple-icons:uptimekuma: Uptime Kuma
 
 1. Navigate to **Settings** > **Notifications** > **Setup** **Notification**
 1. Paste your webhook URL and give it a friendly name. 

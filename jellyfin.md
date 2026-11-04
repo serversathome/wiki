@@ -2,34 +2,19 @@
 title: Jellyfin
 description: A guide to deploying Jellyfin on TrueNAS as well as Docker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:17.084Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:05:36.259Z
+dateCreated: '2026-01-15T15:05:36.259Z'
 ---
 
-# ![](/jellyfin.png){class="tab-icon"} What is Jellyfin?
+# What is Jellyfin?
 
 Jellyfin enables you to collect, manage, and stream your media. Run the Jellyfin server on your system and gain access to the leading free-software entertainment system, bells and whistles included.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8096</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Hardware accel</span><b>Nvidia, Intel or AMD</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/linuxserver/docker-jellyfin"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://jellyfin.org/docs/general/installation/advanced/truenas/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://apps.truenas.com/resources/deploy-jellyfin"><i class="mdi mdi-server"></i>TrueNAS app</a>
-    <a href="https://youtu.be/VNhsR2lpntc"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
 # 1 · Deploy Jellyfin
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   jellyfin:
@@ -49,27 +34,30 @@ services:
       - /mnt/tank/configs/jellyfin:/config
       - /mnt/tank/media:/media
 ```
+> [!NOTE]
 > Note this stack enables nVidia GPUs. If you don't need this, remove all the lines with `nvidia` in them.
-{.is-info}
 
 ### Permissions & Folder Structure
 - **PUID / PGID**: Ensure you use a user/group with the correct permissions for accessing media folders. TrueNAS SCALE defaults to 568:568 for apps.
 - **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/jellyfin
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
+::
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Under **Storage Configuration**, set **Jellyfin Config Storage** and **Jellyfin Cache Storage** to **Type: Host Path** and select the correct paths as described in the [Folder-Structure](/Folder-Structure) guide.
 1. Under **Additional Storage**, click **Add**, set **Type: Host Path**, set the **Mount Path** to **/media** and select your `media` directory.
 1. Scroll to **Resources Configuration** and select your GPU under **GPU Configuration**. If you do not see one, make sure to select the checkbox in **Apps → Configuration → Settings → Install NVIDIA Drivers**.
 
+> [!TIP]
 > Check out [the new docs](https://apps.truenas.com/resources/deploy-jellyfin) from TrueNAS
-{.is-success}
 
+> [!TIP]
 > [Jellyfin.org official TrueNAS Documentation](https://jellyfin.org/docs/general/installation/advanced/truenas/)
-{.is-success}
 
+::
+
+:::
 
 # 2 · Jellyfin Configuration
 
@@ -85,13 +73,14 @@ services:
 
 To watch content on a device in your house on your home network, download the Jellyfin App from wherever your device gets apps from. When you start the Jellyfin app, manually add a server. Type in the IP Address of your server (for me it would look like `http://192.168.1.215`) and use the default port of `8096`. Once its connected you should see the sign-in screen with your name on it. If not, use the manual login and type the username and password you set up earlier.
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-https://youtu.be/VNhsR2lpntc
+# :logos:youtube-icon: 3 · Video
+::block-youtube{url="https://youtu.be/VNhsR2lpntc"}
+::
 
 # 4 · Using NPM
 If you are using [Nginx Proxy Manager](/nginx) to route your traffic use these settings to be sure you're not caching media:
 
-![screenshot_from_2025-03-28_07-39-15.png](/screenshot_from_2025-03-28_07-39-15.png)
+![screenshot_from_2025-03-28_07-39-15.png](/screenshot-from-2025-03-28-07-39-15.png)
 
 | Field | Value |
 | --- | --- |
@@ -104,8 +93,8 @@ If you are using [Nginx Proxy Manager](/nginx) to route your traffic use these s
 
 # 5 · Using an Intel iGPU
 
+> [!WARNING]
 > This section is under development and may not work for you
-{.is-warning}
 
 1. Deploy Jellyfin using the above Docker Compose file, removing the lines with `nvidia` in them
 1. In the TrueNAS shell, run the command `cd /dev/dri && ls -l`. You should see a line at the bottom that looks like:
@@ -157,7 +146,7 @@ services:
 # 6 · Transcoding settings
 Many people ask how to setup the transcoding section of Jellyfin for their specific GPU. I usually tell them "it depends" because each GPU has different capabilities. However, I will tell you a great way to answer this for your individual GPU is ChatGPT. To do this, take a screenshot of the transcode page and ask: `"if i have <insert_GPU> which of these should i select for hardware decoding and tone mapping?"`
 
-![screenshot_from_2025-04-08_18-43-41.png](/screenshot_from_2025-04-08_18-43-41.png)
+![screenshot_from_2025-04-08_18-43-41.png](/screenshot-from-2025-04-08-18-43-41.png)
 
 
 ChatGPT can read the image and tell me which boxes to check and what my Tone Mapping settings should be.
@@ -217,6 +206,7 @@ As an example, here was the response:
 > 
 > Tone Mapping Range: Auto (keeps the same color range as input; usually best unless you know you're targeting limited-range SDR).
 
-# <img src="/youtube.png" class="tab-icon"> 7 · Plug-ins
+# :logos:youtube-icon: 7 · Plug-ins
 
-https://youtu.be/6oUOi8-09E8
+::block-youtube{url="https://youtu.be/6oUOi8-09E8"}
+::

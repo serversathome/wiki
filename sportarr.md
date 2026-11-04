@@ -2,13 +2,13 @@
 title: Sportarr
 description: A guide to deploying Sportarr
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:30.564Z'
+tags: []
 editor: markdown
-dateCreated: 2026-02-10T16:23:09.485Z
+dateCreated: '2026-02-10T16:23:09.485Z'
 ---
 
-# <img src="/sportarr.png" class="tab-icon"> What is Sportarr?
+# What is Sportarr?
 
 **Sportarr** is a sports PVR (Personal Video Recorder) for Usenet and BitTorrent users. If you've ever used Sonarr or Radarr, you'll feel right at home — Sportarr does the same thing, but for sports events. It monitors sports leagues and events, searches your indexers for releases, and handles file renaming, organization, and metadata integration with Plex, Jellyfin, and Emby.
 
@@ -16,14 +16,7 @@ Sportarr supports **400+ sports leagues** worldwide, including combat sports (UF
 
 Key features include Prowlarr integration (Newznab and Torznab API support), IPTV DVR recording (alpha), Plex/Jellyfin/Emby metadata agents, and support for popular download clients like qBittorrent, Transmission, Deluge, SABnzbd, NZBGet, and Decypharr.
 
-<div class="glance">
-  <div><span>Port</span><b><code>1867</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Sportarr
+# :logos:docker-icon: 1 · Deploy Sportarr
 
 ```yaml
 services:
@@ -44,8 +37,8 @@ services:
 ```
 
  
+> [!WARNING]
 > In addition to your `movies` and `tv` folder in your `media` directory, create an additional directory called `sports` with the same permissions
-{.is-warning}
 
 # 2 · Configuration
 
@@ -89,9 +82,8 @@ For **Plex 1.43.0+**, use the new Custom Metadata Provider system. No plugin ins
 
 For older Plex versions, download the legacy bundle from the Sportarr UI (**Settings → General → Media Server Agents**) and copy it to your Plex Plug-ins directory.
 
-> 
+> [!WARNING]
 > Plex has announced legacy agents will be deprecated in 2026. Use the Custom Metadata Provider method above if you're on Plex 1.43.0+.
-{.is-warning}
 
 ### Jellyfin
 
@@ -104,9 +96,8 @@ Requires **Jellyfin 10.9 or later**. The recommended method is the Sportarr plug
 1. Create a library → select **Shows** → add your sports folder → under both **Metadata Downloaders** and **Image Fetchers**, enable **Sportarr** and drag it to the top of each list
 1. *(Optional)* Under **Dashboard → Plugins → Sportarr**, the API URL defaults to `https://sportarr.net`. Change it to your own instance (e.g. `http://your-server-ip:1867`) and click **Test Connection** if you want metadata served from your install
 
-> 
+> [!NOTE]
 > **Manual install (fallback):** download the `sportarr-jellyfin-plugin_*.zip` from [Sportarr releases](https://github.com/Sportarr/Sportarr/releases) and extract it into `/mnt/tank/configs/jellyfin/data/plugins/Sportarr/` (the `Sportarr` folder inside Jellyfin's plugins directory, **not** `plugins/configurations`), then restart Jellyfin.
-{.is-info}
 
 ### Emby
 
@@ -125,11 +116,10 @@ Features include automatic DVR scheduling, FFmpeg-based IPTV stream recording, a
 
 Configure IPTV sources under **Settings → IPTV Sources** and DVR settings under **Settings → DVR Recordings**.
 
-> 
+> [!CAUTION]
 > ⚠️ The IPTV DVR functionality is in very early alpha. Expect bugs, missing features, and limited functionality. Use at your own risk and report issues on GitHub.
-{.is-danger}
 
 
-# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
+# ![](/_files/patreon-light.png =28x) 3 · Video
 
 [![](/2026-03-11-sportarr-automate-your-sports-l-promo-card.png)](https://www.patreon.com/posts/sportarr-your-150427131)

@@ -2,23 +2,16 @@
 title: PruneMate
 description: A guide to deploying PruneMate
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:35.240Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:33.318Z
+dateCreated: '2026-01-15T15:07:33.318Z'
 ---
 
-# <img src="/prunemate.png" class="tab-icon"> What is PruneMate?
+# What is PruneMate?
 A sleek, lightweight web interface to automatically clean up Docker resources on a schedule.
 
-<div class="glance">
-  <div><span>Port</span><b><code>7676</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy PruneMate
+# :logos:docker-icon: 1 · Deploy PruneMate
 ```yaml
 services:
   prunemate:
@@ -39,5 +32,5 @@ services:
     restart: unless-stopped
 ```
 
+> [!WARNING]
 > PruneMate has the Docker socket and can delete images, containers, volumes and networks. Turn on authentication by generating a password hash with the command in the compose comment and uncommenting the two `PRUNEMATE_AUTH_*` lines.
-{.is-warning}

@@ -2,26 +2,16 @@
 title: Pi-Dash
 description: A guide to deploying Pi-Dash
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:21.253Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:12.626Z
+dateCreated: '2026-01-15T15:07:12.626Z'
 ---
 
-# ![](/pi-hole.png){class="tab-icon"} What is Pi-Dash?
+# What is Pi-Dash?
 Pi-Dash is a simple, lightweight dashboard for monitoring multiple Pi-hole instances. It provides a clean, at-a-glance, responsive view of your Pi-hole statistics.
 
-<div class="glance">
-  <div><span>Port</span><b><code>5002</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/surajverma/pi-dash"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Pi-Dash
+# :logos:docker-icon: 1 · Deploy Pi-Dash
 
 ```yaml
 services:
@@ -38,8 +28,8 @@ services:
 ```
 
 ## 1.1 Config File
+> [!NOTE]
 > This file needs to be placed in `/mnt/tank/configs/pidash/config.json`
-{.is-info}
 
 ```json
 {
@@ -61,15 +51,15 @@ services:
 }
 ```
 
+> [!NOTE]
 > `address` is the base URL of the Pi-hole only, so leave off `/admin` and `/api`. Certificates aren't verified by default; add `"verify_ssl": true` (or a CA bundle path) per instance if your Pi-holes use trusted certs.
-{.is-info}
 
 ## 1.2 Manifest File (Optional)
+> [!NOTE]
 > Only needed if you want to customize the app manifest. Without it, Pi-Dash uses its built-in manifest. If you use it, place it in `/mnt/tank/configs/pidash/manifest.json` **before** uncommenting the mount, or Docker creates an empty folder in its place.
-{.is-info}
 
+> [!WARNING]
 > Icons on a host with an untrusted self-signed certificate (like `https://pi.hole`) can block the install prompt. Prefer a relative path or a publicly trusted HTTPS URL.
-{.is-warning}
 ```json
 {
   "name": "Pi-Dash",

@@ -2,36 +2,24 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:49.375Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:53.605Z
+dateCreated: '2026-01-15T15:07:53.605Z'
 ---
 
-# <img src="/radarr.png" class="tab-icon"> What is Radarr?
+# What is Radarr?
 
 **Radarr** is a movie collection manager for Usenet and BitTorrent users. It automatically monitors multiple RSS feeds and indexers for new and upgraded releases of your wanted movies, grabs them through your download client, then renames and organizes them into your library. Think of it as the movie-focused sibling of Sonarr — part of the broader *arr stack alongside Prowlarr, Sonarr, and Bazarr.
 
 Radarr handles quality profiles, custom formats, automatic upgrades (e.g. replacing a 720p copy when a 1080p release appears), and list-based imports from sources like Trakt, IMDb, and TMDb.
 
-> 
+> [!NOTE]
 > Radarr pairs best with **Prowlarr** (indexer management) and a download client such as **qBittorrent** or **SABnzbd**. Set those up first for the smoothest experience.
-{.is-info}
-
-<div class="glance">
-  <div><span>Port</span><b><code>7878</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/linuxserver/docker-radarr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
 
 # 1 · Deploy Radarr
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   radarr:
@@ -49,10 +37,9 @@ services:
     restart: unless-stopped
 ```
 
+::
 
-
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Navigate to **Apps** in the TrueNAS UI.
 2. Search the **Community** catalog for "Radarr" and click **Install**.
 3. Configure the following settings:
@@ -64,7 +51,9 @@ services:
    - **Web Port**: `7878`
 4. Click **Install** and wait for the app to reach the **Running** state.
 
+::
 
+:::
 
 # 2 · Configuration
 
@@ -102,6 +91,7 @@ Rather than adding indexers manually, let Prowlarr manage them:
 
 
 
-# <img src="/patreon-light.png" class="tab-icon"> 3 · Video 
+# ![](/_files/patreon-light.png =28x) 3 · Video
 
 [![Promo](/2025-03-18-advanced-media-management-with-r-promo-card.png)](https://www.patreon.com/posts/advanced-media-124637606)
+

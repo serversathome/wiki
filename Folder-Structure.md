@@ -2,23 +2,23 @@
 title: Folder Structure
 description: Recommended folder structure to allow for hardlinks within the arr stack
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:14.961Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:02:29.149Z
+dateCreated: '2026-01-15T15:02:29.149Z'
 ---
 
+ > [!TIP]
  > Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help!
-{.is-success}
 # Arr Stack Folder Structure
 
 This page provides a structured way to organize folders for media management when using the \*arr stack (Radarr, Sonarr, Prowlarr, etc.), ensuring no data duplication. This is based on [Trash Guides](https://trash-guides.info/)' recommendations, but slightly modified.
 
+> [!NOTE]
 > **Note on Hardlinks**
 > By using subdirectories for **movies**, **tv**, and **downloads**, you allow the \*arr applications to create **hardlinks** instead of copying media files, which helps save disk space and prevents data duplication.
 >
 >To test if your hardlinks are working, visit [Trash Guides](https://trash-guides.info/File-and-Folder-Structure/Check-if-hardlinks-are-working/).
-{.is-info}
 
 The primary dataset is named `media`, and contains three main subdirectories:
 
@@ -118,9 +118,9 @@ All permissions are set to the following:
 | **User ID (UID)** | root (0) |
 | **Group ID (GID)** | apps (568) |
 
+> [!NOTE]
 > **Permissions**
 The script sets `770` POSIX permissions so that the owner and group have full access (r/w/x), while “others” have no access. This helps avoid permissions errors while keeping things secure. The one exception is `configs/seerr`, which is owned by UID 1000 because the Seerr container always runs as that user. Tracearr's `postgres`, `redis` and `data` folders are created once and then left to the container, which owns them for its internal database users. Its `backup` folder (`configs/tracearr/backup`, mounted at `/data/backup`) is created owned by UID 1001 (group `apps`), the image's `tracearr` user, because the container does not take ownership of it.
-{.is-info}
 
 ## 2.1 Running the Script
 To view the script, [look here](https://raw.githubusercontent.com/serversathome/ServersatHome/refs/heads/main/arr-complete.sh). 
@@ -139,8 +139,8 @@ The script asks you a few questions up front:
 
 It then checks for a **GPU** (NVIDIA, Intel or AMD, dedicated or integrated). If it finds one, it tests what the GPU can actually decode and encode using Jellyfin's own ffmpeg in a throwaway container, passes the GPU into the Jellyfin stack, and later sets up Jellyfin's hardware transcoding to match. 
 
+> [!TIP]
 > The script is safe to re-run. Datasets and directories that already exist are left in place (permissions are re-applied), a `compose.yaml` that changed is backed up (`compose.yaml.bak-<date>`) before it is regenerated, and every configuration step reports "already present" instead of doing its work twice. A step that cannot be completed is added to a **Finish by hand** list and the rest of the script still runs.
-{.is-success}
 
 ## 2.2 Docker Compose Stacks
 Each container gets its own compose file at `/mnt/POOLNAME/stacks/<container>/compose.yaml`. To view one, for example Radarr's, execute
@@ -171,8 +171,8 @@ docker compose -f /mnt/POOLNAME/stacks/<container>/compose.yaml up -d
 | **Watchtower** | – | Updates the containers daily at 03:00, skips TrueNAS catalog apps |
 | **Dockge** | 5001 | Manages everything in `stacks` |
 
+> [!NOTE]
 > If you ran an older version of the script with FlareSolverr, re-running it takes the FlareSolverr stack down, moves its compose file aside and points Prowlarr's proxy at Trawl instead.
-{.is-info}
 
 ## 2.3 Automated Deployment and Configuration
 Once the folders and stacks are written, the script asks whether to **launch and auto-configure** the containers. If you select `yes`:
@@ -201,27 +201,29 @@ Once the folders and stacks are written, the script asks whether to **launch and
 
 5. Finally it prints the URL of every running container, the logins it created, how Jellyfin is transcoding, and a **Finish by hand** list for anything it could not complete.
 
+> [!WARNING]
 > **Logins created by the script**
 > Every app is set up with the username and password you chose at the start (by default `admin` / `changeme`) and, where needed, email `admin@admin.com`. Dockge rejects letters-only passwords like the default, so in that case it gets a generated password, printed at the end and saved in `configs/dockge/admin-password.txt`. **If you kept the defaults, change them before exposing anything beyond your LAN.**
-{.is-warning}
 
 A few things stay manual on purpose: adding your trackers in Prowlarr (tag Cloudflare-protected ones `flaresolverr`), Bazarr's language profile and subtitle providers, and the one-time Qui library scan (**Cross-Seed > Scan**) once you have private indexers. Re-run the script after adding trackers and it imports your private indexers into Qui.
 
+> [!WARNING]
 > If you get the error `"Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"` navigate to the **Apps** tab and **enable the Apps service**
-{.is-warning}
 
 ## 2.4 Managing the Stacks with Dockge
 
 There is nothing to convert: the script installs [Dockge](/Dockge) and points it at the `stacks` dataset, so every container already shows up there as its own stack. Open `http://YOUR-IP:5001` to start, stop, update or edit any of them. Dockge sees the `stacks` directory at the same path as the host, so a stack you edit in Dockge and one you run with `docker compose -f /mnt/POOLNAME/stacks/<container>/compose.yaml` are the same thing.
 
+> [!NOTE]
 > If you edit a `compose.yaml` by hand (or in Dockge), keep in mind that re-running the script regenerates it. Your edited version is not lost: it is saved next to the new one as `compose.yaml.bak-<date>`.
-{.is-info}
 
-## <img src="/patreon-light.png" class="tab-icon"> 2.5 Script Video
+## ![](/_files/patreon-light.png =28x) 2.5 Script Video
 
 Coming November 4th
 
-# <img src="/youtube.png" class="tab-icon"> 3 ·  Hardlinks
-https://youtu.be/dD1u0KOWizw
+# :logos:youtube-icon: 3 · Hardlinks
+::block-youtube{url="https://youtu.be/dD1u0KOWizw"}
+::
+
 
 

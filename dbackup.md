@@ -2,10 +2,10 @@
 title: DBackup
 description: A guide to deploying DBackup
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:11.331Z'
+tags: []
 editor: markdown
-dateCreated: 2026-04-27T17:49:27.607Z
+dateCreated: '2026-04-27T17:49:27.607Z'
 ---
 
 # What is DBackup?
@@ -14,19 +14,10 @@ dateCreated: 2026-04-27T17:49:27.607Z
 
 Backups are encrypted at rest with AES-256-GCM, compressed with GZIP or Brotli, and rotated using Grandfather-Father-Son retention. The web interface gives you live job progress, restore-with-remap, multi-destination jobs for redundancy, and notifications via Discord, Slack, Teams, Telegram, Gotify, ntfy, Twilio SMS, generic webhooks, or SMTP email. SSO/OIDC and RBAC are baked in for team use.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
+# :logos:docker-icon: 1 · Deploy DBackup
 
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy DBackup
-
+> [!WARNING]
 > **Upgrading from v3 to v4:** stop the container and back up `/mnt/tank/configs/dbackup/data` (at least `data/db`) first. On first start, leave the container running until the log shows `All migrations have been successfully applied`; stopping it mid-migration can block the next start. Retention now follows renamed jobs and may delete old backups in one go, so lock any you want to keep. Configuration backups now require an encryption key (**Settings → Configuration backup**). See the [release notes](https://github.com/Skyfay/DBackup/releases).
-{.is-warning}
 
 ```yaml
 services:
@@ -56,13 +47,11 @@ services:
 
 
 
-> 
+> [!NOTE]
 > The `stop_grace_period: 10m` line matters. By default Docker sends `SIGKILL` 10 seconds after `docker stop`, which will hard-kill an in-progress backup. DBackup catches `SIGTERM` and waits for running jobs to finish, but only if Docker actually waits — so give it real time to drain.
-{.is-info}
 
-> 
+> [!TIP]
 > If you want to put DBackup behind Nginx Proxy Manager, Pangolin, or another reverse proxy, set `DISABLE_HTTPS=true` and let the proxy terminate TLS. Otherwise you will be double-wrapping HTTPS, which usually breaks WebSocket-based live progress. Also set `TRUSTED_PROXIES` (e.g. `private` or `cloudflare`) so DBackup sees the real client IP for logins and rate limits.
-{.is-success}
 
 # 2 · Configuration
 
@@ -116,6 +105,7 @@ A single backup job can target multiple destinations at once, so you can write l
 ## 2.5 Restore a Backup
 
 From **Backups** in the sidebar, pick a backup, click **Restore**, and choose the target server and databases (or use **History → Restore from this backup**). DBackup verifies the checksum, decrypts in a temp dir, and restores. You can also restore to a *different* database name on the same server — handy for testing restores without nuking production.
+
 
 
 

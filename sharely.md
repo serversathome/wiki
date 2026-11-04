@@ -2,13 +2,13 @@
 title: Sharely
 description: A guide to deploying Sharely
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:01.710Z'
+tags: []
 editor: markdown
-dateCreated: 2026-05-30T10:09:48.539Z
+dateCreated: '2026-05-30T10:09:48.539Z'
 ---
 
-# <img src="/sharely.png" class="tab-icon"> What is Sharely?
+# What is Sharely?
 
 **Sharely** is a self-hosted file sharing platform with a clean web interface, ShareX integration, and full API access. Upload screenshots, files, and media, then instantly share them via short 8-character links. It's a modern, actively-developed alternative to XBackBone (and includes a built-in importer for migrating away from it).
 
@@ -25,16 +25,7 @@ Notable features:
 - **Admin dashboard** with stats, user/file management, and a CSV-exportable audit log
 - **8 languages**, email verification / password reset (SMTP), role-based access control, and GDPR-ready privacy tooling
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>MongoDB</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Sharely
+# :logos:docker-icon: 1 · Deploy Sharely
 
 Since there's no published container image, clone the repo into your configs directory first so Dockge/Compose can build it locally:
 
@@ -134,9 +125,8 @@ Generate a strong session secret:
 openssl rand -hex 32
 ```
 
-> 
+> [!CAUTION]
 > Set `BASE_URL` to your real public domain **before** uploading anything. It's baked into every generated share link, so changing it later means existing links point to the wrong host.
-{.is-danger}
 
 # 2 · Configuration
 
@@ -189,4 +179,5 @@ cd /mnt/tank/configs/sharely
 git pull
 docker compose up -d --build
 ```
+
 

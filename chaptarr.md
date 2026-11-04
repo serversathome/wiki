@@ -2,34 +2,22 @@
 title: Chaptarr
 description: A guide to deploying Chaptarr
 published: true
-date: 2026-09-28T18:07:29.604Z
-tags: 
+date: '2026-11-04T16:23:54.240Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-14T11:11:39.002Z
+dateCreated: '2026-08-14T11:11:39.002Z'
 ---
 
-# <img src="/chaptarr.png" class="tab-icon"> What is Chaptarr?
+# What is Chaptarr?
 
 **Chaptarr** is a book collection manager for audiobooks and ebooks — a community fork of the retired Readarr, rebuilt around its own metadata pipeline. You follow authors, it watches your indexers, grabs releases through your download client, renames them into a clean tree, and upgrades quality when something better appears.
 
 It handles both media types in a single instance, which Readarr never could, and it understands narrator and edition data that general-purpose media managers ignore.
 
+> [!NOTE]
 > Readarr was archived on **27 June 2025** when its metadata backend went permanently offline. Chaptarr is not compatible with Readarr's metadata sources — it resolves entities across multiple providers and aggregates them by consensus, specifically so one dead endpoint cannot kill the project again.
-{.is-info}
 
-<div class="glance">
-  <div><span>Port</span><b><code>8789</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/Chaptarr/chaptarr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Chaptarr
+# :logos:docker-icon: 1 · Deploy Chaptarr
 
 Docker is the only supported deployment method. There are no native install packages — earlier zip attachments on GitHub were incomplete build artifacts and have been withdrawn.
 
@@ -104,4 +92,5 @@ Set your naming tokens so the output matches what Audiobookshelf expects to pars
 ```
 {Author Name}/{Series Title}/Vol {Series Number} - {Book Title} ({Release Year})
 ```
+
 

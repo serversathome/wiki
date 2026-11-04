@@ -2,30 +2,17 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:51.011Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:09:35.215Z
+dateCreated: '2026-01-15T15:09:35.215Z'
 ---
 
-# <img src="/wiki-js.png" class="tab-icon"> What is Wiki.js?
+# What is Wiki.js?
 
 **Wiki.js** is an open source wiki software that works on any platform and database. It offers features such as authentication, media, themes, integrations and more.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/requarks/wiki"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://docs.requarks.io/en/editors/markdown"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://youtu.be/hfhP5WBAXmg"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Wiki.js
+# :logos:docker-icon: 1 · Deploy Wiki.js
 
 ```yaml
 services:
@@ -60,9 +47,8 @@ services:
 
 1. Change all the default user names and passwords. Make sure when you change them in the wiki service you mirror those changes in the db service. 
 
-> 
+> [!NOTE]
 > You can deploy as many of these containers as you want for each wiki you want to host. Be sure to change the external port for each one.
-{.is-info}
 
 # 2 · Making it Beautiful
 
@@ -74,12 +60,11 @@ To change a page from Visual Editor to the Markdown editor:
 1. Navigate to the Page Actions button while viewing the page you would like to convert
 1. Click **Convert**
 1. Select **Markdown** and hit **Convert**
-> 
+> [!WARNING]
 > A note when you do this, if you convert back to Visual Editor all the formatting will be lost from Markdown
-{.is-warning}
 
+> [!TIP]
 > All the markdown instructions can be found [here](https://docs.requarks.io/en/editors/markdown)
-{.is-success}
 
 ## 2.2 Navigation Icons
 
@@ -160,8 +145,8 @@ To show the video player when inserting YouTube links, you must make the followi
 3. When prompted to save the generated file, enter a path which can be accessed by Wiki.js *(e.g. `/etc/wiki/github.pem`)* and press **Enter**.
 4. Leave the passphrase empty and press **Enter** twice. Password-protected keys will NOT work.
 
+> [!NOTE]
 > On Windows, you can use [Git Bash](https://git-scm.com/download/win) or Windows Subsystem for Linux (WSL) distributions like [Ubuntu for Windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6) to run the commands above. You can also generate keys manually using the [puttygen](https://www.ssh.com/ssh/putty/download) utility.
-{.is-info}
 
 ## 4.2 Add the key to GitHub
 
@@ -194,5 +179,6 @@ To show the video player when inserting YouTube links, you must make the followi
 7. Click the **Apply Changes** button at the top of the page.
 8. Wait for the **Status** panel to update. A new entry for **Git** should appear in green. If the bar is red, it means you have an error in your configuration. Go back to the Git tab, fix the error and try again.
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Video
-https://youtu.be/hfhP5WBAXmg
+# :logos:youtube-icon: 4 · Video
+::block-youtube{url="https://youtu.be/hfhP5WBAXmg"}
+::

@@ -2,29 +2,17 @@
 title: CatalogIT
 description: A guide to deploying CatalogIT
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:42.927Z'
+tags: []
 editor: markdown
-dateCreated: 2026-05-30T10:30:25.104Z
+dateCreated: '2026-05-30T10:30:25.104Z'
 ---
 
 # What is CatalogIT?
 
 **CatalogIT** is a self-hosted web app for tracking the hardware and software an IT team is responsible for — an asset and license inventory with renewal reminders, attachments, and an audit trail. Think of it as a lightweight, self-hosted alternative to commercial IT asset management (ITAM) tools: register devices and software services, attach files, get notified before licenses or warranties expire, and keep a record of who changed what.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>5 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/jonymaster/catalogIT"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy CatalogIT
+# :logos:docker-icon: 1 · Deploy CatalogIT
 
 
 
@@ -124,8 +112,8 @@ services:
     restart: unless-stopped
 ```
 
+> [!WARNING]
 > **Upgrading from `minio/minio`?** Back up Postgres and the whole `minio` folder first; the switch can't be undone ([upstream notes](https://github.com/jonymaster/catalogIT/blob/main/docs/releases/next.md)).
-{.is-warning}
 
 
 
@@ -277,9 +265,8 @@ Key variables:
 | `AUDIT_RETENTION_DAYS` | `90` | Days before audit rows become eligible for purge |
 {.dense}
 
-> 
+> [!CAUTION]
 > Set `FRONTEND_URL` and `PUBLIC_BASE_URL` to your real public HTTPS URL **before** first login, and change `ADMIN_DEFAULT_PASSWORD` from `changeme`. The bootstrap admin is created on first startup against an empty database. Also set `SEED_SAMPLE_DATA=true` only for an initial kick-the-tyres run — leave it `false` for a real deployment.
-{.is-danger}
 
 ## 1.2 · Create the MinIO Bucket
 
@@ -325,8 +312,8 @@ server {
 }
 ```
 
-> 
+> [!NOTE]
 > With this single-origin setup, `FRONTEND_URL` and `PUBLIC_BASE_URL` should both be your one public URL (e.g. `https://catalogit.serversatho.me`), since the browser keeps a single origin and the proxy splits traffic by path.
-{.is-info}
+
 
 

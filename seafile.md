@@ -2,13 +2,13 @@
 title: Seafile
 description: A guide to deploying Seafile
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:09.469Z'
+tags: []
 editor: markdown
-dateCreated: 2026-04-18T12:46:01.658Z
+dateCreated: '2026-04-18T12:46:01.658Z'
 ---
 
-# <img src="/seafile.png" class="tab-icon"> What is Seafile?
+# What is Seafile?
 
 **Seafile** is an open-source, self-hosted file sync and share platform focused on reliability, performance, and privacy. Written in C rather than PHP, it uses block-level syncing to transfer only the changed portions of a file, making it significantly faster and lighter than alternatives like Nextcloud or ownCloud.
 
@@ -16,20 +16,7 @@ Seafile organizes files into **libraries** (repositories) that can be shared, en
 
 The Community Edition (CE) is fully free and open source. The Professional Edition adds features like online garbage collection, S3/OpenStack storage backends, SAML SSO, audit logs, and full-text search via ElasticSearch — free for up to 3 users.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>3 services</b></div>
-  <div><span>Depends on</span><b>MariaDB and Redis</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://manual.seafile.com/latest/upgrade/upgrade_notes_for_13.0.x/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://youtu.be/ZaLfJnNWpg8"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Seafile
+# :logos:docker-icon: 1 · Deploy Seafile
 To keep passwords and hostnames in a single place — so changing the root password doesn't mean editing three different lines — we'll use a `.env` file alongside the compose file. In Dockge, each stack has both a Compose and an Environment tab; paste the compose into the first and the env vars into the second.
  
 ## 1.1 Generate a JWT Key
@@ -64,13 +51,11 @@ SEAFILE_PASSWORD=change_this_password
 SEAFILE_ADMIN_EMAIL=admin@example.com
 ```
  
-> 
+> [!WARNING]
 > Change `SEAFILE_PASSWORD` to something strong and unique — ideally from a password manager. This one value is reused in four places in the compose file, so changing it here updates all of them automatically.
-{.is-warning}
  
-> 
+> [!NOTE]
 > **Reusing one password across DB root, DB user, and web admin is fine for a homelab or personal deployment.** For a multi-user or business deployment, you should split this into three separate values — an attacker who compromises one surface shouldn't get the others for free. If you need that split, replace `${SEAFILE_PASSWORD}` in the compose file with three distinct variables (`DB_ROOT_PASSWORD`, `DB_USER_PASSWORD`, `ADMIN_PASSWORD`) and set each one independently.
-{.is-info}
  
 ## 1.3 Docker Compose
  
@@ -144,12 +129,11 @@ services:
     restart: unless-stopped
 ```
 
+> [!WARNING]
 > The `INIT_*` variables are **only used once** — at first startup to create the admin user and seed the database. Changing them later has no effect. Password changes after setup are done inside the Seafile web UI.
-{.is-warning}
 
-> 
+> [!CAUTION]
 > `SEAFILE_SERVER_HOSTNAME` is critical. Seafile writes this value into `seahub_settings.py` on first run, and download links, share links, and client sync URLs are all built from it. If you change your domain later, you'll need to edit `conf/seahub_settings.py` manually inside the volume — or nuke the data volume and start fresh.
-{.is-danger}
 
 # 2 · Reverse Proxy
 
@@ -194,9 +178,8 @@ A **library** is Seafile's unit of storage — equivalent to a folder that you c
 3. Optionally enable **encryption** with a password (client-side, zero-knowledge — even the admin can't read it)
 4. Click **Submit**
 
-> 
+> [!NOTE]
 > Encrypted libraries cannot be previewed in the web UI or indexed for search. If you want full-text search or online editing, leave encryption off and rely on transport (HTTPS) and at-rest (ZFS encryption) protection instead.
-{.is-info}
 
 ## 3.3 Install the Desktop Client
 
@@ -225,9 +208,8 @@ Add your server URL (with `https://`), email, and password. Seafile's sync engin
 
 For **minor** version bumps (13.0.x → 13.0.y), just pull the image again (`13.0-latest` always tracks the newest 13.0 release) and redeploy. For **major** version bumps (e.g. `13.0-latest` → `14.0-latest`), always read the upgrade notes first — schema migrations and config changes are sometimes required. Seafile 14.0 moves several settings (WebDAV, metadata, search) from the config files into `.env`; follow the [14.0 Docker upgrade guide](https://manual.seafile.com/14.0/upgrade/upgrade_docker_14.0/) before changing the tag.
 
-> 
+> [!TIP]
 > Before any major upgrade: stop the stack, snapshot the `/mnt/tank/configs/seafile` dataset in TrueNAS, and then proceed. ZFS snapshots make rollback trivial if the upgrade goes sideways.
-{.is-success}
 
 ## 5.2 Garbage Collection
 
@@ -241,6 +223,7 @@ Seafile will stop, clean unreferenced blocks, and restart automatically. Run thi
 
 
 
-# <img src="/youtube.png" class="tab-icon"> 6 · Video
+# :logos:youtube-icon: 6 · Video
 
-https://youtu.be/ZaLfJnNWpg8
+::block-youtube{url="https://youtu.be/ZaLfJnNWpg8"}
+::

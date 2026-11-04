@@ -2,10 +2,10 @@
 title: OmniArr
 description: A guide to deploying OmniArr
 published: true
-date: 2026-10-31T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:12.740Z'
+tags: []
 editor: markdown
-dateCreated: 2026-10-31T12:00:00.000Z
+dateCreated: '2026-10-31T10:33:13.136Z'
 ---
 
 # What is OmniArr?
@@ -19,17 +19,7 @@ dateCreated: 2026-10-31T12:00:00.000Z
 - Download queue and disk space overview from Sonarr and Radarr
 - Per-user wishlists, plus backup and restore of your settings
 
-<div class="glance">
-  <div><span>Port</span><b><code>8787</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/WonderAliceUwU/OmniArr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy OmniArr
+# :logos:docker-icon: 1 · Deploy OmniArr
 ```yaml
 services:
   omniarr:
@@ -48,11 +38,11 @@ services:
 1. Deploy the stack
 1. Open the web UI at `http://YOUR-SERVER-IP:8787`
 
+> [!WARNING]
 > OmniArr keeps everything (admin password, API keys, integration settings) in a single encrypted file inside `/app/data`. If that folder is not mounted, every setting is lost the next time the container is recreated.
-{.is-warning}
 
+> [!NOTE]
 > OmniArr is distributed as a private project, not under an open source license.
-{.is-info}
 
 # 2 · Configuration
 
@@ -73,8 +63,9 @@ services:
 | TVDB | API key (optional, used for translations) |
 {.dense}
 
+> [!NOTE]
 > Get a free TMDb token by creating an account at [themoviedb.org](https://www.themoviedb.org/settings/api). Discovery and search will not work without it.
-{.is-info}
 
 ## 2.3 User Logins
 Once Jellyfin is connected, everyone else signs in by picking their Jellyfin profile on the login screen and entering their normal Jellyfin password. Sessions last 12 hours.
+

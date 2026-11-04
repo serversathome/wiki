@@ -2,10 +2,10 @@
 title: Wordpress
 description: A guide to installing Wordpress on TrueNAS and in docker via compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:18:08.065Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:09:42.750Z
+dateCreated: '2026-01-15T15:09:42.750Z'
 ---
 
 ![](/wordpress.png)
@@ -13,26 +13,17 @@ dateCreated: 2026-01-15T15:09:42.750Z
 # What is Wordpress?
 WordPress is a web content management system. It was originally created as a tool to publish blogs but has evolved to support publishing other web content, including more traditional websites, mailing lists and Internet forum, media galleries, membership sites, learning management systems and online stores.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8081</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>MySQL</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-
 # Installation
-# {.tabset}
-## TrueNAS
+:::block-tabs
+::block-tab{label="TrueNAS"}
 1. Set your **Database Password** to something secure
 1. Set your **Root Database Password** to something secure
 1. In **Network Configuration → WebUI Port** set the **Port Bind Mode** to `Publish port on the host for external access`
 1. Set the **Storage Configuration** to `Host Path` for **Wordpress Data Storage** and **Wordpress Maria DB Storage**
 
+::
 
-## Docker Compose
-
+::block-tab{label="Docker Compose"}
 ```yaml
 services:
 
@@ -64,13 +55,15 @@ services:
 ```
 
 1. Change all the default user names and passwords. Make sure when you change them in the wordpress service you mirror those changes in the db service. 
-> 
+> [!NOTE]
 > You can deploy as many of these containers as you want for each website you want to host. Be sure to change the external port and the container names for each one. 
-{.is-info}
 
+> [!WARNING]
 > MySQL 8.0 has reached end of life and no longer gets updates, so this compose uses `mysql:8.4` (the current LTS). If you already run `mysql:8.0`, back up your `./db` folder (or take a `mysqldump`) first, then change the tag to `8.4` and redeploy. MySQL upgrades the data directory in place on first start. See the [MySQL upgrade notes](https://dev.mysql.com/doc/refman/8.4/en/upgrading.html).
-{.is-warning}
 
+::
+
+:::
 
 # Wordpress Configuration
 
@@ -80,17 +73,18 @@ The install process is straight forward. In order to secure your Wordpress site,
 
 To run Wordpress behind a reverse proxy, go into the settings and change the URLs to your FQDN.
 
-![](/screenshot_from_2024-12-06_06-58-08.png)
+![](/screenshot-from-2024-12-06-06-58-08.png)
 
 # Monitoring With Umami
 
 If you are using [Umami](/umami) to monitor web traffic, install the Umami plugin. 
 
 1. Navigate to Plugins > Add New Plugin > Search Plugins
-![](/screenshot_from_2024-06-30_17-36-45.png)
+![](/screenshot-from-2024-06-30-17-36-45.png)
 
 
 1. Navigate to plugins > Integrate Umami > Settings
 1. Use the information about the website you add to Umami to fill in this information:
-![](/screenshot_from_2024-06-30_17-39-35.png)
+![](/screenshot-from-2024-06-30-17-39-35.png)
+
 

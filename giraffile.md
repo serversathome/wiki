@@ -2,41 +2,31 @@
 title: Giraffile
 description: A guide to deploy Giraffile
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:17.262Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-05T20:22:40.563Z
+dateCreated: '2026-08-05T20:22:40.563Z'
 ---
 
-# <img src="/giraffile.png" class="tab-icon"> What is Giraffile?
+# What is Giraffile?
 
 **Giraffile** is a tiny, self-hostable web app for sending files straight from one browser to another. There is no upload, no storage backend and no account — you drop a file in, get a short link (or a QR code), and the file streams peer-to-peer over WebRTC to whoever opens that link. When the timer runs out, the link dies.
-
-<div class="glance">
-  <div><span>Port</span><b><code>8085</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/coffeetron832/Giraffile"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
 
 # 1 · How It Works
 
 The sender's browser holds the file in **IndexedDB** and stands up a PeerJS peer named after the link ID. The recipient opens the link, connects to that peer ID, and the file is pushed across an encrypted WebRTC data channel in 256 KB chunks with backpressure control. Nothing is ever written to a server.
 
+::block-diagram
 ```mermaid
 graph LR
     A[Sender browser<br/>file in IndexedDB] -->|1. peer ID| B[PeerJS broker<br/>signaling only]
     C[Recipient browser] -->|2. looks up peer ID| B
     A -->|3. encrypted WebRTC data channel<br/>256 KB chunks| C
 ```
+::
 
+> [!CAUTION]
 > **The sender's tab must stay open and online for the entire transfer.** There is no store-and-forward. If the sender closes the tab, navigates away, or lets the timer expire, the link is dead and the file is gone.
-{.is-danger}
 
 ## 1.1 Capabilities
 
@@ -47,10 +37,10 @@ graph LR
 - **Two receive modes:** *save to disk* (streams straight to the filesystem, never expires once written) or *view in browser* (held in memory, destroyed on expiry)
 - **Languages:** English and Spanish, with a light/dark theme toggle
 
+> [!NOTE]
 > Save-to-disk streaming uses the File System Access API, which needs **Chromium (Chrome / Edge / Opera) over a secure context**. Firefox and Safari fall back to the in-memory path. See section 3 for why this makes HTTPS mandatory on a self-hosted instance.
-{.is-info}
 
-# <img src="/docker.png" class="tab-icon"> 2 · Deploy Giraffile
+# :logos:docker-icon: 2 · Deploy Giraffile
 
 There is no published image. Clone the repo straight into the folder nginx will serve:
 
@@ -90,8 +80,8 @@ Decide which one you want before you publish links:
 | Sharing outside the house | Public hostname through your reverse proxy, valid public certificate |
 
 
+> [!NOTE]
 > Exposing Giraffile publicly exposes a static page, not your files — there is no upload endpoint and no storage to attack. The real consideration is that anyone who can reach the page can use your instance to broker their own transfers.
-{.is-info}
 
 # 4 · Using It
 
@@ -101,7 +91,8 @@ Decide which one you want before you publish links:
 4. **Leave the tab open.** Send the link to the recipient and wait for the transfer to finish
 5. The recipient chooses *save to disk* or *view in browser*, and the transfer streams across
 
+> [!WARNING]
 > The expiry timer starts when the link is generated, not when the recipient opens it
-{.is-warning}
+
 
 

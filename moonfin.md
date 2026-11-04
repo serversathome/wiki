@@ -2,10 +2,10 @@
 title: Moonfin
 description: A guide to dpeloying Moonfin
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T15:58:27.376Z'
+tags: []
 editor: markdown
-dateCreated: 2026-04-27T17:52:32.472Z
+dateCreated: '2026-04-27T17:52:32.472Z'
 ---
 
 # What is Moonfin?
@@ -24,18 +24,16 @@ Before installing any Moonfin client, make sure your media server is running a s
 | Emby | 4.8.0.0+ | Full support |
 
 
-> 
+> [!TIP]
 > Moonfin clients are drop-in replacements for the official Jellyfin TV apps. If you already have a working Jellyfin/Emby server, no additional setup is needed on the server side to get started.
-{.is-success}
 
 # 2 · Install a Moonfin Client
 
+> [!NOTE]
 > The clients were consolidated in 2026. Android, Android TV, Fire TV (Fire OS), iOS, tvOS, macOS, Windows and Linux now ship from [Moonfin-Core](https://github.com/Moonfin-Client/Moonfin-Core/releases). Samsung (Tizen), LG (webOS), Fire TV (Vega OS) and Xbox ship from [Smart-TV](https://github.com/Moonfin-Client/Smart-TV/releases). The old `AndroidTV-FireTV`, `Tizen` and `WebOS` repositories are gone.
-{.is-info}
 
-# {.tabset}
-## Android TV / Fire TV
-
+:::block-tabs
+::block-tab{label="Android TV / Fire TV"}
 The Android client supports Android 6.0+ phones and TVs, Nvidia Shield, Fire TV / Fire TV Stick, and Chromecast with Google TV.
 
 **Store install (recommended)**
@@ -54,8 +52,9 @@ The Android client supports Android 6.0+ phones and TVs, Nvidia Shield, Fire TV 
 4. Open the APK and follow the install prompts.
 5. Launch Moonfin and connect to your Jellyfin / Emby server.
 
-## Roku
+::
 
+::block-tab{label="Roku"}
 A Roku client with native Seerr support. Works on Roku OS 9.1+ devices (2018 and newer), including Roku TV, Streaming Stick, Ultra, and Express.
 
 **Store install (recommended)**
@@ -73,12 +72,12 @@ Install Moonfin from the [Roku Channel Store](https://channelstore.roku.com/deta
 7. Click **Upload**, select the ZIP file, then click **Install**.
 8. Launch Moonfin from the Roku home screen.
 
-> 
+> [!WARNING]
 > Roku developer mode requires factory-reset-level access. Only enable it on devices you control, and never enter your developer credentials on untrusted networks.
-{.is-warning}
 
-## Samsung TV (Tizen)
+::
 
+::block-tab{label="Samsung TV (Tizen)"}
 For Samsung Smart TVs running Tizen 4.0 or newer (2016+ models). Tizen 5.5+ is recommended for the best performance.
 
 1. Download the latest WGT package from the [Smart-TV Releases page](https://github.com/Moonfin-Client/Smart-TV/releases).
@@ -91,12 +90,12 @@ For Samsung Smart TVs running Tizen 4.0 or newer (2016+ models). Tizen 5.5+ is r
    - Use **Install** in the Device Manager to push the WGT
 4. Launch Moonfin from the Apps screen on your TV.
 
-> 
+> [!WARNING]
 > Samsung's developer certificates expire after a fixed period (typically 1–2 years). If Moonfin disappears or refuses to launch after that time, you'll need to re-sign and reinstall the WGT.
-{.is-warning}
 
-## LG TV (WebOS)
+::
 
+::block-tab{label="LG TV (WebOS)"}
 For LG Smart TVs running WebOS 3.0 or newer (2016+ models). Includes optimizations for the LG Magic Remote.
 
 **Homebrew Channel install**
@@ -112,24 +111,29 @@ If your TV has the webOS Homebrew Channel, install Moonfin from the [webOS Homeb
 5. Add your TV in Dev Manager using the IP and Passphrase, then use **Install** to push the IPK.
 6. Launch Moonfin from the LG home screen.
 
-> 
+> [!WARNING]
 > Developer mode on WebOS expires every 50 hours by default. The TV will warn you to extend the session — just open the Dev Mode app and tap **Check for Updates** to reset the timer.
-{.is-warning}
 
-## Apple (iOS / tvOS / macOS)
+::
 
+::block-tab{label="Apple (iOS / tvOS / macOS)"}
 Moonfin is available for iPhone, iPad, Apple TV and Mac from the [App Store](https://apps.apple.com/app/moonfin/id6761283970). On macOS you can also install it with Homebrew:
 
 ```bash
 brew install --cask moonfin
 ```
 
-## Desktop / Xbox / Web
+::
 
+::block-tab{label="Desktop / Xbox / Web"}
 - **Windows**: install from the [Microsoft Store](https://apps.microsoft.com/detail/9plb327dd51d), or download the installer from [Moonfin-Core releases](https://github.com/Moonfin-Client/Moonfin-Core/releases).
 - **Linux**: binaries are in [Moonfin-Core releases](https://github.com/Moonfin-Client/Moonfin-Core/releases), and Arch users can install [`moonfin-bin`](https://aur.archlinux.org/packages/moonfin-bin) from the AUR.
 - **Xbox**: install from the [Microsoft Store](https://apps.microsoft.com/detail/9plb327dd51d), or sideload the ZIP from [Smart-TV releases](https://github.com/Moonfin-Client/Smart-TV/releases) in Developer Mode ([guide](https://github.com/Moonfin-Client/Smart-TV/wiki/Installation-and-Sideloading#xbox)).
 - **Web**: install the Moonbase server plugin (section 3.2). It serves the Moonfin web app as an installable PWA at `http://<jellyfin-server>/Moonfin/Web/`.
+
+::
+
+:::
 
 # 3 · Initial Configuration
 
@@ -143,9 +147,8 @@ On first launch, every Moonfin client walks through the same connection flow:
 4. Sign in with your existing Jellyfin / Emby username and password.
 5. Choose your default user profile and you're done.
 
-> 
+> [!TIP]
 > Moonfin supports **Cross-Server Content Playback** — add multiple Jellyfin/Emby servers and Moonfin will present a unified library that lets you switch and play across them without re-authenticating.
-{.is-success}
 
 ## 3.2 Optional: Jellyseerr / Seerr Integration
 
@@ -164,4 +167,5 @@ Seerr support requires the **Moonbase** server plugin, which upstream also stron
 - **Store installs** (Google Play, Amazon, Roku Channel Store, App Store, Microsoft Store) update through the store.
 - **Sideloaded installs** (APK, Tizen WGT, webOS IPK, Roku ZIP) require a manual reinstall via the same sideload process used for the initial install. Watch the relevant GitHub repo's Releases page for new versions, or subscribe to release notifications.
 - All clients inherit upstream Jellyfin compatibility, so server-side updates do not require client updates unless a new Jellyfin major version is released.
+
 

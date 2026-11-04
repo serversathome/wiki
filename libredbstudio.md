@@ -2,27 +2,17 @@
 title: LibreDB Studio
 description: A guide to deploying LibreDB Studio
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:41.405Z'
+tags: []
 editor: markdown
-dateCreated: 2026-09-15T12:32:23.123Z
+dateCreated: '2026-09-15T12:32:23.123Z'
 ---
 
-# <img src="/libredbstudio.png" class="tab-icon"> What is LibreDB Studio?
+# What is LibreDB Studio?
 
 **LibreDB Studio** is a browser-based SQL client you run on your server rather than your desktop. One container reaches more than forty database engines — PostgreSQL, MySQL, SQL Server, Oracle, SQLite, MongoDB, Redis, ClickHouse, Elasticsearch and Cassandra among them — through the same explorer, editor and result grid.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/libredb/libredb-studio"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy LibreDB Studio
+# :logos:docker-icon: 1 · Deploy LibreDB Studio
 
 ```yaml
 services:
@@ -41,13 +31,11 @@ services:
       - /mnt/tank/configs/libredbstudio:/app/data
 ```
 
-> 
+> [!WARNING]
 > Port 3000 is busy on a lot of homelabs. If the container will not start and the error is `address already in use`, change the left-hand side only — `3001:3000`.
-{.is-warning}
 
-> 
+> [!NOTE]
 > On first run the admin password is generated and printed to the container log. It is also written to `auth-bootstrap.json` inside the volume, so if you miss it, read it from there. To choose your own instead, add `ADMIN_PASSWORD` and a `JWT_SECRET` of at least 32 characters before the first start — a shorter secret makes the server exit rather than start.
-{.is-info}
 
 Open `http://your-server-ip:3000` and sign in as `admin@libredb.org`. You land on the admin dashboard; the query editor is behind the **Editor** button, top right.
 
@@ -110,9 +98,8 @@ Three things that trip people up:
 2. `172.17.0.1` is the Docker bridge on Linux. On Docker Desktop use `http://host.docker.internal:11434/v1`.
 3. The model has to support tool calling. `qwen2.5:7b` is 4.7 GB and the fastest of the tested set; `qwen3.5:4b` at 3.4 GB is the smallest that passes. One that cannot is refused with an explanation rather than failing silently.
 
-> 
+> [!NOTE]
 > The assistant reads and nothing else: 200 rows and 10 seconds per statement, enforced by the database in a read-only session rather than by inspecting the SQL. It runs on PostgreSQL, SQLite and DuckDB; on other engines it only drafts. Leave the `LLM_` variables unset and no AI appears anywhere in the interface.
-{.is-info}
 
 For Gemini or OpenAI instead, set `LLM_PROVIDER` accordingly and add `LLM_API_KEY`.
 
@@ -135,4 +122,5 @@ Nothing unusual. Point your proxy at port 3000 on the container. In Nginx Proxy 
 | `LLM_MODEL` | Model name, e.g. `qwen2.5:7b` |
 | `LLM_API_URL` | Endpoint, e.g. `http://172.17.0.1:11434/v1` |
 | `LLM_API_KEY` | Required for `gemini` and `openai` |
+
 

@@ -2,26 +2,19 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:09.167Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:27.463Z
+dateCreated: '2026-01-15T15:04:27.463Z'
 ---
 
-# <img src="/docusaurus.png" class="tab-icon"> What is Docusaurus?
+# What is Docusaurus?
 Docusaurus is an open-source static site generator designed for building documentation websites quickly and easily, primarily using Markdown. It allows users to create customizable sites while focusing on content creation, making it popular among software documentation teams.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>4 services</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-</div>
+# :logos:docker-icon: 1 · Deploy Docusaurus
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Docusaurus
-
+> [!WARNING]
 > The `trevorbrunette/docusaurus` images are community-built (no public source) and haven't been updated since August 2025, so they won't pick up new Docusaurus releases on their own.
-{.is-warning}
 
 
 ```yaml
@@ -103,8 +96,8 @@ services:
       - 8443:8443
     restart: unless-stopped
 ```
+> [!NOTE]
 > If your Dockge stack says **exited**, that is normal. The `build` container does not run constantly and will throw a false positive to Dockge even though all the other containers should read `healthy` or `running`.
-{.is-info}
 
 
 # 2 · How it Works
@@ -182,6 +175,7 @@ Add Pages following the steps below:
     ```bash
     cd /mnt/tank/configs/docusaurus && git add . && git commit -m "Update site" && git push
     ```
+
 
 
 

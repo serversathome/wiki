@@ -2,10 +2,10 @@
 title: Rackpad
 description: A guide to deploying Rackpad
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:31.252Z'
+tags: []
 editor: markdown
-dateCreated: 2026-05-30T13:24:08.606Z
+dateCreated: '2026-05-30T13:24:08.606Z'
 ---
 
 #  What is Rackpad?
@@ -30,18 +30,7 @@ What you can actually do with it:
 
 It also includes optional OIDC SSO (authorization-code + PKCE), admin-only JSON backup export (which preserves password hashes but redacts stored alert secrets), an audit log, and sensible security headers (CSP, HSTS, X-Frame-Options) out of the box.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/kobii-git/rackpad"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Rackpad
+# :logos:docker-icon: 1 · Deploy Rackpad
 
 ```yaml
 services:
@@ -82,8 +71,8 @@ services:
     restart: unless-stopped
 ```
 
+> [!WARNING]
 > **Upgrading from an older tag (e.g. 1.3.0)?** Rackpad migrates its SQLite schema on upgrade and downgrades aren't supported. Back up `/mnt/tank/configs/rackpad` first and read the upstream [upgrade precautions](https://github.com/kobii-git/rackpad/blob/main/INSTALL.md#before-upgrading-to-185) before bumping the tag.
-{.is-warning}
 
 Open `http://<your-host>:3000` and create the initial admin account — on first boot there are no users, so the first account you make becomes the admin. You'll then be asked whether to start empty or preload the expanded demo environment (handy for a first look).
 
@@ -119,7 +108,7 @@ Rackpad supports OIDC via the authorization-code flow with PKCE. Set `OIDC_ENABL
       OIDC_ADMIN_GROUPS: admin
 ```
 
-> 
+> [!NOTE]
 > `OIDC_ISSUER_URL` must be the provider **issuer**, not the authorize URL or client settings page — Rackpad fetches `OIDC_ISSUER_URL/.well-known/openid-configuration`. For per-application issuers (like Authentik), use the application/provider issuer path, not the IdP root domain. If sign-in returns a 502/404, test that discovery URL directly, or set `OIDC_DEBUG=1` temporarily to log the discovery URL, redirect URI, token-endpoint status, and JWKS URL.
-{.is-info}
+
 

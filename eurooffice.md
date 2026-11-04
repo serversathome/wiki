@@ -2,10 +2,10 @@
 title: Euro-Office
 description: A guide to deploying Euro-Office in docker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:15.883Z'
+tags: []
 editor: markdown
-dateCreated: 2026-06-09T11:51:24.911Z
+dateCreated: '2026-06-09T11:51:24.911Z'
 ---
 
 # What is Euro-Office?
@@ -14,19 +14,7 @@ dateCreated: 2026-06-09T11:51:24.911Z
 
 Under the hood, Euro-Office is a fork of **OnlyOffice**. On launch it is functionally the OnlyOffice Document Server — rebranded, with a modernised build system and the first commits of its own ODF-focused work. The piece that runs today is the **Document Server** (the editing engine). It is not designed for standalone use: it is meant to be embedded in a host application (a file-sharing platform, wiki, or project tool). 
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/euro-office/documentserver"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/9sf9OnoIcc4"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Euro-Office
+# :logos:docker-icon: 1 · Deploy Euro-Office
 
 ```yaml
 services:
@@ -47,8 +35,8 @@ services:
 
 Generate a real JWT secret with <kbd>openssl rand -hex 32</kbd> and replace the placeholder. Since v9.3.4 the container refuses to start with a `JWT_SECRET` shorter than 32 characters or with the old placeholder defaults. Pin the [current release](https://github.com/euro-office/documentserver/releases) tag rather than `latest`.
 
+> [!WARNING]
 > **Upgrading from an earlier version of this guide?** It mounted `/mnt/tank/configs/euro-office/data` at `/var/www/euro-office/Data`. Move that folder's contents to `/mnt/tank/configs/euro-office/private` before redeploying, so your runtime settings and any generated secrets survive.
-{.is-warning}
 
 
 # 2 · Configuration
@@ -72,9 +60,8 @@ http://<server-ip>:8080/example
 
 The example app acts as a stand-in host so you can create and open documents directly against the engine. Create a blank DOCX, XLSX, or PPTX, or open an existing Microsoft file to test format compatibility. To see real-time collaboration, open the same document in a second browser window — you will see live cursors and changes sync between both.
 
-> 
+> [!WARNING]
 > The `/example` page is officially a testing and integration harness, not the intended production interface. For day-to-day use, connect the Document Server to a host application such as Nextcloud.
-{.is-warning}
 
 
 # 3 · Reverse Proxy & Reliability
@@ -104,9 +91,10 @@ Opening a `.docx`, `.xlsx`, or `.pptx` in Nextcloud Files will then launch the E
  
 
  
-# <img src="/youtube.png" class="tab-icon"> 5 · Video
+# :logos:youtube-icon: 5 · Video
 
-https://youtu.be/9sf9OnoIcc4
+::block-youtube{url="https://youtu.be/9sf9OnoIcc4"}
+::
 
-# <img src="/eagle.png" class="tab-icon"> 6 · Would You Like to Know More?
-[![](/gemini_generated_image_vkli09vkli09vkli.png)](https://blog.serversatho.me/your-self-hosted-office-suite-is-going-through-some-things-right-now/)
+# ![](/_files/eagle.png =28x) 6 · Would You Like to Know More?
+[![](/gemini-generated-image-vkli09vkli09vkli.png)](https://blog.serversatho.me/your-self-hosted-office-suite-is-going-through-some-things-right-now/)

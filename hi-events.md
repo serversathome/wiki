@@ -2,13 +2,13 @@
 title: Hi.Events
 description: A guide to deploying Hi.Events
 published: true
-date: 2026-10-31T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:17.916Z'
+tags: []
 editor: markdown
-dateCreated: 2026-10-31T12:00:00.000Z
+dateCreated: '2026-10-31T10:33:11.729Z'
 ---
 
-# <img src="/hi-events.png" class="tab-icon"> What is Hi.Events?
+# What is Hi.Events?
 
 **Hi.Events** is a self-hosted ticketing and event management platform, an open source alternative to Eventbrite. Sell tickets with your own branding and checkout, take payments straight into your own Stripe account and keep all of your attendee data.
 
@@ -18,19 +18,7 @@ dateCreated: 2026-10-31T12:00:00.000Z
 - Check-in with a phone camera or USB scanner, branded PDF tickets and attendee messaging
 - Team roles, SSO (Google, Microsoft or any OIDC provider), 2FA, webhooks and a REST API
 
-<div class="glance">
-  <div><span>Port</span><b><code>8123</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>3 services</b></div>
-  <div><span>Depends on</span><b>Postgres and Redis</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/HiEventsDev/Hi.Events"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://hi.events/docs"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Hi.Events
+# :logos:docker-icon: 1 · Deploy Hi.Events
 ```yaml
 services:
   hi-events:
@@ -114,11 +102,11 @@ services:
 1. Leave `VITE_API_URL_SERVER` as `http://localhost:80/api`. It is used inside the container
 1. Deploy the stack
 
+> [!CAUTION]
 > Never change `APP_KEY` once people have signed up. It encrypts 2FA and SSO secrets, and changing it breaks every pending invite and confirmation link.
-{.is-danger}
 
+> [!WARNING]
 > Port `8123` is also Home Assistant's default. If you run both, change the left side of the mapping and update all of the URLs to match.
-{.is-warning}
 
 # 2 · Configuration
 
@@ -126,8 +114,8 @@ services:
 1. Open `http://YOUR-SERVER-IP:8123/auth/register` and create your account and organizer
 1. Once your account exists, set `APP_DISABLE_REGISTRATION=true` and redeploy so nobody else can sign up
 
+> [!NOTE]
 > If you invite teammates later, flip registration back on only while they accept.
-{.is-info}
 
 ## 2.2 Email
 The compose above uses the `log` mailer, so emails are written to the logs instead of being sent. Ticket emails, invites and password resets need real mail, so swap in your SMTP provider:
@@ -155,8 +143,9 @@ Free events work without Stripe. To sell paid tickets:
     - `account.updated`, `payout.paid`, `payout.updated`
 1. Copy the signing secret into `STRIPE_WEBHOOK_SECRET` and redeploy
 
+> [!WARNING]
 > Stripe has to reach the webhook URL, so selling tickets means exposing Hi.Events through a reverse proxy or [Cloudflare Tunnel](/CloudflareTunnels) with HTTPS.
-{.is-warning}
 
+> [!NOTE]
 > Hi.Events is AGPL licensed with one extra term: the "Powered by Hi.Events" footer must stay unless you buy a commercial license. Reserved seating and the box office are Enterprise features that need a license key.
-{.is-info}
+

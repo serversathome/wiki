@@ -2,27 +2,17 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: 2026-10-19T14:28:07.465Z
-tags: 
+date: '2026-11-04T16:23:48.583Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:46.966Z
+dateCreated: '2026-01-15T15:07:46.966Z'
 ---
 
-# <img src="/autobrr.png" class="tab-icon"> What is Qui?
+# What is Qui?
 
 **Qui** is a fast, modern web interface for qBittorrent. It supports managing multiple qBittorrent instances from a single, lightweight application with features like cross-seeding, automations, orphan scanning, and backups.
 
-<div class="glance">
-  <div><span>Port</span><b><code>7476</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/autobrr/qui"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Qui
+# :logos:docker-icon: 1 · Deploy Qui
 
 ```yaml
 services:
@@ -38,8 +28,8 @@ services:
       - /mnt/tank/media:/media
 ```
 
+> [!WARNING]
 > The media volume mount must match exactly what qBittorrent uses. This is required for orphan scan, hardlink detection, cross-seed reflinks, and automations to work.
-{.is-warning}
 
 # 2 · Initial Setup
 
@@ -53,8 +43,8 @@ services:
 1. Navigate to **Settings → Indexers**
 1. Click **Discover**, enter your Prowlarr or Jackett URL and API key, then select the indexers to import
 
+> [!WARNING]
 > **Only sync your private trackers!** Public trackers aren't useful for cross-seeding and will cause rate limit errors.
-{.is-warning}
 
 ## 2.2 Add \*arr Integration (Optional)
 
@@ -82,11 +72,11 @@ Set up the global settings (3.1 to 3.3) first, then turn on the sources you want
 1. Set **Directory organization** to **Flat (all in base directory)**
 1. Click **Save Changes**
 
+> [!NOTE]
 > Reflink mode is safer if your filesystem supports it (Btrfs, or XFS with `reflink=1`). Check with `df -T /path`. It creates copy-on-write clones so any writes don't affect your original files.
-{.is-info}
 
+> [!WARNING]
 > Hardlink and reflink modes need **Local Filesystem Access** turned on for the instance (step 2).
-{.is-warning}
 
 ## 3.2 Matching Rules
 
@@ -94,8 +84,8 @@ Set up the global settings (3.1 to 3.3) first, then turn on the sources you want
 1. Under **Safety & validation**, toggle the **Piece boundary safety check** on
 1. Click **Save Changes**
 
+> [!WARNING]
 > The piece boundary check is **off by default**. It matters most in **Hardlink** mode. It blocks cross-seeds whose extra files share pieces with your content, which could otherwise let qBittorrent overwrite your existing data.
-{.is-warning}
 
 ## 3.3 Categories
 
@@ -103,8 +93,8 @@ Set up the global settings (3.1 to 3.3) first, then turn on the sources you want
 1. Select **Category affix**, choose **Suffix**, and enter `.cross`
 1. Click **Save Changes**
 
+> [!NOTE]
 > Every source tags its cross-seeds with `cross-seed` by default. You can change the tags on each source's tab, but leave `cross-seed` in place. The steps below rely on it.
-{.is-info}
 
 ## 3.4 RSS Automation
 
@@ -118,8 +108,8 @@ RSS watches your trackers' feeds for new uploads that match something you alread
 1. Add `cross-seed` to **Exclude tags**
 1. Click **Save RSS automation settings**
 
+> [!NOTE]
 > Excluding the `cross-seed` tag makes qui match against your original torrents instead of existing cross-seeds.
-{.is-info}
 
 ## 3.5 Auto-search on Completion
 
@@ -130,8 +120,8 @@ Completion search looks for cross-seeds as soon as a new download finishes.
 1. Expand the instance and add `cross-seed` to the **Exclude filters** tags
 1. Save the instance settings
 
+> [!NOTE]
 > New cross-seeds finish a recheck after they're added, which counts as a completion. Excluding the `cross-seed` tag stops every cross-seed from triggering another search.
-{.is-info}
 
 ## 3.6 Library Scan (Existing Library)
 
@@ -144,11 +134,11 @@ RSS only sees new uploads, so it will never find matches for content you already
 1. Set **Cooldown (minutes)** to `10080` (7 days)
 1. Click **Start run**
 
+> [!WARNING]
 > Library Scan queries every indexer for every torrent. At 60 seconds per torrent, 1,000 torrents takes about 17 hours. Run it once, then rerun it occasionally to catch older content that shows up on new trackers. RSS handles everything new.
-{.is-warning}
 
+> [!NOTE]
 > Only select your original categories here. Your `.cross` categories hold cross-seeds of the same content, so scanning them just repeats the work.
-{.is-info}
 
 ## 3.7 Dir Scan (Optional)
 
@@ -171,11 +161,11 @@ Library Scan only looks at torrents in qBittorrent. Dir Scan looks at files on d
 1. Set **Tags** to `cross-seed`
 1. Click **Save**
 
+> [!NOTE]
 > Dir Scan adds torrents with an explicit save path and AutoTMM off. The **Category affix** and the source tags from the other tabs don't apply here, so the category and tags come only from these settings. Adding the `cross-seed` tag keeps the RSS and completion exclude rules working.
-{.is-info}
 
+> [!WARNING]
 > Leave partial matches off unless you need them. With partial matches on, qBittorrent can download missing files (like `.nfo` or subtitles) into the scanned folder.
-{.is-warning}
 
 ### Add a Directory
 
@@ -187,14 +177,14 @@ Library Scan only looks at torrents in qBittorrent. Dir Scan looks at files on d
 1. Click **Add Directory** to save it
 1. Repeat for each category folder, then click the ▶ play button on a directory card to start a scan
 
+> [!WARNING]
 > Set up hardlink or reflink mode (3.1) first. In regular mode, Dir Scan warns that the orphan scanner will treat the folder as a scan root and flag any unmatched files as orphans.
-{.is-warning}
 
+> [!NOTE]
 > Each item directly inside the path is searched as one release. Add one entry per category folder (movies, TV, music). Don't point it at a parent folder that holds several categories, or at a single release folder.
-{.is-info}
 
+> [!WARNING]
 > Dir Scan waits 60 seconds between searches, so the first scan of a large folder can take hours or days. Scanning your downloads folder is safer than scanning your \*arr library folders.
-{.is-warning}
 
 # 4 · Configure Automations
 
@@ -204,8 +194,8 @@ Automations are rule-based actions that automatically manage your torrents based
 
 This removes torrents that are no longer hardlinked to your media library after Radarr/Sonarr upgrades.
 
+> [!CAUTION]
 > **Read before enabling.** This rule deletes anything that isn't hardlinked into your library. If your downloads and media folders are on different datasets, your \*arr apps copied files instead of hardlinking them, and **every torrent you have** will match. Torrents your \*arr apps never imported (music, ISOs, manual downloads) will match too. Limit the rule to your \*arr categories, and test it with a **Tag** action before switching it to **Delete**.
-{.is-danger}
 
 ```json
 {
@@ -245,8 +235,8 @@ This removes torrents that are no longer hardlinked to your media library after 
 - Radarr upgrades to better quality → old hardlink deleted → scope becomes "None"
 - After 15 days → rule matches → torrent and all cross-seeds deleted
 
+> [!WARNING]
 > Some trackers require more than 15 days of seeding. Raise **Completed Age** to match the longest seeding requirement across your trackers.
-{.is-warning}
 
 ## 4.2 Remove Unregistered Torrents
 
@@ -284,8 +274,8 @@ This removes torrents that the tracker no longer recognizes.
 }
 ```
 
+> [!NOTE]
 > The 1-day grace period prevents deletion during temporary tracker issues.
-{.is-info}
 
 ## 4.3 Remove Stalled Downloads (Safe)
 
@@ -396,8 +386,8 @@ This tags stuck downloads that have Hit & Run risk for manual review.
 }
 ```
 
+> [!WARNING]
 > Don't auto-delete torrents with H&R risk. You may still have unmet seeding requirements. Investigate manually or find an alternative source.
-{.is-warning}
 
 # 5 · Configure Orphan Scan
 
@@ -406,8 +396,8 @@ Orphan scan finds files on disk that have no corresponding torrent in qBittorren
 1. Navigate to **Automations** and expand **Orphan Scan**
 1. Toggle your instance **On**
 
+> [!NOTE]
 > Orphan scan only checks directories where at least one torrent points. If you delete all torrents from a directory, leftover files there won't be detected.
-{.is-info}
 
 # 6 · Enable Reannounce
 
@@ -416,6 +406,6 @@ Reannounce helps fix torrents that stall right after being added. It's especiall
 1. Navigate to **Automations** and expand **Reannounce**
 1. Toggle your instance **On**
 
-# <img src="/patreon-light.png" class="tab-icon"> 7 · Video
+# ![](/_files/patreon-light.png =28x) 7 · Video
 
 [![](/2025-09-29-qui-a-better-qbit-interface-promo-card.png)](https://www.patreon.com/posts/qui-better-qbit-139484651)

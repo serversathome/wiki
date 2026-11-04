@@ -2,25 +2,15 @@
 title: Anchor
 description: A guide to deploying Anchor
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:03.744Z'
+tags: []
 editor: markdown
-dateCreated: 2026-02-04T13:21:46.457Z
+dateCreated: '2026-02-04T13:21:46.457Z'
 ---
 
-# <img src="/anchor-notes.png" class="tab-icon"> What is Anchor?
+# What is Anchor?
 
 **Anchor** is an offline-first, self-hostable note-taking application designed for speed, privacy, simplicity, and reliability. Notes are stored locally, fully editable offline, and automatically sync across devices when online. Anchor offers both web and mobile (Android) interfaces, making it a great alternative to cloud-dependent note apps.
-
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/zhfahim/anchor"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
 
 ## Features
 
@@ -40,7 +30,7 @@ dateCreated: 2026-02-04T13:21:46.457Z
 - Admin panel for user management and registration control
 - OIDC sign-in (Pocket ID, Authelia, Authentik, Keycloak, etc.)
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Anchor
+# :logos:docker-icon: 1 · Deploy Anchor
 
 ```yaml
 services:
@@ -91,11 +81,10 @@ Anchor provides an Android mobile app that syncs with your self-hosted server.
    - **Architecture-specific APKs** - Smaller file sizes for specific devices
 3. Install and connect to your Anchor server URL
 
-> 
+> [!TIP]
 > The mobile app works offline and syncs changes when connected to your server.
-{.is-success}
 
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Video
+# :logos:youtube-icon: 4 · Video
 
 *Video coming soon*

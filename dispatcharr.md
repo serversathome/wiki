@@ -2,32 +2,21 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: 2026-07-20T19:09:20.986Z
-tags: 
+date: '2026-11-04T16:23:31.534Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:16.637Z
+dateCreated: '2026-01-15T15:04:16.637Z'
 ---
 
-# <img src="/dispatcharr.png" class="tab-icon"> What is Dispatcharr?
+# What is Dispatcharr?
 
 Dispatcharr is an open-source command center for managing IPTV streams, EPG data, and VOD content. Think of it as the *arr family's IPTV cousin: it lets you consolidate multiple IPTV providers into a single interface, filter and organize thousands of channels, match or generate EPG guides, and hand the result off to your media server.
 
 It can emulate an HDHomeRun device so Plex, Emby, or Jellyfin discover it as a live TV source and record straight to their own DVR libraries. It also proxies and relays streams in real time, supports FFmpeg transcoding through output profiles, offers multi-user access control, and can be extended with a plugin system. Output can be served as M3U, XMLTV EPG, Xtream Codes API, or an HDHomeRun device.
 
-<div class="glance">
-  <div><span>Port</span><b><code>9191</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/dispatcharr/dispatcharr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
 # 1 · Deploy Dispatcharr
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   dispatcharr:
@@ -45,8 +34,9 @@ services:
       - DISPATCHARR_LOG_LEVEL=info
 ```
 
-## <img src="/docker.png" class="tab-icon"> Docker + VPN
+::
 
+::block-tab{label="Docker + VPN" icon="simple-icons:docker"}
 ```yaml
 services:
   dispatcharr:
@@ -81,9 +71,12 @@ services:
     restart: unless-stopped
 ```
 
-> 
+> [!NOTE]
 > Dispatcharr now auto-generates and persists its own secret key inside the `/data` volume, so you no longer need to set `DJANGO_SECRET_KEY` manually. The compose above runs in all-in-one (AIO) mode with Redis and PostgreSQL bundled inside the single container, which is what most homelabbers want. If you need external Postgres/Redis or TLS-encrypted database connections, there is an optional modular deployment documented in the official Dispatcharr docs.
-{.is-info}
+
+::
+
+:::
 
 # 2 · Logging In
 
@@ -113,8 +106,8 @@ services:
 6. Select the options **Import guide directly from the m3u, when available** and **Allow mapping to guide data using channel numbers**
 7. Click **Save**
 
+> [!NOTE]
 > Each client will need to make sure they have their dashboard set to show Live TV channels
-{.is-info}
 
 
 ## 4.2 Jellyfin
@@ -137,16 +130,15 @@ Plex does not accept a raw M3U tuner, but Dispatcharr's HDHomeRun emulation lets
 4. Continue, and when prompted for guide data choose to use an **XMLTV** guide, using the URL from the **EPG** button in Dispatcharr (or map to Plex's own guide data)
 5. Finish the setup and Plex will list your Dispatcharr channels under Live TV
 
-> 
+> [!NOTE]
 > I do not run Plex myself, so if you have this working and can tighten up any of the steps above, please edit this page.
-{.is-info}
 
 # 5 · Source Lists
 
 The lists below are free, publicly distributed, and actively maintained. They carry the free-to-air streaming feeds (ABC News Live, NBC News NOW, CBS News, LiveNOW from FOX) and the free FAST platforms (Samsung TV Plus, Pluto TV) with their sports, news, and weather channels.
 
+> [!WARNING]
 > Lists that include live cable networks like ESPN, FS1, TNT, or "CBS Sports HQ live games" are unstable, and they get taken down frequently causing breakage.
-{.is-warning}
 
 ## 5.1 M3U Playlists
 
@@ -157,8 +149,8 @@ The lists below are free, publicly distributed, and actively maintained. They ca
 | Samsung TV Plus US | `https://cdn.jsdelivr.net/gh/BuddyChewChew/app-m3u-generator@main/playlists/samsungtvplus_us.m3u` | FAST channels. Most stable. Pairs with a matching guide below. |
 | Pluto TV US | `https://cdn.jsdelivr.net/gh/BuddyChewChew/app-m3u-generator@main/playlists/plutotv_us.m3u` | FAST channels. Adds the NBA Channel, UEFA Champions League, and more. |
 
+> [!NOTE]
 > Set **Account Type** to `Standard` for all of these, not Xtream Codes.
-{.is-info}
 
 ## 5.2 EPG Guides
 
@@ -167,8 +159,8 @@ The lists below are free, publicly distributed, and actively maintained. They ca
 | Samsung TV Plus US | `https://i.mjh.nz/SamsungTVPlus/us.xml.gz` | Channel IDs match the Samsung playlist, so **Auto Match** works. |
 | Pluto TV US | `https://i.mjh.nz/PlutoTV/us.xml.gz` | Channel IDs match the Pluto playlist. |
 
+> [!WARNING]
 > The free network news feeds (ABC/CBS/NBC/Fox) from Free-TV and iptv-org often have thin or missing guide data, since they are 24/7 rolling feeds. Leaving those channels on the Dummy guide is normal and they still play fine. The Samsung and Pluto channels are the ones that populate a full program grid.
-{.is-warning}
 
 ## 5.3 If a GitHub Link Throws an Error
 
@@ -179,8 +171,8 @@ Raw:      https://raw.githubusercontent.com/USER/REPO/BRANCH/path/file.m3u
 jsDelivr: https://cdn.jsdelivr.net/gh/USER/REPO@BRANCH/path/file.m3u
 ```
 
+> [!NOTE]
 > These URLs occasionally move as the upstream repos reorganize. If one returns a 404, open the source repo (Free-TV/IPTV, iptv-org/iptv, BuddyChewChew/app-m3u-generator, matthuisman/i.mjh.nz) and grab the current path. A quick browser test of any URL before adding it will save you a lot of guessing.
-{.is-info}
 
-# <img src="/youtube.png" class="tab-icon"> 6 · Video
+# :logos:youtube-icon: 6 · Video
 [![](/2026-07-17-streaming-live-tv-with-dispatcha-promo-card.png)](https://www.patreon.com/serversathome/posts/streaming-live-163694070)

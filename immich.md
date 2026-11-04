@@ -2,63 +2,49 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:32.425Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:05:25.101Z
+dateCreated: '2026-01-15T15:05:25.101Z'
 ---
 
-# ![](/immich.png){class="tab-icon"} What is Immich?
+# What is Immich?
 Easily back up, organize, and manage your photos on your own server. Immich helps you browse, search and organize your photos and videos with ease, without sacrificing your privacy.
-
-<div class="glance">
-  <div><span>Port</span><b><code>2283</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>4 services</b></div>
-  <div><span>Depends on</span><b>Postgres and Valkey, optional GPU</b></div>
-  <div><span>Hardware accel</span><b>Nvidia, AMD, Intel or VAAPI</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/immich-app/immich"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://docs.immich.app"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://apps.truenas.com/resources/deploy-immich"><i class="mdi mdi-server"></i>TrueNAS app</a>
-    <a href="https://youtu.be/Kxg0JpWTDNQ"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
 
 # 1 · Deploy Immich
 
+> [!WARNING]
 > Upgrading from before v1.133? Do the VectorChord migration first (see the [v3.0.0 release notes](https://github.com/immich-app/immich/releases/tag/v3.0.0)).
-{.is-warning}
 
-# {.tabset}
-
-## Custom Builder
-
+:::block-tabs
+::block-tab{label="Custom Builder"}
 Immich has a custom yaml compose builder you can try [here!](https://immich.app/docker-compose-builder)
 
-![screenshot_from_2026-09-11_08-40-01.png](/screenshot_from_2026-09-11_08-40-01.png)
+![screenshot_from_2026-09-11_08-40-01.png](/screenshot-from-2026-09-11-08-40-01.png)
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-![screenshot_from_2025-04-30_08-01-41.png](/screenshot_from_2025-04-30_08-01-41.png)
+::
+
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+![screenshot_from_2025-04-30_08-01-41.png](/screenshot-from-2025-04-30-08-01-41.png)
 
 1. Set a database and redis password
 1. If you have an nVidia GPU, select the **Cuda Machine Learning Image** for the **Machine Learning Image Type**
 1. Set **Host Path Storage** for **Data** and **Postgres Storage** options
 
+> [!NOTE]
 > Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
-{.is-info}
 
+> [!WARNING]
 > The **Postgres Data Storage** needs the **☑ Automatic Permissions** checkbox checked!
-{.is-warning}
 
 4. If you can, increase limits on the **Resources Configuration**
 
+> [!TIP]
 > Check out [the new docs](https://apps.truenas.com/resources/deploy-immich) from TrueNAS
-{.is-success}
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose - CPU
+::
 
+::block-tab{label="Docker Compose - CPU" icon="simple-icons:docker"}
 ```yaml
 services:
   immich-server:
@@ -126,8 +112,8 @@ DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
  ```
 
+> [!CAUTION]
 > Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
-{.is-danger}
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
 
@@ -142,11 +128,12 @@ tank
 
 - The `uploads` directory will be where all photos are stored in individual folders per user
 
+> [!NOTE]
 > Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
-{.is-info}
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose - Nvidia GPU
+::
 
+::block-tab{label="Docker Compose - Nvidia GPU" icon="simple-icons:docker"}
 ```yaml
 services:
   immich-server:
@@ -234,16 +221,16 @@ MACHINE_LEARNING_MODEL_TTL=0
 MACHINE_LEARNING_MODEL_TTL_POLL_S=0
  ```
 
+> [!CAUTION]
 > Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
-{.is-danger}
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
 
+> [!NOTE]
 > In case you want to use multiple gpus see: [https://docs.immich.app/features/ml-hardware-acceleration#multi-gpu](https://docs.immich.app/features/ml-hardware-acceleration#multi-gpu)
 > The GPU must have compute capability 5.2 or greater.
 > The server must have the official NVIDIA driver installed.
 > The installed driver must be >= 545 (it must support CUDA 12.3).
-{.is-info}
 
 ### Folder Structure
 
@@ -257,8 +244,8 @@ tank
 
 - The `uploads` directory will be where all photos are stored in individual folders per user
 
+> [!NOTE]
 > Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
-{.is-info}
 
 ### Confirming GPU Utilization
 
@@ -270,8 +257,9 @@ To confirm you are actually using your GPU, you should do the following:
 
 This is under assumption that you have some content in your library.
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose - AMD GPU
+::
 
+::block-tab{label="Docker Compose - AMD GPU" icon="simple-icons:docker"}
 ```yaml
 services:
   immich-server:
@@ -335,10 +323,10 @@ volumes:
   model-cache:
 ```
 
+> [!NOTE]
 > The GPU must be supported by ROCm. If it isn't officially supported, you can attempt to use the `HSA_OVERRIDE_GFX_VERSION` environmental variable: `HSA_OVERRIDE_GFX_VERSION=<a supported version, e.g. 10.3.0>`. If this doesn't work, you might need to also set `HSA_USE_SVM=0`.
 > The ROCm image is quite large and requires at least 35GiB of free disk space. However, pulling later updates to the service through Docker will generally only amount to a few hundred megabytes as the rest will be cached.
 > This backend is new and may experience some issues. For example, GPU power consumption can be higher than usual after running inference, even if the machine learning service is idle. In this case, it will only go back to normal after being idle for 5 minutes (configurable with the [MACHINE_LEARNING_MODEL_TTL](https://docs.immich.app/install/environment-variables) setting).
-{.is-info}
 
 ### env Variables
 
@@ -353,8 +341,8 @@ MACHINE_LEARNING_MODEL_TTL=0
 MACHINE_LEARNING_MODEL_TTL_POLL_S=0
  ```
 
+> [!CAUTION]
 > Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
-{.is-danger}
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
 
@@ -371,8 +359,8 @@ tank
 
 - The `uploads` directory will be where all photos are stored in individual folders per user
 
+> [!NOTE]
 > Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
-{.is-info}
 
 ### Confirming GPU Utilization
 
@@ -391,8 +379,9 @@ apt update && apt install radeontop
 
 This is under assumption that you have some content in your library.
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose - Intel GPU/iGPU
+::
 
+::block-tab{label="Docker Compose - Intel GPU/iGPU" icon="simple-icons:docker"}
 ```yaml
 services:
   immich-server:
@@ -458,10 +447,10 @@ volumes:
   model-cache:
 ```
 
+> [!NOTE]
 > Integrated GPUs are more likely to experience issues than discrete GPUs, especially for older processors or servers with low RAM.
 > Ensure the server's kernel version is new enough to use the device for hardware accceleration.
 > Expect higher RAM usage when using OpenVINO compared to CPU processing.
-{.is-info}
 
 ### env Variables
 
@@ -476,8 +465,8 @@ MACHINE_LEARNING_MODEL_TTL=0
 MACHINE_LEARNING_MODEL_TTL_POLL_S=0
  ```
 
+> [!CAUTION]
 > Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
-{.is-danger}
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
 
@@ -494,8 +483,8 @@ tank
 
 - The `uploads` directory will be where all photos are stored in individual folders per user
 
+> [!NOTE]
 > Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
-{.is-info}
 
 ### Confirming GPU Utilization
 
@@ -507,8 +496,9 @@ To confirm you are actually using your GPU, you should do the following:
 
 This is under assumption that you have some content in your library.
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose - VAAPI (Intel/AMD/Nvidia)
+::
 
+::block-tab{label="Docker Compose - VAAPI (Intel/AMD/Nvidia)" icon="simple-icons:docker"}
 ```yaml
 services:
   immich-server:
@@ -567,11 +557,11 @@ volumes:
   model-cache:
 ```
 
+> [!NOTE]
 > In case your graphics card, dedicated or integrated, doesn't support machine learning, you can still accelerate transcoding!
 >
 > You may want to choose a slower preset than for software transcoding to maintain quality and efficiency
 > While you can use VAAPI with NVIDIA and Intel devices, prefer the more specific APIs since they're more optimized for their respective devices
-{.is-info}
 
 ### env Variables
 
@@ -584,8 +574,8 @@ DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
  ```
 
+> [!CAUTION]
 > Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
-{.is-danger}
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
 
@@ -600,8 +590,12 @@ tank
 
 - The `uploads` directory will be where all photos are stored in individual folders per user
 
+> [!NOTE]
 > Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
-{.is-info}
+
+::
+
+:::
 
 # 2 · Adding External Libraries
 1. If installing from the TrueNAS apps catalog, under **Storage Configuration →  Additional Storage**, add a host path pointed to where your photos are stored
@@ -674,5 +668,6 @@ Immich team also provided a list of languages that are supported by the Multilin
 * `nllb` models expect the search query to be in the language specified in the user settings
 * `xlm` and `siglip2` models understand search text regardless of the current language setting
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Video
-https://youtu.be/Kxg0JpWTDNQ
+# :logos:youtube-icon: 4 · Video
+::block-youtube{url="https://youtu.be/Kxg0JpWTDNQ"}
+::

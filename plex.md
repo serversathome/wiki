@@ -2,33 +2,21 @@
 title: Plex
 description: A guide to installing Plex in TrueNAS and via docker compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:12.433Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:21.349Z
+dateCreated: '2026-01-15T15:07:21.349Z'
 ---
 
+> [!CAUTION]
 > Plex has recently made streaming outside your home network a paid-only feature. [Read about it here](https://www.plex.tv/blog/important-2025-plex-updates/). 
-{.is-danger}
 
-# <img src="/plex.png" class="tab-icon"> What is Plex?
+# What is Plex?
 A one-stop destination to stream movies, TV shows, and music, Plex is the most comprehensive entertainment platform available today. Available on almost any device, Plex is the first-and-only streaming platform to offer free ad-supported movies, shows, and live TV together with the ability to easily search—and add to your Watchlist—any title ever made, no matter which streaming service it lives on. Using the platform as their entertainment concierge, 17 million (and growing!) monthly active users count on Plex for new discoveries and recommendations from all their favorite streaming apps, personal media libraries, and beyond.
 
-<div class="glance">
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Hardware accel</span><b>Nvidia, Intel, AMD or VAAPI</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/linuxserver/docker-plex"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://apps.truenas.com/resources/deploy-plex"><i class="mdi mdi-server"></i>TrueNAS app</a>
-    <a href="https://youtu.be/MU7wXJkGHqU?si=BuvTbpPo6yxYjBVH"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
 # 1 · Deploy Plex
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose Nvidia
+:::block-tabs
+::block-tab{label="Docker Compose Nvidia" icon="simple-icons:docker"}
 ```yaml
 services:
   plex:
@@ -51,8 +39,8 @@ services:
     restart: unless-stopped
     # http://{TrueNAS IP}:32400/web/index.html
 ```
+> [!NOTE]
 > To get your Plex Claim Token, go to https://plex.tv/claim and follow the steps to create an account (or login to an existing one) to claim your token.
-{.is-info}
 
 
 ### Permissions & Folder Structure
@@ -60,9 +48,9 @@ services:
 - **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/plex
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
+> [!NOTE]
 > **Enabling nVidia GPUs in Docker**
 > Follow the steps [in this Github page](https://github.com/NVIDIA/nvidia-container-toolkit) to allow passing an nVidia GPU into a container
-{.is-info}
 ### GPU Transcode
 **NVIDIA**
 The compose file above already enables your nVidia GPU (`runtime: nvidia` and the `NVIDIA_*` variables).
@@ -73,7 +61,9 @@ To enable transcoding from your Intel iGPU, remove `runtime: nvidia` and the two
       - /dev/dri:/dev/dri
 ```
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose AMD
+::
+
+::block-tab{label="Docker Compose AMD" icon="simple-icons:docker"}
 ```yaml
 services:
   plex:
@@ -101,8 +91,8 @@ services:
     # http://{TrueNAS IP}:32400/web/index.html
 ```
 
+> [!NOTE]
 > To get your Plex Claim Token, go to https://plex.tv/claim and follow the steps to create an account (or login to an existing one) to claim your token.
-{.is-info}
 
 ### Permissions & Folder Structure
 - **PUID / PGID**: Ensure you use a user/group with the correct permissions for accessing media folders. TrueNAS SCALE defaults to 568:568 for apps.
@@ -124,15 +114,17 @@ In case the Plex can't access `/dev/dri/renderD128` add `rwx` permissions to own
 truenas_admin@truenas:$ sudo chmod -R 770 /dev/dri
 ```
 
+> [!WARNING]
 > **IMPORTANT:** This is not persistent change so after reboot/shutdown you will have to run the `chmod` command again!
-{.is-warning}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-![screenshot_from_2025-03-13_06-45-49.png](/screenshot_from_2025-03-13_06-45-49.png)
+::
+
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+![screenshot_from_2025-03-13_06-45-49.png](/screenshot-from-2025-03-13-06-45-49.png)
 
 1. Add your **Claim Token**
+> [!NOTE]
 > To get your Plex Claim Token, go to https://plex.tv/claim and follow the steps to create an account (or login to an existing one) to claim your token.
-{.is-info}
 2. Change to **Storage Configuration** to the values below: 
 
 | Field | Value | Path |
@@ -144,8 +136,12 @@ truenas_admin@truenas:$ sudo chmod -R 770 /dev/dri
 
 3. **GPU Configuration**: Select NVIDIA GPU(s) if you have any available
 
+> [!TIP]
 > Check out [the new docs](https://apps.truenas.com/resources/deploy-plex) from TrueNAS
-{.is-success}
+
+::
+
+:::
 
 # 2 · Plex Configuration
 Upon first launch follow these steps:
@@ -159,6 +155,8 @@ Upon first launch follow these steps:
 1. Repeat this process for TV Shows
 1. Click **Next** then click **Done** then click **Finish Setup**
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-https://youtu.be/MU7wXJkGHqU?si=BuvTbpPo6yxYjBVH
+# :logos:youtube-icon: 3 · Video
+::block-youtube{url="https://youtu.be/MU7wXJkGHqU?si=BuvTbpPo6yxYjBVH"}
+::
+
 

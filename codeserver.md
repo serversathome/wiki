@@ -2,37 +2,27 @@
 title: Code Server
 description: A guide to deploying Code Server
 published: true
-date: 2026-01-15T15:28:33.497Z
-tags: 
+date: '2026-11-04T16:17:00.857Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:50.157Z
+dateCreated: '2026-01-15T15:03:50.157Z'
 ---
 
-# ![](/coder.png){class="tab-icon"} What is Code Server?
+# What is Code Server?
 
 Run VS Code on any machine anywhere and access it in the browser.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8443</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/linuxserver/docker-code-server"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
 # 1 · Deploy Code Server
-# {.tabset}
-
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+:::block-tabs
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Set an **Additional Environment Variable** 
 a. Name = PASSWORD
 b. Value = *choose a password*
 1. Set the **Code Server Project Storage** to *Host Path* and select your pool 
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+::
 
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   code-server:
@@ -50,3 +40,7 @@ services:
       - 8443:8443
     restart: unless-stopped
 ```
+
+::
+
+:::

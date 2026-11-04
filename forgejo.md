@@ -2,33 +2,20 @@
 title: Forgejo
 description: A guide to deploying Forgejo
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:14.803Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-25T18:25:30.503Z
+dateCreated: '2026-08-25T18:25:30.503Z'
 ---
 
-# <img src="/forgejo.png" class="tab-icon"> What is Forgejo?
+# What is Forgejo?
 
 **Forgejo** is a self-hosted software forge. In plain terms, it is your own GitHub: git hosting over HTTP and SSH, issues, pull requests, wikis, releases, organizations, CI/CD, and a built-in container registry, all from a single lightweight Go binary.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty advanced">Advanced</b></div>
-  <div class="glance-links">
-    <a href="https://codeberg.org/forgejo/forgejo"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/O_kpayAlRZA"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
 # 1 · Deploy Forgejo
 
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   forgejo:
@@ -77,13 +64,12 @@ services:
 2. Change `CHANGE_ME_DB` in **both** services to the same strong password
 3. Replace `git.serversatho.me` with your own hostname everywhere it appears
 
+> [!NOTE]
 > `:17` is the current stable major. Forgejo 16 reaches end of life on 29 October 2026 and 17 is supported until 28 January 2027. If you'd rather upgrade less often, pin `:15`, the LTS release supported until 15 July 2027 (new installs only; you can't move an existing 16 or 17 instance back to 15, because its database has already been migrated). See the [release schedule](https://forgejo.org/docs/latest/admin/release-schedule/) and read the [release notes](https://codeberg.org/forgejo/forgejo/releases) before you bump a major version.
-{.is-info}
 
+::
 
-
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Forgejo is in the **Community** train of the TrueNAS Apps catalog.
 
 1. Navigate to **Apps** in the TrueNAS UI
@@ -96,8 +82,12 @@ Forgejo is in the **Community** train of the TrueNAS Apps catalog.
 4. Click **Save**
 5. Under the app's config, disable SSH if the option is offered
 
+> [!NOTE]
 > The TrueNAS app uses the **rootless** Forgejo image, so its paths differ from the Docker tab: data lives at `/var/lib/gitea` and the config file is `/etc/gitea/app.ini` inside the container (not `/data/gitea/conf/app.ini`).
-{.is-info}
+
+::
+
+:::
 
 # 2 · First Run
 
@@ -107,9 +97,9 @@ Browse to `http://<truenas-ip>:3000`. Most fields are pre-filled from your envir
 
 Create your admin account here, as a local username and password account.
 
+> [!CAUTION]
 > **Do not make your admin account an OAuth account.**
 > Section 5 adds "Sign in with GitHub" so contributors do not need to register. That OAuth application is owned by your GitHub account. If GitHub ever suspends you, which is the exact scenario this build exists to survive, the OAuth app dies with it and nobody can log in to your forge, including you. A local admin account is your way back in.
-{.is-danger}
 
 ## 2.2 Lock the installer
 
@@ -160,8 +150,8 @@ client_max_body_size 0;
 proxy_request_buffering off;
 ```
 
+> [!CAUTION]
 > **Do not remove the Advanced block.** `client_max_body_size 0` lifts NPM's default upload cap. Without it, pushing a container image or a large release asset fails with a `413` that the docker client reports as the unhelpful `error from registry: unknown`. `proxy_request_buffering off` stops NPM writing multi-hundred-megabyte layers to disk before forwarding them.
-{.is-danger}
 
 
 
@@ -175,12 +165,17 @@ You also need **NAT hairpin** (also called NAT loopback) on your router so machi
 
 Both of these publish to the internet without a single inbound port on your home connection, by having your box dial outward to a server you own:
 
-- [Pangolin *self-hosted tunneled reverse proxy on your own VPS*](/pangolin)
-- [NetBird *mesh VPN with a Reverse Proxy feature for public services*](/netbird)
-{.links-list}
+::block-links-grid
+```yaml
+- title: "Pangolin *self-hosted tunneled reverse proxy on your own VPS*"
+  url: "/pangolin"
+- title: "NetBird *mesh VPN with a Reverse Proxy feature for public services*"
+  url: "/netbird"
+```
+::
 
+> [!WARNING]
 > Using the **NetBird Reverse Proxy**? Self-hosted deployments must use **Traefik** as the external proxy, since it is the only one supporting the TLS passthrough the feature needs. NPM will not work in front of it, and the feature is still in beta. Test a large image push through it early.
-{.is-warning}
 
 # 4 · Container Registry
 
@@ -246,8 +241,8 @@ In the repository on Forgejo: **Settings** → **Repository** → **Mirror Setti
 
 On the GitHub repo: **Settings** → **Features**, and uncheck **Issues**, **Projects**, **Wiki** and **Discussions**. Under **Pull Requests**, make it clear in your README that PRs are not accepted there.
 
+> [!CAUTION]
 > **Push mirrors force-push.** If someone opens a pull request on your GitHub mirror and you merge it there, your next sync overwrites it and the work is gone. This is not merely awkward, it is a way to lose contributions. Turn the features off rather than leaving them on and hoping.
-{.is-danger}
 
 Then put a banner at the top of your README:
 
@@ -267,8 +262,8 @@ Then put a banner at the top of your README:
 
 Add a second push mirror to [Codeberg](https://codeberg.org) or any other forge. It costs nothing and gives you a continuously updated offsite copy of every repository, without a backup job to babysit. It does not carry your issues or users, which is what section 8 is for.
 
+> [!TIP]
 > **Never delete the old GitHub repo.** Strip it down, archive it, but leave it up forever. The problem after a migration is never the code, it is that every inbound link from every blog post and forum answer now 404s. A repository whose only content is a signpost is worth more than a tidy namespace.
-{.is-success}
 
 # 7 · Forgejo Actions Runner
  
@@ -354,8 +349,8 @@ docker run --rm data.forgejo.org/forgejo/runner:13 \
 chown 1001:1001 data/runner-config.yml
 ```
  
+> [!WARNING]
 > **The path matters.** The container's working directory is `/data`, which is where `./data` is mounted, so the config has to live at `data/runner-config.yml` on the host. Put it beside `docker-compose.yml` instead and the runner starts, finds no config and exits.
-{.is-warning}
  
 **3. Edit `data/runner-config.yml`.** Two blocks change, the rest of the generated file is fine as it ships. The UUID and token are the ones from 7.1:
  
@@ -408,8 +403,8 @@ services:
  
 **6. Confirm** it shows as **Idle**, carrying the label `untrusted`, under **Site Administration** → **Actions** → **Runners**.
  
+> [!NOTE]
 > **Registration is a config file now, not a CLI step.** Guides written against older runners hand the runner a `FORGEJO_INSTANCE_URL` and a `FORGEJO_RUNNER_REGISTRATION_TOKEN` environment variable. Those belong to Gitea's `act_runner`; the Forgejo runner never reads them, so a compose file built that way registers nothing. `forgejo-runner register` still exists but is deprecated as of runner v13.
-{.is-info}
  
 ## 7.6 The two-runner split
  
@@ -435,8 +430,8 @@ jobs:
       - run: docker build -t testbuild .
 ```
  
+> [!NOTE]
 > **That `apt-get` step is not optional.** The Node image has no `docker` command in it, and the runner deliberately does not mount a docker socket into job containers. Installing `docker-cli` gives the job a client, and the `DOCKER_HOST` from 7.5 points it at DinD. Debian 13 carries `docker-cli` as its own package, which is why the job image is a `trixie` one. An image that already ships the client, or one you build yourself, works just as well and saves the thirty seconds.
-{.is-info}
  
 ```yaml
 # Runs only when you push a tag, which only you can do.
@@ -478,6 +473,8 @@ Also turn on the Forgejo setting requiring manual approval before workflows run 
  
 If a repository is only ever built from code you wrote, the CI VM is more than you need and the `publish` runner on TrueNAS can do everything. The realistic threat there is a compromised upstream dependency in your own build, which DinD contains reasonably well.
 
-# <img src="/youtube.png" class="tab-icon"> 8 · Video 
-https://youtu.be/O_kpayAlRZA
+# :logos:youtube-icon: 8 · Video
+::block-youtube{url="https://youtu.be/O_kpayAlRZA"}
+::
  
+

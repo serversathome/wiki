@@ -2,13 +2,13 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:52.854Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:08:26.409Z
+dateCreated: '2026-01-15T15:08:26.409Z'
 ---
 
-# <img src="/scrutiny.png" class="tab-icon"> What is Scrutiny?
+# What is Scrutiny?
 
 **Scrutiny** is a hard drive health dashboard that collects S.M.A.R.T metrics from every disk in your system, tracks them over time, and warns you *before* a drive fails — instead of after. It wraps `smartctl` in a web UI, stores history in InfluxDB, and replaces the manufacturer's often-useless thresholds with real-world failure rates.
 
@@ -22,23 +22,12 @@ This page covers the **Starosdev fork** (`ghcr.io/starosdev/scrutiny`), which is
 | Image | `ghcr.io/analogj/scrutiny` | `ghcr.io/starosdev/scrutiny` |
 
 
+> [!WARNING]
 > **Upgrading or migrating from AnalogJ?** Back up `/mnt/tank/configs/scrutiny/influxdb2` and `config/scrutiny.db`, then add `- SCRUTINY_INFLUXDB_29_BACKUP_CONFIRMED=true` to the environment or InfluxDB 2.9 won't start. Fresh installs don't need it ([upstream notes](https://github.com/starosdev/scrutiny#docker)).
-{.is-warning}
-
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/starosdev/scrutiny"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
 
 # 1 · Deploy Scrutiny
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker (Omnibus)
-
+:::block-tabs
+::block-tab{label="Docker (Omnibus)" icon="simple-icons:docker"}
 The omnibus image contains the web UI, the API, InfluxDB, and the collector in a single container. This is what you want for a single-box homelab.
 ```yaml
 services:
@@ -76,13 +65,12 @@ services:
 5. `TZ` sets the time zone for the cron schedules and for scheduled reports. Without it they run in UTC.
 6. Alternatively, `privileged: true` replaces `cap_add` and `devices:` completely, which saves you maintaining the device list.
 
+> [!NOTE]
 > Ports: **8080** is the web UI/API, **8086** is InfluxDB. You only need to publish 8086 if something outside the container will query InfluxDB directly.
-{.is-info}
 
+::
 
-
-## <img src="/docker.png" class="tab-icon"> Docker (Hub/Spoke)
-
+::block-tab{label="Docker (Hub/Spoke)" icon="simple-icons:docker"}
 Use this when you have multiple servers and want one dashboard. Run the web + InfluxDB containers once, then the collectors on every machine with disks.
 
 ```yaml
@@ -156,8 +144,9 @@ On remote machines, deploy **only** the collector service(s) and point `COLLECTO
 | `:latest-collector-zfs` | ZFS pool health collector (one per ZFS server) |
 | `:latest-collector-performance` | fio benchmark collector (heavy disk I/O, schedule it off-hours) |
 
+::
 
-
+:::
 
 # 2 · Configuration
 
@@ -185,8 +174,8 @@ docker exec scrutiny /opt/scrutiny/bin/scrutiny-collector-metrics run
 
 Scrutiny uses `smartctl --scan` to find drives. If a device type is detected incorrectly (common with RAID controllers), override it in `collector.yaml`. If you use Docker, the virtual disk **must** be visible to the container — it may live under `/dev/*` or `/dev/bus/*`.
 
+> [!NOTE]
 > If a drive shows up with no SMART data, the device type is almost always the culprit. Try `COLLECTOR_COMMANDS_METRICS_SMART_ARGS="--xall --json -T permissive"`.
-{.is-info}
 
 ## 2.3 S.M.A.R.T Attribute Overrides
 
@@ -211,24 +200,32 @@ Scrutiny alerts you when a drive's health changes. In this fork, notification en
 4. Click **Test**, then **Save**
 Scrutiny speaks **Shoutrrr**, **Apprise**, custom scripts, and raw webhooks — Discord, Telegram, email, Slack, Teams, ntfy, Gotify, Pushover, and dozens more.
  
-- [**Apprise URL Builder**](https://appriseit.com/url-builder/) — URL format builder for every supported service
-- [**Shoutrrr docs**](https://nicholas-fedor.github.io/shoutrrr/) — URL format for the built-in Shoutrrr targets
-{.links-list}
+::block-links-grid
+```yaml
+- title: "Apprise URL Builder"
+  description: "URL format builder for every supported service"
+  url: "https://appriseit.com/url-builder/"
+- title: "Shoutrrr docs"
+  description: "URL format for the built-in Shoutrrr targets"
+  url: "https://nicholas-fedor.github.io/shoutrrr/"
+```
+::
 
  
+> [!WARNING]
 > **Usernames and passwords with special characters must be URL-encoded.** If your username is `myname@example.com` and your password is `124@34$1`, the SMTP URL becomes:
 > `smtp://myname%40example%2Ecom:124%4034%241@ms.my.domain.com:587`
-{.is-warning}
  
 Two gotchas worth knowing:
  
 - **Gotify defaults to HTTPS.** Plain-HTTP deployments need `gotify://gotify-host:8080/token?disabletls=Yes`
 - **Telegram topic groups** take the thread ID after a colon: `channels=-123456789:12345`
 
-# <img src="/eagle.png" class="tab-icon"> 8 · Would You Like to Know More?
+# ![](/_files/eagle.png =28x) 8 · Would You Like to Know More?
 
 
 https://blog.serversatho.me/getting-smart-about-your-data-why-drive-health-isnt-enough/
+
 
 
 

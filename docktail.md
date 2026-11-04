@@ -2,10 +2,10 @@
 title: DockTail
 description: A guide to deploying Docktail
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:13.755Z'
+tags: []
 editor: markdown
-dateCreated: 2026-06-30T09:42:59.122Z
+dateCreated: '2026-06-30T09:42:59.122Z'
 ---
 
 # What is DockTail?
@@ -14,21 +14,11 @@ dateCreated: 2026-06-30T09:42:59.122Z
 
 The big differentiator is that DockTail uses real Tailscale Services rather than spinning up a separate Tailscale device per app. One tagged host advertises everything, so your apps do not burn through device slots. It is fully stateless, supports HTTP, HTTPS, TCP, and TLS-terminated TCP, can hand out automatic HTTPS certs, and can publish anything to the public internet through Tailscale Funnel.
 
-<div class="glance">
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/marvinvr/docktail"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
 # How DockTail Works
 
 DockTail runs a continuous reconciliation loop between Docker and Tailscale. It watches Docker events, reads the `docktail.*` labels off each container, works out how to reach the backend, and then drives the Tailscale CLI (and API, if you gave it credentials) to advertise the matching services and Funnels. A periodic reconcile catches container IP changes after restarts.
 
+::block-diagram
 ```mermaid
 graph TD
     A["Docker container<br/>with docktail.* labels"] --> B["DockTail watches<br/>Docker events"]
@@ -42,12 +32,12 @@ graph TD
     H --> I
     I -. "periodic reconcile (RECONCILE_INTERVAL)" .-> B
 ```
+::
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy DockTail
+# :logos:docker-icon: 1 · Deploy DockTail
 
-# {.tabset}
-## Tailscale on Host
-
+:::block-tabs
+::block-tab{label="Tailscale on Host"}
 Use this when `tailscaled` is already installed and running on the Docker host. This is the simplest setup. 
 
 Ensure you complete section 2 and its sub. sections before starting the container.
@@ -82,12 +72,12 @@ The host must advertise a tag that matches your ACL auto-approvers before servic
 sudo tailscale up --advertise-tags=tag:server --reset
 ```
 
-> 
+> [!WARNING]
 > Mount `/var/run/tailscale` as a **directory**, not the socket file directly. When `tailscaled` restarts it recreates the socket with a new inode, and a directory mount stays in sync. The `--reset` flag briefly drops Tailscale, so if you are SSHed in over Tailscale your session may stall until it reconnects.
-{.is-warning}
 
-## Tailscale Sidecar
+::
 
+::block-tab{label="Tailscale Sidecar"}
 Use this when you do **not** want or cannot install Tailscale directly on the host. DockTail talks to a dedicated Tailscale sidecar container over a shared socket volume.
 
 Ensure you complete section 2 and its sub. sections before starting the container stack.
@@ -149,11 +139,12 @@ TAILSCALE_OAUTH_CLIENT_SECRET=
 
 Generate `TAILSCALE_AUTH_KEY` in the Tailscale Admin Console under **Settings -> Keys**. The sidecar should advertise `tag:server` so it satisfies the ACL auto-approver below.
 
-> 
+> [!NOTE]
 > The sidecar's OAuth client needs the extra **Keys -> Auth Keys: Write** scope so it can mint its own auth key. The host method does not.
-{.is-info}
 
+::
 
+:::
 
 # 2 · Tailscale Admin Setup
 
@@ -171,9 +162,8 @@ OAuth is preferred because it does not expire like API keys do.
    - **Keys -> Auth Keys: Write** (only needed for the sidecar method)
 4. Drop the credentials into DockTail's environment (or load them from files, see the Reference section).
 
-> 
+> [!NOTE]
 > If both OAuth and an API key are configured, DockTail uses OAuth.
-{.is-info}
 
 ## 2.2 ACL Configuration
 
@@ -195,9 +185,8 @@ Your tailnet ACL needs the tags defined in `tagOwners` plus an `autoApprovers.se
 
 `tag:server` is the host (or sidecar auth key) running DockTail. `tag:container` is the default tag DockTail assigns to the services it creates. If you manage ACLs via GitOps, both tags must exist in `tagOwners` or Tailscale rejects the policy.
 
-> 
+> [!WARNING]
 > The first time a brand new service is advertised, you may need to approve it once in the **Services** tab of the Admin Console. After that it survives container restarts.
-{.is-warning}
 
 # 3 · Labels
 
@@ -252,9 +241,8 @@ Funnel exposes a service to the **public internet**. It can ride alongside a pri
 | `docktail.funnel.path` | No | `/` | HTTP(S) Funnel path. Must start with `/`. |
 
 
-> 
+> [!NOTE]
 > Funnel URLs use the **machine hostname**, not the Tailscale service name. HTTP(S) Funnels can share a public port if each uses a different `path`; TCP and TLS-terminated TCP Funnels allow only one Funnel per public port on a node.
-{.is-info}
 
 # 4 · Examples
 
@@ -334,6 +322,7 @@ services:
 ```
 
 Public at `https://your-machine.your-tailnet.ts.net:8443`.
+
 
 
 

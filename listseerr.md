@@ -2,28 +2,17 @@
 title: Listseerr
 description: A guide to deploying Listseerr
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:22.597Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:04.583Z
+dateCreated: '2026-01-15T15:06:04.583Z'
 ---
 
-# <img src="/listseerr-light.png" class="tab-icon"> What is Listseerr?
+# What is Listseerr?
 
 Request movies & shows in Seerr from your favorite lists.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/guillevc/listseerr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Listseerr
+# :logos:docker-icon: 1 · Deploy Listseerr
 ```yaml
 services:
   listseerr:
@@ -40,6 +29,6 @@ services:
     restart: unless-stopped
 ```
 
-# <img src="/patreon-light.png" class="tab-icon"> 2 · Video
+# ![](/_files/patreon-light.png =28x) 2 · Video
 
 [![](/2026-01-13-add-all-the-lists-with-listseerr-promo-card.png)](https://www.patreon.com/posts/add-all-lists-147714038)

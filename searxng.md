@@ -2,35 +2,21 @@
 title: SearXNG
 description: A guide to deploying Searxng
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:59.538Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-22T12:08:48.277Z
+dateCreated: '2026-03-22T12:08:48.277Z'
 ---
 
-# <img src="/searxng.png" class="tab-icon"> What is SearXNG?
+# What is SearXNG?
 
 **SearXNG** is a free, open-source metasearch engine that aggregates results from over 240 search services — including Google, Bing, DuckDuckGo, Brave, and Wikipedia — without tracking users, storing cookies, or building profiles. It acts as a privacy-preserving proxy between you and search engines, stripping tracking data from requests and results.
 
 SearXNG is a community-driven fork of the original SearX project, started in 2021, and is under very active development with 26,900+ GitHub stars.
 
-<div class="glance">
-  <div><span>Port</span><b><code>5080</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Valkey</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/searxng/searxng"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://docs.searxng.org/admin/settings/index.html"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://youtu.be/5vNegD0Lgt4"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
 # 1 · Deploy SearXNG
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   searxng:
@@ -83,20 +69,18 @@ openssl rand -hex 32
 2. Set the `SEARXNG_SECRET` environment variable with the generated key. You can either replace `${SEARXNG_SECRET}` directly or create a `.env` file in the same directory.
 3. If you plan to access SearXNG from a domain name, update `SEARXNG_BASE_URL` to match (e.g., `https://search.yourdomain.com/`).
 
-> 
+> [!NOTE]
 > SearXNG has switched from Redis to **Valkey**. `SEARXNG_VALKEY_URL` is what actually connects SearXNG to it (used by the bot limiter); without it the database container sits unused. Upstream's official compose now lives in the main repo: [container/docker-compose.yml](https://github.com/searxng/searxng/blob/master/container/docker-compose.yml) (the old `searxng-docker` repo is superseded).
-{.is-info}
 
-> 
+> [!NOTE]
 > The `cap_drop: ALL` with selective `cap_add` follows the principle of least privilege, limiting what the container can do on the host system.
-{.is-info}
 
-> 
+> [!WARNING]
 > If your pool is named something other than `tank`, change the left side of the volume path to match your pool name, e.g., `/mnt/yourpool/configs/searxng`.
-{.is-warning}
 
-## <img src="/docker.png" class="tab-icon"> Docker + VPN (Gluetun)
+::
 
+::block-tab{label="Docker + VPN (Gluetun)" icon="simple-icons:docker"}
 This deployment routes all of SearXNG's outbound search traffic through a VPN using [Gluetun](https://github.com/qdm12/gluetun), so search engines see a shared VPN IP instead of your home IP. This is the **recommended setup** for single-user instances.
 
 ```yaml
@@ -172,20 +156,18 @@ openssl rand -hex 32
 3. Replace the Gluetun VPN variables with your own provider credentials. The example above uses AirVPN with WireGuard. See the [Gluetun wiki](https://github.com/qdm12/gluetun-wiki) for your provider's specific variables.
 4. The `ports` mapping is on the **Gluetun container**, not SearXNG — because SearXNG uses `network_mode: "service:gluetun"`, all its traffic flows through the VPN tunnel.
 
-> 
+> [!NOTE]
 > **How this works:** `network_mode: "service:gluetun"` forces SearXNG and Valkey to share Gluetun's network stack. All outbound connections from SearXNG — every query to Google, Bing, Brave, etc. — go through the VPN tunnel. If the VPN drops, the built-in killswitch in Gluetun blocks all traffic, so no queries ever leak your real IP.
-{.is-info}
 
-> 
+> [!WARNING]
 > If your pool is named something other than `tank`, change the left side of the volume path to match your pool name, e.g., `/mnt/yourpool/configs/searxng`.
-{.is-warning}
 
-> 
+> [!NOTE]
 > Change `VPN_SERVICE_PROVIDER`, `VPN_TYPE`, and the credential variables to match your VPN provider. Gluetun supports 30+ providers including Mullvad, ProtonVPN, Surfshark, NordVPN, and more.
-{.is-info}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Navigate to **Apps** in the TrueNAS UI
 2. Click **Discover** and search for "**SearXNG**"
 3. Click **Install**
@@ -194,13 +176,15 @@ openssl rand -hex 32
    - **Storage > SearXNG Config Storage > Host Path**: `/mnt/tank/configs/searxng`
 5. Click **Install**
 
-> 
+> [!NOTE]
 > SearXNG is available in the **Community** train. Make sure the Community train is enabled in your Apps settings.
-{.is-info}
 
-> 
+> [!TIP]
 > The TrueNAS app automatically includes a Valkey (Redis-compatible) container and generates a secret key for you.
-{.is-success}
+
+::
+
+:::
 
 # 2 · Configuration
 
@@ -229,9 +213,8 @@ Under **Preferences > Engines**, you can enable or disable any of the 240+ searc
 - **Science**: Semantic Scholar, PubMed, arXiv
 - **IT**: Stack Overflow, GitHub, npm, PyPI
 
-> 
+> [!WARNING]
 > Enabling too many engines simultaneously can slow down results and increase the chance of rate limiting. Start with 3-5 engines per category.
-{.is-warning}
 
 ## 2.3 Settings File
 
@@ -258,9 +241,8 @@ ui:
     simple_style: dark
 ```
 
-> 
+> [!NOTE]
 > After modifying `settings.yml`, restart the SearXNG container for changes to take effect.
-{.is-info}
 
 ## 2.4 Environment Variables
 
@@ -274,9 +256,8 @@ ui:
 | `SEARXNG_SETTINGS_PATH` | Path to settings file inside container | `/etc/searxng/settings.yml` |
 {.dense}
 
-> 
+> [!NOTE]
 > Full environment variable documentation: [SearXNG Admin Docs](https://docs.searxng.org/admin/settings/index.html)
-{.is-info}
 
 # 3 · Privacy Guide
 
@@ -297,9 +278,8 @@ SearXNG protects privacy in three ways:
 | **Maximum** | Full anonymity | SearXNG + Tor | ISP and search engines seeing any connection to your queries |
 {.dense}
 
-> 
+> [!WARNING]
 > **Important**: SearXNG does not hide your queries from search engines. Google still knows *someone* searched for something — SearXNG breaks the link between those queries and *you*.
-{.is-warning}
 
 ## 3.3 Setting Up as Default Browser Search
 
@@ -309,6 +289,8 @@ You can add SearXNG as your default search engine in most browsers:
 - **Chrome/Brave**: Settings > Search engine > Manage search engines > Add. URL: `http://YOUR-IP:5080/search?q=%s`
 - **Safari**: Use an extension like "xSearch" to set a custom search URL
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Video
-https://youtu.be/5vNegD0Lgt4
+# :logos:youtube-icon: 4 · Video
+::block-youtube{url="https://youtu.be/5vNegD0Lgt4"}
+::
+
 

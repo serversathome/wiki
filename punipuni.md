@@ -2,24 +2,16 @@
 title: PuniPuni
 description: A guide to deploying PuniPuni
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:28.594Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:40.075Z
+dateCreated: '2026-01-15T15:07:40.075Z'
 ---
 
-# <img src="/punipuni.png" class="tab-icon"> What is PuniPuni?
+# What is PuniPuni?
 PuniPuni is an user invitation system for Jellyfin, inspired by Wizarr. Built with Spring Boot and Angular, it allows user management for Jellyfin administrators through an interface and automation features.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8089</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy PuniPuni
+# :logos:docker-icon: 1 · Deploy PuniPuni
 Generate a JWT secret seed with `openssl rand -hex 32`, and replace the `change-me` passwords with your own.
 
 ```yaml
@@ -55,6 +47,7 @@ services:
       - /mnt/tank/configs/punipuni/postgres:/var/lib/postgresql/data
 ```
 
+> [!NOTE]
 > Log in at `http://IP:8089` with the `PUNI_ADMIN_EMAIL` and `PUNI_ADMIN_PASSWORD` you set. Older versions of this guide kept the database in `/mnt/tank/configs/punipuni/` itself, not `postgres/`.
-{.is-info}
+
 

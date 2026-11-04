@@ -2,29 +2,17 @@
 title: Securo
 description: A guide to deploying Securo
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:17.564Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-28T20:39:44.910Z
+dateCreated: '2026-08-28T20:39:44.910Z'
 ---
 
-# <img src="/securo.png" class="tab-icon"> What is Securo?
+# What is Securo?
 
 **Securo** is an open-source, self-hosted personal finance manager — think Rocket Money or Monarch, but running on your own hardware with none of your financial data leaving the house. It handles multi-account tracking with running balances, transactions with search and CSV export, budgets, recurring transactions, savings goals, asset valuation, and Net Worth / Income vs Expenses reporting.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>3 services</b></div>
-  <div><span>Depends on</span><b>Postgres and Redis</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/securo-finance/securo"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Securo
+# :logos:docker-icon: 1 · Deploy Securo
 
 
 ```bash
@@ -185,16 +173,15 @@ TESOURO_DIRETO_ENABLED=false
 
 
 
+> [!CAUTION]
 > Registration is open by default. Create your admin account immediately after first boot, then go to **Settings → Admin** and disable public registration before you expose this anywhere.
-{.is-danger}
 
 # 2 · Bank Sync
 
 Each provider auto-registers as soon as its credentials are present in `.env`. You can run more than one at a time.
 
-# {.tabset}
-## SimpleFIN (US)
-
+:::block-tabs
+::block-tab{label="SimpleFIN (US)"}
 This is the one most US homelabbers want. SimpleFIN is a **read-only** open protocol — there's no API key to request and no write access to your accounts, ever.
 
 1. Confirm `SIMPLEFIN_ENABLED=true` is in your `.env`
@@ -205,11 +192,12 @@ This is the one most US homelabbers want. SimpleFIN is a **read-only** open prot
 
 For real banks, point `SIMPLEFIN_API_URL` at `https://bridge.simplefin.org`. The default `beta-bridge.simplefin.org` is the sandbox — the [developer page](https://beta-bridge.simplefin.org/info/developers) hands out free demo tokens if you want to test the flow before committing.
 
+> [!NOTE]
 > SimpleFIN Bridge is a paid service (a few dollars a year) once you move past the sandbox. Worth knowing before you plan around it.
-{.is-info}
 
-## Enable Banking (EU)
+::
 
+::block-tab{label="Enable Banking (EU)"}
 Covers roughly 2,500 European PSD2 banks.
 
 1. Sign up at [enablebanking.com](https://enablebanking.com) and create a **Production** application
@@ -224,11 +212,12 @@ ENABLE_BANKING_OAUTH_REDIRECT_URI=https://securo.yourdomain.com/oauth/callback
 
 The redirect URI has to match one of the Allowed Redirect URLs in your EB application **exactly**. Enable Banking production requires HTTPS, so this one needs a real domain behind your reverse proxy — a LAN IP will not work.
 
+> [!WARNING]
 > On Enable Banking's free tier you must pre-link the accounts you want inside the EB portal *before* connecting from Securo. Skip that and the connection returns zero accounts.
-{.is-warning}
 
-## Pluggy (Brazil)
+::
 
+::block-tab{label="Pluggy (Brazil)"}
 1. Sign up at [pluggy.ai](https://pluggy.ai) and grab your credentials
 2. Add `http://<your-host>:3000/oauth/callback` as an allowed redirect URI
 3. Add to `.env`:
@@ -237,6 +226,10 @@ The redirect URI has to match one of the Allowed Redirect URLs in your EB applic
 PLUGGY_CLIENT_ID=your-client-id
 PLUGGY_CLIENT_SECRET=your-client-secret
 ```
+
+::
+
+:::
 
 # 3 · Optional Features
 
@@ -300,6 +293,7 @@ OIDC_CLIENT_SECRET=your-client-secret
 LOCAL_AUTH_ENABLED=false
 ```
 
+> [!NOTE]
 > These login variables only reach the containers because they're listed in the `x-backend-env` block of the compose file. If you add another Securo setting to `.env` that isn't listed there, add a matching `NAME: ${NAME:-}` line to `x-backend-env` too.
-{.is-info}
+
 

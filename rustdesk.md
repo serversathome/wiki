@@ -2,31 +2,19 @@
 title: Rustdesk
 description: A guide to deploying Rustdesk
 published: true
-date: 2026-04-15T17:59:08.018Z
-tags: 
+date: '2026-11-04T16:23:38.445Z'
+tags: []
 editor: markdown
-dateCreated: 2026-04-08T13:36:58.555Z
+dateCreated: '2026-04-08T13:36:58.555Z'
 ---
 
-# <img src="/rustdesk.png" class="tab-icon"> What is RustDesk?
+# What is RustDesk?
 
 **RustDesk** is an open-source remote desktop application and self-hostable alternative to TeamViewer, AnyDesk, and similar commercial tools. It provides full remote control of another computer's mouse and keyboard, file transfer, screen sharing, and clipboard sync — all with end-to-end encryption. By self-hosting the RustDesk server, you maintain complete control over your relay infrastructure with no dependency on third-party cloud services.
 
-<div class="glance">
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://youtu.be/aV4dDYc27gk"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-
-
 # 1 · Deploy RustDesk
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   hbbs:
@@ -62,11 +50,12 @@ services:
     ```
 1. Copy this key — you'll need it when configuring clients
 
+> [!TIP]
 > No firewall changes or port forwarding are needed on TrueNAS or your router. RustDesk only needs to be reachable within your NetBird mesh — the NetBird cloud reverse proxy handles all public-facing traffic.
-{.is-success}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for "**Rust Desk**" (Community train)
 3. Click **Install**
@@ -74,8 +63,12 @@ services:
    - **Host Path**: `/mnt/tank/configs/rustdesk`
 5. Click **Save**
 
+> [!NOTE]
 > The TrueNAS community app bundles both hbbs and hbbr into a single deployment. After installation, retrieve the public key from the app's data directory.
-{.is-info}
+
+::
+
+:::
 
 # 2 · Expose via NetBird Cloud Reverse Proxy
 
@@ -83,12 +76,14 @@ RustDesk traffic is raw TCP and UDP — it **cannot** be proxied through Cloudfl
 
 ## 2.1 How It Works
 
+::block-diagram
 ```mermaid
 graph LR
     A[RustDesk Client<br>Consultation Customer] -->|TCP/UDP| B[NetBird Cloud Proxy]
     B -->|WireGuard Tunnel| C[NetBird Peer<br>TrueNAS - Homelab]
     C -->|localhost| D[RustDesk Server<br>hbbs + hbbr]
 ```
+::
 
 External RustDesk clients connect to the NetBird cloud proxy cluster. NetBird tunnels that traffic over an encrypted WireGuard connection to TrueNAS, where RustDesk server is running. Your homelab never exposes any ports to the internet.
 
@@ -111,11 +106,11 @@ In the NetBird dashboard, navigate to **Reverse Proxy → Services → Add Servi
 
 After creating each service, NetBird will assign an **external port** and display the **proxy cluster domain** in the service details. Note these down — you'll need them to configure RustDesk clients.
 
+> [!WARNING]
 > On NetBird's shared cloud proxy clusters, external ports are **auto-assigned** and may differ from the standard RustDesk ports. This is normal — RustDesk clients support specifying custom ports in their server configuration.
-{.is-warning}
 
+> [!NOTE]
 > L4 services do not support browser-based authentication (SSO, password, PIN) because there is no HTTP layer. Use **IP CIDR access restrictions** and **country-based geo-restrictions** in the NetBird dashboard to lock down who can connect.
-{.is-info}
 
 
 
@@ -142,9 +137,11 @@ Download the RustDesk client from [rustdesk.com](https://rustdesk.com) for Windo
 1. Click **Apply** or **OK**
 1. The client should show a green **Ready** indicator at the bottom
 
+> [!WARNING]
 > When using NetBird's cloud reverse proxy, each service gets an auto-assigned external port that differs from RustDesk's defaults. Your server administrator will provide the correct ports after creating the L4 services in the NetBird dashboard. You must include the port number after the domain (e.g., rust.serversatho.me:38721) or the connection will fail.
-{.is-warning}
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Video
-https://youtu.be/aV4dDYc27gk
+# :logos:youtube-icon: 4 · Video
+::block-youtube{url="https://youtu.be/aV4dDYc27gk"}
+::
+
 

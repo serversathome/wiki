@@ -2,30 +2,19 @@
 title: wg-easy
 description: Configuring the wg-easy container to manage wireguard
 published: true
-date: 2026-01-15T15:32:29.171Z
-tags: 
+date: '2026-11-04T16:23:56.531Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:09:29.972Z
+dateCreated: '2026-01-15T15:09:29.972Z'
 ---
 
-# ![](/wireguard.png){class="tab-icon"} What is wg-easy?
+# What is wg-easy?
 
 wg-easy is the easiest way to run WireGuard VPN + Web-based Admin UI.
 
-<div class="glance">
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/wg-easy/wg-easy"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
 # 1 · Deploy wg-easy
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   wg-easy:
@@ -69,11 +58,15 @@ networks:
         - subnet: fdcc:ad94:bacf:61a3::/64
 ```
 
+::
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Check the box for **Allow insecure connections**
 1. Change the **WG Easy Config Storage** to *Host Path*
+
+::
+
+:::
 
 # 2 · Settings
 Click **Administrator** in the top right, then select **Admin Panel**.
@@ -82,8 +75,8 @@ Click **Administrator** in the top right, then select **Admin Panel**.
 
 1. Change the **Allowed IPs** if you would like to run a split tunnel. This field should accept a comma-separated list.
 
+> [!NOTE]
 > A value of `0.0.0.0/0` which = all IPs is a *full tunnel*. A full tunnel means when you connect to Wireguard all of your traffic, no matter where it is going, will be routed through your TrueNAS server first, then go out to the greater internet. I don't use this, I have a full VPN to do that. Instead, I do a *split tunnel*. A split tunnel means only part of the traffic is routed through Wireguard; the rest skips it and goes out to the web as if the VPN wasn't connected. To do this, we need to tell wg-easy which IP addresses we want to go through the tunnel. Since my home network is a 192.168.1.x net, my entry for this line is `192.168.1.0/24,10.8.0.0/24`. This tells wg-easy if I type in a 192.168.1.x address, or try to connect to another PC on the wg-easy VPN (which are the 10.8.0.x addresses) to route those through the VPN. Everything else skips the VPN and just exits to the internet.
-{.is-info}
 
 
 2. Change the **DNS** fot IPv4 to `1.1.1.1`
@@ -97,5 +90,6 @@ Click **Administrator** in the top right, then select **Admin Panel**.
 ## 2.3 Hooks
 If you need to adjust the **Preup, Postup, Predown, or Postdown** this is where those options are. 
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# :logos:youtube-icon: 3 · Video
+
 

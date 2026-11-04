@@ -2,10 +2,10 @@
 title: Episeerr
 description: A guide to deploying Episeerr
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:15.195Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-20T20:27:15.149Z
+dateCreated: '2026-01-20T20:27:15.149Z'
 ---
 
 # What is Episeerr?
@@ -14,14 +14,7 @@ dateCreated: 2026-01-20T20:27:15.149Z
 
 Episeerr integrates with **Sonarr**, **Tautulli** or **Jellyfin** (for watch tracking), **Seerr** (for request management), and **TMDB** (for metadata).
 
-<div class="glance">
-  <div><span>Port</span><b><code>5002</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Episeerr
+# :logos:docker-icon: 1 · Deploy Episeerr
 
 ```yaml
 services:
@@ -38,9 +31,8 @@ services:
     restart: unless-stopped
 ```
 
-> 
+> [!WARNING]
 > You will need to configure **webhooks** in Sonarr (required), and optionally in Tautulli or Jellyfin if you want viewing automation.
-{.is-warning}
 
 # 2 · Configuration
 
@@ -99,14 +91,13 @@ The Storage Gate is a global threshold you set (e.g., "Keep 20GB free") that con
 - Stops immediately once storage is back above the threshold
 - Only affects shows that have grace or dormant timers configured
 
-> 
+> [!TIP]
 > The Storage Gate prevents unnecessary cleanup — episodes are only removed when you actually need the space.
-{.is-success}
 
 ## 2.8 Sonarr "Watched" Tag
 
 Adding a `watched` tag to a series in Sonarr will remove it from Episeerr's Series Management view, keeping your dashboard clean for actively managed shows.
 
 
-# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
+# ![](/_files/patreon-light.png =28x) 3 · Video
 [![](/2026-02-10-automatic-episode-management-wit-promo-card.png)](https://www.patreon.com/posts/automatic-with-148716503)

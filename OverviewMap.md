@@ -2,10 +2,10 @@
 title: Overview Map
 description: Overview map of how all the *arr components of a media server fit together
 published: true
-date: 2026-09-08T16:25:00.573Z
-tags: 
+date: '2026-09-08T16:25:00.676Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:02:41.415Z
+dateCreated: '2026-01-15T15:02:41.415Z'
 ---
 
 # Visual Map
@@ -23,3 +23,4 @@ A full \*arr suite is composed of many apps that all talk to each other to autom
 -   **AirVPN** - VPN to protect your identity while torrenting
 -   **Bazarr** - provides subtitles in case they are missing
 - **Wizarr** - creates invites to media server for users
+

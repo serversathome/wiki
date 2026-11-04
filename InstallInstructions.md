@@ -2,14 +2,14 @@
 title: Install Instructions
 description: A step-by-step list of the best way to install the *arr apps
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T15:58:16.433Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:02:31.090Z
+dateCreated: '2026-01-15T15:02:31.090Z'
 ---
 
+> [!TIP]
 > Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help!
-{.is-success}
 # Steps
 
 Follow the steps in this order to make the install go as smoothly as possible.
@@ -57,7 +57,7 @@ Follow the steps in this order to make the install go as smoothly as possible.
 # Auto Install Script
 I have created a script to create all the directories and install all the containers for you. [Go here](https://wiki.serversatho.me/Folder-Structure#h-2-auto-folder-creation-for-truenas) for more info. 
 
-# <img src="/patreon-light.png" class="tab-icon"> Video
+# ![](/_files/patreon-light.png =28x) Video
 
 For a video walkthrough of some of the basics containers above, look here:
 

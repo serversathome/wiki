@@ -2,13 +2,13 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:23.865Z'
+tags: []
 editor: markdown
-dateCreated: 2026-02-25T10:19:47.919Z
+dateCreated: '2026-02-25T10:19:47.919Z'
 ---
 
-# <img src="/kasm-workspaces.png" class="tab-icon"> What is Kasm Workspaces?
+# What is Kasm Workspaces?
 
 **Kasm Workspaces** is a container streaming platform that delivers browser-based access to desktops, applications, and web services. It lets you run isolated workspaces like full Linux desktops, web browsers, or development tools—all accessible through your web browser.
 
@@ -40,8 +40,8 @@ Create a new VM for the Kasm control plane:
 | Memory | 4096MB minimum |
 | Network Model | VirtIO (paravirtualized) |
 
+> [!NOTE]
 > Get the Ubuntu ISO file [here](https://releases.ubuntu.com/24.04.5/ubuntu-24.04.5-live-server-amd64.iso)
-{.is-info}
 
 ## 1.2 Install Ubuntu & Kasm
 
@@ -62,9 +62,8 @@ Create a new VM for the Kasm control plane:
     ```
 
 1. Follow the prompts and note the admin credentials displayed at the end
-> 
+> [!TIP]
 > For the most up-to-date script be sure to check [the official documentation](https://docs.kasm.com/docs/install/single_server_install)
-{.is-success}
 
 
 
@@ -77,11 +76,10 @@ After installation, log into the Kasm web UI:
 3. Change **Upstream Auth Address** from `proxy` to your Kasm server's IP address (just the IP, no port)
 4. Click **Save**
 
-> 
+> [!CAUTION]
 > This step is critical. Autoscaled VMs need to know where to "phone home." If this remains set to `proxy`, agents cannot find Kasm and autoscaling silently fails.
-{.is-danger}
 
-# <img src="/proxmox.png" class="tab-icon"> 2 · Configure Proxmox
+# :simple-icons:proxmox: 2 · Configure Proxmox
 
 ## 2.1 Create Resource Pool
 
@@ -94,9 +92,8 @@ After installation, log into the Kasm web UI:
 2. Username: `kasm-autoscale`
 3. Realm: **Proxmox VE authentication server**
 
-> 
+> [!NOTE]
 > The realm selection adds `@pve` automatically. Don't include it in the username field.
-{.is-info}
 
 ## 2.3 Create API Token
 
@@ -106,9 +103,8 @@ After installation, log into the Kasm web UI:
 4. Uncheck **Privilege Separation**
 5. Click **Add**
 
-> 
+> [!WARNING]
 > Save the Token ID and Secret immediately—you cannot view them again. You'll need just the token name (e.g., `kasm`) for Kasm, not the full ID.
-{.is-warning}
 
 ## 2.4 Create Role
 
@@ -144,15 +140,13 @@ Navigate to **Permissions → Add → User Permission** and create entries for e
 | `/storage/local-lvm` | kasm-autoscale@pve | kasm-autoscale-role |
 | `/sdn/zones/localnetwork` | kasm-autoscale@pve | kasm-autoscale-role |
 
-> 
+> [!NOTE]
 > Adjust `/storage/local-lvm` to match your storage name if different.
-{.is-info}
 
-> 
+> [!NOTE]
 > The SDN zone path (`/sdn/zones/localnetwork`) is only needed if you're using Proxmox SDN. If you're using default bridge networking (vmbr0), you can skip this entry.
-{.is-info}
 
-# <img src="/ubuntu.png" class="tab-icon"> 3 · Create Agent Template
+# :logos:ubuntu: 3 · Create Agent Template
 
 This VM lives in Proxmox and gets cloned by Kasm when it needs more compute capacity. It's completely separate from TrueNAS.
 
@@ -197,9 +191,8 @@ sudo shutdown now
 
 In Proxmox: **Right-click VM → Convert to Template**
 
-> 
+> [!NOTE]
 > Note the exact template name—you'll need it for Kasm configuration.
-{.is-info}
 
 # 4 · Configure Autoscaling in Kasm
 
@@ -230,9 +223,8 @@ Go to **Admin → Infrastructure → Pools → All AutoScale Configs → Add**
 
 
 Click **Next** to configure the VM Provider.
-> 
+> [!NOTE]
 > To learn more about these values [check the offical documentation](https://docs.kasm.com/docs/develop/how-to/autoscale/infrastructure_components/autoscale_config_docker_agent#autoscale-settings-for-agent-pool)
-{.is-info}
 
 
 ## 4.3 Configure VM Provider
@@ -257,9 +249,8 @@ Click **Next** to configure the VM Provider.
 | Installed OS Type | Linux |
 | Startup Script Path | /tmp |
 
-> 
+> [!WARNING]
 > The Token Name is just the name you gave the token (e.g., `kasm`), NOT the full token ID like `kasm-autoscale@pve!kasm`.
-{.is-warning}
 
 
 ## 4.4 Startup Script
@@ -282,6 +273,8 @@ Once configured, Kasm will automatically provision VMs to meet the standby requi
 4. Close sessions and wait for downscale backoff to see VMs destroyed
 
 
-# <img src="/youtube.png" class="tab-icon"> 6 · Video
-https://youtu.be/sVe3LV6XoFI
+# :logos:youtube-icon: 6 · Video
+::block-youtube{url="https://youtu.be/sVe3LV6XoFI"}
+::
+
 

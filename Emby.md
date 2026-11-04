@@ -2,32 +2,19 @@
 title: Emby
 description: A guide to installing Emby in TrueNAS as well as docker via compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:10.807Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:02:25.173Z
+dateCreated: '2026-01-15T15:02:25.173Z'
 ---
 
-# ![](/emby2.png){class="tab-icon"} What is  Emby?
+# What is Emby?
 
 Emby is a personal media server that lets you access and enjoy your videos, music, and photos on any device. You can also stream live TV, manage your DVR, and control your content with parental controls and DLNA.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8096</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Hardware accel</span><b>Nvidia</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/linuxserver/docker-emby"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://apps.truenas.com/resources/deploy-emby"><i class="mdi mdi-server"></i>TrueNAS app</a>
-  </div>
-</div>
-
 # 1 · Deploy Emby
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   emby:
@@ -56,13 +43,14 @@ services:
 - **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/emby
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
+> [!NOTE]
 > **Enabling nVidia GPUs in Docker**
 > 
 > Follow the steps [in this Github page](https://github.com/NVIDIA/nvidia-container-toolkit) to allow passing an nVidia GPU into a container
-{.is-info}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-11_08-39-08.png)
 
 
@@ -70,12 +58,15 @@ services:
 1. Click the **Add** button for **Emby Server Extra Host Path Volumes** to pass the `media` directory into the container as **/media**.
 1. Scroll to the **Resource Configuration** section and locate the checkbox for your GPU. If you do not see one, make sure to select the checkbox in **Apps → Configuration → Settings → Install NVIDIA Drivers**.
 
+> [!WARNING]
 > TrueNAS 25.10+ uses NVIDIA's open kernel modules, which only support Turing and newer GPUs (GTX 16xx / RTX 20xx and newer). Older Maxwell, Pascal and Volta cards (GTX 9xx/10xx, Quadro/Tesla M and P) are no longer supported and will not transcode.
-{.is-warning}
 
+> [!TIP]
 > Check out [the new docs](https://apps.truenas.com/resources/deploy-emby) from TrueNAS
-{.is-success}
 
+::
+
+:::
 
 # 2 · Emby Configuration
 
@@ -87,9 +78,9 @@ services:
 1. Click the green **OK** at the bottom and leave the rest of the settings the same
 1. Do the same thing for your second library for TV Shows.
 
+> [!NOTE]
 > **Spinning Blue Circle?**
 > When you arrive at the home screen, you will probably see a spinning blue circle in the middle of the page. To stop this from happening in the future, click the **cog wheel** in the top right corner, then **Home Screen** in the left pane, and on **Section 4** change **Live TV** to **None**.
-{.is-info}
 
 
 ## 2.2 Watching Content
@@ -99,7 +90,7 @@ To watch content on a device in your house on your home network, download the Em
 # 3 · Using NPM
 If you are using [Nginx Proxy Manager](/nginx) to route your traffic use these settings to be sure you're not caching media:
 
-![screenshot_from_2025-03-28_07-39-15.png](/screenshot_from_2025-03-28_07-39-15.png)
+![screenshot_from_2025-03-28_07-39-15.png](/screenshot-from-2025-03-28-07-39-15.png)
 
 | Field | Value |
 | --- | --- |
@@ -109,3 +100,4 @@ If you are using [Nginx Proxy Manager](/nginx) to route your traffic use these s
 | Forward Hostname / IP | private IPv4 of your media server |
 | Forward Port | port media server is running on | 
 | expandable box | `add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate"; add_header Pragma "no-cache"; add_header Expires "0";` | 
+

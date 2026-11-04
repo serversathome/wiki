@@ -2,10 +2,10 @@
 title: May
 description: A guide to deploy May
 published: true
-date: 2026-03-02T15:20:14.740Z
-tags: 
+date: '2026-11-04T16:24:22.381Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-02T15:20:14.740Z
+dateCreated: '2026-03-02T15:20:14.740Z'
 ---
 
 # What is May?
@@ -14,19 +14,7 @@ dateCreated: 2026-03-02T15:20:14.740Z
 
 Named after James May, completing the trio of Top Gear presenters alongside [Clarkson](https://github.com/linuxserver/Clarkson) and [Hammond](https://github.com/AlfHou/hammond).
 
-<div class="glance">
-  <div><span>Port</span><b><code>5050</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/dannymcc/may"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy May
+# :logos:docker-icon: 1 · Deploy May
 
 ```yaml
 services:
@@ -45,8 +33,8 @@ services:
 ```
 
 
+> [!WARNING]
 > On first run, if no `ADMIN_PASSWORD` environment variable is set, May generates a secure random password and prints it to the container logs. Set `ADMIN_PASSWORD` in your environment to use a fixed password instead.
-{.is-warning}
 
 # 2 · Configuration
 
@@ -89,9 +77,8 @@ Configure notifications to never miss important dates:
 2. Choose your notification method: **Email**, **ntfy**, **Pushover**, or **Webhook**
 3. Set up reminders for MOT/inspections, service intervals, insurance renewals, and tax payments
 
-> 
+> [!NOTE]
 > Webhook notifications support HTTP POST, making it easy to integrate with Home Assistant, Discord, or Slack.
-{.is-info}
 
 ## 2.5 Integrations
 
@@ -123,10 +110,9 @@ If you're in the UK, May can look up vehicle MOT and tax status automatically vi
 
 May supports importing fuel data from **Fuelly CSV** format and exporting all data as **JSON** or **CSV** for backup or migration purposes. Access these options under **Settings > Import/Export**.
 
-> 
+> [!TIP]
 > Regularly export your data as a backup. May uses SQLite by default, so you can also back up the database file directly from `/mnt/tank/configs/may/may.db`.
-{.is-success}
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# :logos:youtube-icon: 3 · Video
 
 *Video coming soon — check back for a full walkthrough!*

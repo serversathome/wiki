@@ -2,33 +2,19 @@
 title: Lubelogger
 description: A guide to deploying Lubelogger
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:26.572Z'
+tags: []
 editor: markdown
-dateCreated: 2026-02-10T11:00:58.064Z
+dateCreated: '2026-02-10T11:00:58.064Z'
 ---
 
-# <img src="/lubelogger.png" class="tab-icon"> What is LubeLogger?
+# What is LubeLogger?
 
 **LubeLogger** is a self-hosted, open-source, web-based vehicle maintenance and fuel mileage tracker. Despite its unconventional name, it's an incredibly powerful tool for keeping all your vehicle service records, fuel economy data, repair history, and maintenance reminders organized in one place. Whether you're managing a single daily driver or a fleet of vehicles, LubeLogger gives you a clean dashboard with expense breakdowns, fuel economy charts, and upcoming maintenance reminders.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/hargata/lubelog"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://docs.lubelogger.com/Advanced/Environment%20Variables"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-  </div>
-</div>
-
-
-
 # 1 · Deploy LubeLogger
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ### Basic Deployment (SQLite)
 
 This is the simplest deployment using LubeLogger's built-in SQLite file-based storage.
@@ -92,16 +78,15 @@ services:
       - /mnt/tank/configs/lubelogger/db:/var/lib/postgresql/data
 ```
 
-> 
+> [!WARNING]
 > Make sure to change `CHANGE_ME` to a strong, unique password in both the `POSTGRES_CONNECTION` string and the `POSTGRES_PASSWORD` field. These must match.
-{.is-warning}
 
-> 
+> [!NOTE]
 > If using PostgreSQL, ensure the `app` schema exists in the database. LubeLogger requires this schema to operate. If you encounter errors on first launch, you may need to create it manually with: `CREATE SCHEMA IF NOT EXISTS app;`
-{.is-info}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 LubeLogger is available in the **Community** train of the TrueNAS App Catalog.
 
 1. Navigate to **Apps** in the TrueNAS UI
@@ -116,9 +101,12 @@ LubeLogger is available in the **Community** train of the TrueNAS App Catalog.
    - **Postgres Data Storage** → **Host Path**: `/mnt/tank/configs/lubelogger/db` (check **Automatic Permissions**)
 6. Click **Install**
 
-> 
+> [!NOTE]
 > Make sure the **Community** train is enabled in your TrueNAS App catalog settings. Go to **Apps → Discover Apps → Settings** and check that the **Community** train is selected under **Preferred Trains**.
-{.is-info}
+
+::
+
+:::
 
 # 2 · Configuration
 
@@ -131,9 +119,8 @@ LubeLogger is available in the **Community** train of the TrueNAS App Catalog.
    - **Enable Authentication** — this will prompt you to create a root username and password
    - Configure your **locale** settings for proper currency and date formatting
 
-> 
+> [!CAUTION]
 > Authentication is **not enabled by default**. Anyone with access to the URL can view and modify your data until you enable it. Enable authentication immediately after deployment.
-{.is-danger}
 
 ## 2.2 Server Settings Configurator
 
@@ -145,9 +132,8 @@ LubeLogger includes a built-in **Server Settings Configurator** accessible at `/
 - **HTTPS / Kestrel** — for configuring SSL certificates
 - **OpenID Connect** — for SSO integration
 
-> 
+> [!TIP]
 > You can also use the online [LubeLogger Configurator](https://lubelogger.com/configure/) to generate your `.env` file with all the correct environment variables before deployment.
-{.is-success}
 
 ## 2.3 Adding Vehicles
 
@@ -174,10 +160,10 @@ LubeLogger supports a wide range of environment variables for advanced configura
 | `LOGGING__LOGLEVEL__DEFAULT` | Log level (`Error`, `Warning`, etc.) |
 
 
-> 
+> [!NOTE]
 > For a full list of environment variables, see the [official documentation](https://docs.lubelogger.com/Advanced/Environment%20Variables).
-{.is-info}
 
 ## 2.5 Backups
 
 LubeLogger has a built-in backup system accessible from the **Settings** tab. Log in as the root user and click **Create Backup** to download a zip file containing all your data. You can also automate backups via the API using a cron job.
+

@@ -2,24 +2,16 @@
 title: WYGIWYH
 description: A guide to deploying WYGIWYH
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:52.834Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:09:45.123Z
+dateCreated: '2026-01-15T15:09:45.123Z'
 ---
 
-# <img src="/wygiwyh.png" class="tab-icon"> What is WYGIWYH?
+# What is WYGIWYH?
 WYGIWYH (What You Get Is What You Have) is a powerful, principles-first finance tracker designed for people who prefer a no-budget, straightforward approach to managing their money. With features like multi-currency support, customizable transactions, and a built-in dollar-cost averaging tracker, WYGIWYH helps you take control of your finances with simplicity and flexibility.
 
-<div class="glance">
-  <div><span>Port</span><b><code>9005</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy WYGIWYH
+# :logos:docker-icon: 1 · Deploy WYGIWYH
 ```yaml
 services:
   web:
@@ -95,3 +87,4 @@ TASK_WORKERS=1 # This only work if you're using the single container option. Inc
 1. To create an admin account on first start, uncomment `ADMIN_EMAIL` and `ADMIN_PASSWORD` and fill in your own values. Remove them again after your first login.
 1. Replace `YOUR-SERVER-IP` in `URL` and `DJANGO_ALLOWED_HOSTS` with your server's IP address.
 1. The UI is published on host port `9005` (set by `OUTBOUND_PORT`), so open `http://YOUR-SERVER-IP:9005`.
+

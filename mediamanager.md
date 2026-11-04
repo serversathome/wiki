@@ -2,27 +2,16 @@
 title: Media Manager
 description: A guide to deploying Media Manager via docker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:40.344Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:23.142Z
+dateCreated: '2026-01-15T15:06:23.142Z'
 ---
 
-# ![](/mediamanager.png){class="tab-icon"} What is Media Manager?
+# What is Media Manager?
 MediaManager is modern software to manage your TV and movie library. It is designed to be a replacement for Sonarr, Radarr, Overseer, and Jellyseer. It supports TVDB and TMDB for metadata, supports OIDC and OAuth 2.0 for authentication and supports Prowlarr and Jackett. 
 
-<div class="glance">
-  <div><span>Port</span><b><code>8000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/maxdorninger/mediamanager"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Media Manager
+# :logos:docker-icon: 1 · Deploy Media Manager
 ```yaml
 services:
   mediamanager:
@@ -56,8 +45,8 @@ services:
 
 ```
 
+> [!TIP]
 > Read the [official documentation!](https://maxdorninger.github.io/MediaManager/latest/)
-{.is-success}
 
 # 2 · Media Manager Configuration
 
@@ -83,9 +72,9 @@ services:
 1. Navigate to `http://IP:8000` and log in with those credentials
 1. Change the admin password after your first login
 
+> [!NOTE]
 > Newer releases ship with sign-up disabled (`registration_enabled = false` in `config.toml`). To let other people register accounts, set `registration_enabled = true` in the `[auth]` section and restart the container.
-{.is-info}
 
-# <img src="/patreon-light.png" class="tab-icon"> 4 · Video
+# ![](/_files/patreon-light.png =28x) 4 · Video
 
 [![](/2025-08-05-mediamanager-one-app-to-replace-promo-card.png)](https://www.patreon.com/posts/mediamanager-one-135812951)

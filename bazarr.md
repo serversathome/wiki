@@ -2,32 +2,19 @@
 title: Bazarr
 description: A guide to deploying Bazarr via docker compose
 published: true
-date: 2026-02-01T21:52:25.945Z
-tags: 
+date: '2026-11-04T16:16:52.457Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:20.150Z
+dateCreated: '2026-01-15T15:03:20.150Z'
 ---
 
-# ![](/bazarr.png){class="tab-icon"} What is Bazarr?
+# What is Bazarr?
 Bazarr is a companion application to Sonarr and Radarr. It can manage and download subtitles based on your requirements. You define your preferences by TV show or movie and Bazarr takes care of everything for you.
 
-<div class="glance">
-  <div><span>Port</span><b><code>6767</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/linuxserver/docker-bazarr"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://wiki.bazarr.media/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-  </div>
-</div>
-
-
 # 1 · Deploy Bazarr
-# {.tabset}
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
-![](/screenshot_from_2024-11-08_11-40-44.png)
+:::block-tabs
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+![](/screenshot-from-2024-11-08-11-40-44.png)
 
 1. Change the **Timezone**. For east coast time, use **America/New\_York**.
 1. Change the **Storage Configuration**. The **Bazarr Config Storage** *Type* should be set to **Host Path** as described in the [Folder-Structure](/Folder-Structure) guide.
@@ -36,8 +23,10 @@ Bazarr is a companion application to Sonarr and Radarr. It can manage and downlo
   b. Mount Path = `/media`
   c. Host Path = `/mnt/tank/media`
 1. Change the **WebUI Port** to **6767** as that is the default used in all the documentation. 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
 
+::
+
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   bazarr:
@@ -60,6 +49,10 @@ services:
 - **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/bazarr
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
+::
+
+:::
+
 # 2 · Bazarr Configuration
 
 The [wiki for Bazarr](https://wiki.bazarr.media/) is very good. Once you have the container running, follow the instructions [here](https://wiki.bazarr.media/Getting-Started/Setup-Guide/) and then [set the profile](https://wiki.bazarr.media/Getting-Started/First-time-installation-configuration/) for all of your existing content (if you have any). 
@@ -69,5 +62,5 @@ Before you do, you will probably want free account in these two places which wil
 1.  For **Providers** I used [opensubtitles.com](https://www.opensubtitles.com/en).
 2.  For my anti-captcha I used [anti-captcha.com](https://anti-captcha.com/). ( ← If you stick to opensubtitles only, you won't need this but it is generally recommended to use more than one provider.)
 
-# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
+# ![](/_files/patreon-light.png =28x) 3 · Video
 [![](/2025-04-09-bazarr-automated-subtitle-manag-promo-card.png)](https://www.patreon.com/posts/bazarr-automated-126312662)

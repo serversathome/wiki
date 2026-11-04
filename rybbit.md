@@ -2,28 +2,17 @@
 title: Rybbit
 description: A guide to deploying Rybbit
 published: true
-date: 2026-10-07T00:16:22.520Z
-tags: 
+date: '2026-11-04T16:23:40.590Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-24T19:52:22.810Z
+dateCreated: '2026-01-24T19:52:22.810Z'
 ---
 
-# <img src="/rybbit.png" class="tab-icon"> What is Rybbit?
+# What is Rybbit?
 
 **Rybbit** is an open source, privacy-first web analytics platform. It's a self-hosted alternative to Google Analytics that respects user privacy while providing detailed insights about your website traffic.
 
-<div class="glance">
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>6 services</b></div>
-  <div><span>Depends on</span><b>Postgres, ClickHouse and Redis</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/rybbit-io/rybbit"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://rybbit.com/docs"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-  </div>
-</div>
-
-# <img src="/cloudflare.png" class="tab-icon"> Cloudflare Tunnel Setup
+# :logos:cloudflare-icon: Cloudflare Tunnel Setup
 
 This guide is for deploying Rybbit behind a **Cloudflare Tunnel** reverse proxy. Rybbit requires path-based routing (`/api` and a few `/.well-known` paths go to the backend, everything else goes to the frontend), which the Cloudflare Zero Trust dashboard doesn't support natively. To work around this, we use an nginx container to handle the routing.
 
@@ -59,10 +48,10 @@ networks:
 
 Then redeploy your tunnel stack.
 
+> [!NOTE]
 > Replace `cftunnel` with whatever network name you prefer. Just make sure to use the same name in the Rybbit compose file below.
-{.is-info}
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Rybbit
+# :logos:docker-icon: 1 · Deploy Rybbit
 
 ## 1.1 Create the Folders
 
@@ -73,8 +62,8 @@ mkdir -p /mnt/tank/configs/rybbit/{clickhouse-data,postgres-data,redis-data}
 chown -R 568:568 /mnt/tank/configs/rybbit
 ```
 
+> [!WARNING]
 > **Upgrading an older Rybbit install?** Run the `chown` above against your existing `clickhouse-data` and `postgres-data` folders before redeploying, or ClickHouse and Postgres will fail to start with permission errors.
-{.is-warning}
 
 ## 1.2 Create the Nginx Config
 
@@ -127,8 +116,8 @@ http {
 }
 ```
 
+> [!NOTE]
 > Nginx listens on `8080` and keeps its pid and temp files in `/tmp` so it can run as the `568` apps user instead of root.
-{.is-info}
 
 ## 1.3 Deploy the Stack
 
@@ -338,14 +327,14 @@ configs:
       </clickhouse>
 ```
 
+> [!WARNING]
 > Replace all `changeme` passwords with secure values. They have to match in pairs: `CLICKHOUSE_PASSWORD` between clickhouse and backend, `POSTGRES_USER`/`POSTGRES_PASSWORD` between postgres and backend, and the Redis password in **three** places (the `--requirepass` value, the healthcheck, and `REDIS_PASSWORD` in the backend).
-{.is-warning}
 
+> [!NOTE]
 > The `configs:` block at the bottom uses inline config content, which needs Docker Compose v2.23.1 or newer. Current TrueNAS and Dockge both meet this. ClickHouse and Redis memory settings come straight from the upstream compose file: ClickHouse is capped at 80% of host RAM and Redis uses `noeviction` so session data is never dropped.
-{.is-info}
 
+> [!NOTE]
 > If you named your tunnel network something other than `cftunnel`, update the network name in the `networks:` block.
-{.is-info}
 
 ## 1.4 Configuration
 
@@ -360,8 +349,8 @@ configs:
 | `DISABLE_TELEMETRY` | Set to `true` to stop Rybbit sending anonymous usage telemetry |
 {.dense}
 
+> [!NOTE]
 > Redis is now a required dependency. It backs session tracking, user identity, bot detection counters and background job queues, and the backend will not start without it.
-{.is-info}
 
 ## 1.5 Cloudflare Tunnel
 
@@ -371,8 +360,8 @@ Add a public hostname in Cloudflare Zero Trust:
 |----------------|---------|
 | `rybbit.example.com` | `http://rybbit_nginx:8080` |
 
+> [!WARNING]
 > If you are upgrading from the old version of this guide, change the tunnel service from port `80` to port `8080`.
-{.is-warning}
 
 # 2 · First Login
 
@@ -392,5 +381,5 @@ Once logged in, add a site and copy the tracking script to your website's `<head
 ></script>
 ```
 
+> [!NOTE]
 > Replace `YOUR_SITE_ID` with the ID shown in your Rybbit dashboard.
-{.is-info}

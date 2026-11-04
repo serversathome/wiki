@@ -2,39 +2,24 @@
 title: Dozzle
 description: A guide to deploying Dozzle on TrueNAS Scale and via Docker Compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:12.991Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:29.434Z
+dateCreated: '2026-01-15T15:04:29.434Z'
 ---
 
-# <img src="/dozzle.png" class="tab-icon"> What is Dozzle?
+# What is Dozzle?
 
 **Dozzle** is a lightweight, real-time log viewer for Docker, Swarm and Kubernetes. It streams logs from every container straight to your browser, merges several containers side by side, parses JSON and structured logs into fields, and shows live CPU, memory and network charts right next to the logs. It is a single binary with no database, and your logs never leave your network.
 
 Version 11 is the biggest update Dozzle has ever had: a completely redesigned interface, a first-run setup wizard, sign in with GitHub or any OIDC provider (Pocket ID, Authentik, Keycloak, Google), image update checks with one-click and scheduled updates, app icons, host metrics, and a built-in MCP server so AI assistants can read your logs.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8888</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/amir20/dozzle"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://dozzle.dev"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://apps.truenas.com/catalog/dozzle_community/"><i class="mdi mdi-server"></i>TrueNAS app</a>
-    <a href="https://youtu.be/esZJz8so4f0"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
+> [!NOTE]
 > **Coming from the old version of this guide?** Dozzle used to need nothing but the Docker socket. It now keeps users, settings and its session key in `/data`, so add the `/data` volume below before you upgrade. Everyone gets signed out once after moving to v11.
-{.is-info}
 
 # 1 · Deploy Dozzle
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
-
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   dozzle:
@@ -59,14 +44,15 @@ services:
 2. Deploy the stack and open `http://your-server-ip:8888`.
 3. The setup wizard opens on first launch. Continue to section 2.
 
+> [!WARNING]
 > Because Dozzle runs as `568:568` instead of root, it needs to join the group that owns the Docker socket. That group is `999` on a standard TrueNAS install. Confirm yours with `stat -c '%g' /var/run/docker.sock` and put that number under `group_add`. If Dozzle shows no containers, this is the reason.
-{.is-warning}
 
+> [!NOTE]
 > The `/proc:/host/proc:ro` line is optional. It lets Dozzle show the host's uptime and load average on the host card (see 3.5). Leave it out and those two read-outs simply stay hidden.
-{.is-info}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Create the dataset or folder `/mnt/tank/configs/dozzle` and set its owner to `apps` (568:568) before you start.
 
 1. Navigate to **Apps** in the TrueNAS UI and click **Discover Apps**
@@ -84,11 +70,15 @@ Create the dataset or folder `/mnt/tank/configs/dozzle` and set its owner to `ap
 5. Click **Install**
 6. Open `http://your-truenas-ip:8888` and the setup wizard will greet you. Continue to section 2.
 
+> [!WARNING]
 > The TrueNAS app does not create a `/data` volume on its own. Without the Additional Storage entry above, your login, users and wizard settings are wiped every time the app updates.
-{.is-warning}
 
+> [!NOTE]
 > Let TrueNAS update the Dozzle app itself. Leave Dozzle's **Auto-update** set to **Off** in the wizard, and do not use Dozzle's **Update** action on TrueNAS catalog apps. Dozzle would recreate those containers behind the TrueNAS middleware's back. Dozzle updates are safe for your Dockge stacks.
-{.is-info}
+
+::
+
+:::
 
 # 2 · First Run: the Setup Wizard
 
@@ -105,16 +95,16 @@ Login comes first so nothing else can be changed on an open instance. The wizard
 
 Dozzle restarts itself after you save an account, and the wizard continues once you sign in.
 
+> [!NOTE]
 > Without login, these settings can only be changed within 15 minutes of the very first start of a new install. After that, use environment variables or turn login on.
-{.is-info}
 
 ## 2.2 Actions and Shell
 
 - **Start, stop and restart** turns on container actions, which also unlocks remove and update.
 - **Shell** lets you attach to containers and run commands inside them from the browser.
 
+> [!CAUTION]
 > Shell access to a container is often as good as access to the host. Only turn it on if you need it, and never without login.
-{.is-danger}
 
 ## 2.3 Hosts
 
@@ -177,11 +167,11 @@ users:
 
 For GitHub, use `DOZZLE_AUTH_GITHUB_CLIENT_ID` and `DOZZLE_AUTH_GITHUB_CLIENT_SECRET` instead, and link users with a `github: yourhandle` line.
 
+> [!WARNING]
 > Keep a password on at least one account. If nobody in `users.yml` has one, the login form disappears and a broken OAuth app locks everyone out until you edit the file by hand.
-{.is-warning}
 
+> [!NOTE]
 > Behind a reverse proxy, the proxy must send `X-Forwarded-Proto: https`, or Dozzle builds an `http://` callback that your provider rejects. If you would rather have the provider own the user list and roles with no `users.yml` at all, use `DOZZLE_AUTH_PROVIDER=oidc` instead.
-{.is-info}
 
 ## 3.3 Update Checks and One-Click Updates
 
@@ -197,8 +187,8 @@ To opt a container into scheduled updates, or to silence the check on one you pi
       - dev.dozzle.update-check=false # never check this one
 ```
 
+> [!WARNING]
 > Only auto-update containers you are happy to see replaced without watching. A database on a floating tag like `postgres:latest` can jump to a new major version its data files cannot read. Updates also recreate the container, so anything in an anonymous volume is lost. Bind mounts like `/mnt/tank/configs/...` are safe.
-{.is-warning}
 
 To turn the registry checks off entirely, set `DOZZLE_IMAGE_CHECK_MODE=off` (or `manual` to check only when you ask).
 
@@ -244,8 +234,8 @@ Dozzle can expose a read-only MCP endpoint so Claude Desktop, Claude Code, VS Co
 
 Then point your client at `http://your-server-ip:8888/api/mcp`. With login enabled, the client opens a browser tab the first time it connects, you sign in, approve it, and it handles its own tokens from there.
 
+> [!WARNING]
 > With no login configured, the MCP endpoint is open to anyone who can reach Dozzle. Turn on login before enabling it.
-{.is-warning}
 
 # 4 · Alerts
  
@@ -258,8 +248,8 @@ Dozzle can watch your containers and ping you when something goes wrong. Everyth
 | Event | Docker reports a lifecycle event | Crashes, OOM kills, unhealthy containers |
 
  
+> [!NOTE]
 > Alerts and destinations are saved to `notifications.yml` in `/data`, which is your `/mnt/tank/configs/dozzle` folder. Back that file up, or copy it to another Dozzle instance to reuse your alerts. Restart Dozzle after editing it by hand.
-{.is-info}
  
 ## 4.1 Add a Destination
  
@@ -361,9 +351,10 @@ services:
 1. In Dozzle, click **Add host** and enter the agent's address, for example `10.99.0.50:7007`.
 2. The host appears in the sidebar right away, with its own uptime, load and disk on its card.
 
+> [!NOTE]
 > Keep the agent's port `7007` off the public internet. Reach it over your LAN or a mesh VPN like NetBird.
-{.is-info}
 
-# <img src="/youtube.png" class="tab-icon"> 6 · Video
+# :logos:youtube-icon: 6 · Video
 
-https://youtu.be/esZJz8so4f0
+::block-youtube{url="https://youtu.be/esZJz8so4f0"}
+::

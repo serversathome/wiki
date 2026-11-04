@@ -2,26 +2,16 @@
 title: Mydia
 description: A guide to deploying Mydia
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:19.012Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:29.542Z
+dateCreated: '2026-01-15T15:06:29.542Z'
 ---
 
 # What is Mydia?
 A modern, self-hosted media management platform for tracking, organizing, and monitoring your media library.
 
-<div class="glance">
-  <div><span>Port</span><b><code>4000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/getmydia/mydia"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Mydia
+# :logos:docker-icon: 1 · Deploy Mydia
 ```yaml
 services:
   mydia:
@@ -45,11 +35,11 @@ services:
     restart: unless-stopped
 ```
 
+> [!WARNING]
 > Generate two separate secrets (one for `SECRET_KEY_BASE`, one for `GUARDIAN_SECRET_KEY`) by running `openssl rand -base64 48` twice in a shell. Don't reuse the same value for both.
-{.is-warning}
 
 1. Navigate to `http://IP:4000`
 1. Create your admin account
 
-# <img src="/patreon-light.png" class="tab-icon"> 2 · Video
+# ![](/_files/patreon-light.png =28x) 2 · Video
 [![](/2025-11-24-mydia-a-modern-self-hosted-medi-promo-card.png)](https://www.patreon.com/posts/mydia-modern-143868943)

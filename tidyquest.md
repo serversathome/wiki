@@ -2,27 +2,17 @@
 title: TidyQuest
 description: A guide to deploying TidyQuest
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:48.167Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-03T18:07:39.432Z
+dateCreated: '2026-03-03T18:07:39.432Z'
 ---
 
 # 🏠 What is TidyQuest?
 
 **TidyQuest** is a self-hosted web application that gamifies household chores using RPG mechanics. Family members complete tasks to earn coins, build streaks, unlock achievements, and compete on a leaderboard — turning boring housework into an epic family adventure.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3020</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/mellow-fox/TidyQuest"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy TidyQuest
+# :logos:docker-icon: 1 · Deploy TidyQuest
 
 ```yaml
 services:
@@ -106,6 +96,7 @@ Admins can enable vacation mode in **Settings** to pause all task health decay. 
 
 **Via the UI:** Admin → Settings → Export Data → Download JSON. To restore: Admin → Settings → Import Data → Upload JSON.
 
+> [!NOTE]
 > Forgot the admin password? Add `- ADMIN_RESET_PASSWORD=your-new-password` to the environment and restart the container. The first admin's password is reset. Remove the variable right away and restart again.
-{.is-info}
+
 

@@ -2,34 +2,19 @@
 title: Cantinarr
 description: A guide to deploying Cantinarr
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:48.376Z'
+tags: []
 editor: markdown
-dateCreated: 2026-09-08T15:19:38.173Z
+dateCreated: '2026-09-08T15:19:38.173Z'
 ---
 
-#  <img src="/cantinarr.png" class="tab-icon"> What is Cantinarr?
+# What is Cantinarr?
 
 **Cantinarr** is a self-hosted discovery, request, and \*arr management front end for your whole media stack. Household members browse movies, TV, books, and music powered by TMDB and Trakt, tap request, and get a push notification when it lands. You keep Radarr, Sonarr, Chaptarr, Lidarr, the download clients, Tautulli, and Plex invites behind the admin side. When a download gets stuck, Cantinarr diagnoses the cause in plain English and proposes a fix you approve. It also exposes itself as an MCP server, so Claude or any other MCP client can search your library and make requests for you. The whole thing is one Go container with an embedded Flutter web app, SQLite inside, and companion iOS and Android apps in beta.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8585</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/windoze95/cantinarr"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://cantinarr.com"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://apps.truenas.com/catalog/cantinarr_community/"><i class="mdi mdi-server"></i>TrueNAS app</a>
-  </div>
-</div>
-
-
-
 # 1 · Deploy Cantinarr
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   cantinarr:
@@ -53,9 +38,9 @@ services:
       - /mnt/tank/media:/media:ro
 ```
 
+::
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Cantinarr is in the **Community** train of the TrueNAS apps catalog.
 
 1. Go to **Apps** in the TrueNAS UI and search for **Cantinarr**
@@ -68,8 +53,12 @@ Cantinarr is in the **Community** train of the TrueNAS apps catalog.
 6. To enable completed-media downloads, add an **Additional Storage** entry pointing at your media dataset, tick **Read Only**, and set the mount path to `/media`. Then add an environment variable `CANTINARR_MEDIA_ROOTS` with the value `/media`
 7. Click **Install** and open the app once it reports **Running**
 
+> [!NOTE]
 > The app runs as user and group `568` (the `apps` account). If you use a host path for config, make sure that account owns it or the container will not start.
-{.is-info}
+
+::
+
+:::
 
 # 2 · First run
 
@@ -129,8 +118,8 @@ Each user can bring their own Anthropic, OpenAI, Gemini, or xAI key, or you can 
 
 The server also exposes an MCP endpoint at `/mcp` with OAuth discovery, browser and passkey login, and a per-tool on/off list under **Settings > AI Tools**. That means Claude Desktop, Claude Code, or any other MCP client can search your library, check availability, and file requests against your own server.
 
+> [!NOTE]
 > MCP clients authenticate over inbound OAuth, which needs a secure context for passkeys. On a plain HTTP deployment, give the account a password under **Settings > Users** instead. Behind a reverse proxy, set `CANTINARR_OAUTH_ISSUER` to your external HTTPS origin and keep it stable, since changing it forces every MCP client to reconnect. Browser-based MCP clients from another origin also need that origin listed in `CANTINARR_MCP_ALLOWED_ORIGINS`.
-{.is-info}
 
 
 # 4 · Environment variables
@@ -159,5 +148,6 @@ The native apps are in beta:
 
 Both talk only to your own server, so stand the container up first.
 
-# <img src="/youtube.png" class="tab-icon"> 6 · Video
+# :logos:youtube-icon: 6 · Video
+
 

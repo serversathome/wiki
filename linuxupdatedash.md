@@ -2,29 +2,17 @@
 title: Linux Update Dashboard
 description: A guide to deploying Linux Update Dashboard
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:06.126Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-02T21:33:57.457Z
+dateCreated: '2026-03-02T21:33:57.457Z'
 ---
 
-# <img src="/linux-update-dashboard.png" class="tab-icon"> What is Linux Update Dashboard?
+# What is Linux Update Dashboard?
 
 **Linux Update Dashboard** is a self-hosted web app for managing Linux package updates across multiple servers from a single interface. It connects to your servers via SSH, checks for available updates, and lets you apply them individually or in bulk — all from your browser. It supports APT, DNF, YUM, Pacman, Flatpak, and Snap with automatic package manager detection, and includes SSH-safe upgrades that survive connection drops via `nohup`. The app features encrypted SSH credentials (AES-256-GCM), four authentication methods (password, Passkeys, OIDC SSO, API tokens), flexible notifications (Email/SMTP, Gotify, MQTT, ntfy.sh, Telegram and webhooks), and a lightweight SQLite backend.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3001</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/theduffman85/linux-update-dashboard"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Linux Update Dashboard
+# :logos:docker-icon: 1 · Deploy Linux Update Dashboard
 
 
 ```yaml
@@ -61,9 +49,8 @@ openssl rand -base64 32
 4. Click **Test Connection** — package managers and system info are detected automatically
 5. Save the system
 
-> 
+> [!TIP]
 > SSH credentials are encrypted at rest using AES-256-GCM with per-entry random IVs. The credentials are never stored in plain text.
-{.is-success}
 
 ## 2.2 Reverse Proxy Setup
 
@@ -107,4 +94,5 @@ Configure notification channels from the dashboard UI under the Notifications se
 - **Webhook** — Custom HTTP requests for n8n, Node-RED and similar tools (includes a Discord preset)
 
 Each channel can be scoped to specific systems and configured to trigger on specific event types. Notification digests can be scheduled using cron expressions for batched summaries instead of immediate alerts.
+
 

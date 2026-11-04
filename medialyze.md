@@ -2,10 +2,10 @@
 title: Medialyze
 description: A guide to deploying Medialyze
 published: true
-date: 2026-03-21T11:29:38.183Z
-tags: 
+date: '2026-11-04T16:24:01.329Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-21T11:29:38.183Z
+dateCreated: '2026-03-21T11:29:38.183Z'
 ---
 
 # What is MediaLyze?
@@ -14,21 +14,10 @@ dateCreated: 2026-03-21T11:29:38.183Z
 
 Everything runs in a single container with one SQLite database and one UI. It supports full and incremental scans, normalized metadata, and detection of both internal and external subtitle files.
 
-> 
+> [!TIP]
 > MediaLyze mounts your media directory as **read-only**. It will never modify, move, or delete your files.
-{.is-success}
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/frederikemmer/medialyze"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy MediaLyze
+# :logos:docker-icon: 1 · Deploy MediaLyze
 
 ```yaml
 services:
@@ -57,6 +46,6 @@ Once the container is running:
 3. Trigger a **full scan** to index your collection
 4. Explore the **Dashboard** for an overview of your library's technical metadata
 
-> 
+> [!NOTE]
 > MediaLyze uses `path + size + mtime` for incremental scans, so subsequent scans after the initial full scan will be significantly faster.
-{.is-info}
+

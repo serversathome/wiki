@@ -2,32 +2,17 @@
 title: Jellydash
 description: A guide to deploying Jellydash
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:16.249Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-28T20:28:41.792Z
+dateCreated: '2026-08-28T20:28:41.792Z'
 ---
 
-# <img src="/jellydash.png" class="tab-icon"> What is Jellydash?
+# What is Jellydash?
 
 **Jellydash** is a self-hosted monitoring dashboard for your Jellyfin server. If you have used Tautulli on the Plex side, this is the same idea built for Jellyfin: live sessions, complete play history, statistics, library overviews, optional Jellyseerr requests, and push notifications when someone hits play.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>MariaDB</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/themartz90/jellydash"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Jellydash
+# :logos:docker-icon: 1 · Deploy Jellydash
 
 Create the config directories first so the bind mounts do not come up as root-owned:
 
@@ -108,8 +93,8 @@ services:
 2. Click **+** and name the key `Jellydash`
 3. Copy the key into `JELLYFIN_API_TOKEN`
 
+> [!WARNING]
 > Use an **admin-level** key. Some statistics need to read library paths and will come back empty otherwise.
-{.is-warning}
 
 If your Jellyfin runs behind self-signed HTTPS, set `JELLYFIN_VERIFY_SSL=false`.
 
@@ -143,5 +128,6 @@ docker exec jellydash php bin/console.php push:vapid
 
 Paste the two keys into `VAPID_PUBLIC_KEY` and `VAPID_PRIVATE_KEY`, set `VAPID_SUBJECT` to your own email, and redeploy the stack. Then tap the bell in the app and allow notifications.
 
+> [!NOTE]
 > If you don't want browser push, set `PUSH_ENABLED: "false"`. Jellydash also has built-in Telegram, Pushover, Discord, ntfy and Gotify channels. See the [upstream README](https://github.com/themartz90/jellydash#readme) for their variables.
-{.is-info}
+

@@ -2,33 +2,20 @@
 title: Docsight
 description: A guide to deploying Docsight
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:08.040Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-05T15:12:42.220Z
+dateCreated: '2026-03-05T15:12:42.220Z'
 ---
 
-# <img src="/docsight.png" class="tab-icon"> What is DOCSight?
+# What is DOCSight?
 
 **DOCSight** is a self-hosted DOCSIS cable modem monitoring dashboard that tracks your cable internet connection 24/7, providing health assessments, trend charts, and hard evidence for ISP complaints. It features automatic signal quality evaluation, interactive charts with DOCSIS reference zones, Speedtest Tracker integration, complaint letter generation, and optional Home Assistant integration via MQTT auto-discovery.
 
+> [!NOTE]
 > Full signal monitoring requires a **DOCSIS cable modem**. On fiber, DSL or satellite, use **Generic Router mode** (speed tests, latency monitoring, notes and reports only, no DOCSIS signal data).
-{.is-info}
 
-<div class="glance">
-  <div><span>Port</span><b><code>8765</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/itsdnns/docsight"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy DOCSight
+# :logos:docker-icon: 1 · Deploy DOCSight
 
 ```yaml
 services:
@@ -64,9 +51,8 @@ services:
 1. Update `MODEM_TYPE`, `MODEM_URL`, `MODEM_USER`, and `MODEM_PASSWORD` to match your cable modem / router login.
 1. On first launch, the **Setup Wizard** will guide you through connection testing and configuration.
 
-> 
+> [!NOTE]
 > Environment variables are **optional** — DOCSight includes a browser-based Setup Wizard that writes all settings to `config.json` inside the `/data` volume. You can skip all env vars and configure everything through the web UI.
-{.is-info}
 
 # 2 · Configuration
 
@@ -115,6 +101,7 @@ DOCSight can pull speed test results from a self-hosted [Speedtest Tracker](http
 1. Set `SPEEDTEST_TRACKER_URL` to your Speedtest Tracker instance URL.
 2. Set `SPEEDTEST_TRACKER_TOKEN` to your API token.
 3. The DOCSight dashboard will show speed test charts, sortable history, and anomaly highlighting.
+
 
 
 

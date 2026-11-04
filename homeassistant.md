@@ -2,13 +2,13 @@
 title: Home Assistant
 description: A guide to deploying Home Assistant on TrueNAS
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T15:58:15.284Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:05:16.650Z
+dateCreated: '2026-01-15T15:05:16.650Z'
 ---
 
-# ![](/homeassistant.png){class="tab-icon"} What is Home Assistant?
+# What is Home Assistant?
 Home Assistant is free and open-source software used for home automation. It serves as an integration platform and smart home hub, allowing users to control smart home devices.
 
 # 1 · Prerequisites
@@ -74,4 +74,5 @@ Leave everything else alone and click
 3. Once the restore process is done, power off the VM and remove the .iso from the Disks section in TrueNAS. Start the VM and VNC back into it. You should see HAOS booting and eventually you will see the splash screen.
 
 4. You will need to find the IP address of the VM via your router and use the port 8123. Home Assistant will default to giving you homeassistant.local:8123 address. Once you have the IP you may proceed to the [Onboarding Process](https://www.home-assistant.io/getting-started/onboarding/).
+
 

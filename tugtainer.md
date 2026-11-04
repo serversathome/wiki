@@ -2,40 +2,24 @@
 title: Tugtainer
 description: A guide to deploying Tugtainer
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:51.819Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:09:08.384Z
+dateCreated: '2026-01-15T15:09:08.384Z'
 ---
 
-# <img src="/tugtainer.png" class="tab-icon"> What is Tugtainer?
+# What is Tugtainer?
 
 **Tugtainer** is a self-hosted app that automates updates for your Docker containers through a clean web UI. Think of it as a Watchtower-style update checker, but with a full dashboard, per-container control, multi-host management, and a proper dependency-aware update engine.
 
 It checks your running containers against their registries, flags the ones with a newer image, and can either notify you or pull, recreate, and restart them automatically on a cron schedule. You decide per container whether it's **check-only** (notify me) or **auto-update** (do it for me), so nothing moves unless you ask it to.
 
-<div class="glance">
-  <div><span>Port</span><b><code>9412</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/quenary/tugtainer"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/PTjco8Fryqg"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Tugtainer
+# :logos:docker-icon: 1 · Deploy Tugtainer
 
 The project now ships with a **socket-proxy by default**, so Tugtainer talks to Docker over TCP instead of touching the raw socket. Pick the tab that fits how you like to run things.
 
-# {.tabset}
-
-
-## Direct Socket
-
+:::block-tabs
+::block-tab{label="Direct Socket"}
 ```yaml
 services:
   tugtainer:
@@ -54,10 +38,9 @@ services:
       dev.quenary.tugtainer.protected: "true"
 ```
 
+::
 
-
-## Socket Proxy
-
+::block-tab{label="Socket Proxy"}
 ```yaml
 networks:
   tugtainer:
@@ -113,8 +96,12 @@ services:
 - `CONTAINERS`, `IMAGES`, `POST`, `INFO`, `PING` are the minimum for the **check** feature; `NETWORKS` is needed for the **update** feature.
 - `DOCKER_HOST` points Tugtainer at the proxy over the Compose network. The service name `socket-proxy` resolves even though the container is named `tugtainer-socket-proxy`, so it won't collide with a socket-proxy in another stack.
 
+> [!NOTE]
 > The proxy container is marked `protected` so Tugtainer can't try to update the thing it depends on to reach Docker.
-{.is-info}
+
+::
+
+:::
 
 # 2 · How Tugtainer Works
 
@@ -153,8 +140,8 @@ Two labels control how Tugtainer treats a container. Add them under `labels:` in
 | `dev.quenary.tugtainer.depends_on="db,cache"` | Declares a dependency on other containers by name, even outside the same Compose project.                                                            |
 {.dense}
 
+> [!WARNING]
 > You **cannot** update an **agent** or a **socket-proxy** from inside Tugtainer — they're how it talks to Docker. Don't put them in a Compose project alongside containers you auto-update, or the update will error. Mark them `protected` and recreate them manually (or with Portainer/Dockge).
-{.is-warning}
 
 # 4 · Remote Hosts (Agent)
 
@@ -263,6 +250,7 @@ Most are optional, but **`AGENT_SECRET` is required**. These are the ones you'll
 {.dense}
 
 
-# <img src="/youtube.png" class="tab-icon"> 8 · Video
+# :logos:youtube-icon: 8 · Video
 
-https://youtu.be/PTjco8Fryqg
+::block-youtube{url="https://youtu.be/PTjco8Fryqg"}
+::

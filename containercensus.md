@@ -2,27 +2,17 @@
 title: Container Census
 description: A guide to deploy Container Census
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:08.483Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:56.053Z
+dateCreated: '2026-01-15T15:03:56.053Z'
 ---
 
 # What is Container Census?
 
 Container Census is a lightweight, Go-powered tool that automatically scans your Docker environment across one or many hosts and gives you a clear, historical view of everything running in your stack.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/selfhosters-cc/container-census"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Container Census
+# :logos:docker-icon: 1 · Deploy Container Census
 
 ```yaml
 services:
@@ -54,7 +44,8 @@ services:
 
 ```
 
+> [!NOTE]
 > All settings (scanner interval, vulnerability scanning, telemetry) are managed in the Web UI.
-{.is-info}
 
 To scan other hosts, run `census-agent` on them and add them under **+ Add Agent Host**. See the [README](https://github.com/selfhosters-cc/container-census#agent-to-collect-data-from-other-hosts).
+

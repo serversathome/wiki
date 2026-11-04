@@ -2,28 +2,19 @@
 title: RackPeek
 description: A guide to deploying RackPeek
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:04.635Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-02T18:36:35.268Z
+dateCreated: '2026-03-02T18:36:35.268Z'
 ---
 
-# <img src="/rackpeek.png" class="tab-icon"> What is RackPeek?
+# What is RackPeek?
 
 **RackPeek** is a self-hosted CLI and web app for documenting and managing home lab and small-scale IT infrastructure, with discovery of existing infrastructure and export to tools such as Ansible. It helps you track hardware, services, networks, and their relationships in a clear, scriptable, and reusable way — without enterprise bloat or proprietary lock-in. RackPeek stores all of its state in a simple YAML file, so your data is always portable and easy to inspect.
 
 RackPeek supports managing servers, switches, routers, firewalls, access points, UPS units, desktops, laptops, and services — along with their components like CPUs, drives, GPUs, and NICs. It also includes a web UI for visualizing your infrastructure at a glance.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy RackPeek
+# :logos:docker-icon: 1 · Deploy RackPeek
 
 ```yaml
 services:
@@ -37,8 +28,8 @@ services:
     restart: unless-stopped
 ```
 
+> [!WARNING]
 > RackPeek runs as container user `1654`, not `apps` (568). Set the `/mnt/tank/configs/rackpeek` dataset to **Generic** permissions and give other full permissions, or `config.yaml` can't be saved.
-{.is-warning}
 
 # 2 · Configuration
 
@@ -100,10 +91,9 @@ RackPeek can track the following infrastructure types:
 
 RackPeek includes a built-in web interface that provides a visual overview of your entire infrastructure. Access it at the port you configured (default `8080`). The web UI allows you to browse resources, view relationships, and get a quick summary of your lab without touching the CLI.
 
-> 
+> [!TIP]
 > The web UI is read/write — you can manage your infrastructure from either the CLI or the browser.
-{.is-success}
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# :logos:youtube-icon: 3 · Video
 
 Coming soon!

@@ -2,13 +2,13 @@
 title: VolumeVault
 description: A guide to deploying VolumeVault
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:49.092Z'
+tags: []
 editor: markdown
-dateCreated: 2026-05-30T11:20:56.597Z
+dateCreated: '2026-05-30T11:20:56.597Z'
 ---
 
-# <img src="/volumevault.png" class="tab-icon"> What is VolumeVault?
+# What is VolumeVault?
 
 **VolumeVault** is a self-hosted web UI for backing up and restoring your Docker volumes and host paths. It's a Laravel app that wraps the well-regarded [`offen/docker-volume-backup`](https://github.com/offen/docker-volume-backup) engine, giving you a clean dashboard for scheduled jobs, encrypted off-site destinations, restore runs, notifications, and run history — instead of hand-writing backup labels and cron entries for every stack.
 
@@ -25,20 +25,7 @@ What you get:
 - **API & automation** — Sanctum API tokens for scripts, dashboards, and agents
 - **Portable installation saves** — export an encrypted save and import it during onboarding to move or rebuild an instance
 
-<div class="glance">
-  <div><span>Port</span><b><code>8081</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/darkdragon14/volumevault"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy VolumeVault
+# :logos:docker-icon: 1 · Deploy VolumeVault
 
 ## 1.1 · Generate an App Key
 
@@ -51,8 +38,8 @@ docker run --rm ghcr.io/darkdragon14/volumevault:v2.0.7 php artisan key:generate
 Copy the full output, including the `base64:` prefix.
 
 
+> [!WARNING]
 > Keep this `APP_KEY` safe and back it up. It's required to decrypt your destinations, notification URLs, and installation saves — lose it and you lose access to those stored secrets. Pin a version tag in production rather than `latest`.
-{.is-warning}
 
 ## 1.2 · Compose
 
@@ -75,16 +62,16 @@ services:
     restart: unless-stopped
 ```
 
+> [!WARNING]
 > **Upgrading from v1.x?** Back up `/mnt/tank/configs/volumevault` and keep the same `APP_KEY` ([release notes](https://github.com/Darkdragon14/VolumeVault/releases)).
-{.is-warning}
 
 
 ## 1.3 · Host Path Allowlist
 
 `VOLUMEVAULT_HOST_PATH_ALLOWLIST` is a comma-separated list of permitted path prefixes, e.g. `/mnt/tank,/srv`. It covers both **host-path backup sources** and **local filesystem destinations**. Any path outside those prefixes is rejected when you save the job and again at run time — a good guardrail given the socket access.
 
+> [!WARNING]
 > The allowlist is **fail-closed**: if the variable is empty or unset, host-path sources *and* local backup destinations are refused entirely. Include every host path you back up from and every local folder you back up to. Leave it unset only if you back up named volumes to remote destinations.
-{.is-warning}
 
 # 2 · Configuration
 
@@ -96,9 +83,8 @@ After the container is up, the onboarding screen walks you through creating the 
 
 Add one or more backup destinations under the destinations section. Supported backends include AWS S3, Cloudflare R2, generic S3-compatible storage, WebDAV, SSH/SFTP, Azure Blob, Dropbox, Google Drive, and the local filesystem. Credentials are encrypted at rest with your `APP_KEY`. For a homelab, an S3-compatible target (your own MinIO, Backblaze B2 via S3, or R2) or an SFTP box makes a solid off-host destination.
 
-> 
+> [!TIP]
 > Follow 3-2-1: a local filesystem destination on the same host is convenient but isn't a real backup if that host dies. Pair it with at least one off-host/off-site destination (S3-compatible or SFTP).
-{.is-success}
 
 ## 2.3 Backup Jobs & Schedules
 
@@ -119,3 +105,4 @@ VolumeVault issues Sanctum API tokens for automation — trigger backups, read j
 ## 2.7 Reverse Proxy
 
 Set `APP_URL` to your public HTTPS URL and front the container with your usual proxy (Cloudflare Tunnel or Nginx pointing at `:8080`). If your proxy sits in front, you may also need `TRUSTED_PROXIES` set so Laravel honors the forwarded scheme/host. Given the socket access, keep this behind authentication and avoid exposing it publicly without a good reason.
+

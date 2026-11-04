@@ -2,29 +2,17 @@
 title: Torqvoice
 description: A guide to deploying Torqvoice
 published: true
-date: 2026-03-02T19:14:52.076Z
-tags: 
+date: '2026-11-04T16:23:47.097Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-02T19:14:06.166Z
+dateCreated: '2026-03-02T19:14:06.166Z'
 ---
 
-# <img src="/torqvoice.png" class="tab-icon"> What is Torqvoice?
+# What is Torqvoice?
 
 **Torqvoice** is a self-hosted workshop management platform built for automotive service businesses. It replaces scattered tools with a single place to manage customers, vehicles, service records, quotes, invoicing, inventory, and billing — all with a clean, modern UI. Whether you run one garage or multiple locations, Torqvoice provides a unified dashboard to keep your operations organized.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/torqvoice/torqvoice"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Torqvoice
+# :logos:docker-icon: 1 · Deploy Torqvoice
 
 ```yaml
 services:
@@ -94,9 +82,8 @@ If placing Torqvoice behind a reverse proxy (e.g. Nginx Proxy Manager, Caddy, or
 2. Forward traffic to port `3000`
 3. Enable WebSocket support if your proxy requires it
 
-> 
+> [!NOTE]
 > Torqvoice generates shareable public links for invoices and quotes. The `NEXT_PUBLIC_APP_URL` must be correct for these links to work.
-{.is-info}
 
 ## 2.4 Backups
 
@@ -108,6 +95,6 @@ The Torqvoice data is stored in two locations:
 Make sure both directories are included in your backup strategy.
 
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# :logos:youtube-icon: 3 · Video
 
 *Video coming soon — check back later!*

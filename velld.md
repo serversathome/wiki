@@ -2,26 +2,16 @@
 title: Velld
 description: A guide to deploying Velld
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:57.326Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:09:19.943Z
+dateCreated: '2026-01-15T15:09:19.943Z'
 ---
 
-# <img src="/velld.png" class="tab-icon"> What is Velld?
+# What is Velld?
 A self-hosted database backup management tool. Schedule automated backups, monitor status, and manage multiple databases from one place.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/dendianugerah/velld"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Velld
+# :logos:docker-icon: 1 · Deploy Velld
 
 ```yaml
 services:
@@ -69,3 +59,4 @@ ALLOW_REGISTER=true
    ```
 1. Set `NEXT_PUBLIC_API_URL` to your server's IP, change the admin username and password, and deploy.
 1. Open the web UI at `http://YOUR-SERVER-IP:3000` and log in with your admin credentials. Port `8080` is the API, not the web UI.
+

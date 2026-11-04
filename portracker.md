@@ -2,37 +2,26 @@
 title: Portracker
 description: A guide to deploying Portracker via docker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:09.970Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:23.902Z
+dateCreated: '2026-01-15T15:07:23.902Z'
 ---
 
-# ![](/portracker.png){class="tab-icon"} What is Portracker?
+# What is Portracker?
 By auto-discovering services on your systems, portracker provides a live, accurate map of your network. It helps eliminate manual tracking in spreadsheets and prevents deployment failures caused by port conflicts.
 
-<div class="glance">
-  <div><span>Port</span><b><code>4999</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://youtu.be/oTG5gBA6UgM"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-
 # 1 · Deploy Portracker
-# {.tabset}
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+:::block-tabs
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Add two **Additional Environment Variables** (see [section 2](https://wiki.serversatho.me/en/portracker#h-2-integrating-with-truenas) for explanation)
   a. TRUENAS_API_KEY
   b. TRUENAS_WS_BASE
 1. Set the **Data Storage** to *Host Path*
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+::
 
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   portracker:
@@ -59,8 +48,12 @@ services:
       # - TRUENAS_WS_BASE=wss://10.99.0.191:444
 ```
 
+> [!WARNING]
 > Keep `ENABLE_AUTH=true`: this container has the Docker socket and host PID access. Your first visit to `http://IP:4999` asks you to create the admin account.
-{.is-warning}
+
+::
+
+:::
 
 # 2 · Integrating With TrueNAS
 
@@ -68,6 +61,7 @@ To generate the `TRUENAS_API_KEY`, click the username in the top right of the we
 
 The `TRUENAS_WS_BASE` environment variable needs to be set to the IP of your TrueNAS server and the https port you have set for the webGUI in the format `wss://IP:port`. 
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# :logos:youtube-icon: 3 · Video
 
-https://youtu.be/oTG5gBA6UgM
+::block-youtube{url="https://youtu.be/oTG5gBA6UgM"}
+::

@@ -2,13 +2,13 @@
 title: Invoicerr
 description: A guide to deploying Invoicerr
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:36.803Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:05:30.658Z
+dateCreated: '2026-01-15T15:05:30.658Z'
 ---
 
-# <img src="/invoicerr.png" class="tab-icon"> What is Invoicerr?
+# What is Invoicerr?
 Invoicerr is a simple, open-source invoicing application designed to help freelancers manage their quotes and invoices efficiently. It provides a clean interface for creating, sending, and tracking quotes and invoices — so you get paid faster, with less hassle.
 
 ✨ Features
@@ -28,23 +28,10 @@ Invoicerr is a simple, open-source invoicing application designed to help freela
 - REST API backend, ready for future integrations (mobile & desktop apps)
 - Plugin system for community-made features
 
-<div class="glance">
-  <div><span>Port</span><b><code>8001</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/invoicerr-app/invoicerr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
+# :logos:docker-icon: 1 · Deploy Invoicerr
 
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Invoicerr
-
+> [!WARNING]
 > The project moved to [invoicerr-app/invoicerr](https://github.com/invoicerr-app/invoicerr), and the old `ghcr.io/impre-visible/invoicerr` image no longer gets updates. This compose is pinned to the latest stable v1 release. Version 2 (currently in alpha) changes the setup: it requires Redis, a `BETTER_AUTH_SECRET`, a `/data` volume for documents, and uses `OIDC_DISCOVERY_URL` instead of the individual OIDC endpoints. Don't move to v2 tags with this compose.
-{.is-warning}
 
 ```yaml
 services:

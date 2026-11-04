@@ -2,29 +2,20 @@
 title: Tasterr
 description: A guide to deploying Tasterr
 published: true
-date: 2026-09-28T18:06:40.122Z
-tags: 
+date: '2026-11-04T16:23:47.786Z'
+tags: []
 editor: markdown
-dateCreated: 2026-09-28T18:06:40.122Z
+dateCreated: '2026-09-28T18:06:40.122Z'
 ---
 
-# <img src="/tasterr.svg" class="tab-icon"> What is Tasterr?
+# What is Tasterr?
 
 **Tasterr** is a Netflix-style discovery front end for your media stack. It pairs the TMDB catalog with your existing Seerr instance, so everyone in the house can browse, search, see what is already available, and request titles, all while Tasterr learns a separate taste profile for each person. Sign in with Plex and it also learns from your watch history, adds a Continue Watching row, and can blend recommendations for whoever is on the couch.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/ZacharyArthur/tasterr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
+> [!NOTE]
 > Tasterr does not replace Seerr, it sits in front of it. You need a running Seerr instance, a Seerr API key, and a TMDB API key before you deploy.
-{.is-info}
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Tasterr
+# :logos:docker-icon: 1 · Deploy Tasterr
 
 ## 1.1 Gather Your Keys
 
@@ -86,12 +77,13 @@ When TLS terminates at a proxy, Tasterr needs to trust that proxy's forwarded he
       - TASTERR_FORWARDED_ALLOW_IPS=172.18.0.10
 ```
 
+> [!CAUTION]
 > Never set `TASTERR_FORWARDED_ALLOW_IPS` to `*`. Also configure your proxy to strip or redact query strings from its access logs, since search URLs contain what your household is searching for.
-{.is-danger}
 
 ## 2.4 If Something Is Missing
 
 - **No catalog at all**: the TMDB key is missing or wrong
 - **Availability shows Unknown and the request button is disabled**: Tasterr cannot reach Seerr at `SEERR_INTERNAL_URL`, or the Seerr API key is wrong
 - **Health check**: `curl http://your-server-ip:8000/api/v1/health`
+
 

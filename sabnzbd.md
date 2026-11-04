@@ -2,35 +2,24 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:52.338Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:08:11.759Z
+dateCreated: '2026-01-15T15:08:11.759Z'
 ---
 
-# <img src="/sabnzbd.png" class="tab-icon"> What is SABnzbd?
+# What is SABnzbd?
 
 **SABnzbd** is a free, open-source Usenet download client, sometimes called a binary newsreader. You hand it an **NZB file** and it does everything else automatically: downloads all the article pieces from your Usenet provider, verifies them, repairs anything missing with PAR2, extracts the archives, and drops the finished file into your library.
 
 Think of it as the Usenet counterpart to a torrent client like qBittorrent. It's also the standard download engine that sits underneath a Sonarr and Radarr setup, so most people run it fully automated and rarely open it by hand.
 
+> [!NOTE]
 > To use SABnzbd you need two other things it does **not** provide: a **Usenet provider** (where the files actually live, e.g. Newshosting) and an **indexer** (a search engine that gives you NZB files, e.g. SceneNZBs). Only the provider is entered into SABnzbd. The indexer feeds NZBs in from the outside, usually through Sonarr/Radarr.
-{.is-info}
-
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/linuxserver/docker-sabnzbd"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
 
 # 1 · Deploy SABnzbd
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   sabnzbd:
@@ -52,11 +41,12 @@ services:
 2. The `/media` mount should be the **parent of both your downloads and your media library** (e.g. `/mnt/tank/media` holds `downloads/`, `movies/`, `tv/`). Mapping one shared folder is what lets Sonarr and Radarr hardlink finished downloads instead of copying them.
 3. `PUID`/`PGID` `568` is the `apps` user on TrueNAS, matching the recommended dataset permissions.
 
+> [!WARNING]
 > Map the **same host folder to the same container path** in SABnzbd, Sonarr, and Radarr (`/media` everywhere). Mismatched paths are the number-one cause of imports silently failing.
-{.is-warning}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Navigate to **Apps** in the TrueNAS UI.
 2. Click **Discover Apps** and search for **SABnzbd** (Community train).
 3. Click **Install**.
@@ -67,7 +57,9 @@ services:
    - **Additional Storage**: Host Path `/mnt/tank/media` → Mount Path `/media`
 5. Click **Install** and wait for the app to report **Running**.
 
+::
 
+:::
 
 # 2 · Configuration
 
@@ -86,8 +78,8 @@ On first launch, the setup wizard asks for your provider. You can also add it la
 
 Click **Test Server**. When it turns green, SABnzbd can reach your provider. This is the only server you need to add.
 
+> [!WARNING]
 > Always use SSL on port `563`. It keeps your provider connection encrypted. More connections can raise speed up to your plan's limit, but there are diminishing returns and it uses more CPU, so don't max it out on day one.
-{.is-warning}
 
 ## 2.2 Set your download folders
 
@@ -104,8 +96,8 @@ They can't be the exact same path, but they can be two subfolders under one down
 | Completed Download Folder | `/media/downloads/complete` |
 {.dense}
 
+> [!TIP]
 > Keeping the completed folder on the **same dataset as your media library** lets Sonarr/Radarr **hardlink** on import (instant, no extra disk). Keeping the incomplete folder there too makes SABnzbd's own incomplete → complete move an instant rename instead of a copy.
-{.is-success}
 
 ## 2.3 Categories (for Sonarr / Radarr)
 
@@ -117,11 +109,11 @@ Categories are optional, Sonarr and Radarr import by reading the finished path f
 
 SABnzbd nests each one under your Completed Download Folder automatically, so `tv` becomes `/media/downloads/complete/tv`. You don't pre-create the folders or re-point SABnzbd at them.
 
+> [!WARNING]
 > Use a **plain relative name** (`tv`), not a full path. An absolute path in the folder field overrides the completed folder and sends that category elsewhere.
-{.is-warning}
 
+> [!NOTE]
 > **Categories vs Tags:** SABnzbd calls these *categories*. Sonarr/Radarr have a separate, unrelated feature called *tags* (release profiles, indexer restrictions, etc.) that you do **not** need for a normal setup. The only field that must match between the *arrs and SABnzbd is the download-client **Category**.
-{.is-info}
 
 ## 2.4 Connect Sonarr & Radarr
 
@@ -133,8 +125,8 @@ Grab your API key from **Config → General → API Key**, then in each *arr:
 4. **Category**: `tv` in Sonarr, `movies` in Radarr.
 5. **Test**, then **Save**.
 
+> [!CAUTION]
 > Make sure SABnzbd, Sonarr, and Radarr all resolve `/media` to the same host folder. If SAB reports a completed path the *arrs can't see, imports fail even though the download succeeded.
-{.is-danger}
 
 ## 2.5 Connect to Prowlarr
  
@@ -154,8 +146,8 @@ First grab SABnzbd's API key from **Config → General → API Key**. Then in Pr
 
 Everything below is optional, but it makes SABnzbd tidier and safer for an automated media setup.
 
+> [!WARNING]
 > Turn on **Advanced Settings** (the toggle at the top of each Config page) to reveal the advanced fields, several of the settings below live there.
-{.is-warning}
 
 ## 3.1 Recommended Switches
 
@@ -183,10 +175,10 @@ Rather than downloading risky files and deleting them afterward, have SABnzbd re
 3. Set **Action when unwanted extension detected** to **Fail job (move to History)**.
 Now if any of these show up in a finished release, SABnzbd fails the whole job and moves it to History instead of handing it to your library.
  
+> [!WARNING]
 > This check is global, not per-category. If you also use SABnzbd for games or software, leave installer extensions (`exe`, `msi`, `iso`, `dmg`, etc.) off the list, or those legitimate downloads will fail too. Switch the action to **Off** while grabbing them if needed.
-{.is-warning}
 
 
 
-# <img src="/patreon-light.png" class="tab-icon"> 4 · Video
-[![](/2026-07-01-usenet-vs-torrents-the-faster--promo-card.png)](https://www.patreon.com/serversathome/posts/usenet-vs-faster-162640931)
+# ![](/_files/patreon-light.png =28x) 4 · Video
+[![](/2026-07-01-usenet-vs-torrents-the-faster-promo-card.png)](https://www.patreon.com/serversathome/posts/usenet-vs-faster-162640931)

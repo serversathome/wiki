@@ -2,13 +2,13 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:22.646Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:05:51.359Z
+dateCreated: '2026-01-15T15:05:51.359Z'
 ---
 
-# ![](/komodo.png){class="tab-icon"} What is Komodo?
+# What is Komodo?
 Komodo is a web app to provide structure for managing your servers, builds, deployments, and automated procedures.
 
 With Komodo you can:
@@ -21,36 +21,21 @@ With Komodo you can:
 - Manage all your configuration / environment variables, with shared global variable and secret interpolation.
 - Keep a record of all the actions that are performed and by whom.
 
-<div class="glance">
-  <div><span>Port</span><b><code>9120</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>3 services</b></div>
-  <div><span>Depends on</span><b>MongoDB</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/moghtech/komodo"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
 # 1 · Deploy Komodo
-# {.tabset}
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+:::block-tabs
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Set a **Database Password**
 1. Set a **Passkey (Periphery)**
 1. Set **Config Keys Storage**, **Backups Storage**, **Syncs Storage**, **Periphery Root Storage**, and **MongoDB Data Storage** to **Host Path**
 
+> [!WARNING]
 > Remember to check the box for **Automatic Permissions** under **MongoDB Data Storage**
-{.is-warning}
 
+::
 
-
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
+> [!WARNING]
 > Upgrading from Komodo 1.x? v2 isn't drop-in. Read the [v2.0.0 release notes](https://github.com/moghtech/komodo/releases/tag/v2.0.0) first.
-{.is-warning}
 
 ```yaml
 services:
@@ -129,8 +114,9 @@ services:
       - /mnt/tank/configs/komodo/etc:/mnt/tank/configs/komodo/etc
 ```
 
-## <img src="/docker.png" class="tab-icon"> Stacks Importer
+::
 
+::block-tab{label="Stacks Importer" icon="simple-icons:docker"}
 ```yaml
 services:
   komodo-import:
@@ -150,6 +136,10 @@ services:
       - API_SECRET=
       - OUTPUT_API_SYNC=true
 ```
+
+::
+
+:::
 
 # 2 · First Login
 Komodo should now be accessible on the specified port and navigating to `http://<address>:<port>` will display the login page. Enter your preferred admin username and password, and click "**Sign Up**", *not* "Log In", to create your admin user for Komodo. Any additional users to create accounts will be disabled by default, and must be enabled by an admin.

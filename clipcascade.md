@@ -2,24 +2,17 @@
 title: ClipCascade
 description: A guide to deploying ClipCascade
 published: true
-date: 2026-01-15T15:28:28.813Z
-tags: 
+date: '2026-11-04T16:23:57.825Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:43.844Z
+dateCreated: '2026-01-15T15:03:43.844Z'
 ---
 
-# <img src="/clipcascade.png" class="tab-icon"> What is ClipCascade?
+# What is ClipCascade?
 
 ClipCascade is a lightweight, open-source utility that automatically syncs your clipboard across multiple devices—no manual input required. It ensures seamless sharing with robust end-to-end encryption, providing a secure and reliable clipboard experience across workstations.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy ClipCascade
+# :logos:docker-icon: 1 · Deploy ClipCascade
 ```yaml
 services:
   clipcascade:
@@ -42,4 +35,5 @@ services:
 
 # 3 · Client Software
 Visit the [Releases Page](https://github.com/Sathvik-Rao/ClipCascade/releases) on GitHub to see the latest versions of the client software.
+
 

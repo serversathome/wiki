@@ -2,31 +2,20 @@
 title: Reclaimerr
 description: A guide to deploying Reclaimerr
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:47.470Z'
+tags: []
 editor: markdown
-dateCreated: 2026-04-16T20:23:27.413Z
+dateCreated: '2026-04-16T20:23:27.413Z'
 ---
 
-# <img src="/reclaimerr.png" class="tab-icon"> What is Reclaimerr?
+# What is Reclaimerr?
 
 **Reclaimerr** is a self-hosted tool that helps you automatically identify and clean up unwatched, low-rated, or stale media in your Jellyfin, Plex, and/or Emby library so you can reclaim disk space. Think of it as Seerr in reverse — instead of requesting new media, you're cleaning up what's already there. Reclaimerr supports rule-based filtering, a protection system to safeguard favorites, optional Sonarr/Radarr/Seerr integration, and notifications through Apprise.
 
-> 
+> [!WARNING]
 > Automatic deletion is **opt-in**. Nothing is deleted automatically until you enable the `Delete Cleanup Candidates` task under **Tasks**. Review your rules and task schedule before turning it on.
-{.is-warning}
 
-<div class="glance">
-  <div><span>Port</span><b><code>8000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/jessielw/reclaimerr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Reclaimerr
+# :logos:docker-icon: 1 · Deploy Reclaimerr
 
 Reclaimerr requires both a compose file and an accompanying `.env` file for its environment variables.
 
@@ -78,13 +67,11 @@ PROXY_TRUSTED_HOSTS=127.0.0.1,::1
 ```
 
 
-> 
+> [!NOTE]
 > Leave `JWT_SECRET` and `ENCRYPTION_KEY` **blank** on first launch. Reclaimerr will auto-generate stable values and save them to `secrets.env` in the data folder (`/mnt/tank/configs/reclaimerr/secrets.env`). Back that file up with the rest of the data folder, or existing sessions and encrypted settings stop working after a restore.
-{.is-info}
 
-> 
+> [!NOTE]
 > Mount your media at the **same container path** your media server uses (this guide uses `/media`), plus any destination folder you plan to use for move-based cleanup. If Reclaimerr sits behind a reverse proxy, set `PROXY_TRUSTED_HOSTS` to the proxy's IP or CIDR.
-{.is-info}
 
 # 2 · Configuration
 
@@ -163,11 +150,11 @@ Reclaimerr supports multi-user setups with a permission system. Add users under 
 - Administering servers and rules
 - Viewing reports
 
-> 
+> [!WARNING]
 > Always test your rules on a small subset of your library first. Even before you opt in to automatic deletion, a misconfigured rule can still flag items you'd rather keep — use the protection system liberally until you trust your rules.
-{.is-warning}
 
 
-# <img src="/patreon-light.png" class="tab-icon"> 4 · Video
+# ![](/_files/patreon-light.png =28x) 4 · Video
 
-[![](/2026-04-21-reclaimerr-automatically-clean--promo-card.png)](https://www.patreon.com/posts/reclaimerr-clean-155808712)
+[![](/2026-04-21-reclaimerr-automatically-clean-promo-card.png)](https://www.patreon.com/posts/reclaimerr-clean-155808712)
+

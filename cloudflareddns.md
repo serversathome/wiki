@@ -2,25 +2,16 @@
 title: Cloudflare DDNS
 description: A guide to installing Cloudflare DDNS Updater in Docker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:16:59.262Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:46.034Z
+dateCreated: '2026-01-15T15:03:46.034Z'
 ---
 
 ![](/cloudflare.png)
 
 # What is Cloudflared DDNS?
 A feature-rich and robust Cloudflare DDNS updater with a small footprint. The program will detect your machine's public IP addresses and update DNS records using the Cloudflare API.
-
-<div class="glance">
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/favonia/cloudflare-ddns"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
 
 # Docker Compose
 
@@ -55,21 +46,21 @@ services:
 
 
 
+> [!WARNING]
 > You need to add your Cloudflare token to the line `CLOUDFLARE_API_TOKEN=`. Create one on the [API Tokens page](https://dash.cloudflare.com/profile/api-tokens) of your Cloudflare dashboard
-{.is-warning}
 
 
-![](/screenshot_from_2024-06-14_16-04-24.png)
+![](/screenshot-from-2024-06-14-16-04-24.png)
 
 You want to create a new API Token from template to **Edit Zone DNS**:
 
-![](/screenshot_from_2024-06-14_16-07-41.png)
+![](/screenshot-from-2024-06-14-16-07-41.png)
 
-![](/screenshot_from_2024-06-14_16-09-46.png)
+![](/screenshot-from-2024-06-14-16-09-46.png)
 
 Then change the **Zone Resources** section to include **All Zones**, then hit the blue button at the bottom to **Continue to Summary**, then **Create Token**. 
+> [!CAUTION]
 > **Save that token** because you won't be shown it again!
-{.is-danger}
 
 # ❓ Frequently Asked Questions
 ## I simulated an IP address change by editing the DNS records, but the updater never picked it up!
@@ -102,5 +93,6 @@ Certain Docker installations may have issues with the no-new-privileges security
 ## I am getting error code: 1034
 
 We have received reports of recent issues with the default IP provider, `cloudflare.trace`. Some users are encountering an "error code: 1034," likely due to internal problems with Cloudflare's servers. To work around this, please upgrade the updater to version 1.15.1 or later. Alternatively, you may switch to a different IP provider.
+
 
 

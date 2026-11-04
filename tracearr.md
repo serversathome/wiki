@@ -2,32 +2,21 @@
 title: Tracearr
 description: A guide to deploying Tracearr
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:18:02.301Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:09:01.316Z
+dateCreated: '2026-01-15T15:09:01.316Z'
 ---
 
-# <img src="/tracearr.png" class="tab-icon"> What is Tracearr?
+# What is Tracearr?
 
 **Tracearr** is a real-time monitoring platform for **Plex**, **Jellyfin**, and **Emby** servers. It combines session tracking, playback analytics, library insights, and account sharing detection into a single dashboard — replacing the need to run separate tools like Tautulli and Jellystat for each media server.
 
 Key features include stream geolocation mapping, trust scoring, impossible travel detection, concurrent stream limits, Discord webhook alerts, and a public REST API. Tracearr can also import existing watch history from Tautulli and Jellystat so you don't start from scratch.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/connorgallopo/tracearr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
 # 1 · Deploy Tracearr
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 The `supervised` image bundles Tracearr, TimescaleDB, and Redis into a single container with zero configuration — secrets are auto-generated on first run.
 
 ```yaml
@@ -63,8 +52,8 @@ services:
 2. Deploy the stack and open `http://YOUR_SERVER_IP:3000`
 
 
+> [!NOTE]
 > The supervised image requires a minimum of **3 GB of RAM** (`mem_limit`) since it bundles PostgreSQL (TimescaleDB), Redis, and Node.js in one container. The `shm_size` and `ulimits` settings are required for TimescaleDB to function properly.
-{.is-info}
 
 
 ### Docker Tags
@@ -78,8 +67,9 @@ services:
 | `nightly` | Bleeding edge nightly build (requires external DB/Redis) |
 | `supervised-nightly` | All-in-one nightly build |
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Tracearr is available in the **Community** train of the TrueNAS Apps catalog.
 
 1. Navigate to **Apps** in the TrueNAS UI
@@ -97,8 +87,12 @@ Tracearr is available in the **Community** train of the TrueNAS Apps catalog.
 6. Click **Save** and wait for the app to deploy
 
 
+> [!NOTE]
 > Make sure you have the **Community** train enabled under **Apps > Settings > Preferred Trains** to see Tracearr in the catalog.
-{.is-info}
+
+::
+
+:::
 
 # 2 · Configuration
 
@@ -140,8 +134,8 @@ Configure these under **Settings > Notifications** to receive real-time alerts w
 If you're migrating from **Tautulli** or **Jellystat**, you can import your existing watch history under **Settings > Import**. This preserves your historical data so you don't lose any analytics.
 
 
+> [!WARNING]
 > Large imports from Tautulli may take some time due to TimescaleDB chunk processing.
-{.is-warning}
 
 ## 2.6 Public API
 
@@ -151,5 +145,5 @@ Tracearr exposes a read-only REST API for third-party integrations. Generate an 
 
 
 
-# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
+# ![](/_files/patreon-light.png =28x) 3 · Video
 [![](/2025-12-22-track-user-violations-with-trace-promo-card.png)](https://www.patreon.com/posts/track-user-with-146451791)

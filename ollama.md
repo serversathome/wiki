@@ -2,34 +2,24 @@
 title: Ollama
 description: A guide to deploying Ollama
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:36.529Z'
+tags: []
 editor: markdown
-dateCreated: 2026-06-15T14:56:05.778Z
+dateCreated: '2026-06-15T14:56:05.778Z'
 ---
 
-# <img src="/ollama.png" class="tab-icon"> What is Ollama?
+# What is Ollama?
 
 **Ollama** is a self-hosted runtime for running large language models locally. It pulls quantized open-weight models (Llama 3.x, Mistral, Gemma, Qwen, Phi, DeepSeek, and many more) and serves them over a simple REST API on port `11434`, with a built-in CLI for pulling and chatting with models. It handles model storage, GPU offload, and concurrency for you, so you get a local, private, OpenAI-style endpoint without sending a single token to the cloud.
 
 Ollama has no web interface of its own — it's an API and CLI. Pair it with **Open WebUI** (covered in section 2.4) for a ChatGPT-style frontend.
 
-> 
+> [!NOTE]
 > Ollama runs models on CPU by default, but performance is dramatically better with a GPU. NVIDIA cards need the **NVIDIA Container Toolkit** installed on the host before the container can see the GPU.
-{.is-info}
-
-<div class="glance">
-  <div><span>Port</span><b><code>11434</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Hardware accel</span><b>Nvidia</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
 
 # 1 · Deploy Ollama
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   ollama:
@@ -64,12 +54,12 @@ services:
    docker exec -it ollama ollama run llama3.2 "Say hello in one sentence"
    ```
 
-> 
+> [!WARNING]
 > The volume mount is the one thing you cannot skip. Models are multiple GB each — without persistence you re-download them on every container recreate.
-{.is-warning}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Ollama is available as a **Community** train app in the TrueNAS catalog.
 
 1. Navigate to **Apps** in the TrueNAS UI
@@ -82,9 +72,12 @@ Ollama is available as a **Community** train app in the TrueNAS catalog.
    - **Resources** → enable **GPU Passthrough** and select your NVIDIA device if you have one
 5. Click **Install** / **Save**
 
-> 
+> [!NOTE]
 > Requires TrueNAS **24.10.2.2 (Electric Eel)** or newer. The catalog app maps the internal `/root/.ollama` model directory for you — point its host path at your `tank` pool, not the default ix-applications dataset, if you want easy backups.
-{.is-info}
+
+::
+
+:::
 
 # 2 · Configuration
 
@@ -169,9 +162,8 @@ llmfit
  
 The status bar across the top shows your detected specs — CPU, available/total RAM, GPU (or `none`), and which runtimes it found (Ollama, llama.cpp, MLX, Docker, LM Studio).
  
-> 
+> [!WARNING]
 > The TrueNAS root filesystem is wiped on every system update, so anything in `~/.local/bin` won't survive an upgrade. For a persistent install, download the release binary from the [GitHub releases page](https://github.com/AlexsJones/llmfit/releases) onto your pool (e.g. `/mnt/tank/configs/llmfit/llmfit`), make it executable with `chmod +x`, and run it from there — or simply re-run the one-liner after each upgrade.
-{.is-warning}
  
 ## 3.2 Connect llmfit to Ollama
  
@@ -197,9 +189,8 @@ Models are ranked by a composite **Score** (quality, speed, fit, and context com
 | **Mem %** | How much of your available memory the model uses |
 
  
-> 
+> [!TIP]
 > On a **CPU-only** box, every model shows `CPU` mode and caps at `Marginal` fit — that's by design, not an error. Don't chase the top Score; watch **tok/s** instead. As a feel: 15+ tok/s is comfortable, ~5 is readable, and 1–2 tok/s is painful for interactive use. Mixture-of-Experts models (e.g. `Qwen3-Coder-30B-A3B`) are the sweet spot — they deliver large-model quality at small-model speed because only a few billion parameters are active per token.
-{.is-success}
  
 Press <kbd>S</kbd> to open hardware simulation and type in a VRAM figure (e.g. a 12 GB RTX 3060) to instantly recompute the whole table against that GPU — the clearest way to preview what adding a card would unlock before you buy one.
  
@@ -224,6 +215,7 @@ Common keys in the model table:
 | <kbd>q</kbd> | Quit |
 
  
+
 
 
 

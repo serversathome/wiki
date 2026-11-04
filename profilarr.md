@@ -2,44 +2,30 @@
 title: Profilarr
 description: A guide to deploying Profilarr with docker compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:27.101Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:30.974Z
+dateCreated: '2026-01-15T15:07:30.974Z'
 ---
 
+> [!TIP]
 > Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help!
-{.is-success}
 
-# <img src="/profilarr.png" class="tab-icon"> What is Profilarr?
+# What is Profilarr?
 
 **Profilarr** syncs quality profiles, custom formats, and media management settings from shared configuration databases into your Radarr and Sonarr instances. Instead of hand-copying custom formats from forum posts, pasting JSON, and re-doing it all the next time TRaSH Guides updates, you link one (or more) curated databases in Profilarr, customize what you need, then push everything to any number of Arr instances.
 
 v2 is a complete rewrite with a new database and customization model, library pages for both Radarr and Sonarr, simultaneous multi-database support, drift detection, built-in upgrade automation (a Huntarr / Upgradinatorr replacement), Renameinatorr-style rename automation, Health Checkarr-style cleanup, in-app onboarding, in-app announcements, OIDC support, scoped API keys, and an overhauled testing engine.
 
-> 
+> [!WARNING]
 > v2 is **not** compatible with v1. The underlying database and customization systems changed significantly, so existing v1 databases, configs, and appdata won't work in v2. If you're upgrading from v1, treat this as a fresh install on a new config volume.
-{.is-warning}
 
-> 
+> [!CAUTION]
 > Profilarr v2 requires a Docker host running Linux kernel 3.17 or newer on `amd64` or `arm64`. Older kernels (including Synology DSM installs on kernel 3.10) are **not** supported. It also requires **Sonarr v4+** and **Radarr v5+**. Sonarr v5 is supported on an **experimental** basis as of v2.3.0.
-{.is-danger}
-
-<div class="glance">
-  <div><span>Port</span><b><code>6868</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service + optional parser</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/dictionarry-hub/profilarr"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/jvir2SmnwWs"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
 
 # 1 · Deploy Profilarr
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   profilarr:
@@ -73,13 +59,12 @@ services:
   #    - '5000'
 ```
 
+> [!NOTE]
 > The optional **parser** service is only needed for custom format and quality profile testing. Linking, syncing, and everything else work without it. Keep both images on the same tag.
-{.is-info}
 
+::
 
-
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for **Profilarr** (Community train; app version 2.0.2 or newer ships Profilarr 2.0.4+)
 3. Click **Install**
@@ -92,15 +77,16 @@ services:
 
 
 
-> 
+> [!WARNING]
 > **Upgrading to v2.3.0 or newer from an earlier v2 release?** Two behavior changes:
 > - The **local network auth bypass is gone**. If you used it to skip the login on your LAN, you'll now get a login prompt. Sign in with your Profilarr username and password.
 > - Any **existing API keys become full-access "default" keys**. If you've handed a key to another tool, consider replacing it with a scoped key (see section 2).
 >
 > v2.3.0 also fixes three security advisories, so update if you're on an older version.
-{.is-warning}
 
+::
 
+:::
 
 # 2 · First Login
 
@@ -147,9 +133,8 @@ v2 supports **multiple databases at once**, so you can mix profiles from differe
 
 Repeat for every Arr instance you want Profilarr to manage. v2 cleanly handles cloned 1080p / 4K Radarr setups even when they share an API key.
 
-> 
+> [!NOTE]
 > If the connection test fails and the Arr is behind a reverse proxy with its own login page, Profilarr now tells you so. Either point the URL at the Arr directly (e.g. its container name and port) or fill in the Basic Auth fields. Also note that **changing an instance's URL later requires re-entering its API key**.
-{.is-info}
 
 ## 4.1 Library Pages
 
@@ -344,9 +329,8 @@ Under **Media Management** in the sidebar you'll find:
 
 And separately, **Delay Profiles** is its own config type in v2, controlling protocol preferences (usenet vs torrent), release delays, and score gates. Delays display in minutes, hours, or days, so a 1440 minute delay reads as 1 day.
 
-> 
+> [!NOTE]
 > A v2 change worth noting: Media Management configs are no longer one-per-instance. You can have multiple quality definitions, naming schemes, and media settings, and pick which one each Arr uses.
-{.is-info}
 
 Set these to your database of choice (typically Dictionarry's defaults) and let Profilarr keep them aligned across instances. The defaults are good and don't need to be adjusted unless you have a specific use case.
 
@@ -399,5 +383,6 @@ The **All / Success / Failed** toggles at the top of the picker let you bulk-ena
 
 
 
-# <img src="/youtube.png" class="tab-icon"> 9 · Video
-https://youtu.be/jvir2SmnwWs
+# :logos:youtube-icon: 9 · Video
+::block-youtube{url="https://youtu.be/jvir2SmnwWs"}
+::

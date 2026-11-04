@@ -2,13 +2,13 @@
 title: NextDNS
 description: A guide to configuring NextDNS
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:15.407Z'
+tags: []
 editor: markdown
-dateCreated: 2026-09-02T09:57:01.133Z
+dateCreated: '2026-09-02T09:57:01.133Z'
 ---
 
-# <img src="/nextdns.png" class="tab-icon"> What is NextDNS?
+# What is NextDNS?
 
 **NextDNS** protects you from all kinds of security threats, blocks ads and trackers on websites and in apps and provides a safe and supervised Internet for kids — on all devices and on all networks.
 
@@ -17,18 +17,8 @@ Free tier is 300,000 queries per month with all features. Pro is $1.99/month or 
 
 
 
+> [!CAUTION]
 > The free tier does not error when it hits the cap. It keeps resolving DNS and silently stops filtering and logging for the remainder of the month. A single household burns through 300k quickly, especially with the router pointed at it. Take the paid tier.
-{.is-danger}
-
-<div class="glance">
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/nextdns/nextdns"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/u7h4IXgHGYc"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
 
 # 1 · Create your account
 
@@ -49,22 +39,22 @@ Billing lives on the **account**, not the profile. Every tab in the dashboard is
 
 Card and PayPal both require a recurring payment method. Crypto is annual only.
 
+> [!WARNING]
 > Subscribe before you deploy anything. A config that hits the free cap mid-month stops filtering with no error, so on a install for someone else you want the plan active before you walk out the door.
-{.is-warning}
 
 # 2 · Deploy NextDNS
-# {.tabset}
-## <img src="/apple-light.png" class="tab-icon"> iOS / iPadOS
+:::block-tabs
+::block-tab{label="iOS / iPadOS" icon="simple-icons:apple"}
 **Setup** tab → **Setup Guide** → **iOS**, then scan the QR code with the phone's camera.
  
 That single scan installs and configures the app together. It is the recommended path and it sidesteps the usual failure mode, where someone installs the app from the App Store, never enters a configuration ID, and ends up with encrypted DNS that filters nothing while looking exactly like it works.
  
+> [!WARNING]
 > Scan the code from the profile you actually want applied. The Setup tab is profile-scoped, so a code generated while the Adults profile is selected will apply adult rules to the kid's phone. Check the profile dropdown in the top left before scanning.
-{.is-warning}
 
+::
 
-## <img src="/android-robot.png" class="tab-icon"> Android
-
+::block-tab{label="Android" icon="simple-icons:android"}
 Two options:
 
 1. **Private DNS** (Settings → Network → Private DNS) pointed at your DoT hostname from the Setup tab. No app, works on cellular, survives reboots.
@@ -72,8 +62,9 @@ Two options:
 
 Private DNS is the cleaner option where the device supports it.
 
-## Router
+::
 
+::block-tab{label="Router"}
 Start by checking what the gateway actually is, because that decides everything else.
  
 ### If it is a stock ISP gateway (most homes)
@@ -85,16 +76,16 @@ That leaves one workable option: **IPv4 with Linked IP**.
 1. Open the gateway's admin page, usually `http://192.168.0.1` or `http://192.168.1.1`
 2. Find the DNS settings and replace whatever is there with the two `45.90.x.x` servers from your **Linked IP** panel
 3. Save, then click **Link IP** on the Setup tab
+> [!CAUTION]
 > Those IPv4 servers do not identify you. NextDNS matches queries to your profile by the public address they arrive from, so when your ISP hands out a new address after a modem reboot, filtering silently stops and the internet keeps working normally. Nobody notices for weeks.
-{.is-danger}
  
 **Do not leave it there.** Look for a **Dynamic DNS** section in the gateway. If it has one, point it at a free No-IP or DuckDNS hostname, then enter that hostname under **Setup → Linked IP → Show advanced options**. NextDNS resolves it and keeps the link current on its own.
  
 If the gateway has no DDNS section, skip router setup entirely rather than leaving a link that will quietly die. Cover the phones and tablets individually instead. That is the coverage that matters anyway, it works on cellular, and it has none of this fragility. What you give up is the TV and the consoles, which is a small gap.
 
+::
 
-## <img src="/docker.png" class="tab-icon"> Docker
-
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   nextdns:
@@ -106,6 +97,10 @@ services:
 ```
 
 The CLI image is published on Docker Hub as `nextdns/nextdns` and is configured entirely through command flags. The older `-config` flag is deprecated in favor of `-profile`. See the upstream [Docker wiki page](https://github.com/nextdns/nextdns/wiki/Docker) for more options.
+
+::
+
+:::
 
 # 3 · Configuration
 
@@ -143,8 +138,8 @@ Most of this tab is on by default and should stay on. Two additions worth making
 
 The second row is abuse-heavy free registrars rather than adult content.
 
+> [!NOTE]
 > **Block Dynamic DNS Hostnames** is worth enabling but is your first suspect when something breaks, since plenty of consumer cameras and NVRs phone home over DDNS. It plus AI-Driven Threat Detection and NRDs are the three to toggle off first when diagnosing a complaint.
-{.is-info}
 
 ## 3.4 Privacy
 
@@ -188,5 +183,6 @@ Where you cannot get tamper-proof, aim for tamper-evident. With per-device ident
 
 
 
-# <img src="/youtube.png" class="tab-icon"> 6 · Video
-https://youtu.be/u7h4IXgHGYc
+# :logos:youtube-icon: 6 · Video
+::block-youtube{url="https://youtu.be/u7h4IXgHGYc"}
+::

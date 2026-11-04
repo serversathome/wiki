@@ -2,13 +2,13 @@
 title: Proxmox
 description: An overview of the Proxmox hypervisor
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:13.959Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:02:47.218Z
+dateCreated: '2026-01-15T15:02:47.218Z'
 ---
 
-# ![](/proxmox.png){class="tab-icon"} 1 · What Is Proxmox?
+# 1 · What Is Proxmox?
 
 Proxmox Virtual Environment is a complete, open-source server management platform for enterprise virtualization. It tightly integrates the KVM hypervisor and Linux Containers (LXC), software-defined storage and networking functionality, on a single platform. With the integrated web-based user interface you can manage VMs and containers, high availability for clusters, or the integrated disaster recovery tools with ease.
 
@@ -35,9 +35,8 @@ tteck, who created these scripts, passed away in 2024. Read about it [here](http
 There are probably over 100 scripts in the community-scripts repo. Below are the ones I use most frequently, because after I install Proxmox and do some housekeeping, I deploy the Docker-Alpine LXC container and then use Portainer within that for my containers. You can run separate containers for all of your docker apps if you want; I do this because its easier. 
 
 For reference, my alpine-docker container is running Portainer + 20 docker containers and it uses less than 2 GB of RAM. My entire Proxmox node uses 3 GB of RAM.
-# {.tabset}
-## Housekeeping
-
+:::block-tabs
+::block-tab{label="Housekeeping"}
 <details>
 <summary><strong>Proxmox VE Post Install</strong> (click to expand)</summary>
 
@@ -56,8 +55,8 @@ Run the command below in the **Proxmox VE Shell**:
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/post-pve-install.sh)"
 ```
+> [!NOTE]
 > It is recommended to answer "yes" (y) to all options presented during the process
-{.is-info}
 
 </details>
 
@@ -98,15 +97,15 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/Proxmo
 ```
 </details>
 
+::
 
-## Docker LXC
-
+::block-tab{label="Docker LXC"}
 ### Docker LXC (Debian 13 or Alpine)
 
 [Docker](https://www.docker.com/) is an open-source project for automating the deployment of applications as portable, self-sufficient containers.
 
+> [!NOTE]
 > If the LXC is created Privileged, the script will automatically set up USB passthrough
-{.is-info}
 
 
 To create a new Proxmox VE Docker LXC, run the command below in the **Proxmox VE Shell**.
@@ -119,35 +118,39 @@ The script asks you to **Choose the container OS**:
 - **Debian 13**: ⚡ Default Settings: 2GB RAM - 4GB Storage - 2vCPU ⚡
 - **Alpine** (smaller footprint, faster creation time and minimal system resource usage): ⚡ Default Settings: 1GB RAM - 2GB Storage - 1vCPU ⚡
 
+> [!NOTE]
 > The separate `alpine-docker.sh` script no longer exists. Alpine is now an option inside `docker.sh`.
-{.is-info}
 
 The script will ask if you want to add Docker Compose. Portainer is no longer installed by this script; it now has its own addon script. To install Portainer, run this command inside the Docker LXC once it is created:
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/addon/portainer.sh)"
 ```
 
+> [!WARNING]
 > Run Compose V2 by replacing the hyphen (-) with a space, using docker compose, instead of docker-compose
-{.is-warning}
 
 
 **Portainer Interface: (https) IP:9443**
+
+::
+
+:::
 
 # 5 · Connecting With Cloudflare Tunnels
 A note for those using a CF tunnel to connect to your WebUI, make these changes to **Additional Application Settings** while editing your tunnel to ensure proper connection:
 1. Turn the **No TLS Verify** to `ON`
 1. Turn the **Disable Chucked Encoding** to `ON`
 
+> [!NOTE]
 > If you have **Botfight Mode** enabled you must create a rule to bypass for your IP
-{.is-info}
 
 
-# <img src="/homarr.png" class="tab-icon"> 6 · Connecting to Homarr
+# :simple-icons:homarr: 6 · Connecting to Homarr
 ## 6.1 Proxmox Root CA Cert for Homarr
 1. In the PVE dashboard, select the PVE node you wish to get a certificate for.
 1. Under **System**, select **Certificates** then, double click or highlight the `pve-root-ca.pem`
 
-    ![](/Screenshot_PVE_2025-06-19-143732.png)
+    ![](/screenshot-pve-2025-06-19-143732.png)
 
 1. Once the Certificate dialogue box opens, click the **Raw Certificate** drop-down at the bottom of the dialogue box.
 1. Copy the entire section and then paste it into notepad or another text editor. Save the file as pve_root_ca.crt
@@ -158,17 +161,17 @@ A note for those using a CF tunnel to connect to your WebUI, make these changes 
 1. Click **Create** and create a new group called api-users.
 1. Now go to **Users**, and create a new user, I suggest using the name of the application, in this case we will use homarr. Input a strong password. The realm will be PVE (Proxmox VE authentication server) and the group will be the api-users group we created above. Everything else can stay default.
 
-    ![](/Screenshot_PVE_2025-06-19-143912.png)
+    ![](/screenshot-pve-2025-06-19-143912.png)
 
 1. Next click on **API Tokens**. Click **Add** and select the user we just created. The **Token ID** should match its use, i.e. homarr. Check **Privilege Seperation**. (THE NEXT STEP IS VERY IMPORTANT)
 1. Once you click **Add** you need to record the information provided in the **Token Secret**. (Token ID and Secret) **IF YOU DO NOT RECORD THIS, YOU WILL HAVE TO START THIS STEP OVER**. There is no way to retrieve the API token after it is created.
 1. Next select the **Permissions** section again. Click **Add** and select **API Token Permission**. Path will be /, the **API Token** will be the one you just created for the user, **Role** will be **PVEAuditor** and leave **Propagate** checked.
 
-    ![](/Screenshot_PVE_2025-06-19-145531.png)
+    ![](/screenshot-pve-2025-06-19-145531.png)
 
 1. We will now repeat the same step above, except we will choose **User Permission**. The user will be the homarr user we created earlier.
 
-    ![](/Screenshot_PVE_2025-06-19-150025.png)
+    ![](/screenshot-pve-2025-06-19-150025.png)
 
 1. In Homarr, under Management and Integrations, select New integration, Proxmox.
 1. Under URL, enter the IP address of your Proxmox VE.
@@ -177,19 +180,22 @@ A note for those using a CF tunnel to connect to your WebUI, make these changes 
 1. You may need to restart Homarr to see the information for the Proxmox integration to show up. It may take some time.
 
 
-# ![](/youtube.png){class="tab-icon"} 7 · Video
+# :logos:youtube-icon: 7 · Video
 
 To see an example of deploying a docker LXC with a tteck (now community-scripts) script, go here.
 
-[https://youtu.be/ybDX3onvkis](https://youtu.be/ybDX3onvkis)
+::block-youtube{url="https://youtu.be/ybDX3onvkis"}
+::
 
 Also, watch this beginners guide.
 
-[https://youtu.be/b1BztUYB7VI](https://youtu.be/b1BztUYB7VI)
+::block-youtube{url="https://youtu.be/b1BztUYB7VI"}
+::
 
 
 
-# <img src="/eagle.png" class="tab-icon"> 8 · Would You Like to Know More?
+# ![](/_files/eagle.png =28x) 8 · Would You Like to Know More?
 
 
 https://blog.serversatho.me/proxmox/
+

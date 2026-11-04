@@ -2,26 +2,26 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: 2026-07-20T19:07:32.531Z
-tags: 
+date: '2026-11-04T16:23:37.075Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:02.183Z
+dateCreated: '2026-01-15T15:07:02.183Z'
 ---
 
-# <img src="/proxmox.png" class="tab-icon"> What Is Proxmox Backup Server?
+# What Is Proxmox Backup Server?
 
 **Proxmox Backup Server (PBS)** is an enterprise backup solution for VMs, containers, and physical hosts. It uses incremental, fully deduplicated backups to dramatically reduce network load and save storage space, and it adds strong encryption and integrity checks so you can feel safe backing up to targets you don't fully trust.
 
 Using PBS is almost always better than backing up Proxmox VMs directly to a TrueNAS NFS share. Instead of saving full VM images every run, PBS stores data in chunks and only uploads blocks that changed — which means faster backups, smaller storage footprint, and easy daily scheduling even across many similar VMs. On top of that, PBS gives you things NFS backups simply don't have: built-in encryption, automatic verification to detect corruption, flexible retention policies (daily / weekly / monthly), and fast disk-level and file-level restores directly from the Proxmox UI. You can still put the backing storage on TrueNAS — you just get a lot more on top.
 
 # 1 · Install PBS
-# {.tabset}
-## VM
+:::block-tabs
+::block-tab{label="VM"}
 1. Download the latest ISO from the [official Proxmox download page](https://www.proxmox.com/en/downloads/proxmox-backup-server/iso).
 1. Install it. PBS uses very little — on my machine I give it 1 CPU thread, 2 GB of memory, and a 10 GB hard drive.
 1. Boot into the web UI at `https://{IP}:8007`, log in as **root** with the password you set during install.
 1. On TrueNAS, create a dataset for PBS backups with generic permissions, then change the permissions to user:group `backup:backup` with mode `770`:
-![screenshot_from_2025-06-12_23-28-32.png](/screenshot_from_2025-06-12_23-28-32.png)
+![screenshot_from_2025-06-12_23-28-32.png](/screenshot-from-2025-06-12-23-28-32.png)
 1. Create an NFS share from that dataset. Under **Advanced Options**, set the **Maproot User** to `root`.
 1. In the PBS shell, add the NFS mount to `/etc/fstab` (sub in your server IP, path, and mount point):
     ```bash
@@ -29,8 +29,9 @@ Using PBS is almost always better than backing up Proxmox VMs directly to a True
     ```
 1. Reboot PBS.
 
-## <img src="/linuxcontainers.png" class="tab-icon"> TrueNAS 26 LXC
+::
 
+::block-tab{label="TrueNAS 26 LXC" icon="simple-icons:linuxcontainers"}
 1. **First time only**: go to **Virtualization → Containers → Global Configuration** and set:
     - **Preferred Pool** = the pool you want container rootfs on
     - **Bridge** = the bridge your LAN is on (e.g. `br1`). If you don't have one yet, make one in **Network → Interfaces** first.
@@ -75,6 +76,10 @@ Using PBS is almost always better than backing up Proxmox VMs directly to a True
     ```
 1. Browse to the PBS URL and log in as **root** with the password you just set.
 
+::
+
+:::
+
 # 2 · Post-Install Script
 It is recommended you run the [Proxmox Backup Server Post Install Script](https://community-scripts.org/scripts/post-pbs-install) from [helper scripts](https://community-scripts.org/) in the PBS shell using all default options:
 ```bash
@@ -109,14 +114,15 @@ You'll want a dedicated non-root PBS user for Proxmox VE to authenticate with.
     | Datastore | The name of the datastore you picked on PBS |
     | Fingerprint | Go to the PBS Dashboard and click the blue **Show Fingerprint** button at the top |
 
-# <img src="/cloudflare.png" class="tab-icon"> 6 · Connecting With Cloudflare Tunnels
+# :logos:cloudflare-icon: 6 · Connecting With Cloudflare Tunnels
 If you're exposing the PBS web UI through a Cloudflare Tunnel, set these under **Additional Application Settings** while editing your tunnel:
 
 1. Turn **No TLS Verify** to `ON`.
 1. Turn **Disable Chunked Encoding** to `ON`.
 
+> [!WARNING]
 > If you have **Bot Fight Mode** enabled you must create a rule to bypass your IP.
-{.is-warning}
 
-# <img src="/youtube.png" class="tab-icon"> 7 · Video 
-https://youtu.be/TXHtfDQYyoc
+# :logos:youtube-icon: 7 · Video
+::block-youtube{url="https://youtu.be/TXHtfDQYyoc"}
+::

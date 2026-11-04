@@ -2,10 +2,10 @@
 title: Webmin
 description: A guide to installing Webmin on Ubuntu Server LTS
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T15:59:07.351Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:09:27.105Z
+dateCreated: '2026-01-15T15:09:27.105Z'
 ---
 
 ![webmin.png](/webmin.png)
@@ -34,4 +34,5 @@ The dashboard is available at https://{serverIP}:10000. Webmin uses a self-signe
 
 Check out an example of this running on an Ubuntu LXC:
 
-[https://youtu.be/48kCm7tbo88](https://youtu.be/48kCm7tbo88)
+::block-youtube{url="https://youtu.be/48kCm7tbo88"}
+::

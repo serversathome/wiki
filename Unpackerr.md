@@ -2,13 +2,13 @@
 title: Unpackerr
 description: A guide to installing Unpackerr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-10-26T11:32:43.777Z
-tags: 
+date: '2026-11-04T16:18:04.797Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:02:58.731Z
+dateCreated: '2026-01-15T15:02:58.731Z'
 ---
 
-# <img src="/unpackerr.png" class="tab-icon"> What is Unpackerr?
+# What is Unpackerr?
 
 **Unpackerr** runs as a daemon on your download host or seedbox. It checks for completed downloads and extracts them so Lidarr, Radarr, Readarr, and Sonarr may import them. If your problem is RAR files getting stuck in your activity queue, then this is your solution.
 
@@ -16,23 +16,12 @@ Not a Starr app user, and just need to extract files? It does that too. Unpacker
 
 Unpackerr extracts `rar`, `tar`, `tgz`, `gz`, `zip`, `7z`, `bz2`, `tbz2`, and `iso`, recursively, including archives nested inside archives. Multi-file and password-protected RAR and 7-Zip archives are supported.
 
+> [!NOTE]
 > **New in 1.0: a web interface.** Unpackerr used to have no UI at all. Since v1.0.0 it serves a dashboard on port `5656` with a live queue (retry and forget), history, logs and a **Settings** page where you can add your Starr apps and watch folders and **Test** them before saving. Upgrading from 0.x? See [3 · Upgrading from 0.x](#h-3-upgrading-from-0x).
-{.is-info}
-
-<div class="glance">
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://unpackerr.zip/docs/install/configuration"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://github.com/Unpackerr/unpackerr/releases/tag/v1.0.0"><i class="mdi mdi-github"></i>v1.0 Release</a>
-  </div>
-</div>
 
 # 1 · Deploy Unpackerr
-# {.tabset}
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+:::block-tabs
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 There is an official Unpackerr app in the TrueNAS **Community** catalog, so no Dockge or compose file is required.
 
 1. Go to **Apps → Discover Apps**, search for **Unpackerr**, and click **Install**.
@@ -55,14 +44,14 @@ There is an official Unpackerr app in the TrueNAS **Community** catalog, so no D
 | **Syncthing** | Leave off unless the path is Syncthing-managed |
 
 
+> [!CAUTION]
 > **The URL must use your host IP, not a container name.** Inside a compose file `http://sonarr:8989` works because the apps share a Docker network. TrueNAS catalog apps **do not** share a network by default — they publish ports on the host — so use your TrueNAS box's LAN IP and the app's port, e.g. `http://192.168.1.50:8989` (Radarr `7878`, Lidarr `8686`, Readarr `8787`, Whisparr `6969`).
-{.is-danger}
 
+> [!NOTE]
 > **Whisparr** is no longer a separate app type in Unpackerr 1.0; it is set up as a Radarr instance. If the TrueNAS app still offers a Whisparr type, add Whisparr in the Unpackerr web UI instead.
-{.is-info}
 
+> [!WARNING]
 > The wizard often pre-fills **two** Path boxes and **two** Protocol boxes. You only need one of each — remove the extras with the **✕**. Add a second only if you genuinely have a second value (e.g. a `Usenet` protocol alongside `Torrent`).
-{.is-warning}
 
 5. **User and Group Configuration** — leave at `568:568` (the host `apps` user). Make sure `568` has read/write on your downloads dataset.
 6. **Storage Configuration** — click **Add**, set **Type** to **Host Path** (not ixVolume). Point the **Host Path** at the dataset where your media lives (ex. `/mnt/tank/media`) and set the **Mount Path** to the container side (ex. `/media`).
@@ -70,11 +59,12 @@ There is an official Unpackerr app in the TrueNAS **Community** catalog, so no D
 7. **Network Configuration** — make sure the web UI port `5656` is published so you can reach the dashboard.
 8. Scroll down and click **Install**. Once the app is **Running**, open its **Logs**: confirm it connected to each Starr app, and copy the **temporary UI password** (see [Logging in to the Web UI](#h-logging-in-to-the-web-ui)).
 
+> [!CAUTION]
 > **This is the step everyone gets wrong.** The **Mount Path** in Storage (plus its subfolder) must equal the **Path** you typed in Settings — and both must point to the *same place your Sonarr and qBittorrent already use*. If you mount `/mnt/tank/media → /media`, then the Path is `/media/downloads`. If these don't line up, Unpackerr starts perfectly and silently finds nothing to extract.
-{.is-danger}
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+::
 
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 Prefer to run it as code in Dockge? Use the official `golift/unpackerr` image. Since 1.0 the compose file only needs the mounts, the port and the user: your Starr apps and every other setting are added in the web UI. Create a `configs/unpackerr` dataset for the `/config` mount first.
 
 ```yaml
@@ -100,8 +90,8 @@ On first start Unpackerr creates `/config/unpackerr.conf` with the defaults. The
 1. Click **Test** on each row to check it can reach the app, then **Save**.
 1. Optional: add a **watch folder** for non-Starr extraction (set its interval to `1s`, see [Configuration Notes](#h-2-configuration-notes)).
 
+> [!NOTE]
 > The compose method **can** use container names like `http://sonarr:8989` for the URL — as long as Unpackerr and your Starr apps share the same Docker network. Otherwise use your host IP and the app's port.
-{.is-info}
 
 ### Optional: Configure with Environment Variables
 
@@ -122,16 +112,16 @@ You can still set everything in the compose file instead, for example to keep th
 
 Lidarr and Readarr follow the same pattern (`UN_LIDARR_0_*`, `UN_READARR_0_*`). Every option and its variable name is in the [official compose example](https://github.com/Unpackerr/unpackerr/blob/main/examples/docker-compose.yml).
 
+> [!WARNING]
 > **Environment variables lock settings in the UI.** Any field set by a `UN_*` variable is read-only in the web UI until you remove that variable, so pick one place to manage each setting.
-{.is-warning}
 
 ### Permissions & Folder Structure
 
 - **user** — use a user/group with permission to your media folders and the `configs/unpackerr` dataset. TrueNAS SCALE defaults to `568:568` for apps. The 1.0 image runs as the compose `user:`; it does not read `PUID` / `PGID`.
 - 📌 See the [Folder-Structure](https://wiki.serversatho.me/Folder-Structure) guide for the recommended single-mount layout.
 
+> [!TIP]
 > For a full reference of every configuration option with examples, see the [Unpackerr documentation](https://unpackerr.zip/docs/install/configuration).
-{.is-success}
 
 ### Logging in to the Web UI
 
@@ -142,6 +132,10 @@ Generated temporary UI password for user admin: ...
 ```
 
 Find it with `docker logs unpackerr` (or the app's **Logs** in TrueNAS), log in, and change it in the UI. Lost it? Add `command: --reset` to the compose service, start it once, copy the new password from the logs, then remove the line again.
+
+::
+
+:::
 
 # 2 · Configuration Notes
 
@@ -158,18 +152,18 @@ A few options worth knowing about. Set them in the web UI's **Settings**, or as 
 | `UN_WEBSERVER_LISTEN_ADDR` | `0.0.0.0:5656` | Address of the web UI and API. Empty turns the HTTP server off |
 | `UN_WEBSERVER_METRICS` | `false` | Exposes a Prometheus metrics endpoint at `/metrics` on `:5656` |
 
+> [!WARNING]
 > **Watch folders on Docker:** 1.0 no longer polls watch folders every second; each folder now has its own `interval`, which is off by default (file-system events only). Inside Docker, and on SMB/CIFS shares, those events often don't arrive, so set `UN_FOLDER_0_INTERVAL=1s` or new archives may never be noticed. The old global `UN_FOLDERS_INTERVAL` is ignored.
-{.is-warning}
 
+> [!NOTE]
 > **Metrics need an API key now.** `/metrics` only answers requests with an API key that has the `system:metrics:read` permission (as `Authorization: Bearer <key>` or an `X-Api-Key` header). Create one in the web UI and add it to your Prometheus scrape config for the [Unpackerr Grafana dashboard](https://grafana.com/grafana/dashboards/18817-unpackerr/).
-{.is-info}
 
+> [!TIP]
 > **Webhooks:** 1.0 recognises Notifiarr, Discord, Telegram, Slack, Pushover, Gotify, ntfy, Apprise and Mattermost from the URL and formats the message for them. Discord and Telegram edit one message as the extraction progresses instead of posting a new one each time.
-{.is-success}
 
 
+> [!WARNING]
 > **Password-protected archives:** Unpackerr can crack password-protected RAR/7-Zip if given a password list, but a wrong password forces it to read the entire archive before failing. A long password list will dramatically slow extractions and hammer your disk — use sparingly.
-{.is-warning}
 
 # 3 · Upgrading from 0.x
 
@@ -182,10 +176,10 @@ Unpackerr 1.0 is a big release with a few breaking changes. If you already run U
 1. **Watch folders:** add `UN_FOLDER_0_INTERVAL=1s` for each watch folder (see above).
 1. **Metrics:** if you scrape `/metrics`, create an API key with `system:metrics:read` and send it with the scrape.
 
+> [!NOTE]
 > Archives may now unpack to up to **7.5×** their compressed size for Starr apps (was 5×) before Unpackerr treats them as suspicious, and nested archives no longer count toward that limit. Watch folders have no limit unless you set `max_ratio`.
-{.is-info}
 
 For every detail, see the [v1.0.0 release notes](https://github.com/Unpackerr/unpackerr/releases/tag/v1.0.0) and the [upgrade guide](https://unpackerr.zip/docs/install/upgrading).
 
-# <img src="/patreon-light.png" class="tab-icon"> 4 · Video
+# ![](/_files/patreon-light.png =28x) 4 · Video
 [![](/unpackerr-patreon.png)](https://www.patreon.com/serversathome/posts/stop-rar-files-161337330)

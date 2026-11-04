@@ -2,10 +2,10 @@
 title: Gluetun-webui
 description: A guide to deploying Gluetun-webui
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:12.088Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-03T17:52:24.390Z
+dateCreated: '2026-03-03T17:52:24.390Z'
 ---
 
 # What is Gluetun WebUI?
@@ -13,21 +13,10 @@ dateCreated: 2026-03-03T17:52:24.390Z
 **Gluetun WebUI** is a lightweight web interface for monitoring and controlling [Gluetun](https://github.com/qdm12/gluetun) — the popular VPN client container for Docker. It provides a clean dashboard showing your VPN connection status, public IP details, port forwarding info, DNS status, and gives you start/stop controls right from the browser. It works with both WireGuard and OpenVPN without any configuration changes.
 
 
-> 
+> [!NOTE]
 > Gluetun WebUI requires a running [Gluetun](https://github.com/qdm12/gluetun) container with its HTTP control server enabled (default port `8000`). Both containers must be on the same Docker network. Current Gluetun versions **require** authentication on every control server route, so you will need to set up an API key or basic auth in Gluetun (see 2.2).
-{.is-info}
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/Sir-Scuzza/gluetun-webui"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Gluetun WebUI
+# :logos:docker-icon: 1 · Deploy Gluetun WebUI
 
 ```yaml
 services:
@@ -106,12 +95,11 @@ All of Gluetun's control server routes are private by default and **require** au
 - **API Key Auth** — In Gluetun's `environment:` add `- 'HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE={"auth":"apikey","apikey":"yourtoken"}'`, then set `GLUETUN_API_KEY=yourtoken` here. Generate a key with `docker run --rm qmcgaw/gluetun genkey`.
 - **HTTP Basic Auth** — In Gluetun's `environment:` add `- 'HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE={"auth":"basic","username":"username","password":"password"}'`, then set `GLUETUN_USER` and `GLUETUN_PASSWORD` here.
 
+> [!WARNING]
 > Quote the **whole** list item as shown, with the single quotes outside the variable name. Writing `- HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE='{...}'` (the `docker run -e` form) makes the quotes part of the value, and Gluetun fails to parse the JSON.
-{.is-warning}
 
-> 
+> [!CAUTION]
 > If you expose this service beyond localhost, place it behind a reverse proxy with authentication (Nginx Proxy Manager, Caddy, Traefik, etc.). The VPN start/stop endpoints have no UI-layer authentication by default.
-{.is-danger}
 
 ## 2.3 Dashboard Overview
 
@@ -127,4 +115,5 @@ The dashboard displays several status sections:
 ## 2.4 Auto-Refresh
 
 The UI supports configurable polling intervals. Use the dropdown in the interface to select your preferred refresh rate: 5 seconds, 10 seconds, 30 seconds, 60 seconds, or off. The polling system uses recursive `setTimeout` with an in-flight guard to prevent overlapping requests.
+
 

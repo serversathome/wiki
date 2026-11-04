@@ -2,26 +2,16 @@
 title: Sonarr Analyzer
 description: A guide to deploying Sonarr Analyzer
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:28.399Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:08:38.032Z
+dateCreated: '2026-01-15T15:08:38.032Z'
 ---
 
 # 📊 What is Sonarr Analyzer?
 A web application built with Streamlit for analyzing and monitoring your Sonarr library. It tracks average file size per episode, flags outliers, keeps analysis history, forecasts storage growth, and can run scheduled analyses. It supports multiple users and multiple Sonarr instances.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8501</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://hub.docker.com/r/martitoci/sonarr-analyzer"><i class="mdi mdi-docker"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Sonarr Analyzer
+# :logos:docker-icon: 1 · Deploy Sonarr Analyzer
 ```yaml
 services:
   sonarr-analyzer:
@@ -46,3 +36,4 @@ chown -R 1000:1000 /mnt/tank/configs/sonarranalyzer
 1. Log in with the new admin account
 1. Go to **Configuration** in the sidebar and add your Sonarr instance (name, **Sonarr URL**, **API Key**), then click **Save Instance**
 1. Activate the instance and run your first analysis
+

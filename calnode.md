@@ -2,32 +2,17 @@
 title: Calnode
 description: A guide to deploying Calnode
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:46.173Z'
+tags: []
 editor: markdown
-dateCreated: 2026-07-23T12:07:16.903Z
+dateCreated: '2026-07-23T12:07:16.903Z'
 ---
 
-# <img src="/calnode.png" class="tab-icon"> What is Calnode?
+# What is Calnode?
 
 **Calnode** is a lean, self-hostable Calendly alternative — a scheduling and booking engine that ships as a **single Go binary with an embedded SQLite database**. There is no Redis, no Postgres, no separate API server, and no multi-gigabyte image. 
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/calnode/calnode"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/Ozcy0fPlT3Q"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-
-
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Calnode
+# :logos:docker-icon: 1 · Deploy Calnode
 
 
 ## 1.1 Generate your secrets first
@@ -39,8 +24,8 @@ openssl rand -hex 32   # CALNODE_ENCRYPTION_KEY
 openssl rand -hex 32   # CALNODE_RECOVERY_SECRET
 ```
 
+> [!CAUTION]
 > **Save both of these somewhere safe and separate from the server.** Losing the encryption key makes your encrypted data unrecoverable unless you still have the recovery secret. Put them in Vaultwarden/Bitwarden before you go any further.
-{.is-danger}
 
 ## 1.2 Compose file
 
@@ -66,8 +51,8 @@ services:
 
 Then browse to `https://booking.yourdomain.com` — it redirects to `/admin/` and walks you through first-run setup.
 
+> [!WARNING]
 > **`BASE_URL` must include the scheme.** An `https://` prefix flips the app into production mode: secure cookies on, and the encryption key becomes mandatory. If you set `https://` and forget `CALNODE_ENCRYPTION_KEY`, the container refuses to start. On plain `http://` without the key, Calnode generates one itself and saves it as `/data/calnode.key`. Back that file up with the database: Litestream replicates the database, not the key, and nothing else can decrypt the stored credentials.
-{.is-warning}
 
 
 
@@ -77,8 +62,8 @@ Calnode does not terminate TLS — put Nginx Proxy Manager, Traefik, or Caddy in
 
 There is one setting that trips people up:
 
+> [!CAUTION]
 > **Your proxy must forward the original `Host` header.** Calnode's CSRF protection compares the `Origin`/`Referer` header against `Host`. If your proxy rewrites Host, every admin write action returns a **403**. In Nginx Proxy Manager this is the default; in a hand-rolled nginx config, make sure you have `proxy_set_header Host $host;`.
-{.is-danger}
 
 Example nginx location block:
 
@@ -117,8 +102,8 @@ location / {
 | `LOG_LEVEL` | No | `info` | `debug` / `info` / `warn` / `error` |
 
 
+> [!NOTE]
 > Settings precedence is **environment variable > database setting > default**. If you set SMTP via env, you can't override it in the admin UI.
-{.is-info}
 
 # 4 · Configuration
 
@@ -149,8 +134,8 @@ Gmail and Google Workspace SMTP will **rewrite your From address** to the authen
 
 Verify your domain in Resend first (add the SPF/DKIM records it gives you — **DNS-only / grey cloud** if you're behind Cloudflare).
 
+> [!NOTE]
 > Email settings are stored per-instance in that instance's database. If you run a staging copy alongside production, each one needs its own configuration.
-{.is-info}
 
 ## 4.3 Google Calendar & OAuth
 
@@ -163,8 +148,8 @@ https://booking.yourdomain.com/v1/calendar/callback
 
 Then set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, or paste them into Settings → Google OAuth (that page shows you the exact redirect URIs for your running instance, which is handy).
 
+> [!WARNING]
 > Google Calendar is a **sensitive scope**. Unverified apps get a warning screen and a 100-user cap. For a personal or small-team booking page that's usually fine — for anything public-facing, submit the app for verification.
-{.is-warning}
 
 Microsoft 365 / Outlook is similar, but there is **no in-app settings page for it yet**, so it has to be set with environment variables. In the Azure / Entra admin center go to **App registrations → New registration**, add a **Web** platform with these redirect URIs:
 
@@ -179,8 +164,8 @@ Then set `MICROSOFT_CLIENT_ID`, `MICROSOFT_CLIENT_SECRET` and, only if you want 
 
 **Litestream is built into the image** and supervises the app process. It streams your SQLite file continuously to S3-compatible object storage with roughly a one-second RPO, and **restores automatically on boot** if the volume comes up empty.
 
+> [!CAUTION]
 > **Backups are OFF until you set the variables below.** A single volume with no replica is the biggest data-loss risk on this stack — turn this on before you take real bookings.
-{.is-danger}
 
 Five variables cover every S3-compatible provider:
 
@@ -224,8 +209,9 @@ docker exec -it calnode sh -lc '
 
 If you see `SQLite format 3` and a file size close to your live database, the round-trip works. Run this drill when you first enable backups and periodically after — an unverified backup isn't a backup.
 
+> [!CAUTION]
 > The replica contains booking PII (names, email addresses, intake answers) in plaintext. **Keep the bucket private.** Calnode's own encrypted secrets stay sealed by the envelope key even inside the backup, but the booking data does not.
-{.is-danger}
 
-# <img src="/youtube.png" class="tab-icon"> 5 · Video
-https://youtu.be/Ozcy0fPlT3Q
+# :logos:youtube-icon: 5 · Video
+::block-youtube{url="https://youtu.be/Ozcy0fPlT3Q"}
+::

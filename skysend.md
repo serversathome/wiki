@@ -2,24 +2,17 @@
 title: Skysend
 description: A guide to deploy Skysend
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:26.448Z'
+tags: []
 editor: markdown
-dateCreated: 2026-04-27T17:59:04.372Z
+dateCreated: '2026-04-27T17:59:04.372Z'
 ---
 
 # What is SkySend?
 
 **SkySend** is a minimalist, end-to-end encrypted, self-hostable file and note sharing service. Files and notes are encrypted entirely in the browser using AES-256-GCM before they ever reach the server, so the host stores only encrypted blobs and never has access to the decryption key (which lives only in the URL fragment after the `#`). It supports drag-and-drop file uploads up to 2GB, multi-file uploads (zipped client-side), encrypted notes (text, code snippets with syntax highlighting, Markdown, password sharing, SSH keys), burn-after-reading mode, password protection via Argon2id, and optional S3-compatible storage backends (R2, MinIO, Wasabi, Hetzner, etc.). Inspired by Mozilla Send and PrivateBin, SkySend is a modern, AGPL-licensed alternative built from scratch with no accounts, no telemetry, and no tracking.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy SkySend
+# :logos:docker-icon: 1 · Deploy SkySend
 
 ```yaml
 services:
@@ -44,8 +37,8 @@ services:
 - If you're putting SkySend behind a reverse proxy (Nginx Proxy Manager, Traefik, Cloudflare Tunnel, etc.), set `TRUST_PROXY=true` so it correctly reads `X-Forwarded-For` headers for rate limiting.
 
  
+> [!WARNING]
 > Make sure your reverse proxy passes WebSocket upgrades through to SkySend. The WebSocket transport (enabled by default) significantly improves upload speed in Chromium browsers by bypassing HTTP/2 multiplexing bottlenecks.
-{.is-warning}
 
 # 2 · Configuration
 
@@ -88,9 +81,8 @@ environment:
   - S3_CONCURRENCY=4
 ```
 
-> 
+> [!WARNING]
 > When using S3 storage, your bucket needs a CORS policy allowing `GET` and `HEAD` from your SkySend domain. Without it, downloads fail with `Access-Control-Allow-Origin` errors.
-{.is-warning}
 
 For self-hosted MinIO or Garage, also set `S3_FORCE_PATH_STYLE=true`.
 
@@ -122,4 +114,5 @@ environment:
 ```
 
 Disabled services return HTTP 403 and their UI tabs are hidden.
+
 

@@ -2,13 +2,13 @@
 title: Pingora Proxy Manager
 description: A guide to deploying Pingora Proxy Manager
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:42.050Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:19.270Z
+dateCreated: '2026-01-15T15:07:19.270Z'
 ---
 
-# <img src="/pingora-proxy-manager.png" class="tab-icon"> What is Pingora Proxy Manager?
+# What is Pingora Proxy Manager?
 A high-performance, zero-downtime reverse proxy manager built on Cloudflare's Pingora.
 
 Simple, Modern, and Fast. Now supports Wildcard SSL & TCP/UDP Streams!
@@ -22,15 +22,7 @@ Simple, Modern, and Fast. Now supports Wildcard SSL & TCP/UDP Streams!
 🎨 Modern Dashboard: Clean and responsive UI built with React, Tailwind CSS, and shadcn/ui.
 🐳 Docker Ready: Single container deployment for easy setup and maintenance.
 
-<div class="glance">
-  <div><span>Port</span><b><code>81</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Pingora Proxy Manager
+# :logos:docker-icon: 1 · Deploy Pingora Proxy Manager
 Generate a JWT secret and paste it into `JWT_SECRET`:
 
 ```bash
@@ -58,8 +50,8 @@ services:
       - PPM_TRUSTED_PROXY_IPS=127.0.0.1
 ```
 
+> [!WARNING]
 > Host port **80** is used by the TrueNAS web UI by default. Before deploying, move the TrueNAS UI to other ports (**System → General Settings → GUI**), or change `80:8080` to a free host port.
-{.is-warning}
 
 # 2 · Logging In
 1. Navigate to `http://IP:81` to get to the dashboard

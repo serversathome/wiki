@@ -2,30 +2,17 @@
 title: Chithi
 description: A guide to deploying Chithi
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:02.318Z'
+tags: []
 editor: markdown
-dateCreated: 2026-02-03T16:57:15.577Z
+dateCreated: '2026-02-03T16:57:15.577Z'
 ---
 
 #  What is Chithi?
 
 An end-to-end encrypted file sharing application with temporary links, user management, and background cleanup tasks.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>7 services</b></div>
-  <div><span>Depends on</span><b>Postgres, Redis and RustFS</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/chithi-dev/chithi"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://docs.chithi.dev"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Chithi
+# :logos:docker-icon: 1 · Deploy Chithi
 
 Chithi now publishes pre-built images, so there is nothing to clone or build. This is upstream's "bring your own reverse proxy" deployment with TrueNAS paths.
 
@@ -182,17 +169,17 @@ chithi.yourdomain.com {
 }
 ```
 
+> [!WARNING]
 > Without the `Cross-Origin-Opener-Policy` and `Cross-Origin-Embedder-Policy` headers, Chithi's web workers will not load and encryption in the browser fails. Upstream also has ready-made versions of this setup with Caddy, NGINX or Traefik included in the [deployment docs](https://github.com/chithi-dev/chithi/tree/main/apps/docs/docs/deployments/docker/basic).
-{.is-warning}
 
+> [!WARNING]
 > Don't use the `docker-compose.yml` in the root of the Chithi repo; it only contains the databases, not the app.
-{.is-warning}
 
 # 2 · First Login
 
 1. Access the web UI through your reverse proxy at `https://chithi.yourdomain.com`
 2. Create your account through the onboarding flow
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# :logos:youtube-icon: 3 · Video
 
 *No video yet — check back soon!*

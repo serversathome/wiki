@@ -2,27 +2,17 @@
 title: Compose Toolbox
 description: A guide to deploying Compose Toolbox via docker
 published: true
-date: 2026-01-15T15:28:36.637Z
-tags: 
+date: '2026-11-04T16:24:04.434Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:54.032Z
+dateCreated: '2026-01-15T15:03:54.032Z'
 ---
 
-# ![](/composetoolbox.png){class="tab-icon"} What is Compose Toolbox?
+# What is Compose Toolbox?
 
 ComposeToolbox is a self-hostable web application that allows users to edit, validate, and get suggestions for your docker-compose.yml files. It has a fully featured code editor as well as a configuration panel that breaks down what exactly the compose file does.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/bluegoosemedia/composetoolbox"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Compose Toolbox
+# :logos:docker-icon: 1 · Deploy Compose Toolbox
 
 ```yaml
 services:
@@ -38,5 +28,6 @@ services:
 
 ```
 
+> [!TIP]
 > Visit the [live site!](https://composetoolbox.com/)
-{.is-success}
+

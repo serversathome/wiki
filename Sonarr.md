@@ -2,32 +2,21 @@
 title: Sonarr
 description: A guide to installing Sonarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-06-07T14:40:13.548Z
-tags: 
+date: '2026-11-04T16:17:56.886Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:02:54.282Z
+dateCreated: '2026-01-15T15:02:54.282Z'
 ---
 
-# <img src="/sonarr.png" class="tab-icon"> What is Sonarr?
+# What is Sonarr?
 **Sonarr** is a PVR (personal video recorder) for Usenet and BitTorrent users. It automatically monitors multiple RSS feeds and indexers for new and upgraded episodes of your wanted TV series, grabs them through your download client, then renames and organizes them into your library by series, season, and episode. Think of it as the TV-focused sibling of Radarr — part of the broader *arr stack alongside Prowlarr, Radarr, and Bazarr.
 Sonarr handles quality profiles, custom formats, automatic upgrades (e.g. replacing a 720p episode when a 1080p release appears), season pass monitoring, and release calendar tracking so it can grab new episodes the moment they air.
-> 
+> [!NOTE]
 > Sonarr pairs best with **Prowlarr** (indexer management) and a download client such as **qBittorrent** or **SABnzbd**. Set those up first for the smoothest experience.
-{.is-info}
-
-<div class="glance">
-  <div><span>Port</span><b><code>8989</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/linuxserver/docker-sonarr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
 
 # 1 · Deploy Sonarr
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   sonarr:
@@ -45,7 +34,9 @@ services:
     restart: unless-stopped
 ```
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
+
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Navigate to **Apps** in the TrueNAS UI.
 2. Search the **Community** catalog for "Sonarr" and click **Install**.
 3. Configure the following settings:
@@ -56,6 +47,11 @@ services:
    - **Storage → Additional Storage**: Host Path `/mnt/tank/media` mounted to `/media`
    - **Web Port**: `8989`
 4. Click **Install** and wait for the app to reach the **Running** state.
+
+::
+
+:::
+
 # 2 · Configuration
 ## 2.1 Authentication
 Before anything else, lock down access:
@@ -77,9 +73,10 @@ Rather than adding indexers manually, let Prowlarr manage them:
 1. Go to **Settings → Media Management** and add a **Root Folder** pointing to `/media/tv`.
 2. Under **Settings → Profiles**, configure quality profiles to match your storage and bandwidth.
 3. For curated custom formats and quality scoring, consider [Profilarr](/profilarr) to manage profiles across Radarr and Sonarr.
-# <img src="/patreon-light.png" class="tab-icon"> 3 · Video Guide 
+# ![](/_files/patreon-light.png =28x) 3 · Video Guide
 
 [![](/2025-03-24-advanced-media-management-with-s-promo-card.png)](https://www.patreon.com/posts/advanced-media-124639393)
+
 
 
 

@@ -2,29 +2,17 @@
 title: CompDesk
 description: A guide to deploying CompDesk
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:03.933Z'
+tags: []
 editor: markdown
-dateCreated: 2026-09-28T18:10:28.190Z
+dateCreated: '2026-09-28T18:10:28.190Z'
 ---
 
 # What is CompDesk?
 
 **CompDesk** is a lightweight, privacy-first help desk and ticketing system for small organizations. Tickets route to departments, and four server-enforced roles (User, Agent, department Admin and Super Admin) control who sees what. It includes searchable queues, templates, custom fields, SLA policies and escalation, internal notes, private attachments with optional ClamAV scanning, SMTP notifications, signed webhooks, your own branding, optional OpenID Connect sign-in (Microsoft Entra ID, Authentik, Authelia and others), email through SMTP or Microsoft 365 / Graph, with English and French interfaces.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3070</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>3 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/TahaHydra/CompDesk"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy CompDesk
+# :logos:docker-icon: 1 · Deploy CompDesk
 
 The stack is three services that share one image:
 
@@ -135,14 +123,14 @@ services:
 2. Set `SETUP_PUBLIC_ORIGIN` to that exact HTTPS origin
 3. Deploy the stack
 
+> [!WARNING]
 > This guide pins `0.9.0-beta.4.2` instead of `latest` on purpose. CompDesk only publishes a `latest` tag for stable releases, and every release so far is a beta, so `latest` does not exist yet. When you update, check the [GitHub releases page](https://github.com/TahaHydra/CompDesk/releases) and read the release notes for every beta you skip. Upstream also attaches a version-pinned `docker-compose.yml` to each release, so compare it against yours for new settings.
-{.is-warning}
 
+> [!CAUTION]
 > CompDesk must be served over **HTTPS** anywhere other than `localhost`. That is why this compose sets `SETUP_PUBLIC_ORIGIN` and `SETUP_TRUST_PROXY`. Only enable `SETUP_TRUST_PROXY` when the proxy or tunnel is the only way in and it overwrites the forwarded host and protocol headers.
-{.is-danger}
 
+> [!NOTE]
 > `config-init` and `db` keep their upstream users. `config-init` has to start as root to chown the folders (to `568:568`, via `COMPDESK_RUNTIME_UID`/`GID`), and the Postgres entrypoint manages its own data folder ownership. The `compdesk` app container itself runs as the apps user.
-{.is-info}
 
 # 2 · Configuration
 
@@ -155,8 +143,8 @@ services:
 4. When asked, select **Trust a configured reverse proxy** so the running app reads client IPs and HTTPS from your tunnel correctly
 5. Finish the wizard. The same container switches to the production app automatically, and setup is permanently disabled from then on
 
+> [!NOTE]
 > If the token expires, restart the `compdesk` container and a new one is printed.
-{.is-info}
 
 ## 2.2 Departments and Roles
 
@@ -173,5 +161,6 @@ Create departments first, then invite agents into them. Tickets are scoped to a 
 ## 2.3 Email, Branding and Integrations
 
 As a Super Admin, set up SMTP for notifications, upload your logo and colors, and add signed webhooks or department-scoped API clients if you need them. The external API is off by default on new installs.
+
 
 

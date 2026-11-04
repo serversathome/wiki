@@ -2,32 +2,19 @@
 title: Nextcloud
 description: A guide to deploying Nextcloud on TrueNAS Scale and via docker compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:06.474Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:39.801Z
+dateCreated: '2026-01-15T15:06:39.801Z'
 ---
 
-# ![](/nextcloud.png){class="tab-icon"} What is Nextcloud?
+# What is Nextcloud?
 
 Nextcloud is a self-hosted cloud file storage and collaboration software that offers productivity, control and compliance for any organization.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8887</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/linuxserver/docker-nextcloud"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://apps.truenas.com/resources/deploy-nextcloud"><i class="mdi mdi-server"></i>TrueNAS app</a>
-    <a href="https://youtu.be/ibL9qAlUZes"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
 # 1 · Deploy Nextcloud
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
  nextcloud:
@@ -47,9 +34,10 @@ services:
 
 I have changed the **PUID** and **PGID** to the TrueNAS `apps` user and group. I have also changed the external port in to one which is less likely to have anything running on it. 
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
-![](/screenshot_from_2024-11-06_11-06-46.png)
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+![](/screenshot-from-2024-11-06-11-06-46.png)
 
 1. Under the **Nextcloud Configuration** add the **ffmpeg, smbclinet, and ocrmypdf** packages
 1. Add a **Tesseract Language Codes** set to **eng** (if you speak english)
@@ -59,25 +47,28 @@ I have changed the **PUID** and **PGID** to the TrueNAS `apps` user and group. I
 
 1. For the **Storage Configuration** make either datasets or subdirectories for the AppData Storage, User Data Storage and Postgres Data Storage. They all must be in separate directories. 
 
+> [!CAUTION]
 > When setting the hostpath for the Postgres dataset make sure to check the box for **Automatic Permissions** or the app won't launch!
-{.is-danger}
 
 
-![](/screenshot_from_2024-11-28_21-24-00.png)
+![](/screenshot-from-2024-11-28-21-24-00.png)
 
+> [!NOTE]
 > If you want to access directories on your NAS, be sure to add **Additional Storage** so Nextcloud can see it
-{.is-info}
 
+> [!TIP]
 > Check out [the new docs](https://apps.truenas.com/resources/deploy-nextcloud) from TrueNAS
-{.is-success}
+
+::
+
+:::
 
 # 2 · Post-Install
 
 Nextcloud will have some warnings from certain variables not being set out-of-the-box. The fix depends on how you deployed it.
 
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose (linuxserver)
-
+:::block-tabs
+::block-tab{label="Docker Compose (linuxserver)" icon="simple-icons:docker"}
 The linuxserver image runs Alpine with **nginx**, not Apache, so there is no `apache2` to configure. Run these commands from the host, one at a time:
 
 ```bash
@@ -90,8 +81,9 @@ docker exec -it nextcloud occ config:system:set mail_smtpmode --type=string --va
 
 For the HSTS warning, edit `/mnt/tank/configs/nextcloud/config/nginx/ssl.conf`, uncomment the `add_header Strict-Transport-Security` line, then **restart** your container.
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Shell into Nextcloud, run these commands one at a time, then **restart** your container:
 
 ```bash
@@ -105,6 +97,9 @@ occ config:system:set default_phone_region --value="XX"
 occ config:system:set mail_smtpmode --type=string --value="log"
 ```
 
+::
+
+:::
 
 # 3 · Nextcloud Configuration
 
@@ -138,15 +133,14 @@ To use Nextcloud as a collaborative document platform you add a separate office 
 | Trade-off | Heavier in the browser | Limited ODF compatibility (improving) |
 
 
-> 
+> [!WARNING]
 > The picker only selects the integration — it notes that **"installing requires manual server setup."** You still deploy the back-end container and configure its address + secret. Sections 4 (Collabora) and 5 (Euro-Office) cover both.
-{.is-warning}
 
 ## 4.1 · Deploy Collabora
 
 First deploy the Collabora container.
 
-### <img src="/docker.png" class="tab-icon"> 4.1.1 Docker Compose
+### :logos:docker-icon: 4.1.1 Docker Compose
 
 ```yaml
 services:
@@ -173,7 +167,7 @@ services:
 
 We now need a reverse proxy entry for something like *office.example.com* pointed to an **https** entry for our sever IP. If you use Cloudflare tunnels it will look like this:
 
-![](/screenshot_from_2025-01-17_10-42-55.png)
+![](/screenshot-from-2025-01-17-10-42-55.png)
 
 Note that since Collabora has its own self-signed certificate we need to check the **No TLS Verify** option with Cloudflare or the tunnel will not connect. 
 
@@ -187,7 +181,7 @@ Navigate to **Settings → Office & text**, select the **Collabora Office** card
 
 Euro-Office is the new **Nextcloud Office** back-end shipped with Hub 26 Spring. It is a self-hosted OnlyOffice fork with strong Microsoft-format compatibility and fast in-browser editing. 
 
-### <img src="/docker.png" class="tab-icon"> 4.2.1 Docker Compose
+### :logos:docker-icon: 4.2.1 Docker Compose
 
 ```yaml
 services:
@@ -224,7 +218,10 @@ The connection must work in **both** directions: the browser and Nextcloud must 
 
 
 
-# <img src="/youtube.png" class="tab-icon"> 5 · Video
-https://youtu.be/ibL9qAlUZes
-https://www.youtube.com/watch?v=pAebJIDT_oc
-https://youtu.be/qn5ccoCabdA
+# :logos:youtube-icon: 5 · Video
+::block-youtube{url="https://youtu.be/ibL9qAlUZes"}
+::
+::block-youtube{url="https://www.youtube.com/watch?v=pAebJIDT_oc"}
+::
+::block-youtube{url="https://youtu.be/qn5ccoCabdA"}
+::

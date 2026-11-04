@@ -2,13 +2,13 @@
 title: Nginx UI
 description: A guide to deplpying Nginx UI
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:17.079Z'
+tags: []
 editor: markdown
-dateCreated: 2026-02-03T13:56:54.129Z
+dateCreated: '2026-02-03T13:56:54.129Z'
 ---
 
-# <img src="/nginx-ui.png" class="tab-icon"> What is Nginx UI?
+# What is Nginx UI?
 
 **Nginx UI** is a comprehensive web-based interface for managing Nginx servers. It provides a modern dashboard for editing configurations, managing SSL certificates, viewing logs, and monitoring server performance — all without touching the command line.
 
@@ -25,17 +25,7 @@ dateCreated: 2026-02-03T13:56:54.129Z
 - 2FA authentication support
 - Dark mode and responsive design
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/0xJacky/nginx-ui"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Nginx UI
+# :logos:docker-icon: 1 · Deploy Nginx UI
 
 ```yaml
 services:
@@ -63,9 +53,8 @@ services:
     (or `docker exec nginx-ui cat /etc/nginx-ui/.install_secret`). The secret is removed once setup completes or expires.
 4. Complete the initial setup wizard to create your admin account
 
-> 
+> [!NOTE]
 > The Nginx UI image includes Nginx itself. Ports 8080 and 8443 map to the container's port 80 and 443, allowing you to use Nginx UI as your primary reverse proxy.
-{.is-info}
 
 # 2 · Configuration
 
@@ -115,6 +104,6 @@ Site configurations are stored in `sites-available` and symlinked to `sites-enab
 - **Documentation:** https://nginxui.com/
 - **Demo:** https://demo.nginxui.com (admin/admin)
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Video
+# :logos:youtube-icon: 4 · Video
 
 *No video yet — check back soon!*

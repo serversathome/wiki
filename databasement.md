@@ -2,24 +2,17 @@
 title: Databasement
 description: A guide to deploying databasement
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:13.069Z'
+tags: []
 editor: markdown
-dateCreated: 2026-02-03T15:45:15.644Z
+dateCreated: '2026-02-03T15:45:15.644Z'
 ---
 
-# <img src="/databasement.png" class="tab-icon"> What is Databasement?
+# What is Databasement?
 
 **Databasement** is a web-based database backup management application for MySQL, PostgreSQL, MariaDB, Microsoft SQL Server, MongoDB, SQLite, Firebird, and Redis/Valkey. It allows you to schedule automated backups, store them locally, on S3-compatible storage, Azure Blob, SMB shares or SFTP/FTP, and restore snapshots to any registered server — including cross-server restores (e.g., production to staging).
 
-<div class="glance">
-  <div><span>Port</span><b><code>2226</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Databasement
+# :logos:docker-icon: 1 · Deploy Databasement
 
 ```yaml
 services:
@@ -48,9 +41,8 @@ services:
    ```
 2. Replace `APP_KEY=base64:GENERATE_THIS_KEY` with the output
 
-> 
+> [!WARNING]
 > The `ENABLE_QUEUE_WORKER=true` is required for processing backup and restore jobs. Without it, jobs will be queued but never executed.
-{.is-warning}
 
 # 2 · Configuration
 
@@ -58,9 +50,8 @@ services:
 
 After logging in, navigate to **Database Servers** and add your MySQL, PostgreSQL, MariaDB, SQL Server, MongoDB, SQLite, Firebird, or Redis/Valkey servers. Databasement connects to them remotely to perform backups, optionally through an SSH tunnel. For databases in firewalled networks, a remote agent can connect out over HTTPS instead.
 
-> 
+> [!NOTE]
 > If your database is running in Docker on the same host, use `host.docker.internal` or the container name (if on the same Docker network) instead of `localhost`.
-{.is-info}
 
 ## 2.2 Storage Volumes
 
@@ -106,6 +97,6 @@ environment:
 | `TZ` | Timezone for schedules |
 {.dense}
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# :logos:youtube-icon: 3 · Video
 
 *No video yet — check back soon!*

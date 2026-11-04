@@ -2,27 +2,17 @@
 title: Boxarr
 description: A guide to deploying Boxarr
 published: true
-date: 2026-01-15T15:28:22.354Z
-tags: 
+date: '2026-11-04T16:23:16.838Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:34.981Z
+dateCreated: '2026-01-15T15:03:34.981Z'
 ---
 
-# ![](/boxarr.png){class="tab-icon"} What is Boxarr?
+# What is Boxarr?
 
 Boxarr monitors weekly box office charts and seamlessly integrates with Radarr to ensure your media library always has what people want to watch. No more manual searching for popular movies - Boxarr handles it automatically.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8898</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/iongpt/boxarr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Boxarr
+# :logos:docker-icon: 1 · Deploy Boxarr
 ```yaml
 services:
   boxarr:
@@ -49,5 +39,5 @@ services:
 
 Since this is the first time the container will run, click the **Weeks** tab and select **Update Last Week**. If you do not run this manually the container will update your movies on the next scheduled run.
 
-# <img src="/patreon-light.png" class="tab-icon"> 4 · Video
-[![](/2025-09-11-boxarr--automatically-add-weekl-promo-card.png)](https://www.patreon.com/posts/boxarr-add-box-138680972)
+# ![](/_files/patreon-light.png =28x) 4 · Video
+[![](/2025-09-11-boxarr-automatically-add-weekl-promo-card.png)](https://www.patreon.com/posts/boxarr-add-box-138680972)

@@ -2,10 +2,10 @@
 title: Trawl
 description: A guide to deploying Trawl
 published: true
-date: 2026-10-22T10:08:19.012Z
-tags: 
+date: '2026-11-04T16:18:03.252Z'
+tags: []
 editor: markdown
-dateCreated: 2026-10-20T15:12:05.236Z
+dateCreated: '2026-10-20T15:12:05.236Z'
 ---
 
 # What is Trawl?
@@ -14,22 +14,9 @@ dateCreated: 2026-10-20T15:12:05.236Z
 
 On top of the FlareSolverr drop-in, Trawl adds an MCP server for AI agents, isolated browser sessions, a challenge-aware forward proxy and a local dashboard that shows every request it handled.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8191</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/germondai/trawl"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://docs.trawl.germondai.com"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://apps.truenas.com/catalog/trawl_community/"><i class="mdi mdi-server"></i>TrueNAS app</a>
-  </div>
-</div>
-
 # 1 · Deploy Trawl
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 Create the config folders and hand them to the apps user first:
 
 ```yaml
@@ -59,14 +46,15 @@ services:
 2. Check that it is healthy by browsing to `http://YOUR-SERVER-IP:8191/health`.
 3. Open the dashboard at `http://YOUR-SERVER-IP:8191/dashboard`.
 
+> [!NOTE]
 > On an older CPU or NAS processor, swap the image tag to `ghcr.io/germondai/trawl:baseline`. The standard image targets newer instruction sets and may crash on start otherwise.
-{.is-info}
 
+> [!WARNING]
 > Trawl has no login on its API, dashboard or MCP endpoint. Keep port 8191 on your LAN and never forward it through your router or publish it through a reverse proxy without authentication in front of it.
-{.is-warning}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Navigate to **Apps** in the TrueNAS UI and click **Discover Apps**
 2. Search for **Trawl** (it is in the Community train) and click **Install**
 3. Configure the following settings:
@@ -78,8 +66,12 @@ services:
    - **Additional Storage**: add a **Host Path** with Mount Path `/data/metrics` and Host Path `/mnt/tank/configs/trawl/metrics` so dashboard history survives updates
 4. Click **Install**
 
+> [!NOTE]
 > The TrueNAS app runs the Trawl container as root and the bundled Redis as the apps user (568). Leave the defaults alone here.
-{.is-info}
+
+::
+
+:::
 
 # 2 · Connect Prowlarr
 
@@ -94,11 +86,11 @@ Trawl answers on the same FlareSolverr API, so nothing changes on the indexer si
 4. Click **Test**, then **Save**
 5. Make sure every Cloudflare-protected indexer carries the same tag
 
+> [!TIP]
 > If you are replacing FlareSolverr, just edit the existing FlareSolverr proxy and change the **Host** to point at Trawl. Your tags and indexers stay exactly as they are.
-{.is-success}
 
+> [!NOTE]
 > The first search against each indexer still pays the full challenge time. After that, Trawl reuses the clearance and searches come back fast. Some indexers serve results from a different domain than their homepage, and each hostname gets its own first solve.
-{.is-info}
 
 
 # 3 · Configuration
@@ -139,4 +131,5 @@ Trawl loads URLs you give it. It does not do web search on its own.
 
 
 The full list lives in the [configuration docs](https://docs.trawl.germondai.com/getting-started/configuration).
+
 

@@ -2,28 +2,17 @@
 title: Listing Lab
 description: A guide to deploy Listing Lab
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:18.200Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:01.751Z
+dateCreated: '2026-01-15T15:06:01.751Z'
 ---
 
-# <img src="/listing-lab.png" class="tab-icon"> What is Listing Lab?
+# What is Listing Lab?
 
 A simple workspace for keeping track of homes you’re considering. Save listings, add notes, and share them with others. Listing Lab stays on top of changes, like price cuts and updates, so you always have an accurate view of the properties you're interested in. 
 
-<div class="glance">
-  <div><span>Port</span><b><code>8069</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>4 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/adomi-io/listing-lab"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Listing Lab
+# :logos:docker-icon: 1 · Listing Lab
 ```yaml
 services:
   listing_lab:

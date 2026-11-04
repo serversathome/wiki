@@ -2,32 +2,19 @@
 title: File Browser
 description: A guide to deploy the File Browser Quantum replacement in docker
 published: true
-date: 2026-10-15T10:31:10.137Z
-tags: 
+date: '2026-11-04T16:24:07.707Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:39.442Z
+dateCreated: '2026-01-15T15:04:39.442Z'
 ---
 
-# <img src="/filebrowser-quantum.png" class="tab-icon"> What is File Browser Quantum?
+# What is File Browser Quantum?
 
 **File Browser Quantum** is a self-hosted, web-based file manager: browse, upload, download, preview, edit, search, and share the files on your server from any browser. It's called "Quantum" because it packs a huge amount of functionality (user management, SSO, indexed search, rich media previews) into a single tiny binary that's genuinely easy to run.
 
 If you want one tool to put a clean, fast web UI in front of a folder (or your whole pool), this is my pick.
 
-<div class="glance">
-  <div><span>Port</span><b><code>7999</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/gtsteffaniak/filebrowser"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://filebrowserquantum.com/en/docs/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://apps.truenas.com/catalog/filebrowser-quantum_community/"><i class="mdi mdi-server"></i>TrueNAS app</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy File Browser
+# :logos:docker-icon: 1 · Deploy File Browser
 
 
 ### Create your config
@@ -69,10 +56,10 @@ userDefaults:
       share: true
 ```
 
+> [!NOTE]
 > **`userDefaults` is the template applied to new users, not your admin account.** Be deliberate here. I left `admin: true` *out* on purpose: if you ever enable signups or add a second person, you don't want everyone minted as an admin automatically. Grant admin explicitly to the accounts that need it instead.
 >
 > In v2, file permissions (view, download, create, modify, delete) are **per source** via `defaultPermissions`, while `userDefaults.account.permissions` only covers account-level rights like `api`, `share` and `admin`. Any field you set under `userDefaults` is also **locked** in the admin UI (Settings → User defaults). If you'd rather manage defaults from the UI, leave the whole `userDefaults` block out.
-{.is-info}
 
 
 
@@ -111,9 +98,8 @@ Once you're in, a couple of things worth doing on day one: turn on TOTP (or the 
 
 # 3 · Configuration
 
-# {.tabset}
-## Multiple sources
-
+:::block-tabs
+::block-tab{label="Multiple sources"}
 The headline feature. Mount more than one location and give each a name. Quantum indexes and searches them independently:
 
 ```yaml
@@ -138,8 +124,9 @@ server:
 
 v2 gives you two levers: `readOnly: true` locks a source for **everyone**, while `defaultPermissions` sets what **new users** get on that source (and can be tuned per user later under User Management). See [Sources](https://filebrowserquantum.com/en/docs/configuration/sources/) and [Access Control](https://filebrowserquantum.com/en/docs/access-control/access-control-overview/).
 
-## Single sign-on (OIDC)
+::
 
+::block-tab{label="Single sign-on (OIDC)"}
 Drop sign-in into your existing identity provider (Authentik, Authelia, Pocket ID, Google, etc.):
 
 ```yaml
@@ -158,8 +145,9 @@ auth:
 
 v2 config also expands environment variables, so you can write `clientSecret: "${OIDC_SECRET}"` and pass the secret in through the compose `environment:` block instead of keeping it in the file. Full walkthrough (including LDAP, JWT, and proxy auth) is in the [authentication docs](https://filebrowserquantum.com/en/docs/configuration/authentication/oidc/).
 
-## Enforce 2FA
+::
 
+::block-tab{label="Enforce 2FA"}
 Require TOTP for every password user instead of leaving it opt-in:
 
 ```yaml
@@ -172,8 +160,9 @@ auth:
       signup: false   # keep signups off unless you really want open registration
 ```
 
-## Behind a reverse proxy
+::
 
+::block-tab{label="Behind a reverse proxy"}
 If you're fronting it with Cloudflare Tunnel, Traefik, NPM, Caddy, etc., all of these settings live under `http:` in v2:
 
 - On a **subpath** (e.g. `example.com/files`), set `http.baseURL: "/files"`.
@@ -189,7 +178,11 @@ http:
   trustProxyHeaders: true
 ```
 
+> [!WARNING]
 > Putting `externalUrl` or `baseURL` under `server:` (where they lived in 1.x) or under a source's `config` will fail strict validation and stop the container from starting.
-{.is-warning}
 
 Details and proxy-header notes: [running behind a reverse proxy](https://filebrowserquantum.com/en/docs/getting-started/reverse-proxy/).
+
+::
+
+:::

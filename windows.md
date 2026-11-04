@@ -2,27 +2,16 @@
 title: Windows Docker
 description: A guide to deploying a Windows OS in a docker container
 published: true
-date: 2026-01-15T15:32:34.532Z
-tags: 
+date: '2026-11-04T16:23:49.504Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:09:37.478Z
+dateCreated: '2026-01-15T15:09:37.478Z'
 ---
 
-# <img src="/microsoft-windows.png" class="tab-icon"> What is the Windows Docker Container?
+# What is the Windows Docker Container?
 The Windows 11 Operating System within a docker container.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8006</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/dockur/windows"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/JtVfJn2drY4"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Windows
+# :logos:docker-icon: 1 · Deploy Windows
 ```yaml
 services:
   windows:
@@ -53,5 +42,6 @@ services:
       - /dev/net/tun
 ```
 
-# <img src="/youtube.png" class="tab-icon"> 2 · Video 
-https://youtu.be/JtVfJn2drY4
+# :logos:youtube-icon: 2 · Video
+::block-youtube{url="https://youtu.be/JtVfJn2drY4"}
+::

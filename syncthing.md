@@ -2,28 +2,19 @@
 title: Syncthing
 description: A guide to deploying Syncthing
 published: true
-date: 2026-04-23T10:31:51.612Z
-tags: 
+date: '2026-11-04T16:18:00.469Z'
+tags: []
 editor: markdown
-dateCreated: 2026-04-23T10:31:51.612Z
+dateCreated: '2026-04-23T10:31:51.612Z'
 ---
 
-# <img src="/syncthing.png" class="tab-icon"> What is Syncthing?
+# What is Syncthing?
 
 **Syncthing** is a free, open-source, continuous file synchronization program that keeps files in sync between two or more devices in real time. It uses a peer-to-peer mesh model — there is no central server, no cloud account, and no third party brokering your data. All traffic is TLS encrypted device-to-device, devices are mutually authenticated with cryptographic certificates, and files are chunked into blocks so multiple peers can contribute to a sync in parallel.
 
-<div class="glance">
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-</div>
-
-
-
 # 1 · Deploy Syncthing
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 This wiki uses the official upstream `syncthing/syncthing` image maintained by the Syncthing project itself.
 
 ```yaml
@@ -56,18 +47,15 @@ services:
 | 21027 | UDP | Local discovery (LAN broadcast/multicast) |
 
 
-> 
+> [!WARNING]
 > **Host networking is strongly recommended** by the Syncthing devs. In bridge mode Syncthing only sees the container's internal `172.x.x.x` address, which breaks LAN peer discovery and can drop transfer rates to WAN speeds even between machines on the same switch. With `network_mode: host` the ports table above is informational — Syncthing binds them directly on the host.
-{.is-warning}
 
-> 
+> [!NOTE]
 > The official image runs Syncthing as **PUID:PGID (568:568 above)**, dropping from root at startup. The `PCAP=cap_chown,cap_fowner+ep` line grants just enough Linux capabilities for Syncthing's **Sync Ownership** folder feature to preserve original file ownership across peers — without running the whole container as root. If you don't care about cross-peer ownership (most homelab cases), you can drop the `PCAP` line and synced files will simply land on disk as `568:568`.
-{.is-info}
 
+::
 
-
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 The TrueNAS Stable app train includes an official Syncthing app.
 
 1. In the TrueNAS UI go to **Apps → Discover Apps** and search for `Syncthing`
@@ -81,9 +69,12 @@ The TrueNAS Stable app train includes an official Syncthing app.
 4. Click **Install** and wait for the app to show **Running**
 5. Open the Web UI and set a username/password
 
-> 
+> [!WARNING]
 > The TrueNAS Stable Syncthing app runs as **root (UID/GID 0)** with elevated capabilities (CHOWN, DAC_OVERRIDE, FOWNER, SETFCAP, SETGID) so it can preserve ownership and ACLs across peers. Make sure the datasets you point at it have an ACL entry for user `0` with full permissions, or Syncthing will fail to write.
-{.is-warning}
+
+::
+
+:::
 
 # 2 · Configuration
 
@@ -120,9 +111,8 @@ Under **Actions → Settings → General**, set a meaningful **Device Name** (e.
    - **Receive Only** — this node is a read-only mirror
 6. Save, then accept the share on the remote device
 
-> 
+> [!NOTE]
 > Path and file names in Syncthing are **case sensitive**. `MyData.txt` and `mydata.txt` are two different files and can create conflict copies if peers disagree on case (common when syncing between Linux and Windows/macOS).
-{.is-info}
 
 ## 2.5 File versioning (recommended)
 
@@ -158,4 +148,5 @@ node_modules
 - **Ridiculous database migration on first 2.x launch** — expected, let it run. Watch progress in the container logs.
 - **GUI unreachable from other machines** — make sure `STGUIADDRESS` is not set to an empty string in your compose. Leave it unset so the image's default of `0.0.0.0:8384` applies.
 - **Synced file ownership is all `568:568` instead of the original UID** — `PCAP=cap_chown,cap_fowner+ep` is missing from the environment block, OR the folder's **Sync Ownership** toggle is not enabled under **Folder → Advanced**. Both are required.
+
 

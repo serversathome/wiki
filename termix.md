@@ -2,31 +2,19 @@
 title: Termix
 description: A guide to deploying Termix
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:09.710Z'
+tags: []
 editor: markdown
-dateCreated: 2026-05-06T22:04:27.210Z
+dateCreated: '2026-05-06T22:04:27.210Z'
 ---
 
-# <img src="/termix.png" class="tab-icon"> What is Termix?
+# What is Termix?
 
 **Termix** is a free, open-source, self-hosted server management platform that puts SSH, RDP, VNC, and Telnet access into a single web interface. Think of it as a self-hosted alternative to Termius, with cross-device sync and no subscription. Beyond remote terminals and desktops, Termix includes SSH tunnel management with auto-reconnect, a remote file manager with sudo support, Docker container management, server stats dashboards, command snippets, and a network graph view of your homelab. It supports jump hosts, SOCKS5 proxies, OIDC, 2FA, and host key verification, and stores all data in an encrypted SQLite database. Available as a web app, desktop app for Windows/Linux/macOS, PWA, and dedicated mobile/tablet apps for iOS and Android.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/Termix-SSH/Termix"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/KOXUqb6okow"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
 # 1 · Deploy Termix
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   termix:
@@ -43,11 +31,12 @@ services:
 
 Remote desktop (RDP, VNC, and Telnet) is now built into Termix, so no `guacd` sidecar is needed. The current upstream compose file no longer starts a `guacd` container. If you deployed the older two-service compose, you can remove the `guacd` service.
 
+> [!NOTE]
 > The project moved from `lukegus/termix` to the `Termix-SSH` organization. The old `ghcr.io/lukegus/termix` image is still published, but `ghcr.io/termix-ssh/termix` is the upstream name going forward.
-{.is-info}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for "Termix" in the **Community** train
 3. Click **Install**
@@ -56,9 +45,12 @@ Remote desktop (RDP, VNC, and Telnet) is now built into Termix, so no `guacd` si
    - **Storage → App Data**: Host Path → `/mnt/tank/configs/termix`
 5. Click **Install**
 
-> 
+> [!NOTE]
 > The TrueNAS app runs Termix as UID/GID 1000. Make sure `/mnt/tank/configs/termix` is writable by UID 1000, or use the dataset Apps preset and set ownership to UID 1000.
-{.is-info}
+
+::
+
+:::
 
 # 2 · Initial Setup
 
@@ -68,9 +60,8 @@ Open `http://your-server:8080` in your browser. The first user you register beco
 
 On first run Termix also asks you to pick plugins. The SSH terminal, remote desktop, file manager, Docker and metrics features are all plugins now, so turn on the ones you need (including remote desktop if you want RDP/VNC/Telnet). Admins can change this later from the **Plugins** tab.
 
-> 
+> [!CAUTION]
 > Register the admin account immediately after deployment. Until you do, the registration endpoint is open and anyone with network access can claim admin.
-{.is-danger}
 
 
 # 3 · Adding Hosts
@@ -98,5 +89,7 @@ For each Windows machine you want to RDP into:
 Most modern Linux desktops include a VNC server. For GNOME, enable **Settings → Sharing → Remote Desktop**. For headless servers, install `tigervnc-standalone-server` or `x11vnc` and run on display `:0` for an existing session, or `:1` for a new virtual display.
 
 
-# <img src="/youtube.png" class="tab-icon"> 5 · Video
-https://youtu.be/KOXUqb6okow
+# :logos:youtube-icon: 5 · Video
+::block-youtube{url="https://youtu.be/KOXUqb6okow"}
+::
+

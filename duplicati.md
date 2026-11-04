@@ -2,31 +2,19 @@
 title: Duplicati
 description: A guide to deploying Duplicati on TrueNAS as well as via docker compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:22.042Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:31.421Z
+dateCreated: '2026-01-15T15:04:31.421Z'
 ---
 
-# ![](/duplicati.png){class="tab-icon"} What is Duplicati?
+# What is Duplicati?
 
 Duplicati is an open-source backup client that securely stores encrypted, incremental, compressed remote backups of local files on cloud storage services and remote file servers. Duplicati supports not only various online backup services like OneDrive, Amazon S3, Backblaze, Rackspace Cloud Files, Tahoe LAFS, and Google Drive, but also any servers that support SSH/SFTP, WebDAV, or FTP. Duplicati uses standard components such as rdiff, zip, AESCrypt, and GnuPG.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8200</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/linuxserver/docker-duplicati"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/ZxSpwwtJ3aA"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
 # 1 · Deploy Duplicati
-# {.tabset}
-
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+:::block-tabs
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Set a **Password**
 1. Set an **Encryption Key** to enable encryption (optional)
 1. Change the **Data Storage** to *Host Path*
@@ -39,8 +27,9 @@ a. Change the **Type** to *Host Path*
 b. Set the **Mount Path** to `/source`
 c. Select a **Host Path**
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+::
 
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 
 services:
@@ -62,6 +51,10 @@ services:
     restart: unless-stopped
 ```
 
+::
+
+:::
+
 # 2 · Duplicati Configuration
 
 ## 2.1 Adding a Backup
@@ -73,8 +66,8 @@ services:
 1. Under **Retention and miscellaneous**, select a **Remote Volume Size** and a **Backup Retention** period
 1. Click **Submit**
 
+> [!NOTE]
 > In Duplicati versions before 2.4.0.1, the storage destination step comes before source data.
-{.is-info}
 
 ## 2.2 Data Restoration
 1. Click **Restore** in the left pane
@@ -90,6 +83,7 @@ services:
 1. The machine now shows up in the Duplicati Console, where you can manage it remotely
 
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# :logos:youtube-icon: 3 · Video
 
-https://youtu.be/ZxSpwwtJ3aA
+::block-youtube{url="https://youtu.be/ZxSpwwtJ3aA"}
+::

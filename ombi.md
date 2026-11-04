@@ -2,27 +2,17 @@
 title: Ombi
 description: A guide to deploying Ombi via docker compose
 published: true
-date: 2026-01-15T15:30:33.053Z
-tags: 
+date: '2026-11-04T16:23:11.055Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:55.304Z
+dateCreated: '2026-01-15T15:06:55.304Z'
 ---
 
-# ![Ombi](/ombi.png){class="tab-icon"} What is Ombi?
+# What is Ombi?
 
 The seamless way for your Plex and Emby users to request new content. Ombi integrates with your media server and automatically manages user requests.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3579</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/linuxserver/docker-ombi"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Ombi
+# :logos:docker-icon: 1 · Deploy Ombi
 ```yaml
 services:
   ombi:
@@ -81,6 +71,6 @@ services:
 1. Navigate to the **Configuration** tab and deselect `Allow anonymous usage collection`
 1. Navigate to the **Notifications** tab and configure a notification method
 
-# <img src="/patreon-light.png" class="tab-icon"> 5 · Video
+# ![](/_files/patreon-light.png =28x) 5 · Video
 
 [![](/2025-07-23-self-host-ombi-the-media-reques-promo-card.png)](https://www.patreon.com/posts/self-host-ombi-134798112)

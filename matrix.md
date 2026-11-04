@@ -2,18 +2,19 @@
 title: Matrix Server
 description: A guide to deploying a Matrix server
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:19.248Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-17T13:27:24.544Z
+dateCreated: '2026-03-17T13:27:24.544Z'
 ---
 
-# <img src="/matrix.png" class="tab-icon"> What is Matrix?
+# What is Matrix?
 
 **Matrix** is an open, federated protocol for real-time communication. It supports text messaging, voice/video calls, file sharing, and bridging to other platforms. By self-hosting a Matrix homeserver, you own your data and can federate with the broader Matrix network or keep things entirely private.
 
 This guide covers a full Matrix deployment across two hosts: **Synapse** (the homeserver) and a web client on TrueNAS at home behind a Cloudflare Tunnel, and **LiveKit** (the MatrixRTC voice/video backend) on a remote VPS — ensuring your home IP is never exposed.
 
+::block-diagram
 ```mermaid
 graph TB
     subgraph Internet
@@ -38,6 +39,7 @@ graph TB
     JWT -->|OpenID Validation| CF
     LK --- JWT
 ```
+::
 
 | Component | Host | Image | Purpose |
 |-----------|------|-------|---------|
@@ -47,19 +49,10 @@ graph TB
 | LiveKit SFU | VPS | `livekit/livekit-server:latest` | Voice/video media routing |
 | lk-jwt-service | VPS | `ghcr.io/element-hq/lk-jwt-service:latest` | MatrixRTC auth tokens |
 
-> 
+> [!WARNING]
 > Synapse and Sable run on your NAS at home — no ports need to be opened on your router since all inbound traffic arrives through the Cloudflare Tunnel. LiveKit **requires a VPS with a public IP** and open UDP ports because Cloudflare tunnels only handle HTTP/WebSocket traffic, not UDP media streams.
-{.is-warning}
 
-<div class="glance">
-  <div><span>Port</span><b><code>8008</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty advanced">Advanced</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Synapse + PostgreSQL
+# :logos:docker-icon: 1 · Deploy Synapse + PostgreSQL
 
 ## 1.1 Generate Synapse Config
 
@@ -80,9 +73,8 @@ services:
 
 Run the stack — it will generate the config files and exit. Once complete, remove this temporary stack from Dockge.
 
-> 
+> [!WARNING]
 > The `SYNAPSE_SERVER_NAME` is your **identity domain** — it appears in user IDs like `@you:yourdomain.com`. This cannot be changed after setup. It does not need to be the same as the URL where Synapse is hosted (that's what `.well-known` delegation handles).
-{.is-warning}
 
 ## 1.2 Edit homeserver.yaml
 
@@ -189,9 +181,8 @@ services:
       - /mnt/tank/configs/synapse/db:/var/lib/postgresql/data
 ```
 
-> 
+> [!CAUTION]
 > Replace `your-secure-password` with a strong, unique password — make sure it matches what you put in `homeserver.yaml`.
-{.is-danger}
 
 ## 1.4 Reverse Proxy
 
@@ -217,9 +208,8 @@ These files must be served from your **root domain** (`yourdomain.com`), **not**
 - `https://yourdomain.com/.well-known/matrix/client` — tells clients where the homeserver API is
 - `https://yourdomain.com/.well-known/matrix/server` — tells other Matrix servers where to federate
 
-> 
+> [!NOTE]
 > If you're not already hosting a website on your root domain, you'll need a lightweight web server (like nginx) or a Cloudflare Worker to serve these two responses. If you already have a site on your root domain, just add the locations to your existing web server config.
-{.is-info}
 
 **Option A: Nginx** — If you have nginx serving your root domain, add these location blocks to your server config:
 
@@ -259,9 +249,8 @@ Make sure CORS headers are set — the `client` file **must** return `Access-Con
 
 **Option C: Cloudflare Worker** — If your root domain is on Cloudflare and you don't have a web server behind it, you can create a Worker that intercepts requests to `/.well-known/matrix/*` and returns the JSON responses directly from the edge.
 
-> 
+> [!TIP]
 > If you plan to use LiveKit for voice/video calling (section 3), add the `rtc_foci` entry to your client well-known now so you don't have to come back later:
-{.is-success}
 
 ```json
 {
@@ -272,9 +261,8 @@ Make sure CORS headers are set — the `client` file **must** return `Access-Con
 }
 ```
 
-> 
+> [!WARNING]
 > Current clients find the LiveKit SFU through Synapse's `matrix_rtc.transports` setting (section 1.2b), which is now the primary discovery method. Keep the `rtc_foci` entry as a fallback for older clients.
-{.is-warning}
 
 You can verify everything works by visiting `https://yourdomain.com/.well-known/matrix/client` in your browser — you should see the JSON response.
 
@@ -322,9 +310,8 @@ Add a Cloudflare Tunnel route for `chat.yourdomain.com` pointing to `http://YOUR
 
 LiveKit acts as an SFU (Selective Forwarding Unit) that routes voice/video streams between participants. Its built-in TURN server handles firewall traversal — no separate coturn needed.
 
-> 
+> [!CAUTION]
 > LiveKit needs direct UDP access for media traffic. You **must** deploy this on a VPS with a public IP and open UDP ports — it cannot run behind a Cloudflare tunnel for media.
-{.is-danger}
 
 ## 3.1 Firewall
 
@@ -335,9 +322,8 @@ sudo ufw allow 3478/udp         # LiveKit built-in TURN
 sudo ufw allow 50000:50100/udp   # LiveKit media relay range
 ```
 
-> 
+> [!NOTE]
 > No TCP ports need to be opened — all HTTPS signaling goes through the Cloudflare Tunnel on the VPS. Docker is not bypassing UFW here because we use `network_mode: host` and the Tunnel connector handles ingress without port mappings.
-{.is-info}
 
 ## 3.2 LiveKit Config
 
@@ -360,9 +346,8 @@ logging:
   level: info
 ```
 
-> 
+> [!CAUTION]
 > Replace `YOUR_VPS_PUBLIC_IP` with the actual public IP of your VPS. LiveKit cannot auto-discover its public IP when behind a Cloudflare Tunnel, so this must be set manually. Without it, clients won't know where to send UDP media packets.
-{.is-danger}
 
 Generate your API key and secret:
 
@@ -398,9 +383,8 @@ services:
       - LIVEKIT_FULL_ACCESS_HOMESERVERS=yourdomain.com
 ```
 
-> 
+> [!NOTE]
 > Both services use `network_mode: host` — no `ports:` mappings are needed. This avoids Docker's iptables rules bypassing UFW. LiveKit binds directly for UDP media performance, and lk-jwt-service binds to `localhost:8081` where the Cloudflare Tunnel can reach it. Since port 8081 is not opened in UFW, it is not exposed to the internet.
-{.is-info}
 
 ## 3.4 Cloudflare Tunnel Routes
 
@@ -411,9 +395,8 @@ Add two routes to the Cloudflare Tunnel running on the VPS. Because lk-jwt-servi
 | `rtc.yourdomain.com` | `^/(sfu/get\|get_token\|delegate_delayed_leave\|sfu_webhook\|healthz)` | `http://localhost:8081` | lk-jwt-service (MatrixRTC auth) |
 | `rtc.yourdomain.com` | `/*` (catch-all) | `http://localhost:7880` | LiveKit WebSocket signaling |
 
-> 
+> [!WARNING]
 > In the Cloudflare Zero Trust dashboard, add `rtc.yourdomain.com` as a public hostname twice — once with the path `^/(sfu/get|get_token|delegate_delayed_leave|sfu_webhook|healthz)` pointing to `http://localhost:8081`, and once without a path (catch-all) pointing to `http://localhost:7880`. The lk-jwt-service route must be listed **first** so it takes priority. Newer clients request tokens from `/get_token` instead of `/sfu/get`, so routing only `/sfu/get` is no longer enough. Both services are reachable on localhost because they use `network_mode: host`.
-{.is-warning}
 
 ## 3.5 How Calls Work
 
@@ -476,4 +459,5 @@ Once deployed, verify federation is working:
 1. Visit the [Matrix Federation Tester](https://federationtester.matrix.org/) and enter `yourdomain.com`
 2. Confirm it resolves to `matrix.yourdomain.com:443` via `.well-known`
 3. Check that the server responds with valid TLS (handled by Cloudflare)
+
 

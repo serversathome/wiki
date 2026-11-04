@@ -2,13 +2,13 @@
 title: Linkwarden
 description: A guide to deploying Linkwarden
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:22.120Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:05:57.751Z
+dateCreated: '2026-01-15T15:05:57.751Z'
 ---
 
-# ![](/linkwarden.png){class="tab-icon"} What is Linkwarden?
+# What is Linkwarden?
 
 Linkwarden is a self-hosted, open-source collaborative bookmark manager to collect, read, annotate, and fully preserve what matters, all in one place.
 
@@ -18,22 +18,9 @@ In addition to preservation, Linkwarden provides a user-friendly reading and ann
 
 Linkwarden is also designed with collaboration in mind, enabling you to share links with the public and/or collaborate seamlessly with multiple users.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>3 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/linkwarden/linkwarden"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/VV9Vuh_r1RY"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
 # 1 · Deploy Linkwarden
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   postgres:
@@ -67,14 +54,18 @@ services:
       - /mnt/tank/configs/linkwarden/meili_data:/meili_data
 ```
 
+> [!WARNING]
 > Replace `VERY_SENSITIVE_SECRET` and both copies of `VERY_SENSITIVE_MEILI_MASTER_KEY` with random strings (generate each with `openssl rand -hex 32`). The two `MEILI_MASTER_KEY` values must match, and `admin` in `DATABASE_URL` must match `POSTGRES_PASSWORD`.
-{.is-warning}
 
+::
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Set a **Database Password**, **NextAuth Secret**, **Meilisearch Master Key**
 1. Set the **Storage Configuration** for **Data Storage**, **Meilisearch Data Storage**, and **Postgres Data Storage** to *Host Path*
+
+::
+
+:::
 
 # 2 · Logging In
 1. Navigate to `http://IP:PORT` 
@@ -82,5 +73,7 @@ services:
 1. Enter your credentials then click **Sign Up**
 1. Login with your created credentials
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-https://youtu.be/VV9Vuh_r1RY
+# :logos:youtube-icon: 3 · Video
+::block-youtube{url="https://youtu.be/VV9Vuh_r1RY"}
+::
+

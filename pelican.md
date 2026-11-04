@@ -2,34 +2,20 @@
 title: Pelican
 description: A guide to installing Pelican Panel
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:14.211Z'
+tags: []
 editor: markdown
-dateCreated: 2026-07-17T17:28:21.752Z
+dateCreated: '2026-07-17T17:28:21.752Z'
 ---
 
-# <img src="/pelican-panel.png" class="tab-icon"> What is Pelican Panel?
+# What is Pelican Panel?
 
 **Pelican Panel** is a modern, open-source game server management panel — a spiritual successor to Pterodactyl, built on Laravel/PHP. It gives you a clean web UI to deploy and manage game servers (Minecraft, Rust, Valheim, and hundreds more via "Eggs"), with user accounts, resource limits, file management, and live console access.
 
 Pelican has two parts: the **Panel** (the web UI) and **Wings** (the daemon that runs the actual game servers via Docker). This guide runs **both as Docker stacks in Dockge** on TrueNAS — no VM or LXC required.
 
-> 
+> [!WARNING]
 > Pelican is at the **v1.0 release-candidate** stage, and Docker is the maintainers' planned future install method (currently marked "work in progress"). It's stable enough for a homelab — just pin your working image tag and read the changelog before updating.
-{.is-warning}
-
-<div class="glance">
-  <div><span>Port</span><b><code>88</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty advanced">Advanced</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/pelican/panel"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/Q3TKphmP188"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-
 
 # 1 · Deploy the Panel
 
@@ -60,18 +46,17 @@ services:
 
 Point your reverse proxy (Cloudflare Tunnel / DockFlare / etc.) at the container on **port 88**, and set `APP_URL` to match the hostname you expose.
 
+> [!TIP]
 > Set the `/mnt/tank/configs/pelican` dataset to **Generic** permissions and give other full permissions
-{.is-success}
 
-> 
+> [!CAUTION]
 > **`APP_URL` sets Caddy's listen port only when `BEHIND_PROXY` is not set.** With `BEHIND_PROXY=true`, Caddy always listens on **port 80 inside the container**, so the mapping is `88:80`. Without `BEHIND_PROXY`, Caddy binds to whatever port is in `APP_URL`, and the **container side of the port mapping must match it** (e.g. `APP_URL` ending in `:8088` → `8088:8088`). Mismatch them and you get connection refused with a perfectly healthy-looking log.
-{.is-danger}
 
+> [!NOTE]
 > **Just testing on the LAN?** Set `APP_URL=http://<truenas-ip>:8088`, use `8088:8088` for ports, and drop the `BEHIND_PROXY`/`TRUSTED_PROXIES` lines. Don't use `80:80`/`443:443` — they collide with the TrueNAS web UI.
-{.is-info}
 
+> [!TIP]
 > Once its running go to `http://{IP}:port/installer` to setup the panel
-{.is-success}
 
 
 
@@ -79,9 +64,8 @@ Point your reverse proxy (Cloudflare Tunnel / DockFlare / etc.) at the container
 
 Deploy the stack, then open the **panel** container logs in Dockge and copy the generated key line (`Generated app key: ...`).
 
-> 
+> [!CAUTION]
 > **Back up that APP_KEY.** It encrypts all sensitive data (API keys, etc.). It lives under `/mnt/tank/configs/pelican`, but keep a copy off the box — lose it and encrypted data is **unrecoverable, even with database backups.**
-{.is-danger}
 
 Now finish setup in the browser at:
 
@@ -91,7 +75,7 @@ https://pelican.example.com/installer
 
 Choose **SQLite** for the database and complete the guided steps (cache, sessions, email). The installer creates your first **admin user** at the end. 
 
-# <img src="/docker.png" class="tab-icon"> 2 · Deploy Wings
+# :logos:docker-icon: 2 · Deploy Wings
 
 Wings needs a node config **before** it starts cleanly, so do this in order.
 
@@ -129,13 +113,11 @@ system:
     bind_port: 2022
 ```
 
-> 
+> [!NOTE]
 > The Panel also exposes a **Daemon Server File Directory** field on the node — set it to `/mnt/tank/configs/wings/data/volumes` so the generated config already matches and you don't have to re-edit `system.data` every time.
-{.is-info}
 
-> 
+> [!WARNING]
 > **Re-copying the Configuration tab overwrites your edits.** The `user:` / `passwd_file` keys are local additions the Panel doesn't generate. Any time you re-copy the node config (after a token reset, port change, etc.), add them back before restarting Wings.
-{.is-warning}
 
 ## 2.2 Wings Stack
 
@@ -168,9 +150,8 @@ services:
       - /etc/ssl/certs:/etc/ssl/certs:ro
 ```
 
-> 
+> [!CAUTION]
 > **Path parity — the one that bites people.** Wings drives the *host* Docker daemon through the socket, so any path it hands to that daemon must resolve to the **same absolute path** on the host and inside the container. That's why `data`, `tmp`, and `etc` are mounted 1:1. You can name those paths whatever you like — they just have to be identical on both sides, and `config.yml` has to point at them. Only `logs` is genuinely Wings-internal.
-{.is-danger}
 
 
 
@@ -184,9 +165,9 @@ Pelican ships with **no Eggs** — import them first via **Admin → Eggs → Im
 
 Then create a server, pick an Egg, assign an allocation, and Wings spins it up as its own container.
 
-> 
+> [!NOTE]
 > Each game server publishes its own ports on the TrueNAS host (they're sibling containers). Reserve a port range and watch for collisions with your other apps.
-{.is-info}
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Video
-https://youtu.be/Q3TKphmP188
+# :logos:youtube-icon: 4 · Video
+::block-youtube{url="https://youtu.be/Q3TKphmP188"}
+::

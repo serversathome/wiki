@@ -2,27 +2,17 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:18.700Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:05:03.838Z
+dateCreated: '2026-01-15T15:05:03.838Z'
 ---
 
-# ![](/headscale.png){class="tab-icon"} What is Headscale?
+# What is Headscale?
 Headscale aims to implement a self-hosted, open source alternative to the Tailscale control server. Headscale's goal is to provide self-hosters and hobbyists with an open-source server they can use for their projects and labs. It implements a narrow scope, a single Tailscale network (tailnet), suitable for a personal use, or a small open-source organisation.
 
 # What is Headscale-UI?
 A web frontend for the headscale Tailscale-compatible coordination server by [gurucomputing](https://github.com/gurucomputing/headscale-ui). It provides a simple browser-based interface for managing users, devices, pre-auth keys, and routes. The UI stores your API key locally in the browser — no backend configuration needed.
-
-<div class="glance">
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>3 services</b></div>
-  <div><span>Difficulty</span><b class="difficulty advanced">Advanced</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/gurucomputing/headscale-ui"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/r-qn6DrJ6IA"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
 
 # 1 · Prerequisites
 - A Linux system with root access and a public IP address *(we recommend Ubuntu or Debian based systems)*
@@ -38,13 +28,13 @@ A minimal VPS instance with 1 vCPU, 1GB RAM, and 8GB SSD will perform perfectly 
 
 One option is [Racknerd](/racknerd) and honestly it's a great choice, but any VPS will do. *Note this is an affiliate link*
 
+> [!NOTE]
 > Check out my guide for [Racknerd](/racknerd)
-{.is-info}
 
 
 # 3 · Deploy Headscale
-# {.tabset}
-## <img src="/windows-terminal.png" class="tab-icon"> Script
+:::block-tabs
+::block-tab{label="Script" icon="simple-icons:windowsterminal"}
 The easiest way to deploy this is with my script, which (after you have met all the pre-requisites) will pull the docker containers, insert your FQDN, and generate an API key for you.
 
 The script will prompt you for:
@@ -58,13 +48,14 @@ Run this command to launch the script:
 wget -q -O headscale.sh https://raw.githubusercontent.com/serversathome/ServersatHome/main/headscale.sh && chmod +x headscale.sh && sudo ./headscale.sh
 ```
 
+> [!NOTE]
 > Follow the directions at the end of the script for login information
-{.is-info}
 
+::
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
+> [!WARNING]
 > **Upgrading an existing install from 0.28?** Headscale only allows upgrades one minor version at a time (0.28 → 0.29, then 0.29 → 0.30), so back up `./lib` first. Headscale 0.29 also **refuses to start** if `randomize_client_port` is still in `config.yaml`. Delete that line (or move it to a policy file as `"randomizeClientPort": true`) and rename `ephemeral_node_inactivity_timeout` to `node.ephemeral.inactivity_timeout` as shown below **before** bumping the image. See the [changelog](https://github.com/juanfont/headscale/blob/main/CHANGELOG.md) for details. If you installed with the script, apply the same changes to its generated `config.yaml`.
-{.is-warning}
 
 ### Headscale Container
 ```yaml
@@ -135,8 +126,8 @@ services:
 - Replace `my.domain.com` with your FQDN (e.g. headscale.domain.com)
 - Replace `you@yourdomain.com` with your actual email for Let's Encrypt
 
+> [!WARNING]
 > Headscale-UI serves on port **8080** and uses the `/web` path. This is different from the old headscale-admin which used port 80 and the `/admin` path.
-{.is-warning}
 
 ### Headscale Config Yaml
 Save this as `config/config.yaml`:
@@ -236,8 +227,12 @@ taildrop:
 - Replace `1.2.3.4` with your VPS public IPv4 address
 - Replace `ts.example.com` with your MagicDNS base domain (this **must** be different from your server domain)
 
+> [!WARNING]
 > The `dns.base_domain` cannot be the same as your `server_url` domain. Use a subdomain like `ts.yourdomain.com` or a completely different domain.
-{.is-warning}
+
+::
+
+:::
 
 # 4 · Logging In
 1. Run this command on the host to generate an API Key (this is not necessary if you ran the script):
@@ -256,8 +251,8 @@ To connect a device to your headscale instance:
 tailscale up --login-server=https://your.domain.com
 ```
 
+> [!NOTE]
 > On first connection, you'll need to create a user and register the node. Run `docker exec headscale headscale users create myuser` to create a user, then follow the registration URL shown in the Tailscale client output. It gives you a `headscale auth register --auth-id <id> --user <user>` command to run (this replaces the deprecated `headscale nodes register`).
-{.is-info}
 
 # 6 · Useful Commands
 | Command | Description |
@@ -271,5 +266,6 @@ tailscale up --login-server=https://your.domain.com
 | `docker exec headscale headscale auth register --auth-id <id> --user <user>` | Register a node from its login URL |
 {.dense}
 
-# <img src="/youtube.png" class="tab-icon"> 7 · Video
-https://youtu.be/r-qn6DrJ6IA
+# :logos:youtube-icon: 7 · Video
+::block-youtube{url="https://youtu.be/r-qn6DrJ6IA"}
+::

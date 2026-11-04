@@ -2,10 +2,10 @@
 title: Financial Dashboard
 description: A guide to deploy Financial Dashboard
 published: true
-date: 2026-08-05T20:38:18.977Z
-tags: 
+date: '2026-11-04T16:24:16.931Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-05T20:38:18.977Z
+dateCreated: '2026-08-05T20:38:18.977Z'
 ---
 
 # What is Firefly Dashboard?
@@ -21,18 +21,6 @@ dateCreated: 2026-08-05T20:38:18.977Z
 - **Grouped ledger** — asset and liability accounts split into Current Accounts, Savings, and Credit Cards
 - **Credit card rules** — per-card statement day, due day, and whether you pay the full statement balance or the minimum
 
-<div class="glance">
-  <div><span>Port</span><b><code>3001</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/giorobert88/financial-dashboard"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
 # 1 · Prerequisites
 
 You need a working **Firefly III** instance before any of this is useful. If you don't have one yet, Firefly III is available as a TrueNAS Community app (search "Firefly III" under **Apps**) or as a Docker container.
@@ -46,13 +34,12 @@ Once Firefly III is up, make sure of the following:
 | Credit cards have **Role** set to *Credit Card* | Edit the account in Firefly III |
 
 
-> 
+> [!NOTE]
 > An account is treated as a credit card if its role is set to **Credit Card**, or if its name contains the words "credit card". Setting the role properly is the cleaner option.
-{.is-info}
 
 Everything else — marking your primary current account, statement dates, payment preferences — gets configured in the dashboard UI itself. Those settings are stored as JSON inside the **notes field** of each Firefly III account, so they survive a container rebuild without needing a separate database.
 
-# <img src="/docker.png" class="tab-icon"> 2 · Deploy Firefly Dashboard
+# :logos:docker-icon: 2 · Deploy Firefly Dashboard
 
 ## 2.1 Generate a session secret
 
@@ -129,4 +116,5 @@ These drive what gets subtracted from Safe-to-Spend before your next payday. Set
 ## 3.5 Working the uncategorized queue
 
 The **inbox icon** in the header shows a badge count of transactions from the last 7 days with no category. Tap through to `/uncategorized`, assign a category, and the row fades out as the update is written back to Firefly III. This is the main reason to keep the dashboard on your phone home screen — it turns categorization into a 30-second daily habit instead of a monthly slog.
+
 

@@ -2,17 +2,17 @@
 title: Pasteguard
 description: A guide to deploying Pasteguard
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:37.347Z'
+tags: []
 editor: markdown
-dateCreated: 2026-02-04T12:53:46.440Z
+dateCreated: '2026-02-04T12:53:46.440Z'
 ---
 
 # What is PasteGuard?
 
 **PasteGuard** is a privacy proxy for LLMs that automatically masks personal data (PII) and secrets before sending prompts to AI providers like OpenAI or Anthropic. It detects names, locations, contact details, financial identifiers and secrets in multiple languages, ensuring your private information never leaves your infrastructure. PasteGuard exposes OpenAI-compatible, Anthropic and Codex endpoints, and its detector combines checksums and format checks with a GLiNER-based semantic backend.
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy PasteGuard
+# :logos:docker-icon: 1 · Deploy PasteGuard
 
 ## 1.1 Create the Configuration
 
@@ -42,9 +42,8 @@ services:
     restart: unless-stopped
 ```
 
-> 
+> [!TIP]
 > Point your applications to `http://your-server:3000/openai/v1` instead of `https://api.openai.com/v1` to route requests through PasteGuard. Anthropic clients use `http://your-server:3000/anthropic` and Codex CLI uses `http://your-server:3000/codex`.
-{.is-success}
 
 # 2 · Configuration
 
@@ -97,9 +96,8 @@ local:
   model: llama3.2
 ```
 
-> 
+> [!WARNING]
 > Route mode requires a local LLM such as Ollama, vLLM, or LocalAI to be running and accessible.
-{.is-warning}
 
 # 3 · PII Detection
 
@@ -185,9 +183,8 @@ secrets_detection:
 | **route_local** | Routes to local LLM when secrets detected (route mode only) |
 {.dense}
 
-> 
+> [!CAUTION]
 > The default action is `mask`. Set `action: block` if you would rather reject any request containing a secret. Detected secrets are never logged in their original form.
-{.is-danger}
 
 # 5 · Dashboard & Authentication
 
@@ -209,6 +206,6 @@ PII detection is multilingual. The detector uses checksums and format checks for
 
 
 
-# <img src="/youtube.png" class="tab-icon"> 7 · Video
+# :logos:youtube-icon: 7 · Video
 
 *Video coming soon*

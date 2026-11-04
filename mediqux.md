@@ -2,27 +2,16 @@
 title: Mediqux
 description: A guide to deploy Mediqux
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:41.593Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:26.492Z
+dateCreated: '2026-01-15T15:06:26.492Z'
 ---
 
 # 🏥 What is Mediqux?
 A privacy-first, locally-hosted medical record system for individuals, families, and small healthcare practices - featuring comprehensive patient management, lab result processing, and medication tracking with complete data sovereignty. 
 
-<div class="glance">
-  <div><span>Port</span><b><code>8086</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>3 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/dmjoh/mediqux"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Mediqux
+# :logos:docker-icon: 1 · Deploy Mediqux
 ```yaml
 services:
   postgres:
@@ -84,8 +73,8 @@ services:
       retries: 3
 ```
 
+> [!WARNING]
 > Since Mediqux 2.0 the frontend listens on port `8080` inside the container and proxies the API on the same origin, so the backend no longer needs a published port. `MEDIQUX_API_URL`, `BACKEND_URL` and the old port variables were removed. If you are upgrading from 1.x, update your compose to match the one above. See the [release notes](https://github.com/dmjoh/mediqux/releases).
-{.is-warning}
 
+> [!NOTE]
 > Navigate to `http://IP:8086`. Self-service sign-up only works for the first account you create.
-{.is-info}

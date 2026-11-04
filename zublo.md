@@ -2,29 +2,19 @@
 title: Zublo
 description: A guide to dpeloying Zublo
 published: true
-date: 2026-04-27T17:44:21.112Z
-tags: 
+date: '2026-11-04T16:23:53.075Z'
+tags: []
 editor: markdown
-dateCreated: 2026-04-27T17:44:21.112Z
+dateCreated: '2026-04-27T17:44:21.112Z'
 ---
 
-# <img src="/zublo.png" class="tab-icon"> What is Zublo?
+# What is Zublo?
 
 **Zublo** is an open-source, self-hostable personal subscription tracker built for homelabbers and privacy-minded users who want every recurring payment in one place. It ships as a single Docker container with a React frontend and a PocketBase backend (SQLite-backed), keeping the deployment story dead simple — one container, one volume, one port.
 
 Beyond just tracking subscriptions, Zublo includes a real AI layer with chat-based workflows, spending recommendations, and pluggable LLM providers (Google Gemini, OpenAI, Ollama, and any OpenAI-compatible gateway like OpenRouter, Groq, or Mistral). It also offers a calendar view of upcoming payments, multi-currency support with exchange-rate sync, REST API access via scoped keys, and TOTP-based 2FA — all without becoming a bloated full-finance suite.
 
-<div class="glance">
-  <div><span>Port</span><b><code>9597</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/danielalves96/zublo"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Zublo
+# :logos:docker-icon: 1 · Deploy Zublo
 
 ```yaml
 services:
@@ -45,8 +35,8 @@ services:
 1. The REST API is exposed at `http://<your-host>:9597/api/`.
 
  
+> [!CAUTION]
 > Once you have the first admin account created, **immediately disable open registration** in the PocketBase admin panel (`/_/`) under **Settings → Auth providers** to prevent random users from signing up if you expose Zublo to the internet.
-{.is-danger}
 
 # 2 · Configuration
 
@@ -76,9 +66,9 @@ Zublo's AI layer is provider-agnostic. Head to **Settings → AI** to wire it up
 
 Once configured, the chat interface can answer questions about your spending, suggest subscriptions to review, and surface patterns you might miss.
 
-> 
+> [!TIP]
 > If you're already running Ollama in your homelab, point Zublo at it and you've got a fully self-hosted, AI-enabled subscription tracker with zero data leaving your network.
-{.is-success}
+
 
 
 

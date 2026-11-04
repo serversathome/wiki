@@ -2,10 +2,10 @@
 title: LinkBreeze
 description: A guide to deploying LinkBreeze
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:25.459Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-05T20:25:52.869Z
+dateCreated: '2026-08-05T20:25:52.869Z'
 ---
 
 # What is LinkBreeze?
@@ -14,23 +14,10 @@ dateCreated: 2026-08-05T20:25:52.869Z
 
 It runs as a single container backed by SQLite (no external database), the public page is 100% server-rendered with zero client JavaScript, and the whole thing is MIT licensed. If you're a creator who's tired of paying a monthly subscription just to host a list of links, this is the one to self-host.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/OmniRise/LinkBreeze"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
-
 # 1 · Deploy LinkBreeze
 
+> [!NOTE]
 > The project moved to [OmniRise/LinkBreeze](https://github.com/OmniRise/LinkBreeze) and now publishes its image on Docker Hub. The old `ghcr.io/manak-hash/linkbreeze` image stopped at v1.4.1, so switch the `image:` line if you deployed from an earlier version of this page.
-{.is-info}
 
 ```yaml
 services:
@@ -48,8 +35,8 @@ services:
 ```
 
  
+> [!WARNING]
 > Generate a strong signing key with `openssl rand -hex 32` and paste the output into `SECRET_KEY`. This key signs your admin session cookies — if you leave it at a default or change it later, every existing session is invalidated and you'll be logged out.
-{.is-warning}
 
 
 # 2 · First-Time Setup
@@ -65,9 +52,8 @@ On first launch, LinkBreeze walks you through creating your admin account and yo
 
 Your public page now lives at `http://<your-server-ip>:3000/<your-slug>`, and the admin dashboard is at `/dashboard`.
 
-> 
+> [!CAUTION]
 > Use a real password here. If you expose this page to the internet, the admin panel is exposed with it.
-{.is-danger}
 
 ## 2.3 Adding Links
 
@@ -94,7 +80,7 @@ Under the hood the theme engine is a CSS custom property token system (`--lb-*`)
 
 Themes can be duplicated, exported, and imported — handy if you want to keep a working copy before experimenting, or share a look between instances.
 
-> 
+> [!NOTE]
 > Need something the customizer can't do? The **Custom CSS** box in the theme settings injects raw CSS directly into the public page.
-{.is-info}
+
 

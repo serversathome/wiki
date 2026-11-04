@@ -2,35 +2,24 @@
 title: Audiobookshelf
 description: A guide to deploying Audiobookshelf
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:16:51.289Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-14T11:19:57.749Z
+dateCreated: '2026-08-14T11:19:57.749Z'
 ---
 
-# <img src="/audiobookshelf.png" class="tab-icon"> What is Audiobookshelf?
+# What is Audiobookshelf?
 
 **Audiobookshelf** is a self-hosted audiobook and podcast server. It streams every common audio format on the fly, tracks listening progress per user across devices, auto-downloads podcast episodes from RSS, and serves ebooks alongside your audiobooks. Multi-user support with per-library permissions means the whole household can share one server without sharing a position in a book.
 
 It is fully open source, including the Android and iOS apps, so nothing about your library is locked behind a vendor.
 
+> [!NOTE]
 > Audiobookshelf is a **library server**, not a downloader. It reads whatever is on disk and serves it. Pair it with [Chaptarr](/chaptarr) if you want automated acquisition and renaming.
-{.is-info}
-
-<div class="glance">
-  <div><span>Port</span><b><code>13378</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/advplyr/audiobookshelf"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
 
 # 1 · Deploy Audiobookshelf
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   audiobookshelf:
@@ -60,10 +49,9 @@ chown -R 568:568 /mnt/tank/configs/audiobookshelf /mnt/tank/media/books
 
 Browse to `http://YOUR-SERVER-IP:13378` and create the root account on first launch.
 
+::
 
-
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Audiobookshelf is in the **Community** train of the TrueNAS Apps catalog. Requires TrueNAS 24.10.2.2 or newer.
 
 1. Navigate to **Apps** → **Discover Apps** in the TrueNAS UI
@@ -76,7 +64,9 @@ Audiobookshelf is in the **Community** train of the TrueNAS Apps catalog. Requir
    - **Additional Storage**: Host Path → `/mnt/tank/media` mounted at `/media`
 4. Click **Install** and wait for the app to report **Running**
 
+::
 
+:::
 
 # 2 · Configuration
 
@@ -117,5 +107,6 @@ If your tagging is solid, you can skip all of this — go to **Settings** → **
 ## 2.4 Automatic scanning
 
 **Settings** → **Libraries** → edit → enable **Automatically watch for changes**. New folders get picked up without a manual scan. The watcher is reliable on a local ZFS dataset; over an SMB or NFS mount it is not, so fall back to scheduled scans there.
+
 
 

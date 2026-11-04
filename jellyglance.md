@@ -2,10 +2,10 @@
 title: JellyGlance
 description: A guide to deploy JellyGlance
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:14.482Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-05T20:28:45.437Z
+dateCreated: '2026-08-05T20:28:45.437Z'
 ---
 
 # What is JellyGlance?
@@ -16,20 +16,7 @@ It goes further than a pure stats dashboard. JellyGlance also acts as an operati
 
 The project is inspired by **Jellystat**, but adds request triage, per-user profile pages, a customizable home layout with kiosk mode, and a much larger integration list.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/JellyGlance/Server"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy JellyGlance
+# :logos:docker-icon: 1 · Deploy JellyGlance
 
 ```yaml
 services:
@@ -91,8 +78,8 @@ On first launch you are dropped into a setup wizard:
 4. Complete Jellyfin Quick Connect, OIDC provider details, or create a local admin account.
 5. Let the first sync finish before poking around — it pulls users, libraries, artwork, sessions, and activity history.
 
+> [!NOTE]
 > Once the sync completes, JellyGlance can pull cached artwork from your Jellyfin library to use as the login background and throughout the media views.
-{.is-info}
 
 ## 2.2 Connecting Integrations
 
@@ -116,4 +103,5 @@ Adding the Arr apps lights up the **Calendar** page with upcoming releases. Addi
 The home dashboard is fully rearrangeable. Drag sections into the order you want, hide the widgets you do not care about, pick a role-focused preset, and switch between compact and comfortable density.
 
 For a wall-mounted display, open `/home/kiosk` to get a sidebar-free view.
+
 

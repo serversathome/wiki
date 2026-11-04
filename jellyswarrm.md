@@ -2,30 +2,19 @@
 title: Jellyswarrm
 description: A guide to deploy Jellyswarrm
 published: true
-date: 2026-01-15T15:29:46.943Z
-tags: 
+date: '2026-11-04T16:24:20.864Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:05:40.108Z
+dateCreated: '2026-01-15T15:05:40.108Z'
 ---
 
-# <img src="/jellyswarrm.png" class="tab-icon"> What is Jellyswarrm?
+# What is Jellyswarrm?
 Jellyswarrm is a reverse proxy that lets you combine multiple Jellyfin servers into one place. If you’ve got libraries spread across different locations or just want everything together, Jellyswarrm makes it easy to access all your media from a single interface.
 
+> [!WARNING]
 > For this to work every server must be accessible from Jellyswarrm via LAN, VPN, or FQDN
-{.is-warning}
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/llukas22/jellyswarrm"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Jellyswarrm
+# :logos:docker-icon: 1 · Deploy Jellyswarrm
 ```yaml
 services:
   jellyswarrm:
@@ -48,5 +37,5 @@ services:
 1. Click **Users** and map your users to every server you want to give them access to
 1. Point your Jellyfin client at `http://IP:3000` to access the unified webUI
 
-# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
+# ![](/_files/patreon-light.png =28x) 3 · Video
 [![](/2025-12-04-jellyswarrm-combine-multiple-je-promo-card.png)](https://www.patreon.com/posts/jellyswarrm-into-145059441)

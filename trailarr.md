@@ -2,23 +2,16 @@
 title: Trailarr
 description: A guide to deploying Trailarr in docker
 published: true
-date: 2026-01-15T15:32:11.868Z
-tags: 
+date: '2026-11-04T16:24:17.543Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:09:05.969Z
+dateCreated: '2026-01-15T15:09:05.969Z'
 ---
 
-# ![](/trailarr.png){class="tab-icon"} What is Trailarr?
+# What is Trailarr?
 Trailarr is a Docker application to download and manage trailers for your Radarr, and Sonarr libraries.
 
-<div class="glance">
-  <div><span>Port</span><b><code>7889</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Trailarr
+# :logos:docker-icon: 1 · Deploy Trailarr
 
 ```yaml
 services:
@@ -38,8 +31,8 @@ services:
 
 # 2 · Trailarr Configuration
 
+> [!NOTE]
 > Default credentials are **admin:trailarr**
-{.is-info}
 
 ## 2.1 Adding Connections
 1. Navigate to **Connections** and add your Radarr/Sonarr URL and API Key
@@ -50,6 +43,6 @@ services:
 1. Click **Submit**
 
 
-# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
+# ![](/_files/patreon-light.png =28x) 3 · Video
 
 [![](/2025-07-29-trailarr-automatically-manage-m-promo-card.png)](https://www.patreon.com/posts/trailarr-manage-135217577)

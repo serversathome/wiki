@@ -2,10 +2,10 @@
 title: openGym
 description: A guide to deploy openGym
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:21.714Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-05T20:35:06.941Z
+dateCreated: '2026-08-05T20:35:06.941Z'
 ---
 
 # What is openGym?
@@ -16,18 +16,7 @@ It installs to your home screen as a PWA, signs you in with **passkeys** (Face I
 
 Stack is React 19 + Vite on the front, a dependency-light Node API on the back, nginx in front of both. Licensed AGPL v3.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/DuarteSantos8/openGym"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy openGym
+# :logos:docker-icon: 1 · Deploy openGym
 
 
 ```yaml
@@ -81,8 +70,8 @@ services:
 
 ```
 
+> [!NOTE]
 > The exercise images and animations now ship inside the web image, so the old one-shot `opengym-media` job and its `img`/`gif` bind mounts are no longer needed. If you deployed an earlier version of this guide, remove them (mounting over those folders hides the bundled media). Images also moved from `registry.gitlab.com` to `ghcr.io`; the GitLab images are still published.
-{.is-info}
 
 1. Create the `.env` file next to the compose file **before** the first start — see section 2.1. Set `RP_ID` and `ORIGIN` to your real domain **before** anyone registers (section 3 explains why)
 1. Browse to `http://<host>:8080` and tap **Create profile**
@@ -146,9 +135,8 @@ Nothing to configure server-side — VAPID keys generate on first run into `data
 
 Each browser reports its own timezone, so the reminder fires at the user's local time regardless of where the server sits or where they're travelling.
 
-> 
+> [!NOTE]
 > Notifications require a signed-in passkey profile over HTTPS. Guest mode and plain-HTTP LAN instances can't subscribe, and the option simply won't appear in Settings. Same requirement applies to **Keep screen awake** — the Wake Lock API is HTTPS-only.
-{.is-info}
 
 
 # 5 · Optional: MCP server for AI queries
@@ -182,7 +170,7 @@ Claude Desktop config:
 
 *"What did I bench last week?"* · *"What's my estimated 1RM on deadlift?"* · *"Which muscles have I been neglecting?"*
 
-> 
+> [!NOTE]
 > The MCP server never reads passkey material, VAPID keys, or session state — only the profile it's pointed at. Its read tools need no authentication. There is now one write tool, `log_workout`, which stays off until you pair the MCP server with your openGym server — see the [MCP README](https://github.com/DuarteSantos8/openGym/blob/main/mcp/README.md).
-{.is-info}
+
 

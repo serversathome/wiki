@@ -2,13 +2,13 @@
 title: Soulseek
 description: A guide to deploying the SLSKD daemon via docker compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:57.665Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:08:40.062Z
+dateCreated: '2026-01-15T15:08:40.062Z'
 ---
 
-# ![Soulseek](/slskd.png){class="tab-icon"} What is Soulseek?
+# What is Soulseek?
 
 **Soulseek** is a legendary, ad‑free peer‑to‑peer network for sharing music and rare files.  The modern container **[slskd](https://github.com/slskd/slskd)** runs Soulseek as a lightweight server daemon you can access via web‑UI or mobile clients.
 
@@ -27,22 +27,10 @@ dateCreated: 2026-01-15T15:08:40.062Z
 
 ---
 
-<div class="glance">
-  <div><span>Port</span><b><code>5030</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/slskd/slskd"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
 # 1 · Deploy slskd
 
-# tabs {.tabset}
-
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   slskd:
@@ -67,18 +55,19 @@ services:
     restart: unless-stopped
 ```
 
-### Permissions & Folder Structure {.is-success}
+### Permissions & Folder Structure
 
 * **PUID / PGID** — match media owner (TrueNAS default **568:568**).
 * **Volumes** — configs in `/mnt/tank/configs/soulseek`, library in `/mnt/tank/media/music`.
 
+> [!WARNING]
 > ⚠️ Soulseek exposes your IP.  Consider the VPN stack below for safety.
-{.is-warning}
 
 ---
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose + Gluetun VPN
+::
 
+::block-tab{label="Docker Compose + Gluetun VPN" icon="simple-icons:docker"}
 ```yaml
 services:
   gluetun:
@@ -115,6 +104,10 @@ services:
 ```
 
 ---
+
+::
+
+:::
 
 # 2 · First‑Run Configuration
 
@@ -174,8 +167,9 @@ Feel free to open a pull‑request or ping us on Discord if you spot an inaccura
 
 ---
 
-# <img src="/patreon-light.png" class="tab-icon"> Video Guide
+# ![](/_files/patreon-light.png =28x) Video Guide
 
 *Coming soon – follow our [YouTube](https://www.youtube.com/@ServersatHome).*
 
 [⇧ Back to top](#what-is-soulseek){.back-top}
+

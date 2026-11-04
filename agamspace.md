@@ -2,34 +2,22 @@
 title: Agam Space
 description: A guide to deploying Agam Space
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:26.267Z'
+tags: []
 editor: markdown
-dateCreated: 2026-02-03T14:03:10.655Z
+dateCreated: '2026-02-03T14:03:10.655Z'
 ---
 
-# <img src="/agam-space.png" class="tab-icon"> What is Agam Space?
+# What is Agam Space?
 
 **Agam Space** is a self-hosted, zero-knowledge, end-to-end encrypted file storage platform. All files and metadata are encrypted in your browser before upload using XChaCha20-Poly1305 encryption. Your master password never leaves your device, and the server stores only encrypted blobs — even the server admin cannot access your files.
 
 Think of it as a self-hosted alternative to Mega or Proton Drive, where privacy is guaranteed by cryptography rather than trust.
 
-> 
+> [!WARNING]
 > Agam Space is in **early beta** and not ready for production use. Bugs and data loss are possible. Do not use as your only backup.
-{.is-warning}
 
-<div class="glance">
-  <div><span>Port</span><b><code>3331</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://docs.agamspace.app/configuration/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Agam Space
+# :logos:docker-icon: 1 · Deploy Agam Space
 
 ```yaml
 services:
@@ -67,12 +55,11 @@ services:
 1. Change the `POSTGRES_PASSWORD` to something secure (you can generate one with `openssl rand -hex 32`)
 2. Update `DATABASE_PASSWORD` to match `POSTGRES_PASSWORD`
 
+> [!NOTE]
 > Upstream also publishes hardened images (no shell) under tags like `agamspace/agam-space:latest-hardened`.
-{.is-info}
 
-> 
+> [!NOTE]
 > For production deployments, place Agam Space behind a reverse proxy with HTTPS. The encryption happens client-side, but you still want secure transport.
-{.is-info}
 
 # 2 · Configuration
 
@@ -85,9 +72,8 @@ Next, you'll set up your **Master Password**. This password:
 - Never leaves your device
 - Cannot be recovered if lost — there is no password reset
 
-> 
+> [!CAUTION]
 > **Critical:** If you lose your master password, your data is unrecoverable. The server cannot decrypt your files.
-{.is-danger}
 
 ## 2.2 Biometric Unlock
 
@@ -127,6 +113,6 @@ Refer to the [official documentation](https://docs.agamspace.app/configuration/)
 | `ALLOW_NEW_SIGNUP` | Set to `false` to stop new users from signing up |
 {.dense}
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# :logos:youtube-icon: 3 · Video
 
 *No video yet — check back soon!*

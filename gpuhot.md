@@ -2,26 +2,16 @@
 title: GPU Hot
 description: A guide to deploying GPU Hot
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:31.822Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:58.467Z
+dateCreated: '2026-01-15T15:04:58.467Z'
 ---
 
 # What is GPU Hot?
 Real-time NVIDIA GPU monitoring dashboard. Web-based, no SSH required.
 
-<div class="glance">
-  <div><span>Port</span><b><code>1312</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/psalias2006/gpu-hot"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy GPU Hot
+# :logos:docker-icon: 1 · Deploy GPU Hot
 
 ```yaml
 services:
@@ -45,8 +35,8 @@ services:
     #   - UPDATE_INTERVAL=0.5  # polling interval in seconds; raise it if performance suffers
 ```
 
+> [!NOTE]
 > The host needs the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) installed for the GPU reservation to work.
-{.is-info}
 
+> [!NOTE]
 > **Monitoring several GPU servers?** Run GPU Hot on each one (optionally with `NODE_NAME` set), then run one more instance in hub mode, which needs no GPU, with `GPU_HOT_MODE=hub` and `NODE_URLS=http://server1:1312,http://server2:1312`. The hub shows all nodes on a single dashboard.
-{.is-info}

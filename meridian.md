@@ -2,10 +2,10 @@
 title: Meridian
 description: A guide to deploying Meridian
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:07.015Z'
+tags: []
 editor: markdown
-dateCreated: 2026-04-22T21:18:58.613Z
+dateCreated: '2026-04-22T21:18:58.613Z'
 ---
 
 # What is Meridian?
@@ -16,22 +16,10 @@ Newer releases also include a web UI at `/` (with **Providers** and **Settings**
 
 Everything flows through the SDK's documented `query()` function — no OAuth interception, no patched binaries. Session management, streaming, prompt caching and rate limiting stay under Anthropic's control; Meridian only translates the SDK's output into the API shape that other tools expect. TypeScript, MIT licensed, distributed on npm as `@rynfar/meridian`.
 
+> [!WARNING]
 > **Terms of service caveat.** Claude Max is licensed as an individual subscription for Anthropic's own clients. Using it to drive third-party tools is a grey area, and the project's own docs describe sharing one subscription across machines or teams — that part is squarely against Anthropic's terms and is the fastest way to get an account flagged. Keep this to your own account on your own machine.
-{.is-warning}
 
-<div class="glance">
-  <div><span>Port</span><b><code>3456</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/rynfar/meridian"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Meridian
+# :logos:docker-icon: 1 · Deploy Meridian
 
 ```yaml
 services:
@@ -92,8 +80,8 @@ To use Meridian, point the tools at `http://{IP}:3456` and enter any API key sin
 | `MERIDIAN_PROFILES` | unset | JSON array of profile configs, overrides disk discovery |
 {.dense}
 
+> [!NOTE]
 > Sonnet 5 and later (the default) run with a native 1M context window on every plan, with no Extra Usage. The `MERIDIAN_SONNET_MODEL` 200k default only matters if you pin a Sonnet 4.x model, where `sonnet[1m]` is always billed as Extra Usage on Max plans. Opus 1M is included with Max at no extra cost.
-{.is-info}
 
 ## 2.3 Passthrough vs internal mode
 
@@ -104,7 +92,8 @@ The question is who actually executes the tools.
 
 The adapter picks the right mode automatically. Override with `MERIDIAN_PASSTHROUGH=1` or `=0`.
 
+> [!WARNING]
 > **Known limitation.** In passthrough mode the SDK is capped at one turn per request by default, so the client runs the tool calls and re-sends after each round. Set `MERIDIAN_PASSTHROUGH_MAX_TURNS` to raise the budget (with `MERIDIAN_PASSTHROUGH_EARLY_STOP=1`, the default, it still stops once a tool batch is handed to the client). See the [configuration docs](https://github.com/rynfar/meridian/blob/HEAD/docs/configuration.md).
-{.is-warning}
+
 
 

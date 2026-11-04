@@ -2,30 +2,17 @@
 title: Ghost
 description: A guide to installing Ghost in docker via compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:53.678Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:44.549Z
+dateCreated: '2026-01-15T15:04:44.549Z'
 ---
 
-# <img src="/ghost-light.png" class="tab-icon"> What is Ghost?
+# What is Ghost?
 
 Ghost is a powerful app for professional publishers to create, share, and grow a business around their content. It comes with modern tools to build a website, publish content, send newsletters & offer paid subscriptions to members.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8085</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>MySQL</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://ghost.org/docs/config/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://youtu.be/YnjYWhceepU?feature=shared&t=227"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Ghost
+# :logos:docker-icon: 1 · Deploy Ghost
 
 ```yaml
 services:
@@ -70,11 +57,11 @@ services:
 1. Change the default password (generate one with `openssl rand -hex 24`). `database__connection__password` in the ghost service must match `MYSQL_ROOT_PASSWORD` in the db service.
 1. Update the `url` field to match your FQDN
 
+> [!NOTE]
 > You can deploy as many of these containers as you want for each website you want to host. Be sure to change the external port for each one. 
-{.is-info}
 
+> [!WARNING]
 > Upgrading from an older version of this guide? Back up `/mnt/tank/configs/ghost`, read the Ghost 6 [update guide](https://docs.ghost.org/update/), and either keep your old content mount line or move everything except `db` into `content/`.
-{.is-warning}
 
 
 # 2 · Logging In
@@ -90,9 +77,8 @@ In order to enable monitoring, go to the **Settings** gear icon in the lower lef
 You don't need mail to work to host content on Ghost. If you want to have subscribers sign up and get emails when you update content however, you will need email set up. You will also need email configured if you want to have multiple contributors with individual accounts on your platform. Mailgun's free plan includes 100 emails per day.
 
 ## 4.1 Mailgun
-> 
+> [!CAUTION]
 > If you go this route remove any lines in the docker compose file which start with `mail`
-{.is-danger}
 
 
 Navigate to [mailgun](https://signup.mailgun.com/new/signup). Enter all the information keeping the default **Foundation** **50k Trial** selected (it's free for the first month, then becomes a paid plan unless you downgrade to the free plan). Once you have an account, login to your account on mailgun and follow the steps in [this video](https://youtu.be/YnjYWhceepU?feature=shared&t=227) on the correct way to get email configured.
@@ -124,8 +110,8 @@ Once you get to the 10 min mark in the video, he switches gears from bulk email 
 
 # 5 · Migrating From Wordpress
 
+> [!NOTE]
 > In the event you want to move all your content from Wordpress, there are a few steps to take. Official instructions can be found [here](https://ghost.org/docs/migration/wordpress/). 
-{.is-info}
 
 
 ## 5.1 Posts and Pages

@@ -2,27 +2,16 @@
 title: Noton
 description: A guide to deploying Noton
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:20.412Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:50.817Z
+dateCreated: '2026-01-15T15:06:50.817Z'
 ---
 
-# <img src="/noton.png" class="tab-icon"> What is Noton?
+# What is Noton?
 A free-for-internal-use documentation platform (Functional Source License 1.1; competing commercial use is not allowed) built with Laravel and Filament, enhanced by Ollama for local AI features, focused on clarity, structure, and self-hosted simplicity. 
 
-<div class="glance">
-  <div><span>Port</span><b><code>6686</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>3 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/bartvantuijn/noton"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Noton
+# :logos:docker-icon: 1 · Deploy Noton
 ```yaml
 services:
   noton:
@@ -66,8 +55,9 @@ services:
       - /mnt/tank/configs/noton/ollama:/root/.ollama
 ```
 
+> [!NOTE]
 > Already run Ollama? Remove the `ollama` service and point `OLLAMA_BASE_URL` at it.
-{.is-info}
 
 1. Navigate to `http://IP:6686`
 1. Register the first user. This account is automatically assigned the admin role
+

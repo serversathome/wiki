@@ -2,30 +2,20 @@
 title: Prowlarr
 description: A guide to installing Prowlarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: media management
+date: '2026-11-04T16:17:46.097Z'
+tags:
+  - media management
 editor: markdown
-dateCreated: 2026-01-15T15:02:45.163Z
+dateCreated: '2026-01-15T15:02:45.163Z'
 ---
 
-# ![](/prowlarr.png){class="tab-icon"} What is Prowlarr?
+# What is Prowlarr?
 
 Prowlarr is an indexer manager/proxy built on the popular arr .net/reactjs base stack to integrate with your various PVR apps. Prowlarr supports both Torrent Trackers and Usenet Indexers. It integrates seamlessly with Sonarr, Radarr, Lidarr, and others offering complete management of your indexers with no per app Indexer setup required.
 
-<div class="glance">
-  <div><span>Port</span><b><code>9696</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/linuxserver/docker-prowlarr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
 # 1 · Deploy Prowlarr
-# tabs {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   prowlarr:
@@ -47,12 +37,16 @@ services:
 - **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/prowlarr
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 - Install Prowlarr from the TrueNAS Community Apps catalog.
 - Use the Community version when available.
 - Change the **Config Storage Type** to **Host Path** as per the [Folder-Structure](/Folder-Structure) guide.
+
+::
+
+:::
 
 # 2 · Prowlarr Configuration
 
@@ -124,8 +118,8 @@ services:
 ```
 
 
+> [!NOTE]
 > Gluetun's HTTP proxy port (`8888`) is intentionally not exposed on the host — Prowlarr reaches it over the internal network at `http://gluetun:8888`. If you need to access the proxy from outside Docker, add `- 8888:8888/tcp` to Gluetun's `ports:` block.
-{.is-info}
 
 
 
@@ -162,10 +156,9 @@ services:
     # Note: do NOT declare ports here — declare 8191 on the gluetun service
 ```
 
-> 
+> [!WARNING]
 > `network_mode: "service:gluetun"` shares Gluetun's network namespace, which means all traffic from FlareSolverr goes through the VPN — and FlareSolverr loses its own port declarations. Move the `8191` port to Gluetun's `ports:` block.
-{.is-warning}
 
-# <img src="/patreon-light.png" class="tab-icon"> 4 · Video Walkthrough
+# ![](/_files/patreon-light.png =28x) 4 · Video Walkthrough
 
-[![](/2025-01-30-complete-guide-to-prowlarr-the--promo-card.png)](https://www.patreon.com/posts/complete-guide-121131077?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+[![](/2025-01-30-complete-guide-to-prowlarr-the-promo-card.png)](https://www.patreon.com/posts/complete-guide-121131077?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)

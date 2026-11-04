@@ -2,40 +2,28 @@
 title: Flaresolverr
 description: A guide to installing Flaresolverr on TrueNAS and Ubuntu Server LTS
 published: true
-date: 2026-01-22T19:16:20.715Z
-tags: 
+date: '2026-11-04T16:24:08.321Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:02:27.125Z
+dateCreated: '2026-01-15T15:02:27.125Z'
 ---
 
-# ![](/flaresolverr.png){class="tab-icon"} What is Flaresolverr?
+# What is Flaresolverr?
 FlareSolverr is a proxy server to bypass Cloudflare and DDoS-GUARD protection.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8191</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/flaresolverr/flaresolverr"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/sUMT0PTll_M"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
 # 1 · Deploy Flaresolverr
-# {.tabset}
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
-![](/screenshot_from_2025-02-07_13-01-56.png)
+:::block-tabs
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+![](/screenshot-from-2025-02-07-13-01-56.png)
 
 Change the **WebUI Port** to **8191** since that is what is used in all the default documentation.
 
+> [!NOTE]
 > You do not need a host path volume for this container
-{.is-info}
 
+::
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   flaresolverr:
@@ -51,6 +39,11 @@ services:
     restart: unless-stopped
 ```
 
-# <img src="/youtube.png" class="tab-icon"> 2 · Video
+::
 
-https://youtu.be/sUMT0PTll_M
+:::
+
+# :logos:youtube-icon: 2 · Video
+
+::block-youtube{url="https://youtu.be/sUMT0PTll_M"}
+::

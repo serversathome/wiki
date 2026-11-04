@@ -2,28 +2,17 @@
 title: Scanopy
 description: A guide to deploying Scanopy
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:27.745Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:08:14.022Z
+dateCreated: '2026-01-15T15:08:14.022Z'
 ---
 
-# <img src="/scanopy.png" class="tab-icon"> What is Scanopy?
+# What is Scanopy?
 
 Scanopy scans your network, identifies hosts and services, and generates an interactive visualization showing how everything connects, letting you easily create and maintain network documentation.
 
-<div class="glance">
-  <div><span>Port</span><b><code>60072</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>3 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/scanopy/scanopy"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Scanopy
+# :logos:docker-icon: 1 · Deploy Scanopy
 ```yaml
 name: scanopy
 
@@ -101,8 +90,8 @@ networks:
           gateway: 172.31.0.1
 ```
 
+> [!NOTE]
 > The daemon now keeps its config in `/root/.config/scanopy/daemon`. If you deployed with the older `/root/.config/daemon` path, update the volume line, or the daemon re-registers itself every time the container is recreated.
-{.is-info}
 
 # 2 · Access Scanopy
 Open `http://IP:60072` and create your account. The first network discovery starts on its own.

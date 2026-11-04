@@ -2,30 +2,19 @@
 title: n8n
 description: A guide to deploying n8n on TrueNAS as well as docker compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:58.809Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:32.194Z
+dateCreated: '2026-01-15T15:06:32.194Z'
 ---
 
-# ![](/n8n.png){class="tab-icon"} What is n8n?
+# What is n8n?
 
 n8n offers a unique workflow automation platform combining AI and business process automation for technical teams, blending coding flexibility with no-code speed.
 
-<div class="glance">
-  <div><span>Port</span><b><code>5678</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://youtu.be/bGdkSHf0MGI"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
 # 1 · Deploy n8n
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   n8n:
@@ -43,19 +32,19 @@ services:
     restart: unless-stopped
     user: 568:568
 ```
+> [!CAUTION]
 > **Error: Command "start" not found**
 > For some reason, n8n does not respect the `user` field, so whatever volume you use must have 777 permissions. To do this run the `chmod 777 /mnt/tank/configs/n8n` command to correct the issue.
-{.is-danger}
 
+> [!WARNING]
 > **n8n 3.0 is coming.** The `latest` tag will move to 3.x without warning. 3.0 renames `~/.n8n/binaryData` to `~/.n8n/storage` on first start (startup fails if both folders exist), turns on encryption key rotation by default, and removes the legacy Function, Function Item and Item Lists nodes. Back up `/mnt/tank/configs/n8n` and check **Settings → Migration Report** before upgrading, or pin a 2.x tag such as `n8nio/n8n:2.45.5` until you are ready. See the [v3.0 breaking changes](https://docs.n8n.io/changelog/v30-breaking-changes).
-{.is-warning}
 
+> [!NOTE]
 > The old `N8N_BASIC_AUTH_*` variables were removed in n8n 1.0 and do nothing. Login is handled by the owner account you create in section 2.
-{.is-info}
 
+::
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Set the **Web Host** to the IP of the server or your FQDN
 1. Set a **Database Password**
 1. Set a **Redis Password**
@@ -64,6 +53,10 @@ services:
 1. The **Storage Configuration** *n8n Postgres Data Storage* should be set to **Host Path** and the box for **Automatic Permissions** needs to be checked
 1. Increase **Resources Configuration**
 
+::
+
+:::
+
 # 2 · n8n Configuration
 
 1. Navigate to the IP and Port of your container
@@ -71,5 +64,6 @@ services:
 1. Enter your first and last name
 1. Create a strong password
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-https://youtu.be/bGdkSHf0MGI
+# :logos:youtube-icon: 3 · Video
+::block-youtube{url="https://youtu.be/bGdkSHf0MGI"}
+::

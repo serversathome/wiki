@@ -2,26 +2,17 @@
 title: Neohabit
 description: A guide to deploying Neohabit
 published: true
-date: 2026-03-02T21:01:26.673Z
-tags: 
+date: '2026-11-04T16:23:33.059Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-02T21:01:26.673Z
+dateCreated: '2026-03-02T21:01:26.673Z'
 ---
 
-# <img src="/neohabit.png" class="tab-icon"> What is Neohabit?
+# What is Neohabit?
 
 **Neohabit** is a self-hosted habit tracker designed for systematic self-improvement. Unlike basic trackers, Neohabit supports flexible habits that happen X times in Y days, custom heatmaps (monochromatic, numeric, and fractured styles), skill trees for planning progressions, and project grouping to organize related habits together. It features a polished desktop-focused interface with a responsive mobile browser view, multiple account support, and dark/light themes.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>4 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Neohabit
+# :logos:docker-icon: 1 · Deploy Neohabit
 
 Neohabit uses a multi-container stack with a Go backend, React frontend, PostgreSQL database, and Caddy reverse proxy.
 
@@ -51,9 +42,8 @@ At minimum, set these two values:
 | `JWT_SECRET` | Authentication secret, use 32+ random bytes (required) |
 {.dense}
 
-> 
+> [!NOTE]
 > You can generate a strong JWT secret with: `openssl rand -base64 32`
-{.is-info}
 
 Here is the full compose file for reference:
 
@@ -144,7 +134,7 @@ Uncomment `tls internal` and the frontend reverse proxy lines in the `Caddyfile`
 **Web hosting (public domain)**
 Replace `:80` in the `Caddyfile` with your domain name (e.g. `neohabit.example.com`), uncomment the `tls` line with your email for automatic Let's Encrypt certificates, and expose ports `80`, `443`, and `443/udp` in the compose file.
 
-> 
+> [!CAUTION]
 > Remember to update `FRONTEND_URL` in `.env` to match your actual URL — this is required for CORS to work properly.
-{.is-danger}
+
 

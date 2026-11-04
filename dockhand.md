@@ -2,13 +2,13 @@
 title: Dockhand
 description: A guide to depoying Dockhand
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:07.147Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:20.950Z
+dateCreated: '2026-01-15T15:04:20.950Z'
 ---
 
-# <img src="/dockhand.webp" class="tab-icon"> What is Dockhand?
+# What is Dockhand?
 
 **Dockhand** is a modern, self-hosted Docker management UI for running, deploying, and observing containers across one or many hosts. It covers real-time container control, a visual Compose stack editor, Git-based deployments, interactive shells, log streaming, image and CVE scanning, and a network graph — all from a single dashboard with no cloud dependency or telemetry.
 
@@ -19,21 +19,9 @@ A few things that set it apart from the usual Portainer/Dockge crowd:
 - **Multi-host via the Hawser agent** — an open-source Go agent that either listens for Dockhand on your LAN (Standard mode) or makes **outbound** connections back to Dockhand (Edge mode), so you can manage hosts behind NAT, firewalls, or dynamic IPs with no inbound ports exposed.
 - **GitOps** — point a stack at a Git repo and use webhooks or scheduled auto-sync to keep it deployed.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/Finsys/dockhand"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
 # 1 · Deploy Dockhand
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   dockhand:
@@ -53,10 +41,9 @@ services:
     restart: unless-stopped
 ```
 
+::
 
-
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Dockhand is in the **Community** train of the TrueNAS Apps catalog (maintained by iX), so you can install it from the UI:
 
 1. Go to **Apps** → **Discover** and search for **Dockhand**.
@@ -69,7 +56,9 @@ Dockhand is in the **Community** train of the TrueNAS Apps catalog (maintained b
 4. Click **Install** and wait for the app to report **Running**.
 5. Open the **Web UI** from the app's card.
 
+::
 
+:::
 
 # 2 · First Run & Authentication
 
@@ -80,9 +69,8 @@ By default a fresh Dockhand instance starts with **authentication OFF** — anyo
 3. Back on the Authentication screen, flip the **Authentication** toggle from **OFF** to **ON**.
 4. Sign out and confirm you're prompted to log in.
 
-> 
+> [!CAUTION]
 > Never expose a no-auth Dockhand instance to the internet or an untrusted LAN. Access to the Docker socket is effectively root on the host. Keep it behind your reverse proxy / Zero Trust and only enable it after auth is on.
-{.is-danger}
 
 For larger setups, Dockhand also supports **OIDC / SSO** and local users, with optional **RBAC** in the Enterprise tier. Configure OIDC under **Settings** → **Authentication**.
 
@@ -118,3 +106,4 @@ services:
 Then back in Dockhand, add the environment using the remote host's IP, the agent port (`2376`), and the same token. Once the connection test passes, the host appears in your dashboard alongside the others.
 
 For hosts behind NAT, Hawser also has an Edge mode that dials out to Dockhand. See the [Hawser README](https://github.com/Finsys/hawser).
+

@@ -2,13 +2,13 @@
 title: Maintainerr
 description: A guide to deploying Maintainer via docker
 published: true
-date: 2026-09-08T13:07:59.352Z
-tags: 
+date: '2026-11-04T16:24:01.960Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:10.333Z
+dateCreated: '2026-01-15T15:06:10.333Z'
 ---
 
-# <img src="/maintainerr.png" class="tab-icon"> What is Maintainerr?
+# What is Maintainerr?
 
 **Maintainerr** is the janitor your media server never had. It builds rules from data across Plex, Jellyfin, Emby, Radarr, Sonarr, Seerr, Tautulli and Streamystats, gathers the matching titles into a collection, holds them for a grace period so your users can catch up, and then cleans them off the server, the *arrs and Seerr automatically.
 
@@ -21,25 +21,10 @@ Typical uses:
 - Unmonitor or delete in Radarr/Sonarr and clear the matching Seerr request in one action
 - Remove the completed download from qBittorrent once seeding is finished
 
-<div class="glance">
-  <div><span>Port</span><b><code>6246</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/maintainerr/maintainerr"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/u8k-IlkShKs"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-
-
 # 1 · Deploy Maintainerr
 
-# {.tabset}
-
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   maintainerr:
@@ -66,11 +51,12 @@ Optional environment variables:
 | `GITHUB_TOKEN` | Raises the GitHub API rate limit from 60/hr to 5000/hr |
 {.dense}
 
+> [!WARNING]
 > Overlays and collection posters use `sharp`, which needs a CPU supporting `x86-64-v2`. Maintainerr still starts on older CPUs but those image features stay disabled. If you run it in a Proxmox VM, set the CPU type to `host` — the default `kvm64` does not expose `x86-64-v2`. This does not affect arm64.
-{.is-warning}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Maintainerr is in the **Community** train of the TrueNAS Apps catalog.
 
 1. Navigate to **Apps** in the TrueNAS UI and click **Discover Apps**
@@ -84,18 +70,22 @@ Maintainerr is in the **Community** train of the TrueNAS Apps catalog.
 4. Click **Install**
 5. Once the app shows **Running**, click **Web Portal**
 
+> [!NOTE]
 > The TrueNAS app runs as UID/GID `568` (the `apps` user). If you pick a host path, make sure that dataset is owned by `apps:apps` or the container cannot create its database.
-{.is-info}
 
+> [!NOTE]
 > Community train apps are packaged and maintained by the TrueNAS community, not by the Maintainerr developers. The app version usually trails the upstream release slightly. If you want same-day updates, run the Docker version instead.
-{.is-info}
+
+::
+
+:::
 
 # 2 · Configuration
 
 All configuration lives inside the app itself — there are no config files to edit. On first launch you should land on the settings page automatically. If you don't, refresh the page.
 
+> [!NOTE]
 > Every service URL field expects a full base URL starting with `http://` or `https://`. Trailing slashes are stripped for you on save.
-{.is-info}
 
 ## 2.1 General
 
@@ -114,8 +104,8 @@ Pick **one** media server. Plex, Jellyfin and Emby cannot run side by side in a 
 
 Authenticate with a Plex **admin** account and Maintainerr discovers your servers automatically. Pick the one you want from the dropdown.
 
+> [!WARNING]
 > If you're running a local Plex instance, set Plex's **Secure connections** network setting to `Preferred` instead of `Required`, or the connection test will fail.
-{.is-warning}
 
 If the server dropdown comes back empty, Plex is publishing only a local connection that Maintainerr can't reach. Fix it on the Plex side:
 
@@ -123,8 +113,8 @@ If the server dropdown comes back empty, Plex is publishing only a local connect
 2. Add a reachable address to **Custom server access URLs** — your LAN address such as `http://192.168.1.10:32400` works fine for a homelab
 3. Save, restart Plex, then hit the **Refresh** icon next to the server selector in Maintainerr
 
+> [!NOTE]
 > If Plex and Maintainerr share a Docker network, skip discovery entirely: open **Advanced Settings**, enable **Manual connection override**, and point it at `http://plex:32400`. Note that manual mode disables automatic reconnection.
-{.is-info}
 
 ### Jellyfin
 
@@ -144,8 +134,8 @@ If the server dropdown comes back empty, Plex is publishing only a local connect
 | Admin User | Click **Test Connection** to load available admin users |
 
 
+> [!NOTE]
 > Emby Connect is not supported. Maintainerr authenticates directly against the server.
-{.is-info}
 
 ## 2.3 Radarr, Sonarr and Seerr
 
@@ -160,8 +150,8 @@ These are optional but you'll want them. Without Radarr/Sonarr, Maintainerr can 
 | API key | From the app's Settings → General page |
 
 
+> [!WARNING]
 > Enter the Base URL **without** a leading slash — `radarr`, not `/radarr`.
-{.is-warning}
 
 Seerr is configured with just a URL and API key. Add it if you want Seerr rule parameters, want requests cleared when media is deleted, or want to see who requested something in pre-deletion notifications.
 
@@ -206,11 +196,12 @@ A common starter rule for movies:
 > - [x] Plex → view count → equals → 0
 > - [x] Seerr → requested by → not in → (your own username)
 
+> [!CAUTION]
 > Test every new rule with a manual run and look at what lands in the collection **before** you shorten the grace period. Maintainerr deletes files for real — there is no undo.
-{.is-danger}
 
 Use the collection's grace period as your safety net. Setting it to 30 days and pinning the collection to the Plex home screen as a "Leaving Soon" shelf gives your users a fair warning and gives you a month to notice a rule that's matching too much.
 
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Video
-https://youtu.be/u8k-IlkShKs
+# :logos:youtube-icon: 4 · Video
+::block-youtube{url="https://youtu.be/u8k-IlkShKs"}
+::

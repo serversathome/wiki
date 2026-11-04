@@ -2,28 +2,20 @@
 title: Beszel
 description: A guide to deploying Beszel
 published: true
-date: 2026-01-15T15:28:14.116Z
-tags: 
+date: '2026-11-04T16:16:53.944Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:24.164Z
+dateCreated: '2026-01-15T15:03:24.164Z'
 ---
 
-# <img src="/beszel.png" class="tab-icon"> What is Beszel?
+# What is Beszel?
 Beszel is a lightweight server monitoring platform that includes Docker statistics, historical data, and alert functions.
 
 It has a friendly web interface, simple configuration, and is ready to use out of the box. It supports automatic backup, multi-user, OAuth authentication, and API access.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8090</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-</div>
-
-
 # 1 · Deploy Beszel
-# {.tabset}
-## <img src="/truenas.png" class="tab-icon"> Server
+:::block-tabs
+::block-tab{label="Server" icon="simple-icons:truenas"}
 ```yaml
 services:
   beszel:
@@ -36,7 +28,9 @@ services:
       - /mnt/tank/configs/beszel:/beszel_data
 ```
 
-## <img src="/linux.png" class="tab-icon"> Linux Client
+::
+
+::block-tab{label="Linux Client" icon="simple-icons:linux"}
 ```yaml
 services:
   beszel-agent:
@@ -54,9 +48,15 @@ services:
       TOKEN: "<token>"
 ```
 
-## <img src="/microsoft-windows.png" class="tab-icon"> Windows Client
+::
+
+::block-tab{label="Windows Client" icon="simple-icons:windows"}
 To install beszel-agent use the following command:
 ```powershell
 & iwr -useb https://get.beszel.dev -OutFile "$env:TEMP\install-agent.ps1"; & Powershell -ExecutionPolicy Bypass -File "$env:TEMP\install-agent.ps1"
 ```
 To edit the service, see [these instructions from Beszel](https://beszel.dev/guide/agent-installation#edit-configuration).
+
+::
+
+:::

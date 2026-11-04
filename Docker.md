@@ -2,13 +2,13 @@
 title: Docker
 description: A guide to install Docker on Ubuntu Server LTS
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:38.041Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:02:20.673Z
+dateCreated: '2026-01-15T15:02:20.673Z'
 ---
 
-# ![](/docker.png){class="tab-icon"} What is Docker?
+# What is Docker?
 
 Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers. The service has both free and premium tiers. The software that hosts the containers is called Docker Engine. It was first released in 2013 and is developed by Docker, Inc.
 
@@ -43,8 +43,8 @@ sudo chmod +x install-docker.sh
 sudo bash install-docker.sh
 ```
 
+> [!WARNING]
 > If you use ufw or firewalld, be aware that ports published by Docker containers bypass your firewall rules.
-{.is-warning}
 
 # 2 · Official Docker Script 
 
@@ -53,5 +53,6 @@ Docker also provides an official install script:
 curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 ```
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video Walkthrough
-https://youtu.be/KgpbpyxdRw0
+# :logos:youtube-icon: 3 · Video Walkthrough
+::block-youtube{url="https://youtu.be/KgpbpyxdRw0"}
+::

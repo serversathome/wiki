@@ -2,26 +2,16 @@
 title: CrossWatch
 description: A guide to deploying CrossWatch
 published: true
-date: 2026-01-15T15:28:49.743Z
-tags: 
+date: '2026-11-04T16:24:06.752Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:10.399Z
+dateCreated: '2026-01-15T15:04:10.399Z'
 ---
 
-# <img src="/crosswatch.png" class="tab-icon"> What is CrossWatch?
+# What is CrossWatch?
 Synchronize your data across Plex, Jellyfin, SIMKL, Trakt, and more. Keep your movies and shows in sync, no matter where you watch. 
 
-<div class="glance">
-  <div><span>Port</span><b><code>8787</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/cenodude/crosswatch"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy CrossWatch
+# :logos:docker-icon: 1 · Deploy CrossWatch
 
 ```yaml
 services:
@@ -36,3 +26,4 @@ services:
       - /mnt/tank/configs/crosswatch:/config
     restart: unless-stopped
 ```
+

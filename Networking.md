@@ -1,58 +1,171 @@
 ---
 title: Networking
-description: 
+description: ''
 published: true
-date: 2026-09-08T12:42:38.701Z
-tags: 
+date: '2026-11-04T15:58:30.583Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:02:37.268Z
+dateCreated: '2026-01-15T15:02:37.268Z'
 ---
 
-<div class="hero">
-  <div class="hero-title">Networking</div>
-  <p>Getting traffic in, out and around your homelab safely.</p>
-  <div class="hero-meta">Updated September 2026</div>
-</div>
+Getting traffic in, out and around your homelab safely.
 
+*Updated September 2026*
+
+> [!TIP]
 > Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help.
-{.is-success}
 
-## VPNs and mesh networks {.sec .network}
-- [<img src="/air_vpn.png"> AirVPN<br>*VPN for hiding torrent traffic*](/AirVPN)
-- [Gluetun<br>*Universal VPN sidecar for containers*](/gluetun)
-- [Gluetun WebUI<br>*Web dashboard for your Gluetun container*](/gluetunwebui)
-- [PIA-tun<br>*Hardened PIA over WireGuard container*](/piatun)
-- [<img src="/netbird.png"> NetBird<br>*Zero-config mesh VPN*](/netbird)
-- [<img src="/tailscale-light.png"> Tailscale<br>*Zero-config mesh VPN*](/tailscale)
-- [<img src="/headscale.png"> Headscale<br>*Self-hosted Tailscale control server*](/headscale)
-- [<img src="/wireguard.png"> wg-easy<br>*Friendly GUI for WireGuard*](/wg-easy)
-- [DockTail<br>*Expose containers as native Tailscale services*](/docktail)
-{.links-list .network}
+## VPNs and mesh networks
+::block-links-grid
+```yaml
+- title: "AirVPN"
+  description: "VPN for hiding torrent traffic"
+  url: "/AirVPN"
+  icon: "img:/_files/air-vpn.png"
+  color: blue
+- title: "Gluetun"
+  description: "Universal VPN sidecar for containers"
+  url: "/gluetun"
+  color: blue
+- title: "Gluetun WebUI"
+  description: "Web dashboard for your Gluetun container"
+  url: "/gluetunwebui"
+  color: blue
+- title: "PIA-tun"
+  description: "Hardened PIA over WireGuard container"
+  url: "/piatun"
+  color: blue
+- title: "NetBird"
+  description: "Zero-config mesh VPN"
+  url: "/netbird"
+  icon: "img:/_files/netbird.png"
+  color: blue
+- title: "Tailscale"
+  description: "Zero-config mesh VPN"
+  url: "/tailscale"
+  icon: "img:/_files/tailscale-light.png"
+  color: blue
+- title: "Headscale"
+  description: "Self-hosted Tailscale control server"
+  url: "/headscale"
+  icon: "img:/_files/headscale.png"
+  color: blue
+- title: "wg-easy"
+  description: "Friendly GUI for WireGuard"
+  url: "/wg-easy"
+  icon: "img:/_files/wireguard.png"
+  color: blue
+- title: "DockTail"
+  description: "Expose containers as native Tailscale services"
+  url: "/docktail"
+  color: blue
+```
+::
 
-## Reverse proxies and ingress {.sec .network}
-- [<img src="/nginx-proxy-manager.png"> Nginx Proxy Manager<br>*Proxy hosts and certificates with a GUI*](/nginx)
-- [Nginx UI<br>*Edit Nginx config, certs and logs from the web*](/nginxui)
-- [<img src="/pangolin.png"> Pangolin<br>*Self-hosted tunnel alternative to Cloudflare*](/pangolin)
-- [<img src="/cloudflare.png"> Cloudflare Tunnels<br>*Expose services without opening ports*](/CloudflareTunnels)
-- [<img src="/dockflare.png"> DockFlare<br>*Turn container labels into Cloudflare Tunnel routes*](/dockflare)
-- [<img src="/cloudflare.png"> Cloudflare DDNS<br>*Keep DNS pointed at a dynamic IP*](/cloudflareddns)
-- [HAProxy Cluster Manager<br>*HAProxy config plus Let's Encrypt automation*](/haproxymanager)
-- [Pingora Proxy Manager<br>*Fast reverse proxy with wildcard SSL and TCP/UDP*](/pingora)
-{.links-list .network}
+## Reverse proxies and ingress
+::block-links-grid
+```yaml
+- title: "Nginx Proxy Manager"
+  description: "Proxy hosts and certificates with a GUI"
+  url: "/nginx"
+  icon: "img:/_files/nginx-proxy-manager.png"
+  color: blue
+- title: "Nginx UI"
+  description: "Edit Nginx config, certs and logs from the web"
+  url: "/nginxui"
+  color: blue
+- title: "Pangolin"
+  description: "Self-hosted tunnel alternative to Cloudflare"
+  url: "/pangolin"
+  icon: "img:/_files/pangolin.png"
+  color: blue
+- title: "Cloudflare Tunnels"
+  description: "Expose services without opening ports"
+  url: "/CloudflareTunnels"
+  icon: "img:/_files/cloudflare.png"
+  color: blue
+- title: "DockFlare"
+  description: "Turn container labels into Cloudflare Tunnel routes"
+  url: "/dockflare"
+  icon: "img:/_files/dockflare.png"
+  color: blue
+- title: "Cloudflare DDNS"
+  description: "Keep DNS pointed at a dynamic IP"
+  url: "/cloudflareddns"
+  icon: "img:/_files/cloudflare.png"
+  color: blue
+- title: "HAProxy Cluster Manager"
+  description: "HAProxy config plus Let's Encrypt automation"
+  url: "/haproxymanager"
+  color: blue
+- title: "Pingora Proxy Manager"
+  description: "Fast reverse proxy with wildcard SSL and TCP/UDP"
+  url: "/pingora"
+  color: blue
+```
+::
 
-## DNS and ad blocking {.sec .network}
-- [<img src="/pi-hole.png"> Pi-hole<br>*DNS-level ad blocking*](/pihole)
-- [<img src="/adguard-home.png"> AdGuard Home<br>*DNS-level ad blocking with more filters*](/adguard)
-- [<img src="/pi-hole.png"> Pi-Dash<br>*Dashboard for multiple Pi-holes*](/pidash)
-- [<img src="/nextdns.png"> NextDNS<br>*Hosted filtering for devices on and off your network*](/nextdns)
-{.links-list .network}
+## DNS and ad blocking
+::block-links-grid
+```yaml
+- title: "Pi-hole"
+  description: "DNS-level ad blocking"
+  url: "/pihole"
+  icon: "img:/_files/pi-hole.png"
+  color: blue
+- title: "AdGuard Home"
+  description: "DNS-level ad blocking with more filters"
+  url: "/adguard"
+  icon: "img:/_files/adguard-home.png"
+  color: blue
+- title: "Pi-Dash"
+  description: "Dashboard for multiple Pi-holes"
+  url: "/pidash"
+  icon: "img:/_files/pi-hole.png"
+  color: blue
+- title: "NextDNS"
+  description: "Hosted filtering for devices on and off your network"
+  url: "/nextdns"
+  icon: "img:/_files/nextdns.png"
+  color: blue
+```
+::
 
-## Visibility and troubleshooting {.sec .network}
-- [Atlas<br>*Live network map of hosts and containers*](/atlas)
-- [<img src="/scanopy.png"> Scanopy<br>*Scan the network and diagram what it finds*](/scanopy)
-- [LAN Orangutan<br>*Discover, label and track devices over time*](/lanorangutan)
-- [<img src="/dockpeek.png"> Dockpeek<br>*See and reach every exposed container port*](/dockpeek)
-- [<img src="/portracker.png"> Portracker<br>*Live map of ports in use*](/portracker)
-- [<img src="/speedtest-tracker.png"> Speedtest Tracker<br>*Track internet speed and uptime over time*](/speedtesttracker)
-- [<img src="/docsight.png"> DOCSight<br>*Monitor a cable modem and build a case for the ISP*](/docsight)
-{.links-list .network}
+## Visibility and troubleshooting
+::block-links-grid
+```yaml
+- title: "Atlas"
+  description: "Live network map of hosts and containers"
+  url: "/atlas"
+  color: blue
+- title: "Scanopy"
+  description: "Scan the network and diagram what it finds"
+  url: "/scanopy"
+  icon: "img:/_files/scanopy.png"
+  color: blue
+- title: "LAN Orangutan"
+  description: "Discover, label and track devices over time"
+  url: "/lanorangutan"
+  color: blue
+- title: "Dockpeek"
+  description: "See and reach every exposed container port"
+  url: "/dockpeek"
+  icon: "img:/_files/dockpeek.png"
+  color: blue
+- title: "Portracker"
+  description: "Live map of ports in use"
+  url: "/portracker"
+  icon: "img:/_files/portracker.png"
+  color: blue
+- title: "Speedtest Tracker"
+  description: "Track internet speed and uptime over time"
+  url: "/speedtesttracker"
+  icon: "img:/_files/speedtest-tracker.png"
+  color: blue
+- title: "DOCSight"
+  description: "Monitor a cable modem and build a case for the ISP"
+  url: "/docsight"
+  icon: "img:/_files/docsight.png"
+  color: blue
+```
+::

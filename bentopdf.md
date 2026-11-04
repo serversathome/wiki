@@ -2,29 +2,19 @@
 title: BentoPDF
 description: A guide to deploying BentoPDF via docker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:30.996Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:22.226Z
+dateCreated: '2026-01-15T15:03:22.226Z'
 ---
 
-# <img src="https://github.com/user-attachments/assets/f1a69d56-5850-4d83-95e8-052e25263fc8" class="tab-icon"> What is BentoPDF? 
+# ![](https://github.com/user-attachments/assets/f1a69d56-5850-4d83-95e8-052e25263fc8 =28x) What is BentoPDF?
 BentoPDF is a powerful suite of tools that allow you to do all kinds of cool things with PDF files. Some examples are: siging PDF's, create or fill in forms, extract images and so much more.
 
+> [!NOTE]
 > No datasets need to be created
-{.is-info}
 
-<div class="glance">
-  <div><span>Port</span><b><code>3060</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/alam00000/bentopdf"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy BentoPDF
+# :logos:docker-icon: 1 · Deploy BentoPDF
 ```yaml
 services:
   bentopdf:
@@ -38,14 +28,15 @@ services:
     #  - DISABLE_IPV6=true
 ```
 
+> [!NOTE]
 > This uses the **Self-Hosted** build (`bentopdf-simple`), which upstream recommends for home and internal use. It has every PDF tool, just without the marketing pages. The `bentopdf` image without `-simple` is the commercial build that runs bentopdf.com.
-{.is-info}
 
+> [!TIP]
 > After deploying the container, simply go to `http://IP:3060` and start using the software.
-{.is-success}
 
-# <img src="https://github.com/user-attachments/assets/f1a69d56-5850-4d83-95e8-052e25263fc8" class="tab-icon"> 2 · Documentation 
+# ![](https://github.com/user-attachments/assets/f1a69d56-5850-4d83-95e8-052e25263fc8 =28x) 2 · Documentation
 <ol>
   <li><a href="https://www.bentopdf.com/">BentoPDF Website</a></li>
   <li><a href="https://www.github.com/alam00000/bentopdf">GitHub</a><br></li>
 </ol>
+

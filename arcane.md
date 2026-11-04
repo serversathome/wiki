@@ -2,31 +2,19 @@
 title: Arcane
 description: A guide to deploying Arcane in docker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:15.874Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:09.587Z
+dateCreated: '2026-01-15T15:03:09.587Z'
 ---
 
-# <img src="/arcane.png" class="tab-icon"> What is Arcane?
+# What is Arcane?
 
 **Arcane** is a modern, self-hosted web UI for managing **Docker** and **Docker Swarm** — think containers, images, volumes, networks, ports, and Compose projects all from one place, plus a typed REST API and a companion CLI. It goes well beyond a basic dashboard: multi-host management via agents, image-update detection with optional auto-update/auto-heal, Trivy vulnerability scanning, GitOps, notifications, and full RBAC with OIDC SSO.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3552</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/getarcaneapp/arcane"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
 # 1 · Deploy Arcane
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 Arcane needs **one secret** before it'll start: `ENCRYPTION_KEY` (32 bytes, used for secrets at rest). Arcane v2 no longer uses `JWT_SECRET`; it generates and stores its own session signing key. Generate the encryption key first:
 
 ```bash
@@ -65,13 +53,12 @@ services:
 
 `PROJECTS_DIRECTORY` is the folder Arcane scans for your Compose projects — point it at your existing stacks directory and mount that **same path** into the container.
 
+> [!WARNING]
 > **Upgrading from Arcane 1.x?** Remove `JWT_SECRET` from your compose (Arcane logs a warning if it is still set) and add `APP_URL`, or you may get "Cross-origin request blocked" errors. v2 also no longer runs as root, so make sure user `568` can write to `/mnt/tank/configs/arcane` and your stacks folder. See the [v2 migration guide](https://getarcane.app/docs/get-started/migrate-v2).
-{.is-warning}
 
+::
 
-
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Arcane is in the TrueNAS **Community** train.
 
 1. Navigate to **Apps** in the TrueNAS UI and click **Discover Apps**.
@@ -85,7 +72,9 @@ Arcane is in the TrueNAS **Community** train.
 4. The app runs as user/group **568** (the `apps` group) by default.
 5. Click **Install** and wait for the **Running** state.
 
+::
 
+:::
 
 # 2 · First Login & Securing the Admin Account
 
@@ -118,9 +107,8 @@ For external access, terminate TLS at your reverse proxy (or Cloudflare Tunnel) 
       - TRUSTED_PROXIES=172.16.0.0/12      # your Docker/proxy subnet
 ```
 
-> 
+> [!NOTE]
 > Arcane can also terminate TLS itself (HTTP/2 over TLS) without a proxy by setting `TLS_ENABLED=true`, `TLS_CERT_FILE`, and `TLS_KEY_FILE`.
-{.is-info}
 
 # 4 · Adding Remote Docker Hosts (Agents)
 
@@ -205,9 +193,8 @@ On hardened hosts you may need:
 
 Configure outbound alerts under **Settings → Notifications** for update-available, vulnerability, prune, auto-heal, and test events. Supported channels: **Discord, Slack, Telegram, Email (SMTP), Gotify, Ntfy, Pushover, generic Webhooks**, and the **Shoutrrr** meta-provider.
 
-> 
+> [!TIP]
 > Use the **"send test"** action after configuring a provider to confirm delivery before relying on it.
-{.is-success}
 
 # 6 · Single Sign-On (OIDC)
 
@@ -230,4 +217,5 @@ Set your provider's redirect/callback URL to your Arcane `APP_URL`. Admin status
 
 
 
-# <img src="/youtube.png" class="tab-icon"> 7 · Video
+# :logos:youtube-icon: 7 · Video
+

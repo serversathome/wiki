@@ -2,28 +2,17 @@
 title: Cloudreve
 description: A guide to deploying Cloudreve
 published: true
-date: 2026-01-15T15:28:31.914Z
-tags: 
+date: '2026-11-04T16:24:01.179Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:48.008Z
+dateCreated: '2026-01-15T15:03:48.008Z'
 ---
 
-# <img src="/cloudreve.png" class="tab-icon"> What is Cloudreve?
+# What is Cloudreve?
 
 Cloudreve can help you build a self-hosted file management service that is both suitable for private and public use, with support for multiple storage providers and virtual file systems to provide a flexible file management experience.
 
-<div class="glance">
-  <div><span>Port</span><b><code>5212</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>3 services</b></div>
-  <div><span>Depends on</span><b>Postgres and Redis</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://youtu.be/5zWL_cIdmIU"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Cloudreve
+# :logos:docker-icon: 1 · Deploy Cloudreve
 ```yaml
 services:
   cloudreve:
@@ -71,5 +60,6 @@ services:
 1. Click **Register**
 
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video 
-https://youtu.be/5zWL_cIdmIU
+# :logos:youtube-icon: 3 · Video
+::block-youtube{url="https://youtu.be/5zWL_cIdmIU"}
+::

@@ -2,21 +2,21 @@
 title: AirVPN
 description: Instructions on how to use AirVPN to create a wireguard config for torrenting
 published: true
-date: 2026-10-27T02:58:07.979Z
-tags: 
+date: '2026-11-04T16:23:12.397Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:02:16.582Z
+dateCreated: '2026-01-15T15:02:16.582Z'
 ---
 
-![](/sky_1010x227.png)
+![](/sky-1010x227.png)
 # What is AirVPN?
 An OpenVPN and WireGuard based VPN operated by activists in defense of net neutrality, privacy and against censorship.
 
 This impenetrable tunnel prevents criminal organizations, your ISP or even your government from spying on your communications.
 
 
+> [!TIP]
 > Want to say thanks? Sign up using [my link](https://airvpn.org/?referred_by=669318) and I get free VPN time!
-{.is-success}
 
 # 1 · Creating a .conf File
 
@@ -31,16 +31,16 @@ To use AirVPN, sign up and generate a Wireguard Configuration from the **Client 
 1. Scroll all the way to the bottom and click **Generate**
 1. Once it saves the file, rename it **wg0.conf.**
 
+> [!WARNING]
 > You will need to copy these contents to the folder housing your qBittorrent config
-{.is-warning}
 
 
 # 2 · Generating a .conf File with my Script
 
 Instead of using the Config Generator by hand, you can let my `airvpn-wg.sh` script build the `wg0.conf` for you straight from the AirVPN API. It picks the best server for you, and it can also **send you alerts** and **automatically switch servers** when the one you're on goes down. My [\*arr stack script](https://wiki.serversatho.me/Folder-Structure#h-21-running-the-script) offers it when it asks for qBittorrent's WireGuard config (option 2, **Auto-generate**), so if you use that script you don't need to run this one separately.
 
+> [!NOTE]
 > You need an AirVPN **API key**, which requires a premium account. Create one at [airvpn.org/apisettings](https://airvpn.org/apisettings/).
-{.is-info}
 
 ## 2.1 Running the Script
 To view the script, [look here](https://raw.githubusercontent.com/serversathome/ServersatHome/refs/heads/main/airvpn-wg.sh). To run it, execute this one-liner in the TrueNAS shell:
@@ -75,8 +75,8 @@ Each problem is alerted once when it starts, and you get an "all clear" when it 
 
 When alerts or auto-switch are on, the script adds a cron job that runs `airvpn-wg.sh monitor` every **5 minutes**. On TrueNAS it shows up under **System > Advanced Settings > Cron Jobs** as **AirVPN monitor**. If an auto-switch fails (for example, no server matches your filters), it is retried every 30 minutes.
 
+> [!NOTE]
 > The script keeps a copy of itself, plus its settings (`airvpn-wg.env`, readable by root only), next to your `wg0.conf`. The cron job runs that copy, so the one you downloaded is removed once it has been moved there.
-{.is-info}
 
 ## 2.3 Changing Settings Later
 
@@ -92,14 +92,14 @@ Run the copy next to your `wg0.conf` with one of these commands:
 
 You can also skip the menus with `--device <name>` and `--server <name>` (for example `--server Menkent`), and choose the WireGuard port with `--port` (`1637` by default, or `47107` / `51820`).
 
+> [!WARNING]
 > AirVPN bans IPs that send more than 600 API requests in 10 minutes, so the script limits itself to 300 per run. Building the server list usually takes 40 to 120 requests, and a monitor check takes 1 to 3.
-{.is-warning}
 
 # 3 · Port Forwarding
 
 The point of using AirVPN is the port forward for qBittorrent. Go the **Client Area** tab, then the **Ports** box, and click **Manage**.
 
-![](/screenshot_from_2024-02-23_09-42-58.png)
+![](/screenshot-from-2024-02-23-09-42-58.png)
 
 1. At the bottom, click **Request a new port**
 1. Change the **Device** name to the device which you just created the wireguard config file for
@@ -108,6 +108,8 @@ The point of using AirVPN is the port forward for qBittorrent. Go the **Client A
 
 ![](https://wiki.hydrology.cc/portforward.png)
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Script Video
-https://youtu.be/kcUKYFtfX58
+# :logos:youtube-icon: 4 · Script Video
+::block-youtube{url="https://youtu.be/kcUKYFtfX58"}
+::
+
 

@@ -2,28 +2,15 @@
 title: Kan
 description: A guide to deploying Kan.bn in docker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:22.098Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:05:45.849Z
+dateCreated: '2026-01-15T15:05:45.849Z'
 ---
 
-# ![](/kan.png){class="tab-icon"} What is Kan?
+# What is Kan?
 
 A powerful, flexible kanban app that helps you organise work, track progress, and deliver results—all in one place.
-
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>3 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/kanbn/kan"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://docs.kan.bn/introduction"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://youtu.be/_Upe8mr5KMA"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
 
 # Installation
 ```yaml
@@ -73,9 +60,10 @@ services:
 - Replace `your_auth_secret` with a random string. Generate one with `openssl rand -hex 32`
 - Use the same `your_postgres_password` value in all three places
 - The `migrate` container runs the database migrations and then exits. That's expected: `web` starts once it finishes successfully.
-> 
+> [!TIP]
 > Read the [official docs](https://docs.kan.bn/introduction)!
-{.is-success}
 
 # Video
-https://youtu.be/_Upe8mr5KMA
+::block-youtube{url="https://youtu.be/_Upe8mr5KMA"}
+::
+

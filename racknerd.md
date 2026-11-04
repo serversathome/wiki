@@ -2,13 +2,13 @@
 title: Racknerd VPS
 description: A guide to deploying a Racknerd VPS
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T19:05:29.906Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:49.041Z
+dateCreated: '2026-01-15T15:07:49.041Z'
 ---
 
-# <img src="/racknerd.jpg" class="tab-icon"> What is Racknerd?
+# What is Racknerd?
 
 RackNerd is a global provider of Infrastructure as a Service (IaaS) solutions, offering dedicated servers, virtual private servers (VPS), and colocation services across multiple datacenter locations. They focus on providing reliable hosting solutions with 24/7 support and competitive pricing.
 
@@ -17,12 +17,25 @@ RackNerd is a global provider of Infrastructure as a Service (IaaS) solutions, o
 1. Create an account on [Racknerd](https://www.racknerd.com/)
 1. Use one of the affilate links to get a discount on a VPS:
 
-   - [1 vCPU | 1GB RAM | 20GB SSD | 3TB bandwidth | $21.99/yr](https://my.racknerd.com/aff.php?aff=15328&pid=952)
-    - [2 vCPU | 2GB RAM | 35GB SSD | 5TB bandwidth | $35.99/yr](https://my.racknerd.com/aff.php?aff=15328&pid=953)
-    - [3 vCPU | 4GB RAM | 60GB SSD | 7TB bandwidth | $59.99/yr](https://my.racknerd.com/aff.php?aff=15328&pid=954)
-    - [6 vCPU | 6GB RAM | 100GB SSD | 12TB bandwidth | $89.99/yr](https://my.racknerd.com/aff.php?aff=15328&pid=955)
-    - [7 vCPU | 8GB RAM | 150GB SSD | 20TB bandwidth | $119.99/yr](https://my.racknerd.com/aff.php?aff=15328&pid=956)
-    {.links-list}
+   ::block-links-grid
+   ```yaml
+   - title: "$21.99/yr"
+     description: "1 vCPU · 1GB RAM · 20GB SSD · 3TB bandwidth"
+     url: "https://my.racknerd.com/aff.php?aff=15328&pid=952"
+   - title: "$35.99/yr"
+     description: "2 vCPU · 2GB RAM · 35GB SSD · 5TB bandwidth"
+     url: "https://my.racknerd.com/aff.php?aff=15328&pid=953"
+   - title: "$59.99/yr"
+     description: "3 vCPU · 4GB RAM · 60GB SSD · 7TB bandwidth"
+     url: "https://my.racknerd.com/aff.php?aff=15328&pid=954"
+   - title: "$89.99/yr"
+     description: "6 vCPU · 6GB RAM · 100GB SSD · 12TB bandwidth"
+     url: "https://my.racknerd.com/aff.php?aff=15328&pid=955"
+   - title: "$119.99/yr"
+     description: "7 vCPU · 8GB RAM · 150GB SSD · 20TB bandwidth"
+     url: "https://my.racknerd.com/aff.php?aff=15328&pid=956"
+   ```
+   ::
 
 1. Set a **Server Label**
 1. Optionally add additional CPU/RAM
@@ -78,4 +91,5 @@ you would be able to access port 8080 from the public IP. This bypasses our fire
 A good way to make docker containers on the VPS accessible is with a reverse proxy like [Cloudflare Tunnels](/CloudflareTunnels) or [Nginx Proxy Manager](/nginx). When using this reverse proxy, you have to refer to the container by its hostname and not its port since the typical ` - ports:` block will be commented out of docker container running on the VPS. 
 
 The entry in the reverse proxy will look like `http://container_name:8080`. This also means the reverse proxy and all containers need to share the same docker network, which they will not by default. You must create a docker network and add all containers to it so their hostnames can be used. 
+
 

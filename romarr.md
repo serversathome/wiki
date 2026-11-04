@@ -2,13 +2,13 @@
 title: ROMarr
 description: A guide to deploying ROMarr
 published: true
-date: 2026-10-31T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:22.702Z'
+tags: []
 editor: markdown
-dateCreated: 2026-10-31T12:00:00.000Z
+dateCreated: '2026-10-31T10:33:15.904Z'
 ---
 
-# <img src="/romarr.png" class="tab-icon"> What is ROMarr?
+# What is ROMarr?
 
 **ROMarr** is "the \*arr for games". It works like Sonarr or Radarr, but for retro and console ROMs: it searches your indexers, sends releases to your download client, verifies the files against No-Intro and Redump checksums and imports them into your library. It pairs perfectly with [RomM](/romm), which it rescans automatically after every import.
 
@@ -18,17 +18,7 @@ dateCreated: 2026-10-31T12:00:00.000Z
 - Checksum verification against No-Intro and Redump DATs, with collection gap reports and 1G1R region selection
 - Duplicate audit, preview-first renaming with rollback and IGDB/RAWG metadata for the calendar and discover pages
 
-<div class="glance">
-  <div><span>Port</span><b><code>6868</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/BlizzHacker/romarr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy ROMarr
+# :logos:docker-icon: 1 · Deploy ROMarr
 ```yaml
 services:
   romarr:
@@ -55,11 +45,11 @@ services:
 1. Set `LIBRARY_URL` to your RomM address. Not using RomM? Set `LIBRARY_KIND=folder` and remove `LIBRARY_URL`
 1. Deploy the stack and open `http://YOUR-SERVER-IP:6868`
 
+> [!WARNING]
 > The `/downloads` path must match what your download client reports, character for character. If qBittorrent saves to `/downloads/complete/game.zip`, ROMarr must see the same file at that path. Otherwise add a remote path mapping under **Settings → Media Management**.
-{.is-warning}
 
+> [!NOTE]
 > The library and connection variables only seed the first start. After that, the **Settings** pages are in charge and changes to the compose file are ignored.
-{.is-info}
 
 # 2 · Configuration
 
@@ -72,13 +62,14 @@ services:
 1. Go to **Settings → Libraries**
 1. For RomM, enter the URL plus a username and password, then click **Test**
 
+> [!NOTE]
 > Create a dedicated RomM user for ROMarr instead of using your admin account. It only needs to read the library and trigger a rescan, so give it the task permission in RomM or imports will never show up.
-{.is-info}
 
 ## 2.3 Download Clients and Indexers
 1. **Settings → Download Clients**: add qBittorrent, SABnzbd or another client and click **Test**. Each protocol needs its own client, so adding qBittorrent does not cover Usenet releases
 1. **Settings → Indexers**: add your Prowlarr URL and API key, or add Torznab/Newznab indexers directly
 1. Use **Interactive Search** on a game for your first grab and follow it in **Queue** and **History**
 
+> [!TIP]
 > Already have ROMs on disk? The **Setup Guide** under Settings has an "I already have ROMs" path that scans `/downloads` and imports what it finds, no indexer needed.
-{.is-success}
+

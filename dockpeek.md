@@ -2,13 +2,13 @@
 title: Dockpeek
 description: A guide to deploying Dockpeek
 published: true
-date: 2026-01-15T15:29:01.676Z
-tags: 
+date: '2026-11-04T16:24:08.694Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:25.339Z
+dateCreated: '2026-01-15T15:04:25.339Z'
 ---
 
-# <img src="/dockpeek.png" class="tab-icon"> What is Dockpeek?
+# What is Dockpeek?
 Dockpeek is a lightweight, self-hosted Docker dashboard that allows you to view and access exposed container ports with a clean, click-to-access interface. It supports both local Docker sockets and remote hosts via socket-proxy, making it easy to manage multiple Docker environments from a single place. Additionally, Dockpeek includes built-in image update checking, so you can easily see if newer versions of your container images are available.
 
 - Port Mapping Overview – Quickly see all running containers and their exposed ports.
@@ -17,18 +17,7 @@ Dockpeek is a lightweight, self-hosted Docker dashboard that allows you to view 
 - Zero Configuration – Automatically detects running containers with no setup required.
 - Image Update Checking – Monitor available updates for your container images.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3420</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/dockpeek/dockpeek"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Dockpeek
+# :logos:docker-icon: 1 · Deploy Dockpeek
 ```yaml
 services:
   dockpeek:

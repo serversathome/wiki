@@ -2,25 +2,17 @@
 title: Joplin
 description: A guide to deploy Joplin server
 published: true
-date: 2026-01-27T12:16:53.162Z
-tags: 
+date: '2026-11-04T16:24:21.402Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-27T12:16:53.162Z
+dateCreated: '2026-01-27T12:16:53.162Z'
 ---
 
-# <img src="/joplin.png" class="tab-icon"> What is Joplin?
+# What is Joplin?
 
 **Joplin** is an open source note-taking and to-do application with sync capabilities. Joplin Server allows you to self-host your own sync backend, giving you full control over your notes across all your devices.
 
-<div class="glance">
-  <div><span>Port</span><b><code>22300</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Joplin Server
+# :logos:docker-icon: 1 · Deploy Joplin Server
 
 ```yaml
 services:
@@ -57,9 +49,8 @@ services:
 1. Change all the default passwords. Make sure when you change them in the joplin service you mirror those changes in the joplin-db service.
 2. Replace `YOUR_SERVER_IP` with your server's IP address or domain name.
 
-> 
+> [!NOTE]
 > If using a reverse proxy, set `APP_BASE_URL` to your full domain like `https://joplin.yourdomain.com`
-{.is-info}
 
 # 2 · First Login
 
@@ -69,9 +60,8 @@ After deployment, access the web interface at `http://YOUR_SERVER_IP:22300`.
 |---|---|
 | `admin@localhost` | `admin` |
 
-> 
+> [!WARNING]
 > Change these credentials immediately after first login!
-{.is-warning}
 
 # 3 · Creating Users
 
@@ -80,9 +70,8 @@ After deployment, access the web interface at `http://YOUR_SERVER_IP:22300`.
 3. Click **Add User**
 4. Enter email and password for each user
 
-> 
+> [!NOTE]
 > Each person syncing notes needs their own user account. Don't share the admin account.
-{.is-info}
 
 # 4 · Client Setup
 
@@ -116,3 +105,4 @@ After deployment, access the web interface at `http://YOUR_SERVER_IP:22300`.
 
 ## Sync conflicts
 Joplin handles conflicts by creating duplicate notes with a conflict marker. Review and merge these manually in the desktop client.
+

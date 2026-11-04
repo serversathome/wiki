@@ -2,28 +2,19 @@
 title: Gluetun
 description: Using the Gluetun container to run other containers with a VPN
 published: true
-date: 2026-01-15T15:29:21.165Z
-tags: 
+date: '2026-11-04T16:17:15.245Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:52.667Z
+dateCreated: '2026-01-15T15:04:52.667Z'
 ---
 
+> [!CAUTION]
 > There have been widespread reports of issues with this container. The main one being it will work for awhile then go down, or the port will be open then close on its own after 10 minutes or less. As such, I am not recommending this for the time being. Use at your own risk - no support will be answered for issues with this container.
-{.is-danger}
 
 
 # What is Gluetun?
 
 Gluetun Docker provides a universal VPN to all docker containers + non-docker apps. It supports [multiple VPN providers](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers).
-
-<div class="glance">
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/passteque/gluetun"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
 
 # Docker Compose
 

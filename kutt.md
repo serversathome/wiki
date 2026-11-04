@@ -2,33 +2,19 @@
 title: Kutt
 description: A guide to deploying Kutt
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:21.629Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-05T18:35:20.228Z
+dateCreated: '2026-03-05T18:35:20.228Z'
 ---
 
-# <img src="/kutt.png" class="tab-icon"> What is Kutt?
+# What is Kutt?
 
 **Kutt** is a free, open-source, self-hosted URL shortener with support for custom domains. It allows you to create and manage shortened links, set custom addresses, protect links with passwords, configure expiration times, view private click statistics, and integrate with other tools through a RESTful API. Kutt supports SQLite (default), PostgreSQL, and MySQL/MariaDB as database backends, and optionally Redis for caching.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Redis</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/thedevs-network/kutt"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/jJ-cydT3wB0"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Kutt
-# {.tabset}
-## SQLite
-
+# :logos:docker-icon: 1 · Deploy Kutt
+:::block-tabs
+::block-tab{label="SQLite"}
 ```yaml
 services:
   kutt:
@@ -63,14 +49,15 @@ services:
 ```
 
 
+> [!CAUTION]
 > You **must** change `JWT_SECRET` to a long random string before deploying. You can generate one with: `openssl rand -base64 32`
-{.is-danger}
 
+> [!NOTE]
 > Change `DEFAULT_DOMAIN` to the domain or IP address you will use to access Kutt. Do not include `http://` or `https://` — just the domain (e.g., `links.yourdomain.com`).
-{.is-info}
 
-## PostgreSQL + Redis
+::
 
+::block-tab{label="PostgreSQL + Redis"}
 If you prefer PostgreSQL over SQLite, use this compose instead:
 
 ```yaml
@@ -127,14 +114,18 @@ services:
       timeout: 5s
       retries: 5
 ```
+> [!CAUTION]
 > You **must** change `JWT_SECRET` to a long random string before deploying. You can generate one with: `openssl rand -base64 32`
-{.is-danger}
 
+> [!NOTE]
 > Change `DEFAULT_DOMAIN` to the domain or IP address you will use to access Kutt. Do not include `http://` or `https://` — just the domain (e.g., `links.yourdomain.com`).
-{.is-info}
 
+> [!WARNING]
 > Make sure `DB_USER` / `DB_PASSWORD` / `DB_NAME` match the `POSTGRES_USER` / `POSTGRES_PASSWORD` / `POSTGRES_DB` values.
-{.is-warning}
+
+::
+
+:::
 
 # 2 · Configuration
 
@@ -165,8 +156,8 @@ Once logged in, you'll see a clean interface with a URL input box at the top. Pa
 | `REDIS_PORT` | Redis port. | `6379` |
 {.dense}
 
+> [!NOTE]
 > As of v3.2.3, you can set any environment variable by reading from a file. Append `_FILE` to the variable name and set the value to the file path. Example: `JWT_SECRET_FILE=/run/secrets/jwt_secret`
-{.is-info}
 
 ## 2.3 Link Options
 
@@ -208,8 +199,8 @@ custom/
 │   ├─ 404.hbs
 ```
 
+> [!WARNING]
 > After making changes to the custom folder, restart the Kutt container for changes to take effect.
-{.is-warning}
 
 ## 2.7 Making Your Instance Private
 
@@ -222,6 +213,8 @@ To lock down your Kutt instance for personal use, set these two environment vari
 
 This prevents anyone else from signing up or creating short links without an account.
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-https://youtu.be/jJ-cydT3wB0
+# :logos:youtube-icon: 3 · Video
+::block-youtube{url="https://youtu.be/jJ-cydT3wB0"}
+::
+
 

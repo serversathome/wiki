@@ -2,34 +2,21 @@
 title: Seerr
 description: A guide to deploying Seerr
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:01.523Z'
+tags: []
 editor: markdown
-dateCreated: 2026-02-14T20:08:17.652Z
+dateCreated: '2026-02-14T20:08:17.652Z'
 ---
 
-# <img src="/seerr.png" class="tab-icon"> What is Seerr?
+# What is Seerr?
 
 **Seerr** is the unified successor to both Overseerr and Jellyseerr — a free and open-source media request and discovery manager. It integrates with **Jellyfin**, **Plex**, and **Emby**, along with existing services like **Sonarr** and **Radarr**, giving your users a clean interface to request movies and TV shows.
 
 Seerr v3.0.0 merges the Overseerr and Jellyseerr codebases into a single project, combining all existing Overseerr functionality with the latest Jellyseerr features.
 
-<div class="glance">
-  <div><span>Port</span><b><code>5055</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/seerr-team/seerr"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://docs.seerr.dev/extending-seerr/database-config/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://youtu.be/tJgvZqKo37U"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
 # 1 · Deploy Seerr
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   seerr:
@@ -53,16 +40,15 @@ services:
     restart: unless-stopped
 ```
 
->
+> [!NOTE]
 > The `init: true` directive is **required**. Seerr no longer provides its own init process inside the container.
-{.is-info}
 
->
+> [!CAUTION]
 > The Seerr Docker container runs as the `node` user (UID **1000**) by default, unlike most containers in the arr stack, which use 568. Either give the config folder to UID 1000, or add `user: "568:568"` to the compose to run it as the `apps` user. See [Section 2 · Permissions](#h-2-permissions-docker-only) for how to handle this on TrueNAS.
-{.is-danger}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for **Seerr**
 3. Click **Install**
@@ -70,15 +56,17 @@ services:
    - **Host Path**: `/mnt/tank/configs/seerr`
 5. Click **Save**
 
->
+> [!TIP]
 > The TrueNAS app runs as user/group **568** (the standard `apps` user), so permissions work the same as the rest of your arr stack. No special ownership changes are needed.
-{.is-success}
+
+::
+
+:::
 
 # 2 · Permissions (Docker Only)
 
->
+> [!NOTE]
 > This section only applies to **Docker (Dockge)** deployments. The TrueNAS app runs as 568:568 and handles permissions normally.
-{.is-info}
 
 The Seerr Docker container runs as UID **1000** (the `node` user) by default. On TrueNAS, where the standard `apps` user is UID **568**, the config directory must be owned by whichever user the container runs as. With the default, give it to UID 1000:
 
@@ -88,19 +76,17 @@ chown -R 1000:1000 /mnt/tank/configs/seerr
 
 If you'd rather keep everything as `apps`, add `user: "568:568"` to the `seerr` service instead and run `chown -R 568:568 /mnt/tank/configs/seerr`.
 
-> 
+> [!NOTE]
 > If Seerr is having trouble writing to its config directory, permissions are almost always the cause. Check with `ls -la /mnt/tank/configs/seerr` and verify UID 1000 owns the files.
-{.is-info}
 
 # 3 · Migrating from Jellyseerr/Overseerr
 
 If you're coming from Jellyseerr or Overseerr, the migration to Seerr is mostly automatic — but the steps differ depending on whether you deployed via Docker or the TrueNAS app.
 
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
+> [!CAUTION]
 > Do **not** point Seerr at your existing Jellyseerr/Overseerr dataset. Create a new dataset and copy your data into it. This keeps your Jellyseerr install intact as a rollback option.
-{.is-danger}
 
 1. Stop the Jellyseerr container in Dockge or in the TrueNAS shell run:
 
@@ -144,8 +130,9 @@ If you're coming from Jellyseerr or Overseerr, the migration to Seerr is mostly 
 
     Navigate to `http://your-server-ip:5055` and confirm your settings, users, and request history carried over. Once you're satisfied everything is working, you can remove the old Jellyseerr container and dataset at your discretion.
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS (Host Path)
+::
 
+::block-tab{label="TrueNAS (Host Path)" icon="simple-icons:truenas"}
 If your Jellyseerr/Overseerr TrueNAS app was configured with a **Host Path**, the migration is straightforward — just point Seerr at the same path.
 
 1. Stop the **Jellyseerr** app in the TrueNAS UI
@@ -155,13 +142,13 @@ If your Jellyseerr/Overseerr TrueNAS app was configured with a **Host Path**, th
 5. Verify your settings, users, and request history carried over
 6. Delete the old Jellyseerr app
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS (ixVolume)
+::
 
+::block-tab{label="TrueNAS (ixVolume)" icon="simple-icons:truenas"}
 If your Jellyseerr/Overseerr TrueNAS app was using **ixVolume** storage, you'll need to copy the data out into a Host Path dataset before installing Seerr.
 
->
+> [!NOTE]
 > If you're not sure whether you used Host Path or ixVolume, check your Jellyseerr app configuration in the TrueNAS UI under **Apps → Jellyseerr → Edit**. If you see a path like `/mnt/tank/configs/jellyseerr`, you're using Host Path. If you don't see an explicit path, you're using ixVolume.
-{.is-info}
 
 1. Stop the **Jellyseerr** app in the TrueNAS UI
 
@@ -189,6 +176,10 @@ If your Jellyseerr/Overseerr TrueNAS app was using **ixVolume** storage, you'll 
 1. Start the Seerr app — it will automatically migrate your database on first boot
 
 1. Verify your settings, users, and request history carried over, then delete the old Jellyseerr app
+
+::
+
+:::
 
 # 4 · Configuration
 
@@ -237,6 +228,7 @@ Seerr v3.0.0 adds optional PostgreSQL support. By default, Seerr uses SQLite (st
 
 If you run Pi-hole or AdGuard, Seerr's new DNS caching feature can help reduce DNS query spam from the container. This is experimental and can be enabled in the Seerr settings.
 
-# <img src="/youtube.png" class="tab-icon"> 5 · Video
+# :logos:youtube-icon: 5 · Video
 
-https://youtu.be/tJgvZqKo37U
+::block-youtube{url="https://youtu.be/tJgvZqKo37U"}
+::

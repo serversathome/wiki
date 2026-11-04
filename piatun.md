@@ -2,10 +2,10 @@
 title: PIA-tun
 description: A guide to deploying PIA-tun
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:23.544Z'
+tags: []
 editor: markdown
-dateCreated: 2026-05-30T11:10:56.041Z
+dateCreated: '2026-05-30T11:10:56.041Z'
 ---
 
 #  What is pia-tun?
@@ -26,19 +26,7 @@ Highlights:
 - **Observability** — `/health`, `/ready`, and Prometheus `/metrics` (plus a JSON variant)
 - **Multi-arch images** — amd64, arm64, and armv7
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/x0lie/pia-tun/blob/main/docs/env.md"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-  </div>
-</div>
-
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy pia-tun
+# :logos:docker-icon: 1 · Deploy pia-tun
 
 ```yaml
 services:
@@ -94,9 +82,8 @@ The full reference is in the project's [env docs](https://github.com/x0lie/pia-t
 | `LOG_LEVEL` | `error`, `info`, `debug`, `trace` | `info` |
 
 
-> 
+> [!NOTE]
 > `PIA_LOCATIONS=all` works, but lowest latency doesn't always mean highest throughput. For most US users, PIA's Canadian servers (Ontario/Toronto) tend to give the best download speeds.
-{.is-info}
 
 ## 2.2 Port Forwarding & Syncing
 
@@ -110,8 +97,8 @@ The full reference is in the project's [env docs](https://github.com/x0lie/pia-t
 | `PORT_FILE` | File the forwarded port is written to | `/run/pia-tun/port` |
 
 
+> [!WARNING]
 > `PS_USER`/`PS_PASS` must match your qBittorrent WebUI login, or the forwarded port never reaches qBittorrent.
-{.is-warning}
 
 If your downloader has no usable API (e.g. rtorrent), pia-tun can't restart other containers itself (that would need the Docker socket). The project recommends a host-side `inotifywait` watcher on `PORT_FILE` that runs `docker restart`, or switching to an API-capable client. See their [dependent-restarts doc](https://github.com/x0lie/pia-tun/blob/main/docs/dependent-restarts.md).
 
@@ -128,9 +115,8 @@ If your downloader has no usable API (e.g. rtorrent), pia-tun can't restart othe
 
 The kill-switch is default-deny: only loopback, the VPN interface, and your container/local networks are allowed; everything else is dropped until it can go through the tunnel. It stays active during reconnects and even after a crash (until the network namespace is torn down). To access the WebUI from your LAN, set `LOCAL_NETWORKS` to your LAN CIDR as in the example above.
 
-> 
+> [!CAUTION]
 > Do **not** point any dependent service's DNS at `149.112.112.9` or `149.112.112.11` on port 53 — pia-tun reserves those for bootstrap resolution of PIA endpoints, and overlap can cause problems. Also avoid `DNS=system` unless you fully understand your resolver chain; it's an easy way to leak DNS.
-{.is-danger}
 
 ## 2.4 Proxies (optional)
 
@@ -139,4 +125,5 @@ To let *other* machines or containers use the tunnel without sharing the namespa
 ## 2.5 Observability
 
 Metrics are on by default at `:9090` — `/health`, `/ready`, `/metrics` (Prometheus), and `/metrics?format=json`. Set `INSTANCE_NAME` to label metrics if you run more than one instance, and `METRICS_PORT` to move the listener. These are handy for a Grafana panel or an Uptime Kuma check against `/health`.
+
 

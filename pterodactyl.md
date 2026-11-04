@@ -2,14 +2,13 @@
 title: Pterodactyl & Wings
 description: A guide to deploying Pterodactyl Panel and Wings
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T15:58:45.886Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:35.530Z
+dateCreated: '2026-01-15T15:07:35.530Z'
 ---
 
-
-# ![](/pterodactyl.png){class="tab-icon"} 1 · What Is Pterodactyl?
+# 1 · What Is Pterodactyl?
 Pterodactyl is a free, open-source game server management panel. It gives you a web UI to deploy, start/stop, monitor, and manage game servers — Minecraft, Rust, ARK, Valheim, whatever — with per-server resource limits, a clean file manager, SFTP access, and user/subuser accounts so you can hand a server off to a friend without handing them root.
 
 ## 1.1 Why Use This?
@@ -18,7 +17,7 @@ Running a handful of game servers on a bare box works until you want more than o
 
 Under the hood, **Wings** (the daemon) runs each game server inside its own Docker container with CPU/RAM/disk limits and isolated storage. The **Panel** is the web UI you actually interact with. On a homelab, running both on the same box (all-in-one) is the simplest setup and what this guide covers.
 
-# <img src="/linuxcontainers.png" class="tab-icon"> 2 · TrueNAS 26 LXC Installation
+# :simple-icons:linuxcontainers: 2 · TrueNAS 26 LXC Installation
 
 ## 2.1 Prerequisites
 
@@ -138,4 +137,5 @@ Each game server needs at least one IP:port allocation.
 
 # 6 · Router / Firewall
 Because the container is on your LAN bridge (not NATed), its IP is reachable from your LAN directly. To expose game servers to the internet, forward the allocation ports on your router to the container's IP (no port-forward magic needed on TrueNAS itself). 
+
 

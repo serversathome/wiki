@@ -1,27 +1,22 @@
 ---
 title: Cloudflare Tunnels
-description: A guide to installing Cloudflare Tunnels in TrueNAS Scale as well as on bare metal
+description: >-
+  A guide to installing Cloudflare Tunnels in TrueNAS Scale as well as on bare
+  metal
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:16:59.837Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:02:18.633Z
+dateCreated: '2026-01-15T15:02:18.633Z'
 ---
 
-# ![](/cloudflare.png){class="tab-icon"} What are Cloudflare Tunnels?
+# What are Cloudflare Tunnels?
 
 Cloudflare Tunnel provides you with a secure way to connect your resources to Cloudflare without a publicly routable IP address. With Tunnel, you do not send traffic to an external IP — instead, a lightweight daemon in your infrastructure (cloudflared) creates outbound-only connections to Cloudflare’s global network. Cloudflare Tunnel can connect HTTP web servers, SSH servers, remote desktops, and other protocols safely to Cloudflare. This way, your origins can serve traffic through Cloudflare without being vulnerable to attacks that bypass Cloudflare.
 
-<div class="glance">
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
 # 1 · Deploy Cloudflare Tunnels
-# {.tabset}
-## <img src="/windows-terminal.png" class="tab-icon"> Bare Metal
-
+:::block-tabs
+::block-tab{label="Bare Metal" icon="simple-icons:windowsterminal"}
 I don't like to run Cloudflare Tunnels in a container because it means the docker networks have to be modified in each stack to have access from the tunnel. Instead, I run the tunnel on bare metal and update it with a cronjob when necessary. This is even easier to do than a docker compose file. 
 
 Open a free account on Cloudflare and secure a domain name. This will cost money, but not much. I pay about 66 cents per month for mine. Once you have an account and a domain name, you need to build a tunnel:
@@ -33,9 +28,9 @@ Open a free account on Cloudflare and secure a domain name. This will cost money
 5.  Copy the installation command shown into the terminal and run it.
 6.  Once the command has run successfully and the tunnel connects, click **Continue**.
 
+::
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-11_11-42-42.png)
 
 1. In the **Cloudflared Configuration** section, we need to add our tunnel token. 
@@ -45,12 +40,14 @@ Open a free account on Cloudflare and secure a domain name. This will cost money
 1.  When asked to choose your environment, pick **Docker**. 
 1. In the installation command shown, the tunnel token is everything after the --token line and needs to be copied to the TrueNAS install screen.
 
+> [!NOTE]
 > Optionally, you can check the box in **Network Configuration** for **Host Network** if you want your tunnel to be able to access anything which is not on your TrueNAS server, like your router or other computers on your network
-{.is-info}
 
 To add apps to your tunnel, login to the Cloudflare dashboard and go to **Networking** > **Tunnels**. Select the tunnel you just created and open the **Routes** tab. Follow the Adding Published Application Routes section below to add apps from TrueNAS.
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+::
+
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   cloudflared:
@@ -59,6 +56,10 @@ services:
     restart: unless-stopped
     container_name: tunnel
 ```
+
+::
+
+:::
 
 # 2 · Adding Published Application Routes
 
@@ -73,8 +74,8 @@ Cloudflare now calls these **Published application routes** (formerly public hos
 
 Click **Add route** to save it.
 
+> [!NOTE]
 > The screenshot below is from an older version of the Cloudflare dashboard, so the layout will look different.
-{.is-info}
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-11_11-38-58.png)
 
@@ -84,7 +85,7 @@ This example entry would create an endpoint in my existing tunnel. Now if I navi
 
 # 3 · Streaming Media
 
+> [!CAUTION]
 > Do not, under any circumstances, use tunnels to stream media!
-{.is-danger}
 
 It is against Cloudflare's Terms of Service to stream video through their tunnels. The better way to do this if you want to stream remotely is to use an unproxied DNS entry in Cloudflare for your domain and then port forward from your router to your container. Assuming you are using Emby, this would be a port forward on the router for port 8096 to the IP address of your server to port 8096.

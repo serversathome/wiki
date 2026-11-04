@@ -2,13 +2,13 @@
 title: Homescreen Hero
 description: A guide to deploying Homescreen Hero
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:57.632Z'
+tags: []
 editor: markdown
-dateCreated: 2026-02-03T12:22:46.645Z
+dateCreated: '2026-02-03T12:22:46.645Z'
 ---
 
-# <img src="/homescreen-hero.png" class="tab-icon"> What is HomeScreen Hero?
+# What is HomeScreen Hero?
 
 **HomeScreen Hero** is a self-hosted web app that keeps your Plex home screen fresh by automatically rotating collections on a schedule or manually via a modern FastAPI + React dashboard. Beyond collection rotation, it provides server insights, useful Plex management tools, and integrations with popular services like Trakt, Letterboxd, MDBList, TMDb, AniList, MyAnimeList, Tautulli, and Overseerr.
 
@@ -20,17 +20,7 @@ dateCreated: 2026-02-03T12:22:46.645Z
 - Widgets for Tautulli and Overseerr
 - Tools for managing Date Added timestamps, Watch History, and generating Unwatched Reports
 
-<div class="glance">
-  <div><span>Port</span><b><code>8000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/trentferguson/homescreen-hero"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy HomeScreen Hero
+# :logos:docker-icon: 1 · Deploy HomeScreen Hero
 
 ```yaml
 services:
@@ -64,9 +54,8 @@ services:
 3. Deploy the stack and navigate to `http://your-server-ip:8000`
 4. Complete the **Setup Wizard** to configure your libraries and rotation settings
 
-> 
+> [!NOTE]
 > The Setup Wizard will guide you through the initial configuration. You don't need to edit config files manually unless you want to.
-{.is-info}
 
 # 2 · Configuration
 
@@ -142,8 +131,8 @@ Sync collections from TMDb lists. Get your API key from [TMDb API Settings](http
 ## AniList and MyAnimeList
 Sync collections from AniList and MAL lists. For MAL, create a Client ID at [MAL API Config](https://myanimelist.net/apiconfig).
 
+> [!NOTE]
 > Any list sync can automatically request missing items through your Seerr instance.
-{.is-info}
 
 ## Tautulli Widget
 Add a Tautulli widget to your dashboard for server activity insights. Find your API key in Tautulli Settings → Web Interface → API.
@@ -157,6 +146,6 @@ Add an Overseerr widget to your dashboard for request management. Find your API 
 - **Live Demo:** https://demo.homescreenhero.com
 - **Discord:** https://discord.gg/yQ8pJzURsr
 
-# <img src="/youtube.png" class="tab-icon"> 6 · Video
+# :logos:youtube-icon: 6 · Video
 
 *No video yet — check back soon!*

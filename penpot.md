@@ -2,30 +2,20 @@
 title: Penpot
 description: A guide to deploying Penpot
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:40.879Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:06.342Z
+dateCreated: '2026-01-15T15:07:06.342Z'
 ---
 
-# ![](/penpot.png){class="tab-icon"} What is Penpot?
+# What is Penpot?
 
 
 Penpot is the first open-source design tool for design and code collaboration. Designers can create stunning designs, interactive prototypes, design systems at scale, while developers enjoy ready-to-use code and make their workflow easy and fast. And all of this with no handoff drama.
 
-<div class="glance">
-  <div><span>Port</span><b><code>9001</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>6 services</b></div>
-  <div><span>Depends on</span><b>Postgres and Valkey</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-</div>
-
-
 # 1 · Deploy Penpot
-# {.tabset}
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+:::block-tabs
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Set the **Public URI** to the IP:Port of your server
 1. Set a **Database Password**
 1. Set a **Redis Password**
@@ -33,13 +23,12 @@ Penpot is the first open-source design tool for design and code collaboration. D
 1. Set the **Penpot Assets Storage** to **Host Path**
 1. Set the **Penpot Postgres Data Storage** to **Host Path**
 
+> [!WARNING]
 > Remember to check the box for **Automatic Permissions** under **Postgres Data Storage**
-{.is-warning}
 
+::
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
-
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 Generate a secret key with `openssl rand -hex 32` and paste it in place of both `change-this-insecure-key` values:
 
 ```yaml
@@ -168,3 +157,7 @@ services:
     ports:
       - "1080:1080"
 ```
+
+::
+
+:::

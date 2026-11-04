@@ -2,13 +2,13 @@
 title: Dashbrr
 description: A guide to deploying Dashbrr
 published: true
-date: 2026-10-31T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:36.293Z'
+tags: []
 editor: markdown
-dateCreated: 2026-10-31T12:00:00.000Z
+dateCreated: '2026-10-31T10:33:09.543Z'
 ---
 
-# <img src="/dashbrr.png" class="tab-icon"> What is Dashbrr?
+# What is Dashbrr?
 
 **Dashbrr** is a dashboard for your media server stack, built by the team behind autobrr. Instead of a page of bookmarks, every card is live: it shows service health, active streams, download queues, pending requests and available updates, all pushed to the browser in real time.
 
@@ -19,17 +19,7 @@ dateCreated: 2026-10-31T12:00:00.000Z
 - Infrastructure: Tailscale, Uptime Kuma, Traefik, plus a general card for any JSON health endpoint
 - Built-in login or OIDC single sign-on, and installable as a PWA
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/autobrr/dashbrr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Dashbrr
+# :logos:docker-icon: 1 · Deploy Dashbrr
 ```yaml
 services:
   dashbrr:
@@ -52,11 +42,11 @@ services:
 1. Deploy the stack
 1. Open the web UI at `http://YOUR-SERVER-IP:8080`
 
+> [!WARNING]
 > Port `8080` is also the default for qBittorrent and SABnzbd. If either already uses it, change the left side of the mapping, for example `8081:8080`.
-{.is-warning}
 
+> [!NOTE]
 > The project's own compose file runs a separate Postgres container. SQLite is plenty for a home dashboard, so this guide keeps it to a single container. If you would rather use Postgres, set `DASHBRR__DB_TYPE=postgres` along with `DASHBRR__DB_HOST`, `DASHBRR__DB_PORT`, `DASHBRR__DB_USER`, `DASHBRR__DB_PASSWORD` and `DASHBRR__DB_NAME`.
-{.is-info}
 
 # 2 · Configuration
 
@@ -64,8 +54,8 @@ services:
 1. On the first visit Dashbrr shows a **Register** form. There are no default credentials
 1. Pick a username (3 to 32 characters) and a password of at least 8 characters
 
+> [!WARNING]
 > Registration closes as soon as the first user exists, so whoever opens the page first becomes the admin. Register right after deploying.
-{.is-warning}
 
 You can also create or reset the account from the TrueNAS shell:
 ```bash
@@ -79,8 +69,8 @@ docker exec -it dashbrr dashbrr user change-password USERNAME NEWPASSWORD
 1. Dashbrr runs a health check as soon as the card is saved
 1. Drag the cards around to arrange your dashboard
 
+> [!NOTE]
 > Most API keys live under **Settings → General** in each \*arr app. Plex uses your Plex token and Overseerr uses the key under **Settings → General**.
-{.is-info}
 
 ## 2.3 OIDC Login (Optional)
 To sign in through Authentik, Pocket ID or another OIDC provider, add these to the `environment` section and redeploy:
@@ -93,3 +83,4 @@ To sign in through Authentik, Pocket ID or another OIDC provider, add these to t
 ```
 
 The login page then shows an OIDC button alongside the built-in login.
+

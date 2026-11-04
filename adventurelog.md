@@ -2,13 +2,13 @@
 title: AdventureLog
 description: A guide to deploying AdventureLog
 published: true
-date: 2026-08-28T20:55:40.725Z
-tags: 
+date: '2026-11-04T16:16:48.222Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-28T20:55:40.725Z
+dateCreated: '2026-08-28T20:55:40.725Z'
 ---
 
-# <img src="/adventurelog.png" class="tab-icon"> What is AdventureLog?
+# What is AdventureLog?
 
 **AdventureLog** is a self-hostable travel tracker and trip planner built by Sean Morley. It gives you a private place to log everywhere you've been, plan where you're going next, and see it all on an interactive world map.
 
@@ -16,22 +16,9 @@ Log locations with photos, dates, ratings, tags, and notes. Sort them into custo
 
 For trips, the itinerary planner handles any number of days and destinations, with flight info, notes, checklists, and external links. Itineraries can be shared with friends and family so everyone plans together, and locations can be shared publicly or kept private.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8015</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/seanmorley15/adventurelog"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
 # 1 · Deploy AdventureLog
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   app:
@@ -85,11 +72,12 @@ services:
 2. Set a real `POSTGRES_PASSWORD` — it must match between the `app` and `db` services
 3. Create the host directories first: `mkdir -p /mnt/tank/configs/adventurelog/{db,media}`
 
+> [!NOTE]
 > **First boot takes a few minutes.** The `start_period: 120s` on the healthcheck is there for a reason — the backend imports the world geography dataset before it reports healthy. Don't panic if the container shows unhealthy for the first two minutes.
-{.is-info}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 AdventureLog is in the TrueNAS **Community** train (added September 2025).
 
 1. Navigate to **Apps** → **Discover Apps** in the TrueNAS UI
@@ -104,11 +92,15 @@ AdventureLog is in the TrueNAS **Community** train (added September 2025).
    - **Storage**: point the app and Postgres datasets at host paths under `/mnt/tank/configs/adventurelog`
 4. Click **Install** and wait for all three containers to report healthy
 
+> [!WARNING]
 > The app deploys three containers — frontend, backend, and PostGIS. The **backend container runs as root (UID/GID 0)**, while the frontend and postgis containers run as UID 1000. Set dataset ownership accordingly or the backend will fail its health check.
-{.is-warning}
 
+> [!NOTE]
 > First boot can take several minutes while the world geography dataset imports. If the backend keeps reporting unhealthy after a fresh install or a `docker system prune`, remove the app and redeploy — a stale Docker network is a known cause of `failed to set up container networking` on TrueNAS 25.10.x.
-{.is-info}
+
+::
+
+:::
 
 # 2 · First Login
 
@@ -120,8 +112,8 @@ Browse to `http://YOUR_IP:8015` and sign in with the default credentials:
 | Password | `admin` |
 
 
+> [!CAUTION]
 > Change the admin password immediately after your first login. **Settings → Account**
-{.is-danger}
 
 Once you're in, the Django admin panel lives at `http://YOUR_IP:8016/admin` (Standard Deployment: `SITE_URL/admin`). Use it for user management, region data, and anything the main UI doesn't expose.
 
@@ -153,8 +145,8 @@ The per-endpoint defaults (`RATE_LIMIT_IMAGE_PROXY=60/minute`, `RATE_LIMIT_EXTER
 
 Behind NPM, Traefik, or Caddy, set `SITE_URL` to your public HTTPS URL and proxy to the container port. On the Advanced Deployment you'll need to expose the **backend** on its own hostname too, then update `PUBLIC_URL`, `FRONTEND_URL`, and `CSRF_TRUSTED_ORIGINS` to match.
 
+> [!WARNING]
 > **Images not loading behind a proxy?** That's almost always `PUBLIC_URL` pointing somewhere the browser can't reach. It's used to build image URLs, so it has to be the address *your browser* uses — not an internal one.
-{.is-warning}
 
 ## 3.4 Integrations
 
@@ -170,3 +162,4 @@ Behind NPM, Traefik, or Caddy, set `SITE_URL` to your public HTTPS URL and proxy
 Immich, Wanderer, and Endurain are configured **in the app UI** under integration settings rather than through environment variables. The Immich one is the standout — it pulls photos from your existing Immich library straight into your location entries instead of duplicating them.
 
 S3 storage works with Cloudflare R2, MinIO, and DigitalOcean Spaces via `AWS_S3_ENDPOINT_URL`. For R2, set `AWS_S3_REGION_NAME=auto`.
+

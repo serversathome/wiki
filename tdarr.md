@@ -2,31 +2,19 @@
 title: Tdarr
 description: A guide to installing Tdarr in TrueNAS Scale as well as docker via compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:18:01.329Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:08:55.739Z
+dateCreated: '2026-01-15T15:08:55.739Z'
 ---
 
-# ![](/tdarr.png){class="tab-icon"} What is Tdarr?
+# What is Tdarr?
 
 Tdarr is a tool that can help you optimize your media files by transcode, remux, remove unwanted streams and more. It supports cross-platform nodes, hardware transcoding, plugins and job reports.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8265</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Hardware accel</span><b>Nvidia, Intel or AMD</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/haveagitgat/tdarr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
 # 1 · Deploy Tdarr
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   tdarr:
@@ -76,21 +64,26 @@ services:
 - **Volumes**: The container structure follows a common-sense naming convention, storing configurations under /mnt/tank/configs/tdarr
 - 📌 Refer to the [Folder-Structure](/Folder-Structure) guide for more details.
 
+> [!NOTE]
 > This compose is setup for an iGPU. Tdarr works best with a dGPU, and if you have an nVidia card, remove the 
 > ```
 > devices:  
 >  - /dev/dri:/dev/dri
 >  ``` 
 > line and uncomment all the lines below it (starting with `deploy`). 
-{.is-info}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
-![](/screenshot_from_2025-01-26_17-42-01.png)
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+![](/screenshot-from-2025-01-26-17-42-01.png)
 
 1. Under **Storage Configuration** use **Host Path** for each of the datasets (Tdarr Server Storage, Tdarr Configs Storage, Tdarr Logs Storage, Tdarr Transcode Storage) and point them to datasets you create in your pool. 
 1. Click the **Add** button for **Additional Storage** to pass the `media` directory into the container.
 1. At the very bottom, click the box to **Select NVIDIA GPU(s)** to pass your dGPU into the container. 
+
+::
+
+:::
 
 # 1.5 · First Login
 
@@ -125,7 +118,7 @@ Set `seededApiKey` and `apiKey` to the same `tapi_...` value (on TrueNAS, add bo
 
 6. Check the box to enable to GPU to transcode (if you have a dGPU)
 
-![](/screenshot_from_2025-01-26_17-57-55.png)
+![](/screenshot-from-2025-01-26-17-57-55.png)
 
 Now scan the Library for new files.
 
@@ -139,10 +132,10 @@ Now scan the Library for new files.
 
 9. Increase your GPU workers
 
-![](/screenshot_from_2025-01-26_18-01-29.png)
+![](/screenshot-from-2025-01-26-18-01-29.png)
 
 Scroll down to the **Staging Section** and click the box to **Auto accept successful transcodes**.
 
 # 3 · Video
 
-[![](/2025-01-26-truenas-scale--tdarr-efficient-promo-card.png)](https://www.patreon.com/posts/truenas-scale-120842366)
+[![](/2025-01-26-truenas-scale-tdarr-efficient-promo-card.png)](https://www.patreon.com/posts/truenas-scale-120842366)

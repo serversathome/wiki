@@ -2,39 +2,29 @@
 title: Portainer
 description: A guide to installing Portainer on Ubuntu Server LTS
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:43.251Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:02:43.293Z
+dateCreated: '2026-01-15T15:02:43.293Z'
 ---
 
-# <img src="/portainer2.png" class="tab-icon"> What is Portainer?
+# What is Portainer?
 
 Portainer is a popular Docker UI that helps you visualize your containers, images, volumes and networks. Portainer helps you take control of the Docker resources on your machine, avoiding lengthy terminal commands.
 
-<div class="glance">
-  <div><span>Port</span><b><code>9443</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://www.youtube.com/watch?v=wsixvmNPrlU"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
 # Installation
-# {.tabset}
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
-![](/screenshot_from_2024-11-08_11-29-50.png)
+:::block-tabs
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+![](/screenshot-from-2024-11-08-11-29-50.png)
 
 1. Change **Portainer Data Storage** to **Host Path**. 
 1. Change the **Port** to 9443 since that is the default for Portainer and is referenced in all their documentation.
 
-## <img src="/docker.png" class="tab-icon"> Docker
+::
 
+::block-tab{label="Docker" icon="simple-icons:docker"}
+> [!WARNING]
 > Note that Docker has to be installed before you can follow these steps!
-{.is-warning}
 
 
 ### Docker Run
@@ -61,6 +51,10 @@ services:
       - /mnt/tank/configs/portainer:/data
 ```
 
+::
+
+:::
+
 # Login
 
 1. Portainer is now running on port 9443, behind https. To login, enter `https://{serverIP}:9443` in the address bar, then create your user and password. 
@@ -70,4 +64,5 @@ services:
 1. To deploy Docker Compose files, go to **Stacks** > **\+ Add Stack** and copy & paste the compose.yaml there.
 
 # Video
-https://www.youtube.com/watch?v=wsixvmNPrlU
+::block-youtube{url="https://www.youtube.com/watch?v=wsixvmNPrlU"}
+::

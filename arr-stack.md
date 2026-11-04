@@ -1,93 +1,296 @@
 ---
 title: '*Arr Stack'
-description: 
+description: ''
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T15:55:40.538Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-28T21:27:05.188Z
+dateCreated: '2026-01-28T21:27:05.188Z'
 ---
 
-<div class="hero">
-  <div class="hero-title">*arr stack</div>
-  <p>The acquisition pipeline: indexers, download clients, the *arr apps and everything that feeds them. For playback and libraries, see <a href="/mediamanagement">media management</a>.</p>
-  <div class="hero-meta">Updated September 2026</div>
-</div>
+The acquisition pipeline: indexers, download clients, the *arr apps and everything that feeds them. For playback and libraries, see [media management](/mediamanagement).
 
+*Updated September 2026*
+
+> [!TIP]
 > Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help.
-{.is-success}
 
-# Start here {.sec .arr}
-- [📖 Install instructions<br>*A step-by-step order for installing the \*arr apps*](/InstallInstructions)
-- [🗂️ Folder structure<br>*TRaSH-guide layout that keeps hardlinks working*](/Folder-Structure)
-- [🗺️ Overview map<br>*How every component of a media server fits together*](/OverviewMap)
-{.links-list .arr}
+# Start here
+::block-links-grid
+```yaml
+- title: "📖 Install instructions"
+  description: "A step-by-step order for installing the *arr apps"
+  url: "/InstallInstructions"
+  color: teal
+- title: "🗂️ Folder structure"
+  description: "TRaSH-guide layout that keeps hardlinks working"
+  url: "/Folder-Structure"
+  color: teal
+- title: "🗺️ Overview map"
+  description: "How every component of a media server fits together"
+  url: "/OverviewMap"
+  color: teal
+```
+::
 
-# Download clients {.sec .arr}
-- [<img src="/qbittorrent.png"> qBittorrent<br>*Torrent client*](/qBittorrent)
-- [<img src="/sabnzbd.png"> SABnzbd<br>*Usenet download manager*](/sabnzbd)
-{.links-list .arr}
+# Download clients
+::block-links-grid
+```yaml
+- title: "qBittorrent"
+  description: "Torrent client"
+  url: "/qBittorrent"
+  icon: "img:/_files/qbittorrent.png"
+  color: teal
+- title: "SABnzbd"
+  description: "Usenet download manager"
+  url: "/sabnzbd"
+  icon: "img:/_files/sabnzbd.png"
+  color: teal
+```
+::
 
-# Core components {.sec .arr}
-- [<img src="/cinephage.png"> Cinephage<br>*Radarr, Sonarr, Prowlarr and Bazarr in a single app*](/cinephage)
-- [<img src="/mediamanager.png"> Media Manager<br>*Media manager and requester*](/mediamanager)
-- [<img src="/prowlarr.png"> Prowlarr<br>*Indexer manager and proxy for the \*arr apps*](/Prowlarr)
-- [<img src="/radarr.png"> Radarr<br>*Movie organizer for Usenet and torrent users*](/radarr)
-- [<img src="/romarr.png"> ROMarr<br>*The \*arr for retro games and ROMs*](/romarr)
-- [<img src="/sonarr.png"> Sonarr<br>*TV organizer for Usenet and torrent users*](/Sonarr)
-- [<img src="/sportarr.png"> Sportarr<br>*A PVR for sports, built like Sonarr*](/sportarr)
-{.links-list .arr}
+# Core components
+::block-links-grid
+```yaml
+- title: "Cinephage"
+  description: "Radarr, Sonarr, Prowlarr and Bazarr in a single app"
+  url: "/cinephage"
+  icon: "img:/_files/cinephage.png"
+  color: teal
+- title: "Media Manager"
+  description: "Media manager and requester"
+  url: "/mediamanager"
+  icon: "img:/_files/mediamanager.png"
+  color: teal
+- title: "Prowlarr"
+  description: "Indexer manager and proxy for the *arr apps"
+  url: "/Prowlarr"
+  icon: "img:/_files/prowlarr.png"
+  color: teal
+- title: "Radarr"
+  description: "Movie organizer for Usenet and torrent users"
+  url: "/radarr"
+  icon: "img:/_files/radarr.png"
+  color: teal
+- title: "ROMarr"
+  description: "The *arr for retro games and ROMs"
+  url: "/romarr"
+  icon: "img:/_files/romarr.png"
+  color: teal
+- title: "Sonarr"
+  description: "TV organizer for Usenet and torrent users"
+  url: "/Sonarr"
+  icon: "img:/_files/sonarr.png"
+  color: teal
+- title: "Sportarr"
+  description: "A PVR for sports, built like Sonarr"
+  url: "/sportarr"
+  icon: "img:/_files/sportarr.png"
+  color: teal
+```
+::
 
-# Media discovery {.sec .arr}
-- [<img src="/agregarr.png"> Agregarr<br>*Keeps your Plex home and recommended fresh*](/agregarr)
-- [🎞️ Blockbusterr<br>*Auto-adds trending and top-rated titles from Trakt*](/blockbusterr)
-- [<img src="/boxarr.png"> Boxarr<br>*Monitors weekly box office charts*](/boxarr)
-- [📋 Listseerr<br>*Request everything on a list straight into Seerr*](/listseerr)
-- [<img src="/ombi.png"> Ombi<br>*Media request and discovery manager*](/ombi)
-- [OmniArr<br>*Jellyfin discovery and requests for Sonarr and Radarr*](/omniarr)
-- [<img src="/pulsarr.png"> Pulsarr<br>*Plex watchlist monitoring, routing and notifications*](/pulsarr)
-- [<img src="/seerr.png"> Seerr<br>*Media request and discovery manager*](/seerr)
-- [🍷 Sommelierr<br>*Random content recommender*](/sommelierr)
-- [<img src="/slskd.png"> Soulseek<br>*Music-sharing network*](/soulseek)
-- [🔍 Suggestarr<br>*Automated recommendations based on watch activity*](/suggestarr)
-- [<img src="/tasterr.svg"> Tasterr<br>*Netflix-style discovery and requests on top of Seerr*](/tasterr)
-{.links-list .arr}
+# Media discovery
+::block-links-grid
+```yaml
+- title: "Agregarr"
+  description: "Keeps your Plex home and recommended fresh"
+  url: "/agregarr"
+  icon: "img:/_files/agregarr.png"
+  color: teal
+- title: "🎞️ Blockbusterr"
+  description: "Auto-adds trending and top-rated titles from Trakt"
+  url: "/blockbusterr"
+  color: teal
+- title: "Boxarr"
+  description: "Monitors weekly box office charts"
+  url: "/boxarr"
+  icon: "img:/_files/boxarr.png"
+  color: teal
+- title: "📋 Listseerr"
+  description: "Request everything on a list straight into Seerr"
+  url: "/listseerr"
+  color: teal
+- title: "Ombi"
+  description: "Media request and discovery manager"
+  url: "/ombi"
+  icon: "img:/_files/ombi.png"
+  color: teal
+- title: "OmniArr"
+  description: "Jellyfin discovery and requests for Sonarr and Radarr"
+  url: "/omniarr"
+  color: teal
+- title: "Pulsarr"
+  description: "Plex watchlist monitoring, routing and notifications"
+  url: "/pulsarr"
+  icon: "img:/_files/pulsarr.png"
+  color: teal
+- title: "Seerr"
+  description: "Media request and discovery manager"
+  url: "/seerr"
+  icon: "img:/_files/seerr.png"
+  color: teal
+- title: "🍷 Sommelierr"
+  description: "Random content recommender"
+  url: "/sommelierr"
+  color: teal
+- title: "Soulseek"
+  description: "Music-sharing network"
+  url: "/soulseek"
+  icon: "img:/_files/slskd.png"
+  color: teal
+- title: "🔍 Suggestarr"
+  description: "Automated recommendations based on watch activity"
+  url: "/suggestarr"
+  color: teal
+- title: "Tasterr"
+  description: "Netflix-style discovery and requests on top of Seerr"
+  url: "/tasterr"
+  icon: "img:/_files/tasterr.svg"
+  color: teal
+```
+::
 
-# Books {.sec .arr}
-- [<img src="/chaptarr.png"> Chaptarr<br>*Book collection manager, the Readarr successor*](/chaptarr)
-{.links-list .arr}
+# Books
+::block-links-grid
+```yaml
+- title: "Chaptarr"
+  description: "Book collection manager, the Readarr successor"
+  url: "/chaptarr"
+  icon: "img:/_files/chaptarr.png"
+  color: teal
+```
+::
 
-# Torrent management {.sec .arr}
-- [<img src="/maintainerr.png"> Maintainerr<br>*Maintenance tool for the Plex ecosystem*](/maintainerr)
-- [<img src="/autobrr.png"> Qui<br>*A fast, modern web interface for qBittorrent*](/qui)
-- [<img src="/unpackerr.png"> Unpackerr<br>*Extracts media and imports it into the \*arr apps*](/Unpackerr)
-{.links-list .arr}
+# Torrent management
+::block-links-grid
+```yaml
+- title: "Maintainerr"
+  description: "Maintenance tool for the Plex ecosystem"
+  url: "/maintainerr"
+  icon: "img:/_files/maintainerr.png"
+  color: teal
+- title: "Qui"
+  description: "A fast, modern web interface for qBittorrent"
+  url: "/qui"
+  icon: "img:/_files/autobrr.png"
+  color: teal
+- title: "Unpackerr"
+  description: "Extracts media and imports it into the *arr apps"
+  url: "/Unpackerr"
+  icon: "img:/_files/unpackerr.png"
+  color: teal
+```
+::
 
-# Quality control {.sec .arr}
-- [📉 Capacitarr<br>*Scores your library and recommends what to cut*](/capacitarr)
-- [📺 Episeerr<br>*Episode-level control and automation for Sonarr*](/episeerr)
-- [<img src="/profilarr.png"> Profilarr<br>*Import, export and sync profiles and custom formats*](/profilarr)
-- [<img src="/reclaimerr.png"> Reclaimerr<br>*Finds unwatched and stale media to reclaim space*](/reclaimerr)
-- [<img src="/tdarr.png"> Tdarr<br>*Transcode automation*](/tdarr)
-- [<img src="/unmanic.png"> Unmanic<br>*Transcode automation*](/unmanic)
-{.links-list .arr}
+# Quality control
+::block-links-grid
+```yaml
+- title: "📉 Capacitarr"
+  description: "Scores your library and recommends what to cut"
+  url: "/capacitarr"
+  color: teal
+- title: "📺 Episeerr"
+  description: "Episode-level control and automation for Sonarr"
+  url: "/episeerr"
+  color: teal
+- title: "Profilarr"
+  description: "Import, export and sync profiles and custom formats"
+  url: "/profilarr"
+  icon: "img:/_files/profilarr.png"
+  color: teal
+- title: "Reclaimerr"
+  description: "Finds unwatched and stale media to reclaim space"
+  url: "/reclaimerr"
+  icon: "img:/_files/reclaimerr.png"
+  color: teal
+- title: "Tdarr"
+  description: "Transcode automation"
+  url: "/tdarr"
+  icon: "img:/_files/tdarr.png"
+  color: teal
+- title: "Unmanic"
+  description: "Transcode automation"
+  url: "/unmanic"
+  icon: "img:/_files/unmanic.png"
+  color: teal
+```
+::
 
-# Stats and dashboards {.sec .arr}
-- [<img src="/dashbrr.png"> Dashbrr<br>*Live dashboard for your media and \*arr stack*](/dashbrr)
-- [🗂️ Prismarr<br>*One interface over Radarr, Sonarr, Prowlarr and more*](/prismarr)
-- [📊 Sonarr Analyzer<br>*Average episode size per series*](/sonarranalyzer)
-- [💾 Sortarr<br>*Storage insights across Sonarr and Radarr*](/sortarr)
-- [<img src="/tracearr.png"> Tracearr<br>*Sessions and analytics for Plex, Jellyfin and Emby*](/tracearr)
-{.links-list .arr}
+# Stats and dashboards
+::block-links-grid
+```yaml
+- title: "Dashbrr"
+  description: "Live dashboard for your media and *arr stack"
+  url: "/dashbrr"
+  icon: "img:/_files/dashbrr.png"
+  color: teal
+- title: "🗂️ Prismarr"
+  description: "One interface over Radarr, Sonarr, Prowlarr and more"
+  url: "/prismarr"
+  color: teal
+- title: "📊 Sonarr Analyzer"
+  description: "Average episode size per series"
+  url: "/sonarranalyzer"
+  color: teal
+- title: "💾 Sortarr"
+  description: "Storage insights across Sonarr and Radarr"
+  url: "/sortarr"
+  color: teal
+- title: "Tracearr"
+  description: "Sessions and analytics for Plex, Jellyfin and Emby"
+  url: "/tracearr"
+  icon: "img:/_files/tracearr.png"
+  color: teal
+```
+::
 
-# Others {.sec .arr}
-- [<img src="/bazarr.png"> Bazarr<br>*Subtitle management*](/bazarr)
-- [<img src="/crosswatch.png"> CrossWatch<br>*Sync client for Plex and Jellyfin*](/crosswatch)
-- [<img src="/dispatcharr.png"> Dispatcharr<br>*Live TV for your media server*](/dispatcharr)
-- [<img src="/flaresolverr.png"> Flaresolverr<br>*Proxy that gets past Cloudflare protection*](/Flaresolverr)
-- [<img src="/notifiarr.png"> Notifiarr<br>*Monitoring and notifications via Discord*](/notifiarr)
-- [<img src="/posterizarr.png"> Posterizarr<br>*Automatic textless posters for your library*](/posterizarr)
-- [📱 Remote management<br>*Run your stack from Android with nzb360*](/Remote-Management)
-- [<img src="/trailarr.png"> Trailarr<br>*Add trailers to your media*](/trailarr)
-- [<img src="/wizarr.png"> Wizarr<br>*User invitations for Jellyfin, Plex and Emby*](/wizarr)
-{.links-list .arr}
+# Others
+::block-links-grid
+```yaml
+- title: "Bazarr"
+  description: "Subtitle management"
+  url: "/bazarr"
+  icon: "img:/_files/bazarr.png"
+  color: teal
+- title: "CrossWatch"
+  description: "Sync client for Plex and Jellyfin"
+  url: "/crosswatch"
+  icon: "img:/_files/crosswatch.png"
+  color: teal
+- title: "Dispatcharr"
+  description: "Live TV for your media server"
+  url: "/dispatcharr"
+  icon: "img:/_files/dispatcharr.png"
+  color: teal
+- title: "Flaresolverr"
+  description: "Proxy that gets past Cloudflare protection"
+  url: "/Flaresolverr"
+  icon: "img:/_files/flaresolverr.png"
+  color: teal
+- title: "Notifiarr"
+  description: "Monitoring and notifications via Discord"
+  url: "/notifiarr"
+  icon: "img:/_files/notifiarr.png"
+  color: teal
+- title: "Posterizarr"
+  description: "Automatic textless posters for your library"
+  url: "/posterizarr"
+  icon: "img:/_files/posterizarr.png"
+  color: teal
+- title: "📱 Remote management"
+  description: "Run your stack from Android with nzb360"
+  url: "/Remote-Management"
+  color: teal
+- title: "Trailarr"
+  description: "Add trailers to your media"
+  url: "/trailarr"
+  icon: "img:/_files/trailarr.png"
+  color: teal
+- title: "Wizarr"
+  description: "User invitations for Jellyfin, Plex and Emby"
+  url: "/wizarr"
+  icon: "img:/_files/wizarr.png"
+  color: teal
+```
+::

@@ -2,13 +2,13 @@
 title: Zero Byte
 description: A guide to deploying Zerobyte
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:20.126Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:09:47.387Z
+dateCreated: '2026-01-15T15:09:47.387Z'
 ---
 
-# <img src="/zerobyte.png" class="tab-icon"> What is Zerobyte?
+# What is Zerobyte?
 
 Zerobyte is a backup automation tool that helps you save your data across multiple storage backends. Built on top of Restic, it provides an modern web interface to schedule, manage, and monitor encrypted backups of your remote storage.
 - Automated backups with encryption, compression and retention policies powered by Restic
@@ -16,17 +16,7 @@ Zerobyte is a backup automation tool that helps you save your data across multip
 - End-to-end encryption ensuring your data is always protected
 - Multi-protocol support: Backup from NFS, SMB, WebDAV, or local directories
 
-<div class="glance">
-  <div><span>Port</span><b><code>4096</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/nicotsx/zerobyte"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Zerobyte
+# :logos:docker-icon: 1 · Deploy Zerobyte
 ```yaml
 services:
   zerobyte:
@@ -55,11 +45,12 @@ services:
    openssl rand -hex 32
    ```
 
+> [!NOTE]
 > Upgrading from `v0.15`? Back up `/mnt/tank/configs/zerobyte` and add the two new variables. See the [release notes](https://github.com/nicotsx/zerobyte/releases).
-{.is-info}
 
 # 2 · Setting Up rclone
 1. To set a new backup target via rclone, run this command as root in the TrueNAS shell and follow the prompts:
 ```bash
 rclone config
 ```
+

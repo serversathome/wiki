@@ -2,10 +2,10 @@
 title: HA Proxy Manager
 description: A guide to deploying HA Proxy Manager
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:16.032Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-28T20:44:54.637Z
+dateCreated: '2026-08-28T20:44:54.637Z'
 ---
 
 # What is HAProxy Cluster Manager?
@@ -15,22 +15,12 @@ dateCreated: 2026-08-28T20:44:54.637Z
 If you have ever configured HAProxy inside OPNsense, the layout will look familiar — Public Services, Backend Pools, Real Servers, Conditions, Rules and Health Monitors are all here. The difference is that this runs on its own box (or in a container) instead of on your firewall, and it writes a plain `haproxy.cfg` and `keepalived.conf` rather than hiding the result from you. There is no database; all state lives in a single `config.json`.
 
 
+> [!WARNING]
 > HAProxy Cluster Manager expects to own `/etc/haproxy/haproxy.cfg`. The first **Apply** overwrites whatever is there (keeping a `.bak`). Do not point this at an existing hand-tuned HAProxy install you care about.
-{.is-warning}
-
-<div class="glance">
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty advanced">Advanced</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/avandeputte/haproxy-manager"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
 
 # 1 · Deploy HAProxy Cluster Manager
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   haproxy-manager:
@@ -61,14 +51,15 @@ services:
 
 Images are published for **linux/amd64** and **linux/arm64**. Pin a version tag such as `:1.98.1` in production (or `:sha-<commit>` for one exact build); `:latest` moves whenever `main` does.
 
+> [!NOTE]
 > Host networking is the intended mode. Keepalived's VRRP and the virtual IP need a real interface, and HAProxy binds whatever ports your Public Services define. Bridge mode works for a single standalone node with no VIP, but then you have to publish every port yourself — `8080` for the UI, `80`, `443`, and `9080` for the HTTP-01 listener.
-{.is-info}
 
+> [!WARNING]
 > There is no systemd inside a container, so `supervisord` restarts the app only if it *exits*. A **hung** manager will not be restarted — the image's `HEALTHCHECK` reports it, but something has to act on that. For a production cluster the native install is the better fit.
-{.is-warning}
 
-## <img src="/ubuntu.png" class="tab-icon"> Debian / Ubuntu
+::
 
+::block-tab{label="Debian / Ubuntu" icon="simple-icons:ubuntu"}
 Run this on **every** node (Debian 12/13, Ubuntu 22.04/24.04):
 
 ```bash
@@ -85,11 +76,15 @@ The installer pulls in `haproxy`, `keepalived`, `python3-flask`, `python3-reques
 
 The generated password is printed at the end and also written to `/var/lib/haproxy-manager/admin-credentials.txt` (mode 0600).
 
+> [!NOTE]
 > Re-running the same command on an existing install offers **update**, **remove** (keeps `config.json` and certificates), **purge** or cancel. Piped from `curl` with no terminal to prompt on, it updates in place.
-{.is-info}
 
+> [!CAUTION]
 > The service runs as **root**, because it writes to `/etc/haproxy` and `/etc/keepalived` and reloads system services. Restrict who can reach port 8080.
-{.is-danger}
+
+::
+
+:::
 
 # 2 · First Run
 
@@ -160,11 +155,11 @@ Both methods are enforced by HAProxy itself, so an unauthenticated request never
 - It warns about the mistakes you'd otherwise only find in a failed issuance: a wildcard with an HTTP-01 challenge, a DNS-01 challenge with no API hook, an account with no email address.
 - Before a real certificate exists, Apply drops in a short-lived **self-signed placeholder** so HAProxy can start. The first successful issue replaces it.
 
+> [!TIP]
 > Use the `letsencrypt_test` CA while you are setting things up. It issues untrusted certificates with no rate limits, which is exactly what you want before you've got the DNS hook right.
-{.is-success}
 
+> [!NOTE]
 > **Only the node holding the virtual IP issues and renews.** HTTP-01 validation arrives at that address, and with DNS-01 the nodes would race each other and burn the CA's rate limits. A passive node says so and refuses a manual issue.
-{.is-info}
 
 Once a certificate is written, HAProxy is reloaded so it actually serves it, and the PEM is pushed to every other node. Nothing to configure.
 
@@ -187,8 +182,8 @@ Sync is push-based: the node you edit pushes to the others, and a renewed certif
 
 The node holding the VIP is where the shared configuration is edited. The others are read-only and say so in a banner, which stops nodes from diverging and then overwriting each other. A passive node can still fix *itself* — interface, priority, peer list, login, API key, updates and Apply.
 
+> [!NOTE]
 > If **no** node holds the VIP, the banner's **Edit here anyway** unlocks that node, so a broken cluster is never a lockout. The unlock belongs to that sign-in and is not stored.
-{.is-info}
 
 ## 5.3 Revisions keep the nodes honest
 
@@ -201,8 +196,8 @@ The shared configuration carries a revision counter and a fingerprint. Every nod
 - All nodes must agree on the **virtual router ID**. For non-preempting failover, set every node to `BACKUP` with a different priority and enable `nopreempt`.
 - **Tracking HAProxy** through its admin socket (the default) beats the `process` option: a wedged HAProxy that accepts connections and answers none still has a process, but it will fail the socket check and hand the VIP to a node that works.
 
+> [!WARNING]
 > Bind your Public Services to the virtual IP, not to a node's own address.
-{.is-warning}
 
 # 6 · Monitoring
 
@@ -220,8 +215,8 @@ Email (SMTP), Pushover, and a generic webhook that posts `{subject, message, sev
 
 Alerts fire on **transitions**, not conditions, and an unresolved problem repeats only every 6 hours. Each service carries an **Alert when** setting: *a server is lost* (default), *no server is left* (correct for leader-election pools like Patroni, where one healthy server is the design), or *never*.
 
+> [!WARNING]
 > Notification settings are shared between nodes, which means SMTP passwords and Pushover tokens travel in the sync payload. Run peer sync over HTTPS or keep it on a trusted network.
-{.is-warning}
 
 ## 6.3 Home Assistant and Prometheus
 
@@ -272,9 +267,10 @@ systemctl reload haproxy
 | `HAM_DRY_RUN` | — | `1` skips `systemctl` calls; render and validate only |
 
 
+> [!WARNING]
 > **Address peers by IP, not by name.** DNS resolution happens *before* any of those timeouts start counting, and a stock Debian or Ubuntu box caches nothing — a nameserver that doesn't answer costs ten seconds per lookup, every time. It is also the wrong dependency: the name may be published by the very cluster that is in trouble.
-{.is-warning}
 
+> [!CAUTION]
 > Do not put a multi-process WSGI server in front of this. The app keeps state in process globals — the write lock, the failed sign-in counters, the renewal timer — so several worker processes would each get their own copy and let concurrent edits overwrite one another. Raise `HAM_THREADS` instead.
-{.is-danger}
+
 

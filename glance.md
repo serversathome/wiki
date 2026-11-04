@@ -2,24 +2,17 @@
 title: Glance
 description: A guide to deploying Glance dashboard
 published: true
-date: 2026-01-22T10:51:23.006Z
-tags: 
+date: '2026-11-04T16:24:18.525Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:49.727Z
+dateCreated: '2026-01-15T15:04:49.727Z'
 ---
 
-# <img src="/glance.png" class="tab-icon"> What is Glance?
+# What is Glance?
 
 A lightweight, highly customizable dashboard that displays your feeds in a beautiful, streamlined interface.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Glance
+# :logos:docker-icon: 1 · Deploy Glance
 ```yaml
 services:
   glance:
@@ -40,8 +33,9 @@ services:
     ```
 1. Start the container
 
+> [!NOTE]
 > When editing the glance.yml file, you don't need to restart the container for the changes to take effect, this happens automatically when saving the file.
-{.is-info}
 
+> [!CAUTION]
 > If you don't see your changes, check the logs to see what is wrong with the config file.
-{.is-danger}
+

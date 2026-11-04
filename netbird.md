@@ -2,23 +2,14 @@
 title: Netbird
 description: A guide to installing and using Netbird
 published: true
-date: 2026-08-27T10:48:29.711Z
-tags: 
+date: '2026-11-04T16:24:05.798Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:37.607Z
+dateCreated: '2026-01-15T15:06:37.607Z'
 ---
 
-# ![](/netbird.png){class="tab-icon"} What is Netbird?
+# What is Netbird?
 NetBird combines a WireGuard®-based overlay network with Zero Trust Network Access, providing a unified open-source platform for reliable and secure connectivity
-
-<div class="glance">
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://youtu.be/-yfE3Lb3hTI"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
 
 # 1 · Deploy Netbird
 First, go to [https://netbird.io](https://netbird.io) and click **Get Started** to create your free account.
@@ -26,22 +17,22 @@ First, go to [https://netbird.io](https://netbird.io) and click **Get Started** 
 ## 1.1 Generate a Secure Setup Key
 A Setup Key acts like a temporary password that allows your server to authenticate and join your NetBird network automatically. 
 
-1. In the NetBird dashboard, navigate to **Setup Keys > Create Setup Key**.
-2. **Name:** Give it a descriptive name so you know what it was used for (e.g., `Jellyfin Server Setup`).
-3. **Reusable:** 
-   * Leave this **OFF (One-off)** if you are just installing NetBird on a single server. The key will automatically destroy itself after one use. 
-   * Only turn this **ON** if you are deploying multiple servers simultaneously or using deployment automation (like Ansible).
-4. **Expiration:** Set this to a short timeframe, such as `1 Day` or `7 Days`. 
-  > **Security Warning:** Do not set the expiry to `0` (never expire). If an infinite, reusable key is ever leaked, anyone can join your private network. 
-  Your server will *not* disconnect when this key expires! Setup keys are only used for the initial installation; after that, NetBird uses secure, auto-rotating WireGuard keys.
-  {.is-warning}
+> [!WARNING]
+> 1. In the NetBird dashboard, navigate to **Setup Keys > Create Setup Key**.
+> 2. **Name:** Give it a descriptive name so you know what it was used for (e.g., `Jellyfin Server Setup`).
+> 3. **Reusable:**
+> * Leave this **OFF (One-off)** if you are just installing NetBird on a single server. The key will automatically destroy itself after one use.
+> * Only turn this **ON** if you are deploying multiple servers simultaneously or using deployment automation (like Ansible).
+> 4. **Expiration:** Set this to a short timeframe, such as `1 Day` or `7 Days`.
+> > **Security Warning:** Do not set the expiry to `0` (never expire). If an infinite, reusable key is ever leaked, anyone can join your private network.
+> Your server will *not* disconnect when this key expires! Setup keys are only used for the initial installation; after that, NetBird uses secure, auto-rotating WireGuard keys.
 
 5. Click **Create Setup Key** and copy the generated key to your clipboard.
 
 ## 1.2 Install the NetBird Agent
 
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   netbird:
@@ -58,24 +49,37 @@ services:
 ```
 Paste your Setup Key created from above in the `- NB_SETUP_KEY=` line.
 
-## <img src="/linux.png" class="tab-icon"> Bare Metal Linux
+::
 
+::block-tab{label="Bare Metal Linux" icon="simple-icons:linux"}
 ```bash
 curl -fsSL https://pkgs.netbird.io/install.sh | sh
 ```
 Once this is installed, execute `netbird up --setup-key <key-value>` to start the connection using the setup key created above.
 
-## <img src="/microsoft-windows.png" class="tab-icon"> Windows
+::
+
+::block-tab{label="Windows" icon="simple-icons:windows"}
 1. Download the installer from [https://pkgs.netbird.io/windows/x64](https://pkgs.netbird.io/windows/x64)
 1. Click on "Connect" from the NetBird icon in your system tray
 a. Alternatively you can connect through the command line by executing `netbird up --setup-key <key-value>` using the setup key created above
 
-## Mobile
+::
 
+::block-tab{label="Mobile"}
 Get the app from your respective app store:
-- [Android *Google Play Store*](https://play.google.com/store/apps/details?id=io.netbird.client)
-- [iOS *Apple App Store*](https://apps.apple.com/us/app/netbird-p2p-vpn/id6469329339)
-{.links-list}
+::block-links-grid
+```yaml
+- title: "Android *Google Play Store*"
+  url: "https://play.google.com/store/apps/details?id=io.netbird.client"
+- title: "iOS *Apple App Store*"
+  url: "https://apps.apple.com/us/app/netbird-p2p-vpn/id6469329339"
+```
+::
+
+::
+
+:::
 
 # 2 · Reverse Proxy
 NetBird's built-in reverse proxy lets you expose local services over HTTPS without opening a single port on your router. Every service you publish lives on a **cluster** — a group of one or more proxy instances that serve a single apex domain. There are two kinds:
@@ -99,8 +103,8 @@ By default, NetBird assigns your proxy services to a provided cloud domain. Howe
    * Add the records exactly as NetBird requested:
      * **CNAME Record:** This physically routes traffic from your domain to NetBird's cloud infrastructure. You will likely point a wildcard (`*`) or specific subdomain to NetBird's provided target address.
 
+  > [!WARNING]
   > **Important note for Cloudflare users:** If you are using Cloudflare for DNS, make sure the **Proxy status** (the orange cloud icon) is toggled **OFF** (set to "DNS Only") for these specific CNAME records. Because NetBird is now acting as your Reverse Proxy, leaving Cloudflare's proxy enabled will cause conflicts and prevent NetBird from verifying your domain or issuing SSL certificates.
-  {.is-warning}
 
 3. **Verify and Wait:**
    * Head back to the NetBird dashboard and click **Verify**. 
@@ -128,9 +132,8 @@ Once your server is connected to the NetBird mesh, you can expose its local appl
 
 3. Click **Add Service** to finalize the setup. 
 4. **Wait a few minutes.** NetBird needs a moment to provision the service globally and automatically generate your free SSL (HTTPS) certificate. 
-> 
+> [!NOTE]
 > **Tip:** Once the service status shows as active, you can test it by visiting your new URL (e.g., `https://jellyfin.yourdomain.com`) from a device that is *not* connected to your local network!
-{.is-info}
 
 
 ## 2.3 Authentication
@@ -149,10 +152,9 @@ While applications like Jellyfin manage their own users and login screens (meani
 
 3. **Save and Apply:**
    * Once you've configured your desired method, click the orange **Save Changes** button. The new security rules will apply to your proxy route within minutes.
-> 
+> [!TIP]
 > **💡 What does the user experience?** 
 > When a user navigates to a protected URL (e.g., `https://admin.yourdomain.com`), they won't see your application right away. Instead, they are stopped by a secure NetBird interception screen asking for the required SSO login, Password, or PIN. Once they successfully authenticate, they are forwarded to your actual backend application.
-{.is-success}
 
 ## 2.4 Clusters (Bring Your Own Proxy)
 Everything above runs on a **shared cluster** — NetBird's own proxy infrastructure handles TLS and routes your traffic. That's the easy path, but it means your traffic terminates on someone else's servers.
@@ -226,12 +228,12 @@ The dashboard provides a wizard that generates the proxy token, shows the DNS re
 
    Paste the generated token into the `NB_PROXY_TOKEN=` line and set `NB_PROXY_DOMAIN` to the domain from Step 2. On NetBird Cloud, leave `NB_PROXY_MANAGEMENT_ADDRESS` as `https://api.netbird.io`; on a self-hosted management server, use your own management URL.
 
+> [!CAUTION]
 > **Copy the token now.** The plain token is shown **only once**, at the moment it's generated. Store it somewhere safe before closing the modal. If you lose it, revoke it and generate a new one.
-   {.is-danger}
 
 
+> [!NOTE]
 > With the default `tls-alpn-01` challenge you only need port 443 — you can drop the `80:80` mapping. Keep port 80 only if you switch to the `http-01` challenge.
-    {.is-info}
 
 
 
@@ -246,11 +248,13 @@ Once the cluster is connected, your BYOP domain shows up as a normal **Cluster**
 Traffic to `subdomain.proxy.yourdomain.com` is now received by *your* proxy, terminated locally with a Let's Encrypt certificate, and forwarded over WireGuard to the target peer.
 
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-https://youtu.be/-yfE3Lb3hTI
-https://youtu.be/skbWnMSwZcE
+# :logos:youtube-icon: 3 · Video
+::block-youtube{url="https://youtu.be/-yfE3Lb3hTI"}
+::
+::block-youtube{url="https://youtu.be/skbWnMSwZcE"}
+::
 
 
 
-# <img src="/eagle.png" class="tab-icon"> 4 · Would You Like to Know More?
+# ![](/_files/eagle.png =28x) 4 · Would You Like to Know More?
 https://blog.serversatho.me/best-vpn-ever/

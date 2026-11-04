@@ -2,10 +2,10 @@
 title: elm.chat
 description: A guide to deploying elm.chat
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:44.534Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-28T20:24:30.358Z
+dateCreated: '2026-08-28T20:24:30.358Z'
 ---
 
 # What is elm.chat?
@@ -14,18 +14,17 @@ dateCreated: 2026-08-28T20:24:30.358Z
 
 The room secret lives in the URL fragment (`#secret`), which browsers never send to the server. That means the operator of an instance — including you, if you self-host it — cannot read anything that passes through it.
 
+> [!WARNING]
 > **This is not a Docker container.** elm.chat is Cloudflare-native and has no container image and no TrueNAS app. It runs as a single Worker plus one Durable Object per room. There is no way to deploy it on your NAS or a Docker host — the Durable Object runtime only exists on Cloudflare's edge.
-{.is-warning}
 
 
 
 ---
 
-# <img src="/cloudflare.png" class="tab-icon"> 1 · Deploy elm.chat
+# :logos:cloudflare-icon: 1 · Deploy elm.chat
 
-# {.tabset}
-## Wrangler CLI (recommended)
-
+:::block-tabs
+::block-tab{label="Wrangler CLI (recommended)"}
 This is the fully tested path. You need **Node.js 18+**, **npm**, **Git**, and a free Cloudflare account.
 
 ```bash
@@ -48,14 +47,15 @@ npm run deploy
 
 Open it, click **Create private conversation**, and you have a working room.
 
+> [!NOTE]
 > **First deploy to a new account?** Cloudflare may ask you to register a free `*.workers.dev` subdomain under **Workers & Pages** in the dashboard. Do that once, then re-run `npm run deploy`.
-{.is-info}
 
+> [!TIP]
 > The `migrations` block in the root `wrangler.jsonc` creates the `RoomDurableObject` SQLite class automatically on first deploy. There is no manual migration step and no database to provision.
-{.is-success}
 
-## One-Click Deploy
+::
 
+::block-tab{label="One-Click Deploy"}
 1. Click the **Deploy to Cloudflare** button on the [project README](https://github.com/shawnbure/elm-chat).
 2. Authorize Cloudflare to fork the repo into your GitHub account and connect it to Workers Builds.
 3. Cloudflare should detect the root `wrangler.jsonc` and fill in the build settings for you:
@@ -65,13 +65,15 @@ Open it, click **Create private conversation**, and you have a working room.
 4. Deploy. Cloudflare provisions the Worker and Durable Object namespace for you.
 5. Before sharing the instance, run through the upstream [deployment verification checklist](https://github.com/shawnbure/elm-chat/blob/main/docs/deploy-to-cloudflare-verification.md).
 
+> [!CAUTION]
 > If the setup screen says **No Wrangler configuration detected**, stop before deploying and [open an issue](https://github.com/shawnbure/elm-chat/issues) upstream. It means Cloudflare is falling back to automatic project configuration instead of the project's Worker and Durable Object bindings.
-{.is-danger}
 
+> [!WARNING]
 > The one-click path builds on Cloudflare's infrastructure and occasionally fails on build settings. If it does, fall back to the Wrangler CLI tab — that's the path the maintainer actively tests.
-{.is-warning}
 
+::
 
+:::
 
 # 2 · Configuration
 
@@ -106,8 +108,8 @@ npx wrangler secret put TURNSTILE_SECRET
 
 With both configured, the landing page runs an invisible challenge before creating a room and the Worker rejects room creation unless the token verifies. With neither set, room creation is open to anyone who can reach your instance.
 
+> [!WARNING]
 > If you're publishing your instance URL anywhere public, turn Turnstile on. Open room creation on a free-tier Worker is an easy way to burn through your daily request budget.
-{.is-warning}
 
 ## 2.3 Room Policy Options
 
@@ -146,8 +148,8 @@ npm run dev       # starts both processes
 
 Open `http://localhost:3000`, create a room, then open the copied link in a second browser or incognito window to see live encrypted chat between two participants.
 
+> [!NOTE]
 > Port `8799` is deliberate — it avoids colliding with other Cloudflare projects that default to `8787`.
-{.is-info}
 
 
 
@@ -199,8 +201,8 @@ The trade-off: an honest-but-curious server relays ciphertext and can observe co
 
 # 5 · Security Notes
 
+> [!CAUTION]
 > **Read this before you recommend elm.chat to anyone with a real threat model.** The maintainer's own disclaimer is explicit: do not market or rely on this project as a completed high-assurance safety tool until its protocol, implementation, and operational guarantees have been independently reviewed and tested under realistic conditions.
-{.is-danger}
 
 Encryption is not the whole picture. What single-use invites and E2EE do **not** solve:
 
@@ -221,6 +223,7 @@ Operational best practices:
 > - [x] Keep message expiry and self-destruct aggressive
 > - [x] Destroy the room as soon as the conversation is done
 > - [x] Treat every endpoint as a possible weak point
+
 
 
 

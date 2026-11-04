@@ -1,11 +1,11 @@
 ---
 title: readme
-description: 
+description: ''
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-10-28T14:13:53.536Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:08:00.302Z
+dateCreated: '2026-01-15T15:08:00.302Z'
 ---
 
 # Servers@Home Wiki
@@ -64,3 +64,4 @@ All content is © [Servers@Home](https://serversatho.me). Contributions are welc
 ---
 
 _This repository is the central source for all wiki content. Edits here will sync to the live wiki automatically._
+

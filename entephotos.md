@@ -2,28 +2,17 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:32.856Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:35.538Z
+dateCreated: '2026-01-15T15:04:35.538Z'
 ---
 
-# ![](/ente-photos.png){class="tab-icon"} What is Ente Photos?
+# What is Ente Photos?
 
 Ente Photos is the private, secure photo storage app with end-to-end encryption.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>5 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/ente/ente"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Ente Photos
+# :logos:docker-icon: 1 · Deploy Ente Photos
 Ente Photos requires a normal docker compose file and in the **same folder** an additional file named `museum.yaml` to be present and configured. 
 
 ## 1.1 Docker Compose
@@ -118,14 +107,14 @@ MINIO_PASSWORD=changeme
 ```
 
 ## 1.3 Museum.yaml
+> [!CAUTION]
 > For `museum.yaml` below, replace `${IP}` with the address of your server!
-{.is-danger}
 
+> [!WARNING]
 > Replace the `changeme` values in `.env` (e.g. `openssl rand -hex 16`), and fill each `<...>` below: `<POSTGRES_PASSWORD>`, `<MINIO_USER>` and `<MINIO_PASSWORD>` must match `.env`. Generate the keys with:
 > - `encryption`: `head -c 32 /dev/urandom | base64`
 > - `hash`: `head -c 64 /dev/urandom | base64 | tr -d '\n'`
 > - `jwt secret`: `head -c 32 /dev/urandom | base64 | tr '+/' '-_'`
-{.is-warning}
 
 ```yaml
 db:
@@ -201,3 +190,4 @@ jwt:
 ```bash
 docker exec -i ente-postgres-1 psql -U pguser -d ente_db -c "INSERT INTO storage_bonus (bonus_id, user_id, storage, type, valid_till) VALUES ('self-hosted-myself', (SELECT user_id FROM users LIMIT 1), 109951162777600, 'ADD_ON_SUPPORT', 0) ON CONFLICT (bonus_id) DO UPDATE SET storage = EXCLUDED.storage;"
 ```
+

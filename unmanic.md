@@ -2,25 +2,17 @@
 title: Unmanic
 description: A guide to deploying Unmanic
 published: true
-date: 2026-01-15T15:32:16.857Z
-tags: 
+date: '2026-11-04T16:24:18.194Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:09:12.679Z
+dateCreated: '2026-01-15T15:09:12.679Z'
 ---
 
-# ![](/unmanic.png){class="tab-icon"} What is Unmanic?
+# What is Unmanic?
 
 Unmanic gives you the power to automate the management of any file library through the use of customised modular task flows to suit your specific needs, giving you the ultimate, simple to configure, set-and-forget library optimisation tool.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8870</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Hardware accel</span><b>Nvidia</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Unmanic
+# :logos:docker-icon: 1 · Deploy Unmanic
 
 ```yaml
 services:
@@ -55,8 +47,8 @@ services:
 1. Click the **Settings** button in the new Transcode Video Files box
 	a. Switch the **Video Encoder** to `NVENC` if you are using an nVidia GPU
 
+> [!NOTE]
 > There are **many** other plugins that do various functions. Take time to explore more!
-{.is-info}
 
 ## 2.2 Workers
 1. Click on **Workers**
@@ -78,8 +70,8 @@ services:
  	c. Click the arrow button at the top right corner to close the window
 	d. Follow the same stop above to turn on scanning and monitoring
 
+> [!NOTE]
 > You may get a warning at the bottom of the screen which says `Unmanic has stopped all workers..` This is normal
-{.is-info}
 
 ## 2.4 Start Workers
 1. Click the **Hom** button at the top
@@ -94,10 +86,10 @@ services:
 | Modify Unmanic's Default File Movements | Good if you don't want to delete the original file. |
 | Notify Radarr/Sonarr | Notify Radarr/Sonarr on movie or series update to rescan and rename a modified file. |
 | Reject File if Larger than Original | This plugin will reset the current working file to the original source if it is larger than the original source. | 
-> 
+> [!TIP]
 > Remember to add any new plugins to the Library to enable them!
-{.is-success}
 
-# <img src="/patreon-light.png" class="tab-icon"> 4 · Video
-[![](/2025-08-19-unmanic-the-best-tool-for-auto--promo-card.png)](https://www.patreon.com/posts/unmanic-best-for-136500688)
+# ![](/_files/patreon-light.png =28x) 4 · Video
+[![](/2025-08-19-unmanic-the-best-tool-for-auto-promo-card.png)](https://www.patreon.com/posts/unmanic-best-for-136500688)
+
 

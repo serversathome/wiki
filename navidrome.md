@@ -2,13 +2,13 @@
 title: Navidrome
 description: A guide to deploying the Navidrome music player using docker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:11.417Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:35.306Z
+dateCreated: '2026-01-15T15:06:35.306Z'
 ---
 
-# ![Navidrome](/navidrome.png){class="tab-icon"} What is Navidrome?
+# What is Navidrome?
 
 **Navidrome** is a lightweight self‑hosted music streaming server (Subsonic compatible). It scans your music library, then lets you stream or download tracks via the web‑UI or mobile apps like DSub/Ultrasonic.
 
@@ -24,23 +24,10 @@ dateCreated: 2026-01-15T15:06:35.306Z
 
 </details>
 
-<div class="glance">
-  <div><span>Port</span><b><code>4533</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://www.navidrome.org/docs/usage/configuration/options/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-  </div>
-</div>
-
-
 # 1 · Deploy Navidrome
 
-# tabs {.tabset}
-
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   navidrome:
@@ -59,18 +46,18 @@ services:
     restart: unless-stopped
 ```
 
-### Permissions & Folder Structure {.is-success}
+### Permissions & Folder Structure
 
 * **PUID / PGID** – use your media‑owner account (`568:568` on SCALE).
 * **Volumes** – `/data` stores library cache & artwork, `/music` is read‑only music share.
   📌 See the [Folder‑Structure](/Folder-Structure) guide.
 
+> [!NOTE]
 > Official env‑vars list: [Navidrome Docker Docs](https://www.navidrome.org/docs/usage/configuration/options/)
-{.is-info}
 
+::
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS Community Edition
-
+::block-tab{label="TrueNAS Community Edition" icon="simple-icons:truenas"}
 | Step  | Action                                                                                      |
 | ----- | ----------- |
 | **1** | **Apps → Discover Apps → Navidrome → Install**   |
@@ -79,6 +66,9 @@ services:
 | **4** | Expose port **4533** → 4533       |
 | **5** | **Save → Deploy**     |
 
+::
+
+:::
 
 # 2 · First‑Run Configuration
 
@@ -133,6 +123,7 @@ services:
 Feel free to open a pull‑request or ping us on Discord if you spot an inaccuracy!
 
 
-# <img src="/youtube.png" class="tab-icon"> Video Guide
+# :logos:youtube-icon: Video Guide
 
 *Coming soon – subscribe to our [YouTube](https://www.youtube.com/@ServersatHome).*
+

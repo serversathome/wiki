@@ -2,34 +2,21 @@
 title: Wizarr
 description: A guide to deploying Wizarr
 published: true
-date: 2026-06-22T10:14:26.737Z
-tags: 
+date: '2026-11-04T16:18:07.872Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:09:40.051Z
+dateCreated: '2026-01-15T15:09:40.051Z'
 ---
 
-# <img src="/wizarr.png" class="tab-icon"> What is Wizarr?
+# What is Wizarr?
 
 **Wizarr** is an automatic user invitation and management system for your media servers. Instead of manually creating accounts and walking friends and family through setup, you generate a single invite link and share it — Wizarr automatically adds the user to your server and guides them through downloading apps, accessing your request system, joining Discord, and more.
 
 It supports **Plex, Jellyfin, Emby, Audiobookshelf, Romm, Komga, and Kavita**, with multi-tiered invitations, time-limited memberships, customizable wizard steps, request system integration (Overseerr, Ombi, etc.), and optional SSO.
 
-<div class="glance">
-  <div><span>Port</span><b><code>5690</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/wizarrrr/wizarr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
 # 1 · Deploy Wizarr
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   wizarr:
@@ -48,11 +35,12 @@ services:
 ```
 
 
+> [!WARNING]
 > Set `DISABLE_BUILTIN_AUTH=true` **only** if you are putting Wizarr behind a dedicated auth provider such as Authelia or Authentik. Leaving it enabled keeps Wizarr's own login active.
-{.is-warning}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Wizarr is available in the **Community** train of the TrueNAS Apps catalog.
 
 1. Navigate to **Apps** in the TrueNAS UI and click **Discover Apps**.
@@ -64,8 +52,12 @@ Wizarr is available in the **Community** train of the TrueNAS Apps catalog.
 4. Click **Install** and wait for the app to move from *Deploying* to *Running*.
 
 
+> [!TIP]
 > The TrueNAS catalog app runs as user/group **568** (`apps`), matching the standard Servers@Home permission convention — no extra UID/GID changes needed.
-{.is-success}
+
+::
+
+:::
 
 # 2 · Configuration
 
@@ -101,6 +93,6 @@ The onboarding flow is fully editable under the wizard/settings area. You can ad
 
 
 
-# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
+# ![](/_files/patreon-light.png =28x) 3 · Video
 
 [![](/2025-04-14-wizarr-share-your-plex-jellyfi-promo-card.png)](https://www.patreon.com/posts/wizarr-share-or-126460048)

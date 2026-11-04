@@ -2,36 +2,25 @@
 title: Warracker
 description: A guide to deploying Warracker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:18:06.703Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:09:22.115Z
+dateCreated: '2026-01-15T15:09:22.115Z'
 ---
 
-# <img src="/warracker.png" class="tab-icon"> What is Warracker?
+# What is Warracker?
 Warracker is an open source, self-hostable warranty tracker to monitor expirations, store receipts, files. You own the data, your rules!
 
-<div class="glance">
-  <div><span>Port</span><b><code>8005</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/sassanix/warracker"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
 # 1 · Deploy Warracker
-# tabs {.tabset}
-
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+:::block-tabs
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Set a **Database Password**
 1. Set the **Warracker Uploads Storage** and **Postgres Data Storage** to *Host Path*
 1. Check the box for **Automatic Permissions** under the **Postgres Data Storage** section
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+::
+
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   warracker:
@@ -61,8 +50,8 @@ services:
       retries: 5
 ```
 
+> [!NOTE]
 > Older versions of this guide used `/mnt/tank/configs/uploads` and `/mnt/tank/configs/db`, which can collide with other apps. If you already deployed with those paths, either keep them or move the folders into `/mnt/tank/configs/warracker/` before redeploying.
-{.is-info}
 
 ### 1.1 env File
 
@@ -187,3 +176,7 @@ FLASK_RUN_PORT=5000
 # Python unbuffered output (helpful for Docker logs)
 PYTHONUNBUFFERED=1
 ```
+
+::
+
+:::

@@ -2,27 +2,16 @@
 title: Mealie
 description: A guide to deploying Mealie
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:40.946Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:17.048Z
+dateCreated: '2026-01-15T15:06:17.048Z'
 ---
 
-# ![](/mealie.png){class="tab-icon"} What is Mealie?
+# What is Mealie?
 Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family. Easily add recipes into your database by providing the url and Mealie will automatically import the relevant data or add a family recipe with the UI editor. Mealie also provides an API for interactions from 3rd party applications.
 
-<div class="glance">
-  <div><span>Port</span><b><code>9925</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/mealie-recipes/mealie"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://docs.mealie.io/documentation/getting-started/installation/backend-config/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Mealie
+# :logos:docker-icon: 1 · Deploy Mealie
 ```yaml
 services:
   mealie:
@@ -42,8 +31,8 @@ services:
       BASE_URL: 
 ```
 
+> [!NOTE]
 > See more environment variable options and explanations [here](https://docs.mealie.io/documentation/getting-started/installation/backend-config/)
-{.is-info}
 
 
 # 2 · Why Add AI?
@@ -59,17 +48,17 @@ AI is no longer configured with environment variables. To set it up:
 
 If you have another service you'd like to use in-place of OpenAI, you can configure Mealie to use that instead, as long as it has an OpenAI-compatible API. For instance, a common self-hosted alternative to OpenAI is Ollama. To use Ollama with Mealie, set the provider's `base_url` to http://localhost:11434/v1 (where http://localhost:11434 is wherever you're hosting Ollama, and /v1 enables the OpenAI-compatible endpoints). Note that you must provide an API key, even though it is ultimately ignored by Ollama.
 
+> [!NOTE]
 > See the [AI integration docs](https://docs.mealie.io/documentation/getting-started/installation/ai-providers/) for more details.
-{.is-info}
 
-# <img src="/docker.png" class="tab-icon"> 3 · Grab Recipes from Social
+# :logos:docker-icon: 3 · Grab Recipes from Social
 Have you found a recipe on social media and don’t want to write it out yourself? This tool lets you import recipes from videos directly into Mealie.
 
+> [!NOTE]
 > Mealie can now import videos itself through **Import with AI** (see section 2) once an audio provider is configured. social-to-mealie is still handy if you want a separate share target or different models.
-{.is-info}
 
+> [!NOTE]
 > See the [GitHub repo](https://github.com/GerardPolloRebozado/social-to-mealie) for more information!
-{.is-info}
 
 
 ```yaml

@@ -2,13 +2,13 @@
 title: Agregarr
 description: A guide to deploying Agregarr
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:18.378Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:07.197Z
+dateCreated: '2026-01-15T15:03:07.197Z'
 ---
 
-# ![](/agregarr.png){class="tab-icon"} What is Agregarr?
+# What is Agregarr?
 Agregarr keeps your Plex Home and Recommended fresh by frequently updating it with Collections from various sources, including Trakt, IMDb, TMDB, Letterboxd, MDBList, FlixPatrol (Networks Top 10), AniList and MyAnimeList, as well as generated Collections from Tautulli Statistics, and Overseerr Requests. It has various options for downloading missing media, including as requests through Overseerr, or directly through Radarr/Sonarr. Collections can be reordered on the Home/Recommended and Library tabs independently, and can have time periods or days set for their visibility in Plex.
 
 
@@ -25,15 +25,7 @@ Agregarr keeps your Plex Home and Recommended fresh by frequently updating it wi
 - Exising Collection Integration: Any pre-existing Collections in Plex and Default Hubs (Recently Added etc) can be managed alongside Agregarr Collections
 - Collection Statistics: Dashboard showing Most Popular Collections (from Tautulli), and recently added Missing Items
 
-<div class="glance">
-  <div><span>Port</span><b><code>7171</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Agregarr
+# :logos:docker-icon: 1 · Deploy Agregarr
 
 ```yaml
 services:

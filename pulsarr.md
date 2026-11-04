@@ -2,29 +2,19 @@
 title: Pulsarr
 description: A guide to deploying Pulsarr via docker
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:46.562Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:37.846Z
+dateCreated: '2026-01-15T15:07:37.846Z'
 ---
 
-# ![](/pulsarr.png){class="tab-icon"} What is Pulsarr?
+# What is Pulsarr?
 
 Pulsarr is an integration tool that bridges Plex watchlists with Sonarr and Radarr, enabling real-time media monitoring and automated content acquisition all from within the Plex App itself.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3003</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://jamcalli.github.io/Pulsarr/docs/intro"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-  </div>
-</div>
-
 # 1 · Deploy Pulsarr
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   pulsarr:
@@ -52,7 +42,9 @@ NODE_ARGS=--log-both
 ```
 - Replace the `baseUrl` with your IP address
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose + Apprise
+::
+
+::block-tab{label="Docker Compose + Apprise" icon="simple-icons:docker"}
 ```yaml
 services:
   apprise:
@@ -99,9 +91,13 @@ appriseUrl=http://host-ip-address:8000
 - Replace the `baseUrl` with your IP address
 - Replace `host-ip-address` with your actual server IP 
 
+::
+
+:::
+
 # 2 · Pulsarr Configuration
+> [!TIP]
 > Read the [official documentation](https://jamcalli.github.io/Pulsarr/docs/intro)
-{.is-success}
 
 
 1. Access the web interface at `http://your-server:3003`
@@ -113,5 +109,5 @@ appriseUrl=http://host-ip-address:8000
 1. Set sync permissions for any friends' watchlists you'd like to include (Ensure users have their [Account Visibility](https://app.plex.tv/desktop/#!/settings/account) set to 'Friends Only' or 'Friends of Friends')
 1. Head to the **Dashboard** page and click on the Start button next to the Main Workflow heading
 
-# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
+# ![](/_files/patreon-light.png =28x) 3 · Video
 [![](/2025-07-06-automate-your-plex-watchlist-wit-promo-card.png)](https://www.patreon.com/posts/automate-your-133499239)

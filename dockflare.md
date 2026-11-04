@@ -2,31 +2,18 @@
 title: Dockflare
 description: A guide to deploying Dockflare
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:58.345Z'
+tags: []
 editor: markdown
-dateCreated: 2026-05-01T19:51:02.015Z
+dateCreated: '2026-05-01T19:51:02.015Z'
 ---
 
-# <img src="/dockflare.png" class="tab-icon"> What is DockFlare?
+# What is DockFlare?
 
 **DockFlare** is a self-hosted ingress and access-control plane for Cloudflare Tunnels. It watches your Docker containers and translates simple labels into Cloudflare Tunnel routes, DNS records, and Zero Trust Access policies — so a new public hostname for any container is one label away, with no clicking through the Cloudflare dashboard.
 
 
 Starting with v3.1.0, DockFlare also ships a self-hosted **Sovereign Email Suite** that uses Cloudflare Email Routing, Workers, R2, and KV as a delivery layer while keeping mailbox data, attachments, and full-text search local on your server.
-
-<div class="glance">
-  <div><span>Port</span><b><code>5000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>6 services</b></div>
-  <div><span>Depends on</span><b>Redis</b></div>
-  <div><span>Difficulty</span><b class="difficulty advanced">Advanced</b></div>
-  <div class="glance-links">
-    <a href="https://youtu.be/DSynNPaPKn0"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-
 
 # 0 · About the Email Suite (Read Me First)
 
@@ -112,17 +99,14 @@ For **Account Resources**, set this to **Include → All accounts** during initi
 
 For **Zone Resources**, **Include → Specific zone → [your domain]** is fine to keep tight.
 
-> 
+> [!WARNING]
 > Restrict the token's scope to just what DockFlare needs. Do not grant a token with these scopes access to all your accounts or zones unless you actually need that.
-{.is-warning}
 
-> 
+> [!WARNING]
 > **Your domain must use Cloudflare DNS.** If your domain is registered elsewhere, point its nameservers to Cloudflare before continuing — Email Routing only works on zones served by Cloudflare's nameservers.
-{.is-warning}
 
-> 
+> [!CAUTION]
 > **Email Routing takes ownership of your zone's MX records.** If you currently use Google Workspace, Fastmail, or any other mail provider for this domain, that mail flow has to be retired before enabling DockFlare email — you cannot run both at the same time.
-{.is-danger}
 
 ## 1.4 Activate R2 Object Storage
 
@@ -135,14 +119,13 @@ If you skip this step, the **Email Management** page in DockFlare will show R2 S
 3. Click **Enable R2** and follow the activation flow
 4. Add a payment method if prompted
 
-> 
+> [!NOTE]
 > **R2 has a 10 GB free tier**, but Cloudflare requires a payment method on file before activation. You will not be charged unless you exceed the free tier — for personal email this is essentially impossible. The mail manager pulls messages out of R2 into local storage almost immediately, so R2 is just a transit buffer.
-{.is-info}
 
 5. Wait about 30 seconds for the activation to propagate
 6. Return to the DockFlare **Email** page and click **Check Permissions**
 
-# <img src="/docker.png" class="tab-icon"> 2 · Deploy DockFlare
+# :logos:docker-icon: 2 · Deploy DockFlare
 
 
 
@@ -254,13 +237,11 @@ networks:
     external: true
 ```
 
-> 
+> [!NOTE]
 > The `dockflare-init` container is a one-shot that fixes ownership on the bind-mounted data directories before the main containers start. It exits after running, which is normal — Dockge will show it as "exited." After the first successful deploy, you can remove the `dockflare-init` block from `depends_on` (and optionally delete the service entirely) to keep your Dockge stack list clean.
-{.is-info}
 
-> 
+> [!CAUTION]
 > Both the DockFlare admin UI (`dockflare.yourdomain.com`) and the webmail (`mail.yourdomain.com`) get exposed via Cloudflare Tunnel automatically because of the `dockflare.enable=true` labels. **Add a Cloudflare Access policy to the admin hostname before going live** — without one it would be publicly reachable on the internet.
-{.is-danger}
 
 ## 2.1 env Variables
 Set these in the stack's environment variables (`.env`):
@@ -271,8 +252,8 @@ INTERNAL_BOOTSTRAP_SECRET=   # openssl rand -hex 32
 MAIL_SECRET_KEY=             # openssl rand -hex 32
 ```
 
+> [!WARNING]
 > Since v3.1.6, the mail manager can't bootstrap without `INTERNAL_BOOTSTRAP_SECRET`, and the same value must be set on both `dockflare` and `dockflare-mail-manager`. `MAIL_SECRET_KEY` encrypts the R2, webhook and outbound secrets stored by the mail manager. **Never change or remove it once set**, or those stored secrets become unreadable.
-{.is-warning}
 
 # 3 · Initial Setup Wizard
 
@@ -300,9 +281,8 @@ After the tunnel is up, both `dockflare.yourdomain.com` and `mail.yourdomain.com
 5. Set a per-mailbox storage quota
 6. Click **Save**
 
-> 
+> [!NOTE]
 > If the one-click setup fails partway through, use **Repair DNS** on the domain detail page to re-apply any missing records. Worker deployments can also be redeployed from the same page.
-{.is-info}
 
 ## 4.1 Verify Destination Addresses (Free Tier Only)
 
@@ -332,9 +312,8 @@ To send to any address without per-recipient verification, upgrade to the **Work
 
 The webmail is automatically published through Cloudflare Tunnel at `https://mail.yourdomain.com` because of the labels in the compose. Open that URL from any browser, on any network.
 
-> 
+> [!WARNING]
 > Lock down `mail.yourdomain.com` with a Cloudflare Access policy in the DockFlare UI before sending real mail. Without one, anyone who guesses the hostname could hit your login page.
-{.is-warning}
 
 ## 5.1 Install as a PWA
 
@@ -362,6 +341,7 @@ Replies to an alias-received email pre-select that alias as the sender. Expired 
 
 
 
-# <img src="/youtube.png" class="tab-icon"> 7 · Video
+# :logos:youtube-icon: 7 · Video
 
-https://youtu.be/DSynNPaPKn0
+::block-youtube{url="https://youtu.be/DSynNPaPKn0"}
+::

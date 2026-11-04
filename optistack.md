@@ -2,27 +2,17 @@
 title: OptiStack
 description: A guide to deploying OptiStack
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:02.719Z'
+tags: []
 editor: markdown
-dateCreated: 2026-02-03T17:40:33.481Z
+dateCreated: '2026-02-03T17:40:33.481Z'
 ---
 
-# <img src="/optistack.png" class="tab-icon"> What is OptiStack?
+# What is OptiStack?
 
 A supplement and medication manager for biohackers and health optimizers. Track dosages, check for interactions with optional AI analysis, manage inventory, and generate doctor-ready PDF reports.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/tylermiranda/optistack"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy OptiStack
+# :logos:docker-icon: 1 · Deploy OptiStack
 
 ```yaml
 services:
@@ -46,11 +36,11 @@ services:
 ```
 
 
+> [!WARNING]
 > Generate secrets with `openssl rand -base64 48` — if not set, random secrets are generated at startup which invalidates sessions on restart.
-{.is-warning}
 
+> [!NOTE]
 > Change the `FRONTEND_URL` to your IP address
-{.is-info}
 
 
 # 2 · First Login
@@ -79,10 +69,10 @@ extra_hosts:
 
 **SSO (optional):** OptiStack also supports OIDC login via `OIDC_ISSUER`, `OIDC_CLIENT_ID`, `OIDC_CLIENT_SECRET` and `OIDC_CALLBACK_URL` (plus the auth, token and userinfo URLs). See the upstream [`.env.example`](https://github.com/tylermiranda/optistack/blob/main/.env.example).
 
+> [!NOTE]
 > If no AI provider is configured, AI features are hidden from the UI
-{.is-info}
 
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Video
+# :logos:youtube-icon: 4 · Video
 
 *No video yet — check back soon!*

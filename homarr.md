@@ -2,13 +2,13 @@
 title: Homarr
 description: A guide to deploying Homarr
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:17.490Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:05:10.051Z
+dateCreated: '2026-01-15T15:05:10.051Z'
 ---
 
-# <img src="/homarr.png" class="tab-icon"> What is Homarr?
+# What is Homarr?
 
 **Homarr** is a modern, sleek dashboard for your homelab that puts all of your apps and services at your fingertips. It uses drag-and-drop configuration with no YAML required, making it accessible for beginners while remaining powerful enough for advanced users. Version 2 is the biggest update in the project's history, adding community-built Custom Widgets, a rebuilt board editor and a built-in Assistant.
 
@@ -22,22 +22,9 @@ Key features include:
 - Built-in authentication and authorization (credentials, OIDC, LDAP)
 - Docker and Podman discovery for adding apps and integrations automatically
 
-<div class="glance">
-  <div><span>Port</span><b><code>7575</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/homarr-labs/homarr"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://homarr.dev/docs/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://apps.truenas.com/catalog/homarr_community/"><i class="mdi mdi-server"></i>TrueNAS app</a>
-  </div>
-</div>
-
 # 1 · Deploy Homarr
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   homarr:
@@ -64,14 +51,15 @@ mkdir -p /mnt/tank/configs/homarr
 chown -R 568:568 /mnt/tank/configs/homarr
 ```
 
+> [!NOTE]
 > Keep a copy of your `SECRET_ENCRYPTION_KEY` somewhere safe. Homarr uses it to encrypt every API key and password stored in the database, and you need the same key for restores and upgrades. If the key is missing at startup, the container exits and prints a random key in the error message.
-{.is-info}
 
+> [!NOTE]
 > The Docker socket mount is optional and only needed for Docker discovery and container management. Because the container runs as `568:568`, it also needs the socket's group. Find it with `stat -c '%g' /var/run/docker.sock`, set `PGID` to that number and run `chown -R 568:<that-gid> /mnt/tank/configs/homarr`. If you don't need Docker features, remove the `/var/run/docker.sock` line and leave `PGID=568`.
-{.is-info}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for "**Homarr**" (Community train)
 3. Click **Install**
@@ -83,8 +71,12 @@ chown -R 568:568 /mnt/tank/configs/homarr
    - **Homarr Data Storage**: Type **Host Path**, path `/mnt/tank/configs/homarr`
 5. Click **Install**
 
+> [!NOTE]
 > The TrueNAS catalog app now ships Homarr v2. If you're still on a v1.x install, updating the app from the **Installed** screen runs the database migration automatically. Back up your app data first.
-{.is-info}
+
+::
+
+:::
 
 # 2 · Configuration
 
@@ -101,8 +93,8 @@ Browse to `http://<server-ip>:7575`. A fresh install redirects to the setup stud
 
 Integrations, Workshop, Assistant and MCP are all optional. Skip them if you just want a working board and come back later.
 
+> [!WARNING]
 > If onboarding shows up again after a restart, your `/appdata` folder isn't persisting or isn't writable. Check the volume path and the `568:568` ownership.
-{.is-warning}
 
 ## 2.2 Core Concepts
 
@@ -154,8 +146,8 @@ Integration permissions come in three levels:
 | Full | Change the integration's settings and call any API endpoint |
 
 
+> [!WARNING]
 > Integration URLs must be reachable from inside the Homarr container, so use your server's IP address (for example `http://192.168.1.100:8989`) rather than Docker container names unless Homarr shares a network with that app. The browser-facing URL you click on can be different; set that on the linked app.
-{.is-warning}
 
 ## 2.5 Widgets
 
@@ -187,8 +179,8 @@ Press <kbd>Shift</kbd> + <kbd>A</kbd> to open the Homarr Assistant. It can answe
 
 External AI clients can use the same tools through the MCP endpoint at `/api/mcp`, authenticated with a Homarr API key or OAuth.
 
+> [!NOTE]
 > If Homarr sits behind a reverse proxy that doesn't pass the original host and protocol, add `BASE_URL=https://homarr.yourdomain.com` to the environment so MCP OAuth redirects use your public address.
-{.is-info}
 
 ## 2.8 Keyboard Shortcuts
 
@@ -199,4 +191,5 @@ External AI clients can use the same tools through the MCP endpoint at `/api/mcp
 | <kbd>Shift</kbd> + <kbd>A</kbd> | Open the Assistant |
 | Hold <kbd>Shift</kbd> over a widget | Advanced widget view |
 | <kbd>Esc</kbd> while dragging | Put the item back where it was |
+
 

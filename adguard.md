@@ -2,31 +2,23 @@
 title: AdGuard
 description: A guide to deploying AdGuard via TrueNAS or docker compose
 published: true
-date: 2026-01-17T01:25:52.964Z
-tags: 
+date: '2026-11-04T16:23:13.582Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:05.289Z
+dateCreated: '2026-01-15T15:03:05.289Z'
 ---
 
-# ![](/adguard-home.png){class="tab-icon"} What is AdGuard?
+# What is AdGuard?
 AdGuard is the best way to get rid of annoying ads and online tracking and protect your computer from malware. Make your web surfing fast, safe and ad-free.
 
-<div class="glance">
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://youtu.be/u9PioLP57-4"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-
 # 1 · Deploy AdGuard
-# {.tabset}
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+:::block-tabs
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Set the **Storage Configuration** to use **Host Path** for the **AdGuard Home Config Storage** and **AdGuard Home WorkDir Storage**
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+::
+
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   adguardhome:
@@ -52,6 +44,10 @@ services:
     image: adguard/adguardhome
 ```
 
+::
+
+:::
+
 # 2 · Adguard Configuration
 1. Naviagte to the IP and Port of the container
 1. Leave the **Interfaces** and **DNS Server** settings default
@@ -67,5 +63,6 @@ services:
 ## 2.3 DNS Blocklists
 1. Optionally add additional blocklists besides the default AdGuard DNS filter list
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
-https://youtu.be/u9PioLP57-4
+# :logos:youtube-icon: 3 · Video
+::block-youtube{url="https://youtu.be/u9PioLP57-4"}
+::

@@ -2,13 +2,13 @@
 title: Posterizarr
 description: A guide to deploying Posterizarr
 published: true
-date: 2026-01-15T15:30:56.593Z
-tags: 
+date: '2026-11-04T16:23:22.494Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:26.738Z
+dateCreated: '2026-01-15T15:07:26.738Z'
 ---
 
-# ![](/posterizarr.png){class="tab-icon"} What is Posterizarr?
+# What is Posterizarr?
 
 Automate the creation of beautiful, textless posters for your Plex, Jellyfin, or Emby library.
 
@@ -19,18 +19,7 @@ Posterizarr is a PowerShell script with a full Web UI that automates generating 
 - Kometa Integration: Organizes assets in a Kometa-compatible folder structure.
 - Smart Integration: Trigger runs from Tautulli, Sonarr, and Radarr.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/fscorrupt/posterizarr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Posterizarr
+# :logos:docker-icon: 1 · Deploy Posterizarr
 ```yaml
 services:
   posterizarr:
@@ -52,6 +41,6 @@ services:
       - /mnt/tank/configs/posterizarr/manualassets:/manualassets:rw
 ```
 
-# <img src="/patreon-light.png" class="tab-icon"> 2 · Video
+# ![](/_files/patreon-light.png =28x) 2 · Video
 
 [![2025-11-17-edit-poster-art-with-posterizarr-promo-card.png](/2025-11-17-edit-poster-art-with-posterizarr-promo-card.png)](https://www.patreon.com/posts/edit-poster-art-143777654)

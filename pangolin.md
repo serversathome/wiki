@@ -2,17 +2,16 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:35.522Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:59.674Z
+dateCreated: '2026-01-15T15:06:59.674Z'
 ---
 
-# ![](/pangolin.png){class="tab-icon"} What is Pangolin?
+# What is Pangolin?
 Pangolin at its core is a self-hosted tunneled reverse proxy with identity and access management, designed to securely expose private resources through encrypted WireGuard tunnels running in user space. Think self hosted Cloudflare tunnels.
-> 
+> [!TIP]
 > Read the [official documentation](https://docs.pangolin.net/)
-{.is-success}
 
 
 # 1 · Prerequisites
@@ -27,8 +26,8 @@ A minimal VPS instance with 1 vCPU, 1GB RAM, and 8GB SSD will perform perfectly 
 
 The Pangolin docs recommend [Racknerd](/racknerd) and honestly it's a great choice, but any VPS will do. *Note this is an affiliate link*
 
+> [!NOTE]
 > Check out my guide for [Racknerd](/racknerd)
-{.is-info}
 
 
 # 3 · Installation
@@ -72,8 +71,8 @@ The installer no longer asks for an admin account. Instead, it prints a one-time
 
 ## 4.2 Security Settings
 
+> [!NOTE]
 > Current installers no longer list these prompts. If yours doesn't ask, skip this step.
-{.is-info}
 
 Older installers asked you to configure some basic security options. For example:
 
@@ -139,8 +138,8 @@ A site is a remote location that you want to proxy through the tunnel and system
 1. Try to access your resource by clicking the url at the top
 
 
+> [!NOTE]
 > After you create your resource if you are using https certificates with Let's Encrypt (default) then you must wait some time after a target is created for your certificate to be granted and loaded by Traefik. This should take no more than a few minutes. For instant access, consider setting up wildcard certificates.
-{.is-info}
 
 ### 5.5.2 Authentication
 
@@ -150,8 +149,8 @@ By default the resource is protected with your same Pangolin account. When openi
 
 If you would like to disable Pangolin auth, you can disable the `Use Platform SSO` toggle.
 
+> [!WARNING]
 > It is not recommended to expose a resource without some form of authentication. Only do this if you need to for the functionality of the resource or you trust the built-in auth.
-{.is-warning}
 
 
 ## 5.6 Invite Users (optional)
@@ -167,6 +166,8 @@ The new user will be prompted to setup a password and verify their email (if SMT
 
 
 
-# <img src="/youtube.png" class="tab-icon"> 6 · Video
+# :logos:youtube-icon: 6 · Video
 
-https://youtu.be/1fKqQi-VuNM
+::block-youtube{url="https://youtu.be/1fKqQi-VuNM"}
+::
+

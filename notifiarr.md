@@ -2,25 +2,17 @@
 title: Notifiarr
 description: A guide to deploy Notifiarr in TrueNAS
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:35.493Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:48.473Z
+dateCreated: '2026-01-15T15:06:48.473Z'
 ---
 
-# ![](/notifiarr.png){class="tab-icon"} What is Notifiarr
+# What is Notifiarr
 Notifiarr is a system that integrates with many applications to manage and customize notifications via Discord. You can monitor your network, services, servers, and more and be notified of issues or events.
 
+> [!TIP]
 > Read the [official documentation](https://notifiarr.wiki/)
-{.is-success}
-
-<div class="glance">
-  <div><span>Port</span><b><code>5454</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
 
 # 1 · Setup of Notifiarr
 1. Go to [Notifiarr](https://notifiarr.com/guest/register) and create a account.
@@ -40,9 +32,8 @@ Notifiarr is a system that integrates with many applications to manage and custo
     <img src="https://github.com/user-attachments/assets/9563760b-d89c-495a-b06a-87d730c564f9">
 
 # 2 · Deploy Notifiarr
-# tabs {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+:::block-tabs
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   notifiarr:
@@ -60,14 +51,19 @@ services:
       - /etc/machine-id:/etc/machine-id
 ```
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
-![](/screenshot_from_2024-02-23_09-37-02.png)
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+![](/screenshot-from-2024-02-23-09-37-02.png)
 
 1. Set the **Hostname** to a static name such as `notifiarr`. Notifiarr identifies each client by hostname, so don't change it later
 1. Enter the **API Key** you copied in section 1
 1. Under **Additional Environment Variables**, add **Name** `DN_UI_PASSWORD` with your chosen web UI password as the **Value**. On TrueNAS the container doesn't reliably set or log the UI password otherwise
 1. Change the **Storage Configuration**. The **Notifiarr Config Storage** *Type* should be set to **Host Path** and point to `/mnt/tank/configs/notifiarr`
+
+::
+
+:::
 
 # 3 · Logging In
 1. Navigate to `http://IP:5454`. The username is `admin`. On TrueNAS the password is the `DN_UI_PASSWORD` you set. On Docker it is your API key, or the one-time password printed in the logs.

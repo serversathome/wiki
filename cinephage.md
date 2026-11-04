@@ -2,13 +2,13 @@
 title: Cinephage
 description: A guide to deploying Cinephage
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:55.968Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:39.889Z
+dateCreated: '2026-01-15T15:03:39.889Z'
 ---
 
-# <img src="/cinephage.png" class="tab-icon"> What is Cinephage?
+# What is Cinephage?
 
 **Cinephage** is an all-in-one, self-hosted media management application that consolidates the functionality of Radarr, Sonarr, Prowlarr, and Bazarr into a single unified platform. The name comes from the Greek *cine* (film) + *phage* (to devour) — a film devourer.
 
@@ -16,21 +16,10 @@ Instead of juggling multiple *arr apps with their own databases and configuratio
 
 Key highlights include `.strm` file support for streaming without downloading, Torznab/Newznab support for external indexer integration, support for multiple download clients (qBittorrent, SABnzbd, NZBGet, NZBMount), and automated monitoring for missing content and quality upgrades.
 
-> 
+> [!WARNING]
 > Cinephage is currently a **work in progress**. Early adopters are welcome, but expect some rough edges. Check the [GitHub repo](https://github.com/MoldyTaint/Cinephage) for the latest status.
-{.is-warning}
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/moldytaint/cinephage"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Cinephage
+# :logos:docker-icon: 1 · Deploy Cinephage
 
 ```yaml
 services:
@@ -56,12 +45,11 @@ services:
 2. Replace `10.99.0.242` in `ORIGIN` with your server's IP, or your public URL if you use a reverse proxy
 3. Deploy the stack
 
+> [!NOTE]
 > The `latest` tag can't currently be pulled from GHCR, so the compose pins `0.10`.
-{.is-info}
 
-> 
+> [!WARNING]
 > Both Cinephage and your download client must mount the **same download directory** for imports to work correctly.
-{.is-warning}
 
 
 # 2 · Configuration
@@ -97,11 +85,10 @@ Cinephage supports 8 subtitle providers with 80+ languages. Subtitles can be con
 
 Cinephage can automatically search for missing content, quality upgrades, new episodes, and items not meeting your quality cutoff. Configure monitoring schedules under **Settings → Monitoring**.
 
-> 
+> [!NOTE]
 > Monitoring is currently marked as **experimental** and may have bugs. Keep an eye on logs if you enable automated tasks.
-{.is-info}
 
 
 
-# <img src="/patreon-light.png" class="tab-icon"> 4 · Video
+# ![](/_files/patreon-light.png =28x) 4 · Video
 [![](/2026-02-25-cinephage-the-all-in-one-app-promo-card.png)](https://www.patreon.com/posts/cinephage-all-in-150415696)

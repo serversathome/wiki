@@ -2,13 +2,13 @@
 title: Bookorbit
 description: A guide to deploying Bookorbit
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:16:55.014Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-28T20:18:42.561Z
+dateCreated: '2026-08-28T20:18:42.561Z'
 ---
 
-# <img src="/bookorbit.png" class="tab-icon"> What is BookOrbit?
+# What is BookOrbit?
 
 **BookOrbit** is a self-hosted library management and reading platform for ebooks, PDFs, audiobooks, and comics. It ships built-in web readers for EPUB/MOBI/AZW3, PDF, CBZ/CBR, and M4B/MP3 audiobooks, so nothing extra is needed on the client side.
 
@@ -16,24 +16,12 @@ Where it separates itself from the usual suspects is sync. Progress and annotati
 
 It is written in TypeScript/Vue on a NestJS backend, licensed AGPL-3.0, and backed by PostgreSQL with the pgvector extension.
 
+> [!NOTE]
 > BookOrbit requires a PostgreSQL database with the `uuid-ossp`, `pg_trgm`, and `vector` (pgvector) extensions. The compose file below brings up its own database, so there is nothing to install separately.
-{.is-info}
-
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/bookorbit/bookorbit"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
 
 # 1 · Deploy BookOrbit
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   bookorbit:
@@ -98,11 +86,12 @@ openssl rand -hex 16   # SETUP_BOOTSTRAP_TOKEN
 4. Point the `/books` volume at your library folder. That is the folder the library picker opens in.
 
 
+> [!WARNING]
 > `APP_URL` is baked into the Kobo sync URLs handed out to devices. If you plan to put BookOrbit behind a reverse proxy, set it to the final public hostname now rather than changing it after your devices are paired.
-{.is-warning}
 
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
+::
 
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 BookOrbit is in the **community** train, added June 2026 and tracking upstream closely.
 
 1. Navigate to **Apps** in the TrueNAS UI and select **Discover Apps**
@@ -120,11 +109,15 @@ BookOrbit is in the **community** train, added June 2026 and tracking upstream c
 6. Under **Resources Configuration**, the defaults are 2 CPUs and 4096 MB memory. Raise the memory for very large libraries.
 7. Click **Install**
 
+> [!CAUTION]
 > Do not change the Postgres image version after the database has been initialized. It triggers a one-way upgrade, and picking an older version afterward will refuse to start. Snapshot the dataset first.
-{.is-danger}
 
+> [!NOTE]
 > If you use a Host Path for Postgres data, tick **Automatic Permissions** so TrueNAS chowns the directory for the postgres container.
-{.is-info}
+
+::
+
+:::
 
 # 2 · First-Time Setup
 
@@ -136,8 +129,8 @@ On first load BookOrbit presents a setup screen that asks for the bootstrap toke
 2. Create the admin account: email, username, password
 3. Finish the wizard and sign in
 
+> [!TIP]
 > The bootstrap token is single-use for the setup endpoint. Once the admin account exists, it stops being a way in, but there is no reason to leave it in a shared compose file either.
-{.is-success}
 
 ## 2.2 Creating a Library
 
@@ -174,8 +167,8 @@ The plugin adds progress sync, two-way annotation sync, and a catalog browser th
 4. Restart KOReader and open a book
 5. Use **Tools > BookOrbit Sync** to connect
 
+> [!TIP]
 > The downloaded plugin is pre-configured with your server URL and credentials, so there is no typing a long URL on an e-ink keyboard.
-{.is-success}
 
 ## 3.2 Kobo Sync
 
@@ -198,8 +191,8 @@ Both are configured under **Settings > Integrations** with an API token from the
 | Book Dock | Settings > Libraries | Watched folder, hands-free import |
 
 
+> [!WARNING]
 > If you store SMTP credentials, set `EMAIL_ENCRYPTION_KEY` to a value from `openssl rand -hex 32`. Without it those credentials sit unencrypted in the database.
-{.is-warning}
 
 # 5 · Reverse Proxy
 
@@ -211,8 +204,8 @@ BookOrbit ships a strict CSP and expects to be served from the hostname in `APP_
 4. Update `APP_URL` to the HTTPS hostname and recreate the container
 5. Re-pair Kobo devices if they were paired against the old URL
 
+> [!NOTE]
 > If the frontend is served from a different domain than `APP_URL`, set `CLIENT_URL` to that domain or CORS will block it.
-{.is-info}
 
 # 6 · Multi-User and SSO
 
@@ -220,7 +213,8 @@ Under **Settings > Users** you get granular per-user permissions with isolated r
 
 For OIDC, BookOrbit has native support for Authentik, Keycloak, and Authelia. Configure the issuer URL, client ID, and secret under **Settings > Authentication**.
 
+> [!WARNING]
 > If your identity provider lives on a private address, set `OIDC_ALLOW_LOCAL_ISSUERS=true`. Leave it off on anything internet-facing.
-{.is-warning}
+
 
 

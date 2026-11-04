@@ -2,10 +2,10 @@
 title: Homie
 description: A guide to deploying Homie
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:35.897Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:05:19.606Z
+dateCreated: '2026-01-15T15:05:19.606Z'
 ---
 
 # 🏠 What is Homie?
@@ -13,17 +13,7 @@ A simple family utility app for managing household tasks with secure authenticat
 
 **Features**: Shopping lists • Chores • Expiry tracking • Bills • Mobile-friendly
 
-<div class="glance">
-  <div><span>Port</span><b><code>5000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/brramble/homie"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Homie
+# :logos:docker-icon: 1 · Deploy Homie
 ```yaml
 services:
   homie:
@@ -65,5 +55,6 @@ services:
     
 ```
 
+> [!NOTE]
 > When OIDC is enabled, register `{BASE_URL}/auth/callback` (e.g. `https://homie.example.com/auth/callback`) as the redirect/callback URL in your OIDC provider, and set `BASE_URL` to the address you actually reach Homie at.
-{.is-info}
+

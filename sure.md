@@ -2,33 +2,19 @@
 title: Sure
 description: A guide to deploy Sure
 published: true
-date: 2026-09-02T10:42:03.270Z
-tags: 
+date: '2026-11-04T16:23:42.408Z'
+tags: []
 editor: markdown
-dateCreated: 2026-08-06T14:22:23.744Z
+dateCreated: '2026-08-06T14:22:23.744Z'
 ---
 
-# <img src="/sure-finance.png" class="tab-icon"> What is Sure?
+# What is Sure?
 
 **Sure** is a self-hosted personal finance app — net worth tracking, account aggregation, spending breakdowns, and investment holdings. It's the community fork of Maybe Finance, the VC-backed personal finance startup that shut down in 2023 and open-sourced its codebase.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>4 services</b></div>
-  <div><span>Depends on</span><b>Postgres and Redis</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/we-promise/sure"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://youtu.be/ZX8N3mSnDGw"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
-
 # 1 · Deploy Sure
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 x-db-env: &db_env
   POSTGRES_USER: ${POSTGRES_USER:-sure_user}
@@ -110,8 +96,8 @@ services:
       retries: 5
 ```
 
+> [!NOTE]
 > If your pool is named something besides `tank`, change the left side of each volume path.
-{.is-info}
 
 Create your `.env` alongside the compose file:
 
@@ -125,11 +111,9 @@ RAILS_FORCE_SSL=false
 RAILS_ASSUME_SSL=false
 ```
 
+::
 
-
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for **Sure** (Community train, Financial category)
 3. Click **Install**
@@ -140,15 +124,19 @@ RAILS_ASSUME_SSL=false
    - Generate and paste a **Secret Key Base** — `openssl rand -hex 64`
 5. Click **Save**
 
+> [!NOTE]
 > The catalog app bundles Postgres and Redis, so you don't manage those separately. The tradeoff is less control over versions and image tags — if you want to pin a specific Sure release, the Docker route is cleaner.
-{.is-info}
+
+::
+
+:::
 
 # 2 · First Login
 
 Browse to `http://<host>:3000` and create your account. The first account registered becomes the admin.
 
+> [!WARNING]
 > If you're fronting this with a reverse proxy, set both `RAILS_FORCE_SSL` and `RAILS_ASSUME_SSL` to `true`. Otherwise Rails generates `http://` URLs behind the proxy and login redirects break in a way that's genuinely annoying to diagnose.
-{.is-warning}
 
 # 3 · Bank Sync with SimpleFIN
 
@@ -161,8 +149,8 @@ SimpleFIN is an open protocol for financial aggregation. Since almost no US bank
 3. Confirm every institution shows status **OK**
 4. Enable **Passkeys** or **2FA** on the Bridge account while you're there
 
+> [!NOTE]
 > Link *all* your institutions before generating a token. The token grants access to whatever is connected at claim time, and adding banks afterward means going through this again.
-{.is-info}
 
 ## 3.2 Generate the Setup Token
 
@@ -182,8 +170,8 @@ docker logs -f sure-worker
 
 You want the `SimplefinItem` sync to move `pending → syncing → completed`.
 
+> [!CAUTION]
 > **Never manually retry `SimplefinConnectionUpdateJob`.** It consumes a single-use setup token, and retrying permanently breaks that connection attempt. If a sync fails, go back to Bridge, generate a *fresh* token, and start over.
-{.is-danger}
 
 ## 3.4 What to Expect
 
@@ -196,8 +184,8 @@ You want the `SimplefinItem` sync to move `pending → syncing → completed`.
 | Non-USD accounts | Known bug where these can import as USD — spot-check |
 {.dense}
 
+> [!WARNING]
 > Rotating `SECRET_KEY_BASE` invalidates the stored access URL. You'll need to claim a brand new token from Bridge. Note this wherever you keep your secrets.
-{.is-warning}
 
 # 4 · AI Features (Optional)
 
@@ -217,11 +205,13 @@ Notes worth having:
 - For a local model on the same host, `localhost` won't resolve from inside the container — use the container name or the host's LAN IP
 - Restart **both** `web` and `worker` after changing these. The worker runs background categorization, so restarting only web gets you working chat and stale batch behavior
 
+> [!TIP]
 > Get SimpleFIN sync solid *before* adding an LLM. Fewer variables when something breaks.
-{.is-success}
 
 
-# <img src="/youtube.png" class="tab-icon"> 5 · Video
-https://youtu.be/ZX8N3mSnDGw
+# :logos:youtube-icon: 5 · Video
+::block-youtube{url="https://youtu.be/ZX8N3mSnDGw"}
+::
+
 
 

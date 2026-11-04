@@ -2,22 +2,16 @@
 title: Watchtower
 description: A guide on how to install Watchtower for container updates
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:56.157Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:03:01.108Z
+dateCreated: '2026-01-15T15:03:01.108Z'
 ---
 
-# ![](/watchtower.png){class="tab-icon"} What is Watchtower?
+# What is Watchtower?
 Watchtower is a tool that automates the updating of Docker containers by pulling new images and restarting the containers with the same options used during deployment.
 
-<div class="glance">
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Watchtower
+# :logos:docker-icon: 1 · Deploy Watchtower
 
 ```yaml
 services:
@@ -37,11 +31,11 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 ```
 
+> [!NOTE]
 > I have added some custom environment variables to this compose file. For a full explanation of all possible variables, [see the docs](https://watchtower.nickfedor.com/latest/)
-{.is-info}
 
+> [!WARNING]
 > Watchtower should not update apps from the TrueNAS catalog. The compose above already skips them (their containers are named `ix-*`) with the regex in `WATCHTOWER_DISABLE_CONTAINERS=^ix-.*`.
-{.is-warning}
 
 
 # 2 · Run On-Command
@@ -78,6 +72,7 @@ Watchtower sends notifications through **Shoutrrr** URLs. Add a `WATCHTOWER_NOTI
 | `WATCHTOWER_REVIVE_STOPPED` | Starts stopped containers after updating them |
 | `WATCHTOWER_RUN_ONCE` | Runs a single update check and then exits |
 | `WATCHTOWER_DEBUG` | More detailed logging for troubleshooting |
+
 
 
 

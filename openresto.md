@@ -2,10 +2,10 @@
 title: Openresto
 description: A guide to deploying Openresto
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:26.784Z'
+tags: []
 editor: markdown
-dateCreated: 2026-06-29T20:52:10.263Z
+dateCreated: '2026-06-29T20:52:10.263Z'
 ---
 
 # What is OpenResto?
@@ -14,19 +14,7 @@ dateCreated: 2026-06-29T20:52:10.263Z
 
 It is built for indie restaurants, bars, and cafes that do not want to pay SaaS booking fees or hand customer data to a third party. Everything runs from a single Docker Compose stack with no external services required beyond optional SMTP for confirmation emails.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>3 services</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/karanshukla/openresto"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy OpenResto
+# :logos:docker-icon: 1 · Deploy OpenResto
 
 ```yaml
 services:
@@ -98,13 +86,11 @@ services:
 ```
 
 
-> 
+> [!WARNING]
 > The `reverse-proxy` is not optional. The frontend image is built to call the API at `/api`, so Nginx does the path routing: `/api` goes to the backend and everything else goes to the frontend. It also terminates TLS using the certificates you mount from the host. Removing it breaks all API calls.
-{.is-warning}
 
-> 
+> [!NOTE]
 > The proxy binds only to `127.0.0.1` on ports `8080` (HTTP) and `8443` (HTTPS), so it is not exposed to your LAN directly. That makes it a clean target for a Cloudflare Tunnel or a separate reverse proxy.
-{.is-info}
 
 
 
@@ -159,8 +145,8 @@ EmailSettings__EnableSsl=true
 
 ```
 
+> [!CAUTION]
 > The `.env` file in the upstream repo uses `CONNECTION_STRING=Data Source=./openresto.db`. Don't copy that line: the `.env` value wins over the compose default, and `./openresto.db` puts the database inside the container, where it is lost every time the container is recreated.
-{.is-danger}
 
 | Variable | Description |
 |----------|-------------|
@@ -176,9 +162,8 @@ EmailSettings__EnableSsl=true
 | `HOST_SSL_KEY_PATH` | Host path to your TLS private key, mounted into the proxy |
 {.dense}
 
-> 
+> [!NOTE]
 > Generate a VAPID keypair with `npx web-push generate-vapid-keys`. Web push lets the admin dashboard receive booking notifications in the browser. If you do not need push notifications you can leave the Vapid values blank, but generating a keypair takes seconds.
-{.is-info}
 
 ## 2.2 How the config keys map
 
@@ -197,7 +182,7 @@ The proxy expects a certificate and key mounted read-only from the host at the p
 2. Open the admin dashboard and log in with the `ADMIN_EMAIL` and `ADMIN_PASSWORD` you set.
 3. Create your first restaurant, add tables and floor sections, then set your branding (app name, primary color, favicon icon).
 
-> 
+> [!CAUTION]
 > Change the default admin password immediately after your first login.
-{.is-danger}
+
 

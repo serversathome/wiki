@@ -2,40 +2,28 @@
 title: PhotoPrism
 description: A guide to deploying PhotoPrism
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:41.206Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:08.400Z
+dateCreated: '2026-01-15T15:07:08.400Z'
 ---
 
-# ![](/photoprism.png){class="tab-icon"} What is PhotoPrism?
+# What is PhotoPrism?
 
 PhotoPrism® is an AI-Powered Photos App for the Decentralized Web. It makes use of the latest technologies to tag and find pictures automatically without getting in your way. 
 
-<div class="glance">
-  <div><span>Port</span><b><code>2342</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>MariaDB</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://docs.photoprism.app/getting-started/config-options/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-  </div>
-</div>
-
 # 1 · Deploy PhotoPrism
-# {.tabset}
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+:::block-tabs
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Set the **Site URL** to either your local IP or a FQDN
 1. Set the **Admin Password** 
 1. Set the **Photoprism Import Storage** to **Host Path**
 1. Set the **Photoprism Storage** to **Host Path**
 1. Set the **Photoprism Originals Storage** to **Host Path**
 
+::
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
   photoprism:
@@ -123,8 +111,8 @@ services:
       MARIADB_ROOT_PASSWORD: "insecure"
 ```
 
+> [!NOTE]
 > For information about all of the environment variables, [see the docs](https://docs.photoprism.app/getting-started/config-options/)
-{.is-info}
 
 
 ### env File
@@ -132,3 +120,7 @@ services:
 HOST=http://10.99.0.242:2342
 CONFIG_PATH=/mnt/tank/configs/photoprism
 ```
+
+::
+
+:::

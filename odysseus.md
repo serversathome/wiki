@@ -2,10 +2,10 @@
 title: Odysseus
 description: A guide to deploying Odysseus
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:22.199Z'
+tags: []
 editor: markdown
-dateCreated: 2026-06-05T20:38:01.780Z
+dateCreated: '2026-06-05T20:38:01.780Z'
 ---
 
 # What is Odysseus?
@@ -16,7 +16,7 @@ You bring your own "brain": point it at a **local model** (via Ollama, vLLM, lla
 
 
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Odysseus
+# :logos:docker-icon: 1 · Deploy Odysseus
 
 Open the TrueNAS shell (or SSH in) and run:
 
@@ -28,8 +28,8 @@ cd odysseus
 cp .env.example .env
 ```
 
+> [!NOTE]
 > The project moved from `pewdiepie-archdaemon/odysseus` to [`odysseus-dev/odysseus`](https://github.com/odysseus-dev/odysseus). The default branch is now `dev` (newest changes); `-b main` checks out the more curated branch.
-{.is-info}
 
 Now edit the `.env` file and set the values you care about (see the table in section 2), then build and start the stack:
 
@@ -42,8 +42,8 @@ The compose file pulls the prebuilt `ghcr.io/odysseus-dev/odysseus:latest` image
 
 
 
+> [!CAUTION]
 > **Do NOT expose this to the public internet.** Odysseus has an agent mode that can run commands on your server, with no sandbox (the project says so in its own docs). Keep it on your home network only. For remote access, use a VPN or a tunnel (Tailscale, Cloudflare Tunnel) — never a plain port-forward.
-{.is-danger}
 
 # 2 · Configuration
 
@@ -78,9 +78,8 @@ docker compose logs odysseus | grep -i password
 
 In Dockge, you can also just open the stack and read the log output. Log in with your admin user and that password, then change it in **Settings**.
 
-> 
+> [!NOTE]
 > The temporary password is printed **once**. Setting `ODYSSEUS_ADMIN_PASSWORD` in `.env` before first boot avoids the whole scavenger hunt.
-{.is-info}
 
 ## 2.3 Connect a model (give it a brain)
 
@@ -143,5 +142,7 @@ docker compose up -d --build
 
 Your data in `./data` is preserved across updates. This is a fast-moving, year-one project, so expect occasional breaking changes — check the GitHub README before major updates.
 
-# <img src="/youtube.png" class="tab-icon"> 6 · Video
-https://youtu.be/InKHg6WZ9-E
+# :logos:youtube-icon: 6 · Video
+::block-youtube{url="https://youtu.be/InKHg6WZ9-E"}
+::
+

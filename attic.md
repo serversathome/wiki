@@ -2,29 +2,17 @@
 title: Attic
 description: A guide to deploying Attic
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:28.065Z'
+tags: []
 editor: markdown
-dateCreated: 2026-09-28T18:01:07.684Z
+dateCreated: '2026-09-28T18:01:07.684Z'
 ---
 
-# <img src="/attic-assets.png" class="tab-icon"> What is Attic?
+# What is Attic?
 
 **Attic** is a self-hosted home inventory for everything you own. Catalog appliances, tools, electronics, books, games and furniture, and keep each item's location, condition, purchase price, warranty, photos, receipts and manuals in one place. Locations nest the way your house does (room, shelf, box), categories carry their own custom fields, and imports from Google Books, TMDB, BoardGameGeek and IGDB fill in metadata and cover art for you.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8095</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/lmmendes/attic"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://getattic.dev"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Attic
+# :logos:docker-icon: 1 · Deploy Attic
 
 Create the folders first:
 
@@ -96,11 +84,11 @@ services:
 3. Replace `your-server-ip` with your server's IP, or with your public URL if you put Attic behind a Cloudflare Tunnel
 4. Deploy the stack. Database migrations run automatically on startup
 
+> [!NOTE]
 > The admin credentials are only used when the database has no users yet. Changing them in the compose file after the first boot does nothing. If you leave them unset, Attic falls back to `admin` / `admin`, so set them before the first deploy.
-{.is-info}
 
+> [!NOTE]
 > The upstream compose also ships a Keycloak service for SSO. It is optional and left out here. Attic works fine with local password logins, and you can point it at any OIDC provider later with the `ATTIC_OIDC_*` variables.
-{.is-info}
 
 # 2 · Configuration
 
@@ -131,4 +119,5 @@ Collections group items without moving them, so a PS5 game can live on the TV st
 ## 2.4 S3 Storage (Optional)
 
 Attachments are stored on disk in `/mnt/tank/configs/attic/uploads` by default. To use S3-compatible storage instead, set `ATTIC_S3_ENDPOINT`, `ATTIC_S3_BUCKET`, `ATTIC_S3_REGION`, `ATTIC_S3_ACCESS_KEY` and `ATTIC_S3_SECRET_KEY`. Attic switches to S3 as soon as both keys are present.
+
 

@@ -2,60 +2,155 @@
 title: Media Management
 description: A start page for everything media related
 published: true
-date: 2026-09-08T12:42:19.548Z
-tags: 
+date: '2026-11-04T15:58:26.073Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:06:20.212Z
+dateCreated: '2026-01-15T15:06:20.212Z'
 ---
 
-<div class="hero">
-  <div class="hero-title">Media management</div>
-  <p>Playing, viewing and organizing what you already have. Anything that talks to Radarr, Sonarr, Prowlarr or a Seerr requester lives on the <a href="/arr-stack">*arr stack</a> page.</p>
-  <div class="hero-meta">Updated September 2026</div>
-</div>
+Playing, viewing and organizing what you already have. Anything that talks to Radarr, Sonarr, Prowlarr or a Seerr requester lives on the [*arr stack](/arr-stack) page.
 
+*Updated September 2026*
+
+> [!TIP]
 > Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help.
-{.is-success}
 
-## Media servers {.sec .media}
-- [<img src="/jellyfin.png"> Jellyfin<br>*Volunteer-built, fully free media server*](/jellyfin)
-- [<img src="/plex.png"> Plex<br>*Movies, TV and music with polished clients*](/plex)
-- [<img src="/emby.png"> Emby<br>*Your personal media on any device*](/Emby)
-- [<img src="/navidrome.png"> Navidrome<br>*Music streaming from your browser*](/navidrome)
-- [<img src="/audiobookshelf.png"> Audiobookshelf<br>*Audiobooks and podcasts with per-user progress*](/audiobookshelf)
-- [Prismedia<br>*Video, music, books and comics in one library*](/prismedia)
-- [<img src="/peertube.png"> PeerTube<br>*Federated video platform, your own YouTube*](/peertube)
-- [Moonfin<br>*Refined Jellyfin and Emby clients for TV devices*](/moonfin)
-- [<img src="/jellyswarrm.png"> Jellyswarrm<br>*Combine multiple Jellyfin servers into one*](/jellyswarrm)
-- [Mydia<br>*Track and organize a media library*](/mydia)
-{.links-list .media}
+## Media servers
+::block-links-grid
+```yaml
+- title: "Jellyfin"
+  description: "Volunteer-built, fully free media server"
+  url: "/jellyfin"
+  icon: "img:/_files/jellyfin.png"
+  color: purple
+- title: "Plex"
+  description: "Movies, TV and music with polished clients"
+  url: "/plex"
+  icon: "img:/_files/plex.png"
+  color: purple
+- title: "Emby"
+  description: "Your personal media on any device"
+  url: "/Emby"
+  icon: "img:/_files/emby.png"
+  color: purple
+- title: "Navidrome"
+  description: "Music streaming from your browser"
+  url: "/navidrome"
+  icon: "img:/_files/navidrome.png"
+  color: purple
+- title: "Audiobookshelf"
+  description: "Audiobooks and podcasts with per-user progress"
+  url: "/audiobookshelf"
+  icon: "img:/_files/audiobookshelf.png"
+  color: purple
+- title: "Prismedia"
+  description: "Video, music, books and comics in one library"
+  url: "/prismedia"
+  color: purple
+- title: "PeerTube"
+  description: "Federated video platform, your own YouTube"
+  url: "/peertube"
+  icon: "img:/_files/peertube.png"
+  color: purple
+- title: "Moonfin"
+  description: "Refined Jellyfin and Emby clients for TV devices"
+  url: "/moonfin"
+  color: purple
+- title: "Jellyswarrm"
+  description: "Combine multiple Jellyfin servers into one"
+  url: "/jellyswarrm"
+  icon: "img:/_files/jellyswarrm.png"
+  color: purple
+- title: "Mydia"
+  description: "Track and organize a media library"
+  url: "/mydia"
+  color: purple
+```
+::
 
-## Photos {.sec .media}
-- [<img src="/immich.png"> Immich<br>*Photo and video management with mobile backup*](/immich)
-- [<img src="/photoprism.png"> PhotoPrism<br>*AI-tagged photo library*](/photoprism)
-- [Ente Photos<br>*End-to-end encrypted photo storage*](/entephotos)
-{.links-list .media}
+## Photos
+::block-links-grid
+```yaml
+- title: "Immich"
+  description: "Photo and video management with mobile backup"
+  url: "/immich"
+  icon: "img:/_files/immich.png"
+  color: purple
+- title: "PhotoPrism"
+  description: "AI-tagged photo library"
+  url: "/photoprism"
+  icon: "img:/_files/photoprism.png"
+  color: purple
+- title: "Ente Photos"
+  description: "End-to-end encrypted photo storage"
+  url: "/entephotos"
+  color: purple
+```
+::
 
-## Books and comics {.sec .media}
-- [<img src="/bookorbit.png"> BookOrbit<br>*Ebooks and audiobooks with Kobo and KOReader sync*](/bookorbit)
-{.links-list .media}
+## Books and comics
+::block-links-grid
+```yaml
+- title: "BookOrbit"
+  description: "Ebooks and audiobooks with Kobo and KOReader sync"
+  url: "/bookorbit"
+  icon: "img:/_files/bookorbit.png"
+  color: purple
+```
+::
 
-## Games {.sec .media}
+## Games
 
 Running the game servers themselves? See [server management](/servermanagement).
 
-- [<img src="/romm.png"> RomM<br>*ROM and retro game library manager*](/romm)
-- [MatchExec<br>*Run game nights, matches and tournaments*](/matchexec)
-{.links-list .media}
+::block-links-grid
+```yaml
+- title: "RomM"
+  description: "ROM and retro game library manager"
+  url: "/romm"
+  icon: "img:/_files/romm.png"
+  color: purple
+- title: "MatchExec"
+  description: "Run game nights, matches and tournaments"
+  url: "/matchexec"
+  color: purple
+```
+::
 
-## Stats and monitoring {.sec .media}
-- [<img src="/jellydash.png"> Jellydash<br>*Tautulli-style dashboard for Jellyfin*](/jellydash)
-- [JellyGlance<br>*Playback, users and library health at a glance*](/jellyglance)
-- [Emby Wrapped<br>*Year in review for your Emby server*](/embywrapped)
-- [MediaLyze<br>*Deep ffprobe analysis of large libraries*](/medialyze)
-{.links-list .media}
+## Stats and monitoring
+::block-links-grid
+```yaml
+- title: "Jellydash"
+  description: "Tautulli-style dashboard for Jellyfin"
+  url: "/jellydash"
+  icon: "img:/_files/jellydash.png"
+  color: purple
+- title: "JellyGlance"
+  description: "Playback, users and library health at a glance"
+  url: "/jellyglance"
+  color: purple
+- title: "Emby Wrapped"
+  description: "Year in review for your Emby server"
+  url: "/embywrapped"
+  color: purple
+- title: "MediaLyze"
+  description: "Deep ffprobe analysis of large libraries"
+  url: "/medialyze"
+  color: purple
+```
+::
 
-## Users and access {.sec .media}
-- [<img src="/punipuni.png"> PuniPuni<br>*Invitation and user management for Jellyfin*](/punipuni)
-- [HomeScreen Hero<br>*Rotate Plex home screen collections on a schedule*](/homescreenhero)
-{.links-list .media}
+## Users and access
+::block-links-grid
+```yaml
+- title: "PuniPuni"
+  description: "Invitation and user management for Jellyfin"
+  url: "/punipuni"
+  icon: "img:/_files/punipuni.png"
+  color: purple
+- title: "HomeScreen Hero"
+  description: "Rotate Plex home screen collections on a schedule"
+  url: "/homescreenhero"
+  color: purple
+```
+::

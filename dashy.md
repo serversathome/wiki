@@ -2,29 +2,23 @@
 title: Dashy
 description: A guide to deploying Dashy
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:04.936Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:14.446Z
+dateCreated: '2026-01-15T15:04:14.446Z'
 ---
 
-# ![](/dashy.png){class="tab-icon"} What is Dashy?
+# What is Dashy?
 A self-hostable personal dashboard built for you. Includes status-checking, widgets, themes, icon packs, a UI editor and tons more! 
 
-<div class="glance">
-  <div><span>Port</span><b><code>4000</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
 # 1 · Deploy Dashy
-# {.tabset}
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+:::block-tabs
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Set the **Dashy Config Storage** to **Host Path**
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
+::
+
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ### Docker Compose
 ```yaml
 services:
@@ -42,8 +36,8 @@ services:
 ```
 
 ### Sample Config File
+> [!WARNING]
 > Save the sample below as `/mnt/tank/configs/dashy/conf.yml` **before** starting the container. Dashy needs a `conf.yml` in the mounted folder, and an empty folder hides the default config.
-{.is-warning}
 
 ```yaml
 
@@ -65,3 +59,7 @@ sections:
     icon: "fa-solid fa-folder"
     items: []
 ```
+
+::
+
+:::

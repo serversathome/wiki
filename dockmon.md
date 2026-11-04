@@ -2,24 +2,17 @@
 title: Dockmon
 description: A guide to deploying Dockmon
 published: true
-date: 2026-01-15T15:29:00.135Z
-tags: 
+date: '2026-11-04T16:23:11.951Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:23.225Z
+dateCreated: '2026-01-15T15:04:23.225Z'
 ---
 
-# ![](/dockmon.png){class="tab-icon"} What is Dockmon?
+# What is Dockmon?
 
 A comprehensive Docker container monitoring and management platform with real-time monitoring, intelligent auto-restart, multi-channel alerting, and complete event logging.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8001</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Dockmon
+# :logos:docker-icon: 1 · Deploy Dockmon
 ```yaml
 services:
   dockmon:

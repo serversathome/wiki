@@ -2,37 +2,25 @@
 title: Crafty Controller
 description: A guide to deploying Crafty Controller
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:22.995Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:04:04.135Z
+dateCreated: '2026-01-15T15:04:04.135Z'
 ---
 
-# ![](/crafty-controller.png){class="tab-icon"} What is Crafty Controller?
+# What is Crafty Controller?
 
 Crafty Controller is a web-based panel that lets you manage Minecraft servers from a user-friendly interface. You can create and run servers, manage players, change settings, view files, and get support from the developer and community.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8443</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://gitlab.com/crafty-controller/crafty-4"><i class="mdi mdi-gitlab"></i>Project</a>
-    <a href="https://www.youtube.com/watch?v=A9Nld6MxhXk"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
 # 1 · Deploy Crafty Controller
-# {.tabset}
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+:::block-tabs
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 1. Under **Network Configuration** add **Additional Ports** of `25560`
 1. Set the **Storage Configuration** to *Host Path* for the Config Storage, Servers Storage, Logs Storage, Backups Storage, Import Storage
 
+::
 
-## <img src="/docker.png" class="tab-icon"> Docker Compose
-
+::block-tab{label="Docker Compose" icon="simple-icons:docker"}
 ```yaml
 services:
     crafty:
@@ -54,6 +42,10 @@ services:
             - /mnt/tank/configs/crafty/config:/crafty/app/config
             - /mnt/tank/configs/crafty/import:/crafty/import
 ```
+
+::
+
+:::
 
 # 2 · Logging In
 
@@ -89,6 +81,8 @@ sudo cat /mnt/tank/configs/crafty/config/default-creds.txt
 11. Click **Update**
 1. At the top you will see the public URL which ends in `.ply.gg`
 
-# <img src="/youtube.png" class="tab-icon"> 5 · Video
+# :logos:youtube-icon: 5 · Video
 
-[https://www.youtube.com/watch?v=A9Nld6MxhXk](https://www.youtube.com/watch?v=A9Nld6MxhXk)
+::block-youtube{url="https://www.youtube.com/watch?v=A9Nld6MxhXk"}
+::
+

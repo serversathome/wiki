@@ -2,30 +2,19 @@
 title: ClovaLink
 description: A guide to deploying ClovaLink
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:53.307Z'
+tags: []
 editor: markdown
-dateCreated: 2026-02-03T14:11:22.216Z
+dateCreated: '2026-02-03T14:11:22.216Z'
 ---
 
-# <img src="/clovalink.png" class="tab-icon"> What is ClovaLink?
+# What is ClovaLink?
 
 **ClovaLink** is a Rust-powered, multi-tenant file management platform with HIPAA/SOX/GDPR compliance modes. It supports pluggable storage backends (S3, Wasabi, Backblaze B2, MinIO, or local volumes) and includes built-in virus scanning via ClamAV.
 
 Think of it as a self-hosted alternative to Box or Dropbox Business — enterprise file management without the per-user pricing.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>5 services</b></div>
-  <div><span>Depends on</span><b>Postgres and Redis</b></div>
-  <div><span>Difficulty</span><b class="difficulty intermediate">Intermediate</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/ClovaLink/ClovaLink"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy ClovaLink
+# :logos:docker-icon: 1 · Deploy ClovaLink
 
 ```yaml
 services:
@@ -98,9 +87,8 @@ services:
 3. Generate a database password with `openssl rand -hex 24` and replace both `CHANGEME_DB_PASSWORD` values with it
 4. Update `CORS_ALLOWED_ORIGINS` to your actual domain
 
-> 
+> [!NOTE]
 > ClamAV takes 2-3 minutes on first start to download virus definitions. The backend will wait for it to be ready.
-{.is-info}
 
 # 2 · Configuration
 
@@ -114,9 +102,8 @@ services:
 | Employee | employee@clovalink.com | password123 |
 {.dense}
 
-> 
+> [!CAUTION]
 > **Change these passwords immediately after first login!**
-{.is-danger}
 
 ## 2.2 Storage Backends
 
@@ -167,6 +154,6 @@ CLAMAV_ENABLED=false
 | `CLAMAV_ENABLED` | Enable/disable virus scanning |
 {.dense}
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# :logos:youtube-icon: 3 · Video
 
 *No video yet — check back soon!*

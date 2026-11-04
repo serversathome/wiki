@@ -2,27 +2,17 @@
 title: Capacitarr
 description: A guide to deploying Capacitarr
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:42.728Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-21T11:32:55.609Z
+dateCreated: '2026-03-21T11:32:55.609Z'
 ---
 
 # What is Capacitarr?
 
 **Capacitarr** is an intelligent media library capacity manager for the \*arr ecosystem. It scores every media item across seven pluggable dimensions — watch history, recency, file size, ratings, age, series status, and request popularity — then removes the least-valuable items first when disk space runs low. A visual rule builder lets you protect specific content from ever being deleted.
 
-<div class="glance">
-  <div><span>Port</span><b><code>2187</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/ghent/capacitarr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Capacitarr
+# :logos:docker-icon: 1 · Deploy Capacitarr
 
 ```yaml
 services:
@@ -41,8 +31,8 @@ services:
 ```
 
  
+> [!CAUTION]
 > Do **not** leave the `JWT_SECRET` as the default value. Generate a random string (e.g. `openssl rand -hex 32`) and use that instead.
-{.is-danger}
 
 
 # 2 · Configuration
@@ -98,14 +88,13 @@ Capacitarr uses a safety-first approach to media cleanup:
 - **Safety guards** — built-in protections prevent accidental mass deletion
 - **Audit log** — a complete record of every decision and action taken
 
-> 
+> [!TIP]
 > Start in dry-run mode, or turn on approval mode for each disk group, so you can review every deletion candidate before anything is removed. Only switch to automatic deletion once you trust your scores and rules.
-{.is-success}
 
 ## 2.4 Real-Time Updates
 
 The dashboard uses Server-Sent Events (SSE) to push engine state, deletions, and activity to the browser instantly — no polling required. There are 70 granular event types to keep you informed of everything happening in your library.
 
-# <img src="/patreon-light.png" class="tab-icon"> 3 · Video
+# ![](/_files/patreon-light.png =28x) 3 · Video
 
-[![](/2026-04-07-capacitarr--let-your-arr-stack-promo-card.png)](https://www.patreon.com/posts/capacitarr-let-153757406)
+[![](/2026-04-07-capacitarr-let-your-arr-stack-promo-card.png)](https://www.patreon.com/posts/capacitarr-let-153757406)

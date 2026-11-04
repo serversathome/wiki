@@ -2,30 +2,20 @@
 title: Invoice-Builder
 description: A guide to deploying Invoice Builder
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:04.917Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-02T14:57:26.804Z
+dateCreated: '2026-03-02T14:57:26.804Z'
 ---
 
 # What is Invoice Builder?
 
 **Invoice Builder** is an offline-first, open-source invoicing and quoting application designed for freelancers and small businesses who want full control over their data. It supports creating and managing invoices and quotes with PDF export, multi-currency support, customizable templates, and a local SQLite database (PostgreSQL is also supported) — no accounts, no cloud, no subscriptions required.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3001</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/piratuks/invoice-builder"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
+# :logos:docker-icon: 1 · Deploy Invoice Builder
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Invoice Builder
-
+> [!NOTE]
 > **Upgrading from 2.x?** Back up your database and make sure it completed migrations through 2.10.0 before pulling 3.x. Version 3 starts new databases from a consolidated schema and won't upgrade databases with incomplete migrations. See the [upstream upgrade notice](https://github.com/piratuks/invoice-builder#readme).
-{.is-info}
 
 ```yaml
 services:
@@ -96,6 +86,6 @@ Invoice Builder offers extensive PDF customization:
 - Attachments — include images in PDFs
 - Custom header sections and custom values in item tables
 
-# <img src="/youtube.png" class="tab-icon"> 3 · Video
+# :logos:youtube-icon: 3 · Video
 
 *Video coming soon — check back later!*

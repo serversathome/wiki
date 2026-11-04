@@ -2,13 +2,13 @@
 title: Atlas
 description: A guide to deploying Atlas
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:57.107Z'
+tags: []
 editor: markdown
-dateCreated: 2026-02-03T13:49:34.086Z
+dateCreated: '2026-02-03T13:49:34.086Z'
 ---
 
-# <img src="/atlas-network.png" class="tab-icon"> What is Atlas?
+# What is Atlas?
 
 **Atlas** is an open-source network infrastructure visualizer that scans, analyzes, and visualizes your network in real-time. Built with Go, FastAPI, and React, it automatically discovers Docker containers, local hosts, and neighboring devices on your subnet, then presents everything in an interactive dashboard.
 
@@ -22,16 +22,7 @@ dateCreated: 2026-02-03T13:49:34.086Z
 - Scheduled auto-scans with configurable intervals
 - Mobile-friendly responsive UI
 
-<div class="glance">
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/karam-ajaj/atlas"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Atlas
+# :logos:docker-icon: 1 · Deploy Atlas
 
 ```yaml
 services:
@@ -60,12 +51,11 @@ services:
 3. Log in as `admin` with the `ATLAS_ADMIN_PASSWORD` you set
 4. Atlas will automatically begin scanning your network
 
+> [!WARNING]
 > Set `ATLAS_ADMIN_PASSWORD`; without it the UI and API are open.
-{.is-warning}
 
-> 
+> [!NOTE]
 > Atlas requires `network_mode: host` and elevated capabilities (`NET_RAW`, `NET_ADMIN`) to perform network scanning. The Docker socket mount is needed to discover containers.
-{.is-info}
 
 # 2 · Configuration
 
@@ -105,6 +95,6 @@ You can adjust scan intervals in three ways:
 - **GitHub:** https://github.com/karam-ajaj/atlas
 - **Live Demo:** https://atlasdemo.vnerd.nl/
 
-# <img src="/youtube.png" class="tab-icon"> 4 · Video
+# :logos:youtube-icon: 4 · Video
 
 *No video yet — check back soon!*

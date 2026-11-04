@@ -2,33 +2,21 @@
 title: OpenWebUI
 description: A guide to deploying OpenWebUI
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:17:38.413Z'
+tags: []
 editor: markdown
-dateCreated: 2026-06-15T15:23:06.042Z
+dateCreated: '2026-06-15T15:23:06.042Z'
 ---
 
-# <img src="/open-webui.png" class="tab-icon"> What is Open WebUI?
+# What is Open WebUI?
 
 **Open WebUI** is an extensible, self-hosted AI chat interface that turns local model runners (like Ollama) and any OpenAI-compatible API into a polished, multi-user web app. It runs entirely offline if you want it to, and out of the box it already covers most of what you'd expect from ChatGPT, Claude, or PewDiePie's Odysseus — web search, document chat (RAG), image generation, code execution, voice, and vision — all behind a clean UI you actually own.
 
 The difference from the commercial tools is that everything here is a toggle or a plugin you control. The core ships with the "assistant" features built in; a Python plugin system (Tools, Functions, Pipelines) plus an MCP bridge lets you add anything the core doesn't have. This page covers the deploy, the built-in parity features, and the community extras worth installing.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>TrueNAS app or Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/open-webui/open-webui"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
 # 1 · Deploy Open WebUI
-# {.tabset}
-## <img src="/docker.png" class="tab-icon"> Docker
-
+:::block-tabs
+::block-tab{label="Docker" icon="simple-icons:docker"}
 This compose assumes you already have a model backend running (e.g. Ollama elsewhere on the LAN or an OpenAI-compatible endpoint). The container listens on **8080** internally; we map it to **3000** on the host.
 
 ```yaml
@@ -59,14 +47,12 @@ services:
 2. Browse to `http://<host-ip>:3000` — **the first account you create becomes the admin.**
 3. Approve any later signups under **Admin Panel → Users** (because of `DEFAULT_USER_ROLE=pending`).
 
-> 
+> [!WARNING]
 > Without a persistent `WEBUI_SECRET_KEY`, every container recreate logs out all users. Set it once and leave it. Generate one with `openssl rand -hex 32`.
-{.is-warning}
 
+::
 
-
-## <img src="/truenas.png" class="tab-icon"> TrueNAS
-
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Open WebUI is in the **Community** train (App Version v0.12.x as of October 2026, requires TrueNAS 24.10.2.2 or newer). The TrueNAS app bundles a Redis sidecar for you.
 
 1. Navigate to **Apps** in the TrueNAS UI and select the **Discover** screen.
@@ -82,9 +68,12 @@ Open WebUI is in the **Community** train (App Version v0.12.x as of October 2026
 4. Click **Install** and wait for the app to report **Running**.
 5. Open the **Web Portal** — the first account you create is the admin.
 
-> 
+> [!NOTE]
 > The Community train app runs the `open-webui` container as **root**. That's fine on a single-user homelab box, but worth noting if you're locking down a shared system. The bundled Redis sidecar runs as the non-root `apps` user (568).
-{.is-info}
+
+::
+
+:::
 
 # 2 · First-Run & Core Setup
 
@@ -142,9 +131,8 @@ When core doesn't cover it, the Python plugin system does. There are three layer
 
 **Tools** are Python functions the model calls *during* a chat — fetch weather, query a database, hit an API, control a device. The model decides when to call them via **function calling**. Install them in one click from the community hub, or write your own in the Workspace.
 
-> 
+> [!WARNING]
 > Open WebUI now uses **Native (Agentic) function calling** as the only supported mode. Enable it per model under **Model Settings → Advanced Params → Function Calling → Native**. The legacy "Default" prompt-injection mode still exists for backwards compatibility but is no longer maintained — don't build on it.
-{.is-warning}
 
 ## 4.2 Functions
 
@@ -195,4 +183,5 @@ These aren't Open WebUI plugins but they're what the plugins/features hook into:
 | **ComfyUI** | Image generation (§3.3) | Most flexible local image backend |
 | **Apache Tika / Docling** | Better document parsing for RAG | Improves §3.2 on messy PDFs |
 | **mcpo** | MCP → OpenAPI bridge (§4.4) | Connects any MCP server as a Tool |
+
 

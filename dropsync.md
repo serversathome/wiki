@@ -2,10 +2,10 @@
 title: DropSync
 description: A guide to deploying DropSync
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:00.146Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-21T11:26:27.867Z
+dateCreated: '2026-03-21T11:26:27.867Z'
 ---
 
 # What is DropSync?
@@ -13,11 +13,11 @@ dateCreated: 2026-03-21T11:26:27.867Z
 **DropSync** is a peer-to-peer file sharing application that sends files directly between two browsers using WebRTC — no accounts, no cloud storage, no file size limits. Once both browsers connect, the signaling server steps out of the way and everything flows directly between devices. Rooms can be password-protected with AES-GCM 256-bit end-to-end encryption, and the app includes built-in encrypted chat over the same P2P channel.
 
 
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy DropSync
+# :logos:docker-icon: 1 · Deploy DropSync
 
 
+> [!NOTE]
 > DropSync publishes a prebuilt image on GitHub Container Registry. Only the `main` tag exists (there is no `latest` tag).
-{.is-info}
 
 ```yaml
 services:
@@ -31,8 +31,8 @@ services:
       - "3000:3000"
 ```
 
+> [!WARNING]
 > DropSync uses WebRTC for direct peer-to-peer transfers. This works well between desktop browsers on standard home/broadband networks, but **does not reliably work on mobile networks (5G/LTE)** due to Carrier-Grade NAT (CGNAT). For reliable 5G/LTE transfers you need your own TURN server, which means building the image yourself. See [upstream](https://github.com/ivucicev/DropSync).
-{.is-warning}
 
 # 2 · Configuration
 
@@ -64,3 +64,4 @@ In the main Cloudflare dashboard (not Zero Trust), go to your domain → **Netwo
 **2. Disable HTTP/2 connection to origin**
 
 In the Zero Trust dashboard, go to **Networks** → **Tunnels** → select your tunnel → **Public Hostname** → edit the DropSync hostname → expand **Additional application settings** → toggle off **HTTP/2 connection**. Cloudflare's HTTP/2 multiplexing breaks WebSocket upgrades from the tunnel to your origin.
+

@@ -2,13 +2,13 @@
 title: Uptime Kotlin
 description: A guide to deploying Uptime Kotlin
 published: true
-date: 2026-10-31T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:24:18.359Z'
+tags: []
 editor: markdown
-dateCreated: 2026-10-31T12:00:00.000Z
+dateCreated: '2026-10-31T10:33:18.459Z'
 ---
 
-# <img src="/uptime-kotlin.png" class="tab-icon"> What is Uptime Kotlin?
+# What is Uptime Kotlin?
 
 **Uptime Kotlin** is a lightweight uptime monitor with public status pages. It is compiled to a native image, so the whole app runs in roughly 50 MB of RAM, and everything it needs is stored in a single Postgres database.
 
@@ -18,19 +18,7 @@ dateCreated: 2026-10-31T12:00:00.000Z
 - Multiple public status pages and scheduled maintenance windows that mute alerts
 - Prometheus metrics, a ready-made Grafana dashboard and optional worker containers for large setups
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>2 services</b></div>
-  <div><span>Depends on</span><b>Postgres</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/TheoMeunier/uptime-kotlin"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://uptime-kotlin.com/docs"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Uptime Kotlin
+# :logos:docker-icon: 1 · Deploy Uptime Kotlin
 ```yaml
 services:
   uptime-kotlin:
@@ -70,14 +58,14 @@ services:
 1. Set `TZ` to your timezone
 1. Deploy the stack and open `http://YOUR-SERVER-IP:8080`
 
+> [!CAUTION]
 > The master key encrypts every stored secret (notification tokens, database passwords for monitors and the login signing key). Save it in your password manager. If you lose it, those secrets cannot be recovered.
-{.is-danger}
 
+> [!NOTE]
 > Keep `mem_limit: 512m`. The app sizes its memory from the limit it sees, and without one it will happily use several hundred MB instead of about 50.
-{.is-info}
 
+> [!WARNING]
 > Port `8080` is a popular default. If something else already uses it, change the left side of the mapping, for example `8095:8080`.
-{.is-warning}
 
 # 2 · Configuration
 
@@ -95,5 +83,6 @@ services:
 1. Optionally enable reminders so you keep getting pinged while a service stays down
 1. Create a **Status Page**, pick which monitors to show and choose a grid or list layout
 
+> [!NOTE]
 > Browser push notifications only work over HTTPS or on `localhost`. Put Uptime Kotlin behind your reverse proxy if you want them.
-{.is-info}
+

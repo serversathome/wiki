@@ -2,36 +2,21 @@
 title: qBittorrent
 description: A guide to installing qBittorrent through docker via compose
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:54.586Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-15T15:07:42.310Z
+dateCreated: '2026-01-15T15:07:42.310Z'
 ---
 
+> [!TIP]
 > Having a tough time? [Book time with me](https://links.serversatho.me/hire) 1-on-1 for some help!
-{.is-success}
 
-# ![](/qbittorrent.png){class="tab-icon"} What is qBittorrent?
+# What is qBittorrent?
 qBittorrent is a free and open-source software that aims to provide the same features as µTorrent, such as polished user interface, no ads, search engine, torrent creation tool and more. It runs on all major platforms (Windows, Linux, macOS, FreeBSD, OS/2) and supports many Bittorrent extensions.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8080</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty advanced">Advanced</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/hotio/qbittorrent"><i class="mdi mdi-github"></i>Project</a>
-    <a href="https://hotio.dev/containers/qbittorrent/"><i class="mdi mdi-book-open-variant"></i>Docs</a>
-    <a href="https://youtu.be/I4SRwmKLfQQ"><i class="mdi mdi-youtube"></i>Video walkthrough</a>
-  </div>
-</div>
-
 # 1 · Deploy qBittorrent
-# {.tabset}
-
-## <img src="/docker.png" class="tab-icon"> Hotio + VPN
-
-
+:::block-tabs
+::block-tab{label="Hotio + VPN" icon="simple-icons:docker"}
 ```yaml
 services:
   qbittorrent:
@@ -68,13 +53,13 @@ services:
       - /mnt/tank/configs/qbittorrent:/config
       - /mnt/tank/media:/media
 ```
+> [!TIP]
 > If you want to change the webui ports to something other then `8080`, change the ports section to something like:
 > ```
 > ports:
 >   - 8081:8081
 > ```
 > And change the `WEBUI_PORTS` variable to the same port (`WEBUI_PORTS=8081/tcp`). 
-{.is-success}
 
 <details><summary><strong>Environment Variables Explanations</strong> (click to expand)</summary>
 
@@ -91,16 +76,16 @@ services:
 | `VPN_INTERFACE_PREFIXES` | Leave empty to use the default (`eth,enp`), which the image uses to identify the local Docker networks. Only set it if your container's interfaces use a different prefix. |
 | `UNBOUND_ENABLED` | Only used when the VPN is off. Leave it `false`; with the VPN on, DNS comes from `VPN_NAMESERVERS`. |
 
+> [!NOTE]
 > `VPN_FIREWALL_TYPE` has been removed from hotio's image (it is nftables only now). If you have it in an older compose file you can delete it.
-{.is-info}
 
+> [!NOTE]
 > For more info on these values, look [here](https://hotio.dev/containers/qbittorrent/#__tabbed_5_2) 
-{.is-info}
 
 </details>
   
+> [!WARNING]
 > When you start this container it will fail until you add the VPN config file. 
-{.is-warning}
 
 ### The Wireguard wg0.conf File
 
@@ -109,10 +94,9 @@ In whatever wireguard file your VPN provider gives you, you must:
 1. Place the file in the `/mnt/tank/configs/qbittorrent/wireguard` folder
 1. Name it `wg0.conf`
 
-## <img src="/docker.png" class="tab-icon"> Linuxserver Wireguard
+::
 
-
-
+::block-tab{label="Linuxserver Wireguard" icon="simple-icons:docker"}
 ```yaml
 services:
   wireguard:
@@ -159,8 +143,8 @@ services:
 ```
 
 
+> [!CAUTION]
 > **CRITICAL SECURITY REQUIREMENT:** Your `wg0.conf` MUST include the PostUp line shown in the wg0.conf section below. Without it, your real IP will be exposed! The PostUp line does two things: (1) allows WebUI access from your LAN, and (2) blocks all non-VPN traffic with a firewall.
-{.is-danger}
 
 ### Changing the Port
 
@@ -270,16 +254,14 @@ iptables -A OUTPUT -o $IF -j DROP
 
 </details>
 
+> [!WARNING]
 > This file needs to be added to `/mnt/tank/configs/wireguard/` (assuming your pool is named *tank*) before the container can run
-{.is-warning}
 
+::
 
-
-## <img src="/docker.png" class="tab-icon"> Gluetun + qBit
-
-
+::block-tab{label="Gluetun + qBit" icon="simple-icons:docker"}
+> [!NOTE]
 > In Discord many people have said this container fixes the Gluetun issue. I have not tested it, but if you are using Gluetun and you get randomly discconnected every so often, try this method: [qSticky](https://github.com/monstermuffin/qSticky).
-{.is-info}
 
 
 ```yaml
@@ -333,15 +315,14 @@ services:
 
 To add port forwarding, on the `FIREWALL_VPN_INPUT_PORTS` add a comma with no space and then the port which you want to forward. Make sure to make the change in the qbittorrent connection settings as well as shown below.
 
+> [!NOTE]
 > For more info on this container, look [here](https://github.com/qdm12/gluetun-wiki?tab=readme-ov-file)
-{.is-info}
 
+::
 
-
-## <img src="/docker.png" class="tab-icon"> NordVPN + qBit
-
+::block-tab{label="NordVPN + qBit" icon="simple-icons:docker"}
+> [!WARNING]
 > The `bubuntux/nordlynx` container this tab used to rely on was archived on Aug 16, 2026 and is no longer maintained. Its author recommends Gluetun, which has NordVPN built in, so this tab now uses Gluetun's NordVPN provider over WireGuard (NordLynx).
-{.is-warning}
 
 ```yaml
 services:
@@ -376,13 +357,13 @@ services:
       - gluetun
     restart: unless-stopped
 ```
+> [!WARNING]
 > If you want to change the webui ports to something other then 8080, change the ports section to something like:
 > ```
 > ports:
 >   - 8081:8081
 > ```
 > And change the WEBUI_PORT variable to the same port. 
-{.is-warning}
 
 To get the WireGuard private key, log into your NordVPN account and head to the "NordVPN" service located on the left menu option. Scroll down until you see the "Access Token" option and click on "Get Access Token". You will likely need to verify your email address. Once verified, click on the "Generate a New Token" option and leave set to 30 day period, as the token will not be necessary after being used to get your private key.
 
@@ -392,9 +373,12 @@ Then use the token to fetch your private key from any shell (replace `YOUR_TOKEN
 curl -s -u token:YOUR_TOKEN https://api.nordvpn.com/v1/users/services/credentials | grep -o '"nordlynx_private_key":"[^"]*"'
 ```
 
+> [!NOTE]
 >For more info, see Gluetun's [NordVPN provider docs](https://github.com/qdm12/gluetun-wiki/blob/main/setup/providers/nordvpn.md)
-{.is-info}
 
+::
+
+:::
 
 # 2 · Testing Open Ports
 
@@ -414,9 +398,10 @@ To test everything is working, try downloading [this Ubuntu torrent](https://rel
 
 A result of `downloading` at *any* speed indicates a success. If it stalls or errors something is wrong with permissions or dataset structure.
 
-# <img src="/youtube.png" class="tab-icon"> 5 · YouTube Walkthrough
+# :logos:youtube-icon: 5 · YouTube Walkthrough
 
-[https://youtu.be/I4SRwmKLfQQ](https://youtu.be/I4SRwmKLfQQ)
+::block-youtube{url="https://youtu.be/I4SRwmKLfQQ"}
+::
 
 # 6 · qBittorrent Configuration
 
@@ -424,58 +409,64 @@ A result of `downloading` at *any* speed indicates a success. If it stalls or er
 
 To login to the webUI, navigate to `http://{serverIP}:8080`.
 
+> [!WARNING]
 > **Seeing a blank page that just says "Unauthorized"?** This is expected and does not mean anything is broken. Click the URL bar and press <kbd>Enter</kbd> to load the login screen.
-{.is-warning}
 
 The default username is *admin* and the password is set randomly. To see it, go into the logs and look for this line:
 
-![](/screenshot_from_2024-08-26_07-55-35.png)
+![](/screenshot-from-2024-08-26-07-55-35.png)
 
+> [!NOTE]
 > If you are having an issue where qBit is running but you cannot reach the webUI and you are coming into your network over VPN, be sure to add the VPNs IPv4 range to the `VPN_LAN_NETWORK` line in a comma separated list, no spaces
-{.is-info}
 
 
 ## 6.2 Configuration Options
 
 Click on the cog icon :gear: in the bar or select **Tools** > **Options** in the tool bar. I will tell you what to change tab by tab. If it is not mentioned, it is left as the default value
 
-# {.tabset}
-## Downloads
-
+:::block-tabs
+::block-tab{label="Downloads"}
 The **Default Save Path** needs to be modified to be **/media/downloads** if you followed the [Folder Structure](/Folder-Structure) guide. 
 
-![screenshot_from_2025-05-07_08-20-01.png](/screenshot_from_2025-05-07_08-20-01.png)
+![screenshot_from_2025-05-07_08-20-01.png](/screenshot-from-2025-05-07-08-20-01.png)
 
-## Connection
+::
 
+::block-tab{label="Connection"}
 In the **Listening Port** section, add the port given to you by AirVPN (see the [AirVPN page](/AirVPN) for instructions). *If you use the hotio container ignore this.*
 
 Uncheck all the boxes under **Connection Limits**.
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-39-29.png)
 
-## Bittorrent
+::
 
+::block-tab{label="Bittorrent"}
 If you are using private trackers only, uncheck all the boxes in the **Privacy** grouping. If you are using public trackers, leave this section default.
 
 Uncheck the box for **Torrent Queuing**. 
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-39-42.png)
 
+::
 
-
-## WebUI
-
+::block-tab{label="WebUI"}
 Change the **Password** from the temporary one in the logs to your own.
 
 Leave **Bypass authentication for clients on localhost** and **Bypass authentication for clients in whitelisted IP subnets** unchecked. qBittorrent 5.3 fixed a bug where a spoofed `X-Forwarded-For` header could get around authentication, and these bypass options are what made it dangerous. Never port-forward the WebUI to the internet; reach it from outside over a VPN like Tailscale or WireGuard instead.
 
-## Advanced
+::
 
+::block-tab{label="Advanced"}
 Change the **Network Interface** to **VPN** (yours might also say **wg0** or **tun0**).
 
 ![](https://wiki.hydrology.cc/screenshot_from_2023-12-14_14-40-12.png)
 
-# <img src="/youtube.png" class="tab-icon"> 7 · Troubleshooting Video
+::
 
-[https://youtu.be/v3cv-LO9Ufo](https://youtu.be/v3cv-LO9Ufo)
+:::
+
+# :logos:youtube-icon: 7 · Troubleshooting Video
+
+::block-youtube{url="https://youtu.be/v3cv-LO9Ufo"}
+::

@@ -2,29 +2,17 @@
 title: Prismedia
 description: A guide to deploying Prismedia
 published: true
-date: 2026-09-03T11:49:15.948Z
-tags: 
+date: '2026-11-04T16:23:21.453Z'
+tags: []
 editor: markdown
-dateCreated: 2026-09-03T11:49:15.948Z
+dateCreated: '2026-09-03T11:49:15.948Z'
 ---
 
 # What is Prismedia?
 
 **Prismedia** is a private, self-hosted media library that handles movies, series, music, audiobooks, eBooks, comics, images, and galleries in a single system — plus requesting and acquiring new media. Instead of running one app for playback, another for requests, and a suite of services for acquisition and metadata, Prismedia keeps discovery, requests, downloads, identification, organization, and playback attached to the same library item.
 
-<div class="glance">
-  <div><span>Port</span><b><code>8008</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/pauljoda/prismedia"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Prismedia
+# :logos:docker-icon: 1 · Deploy Prismedia
 
 ```yaml
 services:
@@ -63,8 +51,8 @@ Prismedia needs at least one **watched library root** before it has anything to 
 
 Per-root settings also cover **Enabled**, **Recursive**, **NSFW** (marks everything under the root as restricted by default), and **Auto Identify**.
 
+> [!TIP]
 > Use separate roots when folders need different scan behavior. Pointing one root at `/media` with every toggle on works, but a root per media type gives you cleaner control — for example `/media/movies` (Videos), `/media/books/ebooks` and `/media/books/audiobooks` (Books), `/media/music` (Audio).
-{.is-success}
 
 Scans are incremental, so an unchanged root finishes almost instantly on the next pass. The worker queues its own follow-up jobs for probes, thumbnails, sprites, waveforms, subtitles, and HLS assets — watch them in **Jobs**.
 
@@ -91,6 +79,7 @@ http://<truenas-ip>:8008/opds
 
 Authentication is HTTP Basic using your Prismedia username and password. A folder only appears in OPDS after it is a library root with **Books** scanning enabled and a completed scan.
 
+> [!WARNING]
 > Some readers authenticate the catalog request but drop the header when fetching covers or downloads. If the catalog loads but covers fail, append a session token: `/opds?access_token=YOUR_TOKEN`. Treat that URL as a secret.
-{.is-warning}
+
 

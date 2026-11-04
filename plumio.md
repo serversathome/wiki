@@ -2,28 +2,17 @@
 title: Plumio
 description: A guide to deploying Plumio
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:37.713Z'
+tags: []
 editor: markdown
-dateCreated: 2026-03-02T21:21:42.589Z
+dateCreated: '2026-03-02T21:21:42.589Z'
 ---
 
-# <img src="/plumio.png" class="tab-icon"> What is Plumio?
+# What is Plumio?
 
 **Plumio** is a self-hosted markdown editor with live preview, end-to-end document encryption, multi-user support, and multi-organization capabilities. It's designed for individuals and teams who want a secure, private, and customizable note-taking solution with full control over their data. The frontend is built with SolidJS, and the backend runs on HonoJS (Node.js) with a lightweight SQLite database.
 
-<div class="glance">
-  <div><span>Port</span><b><code>3000</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/albertasaftei/plumio"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Plumio
+# :logos:docker-icon: 1 · Deploy Plumio
  On Dockge, use the below compose.yaml file:
 
 
@@ -72,23 +61,21 @@ JWT_SECRET=
 ENCRYPTION_KEY=
 ```
 
-> 
+> [!NOTE]
 > Generate `JWT_SECRET` with `openssl rand -base64 32`.
 > Generate `ENCRYPTION_KEY` with `openssl rand -hex 32`. It must be exactly 64 hexadecimal characters.
-{.is-info}
 
+> [!CAUTION]
 > Back up your `ENCRYPTION_KEY`. If you change or lose it, your encrypted documents can no longer be read.
-{.is-danger}
 
 
 
 After about 30 seconds, navigate to `http://your-server-ip:3000` to access Plumio.
 
-> 
+> [!NOTE]
 > Port `3000` serves the frontend UI and port `3001` serves the backend API. Both must be exposed.
-{.is-info}
 
-> 
+> [!WARNING]
 > Check the logs with `docker compose logs` if anything isn't working as expected.
-{.is-warning}
+
 

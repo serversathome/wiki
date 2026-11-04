@@ -2,27 +2,17 @@
 title: Sortarr
 description: A guide to deploying Sortarr
 published: true
-date: 2026-10-28T12:00:00.000Z
-tags: 
+date: '2026-11-04T16:23:29.767Z'
+tags: []
 editor: markdown
-dateCreated: 2026-01-17T15:46:01.206Z
+dateCreated: '2026-01-17T15:46:01.206Z'
 ---
 
 # What is Sortarr?
 
 **Sortarr** is a lightweight, read-only web dashboard that provides deep storage insights into your media library. It can analyse Sonarr and Radarr libraries, or use Plex, Jellyfin, or Emby directly as a media source, and overlays playback history from Tautulli, Tracearr, Jellystat, Streamystats, or Plex to compute size and efficiency metrics, helping you spot oversized series or movies and compare quality vs. size trade-offs. Sortarr does **not** modify files or take any actions against your media — it's purely analytical.
 
-<div class="glance">
-  <div><span>Port</span><b><code>9595</code></b></div>
-  <div><span>Deploy via</span><b>Docker compose</b></div>
-  <div><span>Containers</span><b>1 service</b></div>
-  <div><span>Difficulty</span><b class="difficulty beginner">Beginner</b></div>
-  <div class="glance-links">
-    <a href="https://github.com/jaredharper1/sortarr"><i class="mdi mdi-github"></i>Project</a>
-  </div>
-</div>
-
-# <img src="/docker.png" class="tab-icon"> 1 · Deploy Sortarr
+# :logos:docker-icon: 1 · Deploy Sortarr
 
 ```yaml
 services:
@@ -36,12 +26,12 @@ services:
     restart: unless-stopped
 ```
 
+> [!NOTE]
 > On first visit, you will be redirected to `/setup` where you can enter your Sonarr/Radarr URLs, API keys, and optionally configure Tautulli and basic auth.
-{.is-info}
 
 
+> [!NOTE]
 > To use Docker Hub instead of GHCR, change the image to `docker.io/jaredharper1/sortarr:latest`.
-{.is-info}
 
 # 2 · Configuration
 
@@ -60,8 +50,8 @@ When you first open Sortarr, the `/setup` page will prompt you to enter your ser
 URLs can be entered with or without a scheme — duplicate schemes are automatically normalized. Read-only API keys are recommended.
 
 
+> [!WARNING]
 > Treat the `Sortarr.env` file as a secret — it stores API keys and optional basic auth credentials.
-{.is-warning}
 
 ## 2.2 Multiple Instances
 
@@ -79,8 +69,8 @@ To enable playback stats, add your Tautulli URL and API key in the setup page. W
 | `TAUTULLI_METADATA_LOOKUP_LIMIT` | `-1` | Max lookups (`-1` = no limit, `0` = disable) |
 
 
+> [!NOTE]
 > The first load after startup can take a while for large libraries, especially with Tautulli enabled. Later loads use the persistent cache and are much faster.
-{.is-info}
 
 
 
@@ -119,5 +109,5 @@ Both Sonarr and Radarr views support CSV export. Tautulli playback columns are i
 
 
 
-# <img src="/patreon-light.png" class="tab-icon"> 5 · Video
+# ![](/_files/patreon-light.png =28x) 5 · Video
 [![](/2026-01-27-better-radarrsonarr-ui-with-sor-promo-card.png)](https://www.patreon.com/posts/better-radarr-ui-148458595)
