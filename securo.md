@@ -2,7 +2,7 @@
 title: Securo
 description: A guide to deploying Securo
 published: true
-date: '2026-11-04T16:23:17.564Z'
+date: '2026-11-04T23:31:38.547Z'
 tags: []
 editor: markdown
 dateCreated: '2026-08-28T20:39:44.910Z'
@@ -184,11 +184,13 @@ Each provider auto-registers as soon as its credentials are present in `.env`. Y
 ::block-tab{label="SimpleFIN (US)"}
 This is the one most US homelabbers want. SimpleFIN is a **read-only** open protocol — there's no API key to request and no write access to your accounts, ever.
 
+::block-steps
 1. Confirm `SIMPLEFIN_ENABLED=true` is in your `.env`
 2. Go to [bridge.simplefin.org](https://bridge.simplefin.org/) and link your bank
 3. Generate a **Setup Token** (single use)
 4. In Securo: **Accounts → Connect Bank → SimpleFIN**
 5. Paste the token
+::
 
 For real banks, point `SIMPLEFIN_API_URL` at `https://bridge.simplefin.org`. The default `beta-bridge.simplefin.org` is the sandbox — the [developer page](https://beta-bridge.simplefin.org/info/developers) hands out free demo tokens if you want to test the flow before committing.
 
@@ -200,9 +202,11 @@ For real banks, point `SIMPLEFIN_API_URL` at `https://bridge.simplefin.org`. The
 ::block-tab{label="Enable Banking (EU)"}
 Covers roughly 2,500 European PSD2 banks.
 
+::block-steps
 1. Sign up at [enablebanking.com](https://enablebanking.com) and create a **Production** application
 2. Download the PEM private key and save it to `/mnt/tank/configs/securo/secrets/enable_banking_private.pem`
 3. Add to `.env`:
+::
 
 ```bash
 ENABLE_BANKING_APP_ID=your-application-id
@@ -218,9 +222,12 @@ The redirect URI has to match one of the Allowed Redirect URLs in your EB applic
 ::
 
 ::block-tab{label="Pluggy (Brazil)"}
+
+::block-steps
 1. Sign up at [pluggy.ai](https://pluggy.ai) and grab your credentials
 2. Add `http://<your-host>:3000/oauth/callback` as an allowed redirect URI
 3. Add to `.env`:
+::
 
 ```bash
 PLUGGY_CLIENT_ID=your-client-id
