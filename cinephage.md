@@ -2,7 +2,7 @@
 title: Cinephage
 description: A guide to deploying Cinephage
 published: true
-date: '2026-11-04T16:23:55.968Z'
+date: '2026-11-04T23:32:01.080Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:03:39.889Z'
@@ -41,9 +41,12 @@ services:
       - /mnt/tank/configs/cinephage:/config
       - /mnt/tank/media:/media
 ```
+
+::block-steps
 1. Replace `CHANGEME` with the output of `openssl rand -hex 32` (required)
 2. Replace `10.99.0.242` in `ORIGIN` with your server's IP, or your public URL if you use a reverse proxy
 3. Deploy the stack
+::
 
 > [!NOTE]
 > The `latest` tag can't currently be pulled from GHCR, so the compose pins `0.10`.
@@ -58,10 +61,12 @@ services:
 
 On first launch, Cinephage will walk you through a setup wizard:
 
+::block-steps
 1. **TMDB API Key** — Get a free API key at [themoviedb.org/settings/api](https://www.themoviedb.org/settings/api). This is used for all metadata, artwork, and content discovery.
 2. **Download Client** — Configure your download client connection (qBittorrent, SABnzbd, NZBGet, or NZBMount). Make sure the download directory matches what you mounted in the compose file.
 3. **Root Folders** — Set up your root folders for movies and TV shows (e.g., `/media/movies` and `/media/tv`).
 4. **Indexers** — Enable the built-in indexers you want to use, or add Torznab/Newznab endpoints for Prowlarr/Jackett integration.
+::
 
 ## 2.2 Quality Profiles
 
