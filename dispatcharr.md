@@ -2,7 +2,7 @@
 title: Dispatcharr
 description: A guide to deploying Dispatcharr
 published: true
-date: '2026-11-04T16:23:31.534Z'
+date: '2026-11-04T23:31:43.003Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:04:16.637Z'
@@ -84,6 +84,7 @@ services:
 
 # 3 · Adding Channels
 
+::block-steps
 1. Click the **+ Add M3U** button
 2. Give it a name
 3. Use a URL for a m3u list like `https://iptv-org.github.io/iptv/languages/eng.m3u`
@@ -93,11 +94,13 @@ services:
 7. Click the **Groups** button
 8. Click **Save and Refresh**
 9. Select all Streams in the Dashboard and click **Create Channels** to turn them into live TV channels
+::
 
 # 4 · Linking With Your Media Server
 
 ## 4.1 Emby
 
+::block-steps
 1. Navigate to the **Admin Panel** by clicking the cog wheel in the upper right corner
 2. Click **Live TV**
 3. Click **+ Add TV Source**
@@ -105,6 +108,7 @@ services:
 5. Get the URL from the purple **M3U** button in the **Channels** tab of Dispatcharr
 6. Select the options **Import guide directly from the m3u, when available** and **Allow mapping to guide data using channel numbers**
 7. Click **Save**
+::
 
 > [!NOTE]
 > Each client will need to make sure they have their dashboard set to show Live TV channels
@@ -112,6 +116,7 @@ services:
 
 ## 4.2 Jellyfin
 
+::block-steps
 1. Navigate to the **Admin Panel** by clicking the icon of a man in the upper right corner
 2. Click **Dashboard**
 3. Click **Live TV**
@@ -119,16 +124,19 @@ services:
 5. Under **Tuner Type** select `M3U Tuner`
 6. Get the URL from the purple **M3U** button in the **Channels** tab of Dispatcharr
 7. Click **Save**
+::
 
 ## 4.3 Plex
 
 Plex does not accept a raw M3U tuner, but Dispatcharr's HDHomeRun emulation lets Plex discover it as a network tuner and record to the Plex DVR.
 
+::block-steps
 1. In Plex, go to **Settings** > **Live TV & DVR**
 2. Click **Set Up Plex DVR**
 3. Plex scans your network for tuners and should detect the Dispatcharr HDHomeRun device automatically. If it does not, choose the option to enter the tuner address manually and paste the URL from the **HDHomeRun** button in the **Channels** tab of Dispatcharr
 4. Continue, and when prompted for guide data choose to use an **XMLTV** guide, using the URL from the **EPG** button in Dispatcharr (or map to Plex's own guide data)
 5. Finish the setup and Plex will list your Dispatcharr channels under Live TV
+::
 
 > [!NOTE]
 > I do not run Plex myself, so if you have this working and can tighten up any of the steps above, please edit this page.
