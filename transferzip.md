@@ -2,7 +2,7 @@
 title: Transfer.zip
 description: A guide to deploy Transfer.zip
 published: true
-date: '2026-11-04T16:23:51.473Z'
+date: '2026-11-04T23:31:55.753Z'
 tags: []
 editor: markdown
 dateCreated: '2026-02-09T16:52:40.763Z'
@@ -38,6 +38,8 @@ chmod +x transfer-zip.sh
 ```
 
 The script will:
+
+::block-steps
 1. Auto-detect your TrueNAS host private IPv4
 2. Prompt you for a domain (or default to LAN-only access)
 3. Clone the repository and run `createenv.sh`
@@ -45,6 +47,7 @@ The script will:
 5. Bind the web (9001) and signaling (9002) ports to your IP, and update `next/.env` with your IP and domain. MongoDB stays bound to `127.0.0.1`.
 6. Build and deploy all containers and verify services
 7. Check the worker's own key pair (regenerating it if it's missing) and print the worker's public key, which you need for Stored Transfers
+::
 
 Once complete, create your account as shown in [1.6 Create an Account](#h-16-create-an-account), then go to [Section 2 · Configuration](#h-2-configuration) for reverse proxy setup.
 
