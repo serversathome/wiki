@@ -2,7 +2,7 @@
 title: Lubelogger
 description: A guide to deploying Lubelogger
 published: true
-date: '2026-11-04T16:17:26.572Z'
+date: '2026-11-04T23:31:54.339Z'
 tags: []
 editor: markdown
 dateCreated: '2026-02-10T11:00:58.064Z'
@@ -89,6 +89,7 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 LubeLogger is available in the **Community** train of the TrueNAS App Catalog.
 
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI
 2. Click **Discover Apps**
 3. Search for **LubeLogger**
@@ -100,6 +101,7 @@ LubeLogger is available in the **Community** train of the TrueNAS App Catalog.
    - **Protection Keys Storage** → **Host Path**: `/mnt/tank/configs/lubelogger/keys`
    - **Postgres Data Storage** → **Host Path**: `/mnt/tank/configs/lubelogger/db` (check **Automatic Permissions**)
 6. Click **Install**
+::
 
 > [!NOTE]
 > Make sure the **Community** train is enabled in your TrueNAS App catalog settings. Go to **Apps → Discover Apps → Settings** and check that the **Community** train is selected under **Preferred Trains**.
@@ -112,12 +114,14 @@ LubeLogger is available in the **Community** train of the TrueNAS App Catalog.
 
 ## 2.1 Initial Setup
 
+::block-steps
 1. Open your browser and navigate to `http://YOUR-IP:8080`
 2. Click the **Settings** icon (gear) in the top right corner
 3. Recommended first-time settings:
    - **Enable Dark Mode** if preferred
    - **Enable Authentication** — this will prompt you to create a root username and password
    - Configure your **locale** settings for proper currency and date formatting
+::
 
 > [!CAUTION]
 > Authentication is **not enabled by default**. Anyone with access to the URL can view and modify your data until you enable it. Enable authentication immediately after deployment.
@@ -137,11 +141,13 @@ LubeLogger includes a built-in **Server Settings Configurator** accessible at `/
 
 ## 2.3 Adding Vehicles
 
+::block-steps
 1. Navigate to the **Garage** tab
 2. Click the green **+** button to add a new vehicle
 3. Enter the vehicle's make, model, year, license plate, and other details
 4. Optionally upload a photo for the vehicle
 5. Click on a vehicle to access its full record tabs: Service, Repairs, Upgrades, Fuel, Taxes, Odometer, Reminders, Notes, and more
+::
 
 ## 2.4 Environment Variables
 
