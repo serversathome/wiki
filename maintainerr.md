@@ -2,7 +2,7 @@
 title: Maintainerr
 description: A guide to deploying Maintainer via docker
 published: true
-date: '2026-11-04T16:24:01.960Z'
+date: '2026-11-04T23:32:05.229Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:06:10.333Z'
@@ -59,6 +59,7 @@ Optional environment variables:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Maintainerr is in the **Community** train of the TrueNAS Apps catalog.
 
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI and click **Discover Apps**
 2. Search for "Maintainerr" and click **Install**
 3. Configure the following settings:
@@ -69,6 +70,7 @@ Maintainerr is in the **Community** train of the TrueNAS Apps catalog.
    - **Resources**: 2 CPUs and 4096 MB memory by default, which is plenty
 4. Click **Install**
 5. Once the app shows **Running**, click **Web Portal**
+::
 
 > [!NOTE]
 > The TrueNAS app runs as UID/GID `568` (the `apps` user). If you pick a host path, make sure that dataset is owned by `apps:apps` or the container cannot create its database.
@@ -109,9 +111,11 @@ Authenticate with a Plex **admin** account and Maintainerr discovers your server
 
 If the server dropdown comes back empty, Plex is publishing only a local connection that Maintainerr can't reach. Fix it on the Plex side:
 
+::block-steps
 1. In Plex Web, go to **Settings → (your server) → Network** and click **Show Advanced**
 2. Add a reachable address to **Custom server access URLs** — your LAN address such as `http://192.168.1.10:32400` works fine for a homelab
 3. Save, restart Plex, then hit the **Refresh** icon next to the server selector in Maintainerr
+::
 
 > [!NOTE]
 > If Plex and Maintainerr share a Docker network, skip discovery entirely: open **Advanced Settings**, enable **Manual connection override**, and point it at `http://plex:32400`. Note that manual mode disables automatic reconnection.
@@ -182,12 +186,14 @@ The **Settings → Download Client** page only appears once Radarr or Sonarr is 
 
 The workflow is always the same: a rule matches media, matched media lands in a collection, the collection holds it for X days, then the collection's action fires.
 
+::block-steps
 1. Go to **Rules** and click the **+** button
 2. Give it a name and pick the library it applies to
 3. Set the **Collection handling** — how many days items are held before the action runs
 4. Choose the **Action**: delete, unmonitor and delete files, unmonitor and keep files, or change quality profile
 5. Add your rule conditions, combining them with AND/OR logic
 6. Save, then use **Run rules** to test it before letting the schedule take over
+::
 
 A common starter rule for movies:
 
