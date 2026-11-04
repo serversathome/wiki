@@ -2,7 +2,7 @@
 title: DockTail
 description: A guide to deploying Docktail
 published: true
-date: '2026-11-04T16:24:13.755Z'
+date: '2026-11-04T23:32:14.639Z'
 tags: []
 editor: markdown
 dateCreated: '2026-06-30T09:42:59.122Z'
@@ -154,6 +154,7 @@ DockTail can advertise services locally with no API credentials, but giving it O
 
 OAuth is preferred because it does not expire like API keys do.
 
+::block-steps
 1. Open **Tailscale Admin Console -> Settings -> OAuth clients**.
 2. Create a client scoped to your server tag, for example `tag:server`.
 3. Grant these permissions:
@@ -161,6 +162,7 @@ OAuth is preferred because it does not expire like API keys do.
    - **Devices -> Core: Write**
    - **Keys -> Auth Keys: Write** (only needed for the sidecar method)
 4. Drop the credentials into DockTail's environment (or load them from files, see the Reference section).
+::
 
 > [!NOTE]
 > If both OAuth and an API key are configured, DockTail uses OAuth.
