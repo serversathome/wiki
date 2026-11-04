@@ -2,7 +2,7 @@
 title: OpenWebUI
 description: A guide to deploying OpenWebUI
 published: true
-date: '2026-11-04T16:17:38.413Z'
+date: '2026-11-04T23:31:27.398Z'
 tags: []
 editor: markdown
 dateCreated: '2026-06-15T15:23:06.042Z'
@@ -43,9 +43,11 @@ services:
 
 ```
 
+::block-steps
 1. Drop this into a new stack in **Dockge** and deploy.
 2. Browse to `http://<host-ip>:3000` — **the first account you create becomes the admin.**
 3. Approve any later signups under **Admin Panel → Users** (because of `DEFAULT_USER_ROLE=pending`).
+::
 
 > [!WARNING]
 > Without a persistent `WEBUI_SECRET_KEY`, every container recreate logs out all users. Set it once and leave it. Generate one with `openssl rand -hex 32`.
@@ -55,6 +57,7 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Open WebUI is in the **Community** train (App Version v0.12.x as of October 2026, requires TrueNAS 24.10.2.2 or newer). The TrueNAS app bundles a Redis sidecar for you.
 
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI and select the **Discover** screen.
 2. Search for **Open WebUI** and click **Install**.
 3. Configure the key settings:
@@ -67,6 +70,7 @@ Open WebUI is in the **Community** train (App Version v0.12.x as of October 2026
    - **WebUI Secret Key**: paste a long random string (e.g. `openssl rand -hex 32`) so sessions survive restarts
 4. Click **Install** and wait for the app to report **Running**.
 5. Open the **Web Portal** — the first account you create is the admin.
+::
 
 > [!NOTE]
 > The Community train app runs the `open-webui` container as **root**. That's fine on a single-user homelab box, but worth noting if you're locking down a shared system. The bundled Redis sidecar runs as the non-root `apps` user (568).
