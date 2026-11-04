@@ -2,7 +2,7 @@
 title: Navidrome
 description: A guide to deploying the Navidrome music player using docker
 published: true
-date: '2026-11-04T16:23:11.417Z'
+date: '2026-11-04T23:31:25.653Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:06:35.306Z'
@@ -16,11 +16,13 @@ dateCreated: '2026-01-15T15:06:35.306Z'
 <details class="quickstart" open>
 <summary><strong>🚀 Quick‑Start Checklist</strong></summary>
 
+::block-steps
 1. **Deploy container** (Docker Compose *or* TrueNAS App)
 2. **Mount music** → `/music`, **Config** → `/data`
 3. Wait for **first scan** (progress top‑left)
 4. Create **admin user** → set password
 5. *(Optional)* Tag library cleanly with **MusicBrainz Picard** or **Beets**
+::
 
 </details>
 
@@ -72,10 +74,12 @@ services:
 
 # 2 · First‑Run Configuration
 
+::block-steps
 1. Browse to `http://SERVER_IP:4533` → create **admin** user.
 2. Navidrome scans your library automatically. Watch progress top‑left.
 3. **Settings → Transcoding** — enable optional MP3/Opus profiles for mobile data‑savings. This menu only appears when `ND_ENABLETRANSCODINGCONFIG=true` is set.
 4. **Last.fm scrobbling** — add the `ND_LASTFM_APIKEY` and `ND_LASTFM_SECRET` environment variables, then link your own Last.fm account under **Personal** settings.
+::
 
 
 # 3 · Recommended Tweaks *(optional)*
