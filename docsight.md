@@ -2,7 +2,7 @@
 title: Docsight
 description: A guide to deploying Docsight
 published: true
-date: '2026-11-04T16:24:08.040Z'
+date: '2026-11-04T23:32:11.204Z'
 tags: []
 editor: markdown
 dateCreated: '2026-03-05T15:12:42.220Z'
@@ -88,9 +88,11 @@ Access `/settings` at any time to change configuration, set an admin password, o
 
 DOCSight can publish all channel data to Home Assistant via **MQTT Auto-Discovery**. To enable:
 
+::block-steps
 1. Set `MQTT_HOST` to your MQTT broker address (e.g., Mosquitto).
 2. Optionally configure `MQTT_USER`, `MQTT_PASSWORD`, and `MQTT_TOPIC_PREFIX`.
 3. Restart the container — DOCSight will automatically create HA entities.
+::
 
 Summary sensors created include overall health status, downstream/upstream channel counts, power min/max/avg, SNR min/avg, and correctable/uncorrectable error totals.
 
@@ -98,9 +100,11 @@ Summary sensors created include overall health status, downstream/upstream chann
 
 DOCSight can pull speed test results from a self-hosted [Speedtest Tracker](https://github.com/alexjustesen/speedtest-tracker) instance. To enable:
 
+::block-steps
 1. Set `SPEEDTEST_TRACKER_URL` to your Speedtest Tracker instance URL.
 2. Set `SPEEDTEST_TRACKER_TOKEN` to your API token.
 3. The DOCSight dashboard will show speed test charts, sortable history, and anomaly highlighting.
+::
 
 
 
