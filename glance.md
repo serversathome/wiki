@@ -2,7 +2,7 @@
 title: Glance
 description: A guide to deploying Glance dashboard
 published: true
-date: '2026-11-04T16:24:18.525Z'
+date: '2026-11-04T23:31:24.465Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:04:49.727Z'
@@ -26,12 +26,15 @@ services:
       - 8080:8080
 ```
 ## Sample config.yml
+
+::block-steps
 1. Navigate to your `/mnt/tank/configs/glance` directory
 1. Run the following command **as root**:
     ```bash
     wget https://raw.githubusercontent.com/glanceapp/glance/refs/heads/main/docs/glance.yml
     ```
 1. Start the container
+::
 
 > [!NOTE]
 > When editing the glance.yml file, you don't need to restart the container for the changes to take effect, this happens automatically when saving the file.
