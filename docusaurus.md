@@ -2,7 +2,7 @@
 title: Docusaurus
 description: A guide to deploying Docusaurus in docker
 published: true
-date: '2026-11-04T16:24:09.167Z'
+date: '2026-11-04T23:32:10.207Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:04:27.463Z'
@@ -125,15 +125,19 @@ To login to the code container, visit `http://{IP}:8443` and use the `PASSWORD` 
 GitHub can host your Docusaurus site on GitHub Pages. Follow the instructions below to publish your production site to GitHub.
 
 ## 3.1 Docusaurus Configuration
+
+::block-steps
 1. Open the `docusaurus.config.js` file
 1. Set the `url` to `https://{github username}.github.io`
 1. Chnage the `organizationName`to your GitHub org/user name
 1. Change the `projectName` to your repo name
+::
 
 ## 3.2 Permissions
 
 We need to set up a Personal Access Token so we have permission to publish to our GitHub site.
 
+::block-steps
 1. Go to your GitHub account **Settings**
 1. In the left sidebar, click on **Developer settings** all the way at the bottom
 1. Click on **Personal access tokens → Fine-grained tokens**
@@ -145,6 +149,7 @@ We need to set up a Personal Access Token so we have permission to publish to ou
 	a. Check the **Contents** box and give **Read and write** permissions
 1. Click **Generate token** at the bottom
 1. Copy the generated token immediately. You will not be able to see it again.
+::
 
 ## 3.3 Initialize the Repo
 1. Navigate to the directory where the config files are (`/mnt/tank/configs/docusaurus`)
@@ -163,10 +168,12 @@ We need to set up a Personal Access Token so we have permission to publish to ou
 
 Add Pages following the steps below:
 
+::block-steps
 1. Once inside your repo, click **Settings → Pages**
 1. Under **Branch**, set the first dropdown box to **Main**
 1. Set the folder to `/docs`
 1. Click the **Save** button directly next to it
+::
 
 
 ## 3.5 Publishing
