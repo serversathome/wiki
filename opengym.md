@@ -2,7 +2,7 @@
 title: openGym
 description: A guide to deploy openGym
 published: true
-date: '2026-11-04T16:23:21.714Z'
+date: '2026-11-04T23:31:34.824Z'
 tags: []
 editor: markdown
 dateCreated: '2026-08-05T20:35:06.941Z'
@@ -98,11 +98,13 @@ For a quick local test use `RP_ID=localhost` and `ORIGIN=http://localhost:8080`.
 
 ## 2.2 First run
 
+::block-steps
 1. Open the app and tap **Create profile**
 2. Register a passkey when prompted (Face ID / Touch ID / Windows Hello / your password manager)
 3. Enter your current body weight and set a goal
 4. Build a weekly plan — one routine per weekday, drawn from the exercise library
 5. Add to your home screen — iOS: **Share → Add to Home Screen** · Android: **⋮ → Add to home screen**
+::
 
 There's also a **guest mode** that keeps everything in the browser's local storage. It works over plain HTTP on a LAN IP, which makes it a reasonable way to poke at the app before you set up a domain — but that data is stranded in that one browser.
 
