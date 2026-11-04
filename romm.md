@@ -2,7 +2,7 @@
 title: RomM
 description: A guide to deploying RomM on TrueNAS and Docker
 published: true
-date: '2026-11-04T16:17:51.249Z'
+date: '2026-11-04T23:31:52.005Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:08:07.432Z'
@@ -23,17 +23,19 @@ RomM 5.x rebuilt the interface from the ground up with a universal input model t
 
 RomM lives in the **Community** train of the TrueNAS Apps catalog.
 
+::block-steps
 1. Set a secure database password
 1. Set a secure redis password
 1. Generate an auth secret key using `openssl rand -hex 32` in the terminal
 1. Input any client IDs or API keys you have (optional)
 1. Set **Host Path** for the library storage, resources storage, config storage, assets storage, and Postgres Data Storage
 
-> [!WARNING]
-> When setting the Host Path for Postgres Data Storage be sure to check the box for **Automatic Permissions**!
+   > [!WARNING]
+   > When setting the Host Path for Postgres Data Storage be sure to check the box for **Automatic Permissions**!
 6. Leave the User and Group ID at `568` (the `apps` user), and make sure `568` has ACL access to every dataset you point the app at
 6. Increase Resource limits (optional, but recommended on large libraries since 5.3 runs 4 scan workers and 4 API workers by default)
 6. Before starting the app, create `config.yml` in the dataset you chose for **config storage** with the library structure from the Docker Compose tab, and `chown 568:568` it
+::
 
 > [!WARNING]
 > If the app goes into a crash loop after updating to 5.3, the missing `filesystem.structure` block is the first thing to check. The app logs print the exact template it expects.
@@ -173,23 +175,29 @@ To put this behind [Nginx Proxy Manager](/nginx), use the following settings:
 :::block-tabs
 ::block-tab{label="Details"}
 ![screenshot_from_2025-02-24_07-27-52.png](/screenshot-from-2025-02-24-07-27-52.png)
+
+::block-steps
 1. Domain Names: romm.example.com (replace example with your own)* Scheme: http
 1. Forward Hostname/IP: device IP (like 192.168.X.X)
 1. Forward Port: 30061
 1. Cache Assets: off
 1. Block Common Exploits: on
 1. Websockets Support: on ❗
+::
 
 ::
 
 ::block-tab{label="SSL"}
 ![screenshot_from_2025-02-24_07-27-55.png](/screenshot-from-2025-02-24-07-27-55.png)
+
+::block-steps
 1. SSL Certificate: "Request a new SSL Certificate"
 1. Force SSL: on
 1. HTTP/2 Support: on
 1. HSTS Enabled: off
 1. Email Address for Let's Encrypt: your email address
 1. I Agree to the TOS: on
+::
 
 ::
 
