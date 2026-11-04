@@ -2,7 +2,7 @@
 title: HA Proxy Manager
 description: A guide to deploying HA Proxy Manager
 published: true
-date: '2026-11-04T16:17:16.032Z'
+date: '2026-11-04T23:32:19.104Z'
 tags: []
 editor: markdown
 dateCreated: '2026-08-28T20:44:54.637Z'
@@ -45,9 +45,11 @@ services:
       - /mnt/tank/configs/haproxy-manager/keepalived:/etc/keepalived
 ```
 
+::block-steps
 1. Deploy the stack, then browse to `http://<node-ip>:8080`
 2. Create the administrator account when the UI asks for one (skipped if you set `HAM_ADMIN_PASSWORD`)
 3. Run one container per node — the image is all-in-one (manager, HAProxy, Keepalived and `acme.sh` under `supervisord`)
+::
 
 Images are published for **linux/amd64** and **linux/arm64**. Pin a version tag such as `:1.98.1` in production (or `:sha-<commit>` for one exact build); `:latest` moves whenever `main` does.
 
