@@ -2,7 +2,7 @@
 title: Velld
 description: A guide to deploying Velld
 published: true
-date: '2026-11-04T16:23:57.326Z'
+date: '2026-11-04T23:32:01.847Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:19.943Z'
@@ -53,10 +53,12 @@ ALLOW_REGISTER=true
 
 ```
 
+::block-steps
 1. Run this twice and paste a **different** value into `JWT_SECRET` and `ENCRYPTION_KEY`:
    ```bash
    openssl rand -hex 32
    ```
 1. Set `NEXT_PUBLIC_API_URL` to your server's IP, change the admin username and password, and deploy.
 1. Open the web UI at `http://YOUR-SERVER-IP:3000` and log in with your admin credentials. Port `8080` is the API, not the web UI.
+::
 
