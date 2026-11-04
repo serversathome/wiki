@@ -2,7 +2,7 @@
 title: Attic
 description: A guide to deploying Attic
 published: true
-date: '2026-11-04T16:23:28.065Z'
+date: '2026-11-04T23:31:44.042Z'
 tags: []
 editor: markdown
 dateCreated: '2026-09-28T18:01:07.684Z'
@@ -79,10 +79,12 @@ services:
     restart: unless-stopped
 ```
 
+::block-steps
 1. Replace the `CHANGEME` values. The database password appears twice and must match
 2. Set `ATTIC_ADMIN_EMAIL` and `ATTIC_ADMIN_PASSWORD`. These create the first admin account on first boot
 3. Replace `your-server-ip` with your server's IP, or with your public URL if you put Attic behind a Cloudflare Tunnel
 4. Deploy the stack. Database migrations run automatically on startup
+::
 
 > [!NOTE]
 > The admin credentials are only used when the database has no users yet. Changing them in the compose file after the first boot does nothing. If you leave them unset, Attic falls back to `admin` / `admin`, so set them before the first deploy.
@@ -94,10 +96,12 @@ services:
 
 ## 2.1 Initial Setup
 
+::block-steps
 1. Browse to `http://your-server-ip:8095` and log in with the admin email and password from the compose file
 2. Build out **Locations** first (rooms, then shelves or boxes inside them) so new items have somewhere to live
 3. Create **Categories** for the kinds of things you own. Custom fields added to a parent category are inherited by its children
 4. Add items, attach photos, receipts and manuals, and fill in purchase dates and warranty info so the dashboard can flag expiring warranties
+::
 
 ## 2.2 Import Sources
 
