@@ -2,7 +2,7 @@
 title: AdventureLog
 description: A guide to deploying AdventureLog
 published: true
-date: '2026-11-04T16:16:48.222Z'
+date: '2026-11-04T23:31:32.501Z'
 tags: []
 editor: markdown
 dateCreated: '2026-08-28T20:55:40.725Z'
@@ -68,9 +68,11 @@ services:
       start_period: 10s
 ```
 
+::block-steps
 1. Replace `192.168.1.100` with your server's IP or domain
 2. Set a real `POSTGRES_PASSWORD` — it must match between the `app` and `db` services
 3. Create the host directories first: `mkdir -p /mnt/tank/configs/adventurelog/{db,media}`
+::
 
 > [!NOTE]
 > **First boot takes a few minutes.** The `start_period: 120s` on the healthcheck is there for a reason — the backend imports the world geography dataset before it reports healthy. Don't panic if the container shows unhealthy for the first two minutes.
@@ -80,6 +82,7 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 AdventureLog is in the TrueNAS **Community** train (added September 2025).
 
+::block-steps
 1. Navigate to **Apps** → **Discover Apps** in the TrueNAS UI
 2. Search for **AdventureLog** and click **Install**
 3. Configure the following:
@@ -91,6 +94,7 @@ AdventureLog is in the TrueNAS **Community** train (added September 2025).
    - **Frontend URL**: `http://TRUENAS_IP:8015`
    - **Storage**: point the app and Postgres datasets at host paths under `/mnt/tank/configs/adventurelog`
 4. Click **Install** and wait for all three containers to report healthy
+::
 
 > [!WARNING]
 > The app deploys three containers — frontend, backend, and PostGIS. The **backend container runs as root (UID/GID 0)**, while the frontend and postgis containers run as UID 1000. Set dataset ownership accordingly or the backend will fail its health check.
