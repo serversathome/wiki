@@ -2,7 +2,7 @@
 title: Ente Photos
 description: A guide to deploying Ente Photo
 published: true
-date: '2026-11-04T16:23:32.856Z'
+date: '2026-11-04T23:31:29.182Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:04:35.538Z'
@@ -175,6 +175,8 @@ jwt:
       secret: <generated-jwt-secret>
 ```
 # 2 · Signing Up
+
+::block-steps
 1. Navigate to `http://{IP}:3000` 
 1. Click **Don't Have An Account**
 1. After you add an email and strong password click **Create Account**
@@ -184,6 +186,7 @@ jwt:
     ```
 1. Click **Verify** after entering your code
 1. Click "Continue with free plan 10 GB free forever"
+::
 
 # 3 · Removing Storage Limits
 1. In the TrueNAS shell, run this command **as root**:
