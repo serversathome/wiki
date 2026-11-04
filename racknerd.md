@@ -2,7 +2,7 @@
 title: Racknerd VPS
 description: A guide to deploying a Racknerd VPS
 published: true
-date: '2026-11-04T19:05:29.906Z'
+date: '2026-11-04T23:31:55.433Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:49.041Z'
@@ -14,6 +14,7 @@ RackNerd is a global provider of Infrastructure as a Service (IaaS) solutions, o
 
 # 1 • Deploying a VPS
 
+::block-steps
 1. Create an account on [Racknerd](https://www.racknerd.com/)
 1. Use one of the affilate links to get a discount on a VPS:
 
@@ -40,19 +41,26 @@ RackNerd is a global provider of Infrastructure as a Service (IaaS) solutions, o
 1. Set a **Server Label**
 1. Optionally add additional CPU/RAM
 1. Choose a **Location** closest to you
+::
 
 # 2 • Logging into the Control Panel
+
+::block-steps
 1. Once your VPS is deployed, navigate to [this page](https://my.racknerd.com/clientarea.php?action=services) and click on the row showing your VPS
 1. At the bottom of the screen, you will see a link to the [Control Panel](https://nerdvm.racknerd.com/) along with your username. Your password will be emailed to you. If you forgot it navigate to [this page](https://my.racknerd.com/clientarea.php?action=emails) and look for the message titled `KVM VPS Login Information`
 1. Naviagte to the [Control Panel](https://nerdvm.racknerd.com/) and login
+::
 
 # 3 • Accessing Your Server
+
+::block-steps
 1. Note your IP address from [this page](https://my.racknerd.com/clientarea.php?action=services)
 1. Open a terminal and use the command (using your IP address from step 3.1)
     ```bash
     ssh root@{IP}
     ```
 1. Your password was emailed to you. If you forgot it navigate to [this page](https://my.racknerd.com/clientarea.php?action=emails) and look for the message titled `KVM VPS Login Information`
+::
 
 # 4 • Securing Your Server
 
