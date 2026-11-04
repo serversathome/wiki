@@ -2,7 +2,7 @@
 title: Warracker
 description: A guide to deploying Warracker
 published: true
-date: '2026-11-04T16:18:06.703Z'
+date: '2026-11-04T23:31:58.182Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:22.115Z'
@@ -14,9 +14,12 @@ Warracker is an open source, self-hostable warranty tracker to monitor expiratio
 # 1 · Deploy Warracker
 :::block-tabs
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Set a **Database Password**
 1. Set the **Warracker Uploads Storage** and **Postgres Data Storage** to *Host Path*
 1. Check the box for **Automatic Permissions** under the **Postgres Data Storage** section
+::
 
 ::
 
