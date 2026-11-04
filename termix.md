@@ -2,7 +2,7 @@
 title: Termix
 description: A guide to deploying Termix
 published: true
-date: '2026-11-04T16:24:09.710Z'
+date: '2026-11-04T23:32:11.936Z'
 tags: []
 editor: markdown
 dateCreated: '2026-05-06T22:04:27.210Z'
@@ -37,6 +37,8 @@ Remote desktop (RDP, VNC, and Telnet) is now built into Termix, so no `guacd` si
 ::
 
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for "Termix" in the **Community** train
 3. Click **Install**
@@ -44,6 +46,7 @@ Remote desktop (RDP, VNC, and Telnet) is now built into Termix, so no `guacd` si
    - **Web Port**: `8080` (or your preferred port)
    - **Storage → App Data**: Host Path → `/mnt/tank/configs/termix`
 5. Click **Install**
+::
 
 > [!NOTE]
 > The TrueNAS app runs Termix as UID/GID 1000. Make sure `/mnt/tank/configs/termix` is writable by UID 1000, or use the dataset Apps preset and set ownership to UID 1000.
@@ -78,11 +81,13 @@ For RDP, set **Security mode** to `any` as a default — it lets Termix negotiat
 
 For each Windows machine you want to RDP into:
 
+::block-steps
 1. **Settings → System → Remote Desktop** → toggle on (requires Pro, Enterprise, or Education edition)
 2. Leave **Network Level Authentication** enabled — Termix handles NLA
 3. Confirm the user account has a password set (RDP rejects blank passwords by default)
 4. Set **Power & battery → Plugged in: Never sleep** to prevent the machine from dropping the connection
 5. Reserve the IP in your DHCP server so it doesn't shift
+::
 
 ## 4.2 Linux VNC Host Prep
 
