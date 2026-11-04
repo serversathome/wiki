@@ -2,7 +2,7 @@
 title: Backvault
 description: A guide to deploying Backvault
 published: true
-date: '2026-11-04T16:23:32.116Z'
+date: '2026-11-04T23:31:43.738Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:03:18.042Z'
@@ -45,9 +45,12 @@ Now restart your container.
 In the Bitwarden or Vaultwarden web vault, navigate to **Settings → Security → Keys** and click **View API Key** to see your **Client ID** and **Client Secret**
 
 # 4 · First-Run Setup
+
+::block-steps
 1. On first start, Backvault opens a one-time setup page. Browse to `http://your-server-ip:8080`
 2. Enter your **master password**, the **Client ID** and **Client Secret** from step 3, and a **backup encryption password**
 3. Submit the form. Backvault encrypts and stores these in `/app/db`, then the setup page shuts itself down and scheduled backups begin
+::
 
 > [!NOTE]
 > Keep the `/app/db` volume. As long as it persists you can restart or update the container without entering your credentials again. Don't lose the backup encryption password, you need it to open your backups.
