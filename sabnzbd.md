@@ -2,7 +2,7 @@
 title: SABnzbd
 description: A guide to deploying SABnzbd via TrueNAS or docker
 published: true
-date: '2026-11-04T16:17:52.338Z'
+date: '2026-11-04T23:31:40.315Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:08:11.759Z'
@@ -37,9 +37,11 @@ services:
     restart: unless-stopped
 ```
 
+::block-steps
 1. If your pool is named something other than `tank`, change the left side of both volume paths.
 2. The `/media` mount should be the **parent of both your downloads and your media library** (e.g. `/mnt/tank/media` holds `downloads/`, `movies/`, `tv/`). Mapping one shared folder is what lets Sonarr and Radarr hardlink finished downloads instead of copying them.
 3. `PUID`/`PGID` `568` is the `apps` user on TrueNAS, matching the recommended dataset permissions.
+::
 
 > [!WARNING]
 > Map the **same host folder to the same container path** in SABnzbd, Sonarr, and Radarr (`/media` everywhere). Mismatched paths are the number-one cause of imports silently failing.
@@ -47,6 +49,8 @@ services:
 ::
 
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI.
 2. Click **Discover Apps** and search for **SABnzbd** (Community train).
 3. Click **Install**.
@@ -56,6 +60,7 @@ services:
    - **Config Storage**: Host Path → `/mnt/tank/configs/sabnzbd`
    - **Additional Storage**: Host Path `/mnt/tank/media` → Mount Path `/media`
 5. Click **Install** and wait for the app to report **Running**.
+::
 
 ::
 
@@ -103,9 +108,11 @@ They can't be the exact same path, but they can be two subfolders under one down
 
 Categories are optional, Sonarr and Radarr import by reading the finished path from SABnzbd's API, so a bare setup works. But when both apps share one SABnzbd, categories keep each app scoped to its own downloads and its own folder.
 
+::block-steps
 1. Go to **Config → Categories**.
 2. Add a category `tv` and, in its folder field, type the plain relative name `tv`.
 3. Add a category `movies` with folder `movies`.
+::
 
 SABnzbd nests each one under your Completed Download Folder automatically, so `tv` becomes `/media/downloads/complete/tv`. You don't pre-create the folders or re-point SABnzbd at them.
 
@@ -119,11 +126,13 @@ SABnzbd nests each one under your Completed Download Folder automatically, so `t
 
 Grab your API key from **Config → General → API Key**, then in each *arr:
 
+::block-steps
 1. Go to **Settings → Download Clients → + → SABnzbd**.
 2. **Host**: SABnzbd's IP or hostname &nbsp;·&nbsp; **Port**: `8080`
 3. **API Key**: paste the key from above.
 4. **Category**: `tv` in Sonarr, `movies` in Radarr.
 5. **Test**, then **Save**.
+::
 
 > [!CAUTION]
 > Make sure SABnzbd, Sonarr, and Radarr all resolve `/media` to the same host folder. If SAB reports a completed path the *arrs can't see, imports fail even though the download succeeded.
@@ -134,11 +143,13 @@ Prowlarr is the hub of the automation, it manages your indexers (like SceneNZBs)
  
 First grab SABnzbd's API key from **Config → General → API Key**. Then in Prowlarr:
  
+::block-steps
 1. Go to **Settings → Download Clients → + → SABnzbd**.
 2. **Host**: SABnzbd's IP or hostname &nbsp;·&nbsp; **Port**: `8080`
 3. **API Key**: paste the key from above.
 4. **Category**: optional here, leave blank or set a catch-all.
 5. **Test**, then **Save**.
+::
 
 
 
@@ -165,6 +176,7 @@ Found under **Config → Switches**:
  
 Rather than downloading risky files and deleting them afterward, have SABnzbd reject any release that contains an executable outright, a classic sign of a fake or malicious NZB. Under **Config → Switches**:
  
+::block-steps
 1. Confirm the **Unwanted Extensions** list mode is **Blacklist** (the default), so the extensions you list are treated as unwanted.
 2. Paste this list into the **Unwanted Extensions** field:
 
@@ -174,6 +186,7 @@ Rather than downloading risky files and deleting them afterward, have SABnzbd re
  
 3. Set **Action when unwanted extension detected** to **Fail job (move to History)**.
 Now if any of these show up in a finished release, SABnzbd fails the whole job and moves it to History instead of handing it to your library.
+::
  
 > [!WARNING]
 > This check is global, not per-category. If you also use SABnzbd for games or software, leave installer extensions (`exe`, `msi`, `iso`, `dmg`, etc.) off the list, or those legitimate downloads will fail too. Switch the action to **Off** while grabbing them if needed.
