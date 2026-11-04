@@ -2,7 +2,7 @@
 title: Rackpad
 description: A guide to deploying Rackpad
 published: true
-date: '2026-11-04T16:23:31.252Z'
+date: '2026-11-04T23:31:42.571Z'
 tags: []
 editor: markdown
 dateCreated: '2026-05-30T13:24:08.606Z'
@@ -81,10 +81,12 @@ Open `http://<your-host>:3000` and create the initial admin account — on first
 
 ## 2.1 First Run
 
+::block-steps
 1. Browse to `http://<your-host>:3000`
 2. Create the initial admin account and sign in
 3. Choose **start empty** or **preload demo data**
 4. Begin documenting racks, devices, VLANs, and IPAM
+::
 
 User roles are admin/editor/viewer, so you can give read-only access to others without handing over edit rights.
 
