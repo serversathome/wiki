@@ -2,7 +2,7 @@
 title: Soulseek
 description: A guide to deploying the SLSKD daemon via docker compose
 published: true
-date: '2026-11-04T16:17:57.665Z'
+date: '2026-11-04T23:31:48.744Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:08:40.062Z'
@@ -17,11 +17,13 @@ dateCreated: '2026-01-15T15:08:40.062Z'
 <details class="quickstart" open>
 <summary><strong>🚀 Quick‑Start Checklist</strong></summary>
 
+::block-steps
 1. **Deploy container** (Docker Compose *or* Docker + VPN).
 2. **Create account** in the desktop client *(needed once)* → username & password.
 3. **Mount music** → `/music`;  set **Downloads** → `/music/downloads`, **Incomplete** → `/music/incomplete`.
 4. Log in to **web‑UI** → `Settings → Options` → add Soulseek credentials.
 5. *(Recommended)* Run behind **Gluetun / AirVPN** for privacy.
+::
 
 </details>
 
@@ -111,6 +113,7 @@ services:
 
 # 2 · First‑Run Configuration
 
+::block-steps
 1. Open `http://SERVER_IP:5030` → login (**slskd / slskd**).
 2. **System → Options → edit slskd.yml**:
 
@@ -119,6 +122,7 @@ services:
    * *(optional)* `soulseek.description: "Hi, enjoy the tunes!"`
 3. **Save → Restart daemon**.  Watch logs until **Connected to server** appears.
 4. The compose shares `/music/library` via `SLSKD_SHARED_DIR`; change it to wherever your library sits under `/music`.
+::
 
 ---
 
