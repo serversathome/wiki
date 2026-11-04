@@ -2,7 +2,7 @@
 title: Rybbit
 description: A guide to deploying Rybbit
 published: true
-date: '2026-11-04T16:23:40.590Z'
+date: '2026-11-04T23:31:41.473Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-24T19:52:22.810Z'
@@ -365,9 +365,11 @@ Add a public hostname in Cloudflare Zero Trust:
 
 # 2 · First Login
 
+::block-steps
 1. Navigate to `https://rybbit.example.com/signup`
 2. Create your admin account
 3. Set `DISABLE_SIGNUP=true` on the backend and `NEXT_PUBLIC_DISABLE_SIGNUP=true` on the client, then redeploy to prevent new signups
+::
 
 # 3 · Adding the Tracking Script
 
