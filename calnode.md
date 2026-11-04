@@ -2,7 +2,7 @@
 title: Calnode
 description: A guide to deploying Calnode
 published: true
-date: '2026-11-04T16:23:46.173Z'
+date: '2026-11-04T23:31:49.871Z'
 tags: []
 editor: markdown
 dateCreated: '2026-07-23T12:07:16.903Z'
@@ -111,10 +111,12 @@ location / {
 
 Open `https://booking.yourdomain.com/` → it redirects to `/admin/`. On a fresh database you'll be walked through creating the owner account. After that, work through:
 
+::block-steps
 1. **Settings → Email** — so confirmations actually send
 2. **Settings → Google OAuth** — sign-in plus calendar free/busy
 3. **Settings → Branding** — logo, business name
 4. Create your first **event type** and set your **availability**
+::
 
 Migrations run automatically on every boot — there's no manual DB step.
 
