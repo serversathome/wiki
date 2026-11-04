@@ -2,7 +2,7 @@
 title: Note Discovery
 description: A guide to deploying Note Discovery
 published: true
-date: '2026-11-04T16:23:12.175Z'
+date: '2026-11-04T23:31:25.914Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:06:46.282Z'
@@ -12,6 +12,8 @@ dateCreated: '2026-01-15T15:06:46.282Z'
 NoteDiscovery is a lightweight, self-hosted note-taking application that puts you in complete control of your knowledge base. Write, organize, and discover your notes with a beautiful, modern interface—all running on your own server.
 
 # :logos:docker-icon: 1 · Deploy Note Discovery
+
+::block-steps
 1. Create the data folder in the TrueNAS shell as root:
     ```bash
     mkdir -p /mnt/tank/configs/notediscovery/data/_templates
@@ -43,6 +45,7 @@ NoteDiscovery is a lightweight, self-hosted note-taking application that puts yo
           start_period: 5s
     ```
 1. Start the stack and navigate to `http://IP:8000`
+::
 
 > [!NOTE]
 > Themes, plugins, locales and the default config are built into the prebuilt image, so you no longer need to clone the repo (the repo's own `docker-compose.yml` builds from source and is meant for development). To expose the built-in MCP server over HTTP, add `MCP_ENABLED=true` and point your client at `http://IP:8000/mcp`.
