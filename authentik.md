@@ -2,7 +2,7 @@
 title: Authentik
 description: A guide to deploying Authentik
 published: true
-date: '2026-11-04T16:23:17.287Z'
+date: '2026-11-04T23:31:30.565Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:03:13.956Z'
@@ -79,6 +79,7 @@ services:
       - /mnt/tank/authentik/templates:/templates
 ```
 
+::block-steps
 1. Make a dataset in TrueNAS called `authentik` with 770 permmissions
 1. To generate your own database password run this command in the terminal, then replace all three `CHANGEME_DB_PASSWORD` values with it:
     ```bash
@@ -88,6 +89,7 @@ services:
     ```bash
     openssl rand -base64 60 | tr -d '\n'
     ```
+::
 
 > [!WARNING]
 > **Upgrading an existing install?** Authentik must be upgraded one major release at a time, so do not jump straight to 2026.8. From 2025.8, step through 2025.10, 2025.12, 2026.2 and 2026.5 first, letting each one start fully. Since 2025.10 Authentik no longer uses Redis, so the `redis` service and `AUTHENTIK_REDIS__HOST` can be removed. Since 2025.12 files are stored under `/data`: before starting 2025.12, move your old media folder with `mkdir -p /mnt/tank/authentik/data && mv /mnt/tank/authentik/media /mnt/tank/authentik/data/media`. See the [upgrade guide](https://docs.goauthentik.io/install-config/upgrade/) and the [2025.10](https://docs.goauthentik.io/releases/2025.10/) and [2025.12](https://docs.goauthentik.io/releases/2025.12/) release notes.
