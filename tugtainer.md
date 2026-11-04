@@ -2,7 +2,7 @@
 title: Tugtainer
 description: A guide to deploying Tugtainer
 published: true
-date: '2026-11-04T16:23:51.819Z'
+date: '2026-11-04T23:31:56.515Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:08.384Z'
@@ -111,11 +111,13 @@ Scheduling is cron-based, and you can set **independent schedules for checks and
 
 A scheduled or manual **check** does the following per container:
 
+::block-steps
 1. Confirms the container is eligible (skips containers built from a purely local image with no registry).
 2. Optionally pulls the image (off by default — handy if you front a registry proxy).
 3. Requests the current digest of the image from its registry.
 4. Compares the local digest against the remote digest.
 5. If they differ, the container is **marked as available**.
+::
 
 A **scheduled** check runs against every enabled host and every container you've selected for **auto-check**. A **manual** check runs against *all* containers regardless of the auto-check toggle (or just one, if you click a single container).
 
@@ -208,15 +210,15 @@ To check/update images from a private registry, mount your Docker config into th
 
 1. Create the config on the host — either `docker login <registry>` or by hand:
 
-```json
-{
-  "auths": {
-    "<registry>": {
-      "auth": "base64 encoded 'username:password_or_token'"
-    }
-  }
-}
-```
+   ```json
+   {
+     "auths": {
+       "<registry>": {
+         "auth": "base64 encoded 'username:password_or_token'"
+       }
+     }
+   }
+   ```
 
 2. Mount it read-only into the container:
 
