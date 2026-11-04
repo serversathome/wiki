@@ -2,7 +2,7 @@
 title: PteroCA
 description: A guide to deploying Pteroca
 published: true
-date: '2026-11-04T16:24:03.427Z'
+date: '2026-11-04T23:32:04.775Z'
 tags: []
 editor: markdown
 dateCreated: '2026-02-03T16:35:03.541Z'
@@ -32,13 +32,16 @@ A client area and billing panel for Pterodactyl game server hosting. Adds automa
 
 # 2 · First Setup
 
+::block-steps
 1. Access the web UI at `http://your-server:8000/first-configuration`
 1. Configure database connection
 1. Run migrations when prompted
 1. Create your admin account
+::
 
 # 3 · Connect to Pterodactyl
 
+::block-steps
 1. In Pterodactyl: **Admin → Application API → Create New**
 2. Grant all read/write permissions
 3. Copy the API key to PteroCA settings
@@ -52,6 +55,7 @@ A client area and billing panel for Pterodactyl game server hosting. Adds automa
      - 'pteroca.example.com'
    ```
    Then restart Wings with `sudo systemctl restart wings`.
+::
 
 # :logos:youtube-icon: 4 · Video
 
