@@ -2,7 +2,7 @@
 title: Qui
 description: A guide to deploying Qui
 published: true
-date: '2026-11-04T16:23:48.583Z'
+date: '2026-11-04T23:31:54.891Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:46.966Z'
@@ -33,10 +33,12 @@ services:
 
 # 2 · Initial Setup
 
+::block-steps
 1. Navigate to `http://{IP}:7476`
 1. Set a username and password
 1. Click **Add Instance** and enter your qBittorrent connection details
 1. Enable **Local Filesystem Access** in the instance settings
+::
 
 ## 2.1 Add Indexers
 
@@ -65,12 +67,14 @@ Set up the global settings (3.1 to 3.3) first, then turn on the sources you want
 
 ## 3.1 Hardlink Mode
 
+::block-steps
 1. Navigate to **Cross-Seed → After injection**
 1. Expand **Hardlink / Reflink Mode** and expand your instance
 1. Set **Cross-seed mode** to **Hardlink**
 1. Set **Base directories** to a folder on the same filesystem as your downloads (e.g., `/media/downloads/crossseed`)
 1. Set **Directory organization** to **Flat (all in base directory)**
 1. Click **Save Changes**
+::
 
 > [!NOTE]
 > Reflink mode is safer if your filesystem supports it (Btrfs, or XFS with `reflink=1`). Check with `df -T /path`. It creates copy-on-write clones so any writes don't affect your original files.
@@ -80,18 +84,22 @@ Set up the global settings (3.1 to 3.3) first, then turn on the sources you want
 
 ## 3.2 Matching Rules
 
+::block-steps
 1. Navigate to **Cross-Seed → Matching rules**
 1. Under **Safety & validation**, toggle the **Piece boundary safety check** on
 1. Click **Save Changes**
+::
 
 > [!WARNING]
 > The piece boundary check is **off by default**. It matters most in **Hardlink** mode. It blocks cross-seeds whose extra files share pieces with your content, which could otherwise let qBittorrent overwrite your existing data.
 
 ## 3.3 Categories
 
+::block-steps
 1. Navigate to **Cross-Seed → Categories and tags**
 1. Select **Category affix**, choose **Suffix**, and enter `.cross`
 1. Click **Save Changes**
+::
 
 > [!NOTE]
 > Every source tags its cross-seeds with `cross-seed` by default. You can change the tags on each source's tab, but leave `cross-seed` in place. The steps below rely on it.
@@ -100,6 +108,7 @@ Set up the global settings (3.1 to 3.3) first, then turn on the sources you want
 
 RSS watches your trackers' feeds for new uploads that match something you already have.
 
+::block-steps
 1. Navigate to **Cross-Seed → RSS**
 1. Toggle **Enable RSS automation** on
 1. Set **RSS run interval (minutes)** to `60`-`120`
@@ -107,6 +116,7 @@ RSS watches your trackers' feeds for new uploads that match something you alread
 1. Leave **Target indexers** empty to use all enabled indexers
 1. Add `cross-seed` to **Exclude tags**
 1. Click **Save RSS automation settings**
+::
 
 > [!NOTE]
 > Excluding the `cross-seed` tag makes qui match against your original torrents instead of existing cross-seeds.
@@ -115,10 +125,12 @@ RSS watches your trackers' feeds for new uploads that match something you alread
 
 Completion search looks for cross-seeds as soon as a new download finishes.
 
+::block-steps
 1. Navigate to **Cross-Seed → Completion**
 1. In the **Auto-search on completion** card, toggle your qBit instance **On**
 1. Expand the instance and add `cross-seed` to the **Exclude filters** tags
 1. Save the instance settings
+::
 
 > [!NOTE]
 > New cross-seeds finish a recheck after they're added, which counts as a completion. Excluding the `cross-seed` tag stops every cross-seed from triggering another search.
@@ -127,12 +139,14 @@ Completion search looks for cross-seeds as soon as a new download finishes.
 
 RSS only sees new uploads, so it will never find matches for content you already have. Run a Library Scan once to backfill your existing library.
 
+::block-steps
 1. Navigate to **Cross-Seed → Library**
 1. Select your qBit instance as the **Source instance**
 1. Under **Categories**, select your \*arr categories (e.g. `radarr` and `sonarr`, or `movies` and `tv`)
 1. Set **Interval between torrents (seconds)** to `60`
 1. Set **Cooldown (minutes)** to `10080` (7 days)
 1. Click **Start run**
+::
 
 > [!WARNING]
 > Library Scan queries every indexer for every torrent. At 60 seconds per torrent, 1,000 torrents takes about 17 hours. Run it once, then rerun it occasionally to catch older content that shows up on new trackers. RSS handles everything new.
@@ -146,6 +160,7 @@ Library Scan only looks at torrents in qBittorrent. Dir Scan looks at files on d
 
 ### Global Settings
 
+::block-steps
 1. Navigate to **Cross-Seed → Directories**
 1. Toggle the **Directory Scanner** switch to **Enabled**
 1. Click **Settings** to open **Directory Scanner Settings**
@@ -160,6 +175,7 @@ Library Scan only looks at torrents in qBittorrent. Dir Scan looks at files on d
 1. Set **Default Category** to a category for these cross-seeds (e.g. `dirscan.cross`)
 1. Set **Tags** to `cross-seed`
 1. Click **Save**
+::
 
 > [!NOTE]
 > Dir Scan adds torrents with an explicit save path and AutoTMM off. The **Category affix** and the source tags from the other tabs don't apply here, so the category and tags come only from these settings. Adding the `cross-seed` tag keeps the RSS and completion exclude rules working.
@@ -169,6 +185,7 @@ Library Scan only looks at torrents in qBittorrent. Dir Scan looks at files on d
 
 ### Add a Directory
 
+::block-steps
 1. Click **Add Directory** and set **Directory Path** to a single category folder (e.g. `/media/downloads/movies`)
 1. Leave **qBittorrent Path Prefix** empty. The compose above mounts `/media` the same way as qBittorrent
 1. Select your qBit instance as the **Target qBittorrent Instance**
@@ -176,6 +193,7 @@ Library Scan only looks at torrents in qBittorrent. Dir Scan looks at files on d
 1. For TV folders, toggle **Skip individual episodes** on to search for season packs
 1. Click **Add Directory** to save it
 1. Repeat for each category folder, then click the ▶ play button on a directory card to start a scan
+::
 
 > [!WARNING]
 > Set up hardlink or reflink mode (3.1) first. In regular mode, Dir Scan warns that the orphan scanner will treat the folder as a scan root and flag any unmatched files as orphans.
