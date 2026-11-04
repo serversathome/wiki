@@ -2,7 +2,7 @@
 title: Pangolin
 description: A guide to installing Pangolin
 published: true
-date: '2026-11-04T16:23:35.522Z'
+date: '2026-11-04T23:31:33.424Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:06:59.674Z'
@@ -46,16 +46,19 @@ sudo ./installer
 # 4 · Installer Configuration
 The installer will prompt you for the following basic information. For example:
 
+::block-steps
 1. **Edition:** Choose **Community Edition** or Enterprise Edition
 1. **Base Domain Name:** Enter your base fully qualified domain name (without any subdomains) Example: example.com
 1. **Dashboard Domain Name:** The domain where the application will be hosted. This is used for many things, including generating links. You can run Pangolin on a subdomain or root domain. Example: `pangolin.example.com`
 1. **Let's Encrypt Email:** Provide an email address for SSL certificate registration with Lets Encrypt. This should be an email you have access to.
 1. **Tunneling:** You can choose not to install Gerbil for tunneling support - in this config it will just be a normal reverse proxy. See how to [use without tunneling](https://docs.pangolin.net/self-host/advanced/without-tunneling).
+::
 
 ## 4.1 Admin User Setup
 
 The installer no longer asks for an admin account. Instead, it prints a one-time **setup token**, and you create the first admin user in the web UI:
 
+::block-steps
 1. Browse to `https://pangolin.example.com/auth/initial-setup` (your dashboard domain)
 1. Paste the setup token the installer displayed. If you missed it, find it in the Pangolin container logs:
     ```bash
@@ -68,6 +71,7 @@ The installer no longer asks for an admin account. Instead, it prints a one-time
     - At least one lowercase letter
     - At least one digit
     - At least one special character
+::
 
 ## 4.2 Security Settings
 
@@ -102,31 +106,38 @@ When you log into the app for the first time you will be prompted to create an o
 
 A site is a remote location that you want to proxy through the tunnel and system. For example your home server, or a IOT device. A site will terminate one tunnel.
 
+::block-steps
 1. Head to the Sites tab and select the Add Site button (or use the tab in the setup workflow)
 1. Give your site a name like "HomeLab"
 1. Choose your **TunnelType**. You can either use the Newt client (recommended) or a standard WireGuard tunnel.
 1. Check the circle **I have copied the config**
 1. Copy the Newt command for the Operating System you have chosen
 1. Press **Create Site**
+::
 
 ## 5.3 Connect a Tunnel
 
+::block-steps
 1. Assuming you chose Newt above, deploy the docker compose file or bash command to your endpoint
 1. Click **Save General Settings**
 1. In the left pane, click **Sites** and you should see you new site as **Online**. If not, give it a minute and refresh the page.
+::
 
 
 ## 5.4 Create a Resource
 
+::block-steps
 1. Head to the Resources tab and select the **Add Resource button** (or use the tab in the setup workflow)
 1. Give your resource a name like "Bitwarden"
 1. Choose a subdomain for this resource. The subdomain must be **globally unique** across all orgs and sites
 1. Choose the site that this resource is at. The resource target must be accessible behind the tunnel attached to this site.
 1. Press **Create Resource**
+::
 
 ## 5.5 Add Targets and Authentication
 ### 5.5.1 Target
 
+::block-steps
 1. You should now be on the Connectivity page under your new resource
 1. If you would like to secure this site with https, leave the **Enable SSL** toggle enabled
 1. Add a target for this resource. If your resource is accessible on your internal network at `http://192.168.1.24:8080` for example, then choose the following:
@@ -136,6 +147,7 @@ A site is a remote location that you want to proxy through the tunnel and system
 1. Press **Add Target** and you will see the target added to the list and enabled.
 1. Press **Save Target**
 1. Try to access your resource by clicking the url at the top
+::
 
 
 > [!NOTE]
@@ -155,12 +167,14 @@ If you would like to disable Pangolin auth, you can disable the `Use Platform SS
 
 ## 5.6 Invite Users (optional)
 
+::block-steps
 1. Head to the Users and Roles tab
 1. Press **Invite User**
 1. Enter an email for the new user. If you have setup SMTP during the setup you can choose to send an email invite to the new user
 1. Select the role for the new user. All users must have a role. The admin role gives the user access to all resources and to create new resources and sites. The member role only provides access to resources explicitly attached to the role (none by default).
 1. Choose how long this invite will be valid for and choose **Create Invitation**
 1. If you chose not to send the email or it is not setup, then be sure to copy the invite and send it to the user
+::
 
 The new user will be prompted to setup a password and verify their email (if SMTP is supported). They will show up in your table once they confirm their account.
 
