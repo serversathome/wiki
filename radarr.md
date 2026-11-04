@@ -2,7 +2,7 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: '2026-11-04T16:17:49.375Z'
+date: '2026-11-04T23:31:35.382Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:53.605Z'
@@ -40,6 +40,8 @@ services:
 ::
 
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI.
 2. Search the **Community** catalog for "Radarr" and click **Install**.
 3. Configure the following settings:
@@ -50,6 +52,7 @@ services:
    - **Storage → Additional Storage**: Host Path `/mnt/tank/media` mounted to `/media`
    - **Web Port**: `7878`
 4. Click **Install** and wait for the app to reach the **Running** state.
+::
 
 ::
 
@@ -61,32 +64,40 @@ services:
 
 Before anything else, lock down access:
 
+::block-steps
 1. Go to **Settings → General**.
 2. Under **Security**, set **Authentication** to `Forms (Login Page)`.
 3. Set **Authentication Required** to `Enabled`.
 4. Create a username and password, then save. Radarr will restart.
+::
 
 
 ## 2.2 Connect Your Download Client
 
+::block-steps
 1. Go to **Settings → Download Clients** and click the **+** button.
 2. Select your client (e.g. **qBittorrent** or **SABnzbd**).
 3. Enter the host, port, and credentials.
 4. Click **Test**, then **Save**.
+::
 
 ## 2.3 Connect Indexers via Prowlarr
 
 Rather than adding indexers manually, let Prowlarr manage them:
 
+::block-steps
 1. In **Prowlarr**, go to **Settings → Apps** and add Radarr.
 2. Enter the Radarr URL (`http://radarr:7878`) and API key (found in Radarr under **Settings → General → Security**).
 3. Prowlarr will sync all your indexers to Radarr automatically.
+::
 
 ## 2.4 Quality Profiles & Root Folder
 
+::block-steps
 1. Go to **Settings → Media Management** and add a **Root Folder** pointing to `/media/movies`.
 2. Under **Settings → Profiles**, configure quality profiles to match your storage and bandwidth.
 3. For curated custom formats and quality scoring, consider [Profilarr](/profilarr) to manage profiles across Radarr and Sonarr.
+::
 
 
 
