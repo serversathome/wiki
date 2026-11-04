@@ -2,7 +2,7 @@
 title: Crafty Controller
 description: A guide to deploying Crafty Controller
 published: true
-date: '2026-11-04T16:23:22.995Z'
+date: '2026-11-04T23:31:35.925Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:04:04.135Z'
@@ -56,6 +56,8 @@ sudo cat /mnt/tank/configs/crafty/config/default-creds.txt
 ```
 
 # 3 · Create a Minecraft Server
+
+::block-steps
 1. Click **Servers** in the left pane
 1. Click **Create New Server**
 1. Select a **Server Type** of *Minecraft Servers*
@@ -65,8 +67,11 @@ sudo cat /mnt/tank/configs/crafty/config/default-creds.txt
 	a. To run multiple servers, select a different port for each server and remember to expose them on the host
 1. Click **Build Server**
 1. Click the Play Button in the panel to start the server
+::
 
 # 4 · Share Your Server With Playit
+
+::block-steps
 1. Create an account on https://playit.gg
 1. Click the **Agents** tab at the top
 1. Click **Deploy a new docker based agent**
@@ -80,6 +85,7 @@ sudo cat /mnt/tank/configs/crafty/config/default-creds.txt
 1. Enter the address of the server running Crafty and the port you selected for your Minecraft server
 11. Click **Update**
 1. At the top you will see the public URL which ends in `.ply.gg`
+::
 
 # :logos:youtube-icon: 5 · Video
 
