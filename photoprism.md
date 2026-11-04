@@ -2,7 +2,7 @@
 title: PhotoPrism
 description: A guide to deploying PhotoPrism
 published: true
-date: '2026-11-04T16:17:41.206Z'
+date: '2026-11-04T23:31:49.602Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:08.400Z'
@@ -15,11 +15,14 @@ PhotoPrism® is an AI-Powered Photos App for the Decentralized Web. It makes use
 # 1 · Deploy PhotoPrism
 :::block-tabs
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Set the **Site URL** to either your local IP or a FQDN
 1. Set the **Admin Password** 
 1. Set the **Photoprism Import Storage** to **Host Path**
 1. Set the **Photoprism Storage** to **Host Path**
 1. Set the **Photoprism Originals Storage** to **Host Path**
+::
 
 ::
 
