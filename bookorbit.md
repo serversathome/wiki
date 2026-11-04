@@ -2,7 +2,7 @@
 title: Bookorbit
 description: A guide to deploying Bookorbit
 published: true
-date: '2026-11-04T16:16:55.014Z'
+date: '2026-11-04T23:31:49.344Z'
 tags: []
 editor: markdown
 dateCreated: '2026-08-28T20:18:42.561Z'
@@ -73,17 +73,19 @@ services:
       start_period: 20s
 ```
 
+::block-steps
 1. Generate the three secrets before deploying:
 
-```bash
-openssl rand -hex 24   # POSTGRES_PASSWORD
-openssl rand -hex 32   # JWT_SECRET
-openssl rand -hex 16   # SETUP_BOOTSTRAP_TOKEN
-```
+   ```bash
+   openssl rand -hex 24   # POSTGRES_PASSWORD
+   openssl rand -hex 32   # JWT_SECRET
+   openssl rand -hex 16   # SETUP_BOOTSTRAP_TOKEN
+   ```
 
 2. Set `POSTGRES_PASSWORD` to the same value in **both** services or the app will not connect.
 3. Set `APP_URL` to the address you will actually browse to. It is used for Kobo sync endpoints and outbound email, so a wrong value here breaks device sync later.
 4. Point the `/books` volume at your library folder. That is the folder the library picker opens in.
+::
 
 
 > [!WARNING]
@@ -94,6 +96,7 @@ openssl rand -hex 16   # SETUP_BOOTSTRAP_TOKEN
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 BookOrbit is in the **community** train, added June 2026 and tracking upstream closely.
 
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI and select **Discover Apps**
 2. Search for **BookOrbit** and click **Install**
 3. Under **BookOrbit Configuration**, set:
@@ -108,6 +111,7 @@ BookOrbit is in the **community** train, added June 2026 and tracking upstream c
    - **Postgres Data Storage**: leave as an ixVolume unless you have a reason not to
 6. Under **Resources Configuration**, the defaults are 2 CPUs and 4096 MB memory. Raise the memory for very large libraries.
 7. Click **Install**
+::
 
 > [!CAUTION]
 > Do not change the Postgres image version after the database has been initialized. It triggers a one-way upgrade, and picking an older version afterward will refuse to start. Snapshot the dataset first.
@@ -125,20 +129,24 @@ BookOrbit is in the **community** train, added June 2026 and tracking upstream c
 
 On first load BookOrbit presents a setup screen that asks for the bootstrap token.
 
+::block-steps
 1. Paste the `SETUP_BOOTSTRAP_TOKEN` value you generated
 2. Create the admin account: email, username, password
 3. Finish the wizard and sign in
+::
 
 > [!TIP]
 > The bootstrap token is single-use for the setup endpoint. Once the admin account exists, it stops being a way in, but there is no reason to leave it in a shared compose file either.
 
 ## 2.2 Creating a Library
 
+::block-steps
 1. Go to **Settings > Libraries** and click **Add Library**
 2. Give it a name and pick the folder inside `/books`
 3. Choose the content type — Books, Audiobooks, or Comics — since it drives which reader and which metadata providers get used
 4. Set format priority if the same title exists as both EPUB and PDF
 5. Save, then run a scan
+::
 
 > **Folder Layout That Scans Cleanly**
 > - [x] One folder per author, subfolder per title
@@ -161,11 +169,13 @@ Set `BOOK_DOCK_PATH` (or the Book Drop storage on TrueNAS) to a watched folder a
 
 The plugin adds progress sync, two-way annotation sync, and a catalog browser that lets you search and download from the library on the device itself.
 
+::block-steps
 1. In BookOrbit go to **Settings > Integrations > KOReader** and click **Download Plugin**
 2. Unzip `bookorbit.koplugin.zip`
 3. Copy the `bookorbit.koplugin` folder to `koreader/plugins/` on the device
 4. Restart KOReader and open a book
 5. Use **Tools > BookOrbit Sync** to connect
+::
 
 > [!TIP]
 > The downloaded plugin is pre-configured with your server URL and credentials, so there is no typing a long URL on an e-ink keyboard.
@@ -198,11 +208,13 @@ Both are configured under **Settings > Integrations** with an API token from the
 
 BookOrbit ships a strict CSP and expects to be served from the hostname in `APP_URL`. A minimal Nginx Proxy Manager setup:
 
+::block-steps
 1. Create a proxy host pointing at `bookorbit:3000` (or the host IP and port)
 2. Enable **Websockets Support**
 3. Request a Let's Encrypt certificate and enable **Force SSL**
 4. Update `APP_URL` to the HTTPS hostname and recreate the container
 5. Re-pair Kobo devices if they were paired against the old URL
+::
 
 > [!NOTE]
 > If the frontend is served from a different domain than `APP_URL`, set `CLIENT_URL` to that domain or CORS will block it.
