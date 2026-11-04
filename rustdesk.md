@@ -2,7 +2,7 @@
 title: Rustdesk
 description: A guide to deploying Rustdesk
 published: true
-date: '2026-11-04T16:23:38.445Z'
+date: '2026-11-04T23:31:35.616Z'
 tags: []
 editor: markdown
 dateCreated: '2026-04-08T13:36:58.555Z'
@@ -43,12 +43,14 @@ services:
     restart: unless-stopped
 ```
 
+::block-steps
 1. Deploy the stack via Dockge
 1. After the containers start, retrieve your public key:
     ```bash
     cat /mnt/tank/configs/rustdesk/data/id_ed25519.pub
     ```
 1. Copy this key — you'll need it when configuring clients
+::
 
 > [!TIP]
 > No firewall changes or port forwarding are needed on TrueNAS or your router. RustDesk only needs to be reachable within your NetBird mesh — the NetBird cloud reverse proxy handles all public-facing traffic.
@@ -56,12 +58,15 @@ services:
 ::
 
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for "**Rust Desk**" (Community train)
 3. Click **Install**
 4. Configure the following settings:
    - **Host Path**: `/mnt/tank/configs/rustdesk`
 5. Click **Save**
+::
 
 > [!NOTE]
 > The TrueNAS community app bundles both hbbs and hbbr into a single deployment. After installation, retrieve the public key from the app's data directory.
@@ -122,6 +127,7 @@ Download the RustDesk client from [rustdesk.com](https://rustdesk.com) for Windo
 
 ## 3.2 Point to Your Server
 
+::block-steps
 1. Open the RustDesk client
 1. Click the **three-dot menu** (⋮) next to your ID
 1. Go to **Settings → Network → ID/Relay Server**
@@ -136,6 +142,7 @@ Download the RustDesk client from [rustdesk.com](https://rustdesk.com) for Windo
 
 1. Click **Apply** or **OK**
 1. The client should show a green **Ready** indicator at the bottom
+::
 
 > [!WARNING]
 > When using NetBird's cloud reverse proxy, each service gets an auto-assigned external port that differs from RustDesk's defaults. Your server administrator will provide the correct ports after creating the L4 services in the NetBird dashboard. You must include the port number after the domain (e.g., rust.serversatho.me:38721) or the connection will fail.
