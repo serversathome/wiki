@@ -2,7 +2,7 @@
 title: JellyGlance
 description: A guide to deploy JellyGlance
 published: true
-date: '2026-11-04T16:24:14.482Z'
+date: '2026-11-04T23:32:15.934Z'
 tags: []
 editor: markdown
 dateCreated: '2026-08-05T20:28:45.437Z'
@@ -61,9 +61,11 @@ services:
       - /mnt/tank/configs/jellyglance/backups:/app/backups
 ```
 
+::block-steps
 1. Change `POSTGRES_PASSWORD` in **both** services — they have to match or the app will not connect.
 2. Replace `JWT_SECRET` with a long random string. Generate one with `openssl rand -base64 48`.
 3. Set `TZ` to your timezone so timestamps and scheduled tasks line up.
+::
 
 
 # 2 · Configuration
@@ -72,11 +74,13 @@ services:
 
 On first launch you are dropped into a setup wizard:
 
+::block-steps
 1. Enter your **Jellyfin server URL** (for example `http://192.168.1.50:8096`).
 2. Enter a **Jellyfin API key**. Generate one in Jellyfin under **Dashboard → Advanced → API Keys**.
 3. Choose your **admin access mode**.
 4. Complete Jellyfin Quick Connect, OIDC provider details, or create a local admin account.
 5. Let the first sync finish before poking around — it pulls users, libraries, artwork, sessions, and activity history.
+::
 
 > [!NOTE]
 > Once the sync completes, JellyGlance can pull cached artwork from your Jellyfin library to use as the login background and throughout the media views.
