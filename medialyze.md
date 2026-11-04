@@ -2,7 +2,7 @@
 title: Medialyze
 description: A guide to deploying Medialyze
 published: true
-date: '2026-11-04T16:24:01.329Z'
+date: '2026-11-04T23:32:03.093Z'
 tags: []
 editor: markdown
 dateCreated: '2026-03-21T11:29:38.183Z'
@@ -41,10 +41,12 @@ services:
 
 Once the container is running:
 
+::block-steps
 1. Open `http://your-server-ip:8080` in your browser
 2. Navigate to **Settings** to add your media library paths
 3. Trigger a **full scan** to index your collection
 4. Explore the **Dashboard** for an overview of your library's technical metadata
+::
 
 > [!NOTE]
 > MediaLyze uses `path + size + mtime` for incremental scans, so subsequent scans after the initial full scan will be significantly faster.
