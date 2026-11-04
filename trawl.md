@@ -2,7 +2,7 @@
 title: Trawl
 description: A guide to deploying Trawl
 published: true
-date: '2026-11-04T16:18:03.252Z'
+date: '2026-11-04T23:31:54.611Z'
 tags: []
 editor: markdown
 dateCreated: '2026-10-20T15:12:05.236Z'
@@ -42,9 +42,11 @@ services:
     restart: unless-stopped
 ```
 
+::block-steps
 1. Deploy the stack and give it a minute or so for the browser to warm up.
 2. Check that it is healthy by browsing to `http://YOUR-SERVER-IP:8191/health`.
 3. Open the dashboard at `http://YOUR-SERVER-IP:8191/dashboard`.
+::
 
 > [!NOTE]
 > On an older CPU or NAS processor, swap the image tag to `ghcr.io/germondai/trawl:baseline`. The standard image targets newer instruction sets and may crash on start otherwise.
@@ -55,6 +57,8 @@ services:
 ::
 
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI and click **Discover Apps**
 2. Search for **Trawl** (it is in the Community train) and click **Install**
 3. Configure the following settings:
@@ -65,6 +69,7 @@ services:
    - **Additional Environment Variables**: add `METRICS_DASHBOARD_ENABLED` = `true` and `MCP_ENABLED` = `true`
    - **Additional Storage**: add a **Host Path** with Mount Path `/data/metrics` and Host Path `/mnt/tank/configs/trawl/metrics` so dashboard history survives updates
 4. Click **Install**
+::
 
 > [!NOTE]
 > The TrueNAS app runs the Trawl container as root and the bundled Redis as the apps user (568). Leave the defaults alone here.
@@ -77,6 +82,7 @@ services:
 
 Trawl answers on the same FlareSolverr API, so nothing changes on the indexer side.
 
+::block-steps
 1. In Prowlarr, go to **Settings** > **Indexers**
 2. Click **+** and choose **FlareSolverr**
 3. Fill in:
@@ -85,6 +91,7 @@ Trawl answers on the same FlareSolverr API, so nothing changes on the indexer si
    - **Host**: `http://YOUR-SERVER-IP:8191/` (or `http://trawl:8191/` if Prowlarr is on the same Docker network)
 4. Click **Test**, then **Save**
 5. Make sure every Cloudflare-protected indexer carries the same tag
+::
 
 > [!TIP]
 > If you are replacing FlareSolverr, just edit the existing FlareSolverr proxy and change the **Host** to point at Trawl. Your tags and indexers stay exactly as they are.
