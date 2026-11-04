@@ -2,7 +2,7 @@
 title: Chaptarr
 description: A guide to deploying Chaptarr
 published: true
-date: '2026-11-04T16:23:54.240Z'
+date: '2026-11-04T23:31:58.920Z'
 tags: []
 editor: markdown
 dateCreated: '2026-08-14T11:11:39.002Z'
@@ -69,11 +69,13 @@ You can keep them separate or place ebooks alongside their audiobook counterpart
 
 Chaptarr is not a named application in Prowlarr. Add it there as a **Readarr**-type app — the API is compatible and syncing works out of the box.
 
+::block-steps
 1. In Prowlarr: **Settings** → **Apps** → **+** → **Readarr**
 2. **Prowlarr Server**: `http://prowlarr:9696`
 3. **Chaptarr Server**: `http://chaptarr:8789`
 4. **API Key**: from Chaptarr's **Settings** → **General**
 5. **Test**, then **Save**
+::
 
 ## 2.3 Download clients
 
