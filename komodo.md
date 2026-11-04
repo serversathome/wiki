@@ -2,7 +2,7 @@
 title: Komodo
 description: A guide to deploying Komodo
 published: true
-date: '2026-11-04T16:17:22.646Z'
+date: '2026-11-04T23:31:44.332Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:05:51.359Z'
@@ -24,9 +24,12 @@ With Komodo you can:
 # 1 · Deploy Komodo
 :::block-tabs
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Set a **Database Password**
 1. Set a **Passkey (Periphery)**
 1. Set **Config Keys Storage**, **Backups Storage**, **Syncs Storage**, **Periphery Root Storage**, and **MongoDB Data Storage** to **Host Path**
+::
 
 > [!WARNING]
 > Remember to check the box for **Automatic Permissions** under **MongoDB Data Storage**
@@ -145,6 +148,8 @@ services:
 Komodo should now be accessible on the specified port and navigating to `http://<address>:<port>` will display the login page. Enter your preferred admin username and password, and click "**Sign Up**", *not* "Log In", to create your admin user for Komodo. Any additional users to create accounts will be disabled by default, and must be enabled by an admin.
 
 # 3 · Importing Existing Stacks
+
+::block-steps
 1. Edit your Komodo settings and add **Additional Storage**
   a. Set **Type** to `Host Path`
   b. Set the **Mount Path** and **Host Path** to `/mnt/tank/stacks` or whatever your stacks directory is
@@ -154,3 +159,4 @@ Komodo should now be accessible on the specified port and navigating to `http://
 1. Click the entry for `komodo-import`
 1. Click the **Execute Sync** button 
 1. Navigate to your **Stacks** tab and you should now see your existing stacks
+::
