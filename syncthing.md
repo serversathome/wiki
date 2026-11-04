@@ -2,7 +2,7 @@
 title: Syncthing
 description: A guide to deploying Syncthing
 published: true
-date: '2026-11-04T16:18:00.469Z'
+date: '2026-11-04T23:31:47.448Z'
 tags: []
 editor: markdown
 dateCreated: '2026-04-23T10:31:51.612Z'
@@ -58,6 +58,7 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 The TrueNAS Stable app train includes an official Syncthing app.
 
+::block-steps
 1. In the TrueNAS UI go to **Apps → Discover Apps** and search for `Syncthing`
 2. Click **Install**
 3. Configure the following:
@@ -68,6 +69,7 @@ The TrueNAS Stable app train includes an official Syncthing app.
    - **Network**: accept defaults (8384 / 22000 / 21027)
 4. Click **Install** and wait for the app to show **Running**
 5. Open the Web UI and set a username/password
+::
 
 > [!WARNING]
 > The TrueNAS Stable Syncthing app runs as **root (UID/GID 0)** with elevated capabilities (CHOWN, DAC_OVERRIDE, FOWNER, SETFCAP, SETGID) so it can preserve ownership and ACLs across peers. Make sure the datasets you point at it have an ACL entry for user `0` with full permissions, or Syncthing will fail to write.
@@ -82,11 +84,13 @@ The TrueNAS Stable app train includes an official Syncthing app.
 
 Syncthing listens on `0.0.0.0:8384` by default, meaning the Web UI is exposed to anyone on the network until you lock it down. This is the first thing you should do after install.
 
+::block-steps
 1. Open the Web UI at `http://<host>:8384`
 2. Click **Actions → Settings → GUI**
 3. Set **GUI Authentication User** and **GUI Authentication Password**
 4. (Optional) Enable **Use HTTPS for GUI**
 5. Click **Save** — Syncthing will restart the UI
+::
 
 ## 2.2 Rename this device
 
@@ -94,13 +98,16 @@ Under **Actions → Settings → General**, set a meaningful **Device Name** (e.
 
 ## 2.3 Pair with another device
 
+::block-steps
 1. On the remote device, open its Syncthing Web UI and copy its **Device ID** from **Actions → Show ID**
 2. On your NAS, click **Add Remote Device**, paste the ID, give it a friendly name, and save
 3. Accept the pairing prompt that appears on the remote device
 4. You should now see the peer listed as **Connected**
+::
 
 ## 2.4 Add a shared folder
 
+::block-steps
 1. Click **Add Folder**
 2. Set a **Folder Label** (display name) and **Folder ID** (unique identifier — must match on both sides)
 3. Set **Folder Path** to the container path you want to sync (e.g. `/data1/photos`)
@@ -110,6 +117,7 @@ Under **Actions → Settings → General**, set a meaningful **Device Name** (e.
    - **Send Only** — this node is the source of truth
    - **Receive Only** — this node is a read-only mirror
 6. Save, then accept the share on the remote device
+::
 
 > [!NOTE]
 > Path and file names in Syncthing are **case sensitive**. `MyData.txt` and `mydata.txt` are two different files and can create conflict copies if peers disagree on case (common when syncing between Linux and Windows/macOS).
