@@ -2,7 +2,7 @@
 title: LinkBreeze
 description: A guide to deploying LinkBreeze
 published: true
-date: '2026-11-04T16:17:25.459Z'
+date: '2026-11-04T23:32:15.706Z'
 tags: []
 editor: markdown
 dateCreated: '2026-08-05T20:25:52.869Z'
@@ -45,10 +45,12 @@ services:
 
 On first launch, LinkBreeze walks you through creating your admin account and your public page. The whole thing takes under a minute.
 
+::block-steps
 1. Open `http://<your-server-ip>:3000`
 2. Create your **admin username and password**
 3. Set your **page slug** — this is the public URL, e.g. `/johndoe`
 4. Set your **display name**, **bio**, and **avatar**
+::
 
 Your public page now lives at `http://<your-server-ip>:3000/<your-slug>`, and the admin dashboard is at `/dashboard`.
 
@@ -57,10 +59,12 @@ Your public page now lives at `http://<your-server-ip>:3000/<your-slug>`, and th
 
 ## 2.3 Adding Links
 
+::block-steps
 1. Log into **/dashboard** and open the **Links** tab
 2. Click **Add Link**, then set the title, URL, and optional thumbnail
 3. Drag the handles to reorder — the public page updates immediately
 4. Open a link's options to set a **schedule** (start/end date and time) or turn it into an **embed widget**
+::
 
 # 3 · Theming
 
