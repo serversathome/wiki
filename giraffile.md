@@ -2,7 +2,7 @@
 title: Giraffile
 description: A guide to deploy Giraffile
 published: true
-date: '2026-11-04T16:24:17.262Z'
+date: '2026-11-04T23:32:21.658Z'
 tags: []
 editor: markdown
 dateCreated: '2026-08-05T20:22:40.563Z'
@@ -85,11 +85,13 @@ Decide which one you want before you publish links:
 
 # 4 · Using It
 
+::block-steps
 1. Open your instance and drag the file (or files) onto the drop zone
 2. Pick an expiration: 2, 5 or 10 minutes
 3. Click generate — copy the link or show the QR code
 4. **Leave the tab open.** Send the link to the recipient and wait for the transfer to finish
 5. The recipient chooses *save to disk* or *view in browser*, and the transfer streams across
+::
 
 > [!WARNING]
 > The expiry timer starts when the link is generated, not when the recipient opens it
