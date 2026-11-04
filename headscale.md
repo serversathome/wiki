@@ -2,7 +2,7 @@
 title: Headscale
 description: A guide to deploy Headscale with the Headscale-UI
 published: true
-date: '2026-11-04T16:24:18.700Z'
+date: '2026-11-04T23:32:10.714Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:05:03.838Z'
@@ -235,6 +235,8 @@ taildrop:
 :::
 
 # 4 · Logging In
+
+::block-steps
 1. Run this command on the host to generate an API Key (this is not necessary if you ran the script):
     ```bash
     docker exec headscale headscale apikeys create
@@ -244,6 +246,7 @@ taildrop:
 1. Set the **Headscale URL** to `https://your.domain.com`
 1. Paste your **API Key** and save
 1. The UI should now populate with your headscale data
+::
 
 # 5 · Connecting Clients
 To connect a device to your headscale instance:
