@@ -2,7 +2,7 @@
 title: AdGuard
 description: A guide to deploying AdGuard via TrueNAS or docker compose
 published: true
-date: '2026-11-04T16:23:13.582Z'
+date: '2026-11-04T23:31:28.358Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:03:05.289Z'
@@ -49,10 +49,13 @@ services:
 :::
 
 # 2 · Adguard Configuration
+
+::block-steps
 1. Naviagte to the IP and Port of the container
 1. Leave the **Interfaces** and **DNS Server** settings default
 1. Create a username and password
 1. Set the DNS of your router to point to the IP of the container
+::
 
 ## 2.1 DNS Settings
 1. Add Upstream DNS Servers to the list already pre-populated
