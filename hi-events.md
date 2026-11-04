@@ -2,7 +2,7 @@
 title: Hi.Events
 description: A guide to deploying Hi.Events
 published: true
-date: '2026-11-04T16:24:17.916Z'
+date: '2026-11-04T23:32:01.432Z'
 tags: []
 editor: markdown
 dateCreated: '2026-10-31T10:33:11.729Z'
@@ -92,6 +92,7 @@ services:
       retries: 5
 ```
 
+::block-steps
 1. Generate the two secrets in the TrueNAS shell. `APP_KEY` needs the `base64:` prefix and `JWT_SECRET` does not:
     ```bash
     echo "base64:$(openssl rand -base64 32)"
@@ -101,6 +102,7 @@ services:
 1. Replace every `YOUR-SERVER-IP:8123` with the address you will use to reach Hi.Events. Behind a reverse proxy, use your public URL, for example `https://tickets.example.com`
 1. Leave `VITE_API_URL_SERVER` as `http://localhost:80/api`. It is used inside the container
 1. Deploy the stack
+::
 
 > [!CAUTION]
 > Never change `APP_KEY` once people have signed up. It encrypts 2FA and SSO secrets, and changing it breaks every pending invite and confirmation link.
@@ -134,6 +136,8 @@ Port `465` uses implicit TLS and any other port uses STARTTLS automatically.
 
 ## 2.3 Stripe Payments
 Free events work without Stripe. To sell paid tickets:
+
+::block-steps
 1. Copy your publishable key into both `STRIPE_PUBLIC_KEY` and `VITE_STRIPE_PUBLISHABLE_KEY`, and your secret key into `STRIPE_SECRET_KEY`
 1. In the Stripe dashboard, add a webhook pointing at `https://YOUR-DOMAIN/api/public/webhooks/stripe`
 1. Subscribe it to these events:
@@ -142,6 +146,7 @@ Free events work without Stripe. To sell paid tickets:
     - `refund.created`, `refund.updated`
     - `account.updated`, `payout.paid`, `payout.updated`
 1. Copy the signing secret into `STRIPE_WEBHOOK_SECRET` and redeploy
+::
 
 > [!WARNING]
 > Stripe has to reach the webhook URL, so selling tickets means exposing Hi.Events through a reverse proxy or [Cloudflare Tunnel](/CloudflareTunnels) with HTTPS.
