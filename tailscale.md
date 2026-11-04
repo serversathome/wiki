@@ -2,7 +2,7 @@
 title: Tailscale
 description: A guide to deploying Tailscale on TrueNAS Scale and docker compose
 published: true
-date: '2026-11-04T16:23:34.197Z'
+date: '2026-11-04T23:31:44.793Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:08:53.492Z'
@@ -50,19 +50,24 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 ![screenshot_from_2025-02-26_16-41-35.png](/screenshot-from-2025-02-26-16-41-35.png)
 
+::block-steps
 1. Add your Auth Key from Tailscale 
 1. Check the box to **Authorize Exit Node**
 1. Add an **Advertised Route**. This should be the CIDR address of the TrueNAS Server. For example, if your server is at 192.168.1.20 your CIDR address would be 192.168.1.0/24.
 1. Change your **Tailscale State Storage** to host path and point it to a dataset which is set with root permissions.
+::
 
 ::
 
 :::
 
 # 2 · Tailscale Configuration
+
+::block-steps
 1. Go to your Tailscale dashboard @ https://tailscale.com
 1. Navigate to **Machines**
 1. Find your TrueNAS Server and click the 3 dot menu and select **Disable Key Expiry**
+::
 
 > [!NOTE]
 > **To use Tailscale as a Split Tunnel**
