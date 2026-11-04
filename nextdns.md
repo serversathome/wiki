@@ -2,7 +2,7 @@
 title: NextDNS
 description: A guide to configuring NextDNS
 published: true
-date: '2026-11-04T16:23:15.407Z'
+date: '2026-11-04T23:31:26.336Z'
 tags: []
 editor: markdown
 dateCreated: '2026-09-02T09:57:01.133Z'
@@ -22,20 +22,24 @@ Free tier is 300,000 queries per month with all features. Pro is $1.99/month or 
 
 # 1 · Create your account
 
+::block-steps
 1. Go to [nextdns.io](https://nextdns.io/?from=5tyx27pn) and click **Try it now**
     > Want to say thanks? Sign up using [my link](https://nextdns.io/?from=s8235t86) and I get a small commission at no extra cost to you!
    <!-- {blockquote:.is-success} -->
 1. Sign up with an email address and password
 1. You land on a dashboard with a configuration already created for you
 1. Open the **Settings** tab and give it a name. `Kids` is a sensible first one
+::
 
 ## 1.1 Subscribing
 
 Billing lives on the **account**, not the profile. Every tab in the dashboard is profile-scoped, so the upgrade path is not where you will look for it.
 
+::block-steps
 1. Click your **email address** in the top right corner
 2. Select **Account**
 3. Click **Subscribe**
+::
 
 Card and PayPal both require a recurring payment method. Crypto is annual only.
 
@@ -73,9 +77,12 @@ Verizon, Xfinity, Cox and similar boxes do not run resolver software, will not a
  
 That leaves one workable option: **IPv4 with Linked IP**.
  
+::block-steps
 1. Open the gateway's admin page, usually `http://192.168.0.1` or `http://192.168.1.1`
 2. Find the DNS settings and replace whatever is there with the two `45.90.x.x` servers from your **Linked IP** panel
 3. Save, then click **Link IP** on the Setup tab
+::
+
 > [!CAUTION]
 > Those IPv4 servers do not identify you. NextDNS matches queries to your profile by the public address they arrive from, so when your ISP hands out a new address after a modem reboot, filtering silently stops and the internet keeps working normally. Nobody notices for weeks.
  
@@ -166,9 +173,11 @@ Instructions are at the bottom of the **Setup** tab. On DoT you prepend the name
 
 # 4 · Verification
 
+::block-steps
 1. Load a domain in a blocked category. You should get the block page rather than a timeout.
 2. Open the **Logs** tab and confirm queries are arriving from the expected client name.
 3. On a phone, disconnect from wifi and repeat on cellular. If the queries stop appearing, the profile is not applying off-network and the deployment is wifi-only.
+::
 
 Expect thousands of queries per device per day. That is background app and telemetry traffic, not a problem.
 
