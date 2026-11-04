@@ -2,7 +2,7 @@
 title: Ghost
 description: A guide to installing Ghost in docker via compose
 published: true
-date: '2026-11-04T16:23:53.678Z'
+date: '2026-11-04T23:31:53.546Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:04:44.549Z'
@@ -87,9 +87,11 @@ Navigate to [mailgun](https://signup.mailgun.com/new/signup). Enter all the info
 
 Once you get to the 10 min mark in the video, he switches gears from bulk email to transactional email. Because we deployed in docker, we need to get access to our container a different way than in the video. *(If you can get to the console of the container, skip to step #3)* First we need to ssh into our server with sudo privileges. Once there, follow these steps to get the container ID and then execute the command shown:
 
+::block-steps
 1.  **Find the Container ID or Name:** You need to know the container ID or name of the container you want to access. You can list all running containers with: `docker ps`
 2.  **Execute a Command or Start a Shell:** To start a shell session inside the container, use: `docker exec -it <container_id_or_name> /bin/bash`
 3.  After you execute that command, we will be in the directory containing `config.production.json`. To edit it, enter the command `nano config.production.json` and follow the steps in the video to replace the “mail” block with the [example from Ghost](https://ghost.org/docs/config/#mail) with the correct SMTP credentials from mailgun:
+::
 
 ```json
 // config.production.json
