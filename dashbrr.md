@@ -2,7 +2,7 @@
 title: Dashbrr
 description: A guide to deploying Dashbrr
 published: true
-date: '2026-11-04T16:23:36.293Z'
+date: '2026-11-04T23:31:45.106Z'
 tags: []
 editor: markdown
 dateCreated: '2026-10-31T10:33:09.543Z'
@@ -38,9 +38,11 @@ services:
       - /mnt/tank/configs/dashbrr:/config
 ```
 
+::block-steps
 1. Create the `/mnt/tank/configs/dashbrr` dataset before deploying so the container can write its database
 1. Deploy the stack
 1. Open the web UI at `http://YOUR-SERVER-IP:8080`
+::
 
 > [!WARNING]
 > Port `8080` is also the default for qBittorrent and SABnzbd. If either already uses it, change the left side of the mapping, for example `8081:8080`.
@@ -64,10 +66,13 @@ docker exec -it dashbrr dashbrr user change-password USERNAME NEWPASSWORD
 ```
 
 ## 2.2 Add Services
+
+::block-steps
 1. Click **Add Service** and choose the service type
 1. Enter the service URL (for example `http://YOUR-SERVER-IP:8989` for Sonarr) and its API key
 1. Dashbrr runs a health check as soon as the card is saved
 1. Drag the cards around to arrange your dashboard
+::
 
 > [!NOTE]
 > Most API keys live under **Settings → General** in each \*arr app. Plex uses your Plex token and Overseerr uses the key under **Settings → General**.
