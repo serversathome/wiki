@@ -2,7 +2,7 @@
 title: Euro-Office
 description: A guide to deploying Euro-Office in docker
 published: true
-date: '2026-11-04T16:24:15.883Z'
+date: '2026-11-04T23:32:19.567Z'
 tags: []
 editor: markdown
 dateCreated: '2026-06-09T11:51:24.911Z'
@@ -82,9 +82,11 @@ For a reliable connection, **all three** of these paths must work:
  
 Euro-Office connects to Nextcloud through the dedicated **Euro-Office integration** app, which requires **Nextcloud 34 or later**.
  
+::block-steps
 1. In Nextcloud, go to **Apps → Office & text → Euro-Office integration** and click **Download and enable**.
 2. Go to **Settings → Administration → Euro-Office** and enter the URL of your Document Server, including the protocol (e.g. `https://office.example.com`). Use the public FQDN, not a LAN IP, or the connector will refuse to connect to a local address.
 3. Enter the **JWT secret**, which is the exact `JWT_SECRET` from your compose, and click **Save**.
+::
 
 See the official [Nextcloud integration guide](https://euro-office.github.io/documentation/integration/nextcloud/) for details.
 Opening a `.docx`, `.xlsx`, or `.pptx` in Nextcloud Files will then launch the Euro-Office editor inline, with real-time collaboration.
