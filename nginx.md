@@ -2,7 +2,7 @@
 title: Nginx Proxy Manager
 description: ''
 published: true
-date: '2026-11-04T16:23:13.339Z'
+date: '2026-11-04T23:31:27.939Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:06:44.152Z'
@@ -17,9 +17,11 @@ Nginx Proxy Manager (NPM) is a tool that lets you expose your private web servic
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 ![screenshot_from_2025-02-23_07-08-14.png](/screenshot-from-2025-02-23-07-08-14.png)
 
+::block-steps
 1. Change the **User ID** and **Group ID** to **0** since Nginx needs to run as root to function.
 1. Change the **HTTP Port** to **80** and the **HTTPS Port** to **443**. Choose any port you want for the **WebUI Port** which isn't in use.
 1. For the **Nginx Proxy Manager Data Storage** and the **Nginx Proxy Manager Certs Storage** use **Host Path** pointed to a dataset with the correct permissions. 
+::
 
 > [!NOTE]
 > The dashboard is now deployed on `http://{serverIP}:<WebUI Port>` (the **WebUI Port** you chose in step 2). On first visit the setup wizard asks you to create the admin account. There is no default *admin@example.com* / *changeme* login since v2.13.
