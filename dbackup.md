@@ -2,7 +2,7 @@
 title: DBackup
 description: A guide to deploying DBackup
 published: true
-date: '2026-11-04T16:24:11.331Z'
+date: '2026-11-04T23:32:14.300Z'
 tags: []
 editor: markdown
 dateCreated: '2026-04-27T17:49:27.607Z'
@@ -59,16 +59,20 @@ services:
 
 The first account you create is the admin. After login:
 
+::block-steps
 1. Go to **Settings → Profile** and enable two-factor authentication.
 2. Open **Vault** in the sidebar, switch to the **Encryption** tab, and click **Recovery kit** to download it. Store the recovery kit and the `ENCRYPTION_KEY` in two different places (e.g., 1Password and an offline copy on a USB drive in a fire safe). The recovery kit is what saves you if the container's database is corrupted but the encrypted backups still exist.
 3. If you want SSO, head to **Users & Groups → SSO**, click **New provider**, and wire up Authentik, Authelia, or your IdP of choice.
+::
 
 ## 2.2 Add a Database Source
 
+::block-steps
 1. Go to **Connections → Databases** and click **New database**.
 2. Pick the engine (MySQL, PostgreSQL, MongoDB, Redis, SQLite, or MSSQL).
 3. Enter host, port, credentials, and database name. For MySQL/PostgreSQL you can use a read-only backup user with `SELECT`, `LOCK TABLES`, `SHOW VIEW`, `EVENT`, and `TRIGGER` (MySQL) or `pg_dump`-equivalent privileges (Postgres).
 4. Click **Test connection**, then **Create database**.
+::
 
 | Source | Notes |
 |--------|-------|
@@ -94,6 +98,7 @@ A single backup job can target multiple destinations at once, so you can write l
 
 ## 2.4 Create a Backup Job
 
+::block-steps
 1. Go to **Jobs** and click **New job**.
 2. Pick the source database and one or more destinations.
 3. Set the **schedule** with a cron expression (e.g., `0 3 * * *` for 3 AM daily).
@@ -101,6 +106,7 @@ A single backup job can target multiple destinations at once, so you can write l
 5. Enable **encryption** and **compression** (Brotli compresses better, GZIP is faster).
 6. Attach a notification channel so you actually find out when something fails.
 7. Click **Create job**, then use **Run now** on the job's row once and check the **Backups** page to confirm everything works end-to-end before trusting the schedule.
+::
 
 ## 2.5 Restore a Backup
 
