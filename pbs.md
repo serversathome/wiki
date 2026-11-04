@@ -2,7 +2,7 @@
 title: Proxmox Backup Server
 description: A guide to deploying Proxmox Backup Server
 published: true
-date: '2026-11-04T16:23:37.075Z'
+date: '2026-11-04T23:31:38.083Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:02.183Z'
@@ -17,6 +17,8 @@ Using PBS is almost always better than backing up Proxmox VMs directly to a True
 # 1 · Install PBS
 :::block-tabs
 ::block-tab{label="VM"}
+
+::block-steps
 1. Download the latest ISO from the [official Proxmox download page](https://www.proxmox.com/en/downloads/proxmox-backup-server/iso).
 1. Install it. PBS uses very little — on my machine I give it 1 CPU thread, 2 GB of memory, and a 10 GB hard drive.
 1. Boot into the web UI at `https://{IP}:8007`, log in as **root** with the password you set during install.
@@ -28,10 +30,13 @@ Using PBS is almost always better than backing up Proxmox VMs directly to a True
     echo "10.99.0.191:/mnt/tank/pbs /backup nfs vers=3,nouser,atime,auto,retrans=2,rw,dev,exec 0 0" >> /etc/fstab
     ```
 1. Reboot PBS.
+::
 
 ::
 
 ::block-tab{label="TrueNAS 26 LXC" icon="simple-icons:linuxcontainers"}
+
+::block-steps
 1. **First time only**: go to **Virtualization → Containers → Global Configuration** and set:
     - **Preferred Pool** = the pool you want container rootfs on
     - **Bridge** = the bridge your LAN is on (e.g. `br1`). If you don't have one yet, make one in **Network → Interfaces** first.
@@ -75,6 +80,7 @@ Using PBS is almost always better than backing up Proxmox VMs directly to a True
     passwd root
     ```
 1. Browse to the PBS URL and log in as **root** with the password you just set.
+::
 
 ::
 
@@ -87,20 +93,27 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/Proxmo
 ```
 
 # 3 · Create the Datastore
+
+::block-steps
 1. In the PBS left-hand panel, click **Add Datastore**.
 1. Give the datastore a name and set the **Backing Path** to `/backup` (this is where your storage is mounted regardless of whether you're using VM + NFS or LXC + bind mount).
 1. Click **Add**.
+::
 
 # 4 · Create a User for Proxmox
 You'll want a dedicated non-root PBS user for Proxmox VE to authenticate with.
 
+::block-steps
 1. Navigate to **Configuration → Access Control** in the left pane.
 1. Click **Add** and create a new user, leaving all options as default.
 1. Click the name of the datastore you just created.
 1. Click **Permissions** in the top bar, then **Add**.
 1. Select the new user and set **Role** to **Datastore Admin**.
+::
 
 # 5 · Add PBS to Proxmox VE
+
+::block-steps
 1. On your Proxmox VE machine, click **Datacenter → Storage** in the left pane.
 1. Click **Add** and select **Proxmox Backup Server**.
 1. Fill in the fields:
@@ -113,6 +126,7 @@ You'll want a dedicated non-root PBS user for Proxmox VE to authenticate with.
     | Password | The password you chose |
     | Datastore | The name of the datastore you picked on PBS |
     | Fingerprint | Go to the PBS Dashboard and click the blue **Show Fingerprint** button at the top |
+::
 
 # :logos:cloudflare-icon: 6 · Connecting With Cloudflare Tunnels
 If you're exposing the PBS web UI through a Cloudflare Tunnel, set these under **Additional Application Settings** while editing your tunnel:
