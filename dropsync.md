@@ -2,7 +2,7 @@
 title: DropSync
 description: A guide to deploying DropSync
 published: true
-date: '2026-11-04T16:24:00.146Z'
+date: '2026-11-04T23:32:03.354Z'
 tags: []
 editor: markdown
 dateCreated: '2026-03-21T11:26:27.867Z'
@@ -40,9 +40,11 @@ services:
 
 DropSync uses a simple three-step flow:
 
+::block-steps
 1. **Create a room** — Click **Create Secure Room** on the landing page. A unique room ID is generated. Optionally set a password to enable AES-GCM 256 end-to-end encryption for all files and chat in that room.
 2. **Share the link** — Copy the room URL or scan the QR code. Send it to your peer however you like. If you set a password, they will be prompted for it before connecting.
 3. **Drop files** — Once connected (status turns green), drag files onto the drop zone or tap to select. Your peer accepts the incoming file request and the download begins — directly from browser to browser.
+::
 
 Under the hood:
 - Both browsers connect to the signaling server via Socket.IO
