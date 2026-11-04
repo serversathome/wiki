@@ -2,7 +2,7 @@
 title: Gluetun-webui
 description: A guide to deploying Gluetun-webui
 published: true
-date: '2026-11-04T16:24:12.088Z'
+date: '2026-11-04T23:32:16.317Z'
 tags: []
 editor: markdown
 dateCreated: '2026-03-03T17:52:24.390Z'
@@ -56,9 +56,11 @@ networks:
     name: your_network_name
 ```
 
+::block-steps
 1. Replace `your_network_name` with the Docker network your Gluetun container is running on
 2. Uncomment the auth variables that match your Gluetun control server config (`GLUETUN_API_KEY` for API key auth, or `GLUETUN_USER` / `GLUETUN_PASSWORD` for HTTP basic auth). Without them the UI gets `401` errors from Gluetun.
 3. Deploy the stack and access the UI at `http://your-server-ip:3000`
+::
 
 
 # 2 · Configuration
