@@ -2,7 +2,7 @@
 title: Mealie
 description: A guide to deploying Mealie
 published: true
-date: '2026-11-04T16:23:40.946Z'
+date: '2026-11-04T23:31:46.445Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:06:17.048Z'
@@ -42,9 +42,11 @@ services:
 
 AI is no longer configured with environment variables. To set it up:
 
+::block-steps
 1. Go to your **Group Settings** and open the AI providers section
 1. Add a **default provider** (e.g. OpenAI with `gpt-5` and your API key). AI features stay off until a default provider is set
 1. Optionally add an **image provider** (for recipes from photos) and an **audio provider** such as `whisper-1` (for video imports)
+::
 
 If you have another service you'd like to use in-place of OpenAI, you can configure Mealie to use that instead, as long as it has an OpenAI-compatible API. For instance, a common self-hosted alternative to OpenAI is Ollama. To use Ollama with Mealie, set the provider's `base_url` to http://localhost:11434/v1 (where http://localhost:11434 is wherever you're hosting Ollama, and /v1 enables the OpenAI-compatible endpoints). Note that you must provide an API key, even though it is ultimately ignored by Ollama.
 
