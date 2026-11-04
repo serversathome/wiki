@@ -2,7 +2,7 @@
 title: Dockflare
 description: A guide to deploying Dockflare
 published: true
-date: '2026-11-04T16:23:58.345Z'
+date: '2026-11-04T23:32:00.239Z'
 tags: []
 editor: markdown
 dateCreated: '2026-05-01T19:51:02.015Z'
@@ -47,9 +47,11 @@ In practice this means: when you try to email someone for the first time, Cloudf
 
 When you complete the setup wizard, three things happen automatically:
 
+::block-steps
 1. DockFlare calls Cloudflare's API and creates a brand-new tunnel
 2. Cloudflare returns a tunnel token
 3. DockFlare spawns a `cloudflared` container on your Docker host using that token
+::
 
 From then on, every container you label with `dockflare.enable=true` gets a route added to **DockFlare's tunnel**. You can run DockFlare alongside existing Cloudflare Tunnels without conflict — each tunnel is independent.
 
@@ -114,16 +116,18 @@ DockFlare uses Cloudflare R2 as the inbound mail buffer. R2 is opt-in on every C
 
 If you skip this step, the **Email Management** page in DockFlare will show R2 Storage with a red ❌ in the Permissions Required panel and the **Setup Email for Domain** button will stay disabled.
 
+::block-steps
 1. Open the Cloudflare dashboard
 2. In the left sidebar, click **R2 Object Storage**
 3. Click **Enable R2** and follow the activation flow
 4. Add a payment method if prompted
 
-> [!NOTE]
-> **R2 has a 10 GB free tier**, but Cloudflare requires a payment method on file before activation. You will not be charged unless you exceed the free tier — for personal email this is essentially impossible. The mail manager pulls messages out of R2 into local storage almost immediately, so R2 is just a transit buffer.
+   > [!NOTE]
+   > **R2 has a 10 GB free tier**, but Cloudflare requires a payment method on file before activation. You will not be charged unless you exceed the free tier — for personal email this is essentially impossible. The mail manager pulls messages out of R2 into local storage almost immediately, so R2 is just a transit buffer.
 
 5. Wait about 30 seconds for the activation to propagate
 6. Return to the DockFlare **Email** page and click **Check Permissions**
+::
 
 # :logos:docker-icon: 2 · Deploy DockFlare
 
@@ -257,6 +261,7 @@ MAIL_SECRET_KEY=             # openssl rand -hex 32
 
 # 3 · Initial Setup Wizard
 
+::block-steps
 1. Open `http://<truenas-ip>:5000`
 2. Walk through the four-step wizard:
    - **Web Access:** create the admin user
@@ -264,11 +269,13 @@ MAIL_SECRET_KEY=             # openssl rand -hex 32
    - **Tunnel:** name the tunnel DockFlare will create — `dockflare-tunnel` is fine
    - **Finalize:** confirm and let DockFlare provision the tunnel
 3. Confirm the dashboard loads and the tunnel shows healthy
+::
 
 After the tunnel is up, both `dockflare.yourdomain.com` and `mail.yourdomain.com` will start resolving to your DockFlare instance.
 
 # 4 · Configure Your Email Domain
 
+::block-steps
 1. In the DockFlare UI, navigate to **Email** in the top navigation
 2. Click **Add Domain** and enter your domain (e.g. `yourdomain.com`)
 3. Click **One-Click Setup** — DockFlare will:
@@ -280,6 +287,7 @@ After the tunnel is up, both `dockflare.yourdomain.com` and `mail.yourdomain.com
 4. Click **Add Mailbox** and create your mailbox (e.g. `you`)
 5. Set a per-mailbox storage quota
 6. Click **Save**
+::
 
 > [!NOTE]
 > If the one-click setup fails partway through, use **Repair DNS** on the domain detail page to re-apply any missing records. Worker deployments can also be redeployed from the same page.
@@ -288,10 +296,12 @@ After the tunnel is up, both `dockflare.yourdomain.com` and `mail.yourdomain.com
 
 Before you can send mail to anyone on the free tier, you have to register their address as a verified destination in Cloudflare.
 
+::block-steps
 1. Cloudflare dashboard → your domain → **Email** → **Email Routing** → **Destination Addresses**
 2. Click **Add Destination Address** and enter the recipient's email
 3. Cloudflare emails the recipient a verification link
 4. The recipient must click the link to authorize you sending to them
+::
 
 This is a hard requirement of Cloudflare's `send_email` Worker binding, not a DockFlare limitation. Each recipient is a one-time per-account setup.
 
@@ -301,10 +311,12 @@ This is a hard requirement of Cloudflare's `send_email` Worker binding, not a Do
 
 To send to any address without per-recipient verification, upgrade to the **Workers Paid plan** ($5/month):
 
+::block-steps
 1. Cloudflare dashboard → **Workers & Pages** → **Plans** → upgrade to Paid
 2. Cloudflare provisions four `cf-bounce.yourdomain.com` records (MX, SPF, DKIM, DMARC) into your zone
 3. Wait ~5 minutes for the records to show "Locked" status
 4. Outbound mail to any destination should now work
+::
 
 
 
@@ -325,10 +337,12 @@ In a Chromium-based browser or Safari, open `https://mail.yourdomain.com` and lo
 
 DockFlare v3.1.1 added a disposable alias system enforced at the Cloudflare Worker layer. From the webmail Settings panel:
 
+::block-steps
 1. Click **Aliases → Create Alias**
 2. Choose a generation style: `word-word-num`, `word-num`, `uuid-short`, or define a custom local-part
 3. Optionally set an expiry date and a label/description
 4. Save
+::
 
 Replies to an alias-received email pre-select that alias as the sender. Expired aliases are deactivated hourly.
 
