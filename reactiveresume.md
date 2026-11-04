@@ -2,7 +2,7 @@
 title: Reactive Resume
 description: A guide to deploying Reactive Resume
 published: true
-date: '2026-11-04T16:23:11.616Z'
+date: '2026-11-04T23:31:25.141Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:58.027Z'
@@ -63,9 +63,12 @@ services:
 
 
 # 2 · Signing In
+
+::block-steps
 1. Navigate to the IP of the server on port `3000`
 1. Click **Go to Dashboard**
 1. Click **Create a new one** to create an admin account
 1. Ignore the part about verifying your email and click **Go to Dashboard**
+::
 
 
