@@ -2,7 +2,7 @@
 title: Anchor
 description: A guide to deploying Anchor
 published: true
-date: '2026-11-04T16:24:03.744Z'
+date: '2026-11-04T23:32:05.644Z'
 tags: []
 editor: markdown
 dateCreated: '2026-02-04T13:21:46.457Z'
@@ -75,11 +75,13 @@ Most users can run Anchor with defaults. For advanced configuration, these envir
 
 Anchor provides an Android mobile app that syncs with your self-hosted server.
 
+::block-steps
 1. Visit the [GitHub Releases](https://github.com/zhfahim/anchor/releases) page
 2. Download the latest APK:
    - **Universal APK** (`anchor-{version}.apk`) - Recommended for most users
    - **Architecture-specific APKs** - Smaller file sizes for specific devices
 3. Install and connect to your Anchor server URL
+::
 
 > [!TIP]
 > The mobile app works offline and syncs changes when connected to your server.
