@@ -2,7 +2,7 @@
 title: Trailarr
 description: A guide to deploying Trailarr in docker
 published: true
-date: '2026-11-04T16:24:17.543Z'
+date: '2026-11-04T23:32:22.204Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:05.969Z'
@@ -35,12 +35,15 @@ services:
 > Default credentials are **admin:trailarr**
 
 ## 2.1 Adding Connections
+
+::block-steps
 1. Navigate to **Connections** and add your Radarr/Sonarr URL and API Key
 1. Change the **Monitor Type** to `Missing`
 1. Click **Test**
 1. Click the folder icon in the **Path Mappings** seciton and use the default provided path
 1. Click **Test** again
 1. Click **Submit**
+::
 
 
 # ![](/_files/patreon-light.png =28x) 3 · Video
