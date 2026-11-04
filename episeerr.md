@@ -2,7 +2,7 @@
 title: Episeerr
 description: A guide to deploying Episeerr
 published: true
-date: '2026-11-04T16:24:15.195Z'
+date: '2026-11-04T23:32:20.375Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-20T20:27:15.149Z'
@@ -44,10 +44,12 @@ After deploying the container, open `http://your-server:5002/setup` and enter So
 
 You **must** add a webhook in Sonarr pointing to Episeerr for the integration to work.
 
+::block-steps
 1. In Sonarr, go to **Settings** → **Connect**
 2. Add a new **Webhook**
 3. Set the URL to `http://your-episeerr:5002/sonarr-webhook` with method **POST**
 4. Enable only the **On Series Add** and **On Grab** triggers
+::
 
 ## 2.3 Viewing Automation Webhooks
 
