@@ -2,7 +2,7 @@
 title: Pi-Hole
 description: A guide to deploying Pi-Hole
 published: true
-date: '2026-11-04T16:24:08.848Z'
+date: '2026-11-04T23:32:09.224Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:14.829Z'
@@ -53,13 +53,16 @@ services:
 a. In the **DNS** tab select the DNS servers you want to use
 
 # 4 · Adding Block Lists
+
+::block-steps
 1. Navigate to **Group Management → Lists** in the left pane
 1. Paste the URL in the **Addresses** field then click **Add Blocklist**
-> [!NOTE]
-> A basic list to add is EasyList `https://v.firebog.net/hosts/Easylist.txt`
+   > [!NOTE]
+   > A basic list to add is EasyList `https://v.firebog.net/hosts/Easylist.txt`
 
 3. Navigate to **System → Tools → Update Gravity** in the left pane
 1. Click **Update** and do not navigate away from the page!
+::
 
 
 # :logos:youtube-icon: 3 · Video
