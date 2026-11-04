@@ -2,7 +2,7 @@
 title: Notifiarr
 description: A guide to deploy Notifiarr in TrueNAS
 published: true
-date: '2026-11-04T16:17:35.493Z'
+date: '2026-11-04T23:32:09.543Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:06:48.473Z'
@@ -15,6 +15,8 @@ Notifiarr is a system that integrates with many applications to manage and custo
 > Read the [official documentation](https://notifiarr.wiki/)
 
 # 1 · Setup of Notifiarr
+
+::block-steps
 1. Go to [Notifiarr](https://notifiarr.com/guest/register) and create a account.
 
     <img src="https://github.com/user-attachments/assets/3e24b851-ff45-488d-8c5d-e9286592f198">
@@ -30,6 +32,7 @@ Notifiarr is a system that integrates with many applications to manage and custo
 
 1. In order to get your API key scroll down till you see this section and copy your api key. 
     <img src="https://github.com/user-attachments/assets/9563760b-d89c-495a-b06a-87d730c564f9">
+::
 
 # 2 · Deploy Notifiarr
 :::block-tabs
@@ -56,41 +59,54 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 ![](/screenshot-from-2024-02-23-09-37-02.png)
 
+::block-steps
 1. Set the **Hostname** to a static name such as `notifiarr`. Notifiarr identifies each client by hostname, so don't change it later
 1. Enter the **API Key** you copied in section 1
 1. Under **Additional Environment Variables**, add **Name** `DN_UI_PASSWORD` with your chosen web UI password as the **Value**. On TrueNAS the container doesn't reliably set or log the UI password otherwise
 1. Change the **Storage Configuration**. The **Notifiarr Config Storage** *Type* should be set to **Host Path** and point to `/mnt/tank/configs/notifiarr`
+::
 
 ::
 
 :::
 
 # 3 · Logging In
+
+::block-steps
 1. Navigate to `http://IP:5454`. The username is `admin`. On TrueNAS the password is the `DN_UI_PASSWORD` you set. On Docker it is your API key, or the one-time password printed in the logs.
 1. Login to your instance
 1. Verify Notifiarr can see your endpoint by visiting the Notifiarr website navigating to **Setup** on the left pane and select **Integrations → Client Configuration**. Scroll down to see a green connect symbol (or a popup in the bottom right corner will say it is connected).
+::
 
 <img src="https://github.com/user-attachments/assets/c929f609-6822-4ca7-8454-683b3d3982fb">
 
 
 # 4 · Integrating \*arr Apps
+
+::block-steps
 1. Navigate in the left pane of Notifiarr to **Starr Apps**
     ![image](https://github.com/user-attachments/assets/77fec8b4-b4f2-4e38-9596-5272bc633d9f)
 1. Click the plus sign and put in your instance name, url, API Key, username and password then click **Save**
     ![image](https://github.com/user-attachments/assets/cf606749-e09f-40c5-83c2-bf27905f2326)
 1. Navigate Radarr and click **Connect**
     <img src="https://github.com/user-attachments/assets/92e0f08c-463b-4645-ae7a-6310160068ae">
+::
 
 
 ## 4.1 Generate an API Key in Notifiarr
+
+::block-steps
 1. Navigate to the Notifiarr website
 1. Add an **Integration** and select **Radarr**
 1. Navigate to your profile page and scroll back down and create a API key for Radarr:
     ![image](https://github.com/user-attachments/assets/8d3e2b85-0c0e-4e31-b856-545504b4e49b)
 1. Click **Add Notifiarr Connect**
     ![image](https://github.com/user-attachments/assets/47ccce49-a2da-4bb8-9dde-add97e1168df)
+::
 
 # 5 · Add Trash Guides Profiles
+
+::block-steps
 1. Navigate to **Profiles** in the left side pane
   ![image](https://github.com/user-attachments/assets/77757789-edd9-4eed-8bfe-6777866a3780)
 1. Click on **Add new / Link existing**
@@ -101,3 +117,4 @@ services:
     ![image](https://github.com/user-attachments/assets/a8c83bb4-a459-46cf-abbd-e2cd2a086589)
 1. On the next page click **Sync Profiles**
     ![image](https://github.com/user-attachments/assets/af9b9bbe-b437-4840-a2ae-18567ae6195b)
+::
