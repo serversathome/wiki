@@ -2,7 +2,7 @@
 title: Zublo
 description: A guide to dpeloying Zublo
 published: true
-date: '2026-11-04T16:23:53.075Z'
+date: '2026-11-04T23:31:58.682Z'
 tags: []
 editor: markdown
 dateCreated: '2026-04-27T17:44:21.112Z'
@@ -44,10 +44,12 @@ services:
 
 After registering your first account, you'll be dropped into the dashboard. Before adding subscriptions, take a minute to set up:
 
+::block-steps
 1. **Default currency** — set this in **Settings** so new subscriptions inherit it
 2. **Notification preferences** — configure when and how you want reminders for upcoming payments
 3. **Two-factor authentication** — enable TOTP under your user profile for an extra layer of protection
 4. **Categories** — create categories that match how you mentally bucket your subscriptions (Streaming, Software, Cloud, Domains, etc.)
+::
 
 ## 2.2 Adding Subscriptions
 
