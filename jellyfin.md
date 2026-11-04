@@ -2,7 +2,7 @@
 title: Jellyfin
 description: A guide to deploying Jellyfin on TrueNAS as well as Docker
 published: true
-date: '2026-11-04T16:24:17.084Z'
+date: '2026-11-04T23:32:17.509Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:05:36.259Z'
@@ -45,9 +45,12 @@ services:
 ::
 
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Under **Storage Configuration**, set **Jellyfin Config Storage** and **Jellyfin Cache Storage** to **Type: Host Path** and select the correct paths as described in the [Folder-Structure](/Folder-Structure) guide.
 1. Under **Additional Storage**, click **Add**, set **Type: Host Path**, set the **Mount Path** to **/media** and select your `media` directory.
 1. Scroll to **Resources Configuration** and select your GPU under **GPU Configuration**. If you do not see one, make sure to select the checkbox in **Apps → Configuration → Settings → Install NVIDIA Drivers**.
+::
 
 > [!TIP]
 > Check out [the new docs](https://apps.truenas.com/resources/deploy-jellyfin) from TrueNAS
@@ -63,11 +66,13 @@ services:
 
 ## 2.1 Setup Media Libraries
 
+::block-steps
 1. Click **\+ New Library**
 2. Set the Content Type to match the folder (Movies for /media/movies and TV Shows for /media/tv)
 1. Click on the **+** next to Folders and add the appropriate folder
 1. Click the green **OK** at the bottom and leave the rest of the settings the same
 1. Do the same thing for your second library for TV Shows.
+::
 
 ## 2.2 Watching Content
 
@@ -96,52 +101,54 @@ If you are using [Nginx Proxy Manager](/nginx) to route your traffic use these s
 > [!WARNING]
 > This section is under development and may not work for you
 
+::block-steps
 1. Deploy Jellyfin using the above Docker Compose file, removing the lines with `nvidia` in them
 1. In the TrueNAS shell, run the command `cd /dev/dri && ls -l`. You should see a line at the bottom that looks like:
-```bash
-crw-rw---- 1 root render 226, 128 Apr 15 14:44 renderD128
-```
+   ```bash
+   crw-rw---- 1 root render 226, 128 Apr 15 14:44 renderD128
+   ```
 3. To find the ID of the `render` group, run the command `getent group render | cut -d: -f3`. In my case the output was `107`.
 1. Now, add these lines into the Docker Compose file, using your values from above:
-```yaml
-group_add:
-  - "107"
-devices:
-  - /dev/dri/:/dev/dri/
-```
+   ```yaml
+   group_add:
+     - "107"
+   devices:
+     - /dev/dri/:/dev/dri/
+   ```
 5. My final Docker Compose looks like:
-```yaml
-services:
-  jellyfin:
-    container_name: jellyfin
-    image: lscr.io/linuxserver/jellyfin:latest
-    environment:
-      - PUID=568
-      - PGID=568
-      - TZ=America/New_York
-    ports:
-      - "8096:8096"
-    restart: unless-stopped
-    group_add:
-      - "107"  # Access to /dev/dri/renderD128
-      - "44"   # Access to /dev/dri/card0
-    devices:
-      - /dev/dri/:/dev/dri/
-    volumes:
-      - /mnt/tank/configs/jellyfin:/config
-      - /mnt/tank/media:/media
-```
+   ```yaml
+   services:
+     jellyfin:
+       container_name: jellyfin
+       image: lscr.io/linuxserver/jellyfin:latest
+       environment:
+         - PUID=568
+         - PGID=568
+         - TZ=America/New_York
+       ports:
+         - "8096:8096"
+       restart: unless-stopped
+       group_add:
+         - "107"  # Access to /dev/dri/renderD128
+         - "44"   # Access to /dev/dri/card0
+       devices:
+         - /dev/dri/:/dev/dri/
+       volumes:
+         - /mnt/tank/configs/jellyfin:/config
+         - /mnt/tank/media:/media
+   ```
 6. If done correctly, you should see these two lines in your logs:
-```bash
-**** creating video group videol7cu with id 107 ****
-**** adding /dev/dri/renderD128 to video group videol7cu with id 107 ****
-**** adding /dev/dri/card0 to video group video with id 44 ****
-```
+   ```bash
+   **** creating video group videol7cu with id 107 ****
+   **** adding /dev/dri/renderD128 to video group videol7cu with id 107 ****
+   **** adding /dev/dri/card0 to video group video with id 44 ****
+   ```
 7. Navigate to **Settings → Dashboard → Playback → Transcoding**
 1. Change **Hardware Acceleration** to `Intel QuickSync (QSV)`
 1. For the **QSV Device** add `/dev/dri/renderD128` if that was the output from Step 2
 1. Follow the steps below to use AI to assist you in selecting the appropriate codecs for your iGPU
 1. Remember to hit **Save** at the bottom when you're done
+::
 
 # 6 · Transcoding settings
 Many people ask how to setup the transcoding section of Jellyfin for their specific GPU. I usually tell them "it depends" because each GPU has different capabilities. However, I will tell you a great way to answer this for your individual GPU is ChatGPT. To do this, take a screenshot of the transcode page and ask: `"if i have <insert_GPU> which of these should i select for hardware decoding and tone mapping?"`
