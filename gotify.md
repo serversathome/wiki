@@ -2,7 +2,7 @@
 title: Gotify
 description: A guide to installing Gotify in docker via compose
 published: true
-date: '2026-11-04T16:24:17.714Z'
+date: '2026-11-04T23:32:20.567Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:04:55.681Z'
@@ -50,11 +50,13 @@ On the client side, it will ask you for your server IP or URL and the app or API
 
 Emby needs some special steps to use Gotify which other apps do not. Steps are below (copied from [here](https://emby.media/community/index.php?/topic/90463-gotify-notifications/)):
 
+::block-steps
 1.  Download the .dll plugin [here](https://github.com/rootforbid/Emby.Plugins.Gotify/releases/download/v2.0.0.0/MediaBrowser.Plugins.GotifyNotifications.dll).
 2.  Put it in the "plugins" folder of your Emby Server and restart Emby Server.
 3.  The plugin should now show up in your Emby Server management page under Advanced > Plugins.
 4.  Configure the plugin by heading to the new Notification section under User settings.
 5.  Click the "+ Add Notification" button and choose "Gotify"
+::
 
 # :simple-icons:truenas: 5 · TrueNAS
 
