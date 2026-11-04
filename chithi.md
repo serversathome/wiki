@@ -2,7 +2,7 @@
 title: Chithi
 description: A guide to deploying Chithi
 published: true
-date: '2026-11-04T16:24:02.318Z'
+date: '2026-11-04T23:32:04.111Z'
 tags: []
 editor: markdown
 dateCreated: '2026-02-03T16:57:15.577Z'
@@ -146,10 +146,12 @@ services:
         condition: service_started
 ```
 
+::block-steps
 1. Replace the `CHANGEME` values. Generate each one with `openssl rand -hex 24`. The database password and the two RustFS keys each appear twice and must match
 2. Set `PUBLIC_BACKEND_API` to your domain followed by `/api`
 3. Deploy the stack
 4. Point your reverse proxy at it: requests to `/api/*` go to port `8000` with the `/api` prefix stripped, and everything else goes to port `3000`. The proxy must also add the cross-origin isolation headers. A Caddy example:
+::
 
 ```
 chithi.yourdomain.com {
