@@ -2,7 +2,7 @@
 title: Linux Update Dashboard
 description: A guide to deploying Linux Update Dashboard
 published: true
-date: '2026-11-04T16:24:06.126Z'
+date: '2026-11-04T23:32:08.140Z'
 tags: []
 editor: markdown
 dateCreated: '2026-03-02T21:33:57.457Z'
@@ -43,11 +43,13 @@ openssl rand -base64 32
 
 ## 2.1 Adding Systems
 
+::block-steps
 1. Click **Add System** in the dashboard
 2. Enter the SSH connection details (hostname, port, username)
 3. Choose authentication method: password or SSH key
 4. Click **Test Connection** — package managers and system info are detected automatically
 5. Save the system
+::
 
 > [!TIP]
 > SSH credentials are encrypted at rest using AES-256-GCM with per-entry random IVs. The credentials are never stored in plain text.
