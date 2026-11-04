@@ -2,7 +2,7 @@
 title: Tracearr
 description: A guide to deploying Tracearr
 published: true
-date: '2026-11-04T16:18:02.301Z'
+date: '2026-11-04T23:32:15.471Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:01.316Z'
@@ -72,6 +72,7 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Tracearr is available in the **Community** train of the TrueNAS Apps catalog.
 
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI
 2. Click **Discover Apps**
 3. Search for **Tracearr**
@@ -85,6 +86,7 @@ Tracearr is available in the **Community** train of the TrueNAS Apps catalog.
    - **Web Port**: `3000` (default)
    - **Postgres Data Storage**: Set to `Host Path` and check the box for **Automatic Permissions**!
 6. Click **Save** and wait for the app to deploy
+::
 
 
 > [!NOTE]
@@ -104,10 +106,12 @@ When you first open Tracearr at `http://YOUR_SERVER_IP:3000`, you'll be guided t
 
 After logging in, navigate to **Settings** and connect your media servers:
 
+::block-steps
 1. Click **Add Server**
 2. Select the server type: **Plex**, **Jellyfin**, or **Emby**
 3. Enter the server URL and authentication details
 4. Click **Save**
+::
 
 You can connect multiple servers of different types — Tracearr will display them all in a unified dashboard.
 
