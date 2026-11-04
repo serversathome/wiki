@@ -2,7 +2,7 @@
 title: Sprout Track
 description: A guide to deploying Sprout Track
 published: true
-date: '2026-11-04T16:23:38.954Z'
+date: '2026-11-04T23:31:45.828Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:08:46.645Z'
@@ -38,6 +38,7 @@ Navigate to `http://IP:3000` to start the setup wizard.
 > [!WARNING]
 > The admin area at `/family-manager` uses the default password `admin`. Change it right after setup.
 
+::block-steps
 1. Enter a **Family Name**
 1. Enter a **Family URL**
 1. Click **Next**
@@ -45,5 +46,6 @@ Navigate to `http://IP:3000` to start the setup wizard.
 1. Click **Next**
 1. Enter your baby's information
 1. Click **Complete Setup**
+::
 
 
