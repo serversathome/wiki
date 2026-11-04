@@ -2,7 +2,7 @@
 title: Linkwarden
 description: A guide to deploying Linkwarden
 published: true
-date: '2026-11-04T16:24:22.120Z'
+date: '2026-11-04T23:32:21.965Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:05:57.751Z'
@@ -68,10 +68,13 @@ services:
 :::
 
 # 2 · Logging In
+
+::block-steps
 1. Navigate to `http://IP:PORT` 
 1. Click **Sign Up** at the bottom of the window
 1. Enter your credentials then click **Sign Up**
 1. Login with your created credentials
+::
 
 # :logos:youtube-icon: 3 · Video
 ::block-youtube{url="https://youtu.be/VV9Vuh_r1RY"}
