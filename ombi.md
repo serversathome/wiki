@@ -2,7 +2,7 @@
 title: Ombi
 description: A guide to deploying Ombi via docker compose
 published: true
-date: '2026-11-04T16:23:11.055Z'
+date: '2026-11-04T23:31:23.930Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:06:55.304Z'
@@ -37,14 +37,17 @@ services:
 
 # 2 · First‑Run Configuration
 
+::block-steps
 1. Select SQLite DB
 1. Choose which media server you would like Ombi to manage and enter credentials
 1. Create an Ombi username and password
 1. Click **Next** to leave all fields blank for **Customize your Ombi** (optional)
 1. Click **Finish**
+::
 
 # 3 · Ombi Configuration
 
+::block-steps
 1. Navigate to **Settings** in the left pane
 1. Navigate to the **Media Server** tab
 1. Click the **Load Libraries** button
@@ -53,8 +56,11 @@ services:
 1. Toggle the **Import Users** to `on`
 1. Click **Run Importer**
 1. Click **Submit**
+::
 
 ## 3.1 Sync \*arr Apps
+
+::block-steps
 1. Navigate to **TV** or **Movies** tab
 1. Switch **Enable** to `on`
 1. Enter the IP or hostname of the container
@@ -65,6 +71,7 @@ services:
 1. Select the desired default quality profile
 1. Select the root folder
 1. Click **Submit**
+::
 
 # 4 · Optional Configuration
 
