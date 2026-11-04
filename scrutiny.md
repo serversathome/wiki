@@ -2,7 +2,7 @@
 title: Scrutiny
 description: A guide for deploying Scrutiny on TrueNAS and Docker
 published: true
-date: '2026-11-04T16:17:52.854Z'
+date: '2026-11-04T23:31:24.734Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:08:26.409Z'
@@ -194,11 +194,13 @@ Scrutiny alerts you when a drive's health changes. In this fork, notification en
  
 ## 3.1 Adding an Endpoint
  
+::block-steps
 1. Open **Settings** in the web UI
 2. Under **Notifications**, click **Add**
 3. Paste your notification URL
 4. Click **Test**, then **Save**
 Scrutiny speaks **Shoutrrr**, **Apprise**, custom scripts, and raw webhooks — Discord, Telegram, email, Slack, Teams, ntfy, Gotify, Pushover, and dozens more.
+::
  
 ::block-links-grid
 ```yaml
