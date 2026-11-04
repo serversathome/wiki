@@ -2,7 +2,7 @@
 title: ClovaLink
 description: A guide to deploying ClovaLink
 published: true
-date: '2026-11-04T16:23:53.307Z'
+date: '2026-11-04T23:31:53.168Z'
 tags: []
 editor: markdown
 dateCreated: '2026-02-03T14:11:22.216Z'
@@ -82,10 +82,12 @@ services:
       - /mnt/tank/configs/clovalink/clamav:/var/lib/clamav
 ```
 
+::block-steps
 1. Generate a secure JWT secret: `openssl rand -base64 32`
 2. Replace `CHANGEME_JWT_SECRET` with your generated value
 3. Generate a database password with `openssl rand -hex 24` and replace both `CHANGEME_DB_PASSWORD` values with it
 4. Update `CORS_ALLOWED_ORIGINS` to your actual domain
+::
 
 > [!NOTE]
 > ClamAV takes 2-3 minutes on first start to download virus definitions. The backend will wait for it to be ready.
