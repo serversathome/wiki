@@ -2,7 +2,7 @@
 title: OpnForm
 description: A guide to deploying OpnForm
 published: true
-date: '2026-11-04T16:23:20.693Z'
+date: '2026-11-04T23:31:33.948Z'
 tags: []
 editor: markdown
 dateCreated: '2026-09-28T16:23:10.223Z'
@@ -294,9 +294,11 @@ services:
 
 ## 2.1 Initial Setup
 
+::block-steps
 1. Browse to your `OPNFORM_URL`
 2. OpnForm redirects to a setup page on first launch. Create your admin account there
 3. Public registration shuts off once setup is complete. Invite anyone else from the admin account
+::
 
 > [!NOTE]
 > Free self-hosted instances are limited to **2 users** across the whole instance. A self-hosted Enterprise license lifts that cap and unlocks the Enterprise features, but the core form builder works without one.
@@ -305,9 +307,11 @@ services:
 
 Out of the box `MAIL_MAILER` is set to `log`, so notification emails land in the container logs instead of an inbox. To send real mail:
 
+::block-steps
 1. Fill in the `MAIL_` lines in the `.env` file with your SMTP provider's details
 2. Change `MAIL_MAILER=log` to `MAIL_MAILER=smtp`
 3. Redeploy the stack
+::
 
 Emails are sent by the `opnform-api-worker` container, not the API itself. If a test submission never arrives, check that container's logs first.
 
@@ -337,17 +341,21 @@ OpnForm has a built-in MCP server. Once it is on, Claude, ChatGPT, Cursor and ot
 
 **Turn it on:**
 
+::block-steps
 1. Set `MCP_ENABLED=true` in the `.env` file and redeploy, or skip this and use the switch in the next step
 2. Sign in as the admin and open **Settings → MCP & AI agents**
 3. Fix anything the setup checks flag, then turn on **Enable MCP**
 4. Copy the MCP endpoint shown on that page. The page also has ready-to-copy setup for Claude Code, Cursor, ChatGPT and Codex
+::
 
 **Connect Claude:**
 
+::block-steps
 1. In Claude, open **Settings → Connectors → Add custom connector**
 2. Paste your MCP endpoint and click **Connect**
 3. Sign in to OpnForm and approve the connection on the consent screen
 4. Start a new chat and ask Claude to build a form
+::
 
 > [!NOTE]
 > The switch in **Settings → MCP & AI agents** is saved in the database and overrides `MCP_ENABLED` from the `.env` file. If the two disagree, the settings page wins.
