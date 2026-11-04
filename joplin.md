@@ -2,7 +2,7 @@
 title: Joplin
 description: A guide to deploy Joplin server
 published: true
-date: '2026-11-04T16:24:21.402Z'
+date: '2026-11-04T23:32:21.392Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-27T12:16:53.162Z'
@@ -65,10 +65,12 @@ After deployment, access the web interface at `http://YOUR_SERVER_IP:22300`.
 
 # 3 · Creating Users
 
+::block-steps
 1. Log in with the default admin credentials
 2. Navigate to **Users** in the admin panel
 3. Click **Add User**
 4. Enter email and password for each user
+::
 
 > [!NOTE]
 > Each person syncing notes needs their own user account. Don't share the admin account.
@@ -77,6 +79,7 @@ After deployment, access the web interface at `http://YOUR_SERVER_IP:22300`.
 
 ## 4.1 Desktop (Windows/Mac/Linux)
 
+::block-steps
 1. Download Joplin from [joplinapp.org](https://joplinapp.org/download/)
 2. Open Joplin → **Tools** → **Options** → **Synchronisation**
 3. Set **Synchronisation target** to **Joplin Server**
@@ -86,14 +89,17 @@ After deployment, access the web interface at `http://YOUR_SERVER_IP:22300`.
    - **Password:** your user password
 5. Click **Check synchronisation configuration**
 6. Click **Apply**
+::
 
 ## 4.2 Mobile (iOS/Android)
 
+::block-steps
 1. Install Joplin from the App Store or Play Store
 2. Open the app → **Configuration** → **Synchronisation**
 3. Select **Joplin Server**
 4. Enter the same credentials as desktop
 5. Tap **Check synchronisation configuration**
+::
 
 
 # 5 · Troubleshooting
