@@ -2,7 +2,7 @@
 title: Bettershift
 description: A guide to deploying Bettershift
 published: true
-date: '2026-11-04T16:23:43.512Z'
+date: '2026-11-04T23:31:48.096Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:03:26.069Z'
@@ -28,7 +28,9 @@ services:
     restart: unless-stopped
 ```
 
+::block-steps
 1. Generate a secret with `openssl rand -hex 32` and paste it in place of `CHANGEME`. Authentication is on by default, and logins fail without a real `BETTER_AUTH_SECRET`
 2. Set `BETTER_AUTH_URL` to the address you open BetterShift at, without a trailing slash. Use your public URL instead if you put it behind a reverse proxy or Cloudflare Tunnel
 3. Deploy the stack, browse to `http://your-server-ip:3000` and create your account
+::
 
