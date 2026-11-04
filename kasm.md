@@ -2,7 +2,7 @@
 title: Kasm Workspaces
 description: A guide to deploying Kasm Workspaces to Proxmox
 published: true
-date: '2026-11-04T16:23:23.865Z'
+date: '2026-11-04T23:31:36.681Z'
 tags: []
 editor: markdown
 dateCreated: '2026-02-25T10:19:47.919Z'
@@ -45,6 +45,7 @@ Create a new VM for the Kasm control plane:
 
 ## 1.2 Install Ubuntu & Kasm
 
+::block-steps
 1. Install Ubuntu Server with OpenSSH enabled
 1. After install, remove the ISO from the CD/DVD drive
 1. SSH into the VM and install Kasm:
@@ -62,6 +63,8 @@ Create a new VM for the Kasm control plane:
     ```
 
 1. Follow the prompts and note the admin credentials displayed at the end
+::
+
 > [!TIP]
 > For the most up-to-date script be sure to check [the official documentation](https://docs.kasm.com/docs/install/single_server_install)
 
@@ -71,10 +74,12 @@ Create a new VM for the Kasm control plane:
 
 After installation, log into the Kasm web UI:
 
+::block-steps
 1. Go to **Admin → Infrastructure → Deployment Zones**
 2. Click **Edit** on your zone
 3. Change **Upstream Auth Address** from `proxy` to your Kasm server's IP address (just the IP, no port)
 4. Click **Save**
+::
 
 > [!CAUTION]
 > This step is critical. Autoscaled VMs need to know where to "phone home." If this remains set to `proxy`, agents cannot find Kasm and autoscaling silently fails.
@@ -88,20 +93,24 @@ After installation, log into the Kasm web UI:
 
 ## 2.2 Create Dedicated User
 
+::block-steps
 1. Navigate to **Permissions → Users → Add**
 2. Username: `kasm-autoscale`
 3. Realm: **Proxmox VE authentication server**
+::
 
 > [!NOTE]
 > The realm selection adds `@pve` automatically. Don't include it in the username field.
 
 ## 2.3 Create API Token
 
+::block-steps
 1. Navigate to **Permissions → API Tokens → Add**
 2. User: `kasm-autoscale@pve`
 3. Token ID: `kasm` (or any name you choose)
 4. Uncheck **Privilege Separation**
 5. Click **Add**
+::
 
 > [!WARNING]
 > Save the Token ID and Secret immediately—you cannot view them again. You'll need just the token name (e.g., `kasm`) for Kasm, not the full ID.
@@ -200,10 +209,12 @@ All of the following is done in the **Kasm web UI**.
 
 ## 4.1 Create Pool
 
+::block-steps
 1. Go to **Admin → Infrastructure → Pools → Add**
 2. Name: `Docker Agent Pool`
 3. Type: **Docker Agent**
 4. Click **Save**
+::
 
 ## 4.2 Create AutoScale Config
 
@@ -267,10 +278,12 @@ Click **Next** to configure the VM Provider.
 
 Once configured, Kasm will automatically provision VMs to meet the standby requirements.
 
+::block-steps
 1. Go to **Admin → Infrastructure → Docker Agents**
 2. Watch for new agents appearing with status "Starting" → "Running"
 3. Launch workspaces to trigger additional scaling
 4. Close sessions and wait for downscale backoff to see VMs destroyed
+::
 
 
 # :logos:youtube-icon: 6 · Video
