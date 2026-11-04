@@ -2,7 +2,7 @@
 title: Invoice-Builder
 description: A guide to deploying Invoice Builder
 published: true
-date: '2026-11-04T16:24:04.917Z'
+date: '2026-11-04T23:32:06.351Z'
 tags: []
 editor: markdown
 dateCreated: '2026-03-02T14:57:26.804Z'
@@ -66,12 +66,14 @@ services:
 
 Once the containers are running and you access the web UI:
 
+::block-steps
 1. **Create or open a database** — Invoice Builder uses a local database file you own
 2. **Add a Business** — your company details for invoices
 3. **Add a Currency** — select the currencies you work with
 4. **Add a Client** — your customer information
 5. **Add Items** — products or services you bill for
 6. **Create an Invoice or Quote** — preview and export to PDF
+::
 
 ## 2.1 PDF Customization
 
