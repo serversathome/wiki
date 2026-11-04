@@ -2,7 +2,7 @@
 title: Forgejo
 description: A guide to deploying Forgejo
 published: true
-date: '2026-11-04T16:24:14.803Z'
+date: '2026-11-04T23:32:16.833Z'
 tags: []
 editor: markdown
 dateCreated: '2026-08-25T18:25:30.503Z'
@@ -60,9 +60,11 @@ services:
       - /mnt/tank/configs/forgejo/db:/var/lib/postgresql/data
 ```
 
+::block-steps
 1. Create the directories: `mkdir -p /mnt/tank/configs/forgejo/{data,db}`
 2. Change `CHANGE_ME_DB` in **both** services to the same strong password
 3. Replace `git.serversatho.me` with your own hostname everywhere it appears
+::
 
 > [!NOTE]
 > `:17` is the current stable major. Forgejo 16 reaches end of life on 29 October 2026 and 17 is supported until 28 January 2027. If you'd rather upgrade less often, pin `:15`, the LTS release supported until 15 July 2027 (new installs only; you can't move an existing 16 or 17 instance back to 15, because its database has already been migrated). See the [release schedule](https://forgejo.org/docs/latest/admin/release-schedule/) and read the [release notes](https://codeberg.org/forgejo/forgejo/releases) before you bump a major version.
@@ -72,6 +74,7 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Forgejo is in the **Community** train of the TrueNAS Apps catalog.
 
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for **Forgejo** and click **Install**
 3. Configure the following:
@@ -81,6 +84,7 @@ Forgejo is in the **Community** train of the TrueNAS Apps catalog.
    - **Root URL**: `https://git.serversatho.me/`
 4. Click **Save**
 5. Under the app's config, disable SSH if the option is offered
+::
 
 > [!NOTE]
 > The TrueNAS app uses the **rootless** Forgejo image, so its paths differ from the Docker tab: data lives at `/var/lib/gitea` and the config file is `/etc/gitea/app.ini` inside the container (not `/data/gitea/conf/app.ini`).
@@ -202,10 +206,12 @@ Whatever hostname you chose is now baked into the image name itself. `git.server
 
 ## 5.1 Create the OAuth app on GitHub
 
+::block-steps
 1. GitHub → **Settings** → **Developer settings** → **OAuth Apps** → **New OAuth App**
 2. **Homepage URL**: `https://git.serversatho.me`
 3. **Authorization callback URL**: `https://git.serversatho.me/user/oauth2/github/callback`
 4. Save the **Client ID** and generate a **Client Secret**
+::
 
 ## 5.2 Add it to Forgejo
 
@@ -459,9 +465,12 @@ A contributor can open any pull request they like. It builds credential-free in 
  
 Each job runs in a fresh container, but the DinD daemon persists between jobs, so one compromised build could poison the next one's cache.
  
+::block-steps
 1. Get the VM to a clean working state
 2. Take a Proxmox snapshot named `clean`
 3. Schedule a nightly rollback on the Proxmox host:
+::
+
 ```bash
 # crontab -e on the Proxmox node, VMID 120 as an example
 0 4 * * * /usr/sbin/qm rollback 120 clean && /usr/sbin/qm start 120
