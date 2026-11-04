@@ -2,7 +2,7 @@
 title: SearXNG
 description: A guide to deploying Searxng
 published: true
-date: '2026-11-04T16:23:59.538Z'
+date: '2026-11-04T23:32:00.687Z'
 tags: []
 editor: markdown
 dateCreated: '2026-03-22T12:08:48.277Z'
@@ -62,12 +62,14 @@ services:
       - DAC_OVERRIDE
 ```
 
+::block-steps
 1. Generate a secret key before deploying:
-```bash
-openssl rand -hex 32
-```
+   ```bash
+   openssl rand -hex 32
+   ```
 2. Set the `SEARXNG_SECRET` environment variable with the generated key. You can either replace `${SEARXNG_SECRET}` directly or create a `.env` file in the same directory.
 3. If you plan to access SearXNG from a domain name, update `SEARXNG_BASE_URL` to match (e.g., `https://search.yourdomain.com/`).
+::
 
 > [!NOTE]
 > SearXNG has switched from Redis to **Valkey**. `SEARXNG_VALKEY_URL` is what actually connects SearXNG to it (used by the bot limiter); without it the database container sits unused. Upstream's official compose now lives in the main repo: [container/docker-compose.yml](https://github.com/searxng/searxng/blob/master/container/docker-compose.yml) (the old `searxng-docker` repo is superseded).
@@ -148,13 +150,15 @@ services:
       - DAC_OVERRIDE
 ```
 
+::block-steps
 1. Generate a secret key before deploying:
-```bash
-openssl rand -hex 32
-```
+   ```bash
+   openssl rand -hex 32
+   ```
 2. Set `SEARXNG_SECRET` in a `.env` file or replace it directly.
 3. Replace the Gluetun VPN variables with your own provider credentials. The example above uses AirVPN with WireGuard. See the [Gluetun wiki](https://github.com/qdm12/gluetun-wiki) for your provider's specific variables.
 4. The `ports` mapping is on the **Gluetun container**, not SearXNG — because SearXNG uses `network_mode: "service:gluetun"`, all its traffic flows through the VPN tunnel.
+::
 
 > [!NOTE]
 > **How this works:** `network_mode: "service:gluetun"` forces SearXNG and Valkey to share Gluetun's network stack. All outbound connections from SearXNG — every query to Google, Bing, Brave, etc. — go through the VPN tunnel. If the VPN drops, the built-in killswitch in Gluetun blocks all traffic, so no queries ever leak your real IP.
@@ -168,6 +172,8 @@ openssl rand -hex 32
 ::
 
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI
 2. Click **Discover** and search for "**SearXNG**"
 3. Click **Install**
@@ -175,6 +181,7 @@ openssl rand -hex 32
    - **Network > Web Port**: `5080` (or your preferred port)
    - **Storage > SearXNG Config Storage > Host Path**: `/mnt/tank/configs/searxng`
 5. Click **Install**
+::
 
 > [!NOTE]
 > SearXNG is available in the **Community** train. Make sure the Community train is enabled in your Apps settings.
