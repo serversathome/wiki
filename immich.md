@@ -2,7 +2,7 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: '2026-11-04T16:23:32.425Z'
+date: '2026-11-04T23:31:31.131Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:05:25.101Z'
@@ -27,17 +27,19 @@ Immich has a custom yaml compose builder you can try [here!](https://immich.app/
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 ![screenshot_from_2025-04-30_08-01-41.png](/screenshot-from-2025-04-30-08-01-41.png)
 
+::block-steps
 1. Set a database and redis password
 1. If you have an nVidia GPU, select the **Cuda Machine Learning Image** for the **Machine Learning Image Type**
 1. Set **Host Path Storage** for **Data** and **Postgres Storage** options
 
-> [!NOTE]
-> Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
+   > [!NOTE]
+   > Since Immich runs as `root` **Generic permissions** are fine for all of these datasets
 
-> [!WARNING]
-> The **Postgres Data Storage** needs the **☑ Automatic Permissions** checkbox checked!
+   > [!WARNING]
+   > The **Postgres Data Storage** needs the **☑ Automatic Permissions** checkbox checked!
 
 4. If you can, increase limits on the **Resources Configuration**
+::
 
 > [!TIP]
 > Check out [the new docs](https://apps.truenas.com/resources/deploy-immich) from TrueNAS
@@ -251,9 +253,11 @@ tank
 
 To confirm you are actually using your GPU, you should do the following:
 
+::block-steps
 1. On TrueNAS go to System > Shell
 2. Run `watch -d -n 1 nvidia-smi` inside the terminal
 3. You should be able to see a python process running if there is a job running for Smart Search, Facial Detection or Facial Recognition
+::
 
 This is under assumption that you have some content in your library.
 
@@ -366,16 +370,18 @@ tank
 
 To confirm you are actually using your GPU, you should do the following:
 
+::block-steps
 1. On TrueNAS go to System > Shell
 2. Run `docker exec -it immich_machine_learning bash` to enter the container
 3. First you will have to update the repositories and install radeontop package by running
 
-```sh
-apt update && apt install radeontop
-```
+   ```sh
+   apt update && apt install radeontop
+   ```
 
 4. Run `radeontop` inside the terminal
 5. You should be able to see usage increasing if there is a job running for Smart Search, Facial Detection or Facial Recognition
+::
 
 This is under assumption that you have some content in your library.
 
@@ -490,9 +496,11 @@ tank
 
 To confirm you are actually using your GPU, you should do the following:
 
+::block-steps
 1. On TrueNAS go to System > Shell
 2. Run `intel_gpu_top` inside the terminal
 3. You should be able to see a python process running if there is a job running for Smart Search, Facial Detection or Facial Recognition
+::
 
 This is under assumption that you have some content in your library.
 
@@ -598,6 +606,8 @@ tank
 :::
 
 # 2 · Adding External Libraries
+
+::block-steps
 1. If installing from the TrueNAS apps catalog, under **Storage Configuration →  Additional Storage**, add a host path pointed to where your photos are stored
 1. If installing via docker compose, add an additional line in the `immich_server` section pointed to where your photos are stored
 1. Click the circle with the letter in the top right and select **Administration**
@@ -608,6 +618,7 @@ tank
 1. Select **Add Path**
 1. Add the path you mounted earlier and click **Add**
 1. Click **Save**
+::
 
 # 3 · Migrating to New Dataset Structure
 Assuming you have the following legacy datasets:
@@ -638,6 +649,7 @@ tank
         └── db [dataset]
 ```
 
+::block-steps
 1. Create new parent dataset (I am calling this `immich1` for simplicity & clarity) with **apps** permission preset
 1. Create two sub-datasets: `data` and `db` with **apps** permission preset
 1. Use `rsync` to copy data from the old datasets to the new ones (assuming this is how your old dataset structure is named). `rsync` will create the new sub-directories when it completes the sync task. Run the following command in the TrueNAS shell as `root`:
@@ -656,6 +668,7 @@ b. Set the **Data Storage** to the new dataset `/mnt/tank/configs/immich1/data`
 c. Set the **Postgres Data Storage** to the new dataset `/mnt/tank/configs/immich1/db` and be sure to check the **Automatic Permissions** checkbox
 d. Click the blue **Update** button
 1. Once all running, you can remove the old dataset `immich`
+::
 
 # 4 · Picking the right CLIP model
 
