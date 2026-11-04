@@ -2,7 +2,7 @@
 title: Media Manager
 description: A guide to deploying Media Manager via docker
 published: true
-date: '2026-11-04T16:23:40.344Z'
+date: '2026-11-04T23:31:46.140Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:06:23.142Z'
@@ -50,6 +50,7 @@ services:
 
 # 2 · Media Manager Configuration
 
+::block-steps
 1. Edit the `config.toml' file by entering this command in the TrueNAS shell (in the event this file is empty [use this example](https://raw.githubusercontent.com/maxdorninger/MediaManager/refs/heads/master/config.example.toml)):
     ```bash
     nano /mnt/tank/configs/mediamanager/config.toml
@@ -63,14 +64,18 @@ services:
 1. Add the qBittorrent URL, username and password and set to `true`
 1. Add the Prowlarr URL and API key and set to `true`
 1. Restart the docker container
+::
 
 # 3 · Logging In
+
+::block-steps
 1. On first start MediaManager creates a default admin user and prints its credentials in the container logs:
     ```bash
     docker logs mediamanager
     ```
 1. Navigate to `http://IP:8000` and log in with those credentials
 1. Change the admin password after your first login
+::
 
 > [!NOTE]
 > Newer releases ship with sign-up disabled (`registration_enabled = false` in `config.toml`). To let other people register accounts, set `registration_enabled = true` in the `[auth]` section and restart the container.
