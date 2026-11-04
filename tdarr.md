@@ -2,7 +2,7 @@
 title: Tdarr
 description: A guide to installing Tdarr in TrueNAS Scale as well as docker via compose
 published: true
-date: '2026-11-04T16:18:01.329Z'
+date: '2026-11-04T23:32:11.391Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:08:55.739Z'
@@ -77,9 +77,11 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 ![](/screenshot-from-2025-01-26-17-42-01.png)
 
+::block-steps
 1. Under **Storage Configuration** use **Host Path** for each of the datasets (Tdarr Server Storage, Tdarr Configs Storage, Tdarr Logs Storage, Tdarr Transcode Storage) and point them to datasets you create in your pool. 
 1. Click the **Add** button for **Additional Storage** to pass the `media` directory into the container.
 1. At the very bottom, click the box to **Select NVIDIA GPU(s)** to pass your dGPU into the container. 
+::
 
 ::
 
@@ -95,18 +97,22 @@ Set `seededApiKey` and `apiKey` to the same `tapi_...` value (on TrueNAS, add bo
 
 ![](/tdarrlib.png)
 
+::block-steps
 1.  Click the **Library** tab
 2.  Click the **Library+** button
 3.  Name your library (one or movies one for tv)
 4.  Select the path inside the container (/media/movies or /media/tv)
+::
 
 ## 2.2 Library (transcode cache tab)
 
 ![](/tdarr5.png)
 
+::block-steps
 10. Select the **Transcode Cache** tab
 
 11. Enter the path `/temp`
+::
 
 ## 2.3 Library (transcode options tab)
 
@@ -114,9 +120,11 @@ Set `seededApiKey` and `apiKey` to the same `tapi_...` value (on TrueNAS, add bo
 
 ![](/tdarr3.png)
 
+::block-steps
 5. Click this box
 
 6. Check the box to enable to GPU to transcode (if you have a dGPU)
+::
 
 ![](/screenshot-from-2025-01-26-17-57-55.png)
 
@@ -126,11 +134,13 @@ Now scan the Library for new files.
 
 ![](/tdarr4.png)
 
+::block-steps
 7. Click the **Tdarr** tab
 
 8. Click this box (yours will have a different label)
 
 9. Increase your GPU workers
+::
 
 ![](/screenshot-from-2025-01-26-18-01-29.png)
 
