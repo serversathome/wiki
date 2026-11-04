@@ -2,7 +2,7 @@
 title: Wizarr
 description: A guide to deploying Wizarr
 published: true
-date: '2026-11-04T16:18:07.872Z'
+date: '2026-11-04T23:32:07.087Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:40.051Z'
@@ -43,6 +43,7 @@ services:
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 Wizarr is available in the **Community** train of the TrueNAS Apps catalog.
 
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI and click **Discover Apps**.
 2. Search for **Wizarr** and click the widget, then **Install**.
 3. Configure the following settings:
@@ -50,6 +51,7 @@ Wizarr is available in the **Community** train of the TrueNAS Apps catalog.
    - **Timezone**: set to your local TZ (e.g. `America/New_York`)
    - **Storage**: point the app's data volume to a host path such as `/mnt/tank/configs/wizarr`
 4. Click **Install** and wait for the app to move from *Deploying* to *Running*.
+::
 
 
 > [!TIP]
