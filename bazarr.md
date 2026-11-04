@@ -2,7 +2,7 @@
 title: Bazarr
 description: A guide to deploying Bazarr via docker compose
 published: true
-date: '2026-11-04T16:16:52.457Z'
+date: '2026-11-04T23:31:36.181Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:03:20.150Z'
@@ -16,6 +16,7 @@ Bazarr is a companion application to Sonarr and Radarr. It can manage and downlo
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 ![](/screenshot-from-2024-11-08-11-40-44.png)
 
+::block-steps
 1. Change the **Timezone**. For east coast time, use **America/New\_York**.
 1. Change the **Storage Configuration**. The **Bazarr Config Storage** *Type* should be set to **Host Path** as described in the [Folder-Structure](/Folder-Structure) guide.
 1. In the **Storage** section, add an additional stoage mount 
@@ -23,6 +24,7 @@ Bazarr is a companion application to Sonarr and Radarr. It can manage and downlo
   b. Mount Path = `/media`
   c. Host Path = `/mnt/tank/media`
 1. Change the **WebUI Port** to **6767** as that is the default used in all the documentation. 
+::
 
 ::
 
