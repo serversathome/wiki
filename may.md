@@ -2,7 +2,7 @@
 title: May
 description: A guide to deploy May
 published: true
-date: '2026-11-04T16:24:22.381Z'
+date: '2026-11-04T23:32:23.656Z'
 tags: []
 editor: markdown
 dateCreated: '2026-03-02T15:20:14.740Z'
@@ -42,18 +42,22 @@ services:
 
 After logging in for the first time, you'll want to configure a few things:
 
+::block-steps
 1. Navigate to **Settings** to customize your preferences
 2. Set your preferred **units** (metric or imperial) and **currency**
 3. Add your first vehicle under **Vehicles** — enter the make, model, year, registration, fuel type, and tank capacity
 4. Optionally upload a photo for each vehicle
+::
 
 ## 2.2 Adding Fuel Logs
 
 Each time you fill up, record the data in May:
 
+::block-steps
 1. Click **Add Fuel Log** or use **Quick Entry Mode** for a streamlined experience
 2. Enter the date, odometer reading, fuel amount, total cost, and whether it was a full tank
 3. May automatically calculates consumption (L/100km or MPG) based on full-tank fill-ups
+::
 
 ## 2.3 Expenses & Maintenance
 
@@ -73,9 +77,11 @@ Set up **Maintenance Schedules** with mileage or time-based intervals (e.g., oil
 
 Configure notifications to never miss important dates:
 
+::block-steps
 1. Go to **Settings > Notifications**
 2. Choose your notification method: **Email**, **ntfy**, **Pushover**, or **Webhook**
 3. Set up reminders for MOT/inspections, service intervals, insurance renewals, and tax payments
+::
 
 > [!NOTE]
 > Webhook notifications support HTTP POST, making it easy to integrate with Home Assistant, Discord, or Slack.
@@ -97,9 +103,11 @@ Generate an API key under **Settings > API** and use it with a REST sensor in Ho
 
 Subscribe to your reminders in any calendar app:
 
+::block-steps
 1. Go to **Settings > Integrations > Calendar**
 2. Copy the **webcal** URL (for Apple Calendar, Outlook) or **HTTPS** URL (for Google Calendar)
 3. Add as a subscribed calendar — maintenance schedules, recurring expenses, document expiry dates, and custom reminders will appear automatically
+::
 
 ### DVLA Integration (UK)
 
