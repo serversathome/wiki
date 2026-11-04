@@ -2,7 +2,7 @@
 title: Plex
 description: A guide to installing Plex in TrueNAS and via docker compose
 published: true
-date: '2026-11-04T16:24:12.433Z'
+date: '2026-11-04T23:32:12.199Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:21.349Z'
@@ -122,19 +122,21 @@ truenas_admin@truenas:$ sudo chmod -R 770 /dev/dri
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 ![screenshot_from_2025-03-13_06-45-49.png](/screenshot-from-2025-03-13-06-45-49.png)
 
+::block-steps
 1. Add your **Claim Token**
-> [!NOTE]
-> To get your Plex Claim Token, go to https://plex.tv/claim and follow the steps to create an account (or login to an existing one) to claim your token.
+   > [!NOTE]
+   > To get your Plex Claim Token, go to https://plex.tv/claim and follow the steps to create an account (or login to an existing one) to claim your token.
 2. Change to **Storage Configuration** to the values below: 
 
-| Field | Value | Path |
-| --- | --- | --- |
-| Plex Data Storage | Host Path | `/mnt/tank/media` |
-| Plex Configuration Storage | Host Path | `/mnt/tank/configs/plex/config` |
-| Plex Logs Storage | Host Path | `/mnt/tank/configs/plex/logs` |
-| Plex Transcode Storage | Temporary or tmpfs | n/a |
+   | Field | Value | Path |
+   | --- | --- | --- |
+   | Plex Data Storage | Host Path | `/mnt/tank/media` |
+   | Plex Configuration Storage | Host Path | `/mnt/tank/configs/plex/config` |
+   | Plex Logs Storage | Host Path | `/mnt/tank/configs/plex/logs` |
+   | Plex Transcode Storage | Temporary or tmpfs | n/a |
 
 3. **GPU Configuration**: Select NVIDIA GPU(s) if you have any available
+::
 
 > [!TIP]
 > Check out [the new docs](https://apps.truenas.com/resources/deploy-plex) from TrueNAS
@@ -145,6 +147,8 @@ truenas_admin@truenas:$ sudo chmod -R 770 /dev/dri
 
 # 2 · Plex Configuration
 Upon first launch follow these steps:
+
+::block-steps
 1. Skip the section for Plex Pass unless you want to buy one
 1. Give your server a name and click **Next**
 1. Click **Add Library**
@@ -154,6 +158,7 @@ Upon first launch follow these steps:
 1. Click **Add Library**
 1. Repeat this process for TV Shows
 1. Click **Next** then click **Done** then click **Finish Setup**
+::
 
 # :logos:youtube-icon: 3 · Video
 ::block-youtube{url="https://youtu.be/MU7wXJkGHqU?si=BuvTbpPo6yxYjBVH"}
