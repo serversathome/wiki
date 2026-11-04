@@ -2,7 +2,7 @@
 title: Unmanic
 description: A guide to deploying Unmanic
 published: true
-date: '2026-11-04T16:24:18.194Z'
+date: '2026-11-04T23:32:19.836Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:12.679Z'
@@ -38,6 +38,8 @@ services:
 1. Click on **Settings**
 
 ## 2.1 Plugins
+
+::block-steps
 1. Click on **Plugins**
 1. Click **Install Plugin From Repo**
 	a. Click **Refresh Repositories**
@@ -46,15 +48,19 @@ services:
 	d. Close the window
 1. Click the **Settings** button in the new Transcode Video Files box
 	a. Switch the **Video Encoder** to `NVENC` if you are using an nVidia GPU
+::
 
 > [!NOTE]
 > There are **many** other plugins that do various functions. Take time to explore more!
 
 ## 2.2 Workers
+
+::block-steps
 1. Click on **Workers**
 1. Click on the + symbol in the **Worker Groups** section
 1. Give it a name
 1. Increase your worker count based on what your GPU can handle
+::
 
 
 ## 2.3 Libraries
@@ -74,9 +80,12 @@ services:
 > You may get a warning at the bottom of the screen which says `Unmanic has stopped all workers..` This is normal
 
 ## 2.4 Start Workers
+
+::block-steps
 1. Click the **Hom** button at the top
 1. In the **Pending Tasks** box, click **Rescan Library Now**
 1. You should see your workers spin up as they find media to transcode to h265
+::
 
 # 3 · Recommended Plugins
 
