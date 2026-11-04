@@ -2,7 +2,7 @@
 title: Openresto
 description: A guide to deploying Openresto
 published: true
-date: '2026-11-04T16:23:26.784Z'
+date: '2026-11-04T23:31:39.782Z'
 tags: []
 editor: markdown
 dateCreated: '2026-06-29T20:52:10.263Z'
@@ -178,9 +178,11 @@ The proxy expects a certificate and key mounted read-only from the host at the p
 
 ## 2.4 First login
 
+::block-steps
 1. Browse to your OpenResto URL.
 2. Open the admin dashboard and log in with the `ADMIN_EMAIL` and `ADMIN_PASSWORD` you set.
 3. Create your first restaurant, add tables and floor sections, then set your branding (app name, primary color, favicon icon).
+::
 
 > [!CAUTION]
 > Change the default admin password immediately after your first login.
