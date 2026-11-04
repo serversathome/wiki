@@ -2,7 +2,7 @@
 title: Penpot
 description: A guide to deploying Penpot
 published: true
-date: '2026-11-04T16:17:40.879Z'
+date: '2026-11-04T23:32:08.968Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:06.342Z'
@@ -16,12 +16,15 @@ Penpot is the first open-source design tool for design and code collaboration. D
 # 1 · Deploy Penpot
 :::block-tabs
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Set the **Public URI** to the IP:Port of your server
 1. Set a **Database Password**
 1. Set a **Redis Password**
 1. Set a **Secret Key** (generate one with `openssl rand -hex 32`)
 1. Set the **Penpot Assets Storage** to **Host Path**
 1. Set the **Penpot Postgres Data Storage** to **Host Path**
+::
 
 > [!WARNING]
 > Remember to check the box for **Automatic Permissions** under **Postgres Data Storage**
