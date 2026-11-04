@@ -2,7 +2,7 @@
 title: Sure
 description: A guide to deploy Sure
 published: true
-date: '2026-11-04T16:23:42.408Z'
+date: '2026-11-04T23:31:41.146Z'
 tags: []
 editor: markdown
 dateCreated: '2026-08-06T14:22:23.744Z'
@@ -114,6 +114,8 @@ RAILS_ASSUME_SSL=false
 ::
 
 ::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
+
+::block-steps
 1. Navigate to **Apps** in the TrueNAS UI
 2. Search for **Sure** (Community train, Financial category)
 3. Click **Install**
@@ -123,6 +125,7 @@ RAILS_ASSUME_SSL=false
    - **Web Port**: `3000` (or your preference)
    - Generate and paste a **Secret Key Base** — `openssl rand -hex 64`
 5. Click **Save**
+::
 
 > [!NOTE]
 > The catalog app bundles Postgres and Redis, so you don't manage those separately. The tradeoff is less control over versions and image tags — if you want to pin a specific Sure release, the Docker route is cleaner.
@@ -144,19 +147,23 @@ SimpleFIN is an open protocol for financial aggregation. Since almost no US bank
 
 ## 3.1 Set Up SimpleFIN Bridge
 
+::block-steps
 1. Sign up at [bridge.simplefin.org](https://bridge.simplefin.org) and pay — it won't issue tokens otherwise
 2. Under **Financial Institutions**, click **New connection** and link each bank and credit card
 3. Confirm every institution shows status **OK**
 4. Enable **Passkeys** or **2FA** on the Bridge account while you're there
+::
 
 > [!NOTE]
 > Link *all* your institutions before generating a token. The token grants access to whatever is connected at claim time, and adding banks afterward means going through this again.
 
 ## 3.2 Generate the Setup Token
 
+::block-steps
 1. Under **Apps**, click **New app connection**
 2. Select which accounts to share
 3. Copy the setup token — a long base64 string. Grab all of it, with no trailing whitespace or line breaks
+::
 
 ## 3.3 Connect Sure
 
