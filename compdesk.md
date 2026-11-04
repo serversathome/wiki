@@ -2,7 +2,7 @@
 title: CompDesk
 description: A guide to deploying CompDesk
 published: true
-date: '2026-11-04T16:24:03.933Z'
+date: '2026-11-04T23:32:05.964Z'
 tags: []
 editor: markdown
 dateCreated: '2026-09-28T18:10:28.190Z'
@@ -119,9 +119,11 @@ services:
     stop_grace_period: 40s
 ```
 
+::block-steps
 1. Point a Cloudflare Tunnel (or other HTTPS reverse proxy) hostname at `http://your-server-ip:3070`
 2. Set `SETUP_PUBLIC_ORIGIN` to that exact HTTPS origin
 3. Deploy the stack
+::
 
 > [!WARNING]
 > This guide pins `0.9.0-beta.4.2` instead of `latest` on purpose. CompDesk only publishes a `latest` tag for stable releases, and every release so far is a beta, so `latest` does not exist yet. When you update, check the [GitHub releases page](https://github.com/TahaHydra/CompDesk/releases) and read the release notes for every beta you skip. Upstream also attaches a version-pinned `docker-compose.yml` to each release, so compare it against yours for new settings.
@@ -136,12 +138,14 @@ services:
 
 ## 2.1 First-Run Setup Wizard
 
+::block-steps
 1. Grab the one-time setup token from the logs. It is printed in a clearly boxed section and expires after 30 minutes:
 
 2. Browse to `https://helpdesk.example.com/setup` and paste in the token
 3. Choose the bundled Postgres option. The wizard tests the database, writes its secrets, runs migrations and creates the first **Super Admin**
 4. When asked, select **Trust a configured reverse proxy** so the running app reads client IPs and HTTPS from your tunnel correctly
 5. Finish the wizard. The same container switches to the production app automatically, and setup is permanently disabled from then on
+::
 
 > [!NOTE]
 > If the token expires, restart the `compdesk` container and a new one is printed.
