@@ -2,7 +2,7 @@
 title: Torqvoice
 description: A guide to deploying Torqvoice
 published: true
-date: '2026-11-04T16:23:47.097Z'
+date: '2026-11-04T23:31:51.065Z'
 tags: []
 editor: markdown
 dateCreated: '2026-03-02T19:14:06.166Z'
@@ -64,11 +64,13 @@ services:
 
 After logging in for the first time:
 
+::block-steps
 1. **Create a Company** — set your workshop name, address, and contact info
 2. **Upload Your Logo** — add your company branding for invoices and quotes
 3. **Customize Invoice Template** — adjust colors, fonts, and layout to match your brand
 4. **Add Team Members** — invite staff and assign roles (owner, admin, member)
 5. **Set Up Inventory** — add your parts catalog with supplier info and stock levels
+::
 
 ## 2.2 Multi-Company Support
 
@@ -78,9 +80,11 @@ Torqvoice supports managing multiple workshops from a single login. To add anoth
 
 If placing Torqvoice behind a reverse proxy (e.g. Nginx Proxy Manager, Caddy, or Traefik), make sure to:
 
+::block-steps
 1. Set `NEXT_PUBLIC_APP_URL` to your public domain (e.g. `https://torqvoice.yourdomain.com`)
 2. Forward traffic to port `3000`
 3. Enable WebSocket support if your proxy requires it
+::
 
 > [!NOTE]
 > Torqvoice generates shareable public links for invoices and quotes. The `NEXT_PUBLIC_APP_URL` must be correct for these links to work.
