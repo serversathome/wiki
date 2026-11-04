@@ -2,7 +2,7 @@
 title: Prismedia
 description: A guide to deploying Prismedia
 published: true
-date: '2026-11-04T16:23:21.453Z'
+date: '2026-11-04T23:31:45.580Z'
 tags: []
 editor: markdown
 dateCreated: '2026-09-03T11:49:15.948Z'
@@ -36,10 +36,12 @@ services:
 
 Prismedia needs at least one **watched library root** before it has anything to show.
 
+::block-steps
 1. Go to **Settings → Watched Libraries** and add a root
 2. Use the path **inside the container** — with the compose above that is `/media`, `/media/movies`, `/media/books/ebooks`, and so on
 3. Enable the scan toggles that match the folder
 4. A new root starts scanning immediately; you can also run scans from **Jobs**, **Settings → Watched Libraries**, or **Files**
+::
 
 | Toggle | Scans |
 |--------|-------|
@@ -64,10 +66,12 @@ Once media is scanned, open **Identify** to pull provider metadata. Run provider
 
 **Request** is the built-in acquisition workspace — the Radarr/Sonarr/Lidarr/Readarr job, in-app.
 
+::block-steps
 1. Add **Prowlarr** (or direct Torznab/Newznab indexers) in Settings
 2. Add a download client — qBittorrent, Transmission, or SABnzbd
 3. Search from **Request**, create the Wanted entity, and pick a release or let it grab
 4. Track progress, Missing and Cutoff Unmet lists, and History on the same library pages
+::
 
 ## 2.4 OPDS readers
 
