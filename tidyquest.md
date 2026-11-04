@@ -2,7 +2,7 @@
 title: TidyQuest
 description: A guide to deploying TidyQuest
 published: true
-date: '2026-11-04T16:23:48.167Z'
+date: '2026-11-04T23:31:53.772Z'
 tags: []
 editor: markdown
 dateCreated: '2026-03-03T18:07:39.432Z'
@@ -51,9 +51,12 @@ TidyQuest supports three user roles:
 Rooms organize your household tasks by location. TidyQuest ships with 8 default room types: Kitchen, Bedroom, Bathroom, Living Room, Office, Garage, Laundry, and Garden, along with 60+ predefined common tasks.
 
 To create a room:
+
+::block-steps
 1. Go to the **Rooms** page
 2. Click **Add Room** and select a room type
 3. Choose from predefined tasks or create custom ones with frequencies from 1–365 days
+::
 
 Tasks have effort levels from 1–5, which determine coin rewards (5–25 coins per completion). When a task is completed, its health bar resets to 100% and begins decaying again based on its configured frequency.
 
@@ -74,14 +77,20 @@ Admins create a reward catalog (TidyQuest includes 10 presets like movie night p
 TidyQuest can send notifications through Telegram or ntfy. Both are configured in the app's **Settings** page (admin only).
 
 **Telegram**
+
+::block-steps
 1. Create a Telegram bot via [@BotFather](https://t.me/botfather)
 2. Get your chat ID via [@userinfobot](https://t.me/userinfobot)
 3. Enter the bot token and chat ID in **Settings**
+::
 
 **ntfy**
+
+::block-steps
 1. Use [ntfy.sh](https://ntfy.sh) or your own ntfy server
 2. Enter the server URL and topic in **Settings**
 3. Subscribe to the topic on your phone
+::
 
 Available notification types:
 - **Daily Due Tasks** — Sent at a configured time (default 09:00)
