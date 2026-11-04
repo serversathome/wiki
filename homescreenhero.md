@@ -2,7 +2,7 @@
 title: Homescreen Hero
 description: A guide to deploying Homescreen Hero
 published: true
-date: '2026-11-04T16:23:57.632Z'
+date: '2026-11-04T23:31:41.809Z'
 tags: []
 editor: markdown
 dateCreated: '2026-02-03T12:22:46.645Z'
@@ -49,10 +49,12 @@ services:
       - /mnt/tank/configs/homescreenhero:/data
 ```
 
+::block-steps
 1. Replace `YOUR_PLEX_IP` with your Plex server IP address
 2. Replace `your_plex_token` with your [Plex authentication token](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/)
 3. Deploy the stack and navigate to `http://your-server-ip:8000`
 4. Complete the **Setup Wizard** to configure your libraries and rotation settings
+::
 
 > [!NOTE]
 > The Setup Wizard will guide you through the initial configuration. You don't need to edit config files manually unless you want to.
