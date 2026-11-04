@@ -2,7 +2,7 @@
 title: elm.chat
 description: A guide to deploying elm.chat
 published: true
-date: '2026-11-04T16:23:44.534Z'
+date: '2026-11-04T23:31:48.965Z'
 tags: []
 editor: markdown
 dateCreated: '2026-08-28T20:24:30.358Z'
@@ -56,6 +56,8 @@ Open it, click **Create private conversation**, and you have a working room.
 ::
 
 ::block-tab{label="One-Click Deploy"}
+
+::block-steps
 1. Click the **Deploy to Cloudflare** button on the [project README](https://github.com/shawnbure/elm-chat).
 2. Authorize Cloudflare to fork the repo into your GitHub account and connect it to Workers Builds.
 3. Cloudflare should detect the root `wrangler.jsonc` and fill in the build settings for you:
@@ -64,6 +66,7 @@ Open it, click **Create private conversation**, and you have a working room.
    - **Root directory**: `/` (repo root)
 4. Deploy. Cloudflare provisions the Worker and Durable Object namespace for you.
 5. Before sharing the instance, run through the upstream [deployment verification checklist](https://github.com/shawnbure/elm-chat/blob/main/docs/deploy-to-cloudflare-verification.md).
+::
 
 > [!CAUTION]
 > If the setup screen says **No Wrangler configuration detected**, stop before deploying and [open an issue](https://github.com/shawnbure/elm-chat/issues) upstream. It means Cloudflare is falling back to automatic project configuration instead of the project's Worker and Durable Object bindings.
@@ -90,16 +93,18 @@ Alternatively, add a `routes` entry to the root `wrangler.jsonc` and redeploy. C
 
 Room creation can be gated behind an invisible [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/) challenge. It's completely inert until you configure keys, so everything above works without it.
 
+::block-steps
 1. In the Cloudflare dashboard, create a Turnstile widget (Managed or Invisible) for your domain. You get a **site key** (public) and a **secret key** (private).
 2. Give the web build the site key:
 
-```bash
-VITE_TURNSTILE_SITE_KEY=<site-key> npm run build
-```
+   ```bash
+   VITE_TURNSTILE_SITE_KEY=<site-key> npm run build
+   ```
 
-Or add it to a `.env` file under `apps/web`.
+   Or add it to a `.env` file under `apps/web`.
 
 3. Give the Worker the secret key:
+::
 
 ```bash
 cd workers/api
@@ -157,6 +162,7 @@ Open `http://localhost:3000`, create a room, then open the copied link in a seco
 
 ## 4.1 Message Flow
 
+::block-steps
 1. The landing page generates a random 256-bit `room_secret` **in your browser**.
 2. `POST /api/rooms` creates the room metadata and its Durable Object.
 3. The browser navigates to `/c/:roomId#<room_secret>` — the fragment never leaves the client.
@@ -164,6 +170,7 @@ Open `http://localhost:3000`, create a room, then open the copied link in a seco
 5. One WebSocket carries join, presence, encrypted chat, encrypted file chunks, transcript sync, kicks, destroy, and keepalives.
 6. The Durable Object relays each encrypted envelope — broadcast to everyone else, or targeted to a single session for file chunks and per-peer sync.
 7. New joiners request transcript sync from connected peers, who replay their local encrypted history.
+::
 
 ## 4.2 Where Data Lives
 
