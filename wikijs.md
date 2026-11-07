@@ -2,7 +2,7 @@
 title: Wiki.js
 description: A guide to installing Wiki.js 3 in docker via compose
 published: true
-date: '2026-11-07T16:00:00.000Z'
+date: '2026-11-07T19:37:23.412Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:35.215Z'
@@ -47,11 +47,7 @@ services:
 
 ```
 
-1. Create the database folder and give it to the apps user: `mkdir -p /mnt/tank/configs/wikijs && chown -R 568:568 /mnt/tank/configs/wikijs`
-1. Change all the default user names and passwords. Whatever you set for `POSTGRES_*` in the db service must match the `DB_*` values in the wiki service.
-1. Set `ADMIN_EMAIL` and `ADMIN_PASS` to the login you want for the first administrator. They are only read the first time the wiki starts; once the admin account exists they do nothing.
-1. Deploy the stack. The first start can take a few minutes while the database is set up.
-1. Browse to `http://YOUR-IP:3000` and log in with the admin email and password.
+
 
 > [!WARNING] PostgreSQL 17 or newer is required
 > Wiki.js 3 only runs on PostgreSQL 17+, and MySQL, MariaDB, SQLite and MSSQL are no longer supported. Starting with `postgres:18`, the volume is mounted at `/var/lib/postgresql` (not `/var/lib/postgresql/data`), so do not reuse an old 2.x database folder or mount path.
@@ -63,12 +59,13 @@ services:
 # 2 · Upgrading from 2.x
 
 There is no in-place upgrade from 2.x. You export from the old wiki and import into a fresh 3.x install:
-
+::block-steps
 1. Update the 2.x wiki to **2.5.317**, the last 2.x release.
 1. In the 2.x **Administration** area, open **Utilities** and run **Export for Wiki.js 3.x**. Keep every box checked and download the `.wkbackup` file.
 1. Deploy a new 3.x stack using the compose above, with a new database folder.
 1. Log in as the admin, open **Administration → Utilities** and click **Proceed** next to **Import from Wiki.js 2.x**.
 1. Keep the default options, select the `.wkbackup` file and start the import. Watch the progress for errors.
+::
 
 > [!WARNING] Not everything comes across
 > Storage targets (including Git), authentication, comments, analytics, security settings, the site logo and the hostname are not imported. Set those up again by hand. The import can be run more than once; existing items are skipped unless you turn on overwrite.
@@ -106,12 +103,13 @@ Editors can be turned on and off under **Administration → Editors**.
 # 4 · Navigation
 
 Navigation menus in 3.x can be different for each folder, and the icons come from [Iconify](https://icon-sets.iconify.design/) instead of only Material Design Icons.
-
+::block-steps
 1. Go to **Administration → Icons**, click **Add Icon Set** and add the sets you want (for example `mdi`, `logos` and `simple-icons`). Icons from enabled sets can be used in menus, page icons and content blocks.
 1. On any page, click **Edit Nav** at the bottom of the sidebar.
 1. Choose a mode for that path: **Inherit**, **Override Current + Descendants**, **Override Current Only**, **Hide Current + Descendants** or **Hide Current Only**.
 1. Click **Edit Menu Items**, then **Add** a Header, Link or Separator. Links and Menus have an **Icon** field that opens the icon picker.
 1. Click **Save**.
+::
 
 > [!TIP]
 > **Administration → Navigation** lists every menu on the site and has automations that add new pages to their parent folder's menu, move links when a page moves, and clean up menus nothing uses.
