@@ -2,7 +2,7 @@
 title: Wiki.js
 description: A guide to installing Wiki.js in docker via compose
 published: true
-date: '2026-11-04T23:31:50.745Z'
+date: '2026-11-07T12:57:22.849Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:35.215Z'
@@ -16,39 +16,35 @@ dateCreated: '2026-01-15T15:09:35.215Z'
 
 ```yaml
 services:
- db:
-   image: postgres:15-alpine
-   container_name: wikijs-db
-   environment:
-     POSTGRES_DB: wiki
-     POSTGRES_PASSWORD: wikijsrocks
-     POSTGRES_USER: wikijs
-   logging:
-     driver: none
-   restart: unless-stopped
-   volumes:
-     - /mnt/tank/configs/wikijs:/var/lib/postgresql/data
- wiki:
-   image: ghcr.io/requarks/wiki:2
-   container_name: wikijs
-   depends_on:
-     - db
-   environment:
-     DB_TYPE: postgres
-     DB_HOST: db
-     DB_PORT: 5432
-     DB_USER: wikijs
-     DB_PASS: wikijsrocks
-     DB_NAME: wiki
-   restart: unless-stopped
-   ports:
-     - 3000:3000
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: wiki
+      POSTGRES_PASSWORD: wikijsrocks
+      POSTGRES_USER: wikijs
+    restart: unless-stopped
+    volumes:
+      - /mnt/tank/configs/wikijs:/var/lib/postgresql
+
+  wiki:
+    image: ghcr.io/requarks/wiki:3
+    depends_on:
+      - db
+    environment:
+      ADMIN_EMAIL: user@example.com
+      ADMIN_PASS: SuperSecret123
+      DB_HOST: db
+      DB_USER: wikijs
+      DB_PASS: wikijsrocks
+      DB_NAME: wiki
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+
 ```
 
 1. Change all the default user names and passwords. Make sure when you change them in the wiki service you mirror those changes in the db service. 
 
-> [!NOTE]
-> You can deploy as many of these containers as you want for each wiki you want to host. Be sure to change the external port for each one.
 
 # 2 · Making it Beautiful
 
@@ -74,76 +70,12 @@ To change a page from Visual Editor to the Markdown editor:
 
 By default, Wiki.js uses the Material Designs icon set for naviagtion. The best way to do navigation in my opinion is to go to **Administration Settings** ⚙️ → **Navigation** ➤ and set the **Navigation Mode** to **Custom Naviagtion** and change the default *mdi-chevron-right* to something from [here](https://pictogrammers.com/library/mdi/).
 
-# 3 · Making YouTube Links Work
-To show the video player when inserting YouTube links, you must make the following changes:
 
-::block-steps
-1. Navigate to the **Administration Settings** ⚙️
-1. Navigate to the **Theme** tab 🎨
-1. In the **Code Injection** on the right, paste this in the **CSS Override** field:
-   ```css
-   .responsive-embed {
-     position: relative;
-     padding-bottom: 56.2%;
-     height: 0;
-     margin: 10px 0;
-     overflow: hidden
-   }
-   .responsive-embed iframe {
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     border-radius: 15px
-   }
-   ```
-4. In the **HTML Injection** field paste the following:
-   ```html
-   <script type="text/javascript" defer>
-     const rxYoutube = /^.*^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/|shorts\/)?)([\w\-]+)(\S+)?$/
-
-    const rxScreencast = /^.*^((?:https?:)?\/\/)?(www\.)?(screencast\.com)(\/users)\/([a-z0-9_-]+)\/folders\/([a-z0-9%_-]+)\/media\/([a-z0-9_-]+)(?:\/)?$/im
-
-     window.boot.register('vue', () => {
-       window.onload = () => {
-         document.querySelectorAll('.contents oembed, .contents a').forEach(elm => {
-           const url = elm.hasAttribute('url') ? elm.getAttribute('url') : elm.getAttribute('href')
-           let newElmHtml = null
-       
-           const ytMatch = url.match(rxYoutube)
-           const scMatch = url.match(rxScreencast)
-
- 
-           if (ytMatch) {
-             newElmHtml = `<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube-nocookie.com/embed/${ytMatch[5]}" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
-        
-         } else if(scMatch) {
-           newElmHtml = `<iframe id="scplayer" type="text/html" width="640" height="360" src="${url}/embed" frameborder="0" allowfullscreen></iframe>`
-
-           } else if (url.endsWith('.mp4')) {
-             newElmHtml = `<video controls autostart="0" name="media" width="640" height="360"><source src="${url}" type="video/mp4"></video>`
-           } else {
-            return
-            }
-
-           const newElm = document.createElement('div') 
-           newElm.classList.add('responsive-embed')
-           newElm.insertAdjacentHTML('beforeend', newElmHtml)
-           elm.replaceWith(newElm)
-         })
-       }  
-     })
-   </script>
-   ```
-5. In **Settings → Security** make sure the `Same Origin Referrer Policy` is turned **off**!
-::
-
-# 4 · Syncing With GitHub
+# 3 · Syncing With GitHub
 
 [GitHub](https://www.github.com) is the most popular git source control provider.
 
-## 4.1 Generate a new key
+## 3.1 Generate a new key
 
 ::block-steps
 1. Open Terminal.
@@ -158,7 +90,7 @@ To show the video player when inserting YouTube links, you must make the followi
 > [!NOTE]
 > On Windows, you can use [Git Bash](https://git-scm.com/download/win) or Windows Subsystem for Linux (WSL) distributions like [Ubuntu for Windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6) to run the commands above. You can also generate keys manually using the [puttygen](https://www.ssh.com/ssh/putty/download) utility.
 
-## 4.2 Add the key to GitHub
+## 3.2 Add the key to GitHub
 
 ::block-steps
 1. Create a new GitHub repository.
@@ -170,7 +102,7 @@ To show the video player when inserting YouTube links, you must make the followi
 7. Click the **Add key** button.
 ::
 
-## 4.3 Configure Wiki.js
+## 3.3 Configure Wiki.js
 
 ::block-steps
 1. In the Administration Area, click on **Storage** in the left navigation menu.
