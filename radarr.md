@@ -2,7 +2,7 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: '2026-11-04T23:31:35.382Z'
+date: '2026-11-07T11:12:40.489Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:53.605Z'
