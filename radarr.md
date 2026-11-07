@@ -2,7 +2,7 @@
 title: Radarr
 description: A guide to installing Radarr in TrueNAS Scale as well as docker via compose
 published: true
-date: '2026-11-07T11:12:40.489Z'
+date: '2026-11-07T11:13:29.216Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:53.605Z'
@@ -14,8 +14,6 @@ dateCreated: '2026-01-15T15:07:53.605Z'
 
 Radarr handles quality profiles, custom formats, automatic upgrades (e.g. replacing a 720p copy when a 1080p release appears), and list-based imports from sources like Trakt, IMDb, and TMDb.
 
-> [!NOTE]
-> Radarr pairs best with **Prowlarr** (indexer management) and a download client such as **qBittorrent** or **SABnzbd**. Set those up first for the smoothest experience.
 
 # 1 · Deploy Radarr
 :::block-tabs
