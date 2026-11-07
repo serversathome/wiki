@@ -2,7 +2,7 @@
 title: Wiki.js
 description: A guide to installing Wiki.js 3 in docker via compose
 published: true
-date: '2026-11-07T19:37:23.412Z'
+date: '2026-11-07T19:37:37.967Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:35.215Z'
@@ -177,8 +177,7 @@ Navigation menus in 3.x can be different for each folder, and the icons come fro
 
 # :logos:youtube-icon: 6 · Video
 
-> [!NOTE]
-> This video was recorded on Wiki.js 2.x. The deployment and settings above are current for 3.x.
 
-::block-youtube{url="https://youtu.be/hfhP5WBAXmg"}
+
+::block-youtube{url=""}
 ::
