@@ -21,6 +21,7 @@ dateCreated: '2026-01-15T15:09:35.215Z'
 services:
   db:
     image: postgres:18
+    user: "568:568"
     environment:
       POSTGRES_DB: wiki
       POSTGRES_PASSWORD: wikijsrocks
@@ -46,6 +47,7 @@ services:
 
 ```
 
+1. Create the database folder and give it to the apps user: `mkdir -p /mnt/tank/configs/wikijs && chown -R 568:568 /mnt/tank/configs/wikijs`
 1. Change all the default user names and passwords. Whatever you set for `POSTGRES_*` in the db service must match the `DB_*` values in the wiki service.
 1. Set `ADMIN_EMAIL` and `ADMIN_PASS` to the login you want for the first administrator. They are only read the first time the wiki starts; once the admin account exists they do nothing.
 1. Deploy the stack. The first start can take a few minutes while the database is set up.
@@ -56,7 +58,7 @@ services:
 
 > [!NOTE]
 > - The image tag is `:3`, which tracks the latest 3.x release. Wiki.js 3 does not publish a `latest` tag, so `:latest` will not pull. Pin a version such as `:3.1` if you prefer.
-> - The wiki container needs no volume: pages, files, settings and users all live in the database.
+> - The wiki container needs no volume: pages, files, settings and users all live in the database. Leave `user:` off that service: it runs as its own built-in non-root user, and its working folder inside the image is only writable by that user.
 
 # 2 · Upgrading from 2.x
 
