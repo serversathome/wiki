@@ -2,7 +2,7 @@
 title: Vaultwarden
 description: A guide to installing Vaultwarden in docker via compose
 published: true
-date: '2026-11-04T23:31:57.011Z'
+date: '2026-11-08T10:44:01.863Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:09:17.568Z'
@@ -14,19 +14,9 @@ Vaultwarden is a free and secure password manager that works on any device and p
 
 # 1 · Deploy Vaultwarden
 :::block-tabs
-::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 
-::block-steps
-1. Set the **Database Password** to something secure
-1. Set the **Admin Token** to enable to admin console
-1. Set the **Certificate ID** to `truenas_default Certificate`
-1. Set the **Vaultwarden Data Storage** to **Host Path**
-1. Set the **Vaultwarden Postgres Data Storage** to **Host Path** and select the box for **Automatic Permissions**
-::
 
-::
-
-::block-tab{label="Docker Compose" icon="simple-icons:docker"}
+::block-tab{label="Docker" icon="simple-icons:docker"}
 ```yaml
 services:
   vaultwarden:
@@ -46,12 +36,20 @@ services:
 > Change the domain to the FQDN with https you will be accessing from. Leave the `admin_token` commented out until you finish the install.
 
 ::
+::block-tab{label="TrueNAS" icon="simple-icons:truenas"}
 
+::block-steps
+1. Set the **Database Password** to something secure
+1. Set the **Admin Token** to enable to admin console
+1. Set the **Certificate ID** to `truenas_default Certificate`
+1. Set the **Vaultwarden Data Storage** to **Host Path**
+1. Set the **Vaultwarden Postgres Data Storage** to **Host Path** and select the box for **Automatic Permissions**
+::
 :::
 
 # 2 · Logging In
 
-Your Vaultwarden server is now ready on whatever port you specified. However, do not go to http://{localhost}:8090. Even though the page will load you will not be able to create an account. You must come in over https, usually using a reverse proxy like Cloudflare tunnels or Nginx. 
+Your Vaultwarden server is now ready on whatever port you specified. However, do not go to `http://{localhost}:8090`. Even though the page will load you will not be able to create an account. You must come in over https, usually using a reverse proxy like Cloudflare tunnels or Nginx.
 
 # 3 · Admin Controls
 
