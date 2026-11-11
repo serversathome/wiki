@@ -2,7 +2,7 @@
 title: Immich
 description: A guide to deploying Immich on TrueNAS and via docker
 published: true
-date: '2026-11-04T23:31:31.131Z'
+date: '2026-11-11T10:14:31.391Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:05:25.101Z'
@@ -38,6 +38,7 @@ Immich has a custom yaml compose builder you can try [here!](https://immich.app/
    > [!WARNING]
    > The **Postgres Data Storage** needs the **☑ Automatic Permissions** checkbox checked!
 
+1. Under **Additional Environment Variables**, add `MACHINE_LEARNING_MODEL_REVISION` with the value `v2` (the optimized machine learning models, see the Docker Compose tabs)
 4. If you can, increase limits on the **Resources Configuration**
 ::
 
@@ -112,12 +113,15 @@ DB_DATA_LOCATION=/mnt/tank/configs/immich/db
 DB_PASSWORD=postgres
 DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
+MACHINE_LEARNING_MODEL_REVISION=v2
  ```
 
 > [!CAUTION]
 > Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
+
+`MACHINE_LEARNING_MODEL_REVISION=v2` switches the machine learning container to Immich's optimized models (opt-in since v3.3.0): faster and lighter on memory on every backend, CPU included, with numerically identical results, so no jobs need re-running. The new models download the first time each one is used. Immich plans to make this the default in a later release.
 
 ### Folder Structure
 ```xml
@@ -221,12 +225,15 @@ DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
 MACHINE_LEARNING_MODEL_TTL=0
 MACHINE_LEARNING_MODEL_TTL_POLL_S=0
+MACHINE_LEARNING_MODEL_REVISION=v2
  ```
 
 > [!CAUTION]
 > Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
+
+`MACHINE_LEARNING_MODEL_REVISION=v2` switches the machine learning container to Immich's optimized models (opt-in since v3.3.0): faster and lighter on memory on every backend, CPU included, with numerically identical results, so no jobs need re-running. The new models download the first time each one is used. Immich plans to make this the default in a later release.
 
 > [!NOTE]
 > In case you want to use multiple gpus see: [https://docs.immich.app/features/ml-hardware-acceleration#multi-gpu](https://docs.immich.app/features/ml-hardware-acceleration#multi-gpu)
@@ -343,12 +350,15 @@ DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
 MACHINE_LEARNING_MODEL_TTL=0
 MACHINE_LEARNING_MODEL_TTL_POLL_S=0
+MACHINE_LEARNING_MODEL_REVISION=v2
  ```
 
 > [!CAUTION]
 > Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
+
+`MACHINE_LEARNING_MODEL_REVISION=v2` switches the machine learning container to Immich's optimized models (opt-in since v3.3.0): faster and lighter on memory on every backend, CPU included, with numerically identical results, so no jobs need re-running. The new models download the first time each one is used. Immich plans to make this the default in a later release.
 
 
 ### Folder Structure
@@ -469,12 +479,15 @@ DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
 MACHINE_LEARNING_MODEL_TTL=0
 MACHINE_LEARNING_MODEL_TTL_POLL_S=0
+MACHINE_LEARNING_MODEL_REVISION=v2
  ```
 
 > [!CAUTION]
 > Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
+
+`MACHINE_LEARNING_MODEL_REVISION=v2` switches the machine learning container to Immich's optimized models (opt-in since v3.3.0): faster and lighter on memory on every backend, CPU included, with numerically identical results, so no jobs need re-running. The new models download the first time each one is used. Immich plans to make this the default in a later release.
 
 
 ### Folder Structure
@@ -580,12 +593,15 @@ DB_DATA_LOCATION=/mnt/tank/configs/immich/db
 DB_PASSWORD=postgres
 DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
+MACHINE_LEARNING_MODEL_REVISION=v2
  ```
 
 > [!CAUTION]
 > Make sure to change the `DB_PASSWORD` to something random! Use only the characters `A-Za-z0-9` (no special characters or spaces), e.g. generate one with `openssl rand -hex 24`.
 
 Set the `IMMICH_VERSION` based on the releases [here](https://github.com/immich-app/immich/releases/). `v3` follows the current major version; pin a specific version like `v3.3.5` if you prefer.
+
+`MACHINE_LEARNING_MODEL_REVISION=v2` switches the machine learning container to Immich's optimized models (opt-in since v3.3.0): faster and lighter on memory on every backend, CPU included, with numerically identical results, so no jobs need re-running. The new models download the first time each one is used. Immich plans to make this the default in a later release.
 
 ### Folder Structure
 ```xml
