@@ -2,7 +2,7 @@
 title: AdGuard
 description: A guide to deploying AdGuard via TrueNAS or docker compose
 published: true
-date: '2026-11-18T12:12:49.548Z'
+date: '2026-11-18T12:14:49.982Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:03:05.289Z'
@@ -24,7 +24,6 @@ services:
   adguardhome:
     image: adguard/adguardhome:latest
     container_name: adguardhome
-    user: "568:568"
     restart: unless-stopped
     volumes:
       - /mnt/tank/configs/adguard/work:/opt/adguardhome/work
