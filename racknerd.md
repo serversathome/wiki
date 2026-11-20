@@ -2,7 +2,7 @@
 title: Racknerd VPS
 description: A guide to deploying a Racknerd VPS
 published: true
-date: '2026-11-04T23:31:55.433Z'
+date: '2026-11-20T20:30:00.000Z'
 tags: []
 editor: markdown
 dateCreated: '2026-01-15T15:07:49.041Z'
@@ -16,27 +16,29 @@ RackNerd is a global provider of Infrastructure as a Service (IaaS) solutions, o
 
 ::block-steps
 1. Create an account on [Racknerd](https://www.racknerd.com/)
-1. Use one of the affilate links to get a discount on a VPS:
+1. Use one of the affiliate links to get a discount on a VPS. These are the **Black Friday 2026** deals, and you renew at the same price for as long as you keep the server:
 
    ::block-links-grid
    ```yaml
-   - title: "$21.99/yr"
+   - title: "$15.98/yr"
      description: "1 vCPU · 1GB RAM · 20GB SSD · 3TB bandwidth"
-     url: "https://my.racknerd.com/aff.php?aff=15328&pid=952"
-   - title: "$35.99/yr"
-     description: "2 vCPU · 2GB RAM · 35GB SSD · 5TB bandwidth"
-     url: "https://my.racknerd.com/aff.php?aff=15328&pid=953"
-   - title: "$59.99/yr"
-     description: "3 vCPU · 4GB RAM · 60GB SSD · 7TB bandwidth"
-     url: "https://my.racknerd.com/aff.php?aff=15328&pid=954"
-   - title: "$89.99/yr"
-     description: "6 vCPU · 6GB RAM · 100GB SSD · 12TB bandwidth"
-     url: "https://my.racknerd.com/aff.php?aff=15328&pid=955"
-   - title: "$119.99/yr"
-     description: "7 vCPU · 8GB RAM · 150GB SSD · 20TB bandwidth"
-     url: "https://my.racknerd.com/aff.php?aff=15328&pid=956"
+     url: "https://my.racknerd.com/aff.php?aff=15328&pid=968"
+   - title: "$27.98/yr"
+     description: "2 vCPU · 2.5GB RAM · 30GB SSD · 6TB bandwidth"
+     url: "https://my.racknerd.com/aff.php?aff=15328&pid=969"
+   - title: "$47.98/yr (most popular)"
+     description: "4 vCPU · 4GB RAM · 60GB SSD · 10TB bandwidth"
+     url: "https://my.racknerd.com/aff.php?aff=15328&pid=970"
+   - title: "$74.98/yr"
+     description: "6 vCPU · 6GB RAM · 85GB SSD · 15TB bandwidth"
+     url: "https://my.racknerd.com/aff.php?aff=15328&pid=971"
+   - title: "$94.98/yr"
+     description: "6 vCPU · 8GB RAM · 140GB SSD · 20TB bandwidth"
+     url: "https://my.racknerd.com/aff.php?aff=15328&pid=972"
    ```
    ::
+
+   All plans include a 1Gbps port, 1 IPv4 address, full root access, the new ctrl control panel and a free Clientexec license. See the full list on the [Black Friday page](https://racknerd.com/BlackFriday/).
 
 1. Set a **Server Label**
 1. Optionally add additional CPU/RAM
