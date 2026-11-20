@@ -49,8 +49,8 @@ RackNerd is a global provider of Infrastructure as a Service (IaaS) solutions, o
 
 ::block-steps
 1. Once your VPS is deployed, navigate to [this page](https://my.racknerd.com/clientarea.php?action=services) and click on the row showing your VPS
-1. At the bottom of the screen, you will see a link to the [Control Panel](https://nerdvm.racknerd.com/) along with your username. Your password will be emailed to you. If you forgot it navigate to [this page](https://my.racknerd.com/clientarea.php?action=emails) and look for the message titled `KVM VPS Login Information`
-1. Naviagte to the [Control Panel](https://nerdvm.racknerd.com/) and login
+1. At the bottom of the screen, you will see a link to the [ctrl Control Panel](https://ctrl.racknerd.com/) along with your username. Your password will be emailed to you. If you forgot it navigate to [this page](https://my.racknerd.com/clientarea.php?action=emails) and look for the message titled `KVM VPS Login Information`
+1. Navigate to the [ctrl Control Panel](https://ctrl.racknerd.com/) and log in. If you can't log in, use the **Forgot password?** link on the login page
 ::
 
 # 3 • Accessing Your Server
